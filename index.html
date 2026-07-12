@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gacha Revenue Tracker</title>
+<meta name="description" content="Estimated gacha banner revenue over time for Zenless Zone Zero, Honkai: Star Rail, Wuthering Waves, Genshin Impact and Arknights: Endfield. Auto-updated from game-i.daa.jp.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>%F0%9F%8E%B0</text></svg>">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="site-hd">
+    <div>
+      <h1>Gacha <span class="accent">Revenue</span> Tracker</h1>
+      <p>Estimated per-banner gacha revenue over time. Figures are third-party estimates (売上予測) in <b>億G</b> = 100M App Store units — directional, not official.</p>
+    </div>
+    <div class="updated" id="updated"></div>
+  </header>
+
+  <nav class="tabs" id="tabs" aria-label="Games"></nav>
+  <div class="tiles" id="tiles"></div>
+
+  <div class="controls">
+    <div class="seg" role="tablist" aria-label="Ordering">
+      <button id="bTime" class="on" role="tab" aria-selected="true">Timeline</button>
+      <button id="bRank" role="tab" aria-selected="false">Ranking</button>
+    </div>
+    <button id="bTable" class="ghost">Table view</button>
+    <span class="hint">Hover a bar for banner art &amp; details</span>
+  </div>
+
+  <div class="chartwrap" id="chartwrap"><div class="chart" id="chart"><div class="loading">Loading…</div></div></div>
+  <div class="tablewrap" id="tablewrap" hidden></div>
+
+  <footer class="foot">
+    Data scraped from <a href="https://game-i.daa.jp/" target="_blank" rel="noopener">game-i.daa.jp</a> ·
+    character portraits © HoYoverse / Kuro Games, via <a href="https://enka.network/" target="_blank" rel="noopener">Enka.Network</a> ·
+    banner art © the respective games. This is a fan-made, non-commercial analytics view; revenue figures are estimates and may be inaccurate.
+    Refreshed automatically by a scheduled GitHub Action.
+  </footer>
+</div>
+<div class="tip" id="tip" hidden></div>
+<script src="app.js"></script>
+</body>
+</html>

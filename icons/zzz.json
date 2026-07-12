@@ -1,0 +1,282 @@
+{
+ "アンビー": {
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle01.png",
+  "accent": "#aece32",
+  "en": "Anby"
+ },
+ "猫又": {
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle11.png",
+  "accent": "#ca4b3d",
+  "en": "Nekomata"
+ },
+ "ニコ": {
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle12.png",
+  "accent": "#ff498c",
+  "en": "Nicole"
+ },
+ "「11号」": {
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle05.png",
+  "accent": "#ffc300",
+  "en": "Soldier 11"
+ },
+ "イドリー": {
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle52.png",
+  "accent": "#ab373e",
+  "en": "Yidhari"
+ },
+ "カリン": {
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle09.png",
+  "accent": "#b2b2b2",
+  "en": "Corin"
+ },
+ "シーザー": {
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle25.png",
+  "accent": "#ffdd4f",
+  "en": "Caesar"
+ },
+ "ビリー": {
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle10.png",
+  "accent": "#c94b3d",
+  "en": "Billy"
+ },
+ "星見雅": {
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle13.png",
+  "accent": "#22bdcc",
+  "en": "Miyabi"
+ },
+ "クレタ": {
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle14.png",
+  "accent": "#d4d4d4",
+  "en": "Koleda"
+ },
+ "アンドー": {
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle15.png",
+  "accent": "#d4d4d4",
+  "en": "Anton"
+ },
+ "ベン": {
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle16.png",
+  "accent": "#d4d4d4",
+  "en": "Ben"
+ },
+ "蒼角": {
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle17.png",
+  "accent": "#22bdcc",
+  "en": "Soukaku"
+ },
+ "ライカン": {
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle18.png",
+  "accent": "#b2b2b2",
+  "en": "Lycaon"
+ },
+ "ルーシー": {
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle27.png",
+  "accent": "#ffdd4f",
+  "en": "Lucy"
+ },
+ "ライト": {
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle26.png",
+  "accent": "#ffdd4f",
+  "en": "Lighter"
+ },
+ "バーニス": {
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle32.png",
+  "accent": "#ffdd4f",
+  "en": "Burnice"
+ },
+ "グレース": {
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle20.png",
+  "accent": "#d4d4d4",
+  "en": "Grace"
+ },
+ "エレン": {
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle21.png",
+  "accent": "#b2b2b2",
+  "en": "Ellen"
+ },
+ "浅羽悠真": {
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle35.png",
+  "accent": "#22bdcc",
+  "en": "Harumasa"
+ },
+ "リナ": {
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle22.png",
+  "accent": "#b2b2b2",
+  "en": "Rina"
+ },
+ "月城柳": {
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle31.png",
+  "accent": "#22bdcc",
+  "en": "Yanagi"
+ },
+ "朱鳶": {
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle23.png",
+  "accent": "#0d75d9",
+  "en": "Zhu Yuan"
+ },
+ "青衣": {
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle29.png",
+  "accent": "#0d75d9",
+  "en": "Qingyi"
+ },
+ "ジェーン": {
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle24.png",
+  "accent": "#91daed",
+  "en": "Jane"
+ },
+ "セス": {
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle30.png",
+  "accent": "#0d75d9",
+  "en": "Seth"
+ },
+ "パイパー": {
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle28.png",
+  "accent": "#ffdd4f",
+  "en": "Piper"
+ },
+ "ヒューゴ": {
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle42.png",
+  "accent": "#8076e9",
+  "en": "Hugo"
+ },
+ "オルペウス&「鬼火」": {
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle49.png",
+  "accent": "#db602a",
+  "en": "Orphie & Magus"
+ },
+ "アストラ": {
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle36.png",
+  "accent": "#eef7fd",
+  "en": "Astra Yao"
+ },
+ "イヴリン": {
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle37.png",
+  "accent": "#eef7fd",
+  "en": "Evelyn"
+ },
+ "ビビアン": {
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle41.png",
+  "accent": "#8076e9",
+  "en": "Vivian"
+ },
+ "照": {
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle56.png",
+  "accent": "#56c3c1",
+  "en": "Zhao"
+ },
+ "プルクラ": {
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle38.png",
+  "accent": "#ff8916",
+  "en": "Pulchra"
+ },
+ "「トリガー」": {
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle39.png",
+  "accent": "#ffc300",
+  "en": "Trigger"
+ },
+ "儀玄": {
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle44.png",
+  "accent": "#f1cc4d",
+  "en": "Yixuan"
+ },
+ "0号・アンビー": {
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle40.png",
+  "accent": "#ffbc2e",
+  "en": "Soldier 0 - Anby"
+ },
+ "橘福福": {
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle43.png",
+  "accent": "#ffbf16",
+  "en": "Ju Fufu"
+ },
+ "アリス": {
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle46.png",
+  "accent": "#d54553",
+  "en": "Alice"
+ },
+ "浮波柚葉": {
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle47.png",
+  "accent": "#d54553",
+  "en": "Yuzuha"
+ },
+ "潘引壺": {
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle45.png",
+  "accent": "#ffbf16",
+  "en": "Pan Yinhu"
+ },
+ "葉瞬光": {
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle55.png",
+  "accent": "#f5b42e",
+  "en": "Ye Shunguang"
+ },
+ "狛野真斗": {
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle51.png",
+  "accent": "#ab373e",
+  "en": "Manato"
+ },
+ "リュシア": {
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle50.png",
+  "accent": "#4bbbc0",
+  "en": "Lucia"
+ },
+ "「シード」": {
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle48.png",
+  "accent": "#e9f1f2",
+  "en": "Seed"
+ },
+ "盤岳": {
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle53.png",
+  "accent": "#adadad",
+  "en": "Banyue"
+ },
+ "ダイアリン": {
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle54.png",
+  "accent": "#adadad",
+  "en": "Dialyn"
+ },
+ "千夏": {
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle58.png",
+  "accent": "#57ddca",
+  "en": "Sunna"
+ },
+ "アリア": {
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle57.png",
+  "accent": "#65dcc9",
+  "en": "Aria"
+ },
+ "南宮羽": {
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle59.png",
+  "accent": "#57ddca",
+  "en": "Nangong Yu"
+ },
+ "シーシィア": {
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle60.png",
+  "accent": "#da3674",
+  "en": "Cissia"
+ },
+ "スターライト･ビリー": {
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle62.png",
+  "accent": "#c94b3d",
+  "en": "Starlight - Billy"
+ },
+ "プロメイア": {
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle61.png",
+  "accent": "#9c69ff",
+  "en": "Promeia"
+ },
+ "ピュロイス": {
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle63.png",
+  "accent": "#e8e7ea",
+  "en": "Pyrois"
+ },
+ "ヴェリナ": {
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle64.png",
+  "accent": "#e8e7ea",
+  "en": "Velina"
+ },
+ "ノルムー": {
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle65.png",
+  "accent": "#e8e7ea",
+  "en": "Norma"
+ }
+}

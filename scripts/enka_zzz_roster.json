@@ -1,0 +1,562 @@
+[
+ {
+  "id": 1011,
+  "code": "Anbi",
+  "ja": "アンビー",
+  "en": "Anby",
+  "rarity": 3,
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle01.png",
+  "accent": "#aece32",
+  "elem": "Elec"
+ },
+ {
+  "id": 1021,
+  "code": "Tsubaki",
+  "ja": "猫又",
+  "en": "Nekomata",
+  "rarity": 4,
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle11.png",
+  "accent": "#ca4b3d",
+  "elem": "Physics"
+ },
+ {
+  "id": 1031,
+  "code": "Nostradamus",
+  "ja": "ニコ",
+  "en": "Nicole",
+  "rarity": 3,
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle12.png",
+  "accent": "#ff498c",
+  "elem": "Ether"
+ },
+ {
+  "id": 1041,
+  "code": "Longinus",
+  "ja": "「11号」",
+  "en": "Soldier 11",
+  "rarity": 4,
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle05.png",
+  "accent": "#ffc300",
+  "elem": "Fire"
+ },
+ {
+  "id": 1051,
+  "code": "Yidhari",
+  "ja": "イドリー",
+  "en": "Yidhari",
+  "rarity": 4,
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle52.png",
+  "accent": "#ab373e",
+  "elem": "Ice"
+ },
+ {
+  "id": 1061,
+  "code": "Corin",
+  "ja": "カリン",
+  "en": "Corin",
+  "rarity": 3,
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle09.png",
+  "accent": "#b2b2b2",
+  "elem": "Physics"
+ },
+ {
+  "id": 1071,
+  "code": "Caesar",
+  "ja": "シーザー",
+  "en": "Caesar",
+  "rarity": 4,
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle25.png",
+  "accent": "#ffdd4f",
+  "elem": "Physics"
+ },
+ {
+  "id": 1081,
+  "code": "Billy",
+  "ja": "ビリー",
+  "en": "Billy",
+  "rarity": 3,
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle10.png",
+  "accent": "#c94b3d",
+  "elem": "Physics"
+ },
+ {
+  "id": 1091,
+  "code": "Unagi",
+  "ja": "星見雅",
+  "en": "Miyabi",
+  "rarity": 4,
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle13.png",
+  "accent": "#22bdcc",
+  "elem": "FireFrost,Ice"
+ },
+ {
+  "id": 1101,
+  "code": "OokumaMari",
+  "ja": "クレタ",
+  "en": "Koleda",
+  "rarity": 4,
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle14.png",
+  "accent": "#d4d4d4",
+  "elem": "Fire"
+ },
+ {
+  "id": 1111,
+  "code": "Anton",
+  "ja": "アンドー",
+  "en": "Anton",
+  "rarity": 3,
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle15.png",
+  "accent": "#d4d4d4",
+  "elem": "Elec"
+ },
+ {
+  "id": 1121,
+  "code": "Ben",
+  "ja": "ベン",
+  "en": "Ben",
+  "rarity": 3,
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle16.png",
+  "accent": "#d4d4d4",
+  "elem": "Fire"
+ },
+ {
+  "id": 1131,
+  "code": "Aokaku",
+  "ja": "蒼角",
+  "en": "Soukaku",
+  "rarity": 3,
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle17.png",
+  "accent": "#22bdcc",
+  "elem": "Ice"
+ },
+ {
+  "id": 1141,
+  "code": "Lycaon",
+  "ja": "ライカン",
+  "en": "Lycaon",
+  "rarity": 4,
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle18.png",
+  "accent": "#b2b2b2",
+  "elem": "Ice"
+ },
+ {
+  "id": 1151,
+  "code": "Lucy",
+  "ja": "ルーシー",
+  "en": "Lucy",
+  "rarity": 3,
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle27.png",
+  "accent": "#ffdd4f",
+  "elem": "Fire"
+ },
+ {
+  "id": 1161,
+  "code": "Lighter",
+  "ja": "ライト",
+  "en": "Lighter",
+  "rarity": 4,
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle26.png",
+  "accent": "#ffdd4f",
+  "elem": "Fire"
+ },
+ {
+  "id": 1171,
+  "code": "Burnice",
+  "ja": "バーニス",
+  "en": "Burnice",
+  "rarity": 4,
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle32.png",
+  "accent": "#ffdd4f",
+  "elem": "Fire"
+ },
+ {
+  "id": 1181,
+  "code": "Lisa",
+  "ja": "グレース",
+  "en": "Grace",
+  "rarity": 4,
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle20.png",
+  "accent": "#d4d4d4",
+  "elem": "Elec"
+ },
+ {
+  "id": 1191,
+  "code": "Ellen",
+  "ja": "エレン",
+  "en": "Ellen",
+  "rarity": 4,
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle21.png",
+  "accent": "#b2b2b2",
+  "elem": "Ice"
+ },
+ {
+  "id": 1201,
+  "code": "Harumasa",
+  "ja": "浅羽悠真",
+  "en": "Harumasa",
+  "rarity": 4,
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle35.png",
+  "accent": "#22bdcc",
+  "elem": "Elec"
+ },
+ {
+  "id": 1211,
+  "code": "Rina",
+  "ja": "リナ",
+  "en": "Rina",
+  "rarity": 4,
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle22.png",
+  "accent": "#b2b2b2",
+  "elem": "Elec"
+ },
+ {
+  "id": 1221,
+  "code": "Yanagi",
+  "ja": "月城柳",
+  "en": "Yanagi",
+  "rarity": 4,
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle31.png",
+  "accent": "#22bdcc",
+  "elem": "Elec"
+ },
+ {
+  "id": 1241,
+  "code": "ZhuYuan",
+  "ja": "朱鳶",
+  "en": "Zhu Yuan",
+  "rarity": 4,
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle23.png",
+  "accent": "#0d75d9",
+  "elem": "Ether"
+ },
+ {
+  "id": 1251,
+  "code": "QingYi",
+  "ja": "青衣",
+  "en": "Qingyi",
+  "rarity": 4,
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle29.png",
+  "accent": "#0d75d9",
+  "elem": "Elec"
+ },
+ {
+  "id": 1261,
+  "code": "JaneDoe",
+  "ja": "ジェーン",
+  "en": "Jane",
+  "rarity": 4,
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle24.png",
+  "accent": "#91daed",
+  "elem": "Physics"
+ },
+ {
+  "id": 1271,
+  "code": "Seth",
+  "ja": "セス",
+  "en": "Seth",
+  "rarity": 3,
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle30.png",
+  "accent": "#0d75d9",
+  "elem": "Elec"
+ },
+ {
+  "id": 1281,
+  "code": "Clara",
+  "ja": "パイパー",
+  "en": "Piper",
+  "rarity": 3,
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle28.png",
+  "accent": "#ffdd4f",
+  "elem": "Physics"
+ },
+ {
+  "id": 1291,
+  "code": "HugoVlad",
+  "ja": "ヒューゴ",
+  "en": "Hugo",
+  "rarity": 4,
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle42.png",
+  "accent": "#8076e9",
+  "elem": "Ice"
+ },
+ {
+  "id": 1301,
+  "code": "Brujas",
+  "ja": "オルペウス&「鬼火」",
+  "en": "Orphie & Magus",
+  "rarity": 4,
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle49.png",
+  "accent": "#db602a",
+  "elem": "Fire"
+ },
+ {
+  "id": 1311,
+  "code": "Astra",
+  "ja": "アストラ",
+  "en": "Astra Yao",
+  "rarity": 4,
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle36.png",
+  "accent": "#eef7fd",
+  "elem": "Ether"
+ },
+ {
+  "id": 1321,
+  "code": "Evelyn",
+  "ja": "イヴリン",
+  "en": "Evelyn",
+  "rarity": 4,
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle37.png",
+  "accent": "#eef7fd",
+  "elem": "Fire"
+ },
+ {
+  "id": 1331,
+  "code": "Vivian",
+  "ja": "ビビアン",
+  "en": "Vivian",
+  "rarity": 4,
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle41.png",
+  "accent": "#8076e9",
+  "elem": "Ether"
+ },
+ {
+  "id": 1341,
+  "code": "XiaoZhao",
+  "ja": "照",
+  "en": "Zhao",
+  "rarity": 4,
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle56.png",
+  "accent": "#56c3c1",
+  "elem": "Ice"
+ },
+ {
+  "id": 1351,
+  "code": "Pulchra",
+  "ja": "プルクラ",
+  "en": "Pulchra",
+  "rarity": 3,
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle38.png",
+  "accent": "#ff8916",
+  "elem": "Physics"
+ },
+ {
+  "id": 1361,
+  "code": "Trigger",
+  "ja": "「トリガー」",
+  "en": "Trigger",
+  "rarity": 4,
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle39.png",
+  "accent": "#ffc300",
+  "elem": "Elec"
+ },
+ {
+  "id": 1371,
+  "code": "YiXuan",
+  "ja": "儀玄",
+  "en": "Yixuan",
+  "rarity": 4,
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle44.png",
+  "accent": "#f1cc4d",
+  "elem": "AuricEther,Ether"
+ },
+ {
+  "id": 1381,
+  "code": "SilverAnby",
+  "ja": "0号・アンビー",
+  "en": "Soldier 0 - Anby",
+  "rarity": 4,
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle40.png",
+  "accent": "#ffbc2e",
+  "elem": "Elec"
+ },
+ {
+  "id": 1391,
+  "code": "Jufufu",
+  "ja": "橘福福",
+  "en": "Ju Fufu",
+  "rarity": 4,
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle43.png",
+  "accent": "#ffbf16",
+  "elem": "Fire"
+ },
+ {
+  "id": 1401,
+  "code": "Alice",
+  "ja": "アリス",
+  "en": "Alice",
+  "rarity": 4,
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle46.png",
+  "accent": "#d54553",
+  "elem": "Physics"
+ },
+ {
+  "id": 1411,
+  "code": "Yuzuha",
+  "ja": "浮波柚葉",
+  "en": "Yuzuha",
+  "rarity": 4,
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle47.png",
+  "accent": "#d54553",
+  "elem": "Physics"
+ },
+ {
+  "id": 1421,
+  "code": "PanYinhu",
+  "ja": "潘引壺",
+  "en": "Pan Yinhu",
+  "rarity": 3,
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle45.png",
+  "accent": "#ffbf16",
+  "elem": "Physics"
+ },
+ {
+  "id": 1431,
+  "code": "Zhenzhen",
+  "ja": "葉瞬光",
+  "en": "Ye Shunguang",
+  "rarity": 4,
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle55.png",
+  "accent": "#f5b42e",
+  "elem": "ZhenZhenAssault,Physics"
+ },
+ {
+  "id": 1441,
+  "code": "Norano",
+  "ja": "狛野真斗",
+  "en": "Manato",
+  "rarity": 3,
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle51.png",
+  "accent": "#ab373e",
+  "elem": "Fire"
+ },
+ {
+  "id": 1451,
+  "code": "Lucia",
+  "ja": "リュシア",
+  "en": "Lucia",
+  "rarity": 4,
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle50.png",
+  "accent": "#4bbbc0",
+  "elem": "Ether"
+ },
+ {
+  "id": 1461,
+  "code": "Seed",
+  "ja": "「シード」",
+  "en": "Seed",
+  "rarity": 4,
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle48.png",
+  "accent": "#e9f1f2",
+  "elem": "Elec"
+ },
+ {
+  "id": 1471,
+  "code": "BanYue",
+  "ja": "盤岳",
+  "en": "Banyue",
+  "rarity": 4,
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle53.png",
+  "accent": "#adadad",
+  "elem": "Fire"
+ },
+ {
+  "id": 1481,
+  "code": "Azural",
+  "ja": "ダイアリン",
+  "en": "Dialyn",
+  "rarity": 4,
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle54.png",
+  "accent": "#adadad",
+  "elem": "Physics"
+ },
+ {
+  "id": 1491,
+  "code": "Summer",
+  "ja": "千夏",
+  "en": "Sunna",
+  "rarity": 4,
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle58.png",
+  "accent": "#57ddca",
+  "elem": "Physics"
+ },
+ {
+  "id": 1501,
+  "code": "Aria",
+  "ja": "アリア",
+  "en": "Aria",
+  "rarity": 4,
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle57.png",
+  "accent": "#65dcc9",
+  "elem": "Ether"
+ },
+ {
+  "id": 1511,
+  "code": "NangongYu",
+  "ja": "南宮羽",
+  "en": "Nangong Yu",
+  "rarity": 4,
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle59.png",
+  "accent": "#57ddca",
+  "elem": "Ether"
+ },
+ {
+  "id": 1521,
+  "code": "Cissia",
+  "ja": "シーシィア",
+  "en": "Cissia",
+  "rarity": 4,
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle60.png",
+  "accent": "#da3674",
+  "elem": "Elec"
+ },
+ {
+  "id": 1531,
+  "code": "SPBilly",
+  "ja": "スターライト･ビリー",
+  "en": "Starlight - Billy",
+  "rarity": 4,
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle62.png",
+  "accent": "#c94b3d",
+  "elem": "Physics"
+ },
+ {
+  "id": 1541,
+  "code": "Promeia",
+  "ja": "プロメイア",
+  "en": "Promeia",
+  "rarity": 4,
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle61.png",
+  "accent": "#9c69ff",
+  "elem": "Ice"
+ },
+ {
+  "id": 1551,
+  "code": "Pyrois",
+  "ja": "ピュロイス",
+  "en": "Pyrois",
+  "rarity": 4,
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle63.png",
+  "accent": "#e8e7ea",
+  "elem": "Ether"
+ },
+ {
+  "id": 1561,
+  "code": "Velina",
+  "ja": "ヴェリナ",
+  "en": "Velina",
+  "rarity": 4,
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle64.png",
+  "accent": "#e8e7ea",
+  "elem": "Wind"
+ },
+ {
+  "id": 1571,
+  "code": "Norma",
+  "ja": "ノルムー",
+  "en": "Norma",
+  "rarity": 4,
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle65.png",
+  "accent": "#e8e7ea",
+  "elem": "Fire"
+ }
+]

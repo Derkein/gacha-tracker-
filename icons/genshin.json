@@ -1,0 +1,562 @@
+{
+ "神里綾華": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Ayaka.png",
+  "accent": "#c9a86a",
+  "en": "Kamisato Ayaka"
+ },
+ "ジン": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Qin.png",
+  "accent": "#c9a86a",
+  "en": "Jean"
+ },
+ "旅人": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_PlayerGirl.png",
+  "accent": "#c9a86a",
+  "en": "Traveler"
+ },
+ "リサ": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Lisa.png",
+  "accent": "#c9a86a",
+  "en": "Lisa"
+ },
+ "バーバラ": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Barbara.png",
+  "accent": "#c9a86a",
+  "en": "Barbara"
+ },
+ "ガイア": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Kaeya.png",
+  "accent": "#c9a86a",
+  "en": "Kaeya"
+ },
+ "ディルック": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Diluc.png",
+  "accent": "#c9a86a",
+  "en": "Diluc"
+ },
+ "レザー": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Razor.png",
+  "accent": "#c9a86a",
+  "en": "Razor"
+ },
+ "アンバー": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Ambor.png",
+  "accent": "#c9a86a",
+  "en": "Amber"
+ },
+ "ウェンティ": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Venti.png",
+  "accent": "#c9a86a",
+  "en": "Venti"
+ },
+ "香菱": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Xiangling.png",
+  "accent": "#c9a86a",
+  "en": "Xiangling"
+ },
+ "北斗": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Beidou.png",
+  "accent": "#c9a86a",
+  "en": "Beidou"
+ },
+ "行秋": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Xingqiu.png",
+  "accent": "#c9a86a",
+  "en": "Xingqiu"
+ },
+ "魈": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Xiao.png",
+  "accent": "#c9a86a",
+  "en": "Xiao"
+ },
+ "凝光": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Ningguang.png",
+  "accent": "#c9a86a",
+  "en": "Ningguang"
+ },
+ "クレー": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Klee.png",
+  "accent": "#c9a86a",
+  "en": "Klee"
+ },
+ "鍾離": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Zhongli.png",
+  "accent": "#c9a86a",
+  "en": "Zhongli"
+ },
+ "フィッシュル": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Fischl.png",
+  "accent": "#c9a86a",
+  "en": "Fischl"
+ },
+ "ベネット": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Bennett.png",
+  "accent": "#c9a86a",
+  "en": "Bennett"
+ },
+ "タルタリヤ": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Tartaglia.png",
+  "accent": "#c9a86a",
+  "en": "Tartaglia"
+ },
+ "ノエル": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Noel.png",
+  "accent": "#c9a86a",
+  "en": "Noelle"
+ },
+ "七七": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Qiqi.png",
+  "accent": "#c9a86a",
+  "en": "Qiqi"
+ },
+ "重雲": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Chongyun.png",
+  "accent": "#c9a86a",
+  "en": "Chongyun"
+ },
+ "甘雨": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Ganyu.png",
+  "accent": "#c9a86a",
+  "en": "Ganyu"
+ },
+ "アルベド": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Albedo.png",
+  "accent": "#c9a86a",
+  "en": "Albedo"
+ },
+ "ディオナ": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Diona.png",
+  "accent": "#c9a86a",
+  "en": "Diona"
+ },
+ "モナ": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Mona.png",
+  "accent": "#c9a86a",
+  "en": "Mona"
+ },
+ "刻晴": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Keqing.png",
+  "accent": "#c9a86a",
+  "en": "Keqing"
+ },
+ "スクロース": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Sucrose.png",
+  "accent": "#c9a86a",
+  "en": "Sucrose"
+ },
+ "辛炎": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Xinyan.png",
+  "accent": "#c9a86a",
+  "en": "Xinyan"
+ },
+ "ロサリア": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Rosaria.png",
+  "accent": "#c9a86a",
+  "en": "Rosaria"
+ },
+ "胡桃": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Hutao.png",
+  "accent": "#c9a86a",
+  "en": "Hu Tao"
+ },
+ "楓原万葉": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Kazuha.png",
+  "accent": "#c9a86a",
+  "en": "Kaedehara Kazuha"
+ },
+ "煙緋": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Feiyan.png",
+  "accent": "#c9a86a",
+  "en": "Yanfei"
+ },
+ "宵宮": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Yoimiya.png",
+  "accent": "#c9a86a",
+  "en": "Yoimiya"
+ },
+ "トーマ": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Tohma.png",
+  "accent": "#c9a86a",
+  "en": "Thoma"
+ },
+ "エウルア": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Eula.png",
+  "accent": "#c9a86a",
+  "en": "Eula"
+ },
+ "雷電将軍": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Shougun.png",
+  "accent": "#c9a86a",
+  "en": "Raiden Shogun"
+ },
+ "早柚": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Sayu.png",
+  "accent": "#c9a86a",
+  "en": "Sayu"
+ },
+ "珊瑚宮心海": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Kokomi.png",
+  "accent": "#c9a86a",
+  "en": "Sangonomiya Kokomi"
+ },
+ "ゴロー": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Gorou.png",
+  "accent": "#c9a86a",
+  "en": "Gorou"
+ },
+ "九条裟羅": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Sara.png",
+  "accent": "#c9a86a",
+  "en": "Kujou Sara"
+ },
+ "荒瀧一斗": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Itto.png",
+  "accent": "#c9a86a",
+  "en": "Arataki Itto"
+ },
+ "八重神子": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Yae.png",
+  "accent": "#c9a86a",
+  "en": "Yae Miko"
+ },
+ "鹿野院平蔵": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Heizo.png",
+  "accent": "#c9a86a",
+  "en": "Shikanoin Heizou"
+ },
+ "夜蘭": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Yelan.png",
+  "accent": "#c9a86a",
+  "en": "Yelan"
+ },
+ "綺良々": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Momoka.png",
+  "accent": "#c9a86a",
+  "en": "Kirara"
+ },
+ "アーロイ": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Aloy.png",
+  "accent": "#c9a86a",
+  "en": "Aloy"
+ },
+ "申鶴": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Shenhe.png",
+  "accent": "#c9a86a",
+  "en": "Shenhe"
+ },
+ "雲菫": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Yunjin.png",
+  "accent": "#c9a86a",
+  "en": "Yun Jin"
+ },
+ "久岐忍": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Shinobu.png",
+  "accent": "#c9a86a",
+  "en": "Kuki Shinobu"
+ },
+ "神里綾人": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Ayato.png",
+  "accent": "#c9a86a",
+  "en": "Kamisato Ayato"
+ },
+ "コレイ": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Collei.png",
+  "accent": "#c9a86a",
+  "en": "Collei"
+ },
+ "ドリー": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Dori.png",
+  "accent": "#c9a86a",
+  "en": "Dori"
+ },
+ "ティナリ": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Tighnari.png",
+  "accent": "#c9a86a",
+  "en": "Tighnari"
+ },
+ "ニィロウ": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Nilou.png",
+  "accent": "#c9a86a",
+  "en": "Nilou"
+ },
+ "セノ": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Cyno.png",
+  "accent": "#c9a86a",
+  "en": "Cyno"
+ },
+ "キャンディス": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Candace.png",
+  "accent": "#c9a86a",
+  "en": "Candace"
+ },
+ "ナヒーダ": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Nahida.png",
+  "accent": "#c9a86a",
+  "en": "Nahida"
+ },
+ "レイラ": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Layla.png",
+  "accent": "#c9a86a",
+  "en": "Layla"
+ },
+ "放浪者": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Wanderer.png",
+  "accent": "#c9a86a",
+  "en": "Wanderer"
+ },
+ "ファルザン": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Faruzan.png",
+  "accent": "#c9a86a",
+  "en": "Faruzan"
+ },
+ "ヨォーヨ": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Yaoyao.png",
+  "accent": "#c9a86a",
+  "en": "Yaoyao"
+ },
+ "アルハイゼン": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Alhatham.png",
+  "accent": "#c9a86a",
+  "en": "Alhaitham"
+ },
+ "ディシア": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Dehya.png",
+  "accent": "#c9a86a",
+  "en": "Dehya"
+ },
+ "ミカ": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Mika.png",
+  "accent": "#c9a86a",
+  "en": "Mika"
+ },
+ "カーヴェ": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Kaveh.png",
+  "accent": "#c9a86a",
+  "en": "Kaveh"
+ },
+ "白朮": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Baizhuer.png",
+  "accent": "#c9a86a",
+  "en": "Baizhu"
+ },
+ "リネット": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Linette.png",
+  "accent": "#c9a86a",
+  "en": "Lynette"
+ },
+ "リネ": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Liney.png",
+  "accent": "#c9a86a",
+  "en": "Lyney"
+ },
+ "フレミネ": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Freminet.png",
+  "accent": "#c9a86a",
+  "en": "Freminet"
+ },
+ "リオセスリ": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Wriothesley.png",
+  "accent": "#c9a86a",
+  "en": "Wriothesley"
+ },
+ "ヌヴィレット": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Neuvillette.png",
+  "accent": "#c9a86a",
+  "en": "Neuvillette"
+ },
+ "シャルロット": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Charlotte.png",
+  "accent": "#c9a86a",
+  "en": "Charlotte"
+ },
+ "フリーナ": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Furina.png",
+  "accent": "#c9a86a",
+  "en": "Furina"
+ },
+ "シュヴルーズ": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Chevreuse.png",
+  "accent": "#c9a86a",
+  "en": "Chevreuse"
+ },
+ "ナヴィア": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Navia.png",
+  "accent": "#c9a86a",
+  "en": "Navia"
+ },
+ "嘉明": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Gaming.png",
+  "accent": "#c9a86a",
+  "en": "Gaming"
+ },
+ "閑雲": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Liuyun.png",
+  "accent": "#c9a86a",
+  "en": "Xianyun"
+ },
+ "千織": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Chiori.png",
+  "accent": "#c9a86a",
+  "en": "Chiori"
+ },
+ "シグウィン": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Sigewinne.png",
+  "accent": "#c9a86a",
+  "en": "Sigewinne"
+ },
+ "アルレッキーノ": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Arlecchino.png",
+  "accent": "#c9a86a",
+  "en": "Arlecchino"
+ },
+ "セトス": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Sethos.png",
+  "accent": "#c9a86a",
+  "en": "Sethos"
+ },
+ "クロリンデ": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Clorinde.png",
+  "accent": "#c9a86a",
+  "en": "Clorinde"
+ },
+ "エミリエ": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Emilie.png",
+  "accent": "#c9a86a",
+  "en": "Emilie"
+ },
+ "カチーナ": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Kachina.png",
+  "accent": "#c9a86a",
+  "en": "Kachina"
+ },
+ "キィニチ": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Kinich.png",
+  "accent": "#c9a86a",
+  "en": "Kinich"
+ },
+ "ムアラニ": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Mualani.png",
+  "accent": "#c9a86a",
+  "en": "Mualani"
+ },
+ "シロネン": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Xilonen.png",
+  "accent": "#c9a86a",
+  "en": "Xilonen"
+ },
+ "チャスカ": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Chasca.png",
+  "accent": "#c9a86a",
+  "en": "Chasca"
+ },
+ "オロルン": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Olorun.png",
+  "accent": "#c9a86a",
+  "en": "Ororon"
+ },
+ "マーヴィカ": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Mavuika.png",
+  "accent": "#c9a86a",
+  "en": "Mavuika"
+ },
+ "シトラリ": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Citlali.png",
+  "accent": "#c9a86a",
+  "en": "Citlali"
+ },
+ "藍硯": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Lanyan.png",
+  "accent": "#c9a86a",
+  "en": "Lan Yan"
+ },
+ "夢見月瑞希": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Mizuki.png",
+  "accent": "#c9a86a",
+  "en": "Yumemizuki Mizuki"
+ },
+ "イアンサ": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Iansan.png",
+  "accent": "#c9a86a",
+  "en": "Iansan"
+ },
+ "ヴァレサ": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Varesa.png",
+  "accent": "#c9a86a",
+  "en": "Varesa"
+ },
+ "エスコフィエ": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Escoffier.png",
+  "accent": "#c9a86a",
+  "en": "Escoffier"
+ },
+ "イファ": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Ifa.png",
+  "accent": "#c9a86a",
+  "en": "Ifa"
+ },
+ "スカーク": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_SkirkNew.png",
+  "accent": "#c9a86a",
+  "en": "Skirk"
+ },
+ "ダリア": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Dahlia.png",
+  "accent": "#c9a86a",
+  "en": "Dahlia"
+ },
+ "イネファ": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Ineffa.png",
+  "accent": "#c9a86a",
+  "en": "Ineffa"
+ },
+ "ラウマ": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Lauma.png",
+  "accent": "#c9a86a",
+  "en": "Lauma"
+ },
+ "フリンズ": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Flins.png",
+  "accent": "#c9a86a",
+  "en": "Flins"
+ },
+ "アイノ": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Aino.png",
+  "accent": "#c9a86a",
+  "en": "Aino"
+ },
+ "ネフェル": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Nefer.png",
+  "accent": "#c9a86a",
+  "en": "Nefer"
+ },
+ "ドゥリン": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Durin.png",
+  "accent": "#c9a86a",
+  "en": "Durin"
+ },
+ "ヤフォダ": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Jahoda.png",
+  "accent": "#c9a86a",
+  "en": "Jahoda"
+ },
+ "マーヴィカ（お試し）": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Mavuika.png",
+  "accent": "#c9a86a",
+  "en": "Mavuika (Trial)"
+ },
+ "胡桃（お試し）": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Hutao.png",
+  "accent": "#c9a86a",
+  "en": "Hu Tao (Trial)"
+ },
+ "コロンビーナ": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Columbina.png",
+  "accent": "#c9a86a",
+  "en": "Columbina"
+ },
+ "炎神": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Qin.png",
+  "accent": "#c9a86a",
+  "en": "Pyro Archon (Test)"
+ }
+}

@@ -1,0 +1,719 @@
+{
+ "game": "zzz",
+ "name": "Zenless Zone Zero",
+ "jp": "ゼンレスゾーンゼロ",
+ "unit": "億G",
+ "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E3%82%BC%E3%83%B3%E3%83%AC%E3%82%B9%E3%82%BE%E3%83%BC%E3%83%B3%E3%82%BC%E3%83%AD",
+ "updated": "2026-07-12T23:10:23Z",
+ "count": 35,
+ "banners": [
+  {
+   "name": "エレン",
+   "start": "2024-07-04",
+   "end": "2024-07-24",
+   "rev": 20.41,
+   "yrank": 1,
+   "ytot": 9,
+   "cum": 1,
+   "cumtot": 35,
+   "year": 2024,
+   "related": "エレン、蒼角、アンドー",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/07/03/6bba29d65ca1eedb223a9d9c94b33941_5499962239353471418.jpg",
+   "icons": [
+    "https://enka.network/ui/zzz/IconRoleCircle21.png"
+   ],
+   "agents": [
+    "Ellen"
+   ],
+   "accent": "#b2b2b2"
+  },
+  {
+   "name": "朱鳶",
+   "start": "2024-07-24",
+   "end": "2024-08-13",
+   "rev": 9.3,
+   "yrank": 4,
+   "ytot": 9,
+   "cum": 7,
+   "cumtot": 35,
+   "year": 2024,
+   "related": "朱鳶、ニコ、ベン",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/07/21/57e3315ccc323046dc583de3074feb59_2617150514785173076.png",
+   "icons": [
+    "https://enka.network/ui/zzz/IconRoleCircle23.png"
+   ],
+   "agents": [
+    "Zhu Yuan"
+   ],
+   "accent": "#0d75d9"
+  },
+  {
+   "name": "青衣",
+   "start": "2024-08-14",
+   "end": "2024-09-04",
+   "rev": 9.79,
+   "yrank": 3,
+   "ytot": 9,
+   "cum": 6,
+   "cumtot": 35,
+   "year": 2024,
+   "related": "青衣、ビリー、カリン",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/08/12/e2fb82fce9aebbc008a3caa7ce347859_6557508229557722076.png",
+   "icons": [
+    "https://enka.network/ui/zzz/IconRoleCircle29.png"
+   ],
+   "agents": [
+    "Qingyi"
+   ],
+   "accent": "#0d75d9"
+  },
+  {
+   "name": "ジェーン",
+   "start": "2024-09-04",
+   "end": "2024-09-24",
+   "rev": 8.82,
+   "yrank": 5,
+   "ytot": 9,
+   "cum": 8,
+   "cumtot": 35,
+   "year": 2024,
+   "related": "ジェーン、セス、アンビ",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/09/01/76dda47bc80ba82a0c8c3c6495a10871_1586658923347644498.png",
+   "icons": [
+    "https://enka.network/ui/zzz/IconRoleCircle24.png"
+   ],
+   "agents": [
+    "Jane"
+   ],
+   "accent": "#91daed"
+  },
+  {
+   "name": "シーザー",
+   "start": "2024-09-25",
+   "end": "2024-10-16",
+   "rev": 7.28,
+   "yrank": 6,
+   "ytot": 9,
+   "cum": 10,
+   "cumtot": 35,
+   "year": 2024,
+   "related": "シーザー、パイパー、アンドー",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/09/23/4c12ff1c5a003b841e2f047710293ac0_5032913656868719596.png",
+   "icons": [
+    "https://enka.network/ui/zzz/IconRoleCircle25.png"
+   ],
+   "agents": [
+    "Caesar"
+   ],
+   "accent": "#ffdd4f"
+  },
+  {
+   "name": "バーニス",
+   "start": "2024-10-16",
+   "end": "2024-11-05",
+   "rev": 5.64,
+   "yrank": 8,
+   "ytot": 9,
+   "cum": 13,
+   "cumtot": 35,
+   "year": 2024,
+   "related": "バーニス、ルーシー、ニコ",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/10/13/c6b31b56e015e54de622a2e757e6a61e_3201649773093284741.png",
+   "icons": [
+    "https://enka.network/ui/zzz/IconRoleCircle32.png"
+   ],
+   "agents": [
+    "Burnice"
+   ],
+   "accent": "#ffdd4f"
+  },
+  {
+   "name": "月城柳",
+   "start": "2024-11-06",
+   "end": "2024-11-27",
+   "rev": 6.08,
+   "yrank": 7,
+   "ytot": 9,
+   "cum": 11,
+   "cumtot": 35,
+   "year": 2024,
+   "related": "月城柳、アンビー、ビリー",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/11/04/ccd3f3d80f51319c8f5068c8d9c942c9_2854112462371700529.png",
+   "icons": [
+    "https://enka.network/ui/zzz/IconRoleCircle31.png"
+   ],
+   "agents": [
+    "Yanagi"
+   ],
+   "accent": "#22bdcc"
+  },
+  {
+   "name": "ライト",
+   "start": "2024-11-27",
+   "end": "2024-12-17",
+   "rev": 2.59,
+   "yrank": 9,
+   "ytot": 9,
+   "cum": 26,
+   "cumtot": 35,
+   "year": 2024,
+   "related": "ライト、ベン、カリン",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/11/25/10bfcfcdb9ac34809e92aaaa93934b91_4997730475620532095.png",
+   "icons": [
+    "https://enka.network/ui/zzz/IconRoleCircle62.png"
+   ],
+   "agents": [
+    "Starlight - Billy"
+   ],
+   "accent": "#c94b3d"
+  },
+  {
+   "name": "星見雅&浅羽悠真",
+   "start": "2024-12-18",
+   "end": "2025-01-21",
+   "rev": 17.51,
+   "yrank": 2,
+   "ytot": 9,
+   "cum": 3,
+   "cumtot": 35,
+   "year": 2024,
+   "related": "星見雅、浅羽悠真、パイパー、蒼角",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/12/16/77bc086606152db4e9ac4a5a41581c73_1873391038276700699.png",
+   "icons": [
+    "https://enka.network/ui/zzz/IconRoleCircle13.png",
+    "https://enka.network/ui/zzz/IconRoleCircle35.png"
+   ],
+   "agents": [
+    "Miyabi",
+    "Harumasa"
+   ],
+   "accent": "#22bdcc"
+  },
+  {
+   "name": "アストラ",
+   "start": "2025-01-22",
+   "end": "2025-02-12",
+   "rev": 10.19,
+   "yrank": 3,
+   "ytot": 17,
+   "cum": 5,
+   "cumtot": 35,
+   "year": 2025,
+   "related": "エレン復刻\n2024年へ",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/01/20/0/ad7d09f8ba8c8bc54c5e145c719fda4d_6739625479710825112.png",
+   "icons": [
+    "https://enka.network/ui/zzz/IconRoleCircle36.png"
+   ],
+   "agents": [
+    "Astra Yao"
+   ],
+   "accent": "#eef7fd"
+  },
+  {
+   "name": "イヴリン",
+   "start": "2025-02-12",
+   "end": "2025-03-11",
+   "rev": 5.7,
+   "yrank": 5,
+   "ytot": 17,
+   "cum": 12,
+   "cumtot": 35,
+   "year": 2025,
+   "related": "",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/02/08/0/0b392f69cae00184a2e0d4d9b0b5a1d6_5361461955412877612.png",
+   "icons": [
+    "https://enka.network/ui/zzz/IconRoleCircle37.png"
+   ],
+   "agents": [
+    "Evelyn"
+   ],
+   "accent": "#eef7fd"
+  },
+  {
+   "name": "0号・アンビー",
+   "start": "2025-03-12",
+   "end": "2025-04-02",
+   "rev": 4.63,
+   "yrank": 7,
+   "ytot": 17,
+   "cum": 15,
+   "cumtot": 35,
+   "year": 2025,
+   "related": "バーニス復刻、プルクラ",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/03/11/0/eb4187980c8d22f75bfd19d74cb5c933_8873561380462898961.png",
+   "icons": [
+    "https://enka.network/ui/zzz/IconRoleCircle40.png"
+   ],
+   "agents": [
+    "Soldier 0 - Anby"
+   ],
+   "accent": "#ffbc2e"
+  },
+  {
+   "name": "トリガー",
+   "start": "2025-04-02",
+   "end": "2025-04-22",
+   "rev": 3.18,
+   "yrank": 10,
+   "ytot": 17,
+   "cum": 22,
+   "cumtot": 35,
+   "year": 2025,
+   "related": "朱鳶復刻",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/03/29/0/157aea35133e59f233f37b2dad796dea_4866926260728101940.png",
+   "icons": [
+    "https://enka.network/ui/zzz/IconRoleCircle39.png"
+   ],
+   "agents": [
+    "Trigger"
+   ],
+   "accent": "#ffc300"
+  },
+  {
+   "name": "ビビアン",
+   "start": "2025-04-23",
+   "end": "2025-05-14",
+   "rev": 5.38,
+   "yrank": 6,
+   "ytot": 17,
+   "cum": 14,
+   "cumtot": 35,
+   "year": 2025,
+   "related": "ジェーン復刻",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/04/21/0/727ee4614f087227e908fe8c210edf80_8791527087210083349.png",
+   "icons": [
+    "https://enka.network/ui/zzz/IconRoleCircle41.png"
+   ],
+   "agents": [
+    "Vivian"
+   ],
+   "accent": "#8076e9"
+  },
+  {
+   "name": "ヒューゴ",
+   "start": "2025-05-14",
+   "end": "2025-06-05",
+   "rev": 3.17,
+   "yrank": 11,
+   "ytot": 17,
+   "cum": 23,
+   "cumtot": 35,
+   "year": 2025,
+   "related": "ライト復刻",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/05/09/5dcb663ca0ebe5b097be0a5c479f38b4_5782056941758100341.png",
+   "icons": [
+    "https://enka.network/ui/zzz/IconRoleCircle42.png"
+   ],
+   "agents": [
+    "Hugo"
+   ],
+   "accent": "#8076e9"
+  },
+  {
+   "name": "儀玄",
+   "start": "2025-06-06",
+   "end": "2025-06-25",
+   "rev": 11.52,
+   "yrank": 2,
+   "ytot": 17,
+   "cum": 4,
+   "cumtot": 35,
+   "year": 2025,
+   "related": "アストラ復刻",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/05/31/0/b68c1b88a12a4d3e3ec45c55af13f562_53862237629036960.jpeg",
+   "icons": [
+    "https://enka.network/ui/zzz/IconRoleCircle44.png"
+   ],
+   "agents": [
+    "Yixuan"
+   ],
+   "accent": "#f1cc4d"
+  },
+  {
+   "name": "橘福福",
+   "start": "2025-06-25",
+   "end": "2025-07-15",
+   "rev": 3.2,
+   "yrank": 9,
+   "ytot": 17,
+   "cum": 21,
+   "cumtot": 35,
+   "year": 2025,
+   "related": "シーザー復刻",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/06/21/0/fc53b841887bc8a83b40035407d56097_7811217789272024816.png",
+   "icons": [
+    "https://enka.network/ui/zzz/IconRoleCircle43.png"
+   ],
+   "agents": [
+    "Ju Fufu"
+   ],
+   "accent": "#ffbf16"
+  },
+  {
+   "name": "浮波柚葉",
+   "start": "2025-07-16",
+   "end": "2025-08-06",
+   "rev": 8.2,
+   "yrank": 4,
+   "ytot": 17,
+   "cum": 9,
+   "cumtot": 35,
+   "year": 2025,
+   "related": "星見雅復刻",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/07/14/0/c010c73227ce08537b6f41561e588651_2767097572243287365.png",
+   "icons": [
+    "https://enka.network/ui/zzz/IconRoleCircle47.png"
+   ],
+   "agents": [
+    "Yuzuha"
+   ],
+   "accent": "#d54553"
+  },
+  {
+   "name": "アリス",
+   "start": "2025-08-06",
+   "end": "2025-09-03",
+   "rev": 4.2,
+   "yrank": 8,
+   "ytot": 17,
+   "cum": 16,
+   "cumtot": 35,
+   "year": 2025,
+   "related": "月城柳復刻",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/08/02/0/a59e10103061e577ce600dca58c2f370_1527510047349135663.png",
+   "icons": [
+    "https://enka.network/ui/zzz/IconRoleCircle46.png"
+   ],
+   "agents": [
+    "Alice"
+   ],
+   "accent": "#d54553"
+  },
+  {
+   "name": "シード",
+   "start": "2025-09-04",
+   "end": "2025-09-24",
+   "rev": 2.27,
+   "yrank": 14,
+   "ytot": 17,
+   "cum": 30,
+   "cumtot": 35,
+   "year": 2025,
+   "related": "トリガー復刻",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/08/31/0/1cda45e715bf919344ec39c4cfa9aa1b_2421914902883085064.png",
+   "icons": [
+    "https://enka.network/ui/zzz/IconRoleCircle48.png"
+   ],
+   "agents": [
+    "Seed"
+   ],
+   "accent": "#e9f1f2"
+  },
+  {
+   "name": "オルペウス＆「鬼火」",
+   "start": "2025-09-24",
+   "end": "2025-10-14",
+   "rev": 2.26,
+   "yrank": 15,
+   "ytot": 17,
+   "cum": 31,
+   "cumtot": 35,
+   "year": 2025,
+   "related": "イヴリン復刻",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/09/19/0/6530d65ca883890dddea554c29002000_842926848461823309.png",
+   "icons": [
+    "https://enka.network/ui/zzz/IconRoleCircle49.png"
+   ],
+   "agents": [
+    "Orphie & Magus"
+   ],
+   "accent": "#db602a"
+  },
+  {
+   "name": "リュシア",
+   "start": "2025-10-15",
+   "end": "2025-11-05",
+   "rev": 3.01,
+   "yrank": 12,
+   "ytot": 17,
+   "cum": 25,
+   "cumtot": 35,
+   "year": 2025,
+   "related": "ビビアン",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/10/12/02b6ba2c5eb17ed147bb2148c2b01ace_7318968870335504507.png",
+   "icons": [
+    "https://enka.network/ui/zzz/IconRoleCircle50.png"
+   ],
+   "agents": [
+    "Lucia"
+   ],
+   "accent": "#4bbbc0"
+  },
+  {
+   "name": "イドリー",
+   "start": "2025-11-05",
+   "end": "2025-11-25",
+   "rev": 2.0,
+   "yrank": 16,
+   "ytot": 17,
+   "cum": 32,
+   "cumtot": 35,
+   "year": 2025,
+   "related": "橘福福",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/11/01/77436e9b074181d050e0a1528d681eda_3425570479124323064.png",
+   "icons": [
+    "https://enka.network/ui/zzz/IconRoleCircle52.png"
+   ],
+   "agents": [
+    "Yidhari"
+   ],
+   "accent": "#ab373e"
+  },
+  {
+   "name": "ダイアリン",
+   "start": "2025-11-26",
+   "end": "2025-12-17",
+   "rev": 2.52,
+   "yrank": 13,
+   "ytot": 17,
+   "cum": 27,
+   "cumtot": 35,
+   "year": 2025,
+   "related": "ヒューゴ",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/11/22/88dc2cf83d100314bc2598b2caf728ff_873841350043859990.jpg",
+   "icons": [
+    "https://enka.network/ui/zzz/IconRoleCircle54.png"
+   ],
+   "agents": [
+    "Dialyn"
+   ],
+   "accent": "#adadad"
+  },
+  {
+   "name": "盤岳",
+   "start": "2025-12-17",
+   "end": "2025-12-29",
+   "rev": 1.49,
+   "yrank": 17,
+   "ytot": 17,
+   "cum": 33,
+   "cumtot": 35,
+   "year": 2025,
+   "related": "エレン",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/12/15/7b35c3626799ae5286d7273303856866_3485356385322714877.png",
+   "icons": [
+    "https://enka.network/ui/zzz/IconRoleCircle53.png"
+   ],
+   "agents": [
+    "Banyue"
+   ],
+   "accent": "#adadad"
+  },
+  {
+   "name": "葉瞬光 & 照",
+   "start": "2025-12-30",
+   "end": "2026-01-21",
+   "rev": 18.56,
+   "yrank": 1,
+   "ytot": 17,
+   "cum": 2,
+   "cumtot": 35,
+   "year": 2025,
+   "related": "上映御礼 チャージイベント",
+   "banner_img": "https://pbs.twimg.com/media/G8fXNxcXIAE6Xp-.jpg",
+   "icons": [
+    "https://enka.network/ui/zzz/IconRoleCircle55.png",
+    "https://enka.network/ui/zzz/IconRoleCircle56.png"
+   ],
+   "agents": [
+    "Ye Shunguang",
+    "Zhao"
+   ],
+   "accent": "#f5b42e"
+  },
+  {
+   "name": "アリス復刻&0号・アンビー復刻&アストラ復刻",
+   "start": "2026-01-21",
+   "end": "2026-02-05",
+   "rev": 3.02,
+   "yrank": 5,
+   "ytot": 9,
+   "cum": 24,
+   "cumtot": 35,
+   "year": 2026,
+   "related": "",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/01/16/dea0e549c052e574dbc0ba5fb5dc7aca_8573109417544585764.png",
+   "icons": [
+    "https://enka.network/ui/zzz/IconRoleCircle46.png",
+    "https://enka.network/ui/zzz/IconRoleCircle40.png",
+    "https://enka.network/ui/zzz/IconRoleCircle36.png"
+   ],
+   "agents": [
+    "Alice",
+    "Soldier 0 - Anby",
+    "Astra Yao"
+   ],
+   "accent": "#d54553"
+  },
+  {
+   "name": "千夏",
+   "start": "2026-02-06",
+   "end": "2026-03-04",
+   "rev": 3.74,
+   "yrank": 3,
+   "ytot": 9,
+   "cum": 19,
+   "cumtot": 35,
+   "year": 2026,
+   "related": "儀玄復刻",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/02/03/da3e2efdf715eb1115d516dcf765077f_8633114800754574367.png",
+   "icons": [
+    "https://enka.network/ui/zzz/IconRoleCircle58.png"
+   ],
+   "agents": [
+    "Sunna"
+   ],
+   "accent": "#57ddca"
+  },
+  {
+   "name": "アリア",
+   "start": "2026-03-04",
+   "end": "2026-03-23",
+   "rev": 3.37,
+   "yrank": 4,
+   "ytot": 9,
+   "cum": 20,
+   "cumtot": 35,
+   "year": 2026,
+   "related": "浮波柚葉",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/03/01/397fc1681e36ee4ca233345526281987_5136538002278189903.png",
+   "icons": [
+    "https://enka.network/ui/zzz/IconRoleCircle57.png"
+   ],
+   "agents": [
+    "Aria"
+   ],
+   "accent": "#65dcc9"
+  },
+  {
+   "name": "南宮羽",
+   "start": "2026-03-24",
+   "end": "2026-04-15",
+   "rev": 3.96,
+   "yrank": 1,
+   "ytot": 9,
+   "cum": 17,
+   "cumtot": 35,
+   "year": 2026,
+   "related": "イドリー",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/03/21/3c38c029fadef707a9e7663b10a63caa_6053805145055247498.jpg",
+   "icons": [
+    "https://enka.network/ui/zzz/IconRoleCircle59.png"
+   ],
+   "agents": [
+    "Nangong Yu"
+   ],
+   "accent": "#57ddca"
+  },
+  {
+   "name": "シーシィア",
+   "start": "2026-04-15",
+   "end": "2026-05-05",
+   "rev": 2.46,
+   "yrank": 6,
+   "ytot": 9,
+   "cum": 28,
+   "cumtot": 35,
+   "year": 2026,
+   "related": "シード",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/04/11/bb59147df6a6321c0ca7214ff8a8f26c_8902418724023440394.jpg",
+   "icons": [
+    "https://enka.network/ui/zzz/IconRoleCircle60.png"
+   ],
+   "agents": [
+    "Cissia"
+   ],
+   "accent": "#da3674"
+  },
+  {
+   "name": "プロメイア",
+   "start": "2026-05-06",
+   "end": "2026-05-27",
+   "rev": 2.43,
+   "yrank": 7,
+   "ytot": 9,
+   "cum": 29,
+   "cumtot": 35,
+   "year": 2026,
+   "related": "リュシア",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/05/03/b1a7defea969529edd54296c094aa78e_5855656063880158867.jpg",
+   "icons": [
+    "https://enka.network/ui/zzz/IconRoleCircle61.png"
+   ],
+   "agents": [
+    "Promeia"
+   ],
+   "accent": "#9c69ff"
+  },
+  {
+   "name": "スターライト・ビリー",
+   "start": "2026-05-27",
+   "end": "2026-06-16",
+   "rev": 1.41,
+   "yrank": 8,
+   "ytot": 9,
+   "cum": 34,
+   "cumtot": 35,
+   "year": 2026,
+   "related": "オルペウス＆『鬼火』",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/05/23/72725b7058ee60e259cb149688595ce1_4007954319504263447.jpg",
+   "icons": [
+    "https://enka.network/ui/zzz/IconRoleCircle62.png"
+   ],
+   "agents": [
+    "Starlight - Billy"
+   ],
+   "accent": "#c94b3d"
+  },
+  {
+   "name": "ヴェリナ",
+   "start": "2026-06-17",
+   "end": "2026-07-08",
+   "rev": 3.77,
+   "yrank": 2,
+   "ytot": 9,
+   "cum": 18,
+   "cumtot": 35,
+   "year": 2026,
+   "related": "葉瞬光",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/06/13/207ae69f45dcf56daacd5c7285d7e24b_4241302439310508979.png",
+   "icons": [
+    "https://enka.network/ui/zzz/IconRoleCircle64.png"
+   ],
+   "agents": [
+    "Velina"
+   ],
+   "accent": "#e8e7ea"
+  },
+  {
+   "name": "ノルムー",
+   "start": "2026-07-08",
+   "end": "2026-07-28",
+   "rev": 1.19,
+   "yrank": 9,
+   "ytot": 9,
+   "cum": 35,
+   "cumtot": 35,
+   "year": 2026,
+   "related": "千夏",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/07/05/a0b3ee434966d7763569266e524cfe91_2432634877569909579.jpg",
+   "icons": [
+    "https://enka.network/ui/zzz/IconRoleCircle65.png"
+   ],
+   "agents": [
+    "Norma"
+   ],
+   "accent": "#e8e7ea"
+  }
+ ]
+}

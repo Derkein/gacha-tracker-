@@ -1,0 +1,931 @@
+{
+ "game": "genshin",
+ "name": "Genshin Impact",
+ "jp": "原神",
+ "unit": "億G",
+ "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E5%8E%9F%E7%A5%9E",
+ "updated": "2026-07-12T23:10:41Z",
+ "count": 44,
+ "banners": [
+  {
+   "name": "雷電将軍と宵宮復刻",
+   "start": "2024-01-09",
+   "end": "2024-01-30",
+   "rev": 13.38,
+   "yrank": 1,
+   "ytot": 17,
+   "cum": 31,
+   "cumtot": 102,
+   "year": 2024,
+   "related": "",
+   "banner_img": "https://img.gamewith.jp/img/original_6f88961e07a3956f3239879e2099b633.jpg",
+   "icons": [
+    "https://enka.network/ui/UI_AvatarIcon_Shougun.png"
+   ],
+   "agents": [
+    "Raiden Shogun"
+   ],
+   "accent": "#c9a86a"
+  },
+  {
+   "name": "閑雲初回とナヒーダ",
+   "start": "2024-01-31",
+   "end": "2024-02-20",
+   "rev": 12.1,
+   "yrank": 3,
+   "ytot": 17,
+   "cum": 36,
+   "cumtot": 102,
+   "year": 2024,
+   "related": "",
+   "banner_img": "https://img.gamewith.jp/img/dd5a75180ad6f4bbaa2850367c851a7a.jpeg",
+   "icons": [
+    "https://enka.network/ui/UI_AvatarIcon_Nahida.png"
+   ],
+   "agents": [
+    "Nahida"
+   ],
+   "accent": "#c9a86a"
+  },
+  {
+   "name": "魈と八重神子",
+   "start": "2024-02-20",
+   "end": "2024-03-12",
+   "rev": 4.73,
+   "yrank": 13,
+   "ytot": 17,
+   "cum": 76,
+   "cumtot": 102,
+   "year": 2024,
+   "related": "",
+   "banner_img": "https://img.gamewith.jp/img/fe164036326d8d3da7cacfa865f0dbe0.jpeg",
+   "icons": [
+    "https://enka.network/ui/UI_AvatarIcon_Yae.png"
+   ],
+   "agents": [
+    "Yae Miko"
+   ],
+   "accent": "#c9a86a"
+  },
+  {
+   "name": "千織と荒滝一斗",
+   "start": "2024-03-13",
+   "end": "2024-04-02",
+   "rev": 8.19,
+   "yrank": 6,
+   "ytot": 17,
+   "cum": 56,
+   "cumtot": 102,
+   "year": 2024,
+   "related": "",
+   "banner_img": "https://img.gamewith.jp/img/c3256486cfdc1e0b2e5cf89233a9bdaa.jpeg",
+   "icons": [
+    "https://enka.network/ui/UI_AvatarIcon_Chiori.png"
+   ],
+   "agents": [
+    "Chiori"
+   ],
+   "accent": "#c9a86a"
+  },
+  {
+   "name": "ヌヴィレットと楓原万葉",
+   "start": "2024-04-02",
+   "end": "2024-04-23",
+   "rev": 9.45,
+   "yrank": 5,
+   "ytot": 17,
+   "cum": 51,
+   "cumtot": 102,
+   "year": 2024,
+   "related": "",
+   "banner_img": "https://img.gamewith.jp/img/af828c392fc77832f219597638c53962.jpeg",
+   "icons": [
+    "https://enka.network/ui/UI_AvatarIcon_Neuvillette.png"
+   ],
+   "agents": [
+    "Neuvillette"
+   ],
+   "accent": "#c9a86a"
+  },
+  {
+   "name": "アルレッキーノとリネ復刻",
+   "start": "2024-04-24",
+   "end": "2024-05-14",
+   "rev": 13.24,
+   "yrank": 2,
+   "ytot": 17,
+   "cum": 32,
+   "cumtot": 102,
+   "year": 2024,
+   "related": "",
+   "banner_img": "https://img.gamewith.jp/img/e6f781ecc8eae3afd81ad8b7a48ab0c0.jpeg",
+   "icons": [
+    "https://enka.network/ui/UI_AvatarIcon_Arlecchino.png"
+   ],
+   "agents": [
+    "Arlecchino"
+   ],
+   "accent": "#c9a86a"
+  },
+  {
+   "name": "放浪者復刻2と白朮復刻2",
+   "start": "2024-05-14",
+   "end": "2024-06-04",
+   "rev": 4.68,
+   "yrank": 14,
+   "ytot": 17,
+   "cum": 77,
+   "cumtot": 102,
+   "year": 2024,
+   "related": "",
+   "banner_img": "https://img.gamewith.jp/img/d9e4c0b45b6e80a38d347b6dbe548578.jpeg",
+   "icons": [
+    "https://enka.network/ui/UI_AvatarIcon_Wanderer.png",
+    "https://enka.network/ui/UI_AvatarIcon_Baizhuer.png"
+   ],
+   "agents": [
+    "Wanderer",
+    "Baizhu"
+   ],
+   "accent": "#c9a86a"
+  },
+  {
+   "name": "クロリンデ&アルハイゼン復刻2",
+   "start": "2024-06-05",
+   "end": "2024-06-25",
+   "rev": 7.17,
+   "yrank": 9,
+   "ytot": 17,
+   "cum": 63,
+   "cumtot": 102,
+   "year": 2024,
+   "related": "",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/06/03/0/5e700294350bd2ea942800127ef0fbf5_6205033083023036495.jpeg",
+   "icons": [
+    "https://enka.network/ui/UI_AvatarIcon_Clorinde.png",
+    "https://enka.network/ui/UI_AvatarIcon_Alhatham.png"
+   ],
+   "agents": [
+    "Clorinde",
+    "Alhaitham"
+   ],
+   "accent": "#c9a86a"
+  },
+  {
+   "name": "シグウィン&フリーナ復刻",
+   "start": "2024-06-25",
+   "end": "2024-07-16",
+   "rev": 9.59,
+   "yrank": 4,
+   "ytot": 17,
+   "cum": 50,
+   "cumtot": 102,
+   "year": 2024,
+   "related": "",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/06/20/0/02f62854b7ad8a16c3432e837a703083_2323391094639384563.jpeg",
+   "icons": [
+    "https://enka.network/ui/UI_AvatarIcon_Sigewinne.png",
+    "https://enka.network/ui/UI_AvatarIcon_Furina.png"
+   ],
+   "agents": [
+    "Sigewinne",
+    "Furina"
+   ],
+   "accent": "#c9a86a"
+  },
+  {
+   "name": "ナヴィア復刻&ニィロウ復刻2",
+   "start": "2024-07-17",
+   "end": "2024-08-06",
+   "rev": 5.06,
+   "yrank": 10,
+   "ytot": 17,
+   "cum": 73,
+   "cumtot": 102,
+   "year": 2024,
+   "related": "",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/07/12/0/0c93fbaab1d01bf2265f481f504e2252_1999101370260728182.jpeg",
+   "icons": [
+    "https://enka.network/ui/UI_AvatarIcon_Navia.png",
+    "https://enka.network/ui/UI_AvatarIcon_Nilou.png"
+   ],
+   "agents": [
+    "Navia",
+    "Nilou"
+   ],
+   "accent": "#c9a86a"
+  },
+  {
+   "name": "エミリエ&夜蘭復刻",
+   "start": "2024-08-06",
+   "end": "2024-08-27",
+   "rev": 4.09,
+   "yrank": 15,
+   "ytot": 17,
+   "cum": 87,
+   "cumtot": 102,
+   "year": 2024,
+   "related": "",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/07/31/0/1e9dbd336af3343a96114538f0c97a31_2302900058160100692.jpeg",
+   "icons": [
+    "https://enka.network/ui/UI_AvatarIcon_Emilie.png",
+    "https://enka.network/ui/UI_AvatarIcon_Yelan.png"
+   ],
+   "agents": [
+    "Emilie",
+    "Yelan"
+   ],
+   "accent": "#c9a86a"
+  },
+  {
+   "name": "ムアラニ&楓原万葉復刻",
+   "start": "2024-08-28",
+   "end": "2024-09-17",
+   "rev": 4.75,
+   "yrank": 12,
+   "ytot": 17,
+   "cum": 75,
+   "cumtot": 102,
+   "year": 2024,
+   "related": "",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/08/26/0/084945fe36ba39ee45730b0c8d2bb03c_6348091551060473017.jpeg",
+   "icons": [
+    "https://enka.network/ui/UI_AvatarIcon_Mualani.png",
+    "https://enka.network/ui/UI_AvatarIcon_Kazuha.png"
+   ],
+   "agents": [
+    "Mualani",
+    "Kaedehara Kazuha"
+   ],
+   "accent": "#c9a86a"
+  },
+  {
+   "name": "キィニチ&雷電将軍復刻",
+   "start": "2024-09-17",
+   "end": "2024-10-08",
+   "rev": 7.42,
+   "yrank": 8,
+   "ytot": 17,
+   "cum": 61,
+   "cumtot": 102,
+   "year": 2024,
+   "related": "",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/09/11/91f577a717afcc9976463a0a9cfe54e8_7398512192234296705.jpg",
+   "icons": [
+    "https://enka.network/ui/UI_AvatarIcon_Kinich.png",
+    "https://enka.network/ui/UI_AvatarIcon_Shougun.png"
+   ],
+   "agents": [
+    "Kinich",
+    "Raiden Shogun"
+   ],
+   "accent": "#c9a86a"
+  },
+  {
+   "name": "シロネン＆千織復刻",
+   "start": "2024-10-09",
+   "end": "2024-10-29",
+   "rev": 8.12,
+   "yrank": 7,
+   "ytot": 17,
+   "cum": 57,
+   "cumtot": 102,
+   "year": 2024,
+   "related": "",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/10/06/0/d999ca2ad59413c9e525e0e67b558131_1246210284913203565.jpeg",
+   "icons": [
+    "https://enka.network/ui/UI_AvatarIcon_Xilonen.png",
+    "https://enka.network/ui/UI_AvatarIcon_Chiori.png"
+   ],
+   "agents": [
+    "Xilonen",
+    "Chiori"
+   ],
+   "accent": "#c9a86a"
+  },
+  {
+   "name": "ナヒーダ復刻&胡桃復刻",
+   "start": "2024-10-29",
+   "end": "2024-11-19",
+   "rev": 3.67,
+   "yrank": 17,
+   "ytot": 17,
+   "cum": 91,
+   "cumtot": 102,
+   "year": 2024,
+   "related": "",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/10/23/0/344cd08b6b48adfa875b996ba0b219c3_8055236353833625038.jpeg",
+   "icons": [
+    "https://enka.network/ui/UI_AvatarIcon_Nahida.png",
+    "https://enka.network/ui/UI_AvatarIcon_Hutao.png"
+   ],
+   "agents": [
+    "Nahida",
+    "Hu Tao (Trial)"
+   ],
+   "accent": "#c9a86a"
+  },
+  {
+   "name": "チャスカ&リネ復刻",
+   "start": "2024-11-20",
+   "end": "2024-12-10",
+   "rev": 3.74,
+   "yrank": 16,
+   "ytot": 17,
+   "cum": 90,
+   "cumtot": 102,
+   "year": 2024,
+   "related": "",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/11/15/0/6c6332e9c76b4392043f56c34a2fabcf_7620603469069275850.jpeg",
+   "icons": [
+    "https://enka.network/ui/UI_AvatarIcon_Chasca.png",
+    "https://enka.network/ui/UI_AvatarIcon_Linette.png"
+   ],
+   "agents": [
+    "Chasca",
+    "Lynette"
+   ],
+   "accent": "#c9a86a"
+  },
+  {
+   "name": "ヌヴィレット復刻&鍾離復刻",
+   "start": "2024-12-10",
+   "end": "2024-12-31",
+   "rev": 4.97,
+   "yrank": 11,
+   "ytot": 17,
+   "cum": 74,
+   "cumtot": 102,
+   "year": 2024,
+   "related": "",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/12/04/0/c78ccd5843dbc3996f263f91a7890e95_3846122510955764502.jpeg",
+   "icons": [
+    "https://enka.network/ui/UI_AvatarIcon_Neuvillette.png",
+    "https://enka.network/ui/UI_AvatarIcon_Zhongli.png"
+   ],
+   "agents": [
+    "Neuvillette",
+    "Zhongli"
+   ],
+   "accent": "#c9a86a"
+  },
+  {
+   "name": "マーヴィカ&シトラリ",
+   "start": "2025-01-01",
+   "end": "2025-01-21",
+   "rev": 20.58,
+   "yrank": 1,
+   "ytot": 18,
+   "cum": 10,
+   "cumtot": 102,
+   "year": 2025,
+   "related": "",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/12/27/0/42cec471ee55ebcd3dac4c9cc39c33a4_3081370112186905576.jpeg",
+   "icons": [
+    "https://enka.network/ui/UI_AvatarIcon_Mavuika.png",
+    "https://enka.network/ui/UI_AvatarIcon_Citlali.png"
+   ],
+   "agents": [
+    "Mavuika (Trial)",
+    "Citlali"
+   ],
+   "accent": "#c9a86a"
+  },
+  {
+   "name": "アルレッキーノ復刻&クロリンデ復刻",
+   "start": "2025-01-21",
+   "end": "2025-02-11",
+   "rev": 6.56,
+   "yrank": 3,
+   "ytot": 18,
+   "cum": 67,
+   "cumtot": 102,
+   "year": 2025,
+   "related": "藍硯",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/12/30/0/bfdb5734d21590b2e27acbbeae10ac6e_4621479989988408355.jpeg",
+   "icons": [
+    "https://enka.network/ui/UI_AvatarIcon_Arlecchino.png",
+    "https://enka.network/ui/UI_AvatarIcon_Clorinde.png"
+   ],
+   "agents": [
+    "Arlecchino",
+    "Clorinde"
+   ],
+   "accent": "#c9a86a"
+  },
+  {
+   "name": "夢見月瑞希&シグウィン復刻",
+   "start": "2025-02-12",
+   "end": "2025-03-04",
+   "rev": 2.22,
+   "yrank": 17,
+   "ytot": 18,
+   "cum": 101,
+   "cumtot": 102,
+   "year": 2025,
+   "related": "",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/02/07/0/3c7dceda043e860cc1a859756c0aee7f_823675954244895025.jpeg",
+   "icons": [
+    "https://enka.network/ui/UI_AvatarIcon_Mizuki.png",
+    "https://enka.network/ui/UI_AvatarIcon_Sigewinne.png"
+   ],
+   "agents": [
+    "Yumemizuki Mizuki",
+    "Sigewinne"
+   ],
+   "accent": "#c9a86a"
+  },
+  {
+   "name": "リオセスリ復刻&フリーナ復刻",
+   "start": "2025-03-04",
+   "end": "2025-03-25",
+   "rev": 3.58,
+   "yrank": 9,
+   "ytot": 18,
+   "cum": 92,
+   "cumtot": 102,
+   "year": 2025,
+   "related": "",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/02/26/221c127b961eba1c62c610cc11b6f289_3469217581724871397.jpg",
+   "icons": [
+    "https://enka.network/ui/UI_AvatarIcon_Wriothesley.png",
+    "https://enka.network/ui/UI_AvatarIcon_Furina.png"
+   ],
+   "agents": [
+    "Wriothesley",
+    "Furina"
+   ],
+   "accent": "#c9a86a"
+  },
+  {
+   "name": "ヴァレサ&閑雲復刻",
+   "start": "2025-03-26",
+   "end": "2025-04-15",
+   "rev": 2.85,
+   "yrank": 13,
+   "ytot": 18,
+   "cum": 97,
+   "cumtot": 102,
+   "year": 2025,
+   "related": "イアンサ",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/03/21/5935aed29bc08c7d1e2fbb8f2b88a76f_7662838973682167949.jpg",
+   "icons": [
+    "https://enka.network/ui/UI_AvatarIcon_Varesa.png",
+    "https://enka.network/ui/UI_AvatarIcon_Liuyun.png"
+   ],
+   "agents": [
+    "Varesa",
+    "Xianyun"
+   ],
+   "accent": "#c9a86a"
+  },
+  {
+   "name": "シロネン復刻&ウェンティ復刻",
+   "start": "2025-04-15",
+   "end": "2025-05-06",
+   "rev": 2.57,
+   "yrank": 15,
+   "ytot": 18,
+   "cum": 99,
+   "cumtot": 102,
+   "year": 2025,
+   "related": "",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/04/09/dd4f139635182b7fd570b7534eda2908_1840557538363451263.jpg",
+   "icons": [
+    "https://enka.network/ui/UI_AvatarIcon_Xilonen.png",
+    "https://enka.network/ui/UI_AvatarIcon_Venti.png"
+   ],
+   "agents": [
+    "Xilonen",
+    "Venti"
+   ],
+   "accent": "#c9a86a"
+  },
+  {
+   "name": "エスコフィエ",
+   "start": "2025-05-07",
+   "end": "2025-05-27",
+   "rev": 3.13,
+   "yrank": 10,
+   "ytot": 18,
+   "cum": 94,
+   "cumtot": 102,
+   "year": 2025,
+   "related": "ナヴィア復刻",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/04/30/142a0942277004de21a7aa908ef5ce38_3367995657944649773.jpg",
+   "icons": [
+    "https://enka.network/ui/UI_AvatarIcon_Escoffier.png"
+   ],
+   "agents": [
+    "Escoffier"
+   ],
+   "accent": "#c9a86a"
+  },
+  {
+   "name": "キィニチ復刻&雷電将軍復刻",
+   "start": "2025-05-27",
+   "end": "2025-06-17",
+   "rev": 2.94,
+   "yrank": 12,
+   "ytot": 18,
+   "cum": 96,
+   "cumtot": 102,
+   "year": 2025,
+   "related": "集録祈願「天を裂く雷鳴」",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/05/20/9b3533fb3602e36cf0de355ec387eead_8481502789443642874.jpg",
+   "icons": [
+    "https://enka.network/ui/UI_AvatarIcon_Kinich.png",
+    "https://enka.network/ui/UI_AvatarIcon_Shougun.png"
+   ],
+   "agents": [
+    "Kinich",
+    "Raiden Shogun"
+   ],
+   "accent": "#c9a86a"
+  },
+  {
+   "name": "スカーク",
+   "start": "2025-06-18",
+   "end": "2025-07-08",
+   "rev": 8.86,
+   "yrank": 2,
+   "ytot": 18,
+   "cum": 52,
+   "cumtot": 102,
+   "year": 2025,
+   "related": "申鶴復刻",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/06/13/e82471d6437baa04dcfed78eb2fc02a3_4986421211168343162.jpg",
+   "icons": [
+    "https://enka.network/ui/UI_AvatarIcon_SkirkNew.png"
+   ],
+   "agents": [
+    "Skirk"
+   ],
+   "accent": "#c9a86a"
+  },
+  {
+   "name": "マーヴィカ復刻&エミリエ復刻",
+   "start": "2025-07-08",
+   "end": "2025-07-29",
+   "rev": 2.67,
+   "yrank": 14,
+   "ytot": 18,
+   "cum": 98,
+   "cumtot": 102,
+   "year": 2025,
+   "related": "",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/07/03/119467b87609ca06247f512e0ec5e340_6231794123022969564.jpg",
+   "icons": [
+    "https://enka.network/ui/UI_AvatarIcon_Mavuika.png",
+    "https://enka.network/ui/UI_AvatarIcon_Emilie.png"
+   ],
+   "agents": [
+    "Mavuika (Trial)",
+    "Emilie"
+   ],
+   "accent": "#c9a86a"
+  },
+  {
+   "name": "イネファ",
+   "start": "2025-07-30",
+   "end": "2025-08-19",
+   "rev": 3.05,
+   "yrank": 11,
+   "ytot": 18,
+   "cum": 95,
+   "cumtot": 102,
+   "year": 2025,
+   "related": "シトラリ復刻",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/07/25/74bd3dd43d387175d6488d531b1dc876_2376537358052853601.jpg",
+   "icons": [
+    "https://enka.network/ui/UI_AvatarIcon_Ineffa.png"
+   ],
+   "agents": [
+    "Ineffa"
+   ],
+   "accent": "#c9a86a"
+  },
+  {
+   "name": "ムアラニ復刻&チャスカ復刻",
+   "start": "2025-08-19",
+   "end": "2025-09-09",
+   "rev": 2.2,
+   "yrank": 18,
+   "ytot": 18,
+   "cum": 102,
+   "cumtot": 102,
+   "year": 2025,
+   "related": "",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/08/13/5695e8cae4299e6c3c5d5609a6ea2eb6_2960019148035950589.jpg",
+   "icons": [
+    "https://enka.network/ui/UI_AvatarIcon_Mualani.png",
+    "https://enka.network/ui/UI_AvatarIcon_Chasca.png"
+   ],
+   "agents": [
+    "Mualani",
+    "Chasca"
+   ],
+   "accent": "#c9a86a"
+  },
+  {
+   "name": "ラウマ",
+   "start": "2025-09-10",
+   "end": "2025-09-30",
+   "rev": 4.23,
+   "yrank": 6,
+   "ytot": 18,
+   "cum": 83,
+   "cumtot": 102,
+   "year": 2025,
+   "related": "ナヒーダ復刻、集録祈願「露と草の盃」",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/09/08/df8ebd49c2ac99d701f3e88a96c970c6_4362035183919378694.jpg",
+   "icons": [
+    "https://enka.network/ui/UI_AvatarIcon_Lauma.png"
+   ],
+   "agents": [
+    "Lauma"
+   ],
+   "accent": "#c9a86a"
+  },
+  {
+   "name": "フリンズ",
+   "start": "2025-09-30",
+   "end": "2025-10-21",
+   "rev": 4.25,
+   "yrank": 5,
+   "ytot": 18,
+   "cum": 82,
+   "cumtot": 102,
+   "year": 2025,
+   "related": "夜蘭復刻",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/09/25/5502559493f5ec79f029c83c3a911694_4527499613479705532.jpg",
+   "icons": [
+    "https://enka.network/ui/UI_AvatarIcon_Flins.png"
+   ],
+   "agents": [
+    "Flins"
+   ],
+   "accent": "#c9a86a"
+  },
+  {
+   "name": "ネフェル",
+   "start": "2025-10-22",
+   "end": "2025-11-11",
+   "rev": 4.28,
+   "yrank": 4,
+   "ytot": 18,
+   "cum": 80,
+   "cumtot": 102,
+   "year": 2025,
+   "related": "フリーナ",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/10/17/521613c0dab0b4018fc68d926affaa6a_3857502028067489407.jpg",
+   "icons": [
+    "https://enka.network/ui/UI_AvatarIcon_Nefer.png"
+   ],
+   "agents": [
+    "Nefer"
+   ],
+   "accent": "#c9a86a"
+  },
+  {
+   "name": "アルレッキーノ復刻&鍾離復刻",
+   "start": "2025-11-11",
+   "end": "2025-12-02",
+   "rev": 2.33,
+   "yrank": 16,
+   "ytot": 18,
+   "cum": 100,
+   "cumtot": 102,
+   "year": 2025,
+   "related": "",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/11/05/dc6dc0787edd06c117eaca2e57a5287a_2988516736738081068.jpg",
+   "icons": [
+    "https://enka.network/ui/UI_AvatarIcon_Arlecchino.png",
+    "https://enka.network/ui/UI_AvatarIcon_Zhongli.png"
+   ],
+   "agents": [
+    "Arlecchino",
+    "Zhongli"
+   ],
+   "accent": "#c9a86a"
+  },
+  {
+   "name": "ドゥリン",
+   "start": "2025-12-03",
+   "end": "2025-12-23",
+   "rev": 4.19,
+   "yrank": 7,
+   "ytot": 18,
+   "cum": 84,
+   "cumtot": 102,
+   "year": 2025,
+   "related": "ウェンティ復刻",
+   "banner_img": "https://pbs.twimg.com/media/G7DR9lxXwAAsdoT.jpg",
+   "icons": [
+    "https://enka.network/ui/UI_AvatarIcon_Durin.png"
+   ],
+   "agents": [
+    "Durin"
+   ],
+   "accent": "#c9a86a"
+  },
+  {
+   "name": "ヴァレサ復刻&シロネン復刻",
+   "start": "2025-12-23",
+   "end": "2026-01-13",
+   "rev": 4.12,
+   "yrank": 8,
+   "ytot": 18,
+   "cum": 86,
+   "cumtot": 102,
+   "year": 2025,
+   "related": "",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/12/16/3ad1503120788bc3e15a09d52232afa9_2373601342062660402.jpg",
+   "icons": [
+    "https://enka.network/ui/UI_AvatarIcon_Varesa.png",
+    "https://enka.network/ui/UI_AvatarIcon_Xilonen.png"
+   ],
+   "agents": [
+    "Varesa",
+    "Xilonen"
+   ],
+   "accent": "#c9a86a"
+  },
+  {
+   "name": "コロンビーナ",
+   "start": "2026-01-14",
+   "end": "2026-02-03",
+   "rev": 16.66,
+   "yrank": 1,
+   "ytot": 9,
+   "cum": 20,
+   "cumtot": 102,
+   "year": 2026,
+   "related": "イネファ復刻\n2025年へ",
+   "banner_img": "https://pbs.twimg.com/media/G-blMLpXMAAPNmR.jpg",
+   "icons": [
+    "https://enka.network/ui/UI_AvatarIcon_Columbina.png"
+   ],
+   "agents": [
+    "Columbina"
+   ],
+   "accent": "#c9a86a"
+  },
+  {
+   "name": "兹白",
+   "start": "2026-02-03",
+   "end": "2026-02-24",
+   "rev": 4.26,
+   "yrank": 5,
+   "ytot": 9,
+   "cum": 81,
+   "cumtot": 102,
+   "year": 2026,
+   "related": "ヌヴィレット復刻、イルーガ",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/01/22/e5f370029d6e45ecc4e51427f7c164b5_2047444970886058009.jpg",
+   "icons": [
+    "https://enka.network/ui/UI_AvatarIcon_Neuvillette.png"
+   ],
+   "agents": [
+    "Neuvillette"
+   ],
+   "accent": "#c9a86a"
+  },
+  {
+   "name": "ファルカ",
+   "start": "2026-02-25",
+   "end": "2026-03-17",
+   "rev": 5.83,
+   "yrank": 3,
+   "ytot": 9,
+   "cum": 71,
+   "cumtot": 102,
+   "year": 2026,
+   "related": "フリンズ",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/02/13/0a462af54a91f6a5fcb6a1d884cad245_1998948553019150990.jpg",
+   "icons": [
+    "https://enka.network/ui/UI_AvatarIcon_Flins.png"
+   ],
+   "agents": [
+    "Flins"
+   ],
+   "accent": "#c9a86a"
+  },
+  {
+   "name": "スカーク復刻&エスコフィエ復刻",
+   "start": "2026-03-17",
+   "end": "2026-04-07",
+   "rev": 4.19,
+   "yrank": 6,
+   "ytot": 9,
+   "cum": 85,
+   "cumtot": 102,
+   "year": 2026,
+   "related": "",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/03/11/93a7419d864f13f2270f89924c0b8e4a_7397518726044578515.jpg",
+   "icons": [
+    "https://enka.network/ui/UI_AvatarIcon_SkirkNew.png",
+    "https://enka.network/ui/UI_AvatarIcon_Escoffier.png"
+   ],
+   "agents": [
+    "Skirk",
+    "Escoffier"
+   ],
+   "accent": "#c9a86a"
+  },
+  {
+   "name": "リンネア",
+   "start": "2026-04-08",
+   "end": "2026-04-28",
+   "rev": 3.83,
+   "yrank": 8,
+   "ytot": 9,
+   "cum": 89,
+   "cumtot": 102,
+   "year": 2026,
+   "related": "チャスカ",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/04/06/daa7021a27e0b565c48577edf05a1ece_2551284884487609917.jpg",
+   "icons": [
+    "https://enka.network/ui/UI_AvatarIcon_Chasca.png"
+   ],
+   "agents": [
+    "Chasca"
+   ],
+   "accent": "#c9a86a"
+  },
+  {
+   "name": "ラウマ復刻&ネフェル復刻",
+   "start": "2026-04-28",
+   "end": "2026-05-19",
+   "rev": 3.31,
+   "yrank": 9,
+   "ytot": 9,
+   "cum": 93,
+   "cumtot": 102,
+   "year": 2026,
+   "related": "集録祈願「ルキナのせせらぎ」",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/04/22/0/964100e3fe6295fd0483e735b463a329_4365338839486256120.webp",
+   "icons": [
+    "https://enka.network/ui/UI_AvatarIcon_Lauma.png",
+    "https://enka.network/ui/UI_AvatarIcon_Nefer.png"
+   ],
+   "agents": [
+    "Lauma",
+    "Nefer"
+   ],
+   "accent": "#c9a86a"
+  },
+  {
+   "name": "ニコ",
+   "start": "2026-05-20",
+   "end": "2026-06-09",
+   "rev": 4.49,
+   "yrank": 4,
+   "ytot": 9,
+   "cum": 78,
+   "cumtot": 102,
+   "year": 2026,
+   "related": "ドゥリン",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/05/15/8c2fe2e9cbf65169b54d499ec2bb42fd_7520440180828628783.jpg",
+   "icons": [
+    "https://enka.network/ui/UI_AvatarIcon_Durin.png"
+   ],
+   "agents": [
+    "Durin"
+   ],
+   "accent": "#c9a86a"
+  },
+  {
+   "name": "ローエン",
+   "start": "2026-06-09",
+   "end": "2026-06-30",
+   "rev": 3.92,
+   "yrank": 7,
+   "ytot": 9,
+   "cum": 88,
+   "cumtot": 102,
+   "year": 2026,
+   "related": "",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/06/02/0/9ac9e23478b7656719b6795b0a8cd71b_3425170184116618980.jpeg",
+   "icons": [],
+   "agents": [],
+   "accent": null
+  },
+  {
+   "name": "サンドローネ",
+   "start": "2026-07-01",
+   "end": "2026-07-21",
+   "rev": 10.07,
+   "yrank": 2,
+   "ytot": 9,
+   "cum": 48,
+   "cumtot": 102,
+   "year": 2026,
+   "related": "",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/06/29/0/781da55472dc1186e3e8d2d93140cf70_7777178998231754007.jpeg",
+   "icons": [],
+   "agents": [],
+   "accent": null
+  }
+ ]
+}
