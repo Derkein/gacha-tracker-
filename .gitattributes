@@ -1,0 +1,5 @@
+# Normalize all text to LF so the Linux CI runner doesn't churn line endings.
+* text=auto eol=lf
+*.png binary
+*.webp binary
+*.jpg binary
