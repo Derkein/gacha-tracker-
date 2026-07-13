@@ -37,18 +37,22 @@ def build_index(cmap):
 
 
 def match_tokens(title, idx):
-    """Return ordered, de-duped list of matched entries for a banner title."""
+    """Return ordered, de-duped list of matched entries for a banner title.
+
+    Priority: (1) exact normalized name, then (2) a character name contained
+    *within* the banner title (key-in-title), longest key first. We deliberately
+    do NOT match title-in-key — that made short names like ライト (Lighter) match
+    the longer スターライトビリー (Starlight Billy).
+    """
     found, used = [], set()
     tokens = [t for t in SPLIT.split(title) if t.strip()]
     for tok in tokens:
         nt = norm(tok)
         if not nt:
             continue
-        best = None
-        for nk, name, e in idx:
-            if nk and (nk == nt or nk in nt or nt in nk):
-                best = (name, e)
-                break
+        best = next(((name, e) for nk, name, e in idx if nk == nt), None)   # exact
+        if not best:
+            best = next(((name, e) for nk, name, e in idx if nk and nk in nt), None)  # key in title
         if best and best[0] not in used:
             used.add(best[0])
             found.append(best[1])

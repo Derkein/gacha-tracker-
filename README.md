@@ -2,8 +2,11 @@
 
 An auto-updating static site charting **estimated per-banner gacha revenue over time**
 for Zenless Zone Zero, Honkai: Star Rail, Wuthering Waves, Genshin Impact,
-Arknights: Endfield and Neverness to Everness. Timeline / ranking / table views, with
-character portraits and official banner art.
+Arknights: Endfield and Neverness to Everness. Timeline / ranking / graph / table views,
+with character portraits and official banner art.
+
+Revenue is shown in **G**, game-i's abstract estimate unit (their FAQ states "G has no
+particular meaning"); values are translated from 億 (1e8) to M/B magnitudes, so 1B G = 10億.
 
 - **Data source:** [game-i.daa.jp](https://game-i.daa.jp/) (third-party sales estimates, 売上予測, in 億G = 100M App Store units).
 - **Portraits:** circular character head-icons from auto-updating community data sources —

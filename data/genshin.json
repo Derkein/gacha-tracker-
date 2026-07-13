@@ -321,7 +321,7 @@
    ],
    "agents": [
     "Nahida",
-    "Hu Tao (Trial)"
+    "Hu Tao"
    ],
    "accent": "#c9a86a"
   },
@@ -339,11 +339,11 @@
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/11/15/0/6c6332e9c76b4392043f56c34a2fabcf_7620603469069275850.jpeg",
    "icons": [
     "https://enka.network/ui/UI_AvatarIcon_Chasca.png",
-    "https://enka.network/ui/UI_AvatarIcon_Linette.png"
+    "https://enka.network/ui/UI_AvatarIcon_Liney.png"
    ],
    "agents": [
     "Chasca",
-    "Lynette"
+    "Lyney"
    ],
    "accent": "#c9a86a"
   },
@@ -386,7 +386,7 @@
     "https://enka.network/ui/UI_AvatarIcon_Citlali.png"
    ],
    "agents": [
-    "Mavuika (Trial)",
+    "Mavuika",
     "Citlali"
    ],
    "accent": "#c9a86a"
@@ -580,7 +580,7 @@
     "https://enka.network/ui/UI_AvatarIcon_Emilie.png"
    ],
    "agents": [
-    "Mavuika (Trial)",
+    "Mavuika",
     "Emilie"
    ],
    "accent": "#c9a86a"

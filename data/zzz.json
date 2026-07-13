@@ -160,12 +160,12 @@
    "related": "ライト、ベン、カリン",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/11/25/10bfcfcdb9ac34809e92aaaa93934b91_4997730475620532095.png",
    "icons": [
-    "https://enka.network/ui/zzz/IconRoleCircle62.png"
+    "https://enka.network/ui/zzz/IconRoleCircle26.png"
    ],
    "agents": [
-    "Starlight - Billy"
+    "Lighter"
    ],
-   "accent": "#c94b3d"
+   "accent": "#ffdd4f"
   },
   {
    "name": "星見雅&浅羽悠真",
@@ -422,12 +422,12 @@
    "related": "イヴリン復刻",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/09/19/0/6530d65ca883890dddea554c29002000_842926848461823309.png",
    "icons": [
-    "https://enka.network/ui/zzz/IconRoleCircle49.png"
+    "https://enka.network/ui/zzz/IconRoleCircle37.png"
    ],
    "agents": [
-    "Orphie & Magus"
+    "Evelyn"
    ],
-   "accent": "#db602a"
+   "accent": "#eef7fd"
   },
   {
    "name": "リュシア",
