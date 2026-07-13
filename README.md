@@ -1,12 +1,16 @@
 # Gacha Revenue Tracker
 
 An auto-updating static site charting **estimated per-banner gacha revenue over time**
-for Zenless Zone Zero, Honkai: Star Rail, Wuthering Waves, Genshin Impact and
-Arknights: Endfield. Timeline / ranking / table views, with character portraits and
-official banner art.
+for Zenless Zone Zero, Honkai: Star Rail, Wuthering Waves, Genshin Impact,
+Arknights: Endfield and Neverness to Everness. Timeline / ranking / table views, with
+character portraits and official banner art.
 
 - **Data source:** [game-i.daa.jp](https://game-i.daa.jp/) (third-party sales estimates, 売上予測, in 億G = 100M App Store units).
-- **Portraits:** [Enka.Network](https://enka.network/) open data store (HoYoverse games); other games fall back to banner splash art.
+- **Portraits:** circular character head-icons from auto-updating community data sources —
+  [Enka.Network](https://enka.network/) (ZZZ, Genshin) and
+  [Mar-7th/StarRailRes](https://github.com/Mar-7th/StarRailRes) (Star Rail). Games without a
+  reliable icon source (Wuthering Waves, Endfield, Neverness to Everness) use the official
+  **banner splash art** instead, which game-i provides for every banner automatically.
 - **Hosting:** GitHub Pages (a plain static site — no server, no build step).
 - **Freshness:** a scheduled GitHub Action re-scrapes daily and commits changes.
 

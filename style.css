@@ -70,6 +70,7 @@ a{color:inherit}
 .av{position:relative; width:44px; height:44px}
 .av img{width:44px; height:44px; border-radius:50%; object-fit:cover; background:var(--track);
   box-shadow:0 0 0 2px var(--surface),0 0 0 3.5px var(--av-ring,var(--accent))}
+.av img.artav{object-position:50% 18%}   /* banner splash: frame the character, not the sky */
 .av .mono{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;
   font-weight:800;font-size:15px;color:#fff;background:var(--av-ring,var(--accent));
   box-shadow:0 0 0 2px var(--surface)}

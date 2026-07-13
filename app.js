@@ -1,6 +1,6 @@
 // Gacha Revenue Tracker — client logic. Data comes from data/*.json (built by scripts/).
 const GAME_ACCENT = {          // fallback hue when a banner has no character icon
-  zzz:"#e0a400", hsr:"#8a7bd8", wuwa:"#2fb6c0", genshin:"#d8a24a", endfield:"#e07b3a",
+  zzz:"#e0a400", hsr:"#8a7bd8", wuwa:"#2fb6c0", genshin:"#d8a24a", endfield:"#e07b3a", nte:"#d94f8a",
 };
 const state = { games:[], tag:null, data:null, mode:"time", table:false };
 const $ = s => document.querySelector(s);
@@ -67,7 +67,7 @@ function avatarHTML(b){
     if(b.icons[2]) h+=`<img class="extra e2" src="${b.icons[2]}" alt="" referrerpolicy="no-referrer" onerror="this.remove()">`;
     return h;
   }
-  if(b.banner_img) return `<img src="${b.banner_img}" alt="" referrerpolicy="no-referrer" onerror="this.replaceWith(mono('${esc(b.name)}'))">`;
+  if(b.banner_img) return `<img class="artav" src="${b.banner_img}" alt="" referrerpolicy="no-referrer" onerror="this.replaceWith(mono('${esc(b.name)}'))">`;
   return monoStr(b.name);
 }
 function monoStr(name){const ch=(name||"?").trim()[0]||"?";return `<span class="mono">${esc(ch)}</span>`;}

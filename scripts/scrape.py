@@ -31,6 +31,7 @@ GAMES = {
     "wuwa":     {"page": "ガチャ分析/鳴潮",                  "name": "Wuthering Waves",    "jp": "鳴潮"},
     "genshin":  {"page": "ガチャ分析/原神",                  "name": "Genshin Impact",     "jp": "原神"},
     "endfield": {"page": "ガチャ分析/アークナイツ：エンドフィールド", "name": "Arknights: Endfield","jp": "アークナイツ：エンドフィールド"},
+    "nte":      {"page": "ガチャ分析/NTE： Neverness to Everness", "name": "Neverness to Everness", "jp": "NTE： Neverness to Everness"},
 }
 
 UA = {"User-Agent": "Mozilla/5.0 (gacha-tracker; +https://github.com/)"}

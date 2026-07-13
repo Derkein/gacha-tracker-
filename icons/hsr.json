@@ -1,0 +1,412 @@
+{
+ "三月なのか": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1224.png",
+  "accent": "#f0d24b",
+  "en": "March 7th"
+ },
+ "丹恒": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1002.png",
+  "accent": "#4fc8a0",
+  "en": "Dan Heng"
+ },
+ "姫子": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1003.png",
+  "accent": "#f0503f",
+  "en": "Himeko"
+ },
+ "ヴェルト": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1004.png",
+  "accent": "#f0d24b",
+  "en": "Welt"
+ },
+ "カフカ": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1005.png",
+  "accent": "#c56af0",
+  "en": "Kafka"
+ },
+ "銀狼": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1006.png",
+  "accent": "#4a4ad8",
+  "en": "Silver Wolf"
+ },
+ "アーラン": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1008.png",
+  "accent": "#c56af0",
+  "en": "Arlan"
+ },
+ "アスター": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1009.png",
+  "accent": "#f0503f",
+  "en": "Asta"
+ },
+ "ヘルタ": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1013.png",
+  "accent": "#5fc7e8",
+  "en": "Herta"
+ },
+ "セイバー": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1014.png",
+  "accent": "#4fc8a0",
+  "en": "Saber"
+ },
+ "アーチャー": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1015.png",
+  "accent": "#4a4ad8",
+  "en": "Archer"
+ },
+ "ブローニャ": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1101.png",
+  "accent": "#4fc8a0",
+  "en": "Bronya"
+ },
+ "ゼーレ": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1102.png",
+  "accent": "#4a4ad8",
+  "en": "Seele"
+ },
+ "セーバル": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1103.png",
+  "accent": "#c56af0",
+  "en": "Serval"
+ },
+ "ジェパード": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1104.png",
+  "accent": "#5fc7e8",
+  "en": "Gepard"
+ },
+ "ナターシャ": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1105.png",
+  "accent": "#b9b9b9",
+  "en": "Natasha"
+ },
+ "ペラ": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1106.png",
+  "accent": "#5fc7e8",
+  "en": "Pela"
+ },
+ "クラーラ": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1107.png",
+  "accent": "#b9b9b9",
+  "en": "Clara"
+ },
+ "サンポ": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1108.png",
+  "accent": "#4fc8a0",
+  "en": "Sampo"
+ },
+ "フック": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1109.png",
+  "accent": "#f0503f",
+  "en": "Hook"
+ },
+ "リンクス": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1110.png",
+  "accent": "#4a4ad8",
+  "en": "Lynx"
+ },
+ "ルカ": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1111.png",
+  "accent": "#b9b9b9",
+  "en": "Luka"
+ },
+ "トパーズ&カブ": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1112.png",
+  "accent": "#f0503f",
+  "en": "Topaz & Numby"
+ },
+ "青雀": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1201.png",
+  "accent": "#4a4ad8",
+  "en": "Qingque"
+ },
+ "停雲": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1202.png",
+  "accent": "#c56af0",
+  "en": "Tingyun"
+ },
+ "羅刹": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1203.png",
+  "accent": "#f0d24b",
+  "en": "Luocha"
+ },
+ "景元": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1204.png",
+  "accent": "#c56af0",
+  "en": "Jing Yuan"
+ },
+ "刃": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1205.png",
+  "accent": "#4fc8a0",
+  "en": "Blade"
+ },
+ "素裳": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1206.png",
+  "accent": "#b9b9b9",
+  "en": "Sushang"
+ },
+ "御空": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1207.png",
+  "accent": "#f0d24b",
+  "en": "Yukong"
+ },
+ "符玄": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1208.png",
+  "accent": "#4a4ad8",
+  "en": "Fu Xuan"
+ },
+ "彦卿": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1209.png",
+  "accent": "#5fc7e8",
+  "en": "Yanqing"
+ },
+ "桂乃芬": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1210.png",
+  "accent": "#f0503f",
+  "en": "Guinaifen"
+ },
+ "白露": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1211.png",
+  "accent": "#c56af0",
+  "en": "Bailu"
+ },
+ "鏡流": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1212.png",
+  "accent": "#5fc7e8",
+  "en": "Jingliu"
+ },
+ "丹恒・飲月": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1213.png",
+  "accent": "#f0d24b",
+  "en": "Dan Heng • Imbibitor Lunae"
+ },
+ "雪衣": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1214.png",
+  "accent": "#4a4ad8",
+  "en": "Xueyi"
+ },
+ "寒鴉": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1215.png",
+  "accent": "#b9b9b9",
+  "en": "Hanya"
+ },
+ "フォフォ": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1217.png",
+  "accent": "#4fc8a0",
+  "en": "Huohuo"
+ },
+ "椒丘": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1218.png",
+  "accent": "#f0503f",
+  "en": "Jiaoqiu"
+ },
+ "飛霄": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1220.png",
+  "accent": "#4fc8a0",
+  "en": "Feixiao"
+ },
+ "雲璃": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1221.png",
+  "accent": "#b9b9b9",
+  "en": "Yunli"
+ },
+ "霊砂": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1222.png",
+  "accent": "#f0503f",
+  "en": "Lingsha"
+ },
+ "モゼ": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1223.png",
+  "accent": "#c56af0",
+  "en": "Moze"
+ },
+ "帰忘の流離人": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1225.png",
+  "accent": "#f0503f",
+  "en": "Fugue"
+ },
+ "ギャラガー": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1301.png",
+  "accent": "#f0503f",
+  "en": "Gallagher"
+ },
+ "アルジェンティ": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1302.png",
+  "accent": "#b9b9b9",
+  "en": "Argenti"
+ },
+ "ルアン・メェイ": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1303.png",
+  "accent": "#5fc7e8",
+  "en": "Ruan Mei"
+ },
+ "アベンチュリン": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1304.png",
+  "accent": "#f0d24b",
+  "en": "Aventurine"
+ },
+ "Dr.レイシオ": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1305.png",
+  "accent": "#f0d24b",
+  "en": "Dr. Ratio"
+ },
+ "花火": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1306.png",
+  "accent": "#4a4ad8",
+  "en": "Sparkle"
+ },
+ "ブラックスワン": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1307.png",
+  "accent": "#4fc8a0",
+  "en": "Black Swan"
+ },
+ "黄泉": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1308.png",
+  "accent": "#c56af0",
+  "en": "Acheron"
+ },
+ "ロビン": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1309.png",
+  "accent": "#b9b9b9",
+  "en": "Robin"
+ },
+ "ホタル": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1310.png",
+  "accent": "#f0503f",
+  "en": "Firefly"
+ },
+ "ミーシャ": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1312.png",
+  "accent": "#5fc7e8",
+  "en": "Misha"
+ },
+ "サンデー": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1313.png",
+  "accent": "#f0d24b",
+  "en": "Sunday"
+ },
+ "ジェイド": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1314.png",
+  "accent": "#4a4ad8",
+  "en": "Jade"
+ },
+ "ブートヒル": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1315.png",
+  "accent": "#b9b9b9",
+  "en": "Boothill"
+ },
+ "乱破": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1317.png",
+  "accent": "#f0d24b",
+  "en": "Rappa"
+ },
+ "ダリア": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1321.png",
+  "accent": "#f0503f",
+  "en": "The Dahlia"
+ },
+ "マダム・ヘルタ": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1401.png",
+  "accent": "#5fc7e8",
+  "en": "The Herta"
+ },
+ "アグライア": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1402.png",
+  "accent": "#c56af0",
+  "en": "Aglaea"
+ },
+ "トリビー": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1403.png",
+  "accent": "#4a4ad8",
+  "en": "Tribbie"
+ },
+ "モーディス": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1404.png",
+  "accent": "#f0d24b",
+  "en": "Mydei"
+ },
+ "アナイクス": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1405.png",
+  "accent": "#4fc8a0",
+  "en": "Anaxa"
+ },
+ "サフェル": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1406.png",
+  "accent": "#4a4ad8",
+  "en": "Cipher"
+ },
+ "キャストリス": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1407.png",
+  "accent": "#4a4ad8",
+  "en": "Castorice"
+ },
+ "ファイノン": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1408.png",
+  "accent": "#b9b9b9",
+  "en": "Phainon"
+ },
+ "ヒアンシー": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1409.png",
+  "accent": "#4fc8a0",
+  "en": "Hyacine"
+ },
+ "セイレンス": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1410.png",
+  "accent": "#b9b9b9",
+  "en": "Hysilens"
+ },
+ "ケリュドラ": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1412.png",
+  "accent": "#4fc8a0",
+  "en": "Cerydra"
+ },
+ "長夜月": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1413.png",
+  "accent": "#5fc7e8",
+  "en": "Evernight"
+ },
+ "丹恒・騰荒": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1414.png",
+  "accent": "#b9b9b9",
+  "en": "Dan Heng • Permansor Terrae"
+ },
+ "キュレネ": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1415.png",
+  "accent": "#5fc7e8",
+  "en": "Cyrene"
+ },
+ "火花": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1501.png",
+  "accent": "#f0503f",
+  "en": "Sparxie"
+ },
+ "爻光": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1502.png",
+  "accent": "#b9b9b9",
+  "en": "Yao Guang"
+ },
+ "不死途": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1504.png",
+  "accent": "#c56af0",
+  "en": "Ashveil"
+ },
+ "緋英": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1505.png",
+  "accent": "#b9b9b9",
+  "en": "Evanescia"
+ },
+ "銀狼LV.999": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1506.png",
+  "accent": "#f0d24b",
+  "en": "Silver Wolf LV.999"
+ },
+ "千冶・刃": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1507.png",
+  "accent": "#f0503f",
+  "en": "Mortenax Blade"
+ },
+ "{NICKNAME}": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/8010.png",
+  "accent": "#c56af0",
+  "en": "{NICKNAME}"
+ }
+}

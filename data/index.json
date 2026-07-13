@@ -5,35 +5,42 @@
    "name": "Zenless Zone Zero",
    "count": 35,
    "total_oku": 204.3,
-   "updated": "2026-07-12T23:10:23Z"
+   "updated": "2026-07-13T11:38:56Z"
   },
   {
    "game": "hsr",
    "name": "Honkai: Star Rail",
    "count": 44,
    "total_oku": 549.0,
-   "updated": "2026-07-12T23:10:29Z"
+   "updated": "2026-07-13T11:39:03Z"
   },
   {
    "game": "wuwa",
    "name": "Wuthering Waves",
    "count": 36,
    "total_oku": 139.1,
-   "updated": "2026-07-12T23:10:35Z"
+   "updated": "2026-07-13T11:39:09Z"
   },
   {
    "game": "genshin",
    "name": "Genshin Impact",
    "count": 44,
    "total_oku": 265.5,
-   "updated": "2026-07-12T23:10:41Z"
+   "updated": "2026-07-13T11:39:16Z"
   },
   {
    "game": "endfield",
    "name": "Arknights: Endfield",
    "count": 9,
    "total_oku": 34.1,
-   "updated": "2026-07-12T23:10:42Z"
+   "updated": "2026-07-13T11:39:18Z"
+  },
+  {
+   "game": "nte",
+   "name": "Neverness to Everness",
+   "count": 5,
+   "total_oku": 18.7,
+   "updated": "2026-07-13T11:39:20Z"
   }
  ]
 }

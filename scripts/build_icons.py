@@ -72,20 +72,29 @@ def build_genshin():
     return out
 
 
+# Honkai: Star Rail comes from Mar-7th/StarRailRes (community-maintained,
+# auto-updating, hotlinkable raw images) rather than Enka, whose HSR store
+# stores name hashes lossily.
+STARRAILRES = "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/"
+HSR_ELEMENT = {
+    "Physical": "#b9b9b9", "Fire": "#f0503f", "Ice": "#5fc7e8", "Thunder": "#c56af0",
+    "Lightning": "#c56af0", "Wind": "#4fc8a0", "Quantum": "#4a4ad8", "Imaginary": "#f0d24b",
+}
+
+
 def build_hsr():
-    ch = getj(RAW + "hsr/honker_characters.json")
-    loc = getj(RAW + "hsr/hsr.json")
-    ja, en = loc.get("ja", {}), loc.get("en", {})
+    ja = getj(STARRAILRES + "index_new/jp/characters.json")
+    en = getj(STARRAILRES + "index_new/en/characters.json")
     out = {}
-    for cid, v in ch.items():
-        h = v.get("AvatarName", {}).get("Hash") if isinstance(v.get("AvatarName"), dict) else None
-        icon = v.get("AvatarSideIconPath") or v.get("AvatarIconPath")
-        name_ja = ja.get(str(h)) if h else None
+    for cid, v in ja.items():
+        name_ja, icon = v.get("name"), v.get("icon")
         if not (name_ja and icon):
             continue
-        fn = icon.split("/")[-1].replace(".png", "")
-        out[name_ja] = {"icon": f"https://enka.network/ui/hsr/{fn}.png",
-                        "accent": "#8a7bd8", "en": en.get(str(h), name_ja)}
+        out[name_ja] = {
+            "icon": STARRAILRES + icon,
+            "accent": HSR_ELEMENT.get(v.get("element"), "#8a7bd8"),
+            "en": en.get(cid, {}).get("name", name_ja),
+        }
     return out
 
 
