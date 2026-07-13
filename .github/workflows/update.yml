@@ -24,15 +24,22 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Refresh character icon maps (Enka)
+      - name: Install dependencies (for face-crop icons)
+        run: pip install -r requirements.txt
+
+      - name: Refresh character icon maps (Enka + StarRailRes)
         run: python scripts/build_icons.py
-        continue-on-error: true    # never block a data refresh if Enka is down
+        continue-on-error: true    # never block a data refresh if a source is down
 
       - name: Scrape banner revenue (game-i)
         run: python scripts/scrape.py
 
       - name: Attach character portraits
         run: python scripts/enrich_icons.py
+
+      - name: Crop face icons from banner art (icon-less games)
+        run: python scripts/face_icons.py
+        continue-on-error: true    # face detection is best-effort
 
       - name: Commit changes
         run: |

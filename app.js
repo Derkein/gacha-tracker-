@@ -140,9 +140,22 @@ function yearSVG(year, items, gmax){
     return `<text class="axislbl" x="${x.toFixed(1)}" y="${H-8}" text-anchor="middle">${MONTHS[m]||""}</text>`;}).join("");
   const line=pts.map((p,i)=>(i?"L":"M")+p.x.toFixed(1)+" "+p.y.toFixed(1)).join(" ");
   const area=`M${pts[0].x.toFixed(1)} ${base} `+pts.map(p=>"L"+p.x.toFixed(1)+" "+p.y.toFixed(1)).join(" ")+` L${pts[pts.length-1].x.toFixed(1)} ${base} Z`;
-  const dots=pts.map(p=>`<circle class="dot" data-i="${p.b._i}" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="4.5" fill="${p.b.accent||GAME_ACCENT[state.tag]}"/>`).join("");
+  const R=11;
+  const marks=pts.map(p=>{
+    const acc=p.b.accent||GAME_ACCENT[state.tag];
+    const url=(p.b.icons&&p.b.icons[0])||p.b.banner_img;
+    const cx=p.x.toFixed(1), cy=p.y.toFixed(1);
+    if(url){
+      const id=`clip_${year}_${p.b._i}`;
+      return `<clipPath id="${id}"><circle cx="${cx}" cy="${cy}" r="${R}"/></clipPath>`+
+        `<image href="${url}" x="${(p.x-R).toFixed(1)}" y="${(p.y-R).toFixed(1)}" width="${2*R}" height="${2*R}" `+
+        `preserveAspectRatio="xMidYMid slice" clip-path="url(#${id})" data-i="${p.b._i}"/>`+
+        `<circle class="gring" cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="${acc}" data-i="${p.b._i}"/>`;
+    }
+    return `<circle class="dot" data-i="${p.b._i}" cx="${cx}" cy="${cy}" r="5" fill="${acc}"/>`;
+  }).join("");
   return `<svg class="gsvg" viewBox="0 0 ${W} ${H}" role="img">
-    ${grid}<path class="area" d="${area}"/><path class="line" d="${line}"/>${dots}${xt}</svg>`;
+    ${grid}<path class="area" d="${area}"/><path class="line" d="${line}"/>${marks}${xt}</svg>`;
 }
 function renderGraph(){
   const b=state.data.banners; b.forEach((x,i)=>x._i=i);

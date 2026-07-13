@@ -44,7 +44,11 @@
    "cumtot": 5,
    "year": 2026,
    "related": "",
-   "banner_img": "https://appmedia.jp/wp-content/uploads/2026/05/221003_x6ys7.webp"
+   "banner_img": "https://appmedia.jp/wp-content/uploads/2026/05/221003_x6ys7.webp",
+   "icons": [
+    "icons/faces/nte/2026-06-03-79756c.webp"
+   ],
+   "accent": "#e01f41"
   },
   {
    "name": "カオス",
@@ -70,7 +74,11 @@
    "cumtot": 5,
    "year": 2026,
    "related": "",
-   "banner_img": "https://appmedia.jp/wp-content/uploads/2026/07/101921_q8b4w.webp"
+   "banner_img": "https://appmedia.jp/wp-content/uploads/2026/07/101921_q8b4w.webp",
+   "icons": [
+    "icons/faces/nte/2026-07-08-b29442.webp"
+   ],
+   "accent": "#78649b"
   }
  ]
 }

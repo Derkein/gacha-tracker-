@@ -12,8 +12,10 @@ particular meaning"); values are translated from 億 (1e8) to M/B magnitudes, so
 - **Portraits:** circular character head-icons from auto-updating community data sources —
   [Enka.Network](https://enka.network/) (ZZZ, Genshin) and
   [Mar-7th/StarRailRes](https://github.com/Mar-7th/StarRailRes) (Star Rail). Games without a
-  reliable icon source (Wuthering Waves, Endfield, Neverness to Everness) use the official
-  **banner splash art** instead, which game-i provides for every banner automatically.
+  reliable icon source (Wuthering Waves, Endfield, Neverness to Everness) get a best-effort
+  **face crop** from the banner art via anime face detection
+  ([lbpcascade_animeface](https://github.com/nagadomi/lbpcascade_animeface) + OpenCV); where
+  no face is detected, the full banner art is used. Both the row lists and the graph use these.
 - **Hosting:** GitHub Pages (a plain static site — no server, no build step).
 - **Freshness:** a scheduled GitHub Action re-scrapes daily and commits changes.
 
@@ -23,13 +25,15 @@ particular meaning"); values are translated from 億 (1e8) to M/B magnitudes, so
 ## How it works
 
 ```
-scripts/build_icons.py   # JP name -> Enka portrait + accent  ->  icons/<game>.json   (occasional)
+scripts/build_icons.py   # JP name -> portrait + accent  ->  icons/<game>.json         (Enka + StarRailRes)
 scripts/scrape.py        # game-i banners (name, dates, revenue, ranks, art) -> data/<game>.json
 scripts/enrich_icons.py  # matches banners to portraits, adds icons/accent to data/<game>.json
+scripts/face_icons.py    # icon-less games: crop a face circle from banner art -> icons/faces/<game>/*.webp
 index.html + app.js      # loads data/*.json and renders the charts
 ```
 
-The scraper is **pure standard library** (no `pip install`), so CI needs nothing extra.
+`scrape.py` / `build_icons.py` / `enrich_icons.py` are **pure standard library**. Only
+`face_icons.py` needs `pip install -r requirements.txt` (OpenCV + Pillow + numpy).
 
 ### Add or change games
 Edit the `GAMES` dict in [`scripts/scrape.py`](scripts/scrape.py). Any game that game-i
@@ -40,8 +44,10 @@ banner art automatically.
 ## Run locally
 
 ```bash
+pip install -r requirements.txt   # once, for face_icons.py (OpenCV etc.)
 python scripts/scrape.py          # writes data/*.json
 python scripts/enrich_icons.py    # attaches portraits (needs icons/*.json)
+python scripts/face_icons.py      # face-crop icons for WuWa/Endfield/NTE
 python -m http.server 8000        # then open http://localhost:8000
 ```
 (Open it through a web server, not the file:// path — the page fetches `data/*.json`.)

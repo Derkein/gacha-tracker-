@@ -116,9 +116,11 @@ td.l,th.l{text-align:left}
 .gsvg{width:100%; height:auto; display:block; overflow:visible}
 .gsvg .grid{stroke:var(--grid); stroke-width:1}
 .gsvg .axislbl{fill:var(--muted); font-size:10px; font-family:system-ui,sans-serif}
-.gsvg .area{fill:var(--accent); opacity:.14}
-.gsvg .line{fill:none; stroke:var(--accent); stroke-width:2; stroke-linejoin:round; stroke-linecap:round}
+.gsvg .area{fill:var(--accent); opacity:.13}
+.gsvg .line{fill:none; stroke:var(--accent); stroke-width:2; stroke-linejoin:round; stroke-linecap:round; opacity:.55}
 .gsvg .dot{stroke:var(--surface); stroke-width:2; cursor:pointer; transition:r .12s}
 .gsvg .dot:hover{r:7}
+.gsvg image{cursor:pointer}
+.gsvg .gring{stroke-width:2.5; paint-order:stroke; cursor:pointer}
 .foot{margin-top:26px; font-size:11px; color:var(--muted); line-height:1.6}
 .loading{padding:40px 0; text-align:center; color:var(--muted)}

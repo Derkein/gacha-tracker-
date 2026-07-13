@@ -18,7 +18,11 @@
    "cumtot": 9,
    "year": 2026,
    "related": "",
-   "banner_img": "https://arknights-endfield.wikiru.jp/attach2/696D67_3236303132322E706E67.png"
+   "banner_img": "https://arknights-endfield.wikiru.jp/attach2/696D67_3236303132322E706E67.png",
+   "icons": [
+    "icons/faces/endfield/2026-01-22-216151.webp"
+   ],
+   "accent": "#da2a25"
   },
   {
    "name": "ギルベルタ",
@@ -31,7 +35,11 @@
    "cumtot": 9,
    "year": 2026,
    "related": "",
-   "banner_img": "https://arknights-endfield.wikiru.jp/attach2/696D67_3236303230372E706E67.png"
+   "banner_img": "https://arknights-endfield.wikiru.jp/attach2/696D67_3236303230372E706E67.png",
+   "icons": [
+    "icons/faces/endfield/2026-02-07-d9f264.webp"
+   ],
+   "accent": "#d4b09b"
   },
   {
    "name": "イヴォンヌ",
@@ -44,7 +52,11 @@
    "cumtot": 9,
    "year": 2026,
    "related": "",
-   "banner_img": "https://arknights-endfield.wikiru.jp/attach2/696D67_3236303232342E6A7067.jpg"
+   "banner_img": "https://arknights-endfield.wikiru.jp/attach2/696D67_3236303232342E6A7067.jpg",
+   "icons": [
+    "icons/faces/endfield/2026-02-24-c0eeb3.webp"
+   ],
+   "accent": "#c33c70"
   },
   {
    "name": "タンタン",
@@ -57,7 +69,10 @@
    "cumtot": 9,
    "year": 2026,
    "related": "",
-   "banner_img": "https://arknights-endfield.wikiru.jp/attach2/696D67_E6B0B4E381AEE794B3E38197E5AD902E6A7067.jpg"
+   "banner_img": "https://arknights-endfield.wikiru.jp/attach2/696D67_E6B0B4E381AEE794B3E38197E5AD902E6A7067.jpg",
+   "icons": [
+    "icons/faces/endfield/2026-03-12-9a1839.webp"
+   ]
   },
   {
    "name": "ロッシ",
@@ -70,7 +85,11 @@
    "cumtot": 9,
    "year": 2026,
    "related": "★6 ロッシ",
-   "banner_img": "https://arknights-endfield.wikiru.jp/attach2/696D67_E382A6E383ABE38395E38391E383BCE383AB2E6A7067.jpg"
+   "banner_img": "https://arknights-endfield.wikiru.jp/attach2/696D67_E382A6E383ABE38395E38391E383BCE383AB2E6A7067.jpg",
+   "icons": [
+    "icons/faces/endfield/2026-03-29-7c2a05.webp"
+   ],
+   "accent": "#f90906"
   },
   {
    "name": "ゾアン・ファンイ",
@@ -83,7 +102,10 @@
    "cumtot": 9,
    "year": 2026,
    "related": "★6ゾアン・ファンイ",
-   "banner_img": "https://arknights-endfield.wikiru.jp/attach2/696D67_E698A5E99BB7E99FBFE3818DE38081E4B887E789A9E88ABDE590B9E3818F2E6A7067.jpg"
+   "banner_img": "https://arknights-endfield.wikiru.jp/attach2/696D67_E698A5E99BB7E99FBFE3818DE38081E4B887E789A9E88ABDE590B9E3818F2E6A7067.jpg",
+   "icons": [
+    "icons/faces/endfield/2026-04-17-98e829.webp"
+   ]
   },
   {
    "name": "輝きの祝典",
@@ -96,7 +118,11 @@
    "cumtot": 9,
    "year": 2026,
    "related": "「レーヴァテイン」「ギルベルタ」「アルデリア」「ポグラニチニク」",
-   "banner_img": "https://appmedia.jp/wp-content/uploads/2026/04/222404_kbeni.webp"
+   "banner_img": "https://appmedia.jp/wp-content/uploads/2026/04/222404_kbeni.webp",
+   "icons": [
+    "icons/faces/endfield/2026-05-14-a4d3df.webp"
+   ],
+   "accent": "#b18b7c"
   },
   {
    "name": "ミ・フ",
@@ -109,7 +135,11 @@
    "cumtot": 9,
    "year": 2026,
    "related": "",
-   "banner_img": "https://appmedia.jp/wp-content/uploads/2026/05/221355_dbpju.webp"
+   "banner_img": "https://appmedia.jp/wp-content/uploads/2026/05/221355_dbpju.webp",
+   "icons": [
+    "icons/faces/endfield/2026-06-05-4407d0.webp"
+   ],
+   "accent": "#b34d61"
   },
   {
    "name": "カミーユ",
@@ -122,7 +152,11 @@
    "cumtot": 9,
    "year": 2026,
    "related": "★6 カミーユ",
-   "banner_img": "https://appmedia.jp/wp-content/uploads/2026/05/221355_4n7kw.webp"
+   "banner_img": "https://appmedia.jp/wp-content/uploads/2026/05/221355_4n7kw.webp",
+   "icons": [
+    "icons/faces/endfield/2026-06-26-4d7753.webp"
+   ],
+   "accent": "#5188ae"
   }
  ]
 }

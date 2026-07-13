@@ -1,0 +1,5 @@
+# Only scripts/face_icons.py needs these; scrape.py / build_icons.py / enrich_icons.py
+# are pure standard library. opencv 5.x removed the Haar/LBP CascadeClassifier, so pin <5.
+opencv-python-headless<5
+numpy
+Pillow
