@@ -27,7 +27,8 @@
     "Dr. Ratio",
     "Kafka"
    ],
-   "accent": "#f0d24b"
+   "accent": "#f0d24b",
+   "bar": "#3b589b"
   },
   {
    "name": "ブラックスワン&丹恒・飲月復刻",
@@ -49,7 +50,8 @@
     "Black Swan",
     "Dan Heng • Imbibitor Lunae"
    ],
-   "accent": "#4fc8a0"
+   "accent": "#4fc8a0",
+   "bar": "#444f92"
   },
   {
    "name": "花火&景元復刻",
@@ -71,7 +73,8 @@
     "Sparkle",
     "Jing Yuan"
    ],
-   "accent": "#4a4ad8"
+   "accent": "#4a4ad8",
+   "bar": "#2c3eaa"
   },
   {
    "name": "黄泉",
@@ -91,7 +94,8 @@
    "agents": [
     "Acheron"
    ],
-   "accent": "#c56af0"
+   "accent": "#c56af0",
+   "bar": "#b62027"
   },
   {
    "name": "アベンチュリン",
@@ -111,7 +115,8 @@
    "agents": [
     "Aventurine"
    ],
-   "accent": "#f0d24b"
+   "accent": "#f0d24b",
+   "bar": "#f3dc72"
   },
   {
    "name": "ロビン",
@@ -131,7 +136,8 @@
    "agents": [
     "Robin"
    ],
-   "accent": "#b9b9b9"
+   "accent": "#b9b9b9",
+   "bar": "#9996cf"
   },
   {
    "name": "ブートヒル",
@@ -151,7 +157,8 @@
    "agents": [
     "Boothill"
    ],
-   "accent": "#b9b9b9"
+   "accent": "#b9b9b9",
+   "bar": "#7a4690"
   },
   {
    "name": "ホタル",
@@ -171,7 +178,8 @@
    "agents": [
     "Firefly"
    ],
-   "accent": "#f0503f"
+   "accent": "#f0503f",
+   "bar": "#726a64"
   },
   {
    "name": "ジェイド",
@@ -191,7 +199,8 @@
    "agents": [
     "Jade"
    ],
-   "accent": "#4a4ad8"
+   "accent": "#4a4ad8",
+   "bar": "#835a53"
   },
   {
    "name": "雲璃",
@@ -211,7 +220,8 @@
    "agents": [
     "Yunli"
    ],
-   "accent": "#b9b9b9"
+   "accent": "#b9b9b9",
+   "bar": "#ffee4d"
   },
   {
    "name": "椒丘",
@@ -231,7 +241,8 @@
    "agents": [
     "Jiaoqiu"
    ],
-   "accent": "#f0503f"
+   "accent": "#f0503f",
+   "bar": "#3152a5"
   },
   {
    "name": "飛霄",
@@ -251,7 +262,8 @@
    "agents": [
     "Feixiao"
    ],
-   "accent": "#4fc8a0"
+   "accent": "#4fc8a0",
+   "bar": "#76c7ef"
   },
   {
    "name": "霊砂",
@@ -271,7 +283,8 @@
    "agents": [
     "Lingsha"
    ],
-   "accent": "#f0503f"
+   "accent": "#f0503f",
+   "bar": "#72c8f3"
   },
   {
    "name": "乱破",
@@ -291,7 +304,8 @@
    "agents": [
     "Rappa"
    ],
-   "accent": "#f0d24b"
+   "accent": "#f0d24b",
+   "bar": "#f73b4f"
   },
   {
    "name": "黄泉復刻&アベンチュリン復刻",
@@ -313,7 +327,8 @@
     "Acheron",
     "Aventurine"
    ],
-   "accent": "#c56af0"
+   "accent": "#c56af0",
+   "bar": "#f3d972"
   },
   {
    "name": "サンデー",
@@ -333,7 +348,8 @@
    "agents": [
     "Sunday"
    ],
-   "accent": "#f0d24b"
+   "accent": "#f0d24b",
+   "bar": "#999bcc"
   },
   {
    "name": "帰忘の流離人",
@@ -353,7 +369,8 @@
    "agents": [
     "Fugue"
    ],
-   "accent": "#f0503f"
+   "accent": "#f0503f",
+   "bar": "#969acf"
   },
   {
    "name": "マダム・ヘルタ",
@@ -373,7 +390,8 @@
    "agents": [
     "The Herta"
    ],
-   "accent": "#5fc7e8"
+   "accent": "#5fc7e8",
+   "bar": "#137bc3"
   },
   {
    "name": "アグライア",
@@ -393,7 +411,8 @@
    "agents": [
     "Aglaea"
    ],
-   "accent": "#c56af0"
+   "accent": "#c56af0",
+   "bar": "#137bc3"
   },
   {
    "name": "トリビー",
@@ -413,7 +432,8 @@
    "agents": [
     "Tribbie"
    ],
-   "accent": "#4a4ad8"
+   "accent": "#4a4ad8",
+   "bar": "#d29398"
   },
   {
    "name": "モーディス",
@@ -433,7 +453,8 @@
    "agents": [
     "Mydei"
    ],
-   "accent": "#f0d24b"
+   "accent": "#f0d24b",
+   "bar": "#767bef"
   },
   {
    "name": "キャストリス",
@@ -453,7 +474,8 @@
    "agents": [
     "Castorice"
    ],
-   "accent": "#4a4ad8"
+   "accent": "#4a4ad8",
+   "bar": "#143cc2"
   },
   {
    "name": "アナイクス",
@@ -473,7 +495,8 @@
    "agents": [
     "Anaxa"
    ],
-   "accent": "#4fc8a0"
+   "accent": "#4fc8a0",
+   "bar": "#153ec1"
   },
   {
    "name": "ヒアンシー",
@@ -493,7 +516,8 @@
    "agents": [
     "Hyacine"
    ],
-   "accent": "#4fc8a0"
+   "accent": "#4fc8a0",
+   "bar": "#3340a4"
   },
   {
    "name": "サフェル",
@@ -513,7 +537,8 @@
    "agents": [
     "Cipher"
    ],
-   "accent": "#4a4ad8"
+   "accent": "#4a4ad8",
+   "bar": "#3141a5"
   },
   {
    "name": "ファイノン",
@@ -533,7 +558,8 @@
    "agents": [
     "Phainon"
    ],
-   "accent": "#b9b9b9"
+   "accent": "#b9b9b9",
+   "bar": "#a8462f"
   },
   {
    "name": "セイバー&アーチャー",
@@ -555,7 +581,8 @@
     "Saber",
     "Archer"
    ],
-   "accent": "#4fc8a0"
+   "accent": "#4fc8a0",
+   "bar": "#2946ad"
   },
   {
    "name": "ホタル復刻&鏡流復刻&刃復刻",
@@ -579,7 +606,8 @@
     "Jingliu",
     "Blade"
    ],
-   "accent": "#f0503f"
+   "accent": "#f0503f",
+   "bar": "#a9452e"
   },
   {
    "name": "セイレンス",
@@ -599,7 +627,8 @@
    "agents": [
     "Hysilens"
    ],
-   "accent": "#b9b9b9"
+   "accent": "#b9b9b9",
+   "bar": "#49a0f1"
   },
   {
    "name": "ケリュドラ",
@@ -619,7 +648,8 @@
    "agents": [
     "Cerydra"
    ],
-   "accent": "#4fc8a0"
+   "accent": "#4fc8a0",
+   "bar": "#4c9fef"
   },
   {
    "name": "長夜月",
@@ -639,7 +669,8 @@
    "agents": [
     "Evernight"
    ],
-   "accent": "#5fc7e8"
+   "accent": "#5fc7e8",
+   "bar": "#e99055"
   },
   {
    "name": "丹恒・騰荒",
@@ -659,7 +690,8 @@
    "agents": [
     "Dan Heng • Permansor Terrae"
    ],
-   "accent": "#b9b9b9"
+   "accent": "#b9b9b9",
+   "bar": "#e99056"
   },
   {
    "name": "キュレネ",
@@ -679,7 +711,8 @@
    "agents": [
     "Cyrene"
    ],
-   "accent": "#5fc7e8"
+   "accent": "#5fc7e8",
+   "bar": "#d78ed2"
   },
   {
    "name": "ファイノン復刻",
@@ -699,7 +732,8 @@
    "agents": [
     "Phainon"
    ],
-   "accent": "#b9b9b9"
+   "accent": "#b9b9b9",
+   "bar": "#a63043"
   },
   {
    "name": "ダリア",
@@ -719,7 +753,8 @@
    "agents": [
     "The Dahlia"
    ],
-   "accent": "#f0503f"
+   "accent": "#f0503f",
+   "bar": "#ec79de"
   },
   {
    "name": "帰忘の流離人復刻&霊砂復刻",
@@ -741,7 +776,8 @@
     "Fugue",
     "Lingsha"
    ],
-   "accent": "#f0503f"
+   "accent": "#f0503f",
+   "bar": "#ed78df"
   },
   {
    "name": "アグライア復刻&サンデー復刻",
@@ -763,7 +799,8 @@
     "Aglaea",
     "Sunday"
    ],
-   "accent": "#c56af0"
+   "accent": "#c56af0",
+   "bar": "#ec79de"
   },
   {
    "name": "爻光",
@@ -783,7 +820,8 @@
    "agents": [
     "Yao Guang"
    ],
-   "accent": "#b9b9b9"
+   "accent": "#b9b9b9",
+   "bar": "#2d1dba"
   },
   {
    "name": "火花",
@@ -803,7 +841,8 @@
    "agents": [
     "Sparxie"
    ],
-   "accent": "#f0503f"
+   "accent": "#f0503f",
+   "bar": "#2d1dba"
   },
   {
    "name": "不死途",
@@ -823,7 +862,8 @@
    "agents": [
     "Ashveil"
    ],
-   "accent": "#c56af0"
+   "accent": "#c56af0",
+   "bar": "#b22480"
   },
   {
    "name": "銀狼LV.999",
@@ -843,7 +883,8 @@
    "agents": [
     "Silver Wolf LV.999"
    ],
-   "accent": "#f0d24b"
+   "accent": "#f0d24b",
+   "bar": "#2618bf"
   },
   {
    "name": "緋英",
@@ -863,7 +904,8 @@
    "agents": [
     "Evanescia"
    ],
-   "accent": "#b9b9b9"
+   "accent": "#b9b9b9",
+   "bar": "#ffb766"
   },
   {
    "name": "千冶・刃",
@@ -883,7 +925,8 @@
    "agents": [
     "Mortenax Blade"
    ],
-   "accent": "#f0503f"
+   "accent": "#f0503f",
+   "bar": "#8f474b"
   },
   {
    "name": "キュレネ復刻&ファイノン復刻",
@@ -905,7 +948,8 @@
     "Cyrene",
     "Phainon"
    ],
-   "accent": "#5fc7e8"
+   "accent": "#5fc7e8",
+   "bar": "#494096"
   }
  ]
 }

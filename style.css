@@ -55,6 +55,9 @@ a{color:inherit}
 .seg button.on{background:var(--surface); color:var(--ink); box-shadow:0 1px 3px rgba(0,0,0,.16)}
 .ghost{border:1px solid var(--border); background:transparent; color:var(--ink2); font:inherit; font-size:13px; font-weight:650; padding:7px 13px; border-radius:9px; cursor:pointer}
 .ghost.on{color:var(--accent); border-color:var(--accent)}
+.brk{display:inline-flex; align-items:center; gap:6px; font-size:12.5px; color:var(--ink2); font-weight:600}
+.brk select{font:inherit; font-size:12.5px; font-weight:600; color:var(--ink); background:var(--surface);
+  border:1px solid var(--border); border-radius:8px; padding:6px 8px; cursor:pointer}
 .hint{font-size:12px; color:var(--muted); margin-left:auto}
 
 /* chart */

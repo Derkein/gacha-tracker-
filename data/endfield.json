@@ -21,7 +21,8 @@
    "banner_img": "https://arknights-endfield.wikiru.jp/attach2/696D67_3236303132322E706E67.png",
    "icons": [
     "icons/faces/endfield/2026-01-22-216151.webp"
-   ]
+   ],
+   "bar": "#e3002f"
   },
   {
    "name": "ギルベルタ",
@@ -37,7 +38,8 @@
    "banner_img": "https://arknights-endfield.wikiru.jp/attach2/696D67_3236303230372E706E67.png",
    "icons": [
     "icons/faces/endfield/2026-02-07-d9f264.webp"
-   ]
+   ],
+   "bar": "#d92800"
   },
   {
    "name": "イヴォンヌ",
@@ -53,7 +55,8 @@
    "banner_img": "https://arknights-endfield.wikiru.jp/attach2/696D67_3236303232342E6A7067.jpg",
    "icons": [
     "icons/faces/endfield/2026-02-24-c0eeb3.webp"
-   ]
+   ],
+   "bar": "#ff5b87"
   },
   {
    "name": "タンタン",
@@ -69,7 +72,8 @@
    "banner_img": "https://arknights-endfield.wikiru.jp/attach2/696D67_E6B0B4E381AEE794B3E38197E5AD902E6A7067.jpg",
    "icons": [
     "icons/faces/endfield/2026-03-12-9a1839.webp"
-   ]
+   ],
+   "bar": "#0071d6"
   },
   {
    "name": "ロッシ",
@@ -85,7 +89,8 @@
    "banner_img": "https://arknights-endfield.wikiru.jp/attach2/696D67_E382A6E383ABE38395E38391E383BCE383AB2E6A7067.jpg",
    "icons": [
     "icons/faces/endfield/2026-03-29-7c2a05.webp"
-   ]
+   ],
+   "bar": "#d60015"
   },
   {
    "name": "ゾアン・ファンイ",
@@ -101,7 +106,8 @@
    "banner_img": "https://arknights-endfield.wikiru.jp/attach2/696D67_E698A5E99BB7E99FBFE3818DE38081E4B887E789A9E88ABDE590B9E3818F2E6A7067.jpg",
    "icons": [
     "icons/faces/endfield/2026-04-17-98e829.webp"
-   ]
+   ],
+   "bar": "#78a82e"
   },
   {
    "name": "輝きの祝典",
@@ -117,7 +123,8 @@
    "banner_img": "https://appmedia.jp/wp-content/uploads/2026/04/222404_kbeni.webp",
    "icons": [
     "icons/faces/endfield/2026-05-14-a4d3df.webp"
-   ]
+   ],
+   "bar": "#994a3d"
   },
   {
    "name": "ミ・フ",
@@ -133,7 +140,8 @@
    "banner_img": "https://appmedia.jp/wp-content/uploads/2026/05/221355_dbpju.webp",
    "icons": [
     "icons/faces/endfield/2026-06-05-4407d0.webp"
-   ]
+   ],
+   "bar": "#f75986"
   },
   {
    "name": "カミーユ",
@@ -149,7 +157,8 @@
    "banner_img": "https://appmedia.jp/wp-content/uploads/2026/05/221355_4n7kw.webp",
    "icons": [
     "icons/faces/endfield/2026-06-26-4d7753.webp"
-   ]
+   ],
+   "bar": "#d6002e"
   }
  ]
 }

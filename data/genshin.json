@@ -25,7 +25,8 @@
    "agents": [
     "Raiden Shogun"
    ],
-   "accent": "#c9a86a"
+   "accent": "#c9a86a",
+   "bar": "#965b41"
   },
   {
    "name": "閑雲初回とナヒーダ",
@@ -45,7 +46,8 @@
    "agents": [
     "Nahida"
    ],
-   "accent": "#c9a86a"
+   "accent": "#c9a86a",
+   "bar": "#eeca77"
   },
   {
    "name": "魈と八重神子",
@@ -65,7 +67,8 @@
    "agents": [
     "Yae Miko"
    ],
-   "accent": "#c9a86a"
+   "accent": "#c9a86a",
+   "bar": "#f2c673"
   },
   {
    "name": "千織と荒滝一斗",
@@ -85,7 +88,8 @@
    "agents": [
     "Chiori"
    ],
-   "accent": "#c9a86a"
+   "accent": "#c9a86a",
+   "bar": "#e1c984"
   },
   {
    "name": "ヌヴィレットと楓原万葉",
@@ -105,7 +109,8 @@
    "agents": [
     "Neuvillette"
    ],
-   "accent": "#c9a86a"
+   "accent": "#c9a86a",
+   "bar": "#dfc786"
   },
   {
    "name": "アルレッキーノとリネ復刻",
@@ -125,7 +130,8 @@
    "agents": [
     "Arlecchino"
    ],
-   "accent": "#c9a86a"
+   "accent": "#c9a86a",
+   "bar": "#ad2b29"
   },
   {
    "name": "放浪者復刻2と白朮復刻2",
@@ -147,7 +153,8 @@
     "Wanderer",
     "Baizhu"
    ],
-   "accent": "#c9a86a"
+   "accent": "#c9a86a",
+   "bar": "#408d96"
   },
   {
    "name": "クロリンデ&アルハイゼン復刻2",
@@ -169,7 +176,8 @@
     "Clorinde",
     "Alhaitham"
    ],
-   "accent": "#c9a86a"
+   "accent": "#c9a86a",
+   "bar": "#9688dd"
   },
   {
    "name": "シグウィン&フリーナ復刻",
@@ -191,7 +199,8 @@
     "Sigewinne",
     "Furina"
    ],
-   "accent": "#c9a86a"
+   "accent": "#c9a86a",
+   "bar": "#7eb2e7"
   },
   {
    "name": "ナヴィア復刻&ニィロウ復刻2",
@@ -213,7 +222,8 @@
     "Navia",
     "Nilou"
    ],
-   "accent": "#c9a86a"
+   "accent": "#c9a86a",
+   "bar": "#dda453"
   },
   {
    "name": "エミリエ&夜蘭復刻",
@@ -235,7 +245,8 @@
     "Emilie",
     "Yelan"
    ],
-   "accent": "#c9a86a"
+   "accent": "#c9a86a",
+   "bar": "#c9ba9c"
   },
   {
    "name": "ムアラニ&楓原万葉復刻",
@@ -257,7 +268,8 @@
     "Mualani",
     "Kaedehara Kazuha"
    ],
-   "accent": "#c9a86a"
+   "accent": "#c9a86a",
+   "bar": "#1737bf"
   },
   {
    "name": "キィニチ&雷電将軍復刻",
@@ -279,7 +291,8 @@
     "Kinich",
     "Raiden Shogun"
    ],
-   "accent": "#c9a86a"
+   "accent": "#c9a86a",
+   "bar": "#76efc7"
   },
   {
    "name": "シロネン＆千織復刻",
@@ -301,7 +314,8 @@
     "Xilonen",
     "Chiori"
    ],
-   "accent": "#c9a86a"
+   "accent": "#c9a86a",
+   "bar": "#d99c49"
   },
   {
    "name": "ナヒーダ復刻&胡桃復刻",
@@ -323,7 +337,8 @@
     "Nahida",
     "Hu Tao"
    ],
-   "accent": "#c9a86a"
+   "accent": "#c9a86a",
+   "bar": "#689f50"
   },
   {
    "name": "チャスカ&リネ復刻",
@@ -345,7 +360,8 @@
     "Chasca",
     "Lyney"
    ],
-   "accent": "#c9a86a"
+   "accent": "#c9a86a",
+   "bar": "#b02648"
   },
   {
    "name": "ヌヴィレット復刻&鍾離復刻",
@@ -367,7 +383,8 @@
     "Neuvillette",
     "Zhongli"
    ],
-   "accent": "#c9a86a"
+   "accent": "#c9a86a",
+   "bar": "#6de4f8"
   },
   {
    "name": "マーヴィカ&シトラリ",
@@ -389,7 +406,8 @@
     "Mavuika",
     "Citlali"
    ],
-   "accent": "#c9a86a"
+   "accent": "#c9a86a",
+   "bar": "#f1be74"
   },
   {
    "name": "アルレッキーノ復刻&クロリンデ復刻",
@@ -411,7 +429,8 @@
     "Arlecchino",
     "Clorinde"
    ],
-   "accent": "#c9a86a"
+   "accent": "#c9a86a",
+   "bar": "#a7352f"
   },
   {
    "name": "夢見月瑞希&シグウィン復刻",
@@ -433,7 +452,8 @@
     "Yumemizuki Mizuki",
     "Sigewinne"
    ],
-   "accent": "#c9a86a"
+   "accent": "#c9a86a",
+   "bar": "#86c0df"
   },
   {
    "name": "リオセスリ復刻&フリーナ復刻",
@@ -455,7 +475,8 @@
     "Wriothesley",
     "Furina"
    ],
-   "accent": "#c9a86a"
+   "accent": "#c9a86a",
+   "bar": "#3c4f9b"
   },
   {
    "name": "ヴァレサ&閑雲復刻",
@@ -477,7 +498,8 @@
     "Varesa",
     "Xianyun"
    ],
-   "accent": "#c9a86a"
+   "accent": "#c9a86a",
+   "bar": "#9b94d1"
   },
   {
    "name": "シロネン復刻&ウェンティ復刻",
@@ -499,7 +521,8 @@
     "Xilonen",
     "Venti"
    ],
-   "accent": "#c9a86a"
+   "accent": "#c9a86a",
+   "bar": "#db9e49"
   },
   {
    "name": "エスコフィエ",
@@ -519,7 +542,8 @@
    "agents": [
     "Escoffier"
    ],
-   "accent": "#c9a86a"
+   "accent": "#c9a86a",
+   "bar": "#75caf0"
   },
   {
    "name": "キィニチ復刻&雷電将軍復刻",
@@ -541,7 +565,8 @@
     "Kinich",
     "Raiden Shogun"
    ],
-   "accent": "#c9a86a"
+   "accent": "#c9a86a",
+   "bar": "#77eec7"
   },
   {
    "name": "スカーク",
@@ -561,7 +586,8 @@
    "agents": [
     "Skirk"
    ],
-   "accent": "#c9a86a"
+   "accent": "#c9a86a",
+   "bar": "#2a36ac"
   },
   {
    "name": "マーヴィカ復刻&エミリエ復刻",
@@ -583,7 +609,8 @@
     "Mavuika",
     "Emilie"
    ],
-   "accent": "#c9a86a"
+   "accent": "#c9a86a",
+   "bar": "#f3b972"
   },
   {
    "name": "イネファ",
@@ -603,7 +630,8 @@
    "agents": [
     "Ineffa"
    ],
-   "accent": "#c9a86a"
+   "accent": "#c9a86a",
+   "bar": "#d088dd"
   },
   {
    "name": "ムアラニ復刻&チャスカ復刻",
@@ -625,7 +653,8 @@
     "Mualani",
     "Chasca"
    ],
-   "accent": "#c9a86a"
+   "accent": "#c9a86a",
+   "bar": "#2945ad"
   },
   {
    "name": "ラウマ",
@@ -645,7 +674,8 @@
    "agents": [
     "Lauma"
    ],
-   "accent": "#c9a86a"
+   "accent": "#c9a86a",
+   "bar": "#91ccd4"
   },
   {
    "name": "フリンズ",
@@ -665,7 +695,8 @@
    "agents": [
     "Flins"
    ],
-   "accent": "#c9a86a"
+   "accent": "#c9a86a",
+   "bar": "#5b5aa8"
   },
   {
    "name": "ネフェル",
@@ -685,7 +716,8 @@
    "agents": [
     "Nefer"
    ],
-   "accent": "#c9a86a"
+   "accent": "#c9a86a",
+   "bar": "#619d55"
   },
   {
    "name": "アルレッキーノ復刻&鍾離復刻",
@@ -707,7 +739,8 @@
     "Arlecchino",
     "Zhongli"
    ],
-   "accent": "#c9a86a"
+   "accent": "#c9a86a",
+   "bar": "#a8332e"
   },
   {
    "name": "ドゥリン",
@@ -727,7 +760,8 @@
    "agents": [
     "Durin"
    ],
-   "accent": "#c9a86a"
+   "accent": "#c9a86a",
+   "bar": "#d88d8d"
   },
   {
    "name": "ヴァレサ復刻&シロネン復刻",
@@ -749,7 +783,8 @@
     "Varesa",
     "Xilonen"
    ],
-   "accent": "#c9a86a"
+   "accent": "#c9a86a",
+   "bar": "#9b95d0"
   },
   {
    "name": "コロンビーナ",
@@ -769,7 +804,8 @@
    "agents": [
     "Columbina"
    ],
-   "accent": "#c9a86a"
+   "accent": "#c9a86a",
+   "bar": "#6badfa"
   },
   {
    "name": "兹白",
@@ -783,13 +819,10 @@
    "year": 2026,
    "related": "ヌヴィレット復刻、イルーガ",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/01/22/e5f370029d6e45ecc4e51427f7c164b5_2047444970886058009.jpg",
-   "icons": [
-    "https://enka.network/ui/UI_AvatarIcon_Neuvillette.png"
-   ],
-   "agents": [
-    "Neuvillette"
-   ],
-   "accent": "#c9a86a"
+   "icons": [],
+   "agents": [],
+   "accent": null,
+   "bar": "#d0c795"
   },
   {
    "name": "ファルカ",
@@ -803,13 +836,10 @@
    "year": 2026,
    "related": "フリンズ",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/02/13/0a462af54a91f6a5fcb6a1d884cad245_1998948553019150990.jpg",
-   "icons": [
-    "https://enka.network/ui/UI_AvatarIcon_Flins.png"
-   ],
-   "agents": [
-    "Flins"
-   ],
-   "accent": "#c9a86a"
+   "icons": [],
+   "agents": [],
+   "accent": null,
+   "bar": "#39899e"
   },
   {
    "name": "スカーク復刻&エスコフィエ復刻",
@@ -831,7 +861,8 @@
     "Skirk",
     "Escoffier"
    ],
-   "accent": "#c9a86a"
+   "accent": "#c9a86a",
+   "bar": "#3039a6"
   },
   {
    "name": "リンネア",
@@ -845,13 +876,10 @@
    "year": 2026,
    "related": "チャスカ",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/04/06/daa7021a27e0b565c48577edf05a1ece_2551284884487609917.jpg",
-   "icons": [
-    "https://enka.network/ui/UI_AvatarIcon_Chasca.png"
-   ],
-   "agents": [
-    "Chasca"
-   ],
-   "accent": "#c9a86a"
+   "icons": [],
+   "agents": [],
+   "accent": null,
+   "bar": "#ecc179"
   },
   {
    "name": "ラウマ復刻&ネフェル復刻",
@@ -873,7 +901,8 @@
     "Lauma",
     "Nefer"
    ],
-   "accent": "#c9a86a"
+   "accent": "#c9a86a",
+   "bar": "#90cdd5"
   },
   {
    "name": "ニコ",
@@ -887,13 +916,10 @@
    "year": 2026,
    "related": "ドゥリン",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/05/15/8c2fe2e9cbf65169b54d499ec2bb42fd_7520440180828628783.jpg",
-   "icons": [
-    "https://enka.network/ui/UI_AvatarIcon_Durin.png"
-   ],
-   "agents": [
-    "Durin"
-   ],
-   "accent": "#c9a86a"
+   "icons": [],
+   "agents": [],
+   "accent": null,
+   "bar": "#d89f8d"
   },
   {
    "name": "ローエン",
@@ -909,7 +935,8 @@
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/06/02/0/9ac9e23478b7656719b6795b0a8cd71b_3425170184116618980.jpeg",
    "icons": [],
    "agents": [],
-   "accent": null
+   "accent": null,
+   "bar": "#64b7d5"
   },
   {
    "name": "サンドローネ",
@@ -925,7 +952,8 @@
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/06/29/0/781da55472dc1186e3e8d2d93140cf70_7777178998231754007.jpeg",
    "icons": [],
    "agents": [],
-   "accent": null
+   "accent": null,
+   "bar": "#84c9e1"
   }
  ]
 }

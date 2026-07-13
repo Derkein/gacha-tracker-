@@ -22,11 +22,21 @@
   <div class="tiles" id="tiles"></div>
 
   <div class="controls">
-    <div class="seg" role="tablist" aria-label="Ordering">
+    <div class="seg" role="tablist" aria-label="View">
       <button id="bTime" class="on" role="tab" aria-selected="true">Timeline</button>
-      <button id="bRank" role="tab" aria-selected="false">Ranking</button>
       <button id="bGraph" role="tab" aria-selected="false">Graph</button>
+      <button id="bRank" role="tab" aria-selected="false">Ranking</button>
     </div>
+    <button id="bDir" class="ghost" title="Reverse order">Oldest first</button>
+    <label id="brkWrap" class="brk" hidden>Y‑axis
+      <select id="brk">
+        <option value="0">Auto</option>
+        <option value="2">¥200M</option>
+        <option value="5">¥500M</option>
+        <option value="10">¥1B</option>
+        <option value="20">¥2B</option>
+      </select>
+    </label>
     <button id="bTable" class="ghost">Table view</button>
     <span class="hint">Hover a bar or point for banner art &amp; details</span>
   </div>

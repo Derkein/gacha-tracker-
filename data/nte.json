@@ -21,7 +21,8 @@
    "banner_img": "https://appmedia.jp/wp-content/uploads/2026/04/163020_3xopn.webp",
    "icons": [
     "icons/faces/nte/2026-04-30-1a56a5.webp"
-   ]
+   ],
+   "bar": "#84c3e1"
   },
   {
    "name": "潯",
@@ -37,7 +38,8 @@
    "banner_img": "https://appmedia.jp/wp-content/uploads/2026/04/100812_yx1l6.webp",
    "icons": [
     "icons/faces/nte/2026-05-13-13594a.webp"
-   ]
+   ],
+   "bar": "#be2645"
   },
   {
    "name": "レクイエム",
@@ -53,7 +55,8 @@
    "banner_img": "https://appmedia.jp/wp-content/uploads/2026/05/221003_x6ys7.webp",
    "icons": [
     "icons/faces/nte/2026-06-03-79756c.webp"
-   ]
+   ],
+   "bar": "#ae283c"
   },
   {
    "name": "カオス",
@@ -69,7 +72,8 @@
    "banner_img": "https://appmedia.jp/wp-content/uploads/2026/05/221403_qtlvo.webp",
    "icons": [
     "icons/faces/nte/2026-06-24-edfb69.webp"
-   ]
+   ],
+   "bar": "#3348a3"
   },
   {
    "name": "真紅",
@@ -85,7 +89,8 @@
    "banner_img": "https://appmedia.jp/wp-content/uploads/2026/07/101921_q8b4w.webp",
    "icons": [
     "icons/faces/nte/2026-07-08-b29442.webp"
-   ]
+   ],
+   "bar": "#906ba8"
   }
  ]
 }

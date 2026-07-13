@@ -30,7 +30,8 @@ particular meaning"); values are translated from 億 (1e8) to M/B magnitudes, so
 scripts/build_icons.py   # JP name -> portrait + accent  ->  icons/<game>.json         (Enka + StarRailRes)
 scripts/scrape.py        # game-i banners (name, dates, revenue, ranks, art) -> data/<game>.json
 scripts/enrich_icons.py  # matches banners to portraits, adds icons/accent to data/<game>.json
-scripts/face_icons.py    # icon-less games: crop a face circle from banner art -> icons/faces/<game>/*.webp
+scripts/face_icons.py    # icon-less games: crop a face circle from drip/banner art -> icons/faces/<game>/*.webp
+scripts/bar_colors.py    # sample each banner's most prominent color -> `bar` (tints the chart bars)
 index.html + app.js      # loads data/*.json and renders the charts
 ```
 

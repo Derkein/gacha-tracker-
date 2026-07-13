@@ -2,7 +2,7 @@
 const GAME_ACCENT = {          // fallback hue when a banner has no character icon
   zzz:"#e0a400", hsr:"#8a7bd8", wuwa:"#2fb6c0", genshin:"#d8a24a", endfield:"#e07b3a", nte:"#d94f8a",
 };
-const state = { games:[], tag:null, data:null, mode:"time", table:false };
+const state = { games:[], tag:null, data:null, mode:"time", table:false, reverse:false, bracket:0 };
 const $ = s => document.querySelector(s);
 const fmtDate = new Intl.DateTimeFormat("en",{year:"numeric",month:"short",day:"numeric"});
 const per = s => fmtDate.format(new Date(s+"T00:00:00"));
@@ -69,7 +69,7 @@ function renderStats(){
 
 function esc(s){return (s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
 function scaleMax(m){const nice=[5,10,15,20,25,30,40,50,75,100,150,200];return nice.find(n=>n>=m)||Math.ceil(m/50)*50;}
-function ticks(max){const step=max<=25?5:max<=50?10:max<=100?25:50;const t=[];for(let v=0;v<=max;v+=step)t.push(v);return t;}
+function ticks(max,step){step=step||(max<=25?5:max<=50?10:max<=100?25:50);const t=[];for(let v=0;v<=max+1e-9;v+=step)t.push(+v.toFixed(2));return t;}
 
 // ---- avatars ----
 function avatarHTML(b){
@@ -87,7 +87,7 @@ window.mono=function(name){const d=document.createElement("span");d.className="m
 
 // ---- bar rows (timeline / ranking) with FLIP reordering ----
 function rowHTML(b,rank,max){
-  const [bl,bd]=barShades(b.accent||GAME_ACCENT[state.tag]);
+  const [bl,bd]=barShades(b.bar||b.accent||GAME_ACCENT[state.tag]);
   const w=Math.max(1.2,(b.rev/max)*100), m=rank<=3?` m${rank}`:"";
   const en=b.agents&&b.agents.length?b.agents.join(" & "):"";
   return `<div class="row" data-i="${b._i}" style="--bar-l:${bl};--bar-d:${bd};--av-ring:${b.accent||GAME_ACCENT[state.tag]}">
@@ -109,9 +109,9 @@ function renderBars(){
   const old={};
   document.querySelectorAll("#chart .row").forEach(r=>{ old[r.dataset.i]=r.getBoundingClientRect().top; });
   let list=[...b], html="";
-  if(state.mode==="rank"){ list.sort((x,y)=>y.rev-x.rev); html+=axesHTML(max);
+  if(state.mode==="rank"){ list.sort((x,y)=> state.reverse ? x.rev-y.rev : y.rev-x.rev); html+=axesHTML(max);
     list.forEach(x=>html+=rowHTML(x,x.cum,max)); }
-  else { list.sort((x,y)=>x.start.localeCompare(y.start)); let cy=null;
+  else { list.sort((x,y)=>x.start.localeCompare(y.start)); if(state.reverse) list.reverse(); let cy=null;
     list.forEach(x=>{ if(x.year!==cy){cy=x.year; html+=`<div class="yhead">${cy}</div>`+axesHTML(max);}
       html+=rowHTML(x,x.cum,max); }); }
   $("#chart").innerHTML=html;
@@ -128,13 +128,13 @@ function renderBars(){
 }
 
 // ---- graph view (one line chart per year) ----
-function yearSVG(year, items, gmax){
-  const W=720,H=200,ML=46,MR=14,MT=14,MB=24, pW=W-ML-MR, pH=H-MT-MB, base=MT+pH;
+function yearSVG(year, items, gmax, step){
+  const W=720,H=300,ML=52,MR=14,MT=14,MB=24, pW=W-ML-MR, pH=H-MT-MB, base=MT+pH;
   const y0=Date.parse(year+"-01-01"), y1=Date.parse((+year+1)+"-01-01");
   const xOf=d=>ML+((Date.parse(d)-y0)/(y1-y0))*pW;
   const yOf=v=>MT+(1-v/gmax)*pH;
   const pts=[...items].sort((a,b)=>a.start.localeCompare(b.start)).map(b=>({x:xOf(b.start),y:yOf(b.rev),b}));
-  const grid=ticks(gmax).map(t=>{const y=yOf(t);
+  const grid=ticks(gmax,step).map(t=>{const y=yOf(t);
     return `<line class="grid" x1="${ML}" y1="${y.toFixed(1)}" x2="${W-MR}" y2="${y.toFixed(1)}"/>`+
            `<text class="axislbl" x="${ML-6}" y="${(y+3).toFixed(1)}" text-anchor="end">${G(t)}</text>`;}).join("");
   const xt=[0,2,4,6,8,10,12].map(m=>{const x=ML+(m/12)*pW;
@@ -160,10 +160,14 @@ function yearSVG(year, items, gmax){
 }
 function renderGraph(){
   const b=state.data.banners; b.forEach((x,i)=>x._i=i);
-  const gmax=scaleMax(Math.max(...b.map(x=>x.rev)));
+  const maxRev=Math.max(...b.map(x=>x.rev));
+  const step=state.bracket||0;
+  const gmax=step ? Math.ceil(maxRev/step)*step : scaleMax(maxRev);
   const byYear={}; b.forEach(x=>{(byYear[x.year]=byYear[x.year]||[]).push(x);});
-  $("#chart").innerHTML=Object.keys(byYear).sort().map(y=>
-    `<div class="gyear"><div class="yhead">${y}</div>${yearSVG(y,byYear[y],gmax)}</div>`).join("");
+  let years=Object.keys(byYear).sort();
+  if(state.reverse) years.reverse();
+  $("#chart").innerHTML=years.map(y=>
+    `<div class="gyear"><div class="yhead">${y}</div>${yearSVG(y,byYear[y],gmax,step)}</div>`).join("");
 }
 
 function render(){
@@ -209,16 +213,25 @@ $("#chart").addEventListener("pointermove",e=>{
 $("#chart").addEventListener("pointerleave",()=>tip.hidden=true);
 
 // ---- controls ----
+function updateDirLabel(){
+  $("#bDir").textContent = state.mode==="rank"
+    ? (state.reverse ? "Lowest first" : "Highest first")
+    : (state.reverse ? "Newest first" : "Oldest first");
+}
 function setMode(m){
   state.mode=m;
-  [["bTime","time"],["bRank","rank"],["bGraph","graph"]].forEach(([id,mm])=>{
+  [["bTime","time"],["bGraph","graph"],["bRank","rank"]].forEach(([id,mm])=>{
     const el=$("#"+id); el.classList.toggle("on",m===mm); el.setAttribute("aria-selected",m===mm);
   });
+  $("#brkWrap").hidden = m!=="graph";
+  updateDirLabel();
   if(!state.table) render();
 }
 $("#bTime").onclick=()=>setMode("time");
 $("#bRank").onclick=()=>setMode("rank");
 $("#bGraph").onclick=()=>setMode("graph");
+$("#bDir").onclick=()=>{ state.reverse=!state.reverse; updateDirLabel(); if(!state.table) render(); };
+$("#brk").onchange=function(){ state.bracket=+this.value; if(state.mode==="graph"&&!state.table) render(); };
 $("#bTable").onclick=function(){state.table=!state.table;
   this.classList.toggle("on",state.table); this.textContent=state.table?"Chart view":"Table view";
   render();};

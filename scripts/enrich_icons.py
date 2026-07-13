@@ -17,10 +17,11 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 ICONS = ROOT / "icons"
 
-# characters that split a bundle/duo banner title
+# characters that split a bundle/duo banner title into individual characters
 SPLIT = re.compile(r"[&＆/／、,]|復刻")
-# punctuation to ignore when comparing names
-STRIP = re.compile(r"[\س「」『』（）()・･\.\-\s　]", re.U) if False else re.compile(r"[「」『』（）()・･\.\-\s　]")
+# punctuation to ignore when comparing names (incl. & so combined-unit names like
+# "オルペウス&「鬼火」" normalize the same whether the wiki uses full/half-width)
+STRIP = re.compile(r"[「」『』（）()・･\.\-\s　&＆：:]")
 
 
 def norm(s):
@@ -36,26 +37,37 @@ def build_index(cmap):
     return idx
 
 
-def match_tokens(title, idx):
-    """Return ordered, de-duped list of matched entries for a banner title.
+def _match_one(text, idx):
+    """Match a string to a character: exact normalized name, else a character
+    name contained *within* the text (key-in-text, longest key first). We never
+    match text-in-key, which made ライト (Lighter) grab スターライトビリー."""
+    nt = norm(text)
+    if not nt:
+        return None
+    exact = next(((name, e) for nk, name, e in idx if nk == nt), None)
+    if exact:
+        return exact
+    return next(((name, e) for nk, name, e in idx if nk and nk in nt), None)
 
-    Priority: (1) exact normalized name, then (2) a character name contained
-    *within* the banner title (key-in-title), longest key first. We deliberately
-    do NOT match title-in-key — that made short names like ライト (Lighter) match
-    the longer スターライトビリー (Starlight Billy).
+
+def match_tokens(title, idx):
+    """Return ordered, de-duped matches for a banner title.
+
+    First split into tokens (duos/bundles like 星見雅&浅羽悠真 → two characters).
+    If nothing matches, try the whole title — this catches combined-unit names
+    whose Enka entry itself contains '&', e.g. オルペウス&「鬼火」 (Orphie & Magus),
+    which would otherwise be split apart and match nothing.
     """
     found, used = [], set()
-    tokens = [t for t in SPLIT.split(title) if t.strip()]
-    for tok in tokens:
-        nt = norm(tok)
-        if not nt:
-            continue
-        best = next(((name, e) for nk, name, e in idx if nk == nt), None)   # exact
-        if not best:
-            best = next(((name, e) for nk, name, e in idx if nk and nk in nt), None)  # key in title
-        if best and best[0] not in used:
-            used.add(best[0])
-            found.append(best[1])
+    for tok in [t for t in SPLIT.split(title) if t.strip()]:
+        m = _match_one(tok, idx)
+        if m and m[0] not in used:
+            used.add(m[0])
+            found.append(m[1])
+    if not found:
+        m = _match_one(title, idx)
+        if m:
+            found.append(m[1])
     return found
 
 
@@ -69,9 +81,11 @@ def enrich(tag):
     idx = build_index(cmap)
     hit = 0
     for b in data["banners"]:
+        # Match on the banner title only. We do NOT fall back to `related`
+        # (関連キャラなど): those are associated / rerun characters, not the
+        # headliner, and using them mislabels banners (e.g. the オルペウス banner
+        # grabbed イヴリン復刻 → Evelyn). Unmatched banners show the banner art.
         matches = match_tokens(b["name"], idx)
-        if not matches and b.get("related"):
-            matches = match_tokens(b["related"].split("、")[0], idx)
         b["icons"] = [m["icon"] for m in matches[:3]]
         b["agents"] = [m["en"] for m in matches[:3]]
         b["accent"] = matches[0]["accent"] if matches else None
