@@ -8,16 +8,17 @@ const fmtDate = new Intl.DateTimeFormat("en",{year:"numeric",month:"short",day:"
 const per = s => fmtDate.format(new Date(s+"T00:00:00"));
 const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 
-// game-i reports revenue in 億 (1e8) of "G" — an abstract unit (their FAQ: "G has no
-// particular meaning"). Translate 億 to standard M/B magnitude, keep G as the unit.
+// game-i reports revenue in 億 (1e8) of "G". Per game-i's official X, G means "〜ぐらい"
+// (about) and 1億G ≈ ¥1億 (~100M yen), i.e. G ≈ 1 yen. So translate 億→M/B magnitude and
+// show it as an approximate yen figure.
 function fmtG(oku){
   if (oku <= 0) return "0";
-  const m = oku * 100;                       // millions of G
+  const m = oku * 100;                       // millions of yen
   if (m >= 1000) return (m/1000).toFixed(2) + "B";
   if (m >= 100)  return Math.round(m) + "M";
   return (Math.round(m*10)/10) + "M";
 }
-const G = oku => fmtG(oku) + " G";
+const G = oku => "¥" + fmtG(oku);
 
 // ---- color helpers (clamp lightness for readable bars in each theme) ----
 function hexToHsl(h){h=h.replace("#","");if(h.length===3)h=h.split("").map(c=>c+c).join("");
@@ -61,7 +62,7 @@ function renderStats(){
     ["Total revenue", G(sum), `across ${b.length} banners`],
     ["Highest banner", G(top.rev), topName],
     ["Average / banner", G(sum/b.length), "mean estimate"],
-    ["Blockbuster banners", `${b.filter(x=>x.rev>=10).length}`, "worth over 1B G each"],
+    ["Blockbuster banners", `${b.filter(x=>x.rev>=10).length}`, "worth over ¥1B each"],
   ].map(([l,v,n])=>`<div class="tile"><span class="l">${l}</span><span class="v">${v}</span><span class="n">${esc(n)}</span></div>`).join("");
   $("#updated").textContent=`source: game-i.daa.jp · updated ${new Date(state.data.updated).toISOString().slice(0,10)}`;
 }
@@ -95,11 +96,11 @@ function rowHTML(b,rank,max){
     <div class="meta">
       <div class="nm"><b>${esc(b.name)}</b>${en?`<span class="en">${esc(en)}</span>`:""}</div>
       <div class="barline"><div class="track"><div class="barfill" style="width:${w}%"></div></div>
-        <span class="val">${fmtG(b.rev)}<small> G</small></span></div>
+        <span class="val">${G(b.rev)}</span></div>
     </div></div>`;
 }
 function axesHTML(max){return ticks(max).map(t=>
-  `<div class="axis" style="left:calc(87px + (100% - 87px - 74px) * ${t/max})"><span>${fmtG(t)}</span></div>`).join("");}
+  `<div class="axis" style="left:calc(87px + (100% - 87px - 74px) * ${t/max})"><span>${G(t)}</span></div>`).join("");}
 
 function renderBars(){
   const b=state.data.banners; b.forEach((x,i)=>x._i=i);
@@ -135,7 +136,7 @@ function yearSVG(year, items, gmax){
   const pts=[...items].sort((a,b)=>a.start.localeCompare(b.start)).map(b=>({x:xOf(b.start),y:yOf(b.rev),b}));
   const grid=ticks(gmax).map(t=>{const y=yOf(t);
     return `<line class="grid" x1="${ML}" y1="${y.toFixed(1)}" x2="${W-MR}" y2="${y.toFixed(1)}"/>`+
-           `<text class="axislbl" x="${ML-6}" y="${(y+3).toFixed(1)}" text-anchor="end">${fmtG(t)}</text>`;}).join("");
+           `<text class="axislbl" x="${ML-6}" y="${(y+3).toFixed(1)}" text-anchor="end">${G(t)}</text>`;}).join("");
   const xt=[0,2,4,6,8,10,12].map(m=>{const x=ML+(m/12)*pW;
     return `<text class="axislbl" x="${x.toFixed(1)}" y="${H-8}" text-anchor="middle">${MONTHS[m]||""}</text>`;}).join("");
   const line=pts.map((p,i)=>(i?"L":"M")+p.x.toFixed(1)+" "+p.y.toFixed(1)).join(" ");
@@ -175,7 +176,7 @@ function buildTable(){
   const rows=[...state.data.banners].sort((a,b)=>b.rev-a.rev).map(b=>`<tr>
     <td>#${b.cum}</td><td class="l">${esc(b.name)}</td>
     <td class="l" style="color:var(--muted)">${esc((b.agents||[]).join(", "))}</td>
-    <td>${fmtG(b.rev)} G</td>
+    <td>${G(b.rev)}</td>
     <td class="l" style="color:var(--muted)">${per(b.start)} – ${per(b.end)}</td>
     <td class="l">${b.year} · #${b.yrank}/${b.ytot}</td></tr>`).join("");
   $("#tablewrap").innerHTML=`<table><thead><tr><th>Rank</th><th class="l">Banner</th>

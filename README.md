@@ -9,13 +9,15 @@ Revenue is shown in **G**, game-i's abstract estimate unit (their FAQ states "G 
 particular meaning"); values are translated from 億 (1e8) to M/B magnitudes, so 1B G = 10億.
 
 - **Data source:** [game-i.daa.jp](https://game-i.daa.jp/) (third-party sales estimates, 売上予測, in 億G = 100M App Store units).
-- **Portraits:** circular character head-icons from auto-updating community data sources —
+- **Portraits:** circular character head-icons from auto-updating community sources —
   [Enka.Network](https://enka.network/) (ZZZ, Genshin) and
-  [Mar-7th/StarRailRes](https://github.com/Mar-7th/StarRailRes) (Star Rail). Games without a
-  reliable icon source (Wuthering Waves, Endfield, Neverness to Everness) get a best-effort
-  **face crop** from the banner art via anime face detection
-  ([lbpcascade_animeface](https://github.com/nagadomi/lbpcascade_animeface) + OpenCV); where
-  no face is detected, the full banner art is used. Both the row lists and the graph use these.
+  [Mar-7th/StarRailRes](https://github.com/Mar-7th/StarRailRes) (Star Rail). For games with no
+  portrait data source, a face circle is cropped via anime face detection
+  ([lbpcascade_animeface](https://github.com/nagadomi/lbpcascade_animeface) + OpenCV) from the
+  cleanest art available: the character's **drip-marketing / splash art** off the game's Fandom
+  wiki (Wuthering Waves, Neverness to Everness — found by searching the JP name and keeping only
+  `…_Card`/`…_Portrait` images), falling back to game-i's **banner art** (Endfield, whose wiki is
+  English-only) and finally the full banner if no face is found. Rows and the graph both use these.
 - **Hosting:** GitHub Pages (a plain static site — no server, no build step).
 - **Freshness:** a scheduled GitHub Action re-scrapes daily and commits changes.
 

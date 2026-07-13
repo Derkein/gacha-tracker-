@@ -4,7 +4,7 @@
  "jp": "鳴潮",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E9%B3%B4%E6%BD%AE",
- "updated": "2026-07-13T11:39:09Z",
+ "updated": "2026-07-13T17:38:09Z",
  "count": 36,
  "banners": [
   {
@@ -18,7 +18,10 @@
    "cumtot": 38,
    "year": 2024,
    "related": "忌炎、丹瑾、モルトフィー 、熾霞",
-   "banner_img": "https://hw-media-cdn-mingchao.kurogame.com/object/1716480000000/o2cvj32h8cj20zwan7-1716563627995.jpg"
+   "banner_img": "https://hw-media-cdn-mingchao.kurogame.com/object/1716480000000/o2cvj32h8cj20zwan7-1716563627995.jpg",
+   "icons": [
+    "icons/faces/wuwa/2024-05-23-1a620b.webp"
+   ]
   },
   {
    "name": "吟霖",
@@ -31,7 +34,10 @@
    "cumtot": 38,
    "year": 2024,
    "related": "吟霖、淵武、アールト、桃祈",
-   "banner_img": "https://hw-media-cdn-mingchao.kurogame.com/object/1717516800000/spcqbfelec4zw8s53c-1717567858155.jpg"
+   "banner_img": "https://hw-media-cdn-mingchao.kurogame.com/object/1717516800000/spcqbfelec4zw8s53c-1717567858155.jpg",
+   "icons": [
+    "icons/faces/wuwa/2024-06-06-f5c453.webp"
+   ]
   },
   {
    "name": "今汐",
@@ -47,8 +53,7 @@
    "banner_img": "https://hw-media-cdn-mingchao.kurogame.com/object/1719331200000/qvpanefeio17n7v2bx-1719386709685.jpg",
    "icons": [
     "icons/faces/wuwa/2024-06-28-810afa.webp"
-   ],
-   "accent": "#4cc1d1"
+   ]
   },
   {
    "name": "長離",
@@ -61,7 +66,10 @@
    "cumtot": 38,
    "year": 2024,
    "related": "",
-   "banner_img": "https://hw-media-cdn-mingchao.kurogame.com/object/1721232000000/e2ua4tyo77r1nae7oy-1721299368289.jpg"
+   "banner_img": "https://hw-media-cdn-mingchao.kurogame.com/object/1721232000000/e2ua4tyo77r1nae7oy-1721299368289.jpg",
+   "icons": [
+    "icons/faces/wuwa/2024-07-22-35d494.webp"
+   ]
   },
   {
    "name": "折枝",
@@ -90,7 +98,10 @@
    "cumtot": 38,
    "year": 2024,
    "related": "",
-   "banner_img": "https://hw-media-cdn-mingchao.kurogame.com/object/1727366400000/wy3rpqvixe6ovwdd7a-1727406817974.jpg"
+   "banner_img": "https://hw-media-cdn-mingchao.kurogame.com/object/1727366400000/wy3rpqvixe6ovwdd7a-1727406817974.jpg",
+   "icons": [
+    "icons/faces/wuwa/2024-09-29-bbacf0.webp"
+   ]
   },
   {
    "name": "ツバキ",
@@ -122,8 +133,7 @@
    "banner_img": "https://hw-media-cdn-mingchao.kurogame.com/object/1733846400000/r86rb26tlvpxg85ut6-1733883464006.jpg",
    "icons": [
     "icons/faces/wuwa/2024-12-12-b856e5.webp"
-   ],
-   "accent": "#dc2329"
+   ]
   },
   {
    "name": "カルロッタ&折枝復刻",
@@ -136,7 +146,10 @@
    "cumtot": 38,
    "year": 2025,
    "related": "",
-   "banner_img": "https://hw-media-cdn-mingchao.kurogame.com/akiwebsite/website2.0/images/1735401600000/diyl4qmlwqgqsd8sl5-1735487874926.jpg"
+   "banner_img": "https://hw-media-cdn-mingchao.kurogame.com/akiwebsite/website2.0/images/1735401600000/diyl4qmlwqgqsd8sl5-1735487874926.jpg",
+   "icons": [
+    "icons/faces/wuwa/2025-01-02-e5d337.webp"
+   ]
   },
   {
    "name": "ロココ&今汐復刻",
@@ -149,7 +162,10 @@
    "cumtot": 38,
    "year": 2025,
    "related": "",
-   "banner_img": "https://hw-media-cdn-mingchao.kurogame.com/akiwebsite/website2.0/images/1736956800000/2l8nq15vo418kbirq3-1736994711820.jpeg"
+   "banner_img": "https://hw-media-cdn-mingchao.kurogame.com/akiwebsite/website2.0/images/1736956800000/2l8nq15vo418kbirq3-1736994711820.jpeg",
+   "icons": [
+    "icons/faces/wuwa/2025-01-23-f387fa.webp"
+   ]
   },
   {
    "name": "フィービー",
@@ -158,11 +174,14 @@
    "rev": 2.44,
    "yrank": 14,
    "ytot": 19,
-   "cum": 27,
+   "cum": 28,
    "cumtot": 38,
    "year": 2025,
    "related": "",
-   "banner_img": "https://hw-media-cdn-mingchao.kurogame.com/akiwebsite/website2.0/images/1738944000000/umh85l4trxp9ut2vac-1739016125292.jpg"
+   "banner_img": "https://hw-media-cdn-mingchao.kurogame.com/akiwebsite/website2.0/images/1738944000000/umh85l4trxp9ut2vac-1739016125292.jpg",
+   "icons": [
+    "icons/faces/wuwa/2025-02-13-4ab033.webp"
+   ]
   },
   {
    "name": "ブラント&長離復刻",
@@ -171,11 +190,14 @@
    "rev": 2.52,
    "yrank": 13,
    "ytot": 19,
-   "cum": 25,
+   "cum": 26,
    "cumtot": 38,
    "year": 2025,
    "related": "",
-   "banner_img": "https://hw-media-cdn-mingchao.kurogame.com/akiwebsite/website2.0/images/1740672000000/0t4dmgui1ldv4w9glc-1740739379907.jpeg"
+   "banner_img": "https://hw-media-cdn-mingchao.kurogame.com/akiwebsite/website2.0/images/1740672000000/0t4dmgui1ldv4w9glc-1740739379907.jpeg",
+   "icons": [
+    "icons/faces/wuwa/2025-03-06-3e3b26.webp"
+   ]
   },
   {
    "name": "カンタレラ&ツバキ復刻",
@@ -191,8 +213,7 @@
    "banner_img": "https://hw-media-cdn-mingchao.kurogame.com/object/1742918400000/1oyj87c99o3801sev4-1742954162956.jpg",
    "icons": [
     "icons/faces/wuwa/2025-03-27-2bed11.webp"
-   ],
-   "accent": "#b193dc"
+   ]
   },
   {
    "name": "ショアキーパー復刻",
@@ -208,8 +229,7 @@
    "banner_img": "https://hw-media-cdn-mingchao.kurogame.com/object/1744732800000/uis368x9h4djlzdnku-1744786406290.jpg",
    "icons": [
     "icons/faces/wuwa/2025-04-17-7c5f23.webp"
-   ],
-   "accent": "#78beea"
+   ]
   },
   {
    "name": "ザンニー",
@@ -225,8 +245,7 @@
    "banner_img": "https://hw-media-cdn-mingchao.kurogame.com/object/1745769600000/zmn8zcd6tzwpwm1do1-1745835584710.jpg",
    "icons": [
     "icons/faces/wuwa/2025-04-29-2b0d76.webp"
-   ],
-   "accent": "#bc92a0"
+   ]
   },
   {
    "name": "シャコンヌ",
@@ -242,8 +261,7 @@
    "banner_img": "https://hw-media-cdn-mingchao.kurogame.com/object/1747670400000/3ax3m1s58cggaim2tl-1747739872262.jpg",
    "icons": [
     "icons/faces/wuwa/2025-05-22-b93e27.webp"
-   ],
-   "accent": "#76cab4"
+   ]
   },
   {
    "name": "カルテジア",
@@ -259,8 +277,7 @@
    "banner_img": "https://hw-media-cdn-mingchao.kurogame.com/object/1749484800000/agv4cnxbooizk27dnp-1749549910260.jpg",
    "icons": [
     "icons/faces/wuwa/2025-06-12-22b106.webp"
-   ],
-   "accent": "#336bcc"
+   ]
   },
   {
    "name": "ルパ",
@@ -269,15 +286,14 @@
    "rev": 2.38,
    "yrank": 15,
    "ytot": 19,
-   "cum": 28,
+   "cum": 29,
    "cumtot": 38,
    "year": 2025,
    "related": "",
    "banner_img": "https://hw-media-cdn-mingchao.kurogame.com/object/1751385600000/kcu55w7li0zfy3ooyk-1751429071911.jpg",
    "icons": [
     "icons/faces/wuwa/2025-07-03-54d4ac.webp"
-   ],
-   "accent": "#c8816b"
+   ]
   },
   {
    "name": "フローヴァ",
@@ -293,8 +309,7 @@
    "banner_img": "https://hw-media-cdn-mingchao.kurogame.com/object/1753200000000/rpvoaoe63ohee5ylow-1753236323686.jpg",
    "icons": [
     "icons/faces/wuwa/2025-07-24-5e63b1.webp"
-   ],
-   "accent": "#e0a090"
+   ]
   },
   {
    "name": "カンタレラ復刻&ブラント復刻",
@@ -310,8 +325,7 @@
    "banner_img": "https://hw-media-cdn-mingchao.kurogame.com/object/1754928000000/ym857yxba1ywg0vwip-1754993984981.jpg",
    "icons": [
     "icons/faces/wuwa/2025-08-14-e5bb26.webp"
-   ],
-   "accent": "#336ccc"
+   ]
   },
   {
    "name": "オーガスタ",
@@ -327,8 +341,7 @@
    "banner_img": "https://hw-media-cdn-mingchao.kurogame.com/object/1756224000000/oqn1cp4uwc4vzmt977-1756261999548.jpg",
    "icons": [
     "icons/faces/wuwa/2025-08-28-ab5298.webp"
-   ],
-   "accent": "#f3cb7c"
+   ]
   },
   {
    "name": "ユーノ",
@@ -344,8 +357,7 @@
    "banner_img": "https://hw-media-cdn-mingchao.kurogame.com/object/1757952000000/v5v3tnrh0daa9qm99b-1757991004032.jpg",
    "icons": [
     "icons/faces/wuwa/2025-09-17-e6469b.webp"
-   ],
-   "accent": "#86b5dc"
+   ]
   },
   {
    "name": "ガルブレーナ",
@@ -354,15 +366,14 @@
    "rev": 2.58,
    "yrank": 12,
    "ytot": 19,
-   "cum": 24,
+   "cum": 25,
    "cumtot": 38,
    "year": 2025,
    "related": "ルパ",
    "banner_img": "https://hw-media-cdn-mingchao.kurogame.com/object/1759680000000/qszpcdmjunlfdhpcjy-1759735422512.jpg",
    "icons": [
     "icons/faces/wuwa/2025-10-09-3a784c.webp"
-   ],
-   "accent": "#d8a097"
+   ]
   },
   {
    "name": "仇遠",
@@ -391,7 +402,10 @@
    "cumtot": 38,
    "year": 2025,
    "related": "フィービー",
-   "banner_img": "https://hw-media-cdn-mingchao.kurogame.com/object/1763481600000/51cl4rkkmy6fzcp1co-1763520585416.jpg"
+   "banner_img": "https://hw-media-cdn-mingchao.kurogame.com/object/1763481600000/51cl4rkkmy6fzcp1co-1763520585416.jpg",
+   "icons": [
+    "icons/faces/wuwa/2025-11-20-a4a1e8.webp"
+   ]
   },
   {
    "name": "フローヴァ&カンタレラ復刻",
@@ -407,8 +421,7 @@
    "banner_img": "https://i.imgur.com/Q6JdYut.jpeg",
    "icons": [
     "icons/faces/wuwa/2025-12-11-7ccffa.webp"
-   ],
-   "accent": "#e39e8d"
+   ]
   },
   {
    "name": "リンネー&カルテジア&シャコンヌ",
@@ -424,8 +437,7 @@
    "banner_img": "https://i.mopix.cc/Uim02C.jpg",
    "icons": [
     "icons/faces/wuwa/2025-12-25-5e994f.webp"
-   ],
-   "accent": "#250cf3"
+   ]
   },
   {
    "name": "モーニエ",
@@ -441,8 +453,7 @@
    "banner_img": "https://i.mopix.cc/XlW1yn.jpg",
    "icons": [
     "icons/faces/wuwa/2026-01-15-30021a.webp"
-   ],
-   "accent": "#b6495d"
+   ]
   },
   {
    "name": "エイメス",
@@ -458,8 +469,7 @@
    "banner_img": "https://i.mopix.cc/YaWroI.jpg",
    "icons": [
     "icons/faces/wuwa/2026-02-05-01b739.webp"
-   ],
-   "accent": "#382ed1"
+   ]
   },
   {
    "name": "リューク・ヘルセン",
@@ -475,25 +485,23 @@
    "banner_img": "https://i.mopix.cc/LYaAaB.jpg",
    "icons": [
     "icons/faces/wuwa/2026-02-26-95fc9b.webp"
-   ],
-   "accent": "#58a7a3"
+   ]
   },
   {
    "name": "シグリカ",
    "start": "2026-03-19",
    "end": "2026-04-09",
    "rev": 2.52,
-   "yrank": 7,
+   "yrank": 8,
    "ytot": 9,
-   "cum": 26,
+   "cum": 27,
    "cumtot": 38,
    "year": 2026,
    "related": "",
    "banner_img": "https://i.mopix.cc/kRp8lQ.jpg",
    "icons": [
     "icons/faces/wuwa/2026-03-19-55323e.webp"
-   ],
-   "accent": "#ff670b"
+   ]
   },
   {
    "name": "リンネー復刻&ザンニー復刻&フィービー復刻",
@@ -509,8 +517,7 @@
    "banner_img": "https://i.mopix.cc/Uim02C.jpg",
    "icons": [
     "icons/faces/wuwa/2026-04-09-5e994f.webp"
-   ],
-   "accent": "#250cf3"
+   ]
   },
   {
    "name": "緋雪",
@@ -523,7 +530,10 @@
    "cumtot": 38,
    "year": 2026,
    "related": "",
-   "banner_img": "https://i.mopix.cc/C2UOMU.jpg"
+   "banner_img": "https://i.mopix.cc/C2UOMU.jpg",
+   "icons": [
+    "icons/faces/wuwa/2026-04-30-f1c782.webp"
+   ]
   },
   {
    "name": "ダーニャ",
@@ -539,8 +549,7 @@
    "banner_img": "https://i.mopix.cc/Hk7KNj.jpg",
    "icons": [
     "icons/faces/wuwa/2026-05-21-fe2777.webp"
-   ],
-   "accent": "#cf9eb3"
+   ]
   },
   {
    "name": "ルーシー&レベッカ&ルシラー",
@@ -553,24 +562,26 @@
    "cumtot": 38,
    "year": 2026,
    "related": "",
-   "banner_img": "https://i.mopix.cc/OforYt.jpg"
+   "banner_img": "https://i.mopix.cc/OforYt.jpg",
+   "icons": [
+    "icons/faces/wuwa/2026-06-08-c1790b.webp"
+   ]
   },
   {
    "name": "秧秧．玄翎",
    "start": "2026-07-10",
    "end": "2026-07-30",
-   "rev": 2.27,
-   "yrank": 8,
+   "rev": 2.59,
+   "yrank": 7,
    "ytot": 9,
-   "cum": 29,
+   "cum": 24,
    "cumtot": 38,
    "year": 2026,
    "related": "",
    "banner_img": "https://i.mopix.cc/pI0ghq.jpg",
    "icons": [
     "icons/faces/wuwa/2026-07-10-8abe5a.webp"
-   ],
-   "accent": "#7cf4ee"
+   ]
   }
  ]
 }
