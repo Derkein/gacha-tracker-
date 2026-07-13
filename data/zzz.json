@@ -4,7 +4,7 @@
  "jp": "ゼンレスゾーンゼロ",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E3%82%BC%E3%83%B3%E3%83%AC%E3%82%B9%E3%82%BE%E3%83%BC%E3%83%B3%E3%82%BC%E3%83%AD",
- "updated": "2026-07-13T17:37:53Z",
+ "updated": "2026-07-13T22:04:22Z",
  "count": 35,
  "banners": [
   {
@@ -19,6 +19,7 @@
    "year": 2024,
    "related": "エレン、蒼角、アンドー",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/07/03/6bba29d65ca1eedb223a9d9c94b33941_5499962239353471418.jpg",
+   "rerun": false,
    "icons": [
     "https://enka.network/ui/zzz/IconRoleCircle21.png"
    ],
@@ -40,6 +41,7 @@
    "year": 2024,
    "related": "朱鳶、ニコ、ベン",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/07/21/57e3315ccc323046dc583de3074feb59_2617150514785173076.png",
+   "rerun": false,
    "icons": [
     "https://enka.network/ui/zzz/IconRoleCircle23.png"
    ],
@@ -61,6 +63,7 @@
    "year": 2024,
    "related": "青衣、ビリー、カリン",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/08/12/e2fb82fce9aebbc008a3caa7ce347859_6557508229557722076.png",
+   "rerun": false,
    "icons": [
     "https://enka.network/ui/zzz/IconRoleCircle29.png"
    ],
@@ -82,6 +85,7 @@
    "year": 2024,
    "related": "ジェーン、セス、アンビ",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/09/01/76dda47bc80ba82a0c8c3c6495a10871_1586658923347644498.png",
+   "rerun": false,
    "icons": [
     "https://enka.network/ui/zzz/IconRoleCircle24.png"
    ],
@@ -103,6 +107,7 @@
    "year": 2024,
    "related": "シーザー、パイパー、アンドー",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/09/23/4c12ff1c5a003b841e2f047710293ac0_5032913656868719596.png",
+   "rerun": false,
    "icons": [
     "https://enka.network/ui/zzz/IconRoleCircle25.png"
    ],
@@ -124,6 +129,7 @@
    "year": 2024,
    "related": "バーニス、ルーシー、ニコ",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/10/13/c6b31b56e015e54de622a2e757e6a61e_3201649773093284741.png",
+   "rerun": false,
    "icons": [
     "https://enka.network/ui/zzz/IconRoleCircle32.png"
    ],
@@ -145,6 +151,7 @@
    "year": 2024,
    "related": "月城柳、アンビー、ビリー",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/11/04/ccd3f3d80f51319c8f5068c8d9c942c9_2854112462371700529.png",
+   "rerun": false,
    "icons": [
     "https://enka.network/ui/zzz/IconRoleCircle31.png"
    ],
@@ -166,6 +173,7 @@
    "year": 2024,
    "related": "ライト、ベン、カリン",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/11/25/10bfcfcdb9ac34809e92aaaa93934b91_4997730475620532095.png",
+   "rerun": false,
    "icons": [
     "https://enka.network/ui/zzz/IconRoleCircle26.png"
    ],
@@ -187,6 +195,7 @@
    "year": 2024,
    "related": "星見雅、浅羽悠真、パイパー、蒼角",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/12/16/77bc086606152db4e9ac4a5a41581c73_1873391038276700699.png",
+   "rerun": false,
    "icons": [
     "https://enka.network/ui/zzz/IconRoleCircle13.png",
     "https://enka.network/ui/zzz/IconRoleCircle35.png"
@@ -210,6 +219,7 @@
    "year": 2025,
    "related": "エレン復刻\n2024年へ",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/01/20/0/ad7d09f8ba8c8bc54c5e145c719fda4d_6739625479710825112.png",
+   "rerun": false,
    "icons": [
     "https://enka.network/ui/zzz/IconRoleCircle36.png"
    ],
@@ -231,6 +241,7 @@
    "year": 2025,
    "related": "",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/02/08/0/0b392f69cae00184a2e0d4d9b0b5a1d6_5361461955412877612.png",
+   "rerun": false,
    "icons": [
     "https://enka.network/ui/zzz/IconRoleCircle37.png"
    ],
@@ -252,6 +263,7 @@
    "year": 2025,
    "related": "バーニス復刻、プルクラ",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/03/11/0/eb4187980c8d22f75bfd19d74cb5c933_8873561380462898961.png",
+   "rerun": false,
    "icons": [
     "https://enka.network/ui/zzz/IconRoleCircle40.png"
    ],
@@ -273,6 +285,7 @@
    "year": 2025,
    "related": "朱鳶復刻",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/03/29/0/157aea35133e59f233f37b2dad796dea_4866926260728101940.png",
+   "rerun": false,
    "icons": [
     "https://enka.network/ui/zzz/IconRoleCircle39.png"
    ],
@@ -294,6 +307,7 @@
    "year": 2025,
    "related": "ジェーン復刻",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/04/21/0/727ee4614f087227e908fe8c210edf80_8791527087210083349.png",
+   "rerun": false,
    "icons": [
     "https://enka.network/ui/zzz/IconRoleCircle41.png"
    ],
@@ -315,6 +329,7 @@
    "year": 2025,
    "related": "ライト復刻",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/05/09/5dcb663ca0ebe5b097be0a5c479f38b4_5782056941758100341.png",
+   "rerun": false,
    "icons": [
     "https://enka.network/ui/zzz/IconRoleCircle42.png"
    ],
@@ -336,6 +351,7 @@
    "year": 2025,
    "related": "アストラ復刻",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/05/31/0/b68c1b88a12a4d3e3ec45c55af13f562_53862237629036960.jpeg",
+   "rerun": false,
    "icons": [
     "https://enka.network/ui/zzz/IconRoleCircle44.png"
    ],
@@ -357,6 +373,7 @@
    "year": 2025,
    "related": "シーザー復刻",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/06/21/0/fc53b841887bc8a83b40035407d56097_7811217789272024816.png",
+   "rerun": false,
    "icons": [
     "https://enka.network/ui/zzz/IconRoleCircle43.png"
    ],
@@ -378,6 +395,7 @@
    "year": 2025,
    "related": "星見雅復刻",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/07/14/0/c010c73227ce08537b6f41561e588651_2767097572243287365.png",
+   "rerun": false,
    "icons": [
     "https://enka.network/ui/zzz/IconRoleCircle47.png"
    ],
@@ -399,6 +417,7 @@
    "year": 2025,
    "related": "月城柳復刻",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/08/02/0/a59e10103061e577ce600dca58c2f370_1527510047349135663.png",
+   "rerun": false,
    "icons": [
     "https://enka.network/ui/zzz/IconRoleCircle46.png"
    ],
@@ -420,6 +439,7 @@
    "year": 2025,
    "related": "トリガー復刻",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/08/31/0/1cda45e715bf919344ec39c4cfa9aa1b_2421914902883085064.png",
+   "rerun": false,
    "icons": [
     "https://enka.network/ui/zzz/IconRoleCircle48.png"
    ],
@@ -441,6 +461,7 @@
    "year": 2025,
    "related": "イヴリン復刻",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/09/19/0/6530d65ca883890dddea554c29002000_842926848461823309.png",
+   "rerun": false,
    "icons": [
     "https://enka.network/ui/zzz/IconRoleCircle49.png"
    ],
@@ -462,6 +483,7 @@
    "year": 2025,
    "related": "ビビアン",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/10/12/02b6ba2c5eb17ed147bb2148c2b01ace_7318968870335504507.png",
+   "rerun": false,
    "icons": [
     "https://enka.network/ui/zzz/IconRoleCircle50.png"
    ],
@@ -483,6 +505,7 @@
    "year": 2025,
    "related": "橘福福",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/11/01/77436e9b074181d050e0a1528d681eda_3425570479124323064.png",
+   "rerun": false,
    "icons": [
     "https://enka.network/ui/zzz/IconRoleCircle52.png"
    ],
@@ -504,6 +527,7 @@
    "year": 2025,
    "related": "ヒューゴ",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/11/22/88dc2cf83d100314bc2598b2caf728ff_873841350043859990.jpg",
+   "rerun": false,
    "icons": [
     "https://enka.network/ui/zzz/IconRoleCircle54.png"
    ],
@@ -525,6 +549,7 @@
    "year": 2025,
    "related": "エレン",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/12/15/7b35c3626799ae5286d7273303856866_3485356385322714877.png",
+   "rerun": false,
    "icons": [
     "https://enka.network/ui/zzz/IconRoleCircle53.png"
    ],
@@ -546,6 +571,7 @@
    "year": 2025,
    "related": "上映御礼 チャージイベント",
    "banner_img": "https://pbs.twimg.com/media/G8fXNxcXIAE6Xp-.jpg",
+   "rerun": false,
    "icons": [
     "https://enka.network/ui/zzz/IconRoleCircle55.png",
     "https://enka.network/ui/zzz/IconRoleCircle56.png"
@@ -569,6 +595,7 @@
    "year": 2026,
    "related": "",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/01/16/dea0e549c052e574dbc0ba5fb5dc7aca_8573109417544585764.png",
+   "rerun": true,
    "icons": [
     "https://enka.network/ui/zzz/IconRoleCircle46.png",
     "https://enka.network/ui/zzz/IconRoleCircle40.png",
@@ -594,6 +621,7 @@
    "year": 2026,
    "related": "儀玄復刻",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/02/03/da3e2efdf715eb1115d516dcf765077f_8633114800754574367.png",
+   "rerun": false,
    "icons": [
     "https://enka.network/ui/zzz/IconRoleCircle58.png"
    ],
@@ -615,6 +643,7 @@
    "year": 2026,
    "related": "浮波柚葉",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/03/01/397fc1681e36ee4ca233345526281987_5136538002278189903.png",
+   "rerun": false,
    "icons": [
     "https://enka.network/ui/zzz/IconRoleCircle57.png"
    ],
@@ -636,6 +665,7 @@
    "year": 2026,
    "related": "イドリー",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/03/21/3c38c029fadef707a9e7663b10a63caa_6053805145055247498.jpg",
+   "rerun": false,
    "icons": [
     "https://enka.network/ui/zzz/IconRoleCircle59.png"
    ],
@@ -657,6 +687,7 @@
    "year": 2026,
    "related": "シード",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/04/11/bb59147df6a6321c0ca7214ff8a8f26c_8902418724023440394.jpg",
+   "rerun": false,
    "icons": [
     "https://enka.network/ui/zzz/IconRoleCircle60.png"
    ],
@@ -678,6 +709,7 @@
    "year": 2026,
    "related": "リュシア",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/05/03/b1a7defea969529edd54296c094aa78e_5855656063880158867.jpg",
+   "rerun": false,
    "icons": [
     "https://enka.network/ui/zzz/IconRoleCircle61.png"
    ],
@@ -699,6 +731,7 @@
    "year": 2026,
    "related": "オルペウス＆『鬼火』",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/05/23/72725b7058ee60e259cb149688595ce1_4007954319504263447.jpg",
+   "rerun": false,
    "icons": [
     "https://enka.network/ui/zzz/IconRoleCircle62.png"
    ],
@@ -720,6 +753,7 @@
    "year": 2026,
    "related": "葉瞬光",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/06/13/207ae69f45dcf56daacd5c7285d7e24b_4241302439310508979.png",
+   "rerun": false,
    "icons": [
     "https://enka.network/ui/zzz/IconRoleCircle64.png"
    ],
@@ -741,6 +775,7 @@
    "year": 2026,
    "related": "千夏",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/07/05/a0b3ee434966d7763569266e524cfe91_2432634877569909579.jpg",
+   "rerun": false,
    "icons": [
     "https://enka.network/ui/zzz/IconRoleCircle65.png"
    ],

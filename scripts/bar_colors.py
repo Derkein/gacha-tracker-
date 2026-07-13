@@ -14,6 +14,9 @@ from PIL import Image
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 CACHE = ROOT / "icons" / "bar_colors.json"
+# games to tint (the rest are data-only and use their game accent) — avoids
+# downloading ~1000 banner images for the big added catalogues.
+BAR_GAMES = {"zzz", "hsr", "wuwa", "genshin", "endfield", "nte"}
 UA = {"User-Agent": "Mozilla/5.0 (gacha-tracker)"}
 _UNVERIFIED = ssl.create_default_context()
 _UNVERIFIED.check_hostname = False
@@ -51,7 +54,7 @@ def main():
     cache = json.loads(CACHE.read_text(encoding="utf-8")) if CACHE.exists() else {}
     new = 0
     for dfile in sorted(DATA.glob("*.json")):
-        if dfile.stem == "index":
+        if dfile.stem not in BAR_GAMES:
             continue
         data = json.loads(dfile.read_text(encoding="utf-8"))
         for b in data["banners"]:

@@ -31,7 +31,13 @@ a{color:inherit}
 .updated{margin-left:auto; font-size:11.5px; color:var(--muted); text-align:right; white-space:nowrap}
 
 /* game tabs */
-.tabs{display:flex; gap:8px; overflow-x:auto; padding:4px 0 10px; margin-bottom:8px; scrollbar-width:thin}
+.tabsrow{display:flex; gap:8px; align-items:flex-start; padding-top:4px}
+.tabsbtn{flex:0 0 auto; white-space:nowrap}
+.tabs{display:flex; flex-wrap:wrap; gap:8px; flex:1; min-width:0}
+.tabs.collapsed{flex-wrap:nowrap; overflow:hidden}
+.datanote{margin:8px 0 0; font-size:11.5px; color:var(--muted)}
+.datanote b{color:var(--ink2)}
+.tabs-scroll-legacy{overflow-x:auto; padding:4px 0 10px; margin-bottom:8px; scrollbar-width:thin}
 .tab{flex:0 0 auto; display:flex; flex-direction:column; gap:1px; align-items:flex-start;
   border:1px solid var(--border); background:var(--surface); color:var(--ink2);
   border-radius:12px; padding:9px 15px; cursor:pointer; font:inherit; transition:transform .12s,border-color .12s}
@@ -83,6 +89,8 @@ a{color:inherit}
 .nm{display:flex; align-items:baseline; gap:8px; flex-wrap:wrap; line-height:1.2}
 .nm b{font-size:14px; letter-spacing:-.01em}
 .nm .en{font-size:11.5px; color:var(--muted)}
+.rr{font-size:9.5px; font-weight:700; letter-spacing:.03em; color:var(--muted); border:1px solid var(--border);
+  border-radius:5px; padding:1px 4px; text-transform:uppercase; white-space:nowrap}
 .barline{display:flex; align-items:center; gap:9px; margin-top:4px}
 .track{position:relative; flex:1; height:15px; background:var(--track); border-radius:8px; overflow:hidden}
 /* NB: reference --bar-l/--bar-d (set on .row) directly here — a :root-level

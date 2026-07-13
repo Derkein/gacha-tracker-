@@ -29,6 +29,8 @@ ICONS = ROOT / "icons"
 CASCADE = str(Path(__file__).resolve().parent / "lbpcascade_animeface.xml")
 UA = {"User-Agent": "Mozilla/5.0 (gacha-tracker)"}
 
+# only these games get face-crop icons (others are data-only, banner-art thumbnails)
+FACE_GAMES = {"wuwa", "nte", "endfield"}
 # games whose characters have clean drip art on a JP-searchable Fandom wiki
 FANDOM = {
     "wuwa": "wuthering-waves.fandom.com",
@@ -83,7 +85,10 @@ def page_image(dom, title):
 
 
 def resolve_drip(dom, jp_name):
-    """Search the wiki for a Japanese name and return a character-art image URL."""
+    """Search the wiki for a Japanese name; return (image_url, english_name).
+
+    The wiki page title is the character's official global (English) name, which
+    we also use to translate the banner label for these otherwise JP-only games."""
     url = (f"https://{dom}/api.php?action=query&list=search&srlimit=6&format=json"
            f"&srsearch={urllib.parse.quote(jp_name)}")
     for r in getj(url)["query"]["search"]:
@@ -92,8 +97,8 @@ def resolve_drip(dom, jp_name):
             continue
         fn = img.split("/revision")[0].split("/")[-1]
         if ART_RE.search(fn) and not BAD_RE.search(fn):
-            return img
-    return None
+            return img, r["title"]
+    return None, None
 
 
 def dominant_accent(pim):
@@ -155,26 +160,32 @@ def process(tag, cascade, force=False):
     outdir = ICONS / "faces" / tag
     outdir.mkdir(parents=True, exist_ok=True)
     dom = FANDOM.get(tag)
+    # cache of JP banner name -> official English (wiki page) name, so cached
+    # crops still get translated on re-runs without re-querying the wiki.
+    nfile = ICONS / "faces" / f"{tag}_names.json"
+    names = json.loads(nfile.read_text(encoding="utf-8")) if nfile.exists() else {}
     drip_hits = made = kept = 0
     for b in data["banners"]:
-        if b.get("icons"):
-            continue
+        primary = primary_name(b["name"])
         slug = f"{b['start']}-{hashlib.md5((b.get('banner_img') or b['name']).encode()).hexdigest()[:6]}"
         rel = f"icons/faces/{tag}/{slug}.webp"
         fpath = ROOT / rel
-        if fpath.exists() and not force:
-            b["icons"] = [rel]; kept += 1
-            continue
-        # pick the best available source: drip art first, else the banner art
-        src, is_drip = None, False
-        if dom:
+        cached = fpath.exists() and not force
+        # resolve drip art once: gives both the image and the English name
+        drip_img, en = None, names.get(primary)
+        if dom and (en is None or not cached):
             try:
-                src = resolve_drip(dom, primary_name(b["name"]))
-                is_drip = src is not None
+                drip_img, title = resolve_drip(dom, primary)
+                if title:
+                    en = title; names[primary] = title
             except Exception as e:
                 print(f"  [{tag}] drip lookup failed for {b['name']}: {e}")
-        if not src:
-            src = b.get("banner_img")
+        if en:
+            b["agents"] = [en]; b["en"] = en
+        if cached:
+            b["icons"] = [rel]; kept += 1
+            continue
+        src, is_drip = (drip_img, True) if drip_img else (b.get("banner_img"), False)
         if not src:
             continue
         try:
@@ -190,6 +201,8 @@ def process(tag, cascade, force=False):
             drip_hits += is_drip
         except Exception as e:
             print(f"  [{tag}] warn {b['name']}: {e}")
+    if names:
+        nfile.write_text(json.dumps(names, ensure_ascii=False, indent=1), encoding="utf-8")
     dfile.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
     return made, kept, drip_hits, len(data["banners"])
 
@@ -200,7 +213,7 @@ def main():
     if cascade.empty():
         raise SystemExit("could not load cascade: " + CASCADE)
     tags = [p.stem for p in sorted(DATA.glob("*.json"))
-            if p.stem != "index" and not (ICONS / f"{p.stem}.json").exists()]
+            if p.stem in FACE_GAMES and not (ICONS / f"{p.stem}.json").exists()]
     for tag in tags:
         made, kept, drip, tot = process(tag, cascade, force)
         via = f" ({drip} from drip art)" if drip else ""

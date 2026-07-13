@@ -4,7 +4,7 @@
  "jp": "崩壊：スターレイル",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E5%B4%A9%E5%A3%8A%EF%BC%9A%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%AC%E3%82%A4%E3%83%AB",
- "updated": "2026-07-13T17:38:03Z",
+ "updated": "2026-07-13T22:04:28Z",
  "count": 44,
  "banners": [
   {
@@ -19,6 +19,7 @@
    "year": 2024,
    "related": "Dr.レイシオ、カフカ、素裳、ナターシヤ、フック",
    "banner_img": "https://static.wikia.nocookie.net/houkai-star-rail/images/a/ab/Panta_Rhei_2024-01-17.png",
+   "rerun": true,
    "icons": [
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1305.png",
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1005.png"
@@ -42,6 +43,7 @@
    "year": 2024,
    "related": "ブラックスワン、丹恒・飲月、ミーシャ、停雲、桂乃芬",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/02/05/a474e1ad0bdb9c70bb7f2e810d66ca22_8185363732810897994.jpg",
+   "rerun": true,
    "icons": [
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1307.png",
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1213.png"
@@ -65,6 +67,7 @@
    "year": 2024,
    "related": "花火、景元、サンポ、青雀、寒鴉",
    "banner_img": "https://img.gamewith.jp/img/dfb05a076c6da648091b7fd81bab36a1.png",
+   "rerun": true,
    "icons": [
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1306.png",
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1204.png"
@@ -88,6 +91,7 @@
    "year": 2024,
    "related": "羅刹復刻、ギャラガー、ペラ、丹恒",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/03/26/d3cfcc45510d72563d39c9101d919dbb_5639048768455787790.png",
+   "rerun": false,
    "icons": [
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1308.png"
    ],
@@ -109,6 +113,7 @@
    "year": 2024,
    "related": "鏡流復刻、リンクス、ルカ、セーバル",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/04/16/231b619075ed159939e5a23bb0c8e5c7_8114377701622392138.jpg",
+   "rerun": false,
    "icons": [
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1304.png"
    ],
@@ -130,6 +135,7 @@
    "year": 2024,
    "related": "トパーズ＆カブ復刻、三月なのか、寒鴉、雪衣",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/05/06/1b55e350ac3b526dda835d2b0c4ed716_174149695325607706.jpg",
+   "rerun": false,
    "icons": [
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1309.png"
    ],
@@ -151,6 +157,7 @@
    "year": 2024,
    "related": "符玄復刻、ペラ、ルカ、フック",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/05/28/8951ca34c6bddf7eb6a3c28e96b20788_6993851434336903549.jpg",
+   "rerun": false,
    "icons": [
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1315.png"
    ],
@@ -172,6 +179,7 @@
    "year": 2024,
    "related": "ルアン・メェイ復刻、ギャラガー、ミーシャ、雪衣",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/06/17/7d918c34d914905c841ff3fb60db6a37_3527533942708609984.jpg",
+   "rerun": false,
    "icons": [
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1310.png"
    ],
@@ -193,6 +201,7 @@
    "year": 2024,
    "related": "アルジェンティ復刻、セーバル、ナターシャ、アスター",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/07/01/1f1974213a4879b6705b4f5e6ccd7ffe_464888288462220410.jpg",
+   "rerun": false,
    "icons": [
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1314.png"
    ],
@@ -214,6 +223,7 @@
    "year": 2024,
    "related": "フォフォ復刻、寒鴉、御空、リンクス",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/07/29/3a2b58cbb611718c1061cb78848caf4d_1201045797212196437.jpg",
+   "rerun": false,
    "icons": [
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1221.png"
    ],
@@ -235,6 +245,7 @@
    "year": 2024,
    "related": "花火復刻、フック、桂乃芬、アーラン",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/08/19/3574c24ca2ecc4fb715db5a023ff815a_4410476124873270409.jpg",
+   "rerun": false,
    "icons": [
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1218.png"
    ],
@@ -256,6 +267,7 @@
    "year": 2024,
    "related": "カフカ復刻、ブラックスワン復刻、ロビン復刻、モゼ、アスター、ルカ",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/08/29/7d99e8bde818d13a54bdf0a7eada8d3f_1801706652461444902.jpg",
+   "rerun": false,
    "icons": [
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1220.png"
    ],
@@ -277,6 +289,7 @@
    "year": 2024,
    "related": "トパーズ復刻、ミーシャ、ナターシ、桂乃芬",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/09/27/3351d21fc2220a64f7abdf9cedcd8c5d_6375580495504659476.jpg",
+   "rerun": false,
    "icons": [
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1222.png"
    ],
@@ -298,6 +311,7 @@
    "year": 2024,
    "related": "丹恒・飲月復刻、リンクス、雪衣、御空",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/10/22/40c243102694fdf92f0dffc2b2e97d11_3244689230259670174.jpg",
+   "rerun": false,
    "icons": [
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1317.png"
    ],
@@ -319,6 +333,7 @@
    "year": 2024,
    "related": "黄泉、アベンチュリン、三月なのか、ペラ、サンポ",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/11/11/238774211f9f12c3b626b6f63d2fff60_7129866645847237397.jpg",
+   "rerun": true,
    "icons": [
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1308.png",
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1304.png"
@@ -342,6 +357,7 @@
    "year": 2024,
    "related": "景元復刻、青雀、アーラン、停雲",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/12/02/21ca538bfa9f179bceb4990da35f9a45_4545955086929265986.jpg",
+   "rerun": false,
    "icons": [
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1313.png"
    ],
@@ -363,6 +379,7 @@
    "year": 2024,
    "related": "ホタル復刻、ギャラガー、御空、ミーシャ",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/12/23/4655c5edeee3a04cd7bf79ea6d5e346c_8927543372060864198.jpg",
+   "rerun": false,
    "icons": [
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1225.png"
    ],
@@ -384,6 +401,7 @@
    "year": 2025,
    "related": "霊砂復刻、飛霄復刻、ジェイド復刻、ナターシャ、アスター、モゼ\n2024年へ",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/01/14/82dcf6b2aec9f8fad19c20e76d303d64_988647656753510923.png",
+   "rerun": false,
    "icons": [
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1401.png"
    ],
@@ -405,6 +423,7 @@
    "year": 2025,
    "related": "銀狼復刻、ロビン復刻、ブートヒル復刻、停雲、素裳、寒鴉",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/01/26/ff04dc2750320f22838e7c99be88b854_8183225600223947491.png",
+   "rerun": false,
    "icons": [
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1402.png"
    ],
@@ -426,6 +445,7 @@
    "year": 2025,
    "related": "雲璃復刻",
    "banner_img": "https://cdn.wikiwiki.jp/to/w/star-rail/%E8%B7%B3%E8%BA%8D/::attach/3.1.1%E3%82%AC%E3%83%81%E3%83%A31.webp",
+   "rerun": false,
    "icons": [
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1403.png"
    ],
@@ -447,6 +467,7 @@
    "year": 2025,
    "related": "フォフォ復刻",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/03/17/167aa3c663e94c7b5d33617551616b5b_7624999381991197609.png",
+   "rerun": false,
    "icons": [
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1404.png"
    ],
@@ -468,6 +489,7 @@
    "year": 2025,
    "related": "帰忘の流離人復刻、椒丘復刻、黄泉復刻2",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/04/07/27447deda57308e280d513cab1dd160b_6414601962120357039.png",
+   "rerun": false,
    "icons": [
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1407.png"
    ],
@@ -489,6 +511,7 @@
    "year": 2025,
    "related": "Dr.レイシオ復刻",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/04/28/ce271e7aabbd43de4f77cb66f84b92f0_2016551048350226190.png",
+   "rerun": false,
    "icons": [
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1405.png"
    ],
@@ -510,6 +533,7 @@
    "year": 2025,
    "related": "マダム・ヘルタ復刻",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/05/19/c2c1c6671c0757f60d07067902a16740_5706429163957003333.png",
+   "rerun": false,
    "icons": [
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1409.png"
    ],
@@ -531,6 +555,7 @@
    "year": 2025,
    "related": "アグライア復刻",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/06/09/38f964017f7f71665017b852078f2180_8953583870553831637.png",
+   "rerun": false,
    "icons": [
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1406.png"
    ],
@@ -552,6 +577,7 @@
    "year": 2025,
    "related": "トリビー復刻、サンデー復刻、花火復刻",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/06/30/0f55744e64638a293c4e712c213fb7a3_6818180084291571132.png",
+   "rerun": false,
    "icons": [
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1408.png"
    ],
@@ -573,6 +599,7 @@
    "year": 2025,
    "related": "長期間開催",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/07/08/42dd7d9f4217213be45eac33215c5491_7195350653089586610.png",
+   "rerun": false,
    "icons": [
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1014.png",
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1015.png"
@@ -596,6 +623,7 @@
    "year": 2025,
    "related": "",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/07/22/8c9abc7b3160a71a8b6f18155607c40c_7965881045904889154.png",
+   "rerun": true,
    "icons": [
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1310.png",
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1212.png",
@@ -621,6 +649,7 @@
    "year": 2025,
    "related": "カフカ復刻",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/08/11/82cdd59cd0d4a563d26c277493040746_3234602174256542058.png",
+   "rerun": false,
    "icons": [
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1410.png"
    ],
@@ -642,6 +671,7 @@
    "year": 2025,
    "related": "銀狼復刻",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/08/15/144e822e22d596c413c5a2608c84301d_4046498584382561178.png",
+   "rerun": false,
    "icons": [
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1412.png"
    ],
@@ -663,6 +693,7 @@
    "year": 2025,
    "related": "マダム・ヘルタ復刻",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/09/22/b48cea6bd934735b1c268e4455002366_5391058018832163727.png",
+   "rerun": false,
    "icons": [
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1413.png"
    ],
@@ -684,6 +715,7 @@
    "year": 2025,
    "related": "アナイクス",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/10/10/f696aa5387278dc4f1d991f94e8ffe92_7545657641864917271.png",
+   "rerun": false,
    "icons": [
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1414.png"
    ],
@@ -705,6 +737,7 @@
    "year": 2025,
    "related": "ヒアンシー、キャストリス、トリビー",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/10/28/ee015367a081b9889b32878ba9d8e78e_7222742705258423855.jpg",
+   "rerun": false,
    "icons": [
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1415.png"
    ],
@@ -726,6 +759,7 @@
    "year": 2025,
    "related": "サフェル復刻, モーディス復刻",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/07/03/282170832/d1b190f52a58001fc9ff47351f3bf153_5164149095055474675.jpg",
+   "rerun": true,
    "icons": [
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1408.png"
    ],
@@ -747,6 +781,7 @@
    "year": 2025,
    "related": "ホタル",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/12/15/c782cb4cac1d58238b7100a66acc66ca_3494724903666133436.png",
+   "rerun": false,
    "icons": [
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1321.png"
    ],
@@ -768,6 +803,7 @@
    "year": 2026,
    "related": "",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/12/30/33165cbd4b76d893d3f0cac9ddbbe49a_7984448432167134208.png",
+   "rerun": true,
    "icons": [
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1225.png",
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1222.png"
@@ -791,6 +827,7 @@
    "year": 2026,
    "related": "",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/01/23/f3c0689fd791da5203b223de2adf9b1d_1677596865044055558.png",
+   "rerun": true,
    "icons": [
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1402.png",
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1313.png"
@@ -814,6 +851,7 @@
    "year": 2026,
    "related": "長夜月、セイレンス、ブラックスワン",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/02/11/a96f510875df918979756d9ffc132abc_45980191276080135.png",
+   "rerun": false,
    "icons": [
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1502.png"
    ],
@@ -835,6 +873,7 @@
    "year": 2026,
    "related": "ケリュドラ、乱破、花火",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/03/02/e27b9833ce320d3f7c470e5807f0aa42_2757735735473312822.png",
+   "rerun": false,
    "icons": [
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1501.png"
    ],
@@ -856,6 +895,7 @@
    "year": 2026,
    "related": "ヒアンシー、ブートヒル",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/03/24/3308c7790670e98434b5fe4d9485fbcf_5541550260578855048.png",
+   "rerun": false,
    "icons": [
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1504.png"
    ],
@@ -877,6 +917,7 @@
    "year": 2026,
    "related": "ダリア、キャストリス、ホタル",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/04/21/8c07b0f887f8bde4ac76b1298471193e_6821004034996987174.png",
+   "rerun": false,
    "icons": [
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1506.png"
    ],
@@ -898,6 +939,7 @@
    "year": 2026,
    "related": "トリビー、サンデー、飛霄",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/05/06/e2a7174ff666b28fc67a51ffb10af7a2_528218712884697264.png",
+   "rerun": false,
    "icons": [
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1505.png"
    ],
@@ -919,6 +961,7 @@
    "year": 2026,
    "related": "爻光",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/05/28/8c6a586a70cbfda33e3c292437767e27_4773141744358845314.png",
+   "rerun": false,
    "icons": [
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1507.png"
    ],
@@ -940,6 +983,7 @@
    "year": 2026,
    "related": "",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/06/17/0dc1726cfa65100ffc85c196531bed18_4792943494357490669.png",
+   "rerun": true,
    "icons": [
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1415.png",
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1408.png"

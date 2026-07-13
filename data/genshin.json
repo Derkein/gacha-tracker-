@@ -4,7 +4,7 @@
  "jp": "原神",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E5%8E%9F%E7%A5%9E",
- "updated": "2026-07-13T17:38:15Z",
+ "updated": "2026-07-13T22:04:40Z",
  "count": 44,
  "banners": [
   {
@@ -19,6 +19,7 @@
    "year": 2024,
    "related": "",
    "banner_img": "https://img.gamewith.jp/img/original_6f88961e07a3956f3239879e2099b633.jpg",
+   "rerun": true,
    "icons": [
     "https://enka.network/ui/UI_AvatarIcon_Shougun.png"
    ],
@@ -40,6 +41,7 @@
    "year": 2024,
    "related": "",
    "banner_img": "https://img.gamewith.jp/img/dd5a75180ad6f4bbaa2850367c851a7a.jpeg",
+   "rerun": false,
    "icons": [
     "https://enka.network/ui/UI_AvatarIcon_Nahida.png"
    ],
@@ -61,6 +63,7 @@
    "year": 2024,
    "related": "",
    "banner_img": "https://img.gamewith.jp/img/fe164036326d8d3da7cacfa865f0dbe0.jpeg",
+   "rerun": false,
    "icons": [
     "https://enka.network/ui/UI_AvatarIcon_Yae.png"
    ],
@@ -82,6 +85,7 @@
    "year": 2024,
    "related": "",
    "banner_img": "https://img.gamewith.jp/img/c3256486cfdc1e0b2e5cf89233a9bdaa.jpeg",
+   "rerun": false,
    "icons": [
     "https://enka.network/ui/UI_AvatarIcon_Chiori.png"
    ],
@@ -103,6 +107,7 @@
    "year": 2024,
    "related": "",
    "banner_img": "https://img.gamewith.jp/img/af828c392fc77832f219597638c53962.jpeg",
+   "rerun": false,
    "icons": [
     "https://enka.network/ui/UI_AvatarIcon_Neuvillette.png"
    ],
@@ -124,6 +129,7 @@
    "year": 2024,
    "related": "",
    "banner_img": "https://img.gamewith.jp/img/e6f781ecc8eae3afd81ad8b7a48ab0c0.jpeg",
+   "rerun": true,
    "icons": [
     "https://enka.network/ui/UI_AvatarIcon_Arlecchino.png"
    ],
@@ -145,6 +151,7 @@
    "year": 2024,
    "related": "",
    "banner_img": "https://img.gamewith.jp/img/d9e4c0b45b6e80a38d347b6dbe548578.jpeg",
+   "rerun": true,
    "icons": [
     "https://enka.network/ui/UI_AvatarIcon_Wanderer.png",
     "https://enka.network/ui/UI_AvatarIcon_Baizhuer.png"
@@ -168,6 +175,7 @@
    "year": 2024,
    "related": "",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/06/03/0/5e700294350bd2ea942800127ef0fbf5_6205033083023036495.jpeg",
+   "rerun": true,
    "icons": [
     "https://enka.network/ui/UI_AvatarIcon_Clorinde.png",
     "https://enka.network/ui/UI_AvatarIcon_Alhatham.png"
@@ -191,6 +199,7 @@
    "year": 2024,
    "related": "",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/06/20/0/02f62854b7ad8a16c3432e837a703083_2323391094639384563.jpeg",
+   "rerun": true,
    "icons": [
     "https://enka.network/ui/UI_AvatarIcon_Sigewinne.png",
     "https://enka.network/ui/UI_AvatarIcon_Furina.png"
@@ -214,6 +223,7 @@
    "year": 2024,
    "related": "",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/07/12/0/0c93fbaab1d01bf2265f481f504e2252_1999101370260728182.jpeg",
+   "rerun": true,
    "icons": [
     "https://enka.network/ui/UI_AvatarIcon_Navia.png",
     "https://enka.network/ui/UI_AvatarIcon_Nilou.png"
@@ -237,6 +247,7 @@
    "year": 2024,
    "related": "",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/07/31/0/1e9dbd336af3343a96114538f0c97a31_2302900058160100692.jpeg",
+   "rerun": true,
    "icons": [
     "https://enka.network/ui/UI_AvatarIcon_Emilie.png",
     "https://enka.network/ui/UI_AvatarIcon_Yelan.png"
@@ -260,6 +271,7 @@
    "year": 2024,
    "related": "",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/08/26/0/084945fe36ba39ee45730b0c8d2bb03c_6348091551060473017.jpeg",
+   "rerun": true,
    "icons": [
     "https://enka.network/ui/UI_AvatarIcon_Mualani.png",
     "https://enka.network/ui/UI_AvatarIcon_Kazuha.png"
@@ -283,6 +295,7 @@
    "year": 2024,
    "related": "",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/09/11/91f577a717afcc9976463a0a9cfe54e8_7398512192234296705.jpg",
+   "rerun": true,
    "icons": [
     "https://enka.network/ui/UI_AvatarIcon_Kinich.png",
     "https://enka.network/ui/UI_AvatarIcon_Shougun.png"
@@ -306,6 +319,7 @@
    "year": 2024,
    "related": "",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/10/06/0/d999ca2ad59413c9e525e0e67b558131_1246210284913203565.jpeg",
+   "rerun": true,
    "icons": [
     "https://enka.network/ui/UI_AvatarIcon_Xilonen.png",
     "https://enka.network/ui/UI_AvatarIcon_Chiori.png"
@@ -329,6 +343,7 @@
    "year": 2024,
    "related": "",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/10/23/0/344cd08b6b48adfa875b996ba0b219c3_8055236353833625038.jpeg",
+   "rerun": true,
    "icons": [
     "https://enka.network/ui/UI_AvatarIcon_Nahida.png",
     "https://enka.network/ui/UI_AvatarIcon_Hutao.png"
@@ -352,6 +367,7 @@
    "year": 2024,
    "related": "",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/11/15/0/6c6332e9c76b4392043f56c34a2fabcf_7620603469069275850.jpeg",
+   "rerun": true,
    "icons": [
     "https://enka.network/ui/UI_AvatarIcon_Chasca.png",
     "https://enka.network/ui/UI_AvatarIcon_Liney.png"
@@ -375,6 +391,7 @@
    "year": 2024,
    "related": "",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/12/04/0/c78ccd5843dbc3996f263f91a7890e95_3846122510955764502.jpeg",
+   "rerun": true,
    "icons": [
     "https://enka.network/ui/UI_AvatarIcon_Neuvillette.png",
     "https://enka.network/ui/UI_AvatarIcon_Zhongli.png"
@@ -398,6 +415,7 @@
    "year": 2025,
    "related": "",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/12/27/0/42cec471ee55ebcd3dac4c9cc39c33a4_3081370112186905576.jpeg",
+   "rerun": false,
    "icons": [
     "https://enka.network/ui/UI_AvatarIcon_Mavuika.png",
     "https://enka.network/ui/UI_AvatarIcon_Citlali.png"
@@ -421,6 +439,7 @@
    "year": 2025,
    "related": "藍硯",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/12/30/0/bfdb5734d21590b2e27acbbeae10ac6e_4621479989988408355.jpeg",
+   "rerun": true,
    "icons": [
     "https://enka.network/ui/UI_AvatarIcon_Arlecchino.png",
     "https://enka.network/ui/UI_AvatarIcon_Clorinde.png"
@@ -444,6 +463,7 @@
    "year": 2025,
    "related": "",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/02/07/0/3c7dceda043e860cc1a859756c0aee7f_823675954244895025.jpeg",
+   "rerun": true,
    "icons": [
     "https://enka.network/ui/UI_AvatarIcon_Mizuki.png",
     "https://enka.network/ui/UI_AvatarIcon_Sigewinne.png"
@@ -467,6 +487,7 @@
    "year": 2025,
    "related": "",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/02/26/221c127b961eba1c62c610cc11b6f289_3469217581724871397.jpg",
+   "rerun": true,
    "icons": [
     "https://enka.network/ui/UI_AvatarIcon_Wriothesley.png",
     "https://enka.network/ui/UI_AvatarIcon_Furina.png"
@@ -490,6 +511,7 @@
    "year": 2025,
    "related": "イアンサ",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/03/21/5935aed29bc08c7d1e2fbb8f2b88a76f_7662838973682167949.jpg",
+   "rerun": true,
    "icons": [
     "https://enka.network/ui/UI_AvatarIcon_Varesa.png",
     "https://enka.network/ui/UI_AvatarIcon_Liuyun.png"
@@ -513,6 +535,7 @@
    "year": 2025,
    "related": "",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/04/09/dd4f139635182b7fd570b7534eda2908_1840557538363451263.jpg",
+   "rerun": true,
    "icons": [
     "https://enka.network/ui/UI_AvatarIcon_Xilonen.png",
     "https://enka.network/ui/UI_AvatarIcon_Venti.png"
@@ -536,6 +559,7 @@
    "year": 2025,
    "related": "ナヴィア復刻",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/04/30/142a0942277004de21a7aa908ef5ce38_3367995657944649773.jpg",
+   "rerun": false,
    "icons": [
     "https://enka.network/ui/UI_AvatarIcon_Escoffier.png"
    ],
@@ -557,6 +581,7 @@
    "year": 2025,
    "related": "集録祈願「天を裂く雷鳴」",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/05/20/9b3533fb3602e36cf0de355ec387eead_8481502789443642874.jpg",
+   "rerun": true,
    "icons": [
     "https://enka.network/ui/UI_AvatarIcon_Kinich.png",
     "https://enka.network/ui/UI_AvatarIcon_Shougun.png"
@@ -580,6 +605,7 @@
    "year": 2025,
    "related": "申鶴復刻",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/06/13/e82471d6437baa04dcfed78eb2fc02a3_4986421211168343162.jpg",
+   "rerun": false,
    "icons": [
     "https://enka.network/ui/UI_AvatarIcon_SkirkNew.png"
    ],
@@ -601,6 +627,7 @@
    "year": 2025,
    "related": "",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/07/03/119467b87609ca06247f512e0ec5e340_6231794123022969564.jpg",
+   "rerun": true,
    "icons": [
     "https://enka.network/ui/UI_AvatarIcon_Mavuika.png",
     "https://enka.network/ui/UI_AvatarIcon_Emilie.png"
@@ -624,6 +651,7 @@
    "year": 2025,
    "related": "シトラリ復刻",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/07/25/74bd3dd43d387175d6488d531b1dc876_2376537358052853601.jpg",
+   "rerun": false,
    "icons": [
     "https://enka.network/ui/UI_AvatarIcon_Ineffa.png"
    ],
@@ -645,6 +673,7 @@
    "year": 2025,
    "related": "",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/08/13/5695e8cae4299e6c3c5d5609a6ea2eb6_2960019148035950589.jpg",
+   "rerun": true,
    "icons": [
     "https://enka.network/ui/UI_AvatarIcon_Mualani.png",
     "https://enka.network/ui/UI_AvatarIcon_Chasca.png"
@@ -668,6 +697,7 @@
    "year": 2025,
    "related": "ナヒーダ復刻、集録祈願「露と草の盃」",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/09/08/df8ebd49c2ac99d701f3e88a96c970c6_4362035183919378694.jpg",
+   "rerun": false,
    "icons": [
     "https://enka.network/ui/UI_AvatarIcon_Lauma.png"
    ],
@@ -689,6 +719,7 @@
    "year": 2025,
    "related": "夜蘭復刻",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/09/25/5502559493f5ec79f029c83c3a911694_4527499613479705532.jpg",
+   "rerun": false,
    "icons": [
     "https://enka.network/ui/UI_AvatarIcon_Flins.png"
    ],
@@ -710,6 +741,7 @@
    "year": 2025,
    "related": "フリーナ",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/10/17/521613c0dab0b4018fc68d926affaa6a_3857502028067489407.jpg",
+   "rerun": false,
    "icons": [
     "https://enka.network/ui/UI_AvatarIcon_Nefer.png"
    ],
@@ -731,6 +763,7 @@
    "year": 2025,
    "related": "",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/11/05/dc6dc0787edd06c117eaca2e57a5287a_2988516736738081068.jpg",
+   "rerun": true,
    "icons": [
     "https://enka.network/ui/UI_AvatarIcon_Arlecchino.png",
     "https://enka.network/ui/UI_AvatarIcon_Zhongli.png"
@@ -754,6 +787,7 @@
    "year": 2025,
    "related": "ウェンティ復刻",
    "banner_img": "https://pbs.twimg.com/media/G7DR9lxXwAAsdoT.jpg",
+   "rerun": false,
    "icons": [
     "https://enka.network/ui/UI_AvatarIcon_Durin.png"
    ],
@@ -775,6 +809,7 @@
    "year": 2025,
    "related": "",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/12/16/3ad1503120788bc3e15a09d52232afa9_2373601342062660402.jpg",
+   "rerun": true,
    "icons": [
     "https://enka.network/ui/UI_AvatarIcon_Varesa.png",
     "https://enka.network/ui/UI_AvatarIcon_Xilonen.png"
@@ -798,6 +833,7 @@
    "year": 2026,
    "related": "イネファ復刻\n2025年へ",
    "banner_img": "https://pbs.twimg.com/media/G-blMLpXMAAPNmR.jpg",
+   "rerun": false,
    "icons": [
     "https://enka.network/ui/UI_AvatarIcon_Columbina.png"
    ],
@@ -819,6 +855,7 @@
    "year": 2026,
    "related": "ヌヴィレット復刻、イルーガ",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/01/22/e5f370029d6e45ecc4e51427f7c164b5_2047444970886058009.jpg",
+   "rerun": false,
    "icons": [],
    "agents": [],
    "accent": null,
@@ -836,6 +873,7 @@
    "year": 2026,
    "related": "フリンズ",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/02/13/0a462af54a91f6a5fcb6a1d884cad245_1998948553019150990.jpg",
+   "rerun": false,
    "icons": [],
    "agents": [],
    "accent": null,
@@ -853,6 +891,7 @@
    "year": 2026,
    "related": "",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/03/11/93a7419d864f13f2270f89924c0b8e4a_7397518726044578515.jpg",
+   "rerun": true,
    "icons": [
     "https://enka.network/ui/UI_AvatarIcon_SkirkNew.png",
     "https://enka.network/ui/UI_AvatarIcon_Escoffier.png"
@@ -876,6 +915,7 @@
    "year": 2026,
    "related": "チャスカ",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/04/06/daa7021a27e0b565c48577edf05a1ece_2551284884487609917.jpg",
+   "rerun": false,
    "icons": [],
    "agents": [],
    "accent": null,
@@ -893,6 +933,7 @@
    "year": 2026,
    "related": "集録祈願「ルキナのせせらぎ」",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/04/22/0/964100e3fe6295fd0483e735b463a329_4365338839486256120.webp",
+   "rerun": true,
    "icons": [
     "https://enka.network/ui/UI_AvatarIcon_Lauma.png",
     "https://enka.network/ui/UI_AvatarIcon_Nefer.png"
@@ -916,6 +957,7 @@
    "year": 2026,
    "related": "ドゥリン",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/05/15/8c2fe2e9cbf65169b54d499ec2bb42fd_7520440180828628783.jpg",
+   "rerun": false,
    "icons": [],
    "agents": [],
    "accent": null,
@@ -933,6 +975,7 @@
    "year": 2026,
    "related": "",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/06/02/0/9ac9e23478b7656719b6795b0a8cd71b_3425170184116618980.jpeg",
+   "rerun": false,
    "icons": [],
    "agents": [],
    "accent": null,
@@ -950,6 +993,7 @@
    "year": 2026,
    "related": "",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/06/29/0/781da55472dc1186e3e8d2d93140cf70_7777178998231754007.jpeg",
+   "rerun": false,
    "icons": [],
    "agents": [],
    "accent": null,

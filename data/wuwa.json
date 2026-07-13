@@ -4,7 +4,7 @@
  "jp": "鳴潮",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E9%B3%B4%E6%BD%AE",
- "updated": "2026-07-13T17:38:09Z",
+ "updated": "2026-07-13T22:04:34Z",
  "count": 36,
  "banners": [
   {
@@ -19,6 +19,11 @@
    "year": 2024,
    "related": "忌炎、丹瑾、モルトフィー 、熾霞",
    "banner_img": "https://hw-media-cdn-mingchao.kurogame.com/object/1716480000000/o2cvj32h8cj20zwan7-1716563627995.jpg",
+   "rerun": false,
+   "agents": [
+    "Jiyan"
+   ],
+   "en": "Jiyan",
    "icons": [
     "icons/faces/wuwa/2024-05-23-1a620b.webp"
    ],
@@ -36,6 +41,11 @@
    "year": 2024,
    "related": "吟霖、淵武、アールト、桃祈",
    "banner_img": "https://hw-media-cdn-mingchao.kurogame.com/object/1717516800000/spcqbfelec4zw8s53c-1717567858155.jpg",
+   "rerun": false,
+   "agents": [
+    "Yinlin"
+   ],
+   "en": "Yinlin",
    "icons": [
     "icons/faces/wuwa/2024-06-06-f5c453.webp"
    ],
@@ -53,6 +63,11 @@
    "year": 2024,
    "related": "",
    "banner_img": "https://hw-media-cdn-mingchao.kurogame.com/object/1719331200000/qvpanefeio17n7v2bx-1719386709685.jpg",
+   "rerun": false,
+   "agents": [
+    "Jinhsi"
+   ],
+   "en": "Jinhsi",
    "icons": [
     "icons/faces/wuwa/2024-06-28-810afa.webp"
    ],
@@ -70,6 +85,11 @@
    "year": 2024,
    "related": "",
    "banner_img": "https://hw-media-cdn-mingchao.kurogame.com/object/1721232000000/e2ua4tyo77r1nae7oy-1721299368289.jpg",
+   "rerun": false,
+   "agents": [
+    "Changli"
+   ],
+   "en": "Changli",
    "icons": [
     "icons/faces/wuwa/2024-07-22-35d494.webp"
    ],
@@ -87,6 +107,11 @@
    "year": 2024,
    "related": "",
    "banner_img": "https://hw-media-cdn-mingchao.kurogame.com/object/1723392000000/drw2v0kzsb4lhfpn3y-1723432603024.jpg",
+   "rerun": false,
+   "agents": [
+    "Zhezhi"
+   ],
+   "en": "Zhezhi",
    "icons": [
     "icons/faces/wuwa/2024-08-15-3aa805.webp"
    ],
@@ -104,6 +129,11 @@
    "year": 2024,
    "related": "",
    "banner_img": "https://hw-media-cdn-mingchao.kurogame.com/object/1727366400000/wy3rpqvixe6ovwdd7a-1727406817974.jpg",
+   "rerun": false,
+   "agents": [
+    "Shorekeeper"
+   ],
+   "en": "Shorekeeper",
    "icons": [
     "icons/faces/wuwa/2024-09-29-bbacf0.webp"
    ],
@@ -121,6 +151,11 @@
    "year": 2024,
    "related": "",
    "banner_img": "https://hw-media-cdn-mingchao.kurogame.com/akiwebsite/website2.0/images/1731340800000/mdsrhqpdwr1yok8k33-1731405528199.jpg",
+   "rerun": false,
+   "agents": [
+    "Camellya"
+   ],
+   "en": "Camellya",
    "icons": [
     "icons/faces/wuwa/2024-11-14-c43c7f.webp"
    ],
@@ -138,6 +173,11 @@
    "year": 2024,
    "related": "",
    "banner_img": "https://hw-media-cdn-mingchao.kurogame.com/object/1733846400000/r86rb26tlvpxg85ut6-1733883464006.jpg",
+   "rerun": true,
+   "agents": [
+    "Yinlin"
+   ],
+   "en": "Yinlin",
    "icons": [
     "icons/faces/wuwa/2024-12-12-b856e5.webp"
    ],
@@ -155,6 +195,11 @@
    "year": 2025,
    "related": "",
    "banner_img": "https://hw-media-cdn-mingchao.kurogame.com/akiwebsite/website2.0/images/1735401600000/diyl4qmlwqgqsd8sl5-1735487874926.jpg",
+   "rerun": true,
+   "agents": [
+    "Carlotta"
+   ],
+   "en": "Carlotta",
    "icons": [
     "icons/faces/wuwa/2025-01-02-e5d337.webp"
    ],
@@ -172,6 +217,11 @@
    "year": 2025,
    "related": "",
    "banner_img": "https://hw-media-cdn-mingchao.kurogame.com/akiwebsite/website2.0/images/1736956800000/2l8nq15vo418kbirq3-1736994711820.jpeg",
+   "rerun": true,
+   "agents": [
+    "Roccia"
+   ],
+   "en": "Roccia",
    "icons": [
     "icons/faces/wuwa/2025-01-23-f387fa.webp"
    ],
@@ -189,6 +239,11 @@
    "year": 2025,
    "related": "",
    "banner_img": "https://hw-media-cdn-mingchao.kurogame.com/akiwebsite/website2.0/images/1738944000000/umh85l4trxp9ut2vac-1739016125292.jpg",
+   "rerun": false,
+   "agents": [
+    "Phoebe"
+   ],
+   "en": "Phoebe",
    "icons": [
     "icons/faces/wuwa/2025-02-13-4ab033.webp"
    ],
@@ -206,6 +261,11 @@
    "year": 2025,
    "related": "",
    "banner_img": "https://hw-media-cdn-mingchao.kurogame.com/akiwebsite/website2.0/images/1740672000000/0t4dmgui1ldv4w9glc-1740739379907.jpeg",
+   "rerun": true,
+   "agents": [
+    "Brant"
+   ],
+   "en": "Brant",
    "icons": [
     "icons/faces/wuwa/2025-03-06-3e3b26.webp"
    ],
@@ -223,6 +283,11 @@
    "year": 2025,
    "related": "",
    "banner_img": "https://hw-media-cdn-mingchao.kurogame.com/object/1742918400000/1oyj87c99o3801sev4-1742954162956.jpg",
+   "rerun": true,
+   "agents": [
+    "Cantarella"
+   ],
+   "en": "Cantarella",
    "icons": [
     "icons/faces/wuwa/2025-03-27-2bed11.webp"
    ],
@@ -240,6 +305,11 @@
    "year": 2025,
    "related": "",
    "banner_img": "https://hw-media-cdn-mingchao.kurogame.com/object/1744732800000/uis368x9h4djlzdnku-1744786406290.jpg",
+   "rerun": true,
+   "agents": [
+    "Shorekeeper"
+   ],
+   "en": "Shorekeeper",
    "icons": [
     "icons/faces/wuwa/2025-04-17-7c5f23.webp"
    ],
@@ -257,6 +327,11 @@
    "year": 2025,
    "related": "",
    "banner_img": "https://hw-media-cdn-mingchao.kurogame.com/object/1745769600000/zmn8zcd6tzwpwm1do1-1745835584710.jpg",
+   "rerun": false,
+   "agents": [
+    "Zani"
+   ],
+   "en": "Zani",
    "icons": [
     "icons/faces/wuwa/2025-04-29-2b0d76.webp"
    ],
@@ -274,6 +349,11 @@
    "year": 2025,
    "related": "",
    "banner_img": "https://hw-media-cdn-mingchao.kurogame.com/object/1747670400000/3ax3m1s58cggaim2tl-1747739872262.jpg",
+   "rerun": false,
+   "agents": [
+    "Ciaccona"
+   ],
+   "en": "Ciaccona",
    "icons": [
     "icons/faces/wuwa/2025-05-22-b93e27.webp"
    ],
@@ -291,6 +371,11 @@
    "year": 2025,
    "related": "",
    "banner_img": "https://hw-media-cdn-mingchao.kurogame.com/object/1749484800000/agv4cnxbooizk27dnp-1749549910260.jpg",
+   "rerun": false,
+   "agents": [
+    "Cartethyia"
+   ],
+   "en": "Cartethyia",
    "icons": [
     "icons/faces/wuwa/2025-06-12-22b106.webp"
    ],
@@ -308,6 +393,11 @@
    "year": 2025,
    "related": "",
    "banner_img": "https://hw-media-cdn-mingchao.kurogame.com/object/1751385600000/kcu55w7li0zfy3ooyk-1751429071911.jpg",
+   "rerun": false,
+   "agents": [
+    "Lupa"
+   ],
+   "en": "Lupa",
    "icons": [
     "icons/faces/wuwa/2025-07-03-54d4ac.webp"
    ],
@@ -325,6 +415,11 @@
    "year": 2025,
    "related": "",
    "banner_img": "https://hw-media-cdn-mingchao.kurogame.com/object/1753200000000/rpvoaoe63ohee5ylow-1753236323686.jpg",
+   "rerun": false,
+   "agents": [
+    "Phrolova"
+   ],
+   "en": "Phrolova",
    "icons": [
     "icons/faces/wuwa/2025-07-24-5e63b1.webp"
    ],
@@ -342,6 +437,11 @@
    "year": 2025,
    "related": "",
    "banner_img": "https://hw-media-cdn-mingchao.kurogame.com/object/1754928000000/ym857yxba1ywg0vwip-1754993984981.jpg",
+   "rerun": true,
+   "agents": [
+    "Cantarella"
+   ],
+   "en": "Cantarella",
    "icons": [
     "icons/faces/wuwa/2025-08-14-e5bb26.webp"
    ],
@@ -359,6 +459,11 @@
    "year": 2025,
    "related": "カルロッタ、ショアキーパー",
    "banner_img": "https://hw-media-cdn-mingchao.kurogame.com/object/1756224000000/oqn1cp4uwc4vzmt977-1756261999548.jpg",
+   "rerun": false,
+   "agents": [
+    "Augusta"
+   ],
+   "en": "Augusta",
    "icons": [
     "icons/faces/wuwa/2025-08-28-ab5298.webp"
    ],
@@ -376,6 +481,11 @@
    "year": 2025,
    "related": "シャコンヌ",
    "banner_img": "https://hw-media-cdn-mingchao.kurogame.com/object/1757952000000/v5v3tnrh0daa9qm99b-1757991004032.jpg",
+   "rerun": false,
+   "agents": [
+    "Iuno"
+   ],
+   "en": "Iuno",
    "icons": [
     "icons/faces/wuwa/2025-09-17-e6469b.webp"
    ],
@@ -393,6 +503,11 @@
    "year": 2025,
    "related": "ルパ",
    "banner_img": "https://hw-media-cdn-mingchao.kurogame.com/object/1759680000000/qszpcdmjunlfdhpcjy-1759735422512.jpg",
+   "rerun": false,
+   "agents": [
+    "Galbrena"
+   ],
+   "en": "Galbrena",
    "icons": [
     "icons/faces/wuwa/2025-10-09-3a784c.webp"
    ],
@@ -410,6 +525,11 @@
    "year": 2025,
    "related": "ザンニー",
    "banner_img": "https://hw-media-cdn-mingchao.kurogame.com/object/1761667200000/06zaj5j8xx9f7sfcv0-1761723066249.jpg",
+   "rerun": false,
+   "agents": [
+    "Qiuyuan"
+   ],
+   "en": "Qiuyuan",
    "icons": [
     "icons/faces/wuwa/2025-10-30-c55a5b.webp"
    ],
@@ -427,6 +547,11 @@
    "year": 2025,
    "related": "フィービー",
    "banner_img": "https://hw-media-cdn-mingchao.kurogame.com/object/1763481600000/51cl4rkkmy6fzcp1co-1763520585416.jpg",
+   "rerun": false,
+   "agents": [
+    "Chisa"
+   ],
+   "en": "Chisa",
    "icons": [
     "icons/faces/wuwa/2025-11-20-a4a1e8.webp"
    ],
@@ -444,6 +569,11 @@
    "year": 2025,
    "related": "",
    "banner_img": "https://i.imgur.com/Q6JdYut.jpeg",
+   "rerun": true,
+   "agents": [
+    "Phrolova"
+   ],
+   "en": "Phrolova",
    "icons": [
     "icons/faces/wuwa/2025-12-11-7ccffa.webp"
    ],
@@ -461,6 +591,11 @@
    "year": 2025,
    "related": "",
    "banner_img": "https://i.mopix.cc/Uim02C.jpg",
+   "rerun": false,
+   "agents": [
+    "Lynae"
+   ],
+   "en": "Lynae",
    "icons": [
     "icons/faces/wuwa/2025-12-25-5e994f.webp"
    ],
@@ -478,6 +613,11 @@
    "year": 2026,
    "related": "モーニエ\n2025年へ",
    "banner_img": "https://i.mopix.cc/XlW1yn.jpg",
+   "rerun": false,
+   "agents": [
+    "Mornye"
+   ],
+   "en": "Mornye",
    "icons": [
     "icons/faces/wuwa/2026-01-15-30021a.webp"
    ],
@@ -495,6 +635,11 @@
    "year": 2026,
    "related": "",
    "banner_img": "https://i.mopix.cc/YaWroI.jpg",
+   "rerun": false,
+   "agents": [
+    "Aemeath"
+   ],
+   "en": "Aemeath",
    "icons": [
     "icons/faces/wuwa/2026-02-05-01b739.webp"
    ],
@@ -512,6 +657,11 @@
    "year": 2026,
    "related": "",
    "banner_img": "https://i.mopix.cc/LYaAaB.jpg",
+   "rerun": false,
+   "agents": [
+    "Luuk Herssen"
+   ],
+   "en": "Luuk Herssen",
    "icons": [
     "icons/faces/wuwa/2026-02-26-95fc9b.webp"
    ],
@@ -529,6 +679,11 @@
    "year": 2026,
    "related": "",
    "banner_img": "https://i.mopix.cc/kRp8lQ.jpg",
+   "rerun": false,
+   "agents": [
+    "Sigrika"
+   ],
+   "en": "Sigrika",
    "icons": [
     "icons/faces/wuwa/2026-03-19-55323e.webp"
    ],
@@ -546,6 +701,11 @@
    "year": 2026,
    "related": "",
    "banner_img": "https://i.mopix.cc/Uim02C.jpg",
+   "rerun": true,
+   "agents": [
+    "Lynae"
+   ],
+   "en": "Lynae",
    "icons": [
     "icons/faces/wuwa/2026-04-09-5e994f.webp"
    ],
@@ -563,6 +723,11 @@
    "year": 2026,
    "related": "",
    "banner_img": "https://i.mopix.cc/C2UOMU.jpg",
+   "rerun": false,
+   "agents": [
+    "Hiyuki"
+   ],
+   "en": "Hiyuki",
    "icons": [
     "icons/faces/wuwa/2026-04-30-f1c782.webp"
    ],
@@ -580,6 +745,11 @@
    "year": 2026,
    "related": "",
    "banner_img": "https://i.mopix.cc/Hk7KNj.jpg",
+   "rerun": false,
+   "agents": [
+    "Denia"
+   ],
+   "en": "Denia",
    "icons": [
     "icons/faces/wuwa/2026-05-21-fe2777.webp"
    ],
@@ -597,6 +767,11 @@
    "year": 2026,
    "related": "",
    "banner_img": "https://i.mopix.cc/OforYt.jpg",
+   "rerun": false,
+   "agents": [
+    "Lucy"
+   ],
+   "en": "Lucy",
    "icons": [
     "icons/faces/wuwa/2026-06-08-c1790b.webp"
    ],
@@ -614,6 +789,11 @@
    "year": 2026,
    "related": "",
    "banner_img": "https://i.mopix.cc/pI0ghq.jpg",
+   "rerun": false,
+   "agents": [
+    "Yangyang: Xuanling"
+   ],
+   "en": "Yangyang: Xuanling",
    "icons": [
     "icons/faces/wuwa/2026-07-10-8abe5a.webp"
    ],

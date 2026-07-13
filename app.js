@@ -1,8 +1,10 @@
 // Gacha Revenue Tracker — client logic. Data comes from data/*.json (built by scripts/).
-const GAME_ACCENT = {          // fallback hue when a banner has no character icon
+const GAME_ACCENT = {          // per-game hue (used for bars/dots without a sampled color)
   zzz:"#e0a400", hsr:"#8a7bd8", wuwa:"#2fb6c0", genshin:"#d8a24a", endfield:"#e07b3a", nte:"#d94f8a",
+  monst:"#f0603a", nikke:"#ff4d6d", uma:"#3fb98f", fgo:"#c8a24a", proseka:"#39c5bb", enstars:"#4a90d9",
+  bluearchive:"#4db6e8", dokkan:"#f5911e", puzzdra:"#e8b923", gbf:"#4a7fd0",
 };
-const state = { games:[], tag:null, data:null, mode:"time", table:false, reverse:false, bracket:0 };
+const state = { games:[], tag:null, data:null, mode:"time", table:false, reverse:false, bracket:0, tabsExpanded:false };
 const $ = s => document.querySelector(s);
 const fmtDate = new Intl.DateTimeFormat("en",{year:"numeric",month:"short",day:"numeric"});
 const per = s => fmtDate.format(new Date(s+"T00:00:00"));
@@ -43,9 +45,29 @@ async function init(){
     b.innerHTML=`<span class="g">${g.name}</span><span class="t">${g.count} banners · ${G(g.total_oku)}</span>`;
     b.onclick=()=>selectGame(g.game); tabs.appendChild(b);
   });
+  // ResizeObserver fires after layout settles and on width changes; fonts.ready
+  // covers late font metrics. Deterministic width math avoids wrap-timing flakiness.
+  new ResizeObserver(layoutTabs).observe($("#tabs"));
+  addEventListener("resize", layoutTabs);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(layoutTabs);
   const start = (location.hash||"").replace("#","");
   selectGame(state.games.some(g=>g.game===start)?start:state.games[0].game);
 }
+
+// Collapse the game list to one no-wrap row with an "+N more" toggle. Collapsed is a
+// single line, so we count how many tabs fit by summing their widths (deterministic).
+function layoutTabs(){
+  const tabs=$("#tabs"), toggle=$("#tabsToggle");
+  if(!tabs.children.length || !tabs.clientWidth) return;
+  tabs.classList.toggle("collapsed", !state.tabsExpanded);
+  if(state.tabsExpanded){ toggle.hidden=false; toggle.textContent="Show less ▴"; return; }
+  let used=0, fit=0;
+  for(const t of tabs.children){ used += t.offsetWidth + 8; if(used > tabs.clientWidth && fit>0) break; fit++; }
+  const hidden = tabs.children.length - fit;
+  toggle.hidden = hidden<=0;
+  toggle.textContent = `+${hidden} more ▾`;
+}
+$("#tabsToggle").onclick=()=>{ state.tabsExpanded=!state.tabsExpanded; layoutTabs(); };
 async function selectGame(tag){
   state.tag=tag; location.hash=tag;
   document.querySelectorAll(".tab").forEach(t=>t.classList.toggle("on",t.dataset.tag===tag));
@@ -90,11 +112,12 @@ function rowHTML(b,rank,max){
   const [bl,bd]=barShades(b.bar||b.accent||GAME_ACCENT[state.tag]);
   const w=Math.max(1.2,(b.rev/max)*100), m=rank<=3?` m${rank}`:"";
   const en=b.agents&&b.agents.length?b.agents.join(" & "):"";
+  const rr=b.rerun?`<span class="rr" title="Rerun banner">↻ rerun</span>`:"";
   return `<div class="row" data-i="${b._i}" style="--bar-l:${bl};--bar-d:${bd};--av-ring:${b.accent||GAME_ACCENT[state.tag]}">
     <div class="rk${m}">${rank}</div>
     <div class="av">${avatarHTML(b)}</div>
     <div class="meta">
-      <div class="nm"><b>${esc(b.name)}</b>${en?`<span class="en">${esc(en)}</span>`:""}</div>
+      <div class="nm"><b>${esc(b.name)}</b>${en?`<span class="en">${esc(en)}</span>`:""}${rr}</div>
       <div class="barline"><div class="track"><div class="barfill" style="width:${w}%"></div></div>
         <span class="val">${G(b.rev)}</span></div>
     </div></div>`;
@@ -193,8 +216,9 @@ const tip=$("#tip");
 function showTip(b,e){
   const en=b.agents&&b.agents.length?b.agents.join(" & "):(b.related||"");
   const art=b.banner_img?`<img class="art" src="${b.banner_img}" alt="" referrerpolicy="no-referrer" onerror="this.remove()">`:"";
+  const rr=b.rerun?` <span class="rr">↻ rerun</span>`:"";
   tip.innerHTML=`${art}<div class="body">
-    <h4><span class="dot" style="background:${b.accent||GAME_ACCENT[state.tag]}"></span>${esc(b.name)}</h4>
+    <h4><span class="dot" style="background:${b.accent||GAME_ACCENT[state.tag]}"></span>${esc(b.name)}${rr}</h4>
     <div style="color:var(--muted);font-size:11.5px">${esc(en)}</div>
     <dl><dt>Period</dt><dd>${per(b.start)} – ${per(b.end)}</dd>
     <dt>Est. revenue</dt><dd><b>${G(b.rev)}</b></dd>

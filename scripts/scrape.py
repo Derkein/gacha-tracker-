@@ -16,7 +16,7 @@ Each banner record:
     related     related characters string (game-i's 関連キャラ)
     banner_img  official banner splash art URL (may be null)
 """
-import re, json, time, html, sys, urllib.request, urllib.parse
+import re, json, time, html, sys, urllib.request, urllib.parse, urllib.error
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -32,9 +32,42 @@ GAMES = {
     "genshin":  {"page": "ガチャ分析/原神",                  "name": "Genshin Impact",     "jp": "原神"},
     "endfield": {"page": "ガチャ分析/アークナイツ：エンドフィールド", "name": "Arknights: Endfield","jp": "アークナイツ：エンドフィールド"},
     "nte":      {"page": "ガチャ分析/NTE： Neverness to Everness", "name": "Neverness to Everness", "jp": "NTE： Neverness to Everness"},
+    # Top popular gacha titles game-i tracks (resolved by App Store id at runtime,
+    # so we don't hardcode long JP page names full of ：＆！／). Data-only: these
+    # use banner-art thumbnails, not character icons.
+    "monst":       {"apid": "658511662",  "name": "Monster Strike"},
+    "nikke":       {"apid": "1585915174", "name": "NIKKE"},
+    "uma":         {"apid": "1325457827", "name": "Umamusume: Pretty Derby"},
+    "fgo":         {"apid": "1015521325", "name": "Fate/Grand Order"},
+    "proseka":     {"apid": "1489932710", "name": "Project Sekai"},
+    "enstars":     {"apid": "1494428618", "name": "Ensemble Stars!! Music"},
+    "bluearchive": {"apid": "1515877221", "name": "Blue Archive"},
+    "dokkan":      {"apid": "951627670",  "name": "Dragon Ball Z Dokkan Battle"},
+    "puzzdra":     {"apid": "493470467",  "name": "Puzzle & Dragons"},
+    "gbf":         {"apid": "852882903",  "name": "Granblue Fantasy"},
 }
 
 UA = {"User-Agent": "Mozilla/5.0 (gacha-tracker; +https://github.com/)"}
+
+
+def resolve_page(meta):
+    """Return the ガチャ分析/<name> wiki page for a game, following the app_gacha
+    redirect when only an App Store id is configured."""
+    if meta.get("page"):
+        return meta["page"]
+    url = BASE + f"?cmd=app_gacha&apid={meta['apid']}"
+
+    class _NoRedirect(urllib.request.HTTPRedirectHandler):
+        def redirect_request(self, *a):
+            return None
+    opener = urllib.request.build_opener(_NoRedirect)
+    try:
+        opener.open(urllib.request.Request(url, headers=UA), timeout=40)
+    except urllib.error.HTTPError as e:
+        loc = e.headers.get("Location")
+        if loc and "?" in loc:
+            return urllib.parse.unquote(loc.split("?", 1)[1])
+    raise RuntimeError(f"could not resolve gacha page for apid={meta.get('apid')}")
 
 
 def fetch(url, tries=3):
@@ -88,11 +121,14 @@ def parse_banners(hpage, year):
             "year": int(year),
             "related": clean(rel.group(1)) if rel else "",
             "banner_img": img.group(1) if img else None,
+            "rerun": "復刻" in name,        # 復刻 = rerun banner
         })
     return rows
 
 
 def scrape_game(tag, meta):
+    meta["page"] = resolve_page(meta)
+    meta.setdefault("jp", meta["page"].split("/", 1)[1] if "/" in meta["page"] else meta["page"])
     h0 = fetch(page_url(meta["page"]))
     years = sorted(set(re.findall(r"yyyy=(20\d\d)", h0)))
     # the default page is the newest year; make sure it's included
