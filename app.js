@@ -4,7 +4,10 @@ const GAME_ACCENT = {          // per-game hue (used for bars/dots without a sam
   nikke:"#ff4d6d", uma:"#3fb98f", fgo:"#c8a24a", bluearchive:"#4db6e8", gbf:"#4a7fd0",
   arknights:"#e8b923", chaoszero:"#9b6ef0", gfl2:"#5a9fd6",
 };
-const state = { games:[], tag:null, data:null, mode:"time", table:false, reverse:false, bracket:0, tabsExpanded:false };
+const state = { games:[], tag:null, data:null, mode:"time", table:false, reverse:false, bracket:0, tabsExpanded:false, graphYear:"all", matchHigh:false };
+// character accent wins (it's the true character/element colour); banner-dominant `bar`
+// is the fallback for games with no accent (e.g. Endfield); then the per-game hue.
+const barColor = b => b.accent || b.bar || GAME_ACCENT[state.tag];
 const $ = s => document.querySelector(s);
 const fmtDate = new Intl.DateTimeFormat("en",{year:"numeric",month:"short",day:"numeric"});
 const per = s => fmtDate.format(new Date(s+"T00:00:00"));
@@ -74,6 +77,7 @@ async function selectGame(tag){
   document.documentElement.style.setProperty("--accent", GAME_ACCENT[tag]||"#e0a400");
   $("#chart").innerHTML=`<div class="loading">Loading ${tag.toUpperCase()}…</div>`;
   state.data = await (await fetch(`data/${tag}.json`)).json();
+  populateGraphYears();
   renderStats(); render();
 }
 
@@ -91,7 +95,11 @@ function renderStats(){
 
 function esc(s){return (s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
 function scaleMax(m){const nice=[5,10,15,20,25,30,40,50,75,100,150,200];return nice.find(n=>n>=m)||Math.ceil(m/50)*50;}
-function ticks(max,step){step=step||(max<=25?5:max<=50?10:max<=100?25:50);const t=[];for(let v=0;v<=max+1e-9;v+=step)t.push(+v.toFixed(2));return t;}
+function ticks(max,step){
+  if(!step) step = max<=1?0.2 : max<=2.5?0.5 : max<=6?1 : max<=12?2 : max<=25?5 : max<=50?10 : max<=100?25 : 50;
+  const t=[]; for(let v=0;v<=max+1e-9;v+=step) t.push(+v.toFixed(2)); return t;
+}
+function niceCeil(oku){ return Math.max(1, Math.ceil(oku)); }   // round up to next 100M (1億)
 
 // ---- avatars ----
 function avatarHTML(b){
@@ -109,11 +117,11 @@ window.mono=function(name){const d=document.createElement("span");d.className="m
 
 // ---- bar rows (timeline / ranking) with FLIP reordering ----
 function rowHTML(b,rank,max){
-  const [bl,bd]=barShades(b.bar||b.accent||GAME_ACCENT[state.tag]);
+  const c=barColor(b), [bl,bd]=barShades(c);
   const w=Math.max(1.2,(b.rev/max)*100), m=rank<=3?` m${rank}`:"";
   const en=b.agents&&b.agents.length?b.agents.join(" & "):"";
   const rr=b.rerun?`<span class="rr" title="Rerun banner">↻ rerun</span>`:"";
-  return `<div class="row" data-i="${b._i}" style="--bar-l:${bl};--bar-d:${bd};--av-ring:${b.accent||GAME_ACCENT[state.tag]}">
+  return `<div class="row" data-i="${b._i}" style="--bar-l:${bl};--bar-d:${bd};--av-ring:${c}">
     <div class="rk${m}">${rank}</div>
     <div class="av">${avatarHTML(b)}</div>
     <div class="meta">
@@ -166,7 +174,7 @@ function yearSVG(year, items, gmax, step){
   const area=`M${pts[0].x.toFixed(1)} ${base} `+pts.map(p=>"L"+p.x.toFixed(1)+" "+p.y.toFixed(1)).join(" ")+` L${pts[pts.length-1].x.toFixed(1)} ${base} Z`;
   const R=11;
   const marks=pts.map(p=>{
-    const acc=p.b.accent||GAME_ACCENT[state.tag];
+    const acc=barColor(p.b);
     const url=(p.b.icons&&p.b.icons[0])||p.b.banner_img;
     const cx=p.x.toFixed(1), cy=p.y.toFixed(1);
     if(url){
@@ -183,14 +191,32 @@ function yearSVG(year, items, gmax, step){
 }
 function renderGraph(){
   const b=state.data.banners; b.forEach((x,i)=>x._i=i);
-  const maxRev=Math.max(...b.map(x=>x.rev));
   const step=state.bracket||0;
-  const gmax=step ? Math.ceil(maxRev/step)*step : scaleMax(maxRev);
+  const globalMax = step ? Math.ceil(Math.max(...b.map(x=>x.rev))/step)*step : scaleMax(Math.max(...b.map(x=>x.rev)));
   const byYear={}; b.forEach(x=>{(byYear[x.year]=byYear[x.year]||[]).push(x);});
   let years=Object.keys(byYear).sort();
   if(state.reverse) years.reverse();
-  $("#chart").innerHTML=years.map(y=>
-    `<div class="gyear"><div class="yhead">${y}</div>${yearSVG(y,byYear[y],gmax,step)}</div>`).join("");
+  if(state.graphYear!=="all") years=years.filter(y=>y===state.graphYear);
+  $("#chart").innerHTML=years.map(y=>{
+    const items=byYear[y];
+    let gmax=globalMax;
+    if(state.matchHigh){                       // scale each year to just above its own peak
+      const ym=Math.max(...items.map(x=>x.rev));
+      gmax = step ? Math.ceil(ym/step)*step : niceCeil(ym);
+    }
+    return `<div class="gyear"><div class="yhead">${y}</div>${yearSVG(y,items,gmax,step)}</div>`;
+  }).join("");
+}
+function populateGraphYears(){
+  const years=[...new Set(state.data.banners.map(b=>b.year))].sort();
+  if(state.graphYear!=="all" && !years.includes(+state.graphYear)) state.graphYear="all";
+  $("#gyears").innerHTML=`<button data-y="all"${state.graphYear==="all"?' class="on"':''}>All</button>`+
+    years.map(y=>`<button data-y="${y}"${state.graphYear==String(y)?' class="on"':''}>${y}</button>`).join("");
+  $("#gyears").querySelectorAll("button").forEach(btn=>btn.onclick=()=>{
+    state.graphYear=btn.dataset.y;
+    $("#gyears").querySelectorAll("button").forEach(x=>x.classList.toggle("on",x===btn));
+    if(state.mode==="graph"&&!state.table) render();
+  });
 }
 
 function render(){
@@ -218,7 +244,7 @@ function showTip(b,e){
   const art=b.banner_img?`<img class="art" src="${b.banner_img}" alt="" referrerpolicy="no-referrer" onerror="this.remove()">`:"";
   const rr=b.rerun?` <span class="rr">↻ rerun</span>`:"";
   tip.innerHTML=`${art}<div class="body">
-    <h4><span class="dot" style="background:${b.accent||GAME_ACCENT[state.tag]}"></span>${esc(b.name)}${rr}</h4>
+    <h4><span class="dot" style="background:${barColor(b)}"></span>${esc(b.name)}${rr}</h4>
     <div style="color:var(--muted);font-size:11.5px">${esc(en)}</div>
     <dl><dt>Period</dt><dd>${per(b.start)} – ${per(b.end)}</dd>
     <dt>Est. revenue</dt><dd><b>${G(b.rev)}</b></dd>
@@ -247,7 +273,7 @@ function setMode(m){
   [["bTime","time"],["bGraph","graph"],["bRank","rank"]].forEach(([id,mm])=>{
     const el=$("#"+id); el.classList.toggle("on",m===mm); el.setAttribute("aria-selected",m===mm);
   });
-  $("#brkWrap").hidden = m!=="graph";
+  $("#graphControls").hidden = m!=="graph";
   updateDirLabel();
   if(!state.table) render();
 }
@@ -256,6 +282,7 @@ $("#bRank").onclick=()=>setMode("rank");
 $("#bGraph").onclick=()=>setMode("graph");
 $("#bDir").onclick=()=>{ state.reverse=!state.reverse; updateDirLabel(); if(!state.table) render(); };
 $("#brk").onchange=function(){ state.bracket=+this.value; if(state.mode==="graph"&&!state.table) render(); };
+$("#matchHigh").onchange=function(){ state.matchHigh=this.checked; if(state.mode==="graph"&&!state.table) render(); };
 $("#bTable").onclick=function(){state.table=!state.table;
   this.classList.toggle("on",state.table); this.textContent=state.table?"Chart view":"Table view";
   render();};

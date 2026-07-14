@@ -52,6 +52,12 @@ def build_zzz():
     return out
 
 
+GENSHIN_ELEMENT = {
+    "Fire": "#f0684a", "Water": "#4a90d9", "Ice": "#7fc8e0", "Electric": "#b57fd4",
+    "Wind": "#57c69a", "Rock": "#e0b23c", "Grass": "#84c23c",
+}
+
+
 def build_genshin():
     ch = getj(RAW + "characters.json")
     loc = getj(RAW + "loc.json")
@@ -68,7 +74,8 @@ def build_genshin():
         # AvatarIcon_Side_Xxx -> UI_AvatarIcon_Xxx (front icon)
         front = icon.replace("_Side", "")
         out[name_ja] = {"icon": f"https://enka.network/ui/{front}.png",
-                        "accent": "#c9a86a", "en": en.get(str(h), name_ja)}
+                        "accent": GENSHIN_ELEMENT.get(v.get("Element"), "#c9a86a"),
+                        "en": en.get(str(h), name_ja)}
     return out
 
 

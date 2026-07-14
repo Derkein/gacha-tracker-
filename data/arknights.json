@@ -19,7 +19,11 @@
    "year": 2024,
    "related": "星6：エーベンホルツ 星5：濯塵ハイビスカス 星5：アズリウス\n2023年へ",
    "banner_img": "https://pbs.twimg.com/media/GC5klj2bMAAqqCD.jpg",
-   "rerun": true
+   "rerun": true,
+   "agents": [
+    "Ebenholz"
+   ],
+   "en": "Ebenholz"
   },
   {
    "name": "雲間の明晰夢",
@@ -33,7 +37,12 @@
    "year": 2024,
    "related": "星6：純燼エイヤフィヤトラ（限定） 星6：琳琅スワイヤー 星5：ポンシラス",
    "banner_img": "https://pbs.twimg.com/media/GD3eirHaQAA4vCp.jpg",
-   "rerun": false
+   "rerun": false,
+   "agents": [
+    "Eyjafjalla the Hvít Aska",
+    "Swire the Elegant Wit"
+   ],
+   "en": "Eyjafjalla the Hvít Aska & Swire the Elegant Wit"
   },
   {
    "name": "厄災を射落とす颶風",
@@ -47,7 +56,11 @@
    "year": 2024,
    "related": "星6：ティフォン 星5：サンタラ",
    "banner_img": "https://pbs.twimg.com/media/GHPc0oRbAAAZKyR.jpg",
-   "rerun": false
+   "rerun": false,
+   "agents": [
+    "Typhon"
+   ],
+   "en": "Typhon"
   },
   {
    "name": "銃声",
@@ -61,7 +74,11 @@
    "year": 2024,
    "related": "星6：滌火ジェシカ 星5：アーモンド",
    "banner_img": "https://pbs.twimg.com/media/GI7mE4lbgAEI2mL.jpg",
-   "rerun": false
+   "rerun": false,
+   "agents": [
+    "Jessica the Liberated"
+   ],
+   "en": "Jessica the Liberated"
   },
   {
    "name": "煙塵に瞬く",
@@ -75,7 +92,11 @@
    "year": 2024,
    "related": "星6：ヘドリー 星5：ヴァンデラ 星4：ヴァーダント",
    "banner_img": "https://pbs.twimg.com/media/GLLyo1Za0AA8mvy.jpg",
-   "rerun": false
+   "rerun": false,
+   "agents": [
+    "Hoederer"
+   ],
+   "en": "Hoederer"
   },
   {
    "name": "宿願",
@@ -89,7 +110,12 @@
    "year": 2024,
    "related": "星6：ヴィルトゥオーサ（限定） 星6：ヴィヴィアナ 星5：ベースライン",
    "banner_img": "https://pbs.twimg.com/media/GMUNcX-bMAA7RF4.jpg",
-   "rerun": false
+   "rerun": false,
+   "agents": [
+    "Virtuosa",
+    "Viviana"
+   ],
+   "en": "Virtuosa & Viviana"
   },
   {
    "name": "さすらう者",
@@ -103,7 +129,11 @@
    "year": 2024,
    "related": "星6：デーゲンブレヒャー 星5：リェータ",
    "banner_img": "https://pbs.twimg.com/media/GQgAIwgaIAEfw9C.jpg",
-   "rerun": false
+   "rerun": false,
+   "agents": [
+    "Degenbrecher"
+   ],
+   "en": "Degenbrecher"
   },
   {
    "name": "一筋の曙光",
@@ -117,7 +147,11 @@
    "year": 2024,
    "related": "星6：レイ 星5：ウォーミー",
    "banner_img": "https://pbs.twimg.com/media/GR8mCDBbcAAMXa6.jpg",
-   "rerun": false
+   "rerun": false,
+   "agents": [
+    "Ray"
+   ],
+   "en": "Ray"
   },
   {
    "name": "千秋一粟",
@@ -131,7 +165,12 @@
    "year": 2024,
    "related": "星6：シュウ（限定） 星6：ズオ・ラウ 星5：グレインバッズ",
    "banner_img": "https://pbs.twimg.com/media/GTuG3WnbEAEbZv0.jpg",
-   "rerun": false
+   "rerun": false,
+   "agents": [
+    "Shu",
+    "Zuo Le"
+   ],
+   "en": "Shu & Zuo Le"
   },
   {
    "name": "枯火に咲く花(復刻)",
@@ -145,7 +184,11 @@
    "year": 2024,
    "related": "星6：焔影リード 星5：ハーモニー 星5：スカイフレア",
    "banner_img": "https://pbs.twimg.com/media/GVaQVyEaMAAOqEb.jpg",
-   "rerun": true
+   "rerun": true,
+   "agents": [
+    "Reed the Flame Shadow"
+   ],
+   "en": "Reed the Flame Shadow"
   },
   {
    "name": "突破-補強-連続任務",
@@ -159,7 +202,11 @@
    "year": 2024,
    "related": "星6：Ela（限定） 星5：Doc 星5：Iana",
    "banner_img": "https://pbs.twimg.com/media/GWnSJvxW8AAEGLU.jpg",
-   "rerun": false
+   "rerun": false,
+   "agents": [
+    "Ela"
+   ],
+   "en": "Ela"
   },
   {
    "name": "進攻-防衛-戦術衝突(復刻)",
@@ -173,7 +220,8 @@
    "year": 2024,
    "related": "星6：ASH（限定） 星5：BLITZ 星5：FROST",
    "banner_img": "https://pbs.twimg.com/media/GXqBJUkb0AAwLb0.jpg",
-   "rerun": true
+   "rerun": true,
+   "agents": []
   },
   {
    "name": "死か/終わりか",
@@ -187,7 +235,11 @@
    "year": 2024,
    "related": "星6：アスカロン 星5：アロマ 星4：ルトナダ",
    "banner_img": "https://pbs.twimg.com/media/GZbomzYasAMBfsH.jpg",
-   "rerun": false
+   "rerun": false,
+   "agents": [
+    "Ascalon"
+   ],
+   "en": "Ascalon"
   },
   {
    "name": "我たる所以",
@@ -201,7 +253,12 @@
    "year": 2024,
    "related": "星6：ウィシャデル（限定） 星6：ロゴス 星5：歴陣鋭槍フェン",
    "banner_img": "https://pbs.twimg.com/media/GbHyCE4bQAAmZ-k.jpg",
-   "rerun": false
+   "rerun": false,
+   "agents": [
+    "Wiš'adel",
+    "Logos"
+   ],
+   "en": "Wiš'adel & Logos"
   },
   {
    "name": "淵に沈む錨",
@@ -215,7 +272,11 @@
    "year": 2024,
    "related": "星6：ウルピアヌス 星5：ルシーラ",
    "banner_img": "https://pbs.twimg.com/media/GdxnokYagAAlqUX.jpg",
-   "rerun": false
+   "rerun": false,
+   "agents": [
+    "Ulpianus"
+   ],
+   "en": "Ulpianus"
   },
   {
    "name": "執裁者(復刻)",
@@ -229,7 +290,11 @@
    "year": 2024,
    "related": "星6：聖約イグゼキュター 星5：スプリア 星5：カンタービレ",
    "banner_img": "https://pbs.twimg.com/media/Gfd_UI0aYAA8VsV.jpg",
-   "rerun": true
+   "rerun": true,
+   "agents": [
+    "Executor the Ex Foedere"
+   ],
+   "en": "Executor the Ex Foedere"
   },
   {
    "name": "流砂に刻印を",
@@ -243,7 +308,12 @@
    "year": 2025,
    "related": "星6：ペペ（限定） 星6：ナラントゥヤ 星5：サンドレコナー\n2024年へ",
    "banner_img": "https://pbs.twimg.com/media/GhUNmwPacAEjtyj.jpg",
-   "rerun": false
+   "rerun": false,
+   "agents": [
+    "Pepe",
+    "Narantuya"
+   ],
+   "en": "Pepe & Narantuya"
   },
   {
    "name": "心と鏡の残痕",
@@ -257,7 +327,11 @@
    "year": 2025,
    "related": "星6：ニンフ 星5：ミトム",
    "banner_img": "https://pbs.twimg.com/media/GjFgoqobIAMwe7x.jpg",
-   "rerun": false
+   "rerun": false,
+   "agents": [
+    "Nymph"
+   ],
+   "en": "Nymph"
   },
   {
    "name": "銃声(復刻)",
@@ -271,7 +345,11 @@
    "year": 2025,
    "related": "星6：滌火ジェシカ 星5：アーモンド",
    "banner_img": "https://pbs.twimg.com/media/GI7mE4lbgAEI2mL.jpg",
-   "rerun": true
+   "rerun": true,
+   "agents": [
+    "Jessica the Liberated"
+   ],
+   "en": "Jessica the Liberated"
   },
   {
    "name": "テラ飯、ああ、テラ飯",
@@ -285,7 +363,8 @@
    "year": 2025,
    "related": "★6 マルシル（期間限定）  ★5 ライオス（期間限定）  ★5 チルチャック（期間限定）",
    "banner_img": "https://webusstatic.yo-star.com/uy0news/aj/2ef1662b4be1e1affa1b05e10482a826.png",
-   "rerun": false
+   "rerun": false,
+   "agents": []
   },
   {
    "name": "褪せざる栄光",
@@ -299,7 +378,8 @@
    "year": 2025,
    "related": "★6 ヴィーナ・ヴィクトリア  ★5 ボビング  ★5 ルシーラ",
    "banner_img": "https://webusstatic.yo-star.com/uy0news/aj/2ec5808da3ac4862e112c22912a2a126.png",
-   "rerun": false
+   "rerun": false,
+   "agents": []
   },
   {
    "name": "悪華繚乱",
@@ -313,7 +393,8 @@
    "year": 2025,
    "related": "★6 荒蕪ラップランド（期間限定）  ★6 ウルピスフォリア  ★5 フィグリーノ",
    "banner_img": "https://webusstatic.yo-star.com/uy0news/aj/da92f1ee3219133b37a7b610e6bcd577.png",
-   "rerun": false
+   "rerun": false,
+   "agents": []
   },
   {
    "name": "熾吾生平",
@@ -327,7 +408,8 @@
    "year": 2025,
    "related": "★6 ユー（期間限定）  ★6 熾炎ブレイズ  ★5 サーファー",
    "banner_img": "https://webusstatic.yo-star.com/uy0news/aj/0c5f62972e164a8cf786eb779884a40d.png",
-   "rerun": false
+   "rerun": false,
+   "agents": []
   },
   {
    "name": "河畔の渡し船",
@@ -341,7 +423,8 @@
    "year": 2025,
    "related": "★6 エンテレケイア  ★5 ノウエル  ★5 サンタラ",
    "banner_img": "https://webusstatic.yo-star.com/web-cms-prod/upload/content/2025/07/31/vPK9DXcS.png",
-   "rerun": false
+   "rerun": false,
+   "agents": []
   },
   {
    "name": "死火より出づ",
@@ -355,7 +438,8 @@
    "year": 2025,
    "related": "★6 ネクラス  ★5 ウルフェナイト  ★5 ミトム",
    "banner_img": "https://webusstatic.yo-star.com/web-cms-prod/upload/content/2025/08/22/eFBjAhvb.png",
-   "rerun": false
+   "rerun": false,
+   "agents": []
   },
   {
    "name": "指令：再構成",
@@ -369,7 +453,8 @@
    "year": 2025,
    "related": "★6 Mon3tr  ★5 アランナ  ★5 セメント  ★4 ウィンドスクート",
    "banner_img": "https://webusstatic.yo-star.com/web-cms-prod/upload/content/2025/09/09/BDhn11cH.png",
-   "rerun": false
+   "rerun": false,
+   "agents": []
   },
   {
    "name": "自由なる伝道",
@@ -383,7 +468,8 @@
    "year": 2025,
    "related": "★6 新約エクシア（期間限定）  ★6 レミュアン  ★5 グレースベアラー",
    "banner_img": "https://webusstatic.yo-star.com/web-cms-prod/upload/content/2025/10/07/AarjapmJ.png",
-   "rerun": false
+   "rerun": false,
+   "agents": []
   },
   {
    "name": "訪れぬ幕切れ",
@@ -397,7 +483,8 @@
    "year": 2025,
    "related": "★6 トラゴーディア  ★5 ティッピ  ★5 ロックロック",
    "banner_img": "https://webusstatic.yo-star.com/web-cms-prod/upload/content/2025/11/06/IcwDwF-U.png",
-   "rerun": false
+   "rerun": false,
+   "agents": []
   },
   {
    "name": "青霆重明",
@@ -411,7 +498,8 @@
    "year": 2025,
    "related": "★6 司霆レイズ  ★5 レコードキーパー  ★5 ウォーミー",
    "banner_img": "https://webusstatic.yo-star.com/web-cms-prod/upload/content/2025/12/04/SLgNvkHH.png",
-   "rerun": false
+   "rerun": false,
+   "agents": []
   },
   {
    "name": "空蝉花火",
@@ -425,7 +513,8 @@
    "year": 2026,
    "related": "★6 斬業ホシグマ（期間限定）  ★6 ハルカ  ★5 キチセイ\n2025年へ",
    "banner_img": "https://webusstatic.yo-star.com/web-cms-prod/upload/content/2026/01/09/8RbNF8NE.png",
-   "rerun": false
+   "rerun": false,
+   "agents": []
   },
   {
    "name": "道化たちの歌",
@@ -439,7 +528,8 @@
    "year": 2026,
    "related": "★6 豊川祥子（期間限定）  ★5 三角初華（期間限定）  ★5 若葉睦（期間限定）",
    "banner_img": "https://webusstatic.yo-star.com/web-cms-prod/upload/content/2026/01/09/ciZSi_S3.png",
-   "rerun": false
+   "rerun": false,
+   "agents": []
   },
   {
    "name": "褪せざる栄光(復刻)",
@@ -453,7 +543,8 @@
    "year": 2026,
    "related": "★6 ヴィーナ・ヴィクトリア  ★5 ボビング  ★5 濯塵ハイビスカス",
    "banner_img": "https://webusstatic.yo-star.com/web-cms-prod/upload/content/2026/02/13/X1bS2OFX.png",
-   "rerun": true
+   "rerun": true,
+   "agents": []
   },
   {
    "name": "静寂の波長",
@@ -467,7 +558,8 @@
    "year": 2026,
    "related": "★6 マントラ★ 5 ヴェトチキ  ★5 ポンシラス  ★4 スネグーラチカ",
    "banner_img": "https://webusstatic.yo-star.com/web-cms-prod/upload/content/2026/03/12/nqwIsYw-.png",
-   "rerun": false
+   "rerun": false,
+   "agents": []
   },
   {
    "name": "風雪に誓って",
@@ -481,7 +573,8 @@
    "year": 2026,
    "related": "★6 凛御シルバーアッシュ（期間限定）  ★6 聖聆プラマニクス  ★5 スノーハンター",
    "banner_img": "https://webusstatic.yo-star.com/web-cms-prod/upload/content/2026/04/08/JaeueGgh.png",
-   "rerun": false
+   "rerun": false,
+   "agents": []
   },
   {
    "name": "ナスティ",
@@ -495,7 +588,8 @@
    "year": 2026,
    "related": "★6 ナスティ",
    "banner_img": "https://webusstatic.yo-star.com/web-cms-prod/upload/content/2026/05/13/FopgHbqj.png",
-   "rerun": false
+   "rerun": false,
+   "agents": []
   },
   {
    "name": "止まった時の中で",
@@ -509,7 +603,8 @@
    "year": 2026,
    "related": "★6 ティティ",
    "banner_img": "https://webusstatic.yo-star.com/web-cms-prod/upload/content/2026/06/12/IsndEHPk.png",
-   "rerun": false
+   "rerun": false,
+   "agents": []
   }
  ]
 }

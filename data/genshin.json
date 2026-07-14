@@ -26,7 +26,7 @@
    "agents": [
     "Raiden Shogun"
    ],
-   "accent": "#c9a86a",
+   "accent": "#b57fd4",
    "bar": "#965b41"
   },
   {
@@ -48,7 +48,7 @@
    "agents": [
     "Nahida"
    ],
-   "accent": "#c9a86a",
+   "accent": "#84c23c",
    "bar": "#eeca77"
   },
   {
@@ -70,7 +70,7 @@
    "agents": [
     "Yae Miko"
    ],
-   "accent": "#c9a86a",
+   "accent": "#b57fd4",
    "bar": "#f2c673"
   },
   {
@@ -92,7 +92,7 @@
    "agents": [
     "Chiori"
    ],
-   "accent": "#c9a86a",
+   "accent": "#e0b23c",
    "bar": "#e1c984"
   },
   {
@@ -114,7 +114,7 @@
    "agents": [
     "Neuvillette"
    ],
-   "accent": "#c9a86a",
+   "accent": "#4a90d9",
    "bar": "#dfc786"
   },
   {
@@ -136,7 +136,7 @@
    "agents": [
     "Arlecchino"
    ],
-   "accent": "#c9a86a",
+   "accent": "#f0684a",
    "bar": "#ad2b29"
   },
   {
@@ -160,7 +160,7 @@
     "Wanderer",
     "Baizhu"
    ],
-   "accent": "#c9a86a",
+   "accent": "#57c69a",
    "bar": "#408d96"
   },
   {
@@ -184,7 +184,7 @@
     "Clorinde",
     "Alhaitham"
    ],
-   "accent": "#c9a86a",
+   "accent": "#b57fd4",
    "bar": "#9688dd"
   },
   {
@@ -208,7 +208,7 @@
     "Sigewinne",
     "Furina"
    ],
-   "accent": "#c9a86a",
+   "accent": "#4a90d9",
    "bar": "#7eb2e7"
   },
   {
@@ -232,7 +232,7 @@
     "Navia",
     "Nilou"
    ],
-   "accent": "#c9a86a",
+   "accent": "#e0b23c",
    "bar": "#dda453"
   },
   {
@@ -256,7 +256,7 @@
     "Emilie",
     "Yelan"
    ],
-   "accent": "#c9a86a",
+   "accent": "#84c23c",
    "bar": "#c9ba9c"
   },
   {
@@ -280,7 +280,7 @@
     "Mualani",
     "Kaedehara Kazuha"
    ],
-   "accent": "#c9a86a",
+   "accent": "#4a90d9",
    "bar": "#1737bf"
   },
   {
@@ -304,7 +304,7 @@
     "Kinich",
     "Raiden Shogun"
    ],
-   "accent": "#c9a86a",
+   "accent": "#84c23c",
    "bar": "#76efc7"
   },
   {
@@ -328,7 +328,7 @@
     "Xilonen",
     "Chiori"
    ],
-   "accent": "#c9a86a",
+   "accent": "#e0b23c",
    "bar": "#d99c49"
   },
   {
@@ -352,7 +352,7 @@
     "Nahida",
     "Hu Tao"
    ],
-   "accent": "#c9a86a",
+   "accent": "#84c23c",
    "bar": "#689f50"
   },
   {
@@ -376,7 +376,7 @@
     "Chasca",
     "Lyney"
    ],
-   "accent": "#c9a86a",
+   "accent": "#57c69a",
    "bar": "#b02648"
   },
   {
@@ -400,7 +400,7 @@
     "Neuvillette",
     "Zhongli"
    ],
-   "accent": "#c9a86a",
+   "accent": "#4a90d9",
    "bar": "#6de4f8"
   },
   {
@@ -424,7 +424,7 @@
     "Mavuika",
     "Citlali"
    ],
-   "accent": "#c9a86a",
+   "accent": "#f0684a",
    "bar": "#f1be74"
   },
   {
@@ -448,7 +448,7 @@
     "Arlecchino",
     "Clorinde"
    ],
-   "accent": "#c9a86a",
+   "accent": "#f0684a",
    "bar": "#a7352f"
   },
   {
@@ -472,7 +472,7 @@
     "Yumemizuki Mizuki",
     "Sigewinne"
    ],
-   "accent": "#c9a86a",
+   "accent": "#57c69a",
    "bar": "#86c0df"
   },
   {
@@ -496,7 +496,7 @@
     "Wriothesley",
     "Furina"
    ],
-   "accent": "#c9a86a",
+   "accent": "#7fc8e0",
    "bar": "#3c4f9b"
   },
   {
@@ -520,7 +520,7 @@
     "Varesa",
     "Xianyun"
    ],
-   "accent": "#c9a86a",
+   "accent": "#b57fd4",
    "bar": "#9b94d1"
   },
   {
@@ -544,7 +544,7 @@
     "Xilonen",
     "Venti"
    ],
-   "accent": "#c9a86a",
+   "accent": "#e0b23c",
    "bar": "#db9e49"
   },
   {
@@ -566,7 +566,7 @@
    "agents": [
     "Escoffier"
    ],
-   "accent": "#c9a86a",
+   "accent": "#7fc8e0",
    "bar": "#75caf0"
   },
   {
@@ -590,7 +590,7 @@
     "Kinich",
     "Raiden Shogun"
    ],
-   "accent": "#c9a86a",
+   "accent": "#84c23c",
    "bar": "#77eec7"
   },
   {
@@ -612,7 +612,7 @@
    "agents": [
     "Skirk"
    ],
-   "accent": "#c9a86a",
+   "accent": "#7fc8e0",
    "bar": "#2a36ac"
   },
   {
@@ -636,7 +636,7 @@
     "Mavuika",
     "Emilie"
    ],
-   "accent": "#c9a86a",
+   "accent": "#f0684a",
    "bar": "#f3b972"
   },
   {
@@ -658,7 +658,7 @@
    "agents": [
     "Ineffa"
    ],
-   "accent": "#c9a86a",
+   "accent": "#b57fd4",
    "bar": "#d088dd"
   },
   {
@@ -682,7 +682,7 @@
     "Mualani",
     "Chasca"
    ],
-   "accent": "#c9a86a",
+   "accent": "#4a90d9",
    "bar": "#2945ad"
   },
   {
@@ -704,7 +704,7 @@
    "agents": [
     "Lauma"
    ],
-   "accent": "#c9a86a",
+   "accent": "#84c23c",
    "bar": "#91ccd4"
   },
   {
@@ -726,7 +726,7 @@
    "agents": [
     "Flins"
    ],
-   "accent": "#c9a86a",
+   "accent": "#b57fd4",
    "bar": "#5b5aa8"
   },
   {
@@ -748,7 +748,7 @@
    "agents": [
     "Nefer"
    ],
-   "accent": "#c9a86a",
+   "accent": "#84c23c",
    "bar": "#619d55"
   },
   {
@@ -772,7 +772,7 @@
     "Arlecchino",
     "Zhongli"
    ],
-   "accent": "#c9a86a",
+   "accent": "#f0684a",
    "bar": "#a8332e"
   },
   {
@@ -794,7 +794,7 @@
    "agents": [
     "Durin"
    ],
-   "accent": "#c9a86a",
+   "accent": "#f0684a",
    "bar": "#d88d8d"
   },
   {
@@ -818,7 +818,7 @@
     "Varesa",
     "Xilonen"
    ],
-   "accent": "#c9a86a",
+   "accent": "#b57fd4",
    "bar": "#9b95d0"
   },
   {
@@ -840,7 +840,7 @@
    "agents": [
     "Columbina"
    ],
-   "accent": "#c9a86a",
+   "accent": "#f0684a",
    "bar": "#6badfa"
   },
   {
@@ -900,7 +900,7 @@
     "Skirk",
     "Escoffier"
    ],
-   "accent": "#c9a86a",
+   "accent": "#7fc8e0",
    "bar": "#3039a6"
   },
   {
@@ -942,7 +942,7 @@
     "Lauma",
     "Nefer"
    ],
-   "accent": "#c9a86a",
+   "accent": "#84c23c",
    "bar": "#90cdd5"
   },
   {

@@ -32,7 +32,15 @@
       <button id="bRank" role="tab" aria-selected="false">Ranking</button>
     </div>
     <button id="bDir" class="ghost" title="Reverse order">Oldest first</button>
-    <label id="brkWrap" class="brk" hidden>Y‑axis
+    <button id="bTable" class="ghost">Table view</button>
+    <span class="hint">Hover a bar or point for banner art &amp; details</span>
+  </div>
+
+  <div class="controls gctrls" id="graphControls" hidden>
+    <span class="glabel">Year</span>
+    <div class="seg" id="gyears"></div>
+    <label class="chk"><input type="checkbox" id="matchHigh"> Match highest</label>
+    <label class="brk">Y‑axis
       <select id="brk">
         <option value="0">Auto</option>
         <option value="2">¥200M</option>
@@ -41,8 +49,6 @@
         <option value="20">¥2B</option>
       </select>
     </label>
-    <button id="bTable" class="ghost">Table view</button>
-    <span class="hint">Hover a bar or point for banner art &amp; details</span>
   </div>
 
   <div class="chartwrap" id="chartwrap"><div class="chart" id="chart"><div class="loading">Loading…</div></div></div>

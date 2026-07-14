@@ -37,6 +37,10 @@ jobs:
       - name: Attach character portraits
         run: python scripts/enrich_icons.py
 
+      - name: Translate data-only game names (Arknights)
+        run: python scripts/translate_names.py
+        continue-on-error: true
+
       - name: Crop face icons from banner art (icon-less games)
         run: python scripts/face_icons.py
         continue-on-error: true    # face detection is best-effort
