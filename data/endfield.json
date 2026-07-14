@@ -90,7 +90,10 @@
     "icons/faces/endfield/2026-03-12-9a1839.webp"
    ],
    "bar": "#0071d6",
-   "agents": []
+   "agents": [
+    "Tantan"
+   ],
+   "en": "Tantan"
   },
   {
    "name": "ロッシ",
@@ -194,7 +197,10 @@
     "icons/faces/endfield/2026-06-26-4d7753.webp"
    ],
    "bar": "#d6002e",
-   "agents": []
+   "agents": [
+    "Camille"
+   ],
+   "en": "Camille"
   }
  ]
 }
