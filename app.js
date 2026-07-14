@@ -103,6 +103,9 @@ function ticks(max,step){
   const t=[]; for(let v=0;v<=max+1e-9;v+=step) t.push(+v.toFixed(2)); return t;
 }
 function niceCeil(oku){ return Math.max(1, Math.ceil(oku)); }   // round up to next 100M (1億)
+// axis top: round the highest up to the chosen bracket (e.g. 2.04B @ ¥200M -> 2.2B), else auto
+function axisRound(v){ const s=state.bracket; return s ? Math.ceil(v/s - 1e-9)*s : scaleMax(v); }
+function poolBanners(){ const b=state.data.banners; return state.graphYear==="all" ? b : b.filter(x=>String(x.year)===state.graphYear); }
 
 // ---- avatars ----
 function avatarHTML(b){
@@ -133,16 +136,20 @@ function rowHTML(b,rank,max){
         <span class="val">${G(b.rev)}</span></div>
     </div></div>`;
 }
-function axesHTML(max){return ticks(max).map(t=>
+function axesHTML(max){return ticks(max,state.bracket).map(t=>
   `<div class="axis" style="left:calc(87px + (100% - 87px - 74px) * ${t/max})"><span>${G(t)}</span></div>`).join("");}
 
 function renderBars(){
-  const b=state.data.banners; b.forEach((x,i)=>x._i=i);
-  const max=scaleMax(Math.max(...b.map(x=>x.rev)));
+  const all=state.data.banners; all.forEach((x,i)=>x._i=i);
+  const pool=poolBanners();                                   // Year filter applies here too
+  [...pool].sort((a,c)=>c.rev-a.rev).forEach((x,i)=>x._rank=i+1);   // rank within the shown set
+  // one axis (timeline gridlines are full-height, so they can't vary per year): match-highest
+  // scales to the shown set's peak, otherwise to the game's overall peak.
+  const max = axisRound(Math.max(...(state.matchHigh?pool:all).map(x=>x.rev)));
   // FLIP: capture current row positions before we replace the DOM
   const old={};
   document.querySelectorAll("#chart .row").forEach(r=>{ old[r.dataset.i]=r.getBoundingClientRect().top; });
-  let list=[...b], html="";
+  let list=[...pool], html="";
   if(state.mode==="rank"){ list.sort((x,y)=> state.reverse ? x.rev-y.rev : y.rev-x.rev); html+=axesHTML(max);
     list.forEach(x=>html+=rowHTML(x,x._rank,max)); }
   else { list.sort((x,y)=>x.start.localeCompare(y.start)); if(state.reverse) list.reverse(); let cy=null;
@@ -193,21 +200,16 @@ function yearSVG(year, items, gmax, step){
     ${grid}<path class="area" d="${area}"/><path class="line" d="${line}"/>${marks}${xt}</svg>`;
 }
 function renderGraph(){
-  const b=state.data.banners; b.forEach((x,i)=>x._i=i);
-  const step=state.bracket||0;
-  const globalMax = step ? Math.ceil(Math.max(...b.map(x=>x.rev))/step)*step : scaleMax(Math.max(...b.map(x=>x.rev)));
-  const byYear={}; b.forEach(x=>{(byYear[x.year]=byYear[x.year]||[]).push(x);});
+  state.data.banners.forEach((x,i)=>x._i=i);
+  const pool=poolBanners();
+  const poolMax=axisRound(Math.max(...pool.map(x=>x.rev)));
+  const byYear={}; pool.forEach(x=>{(byYear[x.year]=byYear[x.year]||[]).push(x);});
   let years=Object.keys(byYear).sort();
   if(state.reverse) years.reverse();
-  if(state.graphYear!=="all") years=years.filter(y=>y===state.graphYear);
   $("#chart").innerHTML=years.map(y=>{
     const items=byYear[y];
-    let gmax=globalMax;
-    if(state.matchHigh){                       // scale each year to just above its own peak
-      const ym=Math.max(...items.map(x=>x.rev));
-      gmax = step ? Math.ceil(ym/step)*step : niceCeil(ym);
-    }
-    return `<div class="gyear"><div class="yhead">${y}</div>${yearSVG(y,items,gmax,step)}</div>`;
+    const gmax=state.matchHigh ? axisRound(Math.max(...items.map(x=>x.rev))) : poolMax;
+    return `<div class="gyear"><div class="yhead">${y}</div>${yearSVG(y,items,gmax,state.bracket||0)}</div>`;
   }).join("");
 }
 function populateGraphYears(){
@@ -218,12 +220,13 @@ function populateGraphYears(){
   $("#gyears").querySelectorAll("button").forEach(btn=>btn.onclick=()=>{
     state.graphYear=btn.dataset.y;
     $("#gyears").querySelectorAll("button").forEach(x=>x.classList.toggle("on",x===btn));
-    if(state.mode==="graph"&&!state.table) render();
+    if(!state.table) render();
   });
 }
 
 function render(){
   $("#chartwrap").hidden=state.table; $("#tablewrap").hidden=!state.table;
+  $("#graphControls").hidden=state.table;
   if(state.table){ buildTable(); return; }
   if(state.mode==="graph"){ renderGraph(); return; }
   renderBars();
@@ -276,7 +279,7 @@ function setMode(m){
   [["bTime","time"],["bGraph","graph"],["bRank","rank"]].forEach(([id,mm])=>{
     const el=$("#"+id); el.classList.toggle("on",m===mm); el.setAttribute("aria-selected",m===mm);
   });
-  $("#graphControls").hidden = m!=="graph";
+  $("#graphControls").hidden = state.table;      // Year / Match highest / Round-to apply to all chart views
   updateDirLabel();
   if(!state.table) render();
 }
@@ -284,10 +287,11 @@ $("#bTime").onclick=()=>setMode("time");
 $("#bRank").onclick=()=>setMode("rank");
 $("#bGraph").onclick=()=>setMode("graph");
 $("#bDir").onclick=()=>{ state.reverse=!state.reverse; updateDirLabel(); if(!state.table) render(); };
-$("#brk").onchange=function(){ state.bracket=+this.value; if(state.mode==="graph"&&!state.table) render(); };
-$("#matchHigh").onchange=function(){ state.matchHigh=this.checked; if(state.mode==="graph"&&!state.table) render(); };
+$("#brk").onchange=function(){ state.bracket=+this.value; if(!state.table) render(); };
+$("#matchHigh").onchange=function(){ state.matchHigh=this.checked; if(!state.table) render(); };
 $("#bTable").onclick=function(){state.table=!state.table;
   this.classList.toggle("on",state.table); this.textContent=state.table?"Chart view":"Table view";
+  $("#graphControls").hidden=state.table;
   render();};
 
 init().catch(e=>{$("#chart").innerHTML=`<div class="loading">Failed to load data: ${e}</div>`;});

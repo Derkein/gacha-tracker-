@@ -146,10 +146,32 @@ def translate_arknights():
     print(f"[arknights] translated {hit}/{len(data['banners'])} banners")
 
 
+def translate_endfield():
+    """Endfield banner names are the operator; map JP->EN from a small committed map.
+    (No reliable auto source: the EN wiki has no JP names and the game data is CN-only.)"""
+    dfile, mfile = DATA / "endfield.json", NAMES / "endfield_map.json"
+    if not dfile.exists() or not mfile.exists():
+        return
+    m = json.loads(mfile.read_text(encoding="utf-8"))
+    data = json.loads(dfile.read_text(encoding="utf-8"))
+    hit = 0
+    for b in data["banners"]:
+        toks = [t.strip() for t in re.split(r"[&＆/／]", b["name"]) if t.strip()]
+        agents = [m[t] for t in toks if t in m]
+        b["agents"] = agents[:3]
+        if agents:
+            b["en"] = " & ".join(agents[:3]); hit += 1
+        else:
+            b.pop("en", None)
+    dfile.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
+    print(f"[endfield] translated {hit}/{len(data['banners'])} banners")
+
+
 def main():
     if "--refresh" in sys.argv:
         refresh_ak_map()
     translate_arknights()
+    translate_endfield()
     for tag, cfg in FANDOM.items():
         if (DATA / f"{tag}.json").exists():
             translate_fandom(tag, cfg)
