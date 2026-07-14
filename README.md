@@ -2,10 +2,10 @@
 
 An auto-updating static site charting **estimated per-banner gacha revenue over time**.
 Full character-portrait treatment for Zenless Zone Zero, Honkai: Star Rail, Wuthering
-Waves, Genshin Impact, Arknights: Endfield and Neverness to Everness, plus the top popular
-gacha titles game-i tracks (Monster Strike, NIKKE, Umamusume, Fate/Grand Order, Project
-Sekai, Ensemble Stars, Blue Archive, Dokkan Battle, Puzzle & Dragons, Granblue) as
-revenue-with-banner-art. Timeline / graph / ranking / table views.
+Waves, Genshin Impact, Arknights: Endfield and Neverness to Everness, plus more gacha
+titles game-i tracks (NIKKE, Umamusume, Fate/Grand Order, Blue Archive, Granblue, Arknights,
+Chaos Zero Nightmare, Girls' Frontline 2) as revenue-with-banner-art. Timeline / graph /
+ranking / table views.
 
 > Coverage varies by game and generally begins around 2024, so titles older than that are
 > missing their earlier banners.

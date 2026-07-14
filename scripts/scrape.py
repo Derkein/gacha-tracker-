@@ -35,16 +35,14 @@ GAMES = {
     # Top popular gacha titles game-i tracks (resolved by App Store id at runtime,
     # so we don't hardcode long JP page names full of ：＆！／). Data-only: these
     # use banner-art thumbnails, not character icons.
-    "monst":       {"apid": "658511662",  "name": "Monster Strike"},
     "nikke":       {"apid": "1585915174", "name": "NIKKE"},
     "uma":         {"apid": "1325457827", "name": "Umamusume: Pretty Derby"},
     "fgo":         {"apid": "1015521325", "name": "Fate/Grand Order"},
-    "proseka":     {"apid": "1489932710", "name": "Project Sekai"},
-    "enstars":     {"apid": "1494428618", "name": "Ensemble Stars!! Music"},
     "bluearchive": {"apid": "1515877221", "name": "Blue Archive"},
-    "dokkan":      {"apid": "951627670",  "name": "Dragon Ball Z Dokkan Battle"},
-    "puzzdra":     {"apid": "493470467",  "name": "Puzzle & Dragons"},
     "gbf":         {"apid": "852882903",  "name": "Granblue Fantasy"},
+    "arknights":   {"apid": "1478990007", "name": "Arknights"},
+    "chaoszero":   {"apid": "6502326151", "name": "Chaos Zero Nightmare"},
+    "gfl2":        {"apid": "6499011827", "name": "Girls' Frontline 2: Exilium"},
 }
 
 UA = {"User-Agent": "Mozilla/5.0 (gacha-tracker; +https://github.com/)"}

@@ -1,8 +1,8 @@
 // Gacha Revenue Tracker — client logic. Data comes from data/*.json (built by scripts/).
 const GAME_ACCENT = {          // per-game hue (used for bars/dots without a sampled color)
   zzz:"#e0a400", hsr:"#8a7bd8", wuwa:"#2fb6c0", genshin:"#d8a24a", endfield:"#e07b3a", nte:"#d94f8a",
-  monst:"#f0603a", nikke:"#ff4d6d", uma:"#3fb98f", fgo:"#c8a24a", proseka:"#39c5bb", enstars:"#4a90d9",
-  bluearchive:"#4db6e8", dokkan:"#f5911e", puzzdra:"#e8b923", gbf:"#4a7fd0",
+  nikke:"#ff4d6d", uma:"#3fb98f", fgo:"#c8a24a", bluearchive:"#4db6e8", gbf:"#4a7fd0",
+  arknights:"#e8b923", chaoszero:"#9b6ef0", gfl2:"#5a9fd6",
 };
 const state = { games:[], tag:null, data:null, mode:"time", table:false, reverse:false, bracket:0, tabsExpanded:false };
 const $ = s => document.querySelector(s);

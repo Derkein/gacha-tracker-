@@ -5,112 +5,98 @@
    "name": "Zenless Zone Zero",
    "count": 35,
    "total_oku": 204.3,
-   "updated": "2026-07-13T22:04:22Z"
+   "updated": "2026-07-14T00:27:31Z"
   },
   {
    "game": "hsr",
    "name": "Honkai: Star Rail",
    "count": 44,
    "total_oku": 549.2,
-   "updated": "2026-07-13T22:04:28Z"
+   "updated": "2026-07-14T00:27:40Z"
   },
   {
    "game": "wuwa",
    "name": "Wuthering Waves",
    "count": 36,
    "total_oku": 139.4,
-   "updated": "2026-07-13T22:04:34Z"
+   "updated": "2026-07-14T00:27:46Z"
   },
   {
    "game": "genshin",
    "name": "Genshin Impact",
    "count": 44,
    "total_oku": 265.7,
-   "updated": "2026-07-13T22:04:40Z"
+   "updated": "2026-07-14T00:27:56Z"
   },
   {
    "game": "endfield",
    "name": "Arknights: Endfield",
    "count": 9,
    "total_oku": 34.1,
-   "updated": "2026-07-13T22:04:42Z"
+   "updated": "2026-07-14T00:27:58Z"
   },
   {
    "game": "nte",
    "name": "Neverness to Everness",
    "count": 5,
    "total_oku": 18.8,
-   "updated": "2026-07-13T22:04:44Z"
-  },
-  {
-   "game": "monst",
-   "name": "Monster Strike",
-   "count": 116,
-   "total_oku": 2479.0,
-   "updated": "2026-07-13T22:04:53Z"
+   "updated": "2026-07-14T00:28:00Z"
   },
   {
    "game": "nikke",
    "name": "NIKKE",
    "count": 76,
    "total_oku": 345.8,
-   "updated": "2026-07-13T22:05:02Z"
+   "updated": "2026-07-14T00:28:13Z"
   },
   {
    "game": "uma",
    "name": "Umamusume: Pretty Derby",
    "count": 99,
    "total_oku": 603.9,
-   "updated": "2026-07-13T22:05:09Z"
+   "updated": "2026-07-14T00:28:26Z"
   },
   {
    "game": "fgo",
    "name": "Fate/Grand Order",
    "count": 116,
    "total_oku": 672.8,
-   "updated": "2026-07-13T22:05:17Z"
-  },
-  {
-   "game": "proseka",
-   "name": "Project Sekai",
-   "count": 62,
-   "total_oku": 159.5,
-   "updated": "2026-07-13T22:05:31Z"
-  },
-  {
-   "game": "enstars",
-   "name": "Ensemble Stars!! Music",
-   "count": 101,
-   "total_oku": 185.1,
-   "updated": "2026-07-13T22:05:40Z"
+   "updated": "2026-07-14T00:28:34Z"
   },
   {
    "game": "bluearchive",
    "name": "Blue Archive",
    "count": 49,
    "total_oku": 160.6,
-   "updated": "2026-07-13T22:05:50Z"
-  },
-  {
-   "game": "dokkan",
-   "name": "Dragon Ball Z Dokkan Battle",
-   "count": 52,
-   "total_oku": 605.6,
-   "updated": "2026-07-13T22:06:01Z"
-  },
-  {
-   "game": "puzzdra",
-   "name": "Puzzle & Dragons",
-   "count": 27,
-   "total_oku": 321.4,
-   "updated": "2026-07-13T22:06:13Z"
+   "updated": "2026-07-14T00:28:45Z"
   },
   {
    "game": "gbf",
    "name": "Granblue Fantasy",
    "count": 10,
    "total_oku": 339.6,
-   "updated": "2026-07-13T22:06:25Z"
+   "updated": "2026-07-14T00:28:55Z"
+  },
+  {
+   "game": "arknights",
+   "name": "Arknights",
+   "count": 36,
+   "total_oku": 124.7,
+   "updated": "2026-07-14T00:29:02Z"
+  },
+  {
+   "game": "chaoszero",
+   "name": "Chaos Zero Nightmare",
+   "count": 2,
+   "total_oku": 3.9,
+   "updated": "2026-07-14T00:29:08Z"
+  },
+  {
+   "game": "gfl2",
+   "name": "Girls' Frontline 2: Exilium",
+   "count": 9,
+   "total_oku": 15.4,
+   "updated": "2026-07-14T00:29:15Z"
   }
  ]
 }
