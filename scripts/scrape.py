@@ -35,13 +35,11 @@ GAMES = {
     # Top popular gacha titles game-i tracks (resolved by App Store id at runtime,
     # so we don't hardcode long JP page names full of ：＆！／). Data-only: these
     # use banner-art thumbnails, not character icons.
-    "nikke":       {"apid": "1585915174", "name": "NIKKE"},
     "uma":         {"apid": "1325457827", "name": "Umamusume: Pretty Derby"},
     "fgo":         {"apid": "1015521325", "name": "Fate/Grand Order"},
     "bluearchive": {"apid": "1515877221", "name": "Blue Archive"},
     "gbf":         {"apid": "852882903",  "name": "Granblue Fantasy"},
     "arknights":   {"apid": "1478990007", "name": "Arknights"},
-    "chaoszero":   {"apid": "6502326151", "name": "Chaos Zero Nightmare"},
     "gfl2":        {"apid": "6499011827", "name": "Girls' Frontline 2: Exilium"},
 }
 

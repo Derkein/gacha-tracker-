@@ -1,8 +1,8 @@
 // Gacha Revenue Tracker — client logic. Data comes from data/*.json (built by scripts/).
 const GAME_ACCENT = {          // per-game hue (used for bars/dots without a sampled color)
   zzz:"#e0a400", hsr:"#8a7bd8", wuwa:"#2fb6c0", genshin:"#d8a24a", endfield:"#e07b3a", nte:"#d94f8a",
-  nikke:"#ff4d6d", uma:"#3fb98f", fgo:"#c8a24a", bluearchive:"#4db6e8", gbf:"#4a7fd0",
-  arknights:"#e8b923", chaoszero:"#9b6ef0", gfl2:"#5a9fd6",
+  uma:"#3fb98f", fgo:"#c8a24a", bluearchive:"#4db6e8", gbf:"#4a7fd0",
+  arknights:"#e8b923", gfl2:"#5a9fd6",
 };
 const state = { games:[], tag:null, data:null, mode:"time", table:false, reverse:false, bracket:0, tabsExpanded:false, graphYear:"all", matchHigh:false };
 // character accent wins (it's the true character/element colour); banner-dominant `bar`
@@ -77,6 +77,9 @@ async function selectGame(tag){
   document.documentElement.style.setProperty("--accent", GAME_ACCENT[tag]||"#e0a400");
   $("#chart").innerHTML=`<div class="loading">Loading ${tag.toUpperCase()}…</div>`;
   state.data = await (await fetch(`data/${tag}.json`)).json();
+  // rank by revenue *within our dataset* — game-i's cum is against the game's full
+  // history (often far larger than what we scrape), so it isn't 1..N here.
+  [...state.data.banners].sort((a,b)=>b.rev-a.rev).forEach((b,i)=>b._rank=i+1);
   populateGraphYears();
   renderStats(); render();
 }
@@ -141,10 +144,10 @@ function renderBars(){
   document.querySelectorAll("#chart .row").forEach(r=>{ old[r.dataset.i]=r.getBoundingClientRect().top; });
   let list=[...b], html="";
   if(state.mode==="rank"){ list.sort((x,y)=> state.reverse ? x.rev-y.rev : y.rev-x.rev); html+=axesHTML(max);
-    list.forEach(x=>html+=rowHTML(x,x.cum,max)); }
+    list.forEach(x=>html+=rowHTML(x,x._rank,max)); }
   else { list.sort((x,y)=>x.start.localeCompare(y.start)); if(state.reverse) list.reverse(); let cy=null;
     list.forEach(x=>{ if(x.year!==cy){cy=x.year; html+=`<div class="yhead">${cy}</div>`+axesHTML(max);}
-      html+=rowHTML(x,x.cum,max); }); }
+      html+=rowHTML(x,x._rank,max); }); }
   $("#chart").innerHTML=html;
   // FLIP: invert to old position, then play to new one (icons slide up/down)
   document.querySelectorAll("#chart .row").forEach(r=>{

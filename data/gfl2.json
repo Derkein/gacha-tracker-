@@ -19,7 +19,11 @@
    "year": 2024,
    "related": "",
    "banner_img": "https://dollsfrontline2.wikiru.jp/attach2/E8A8AAE5958F_7A73332E706E67.png",
-   "rerun": false
+   "rerun": false,
+   "agents": [
+    "Suomi"
+   ],
+   "en": "Suomi"
   },
   {
    "name": "マキアート&トロロ",
@@ -33,7 +37,11 @@
    "year": 2024,
    "related": "",
    "banner_img": "https://dollsfrontline2.wikiru.jp/attach2/E8A8AAE5958F_7A73352E6A7067.jpg",
-   "rerun": false
+   "rerun": false,
+   "agents": [
+    "Macchiato"
+   ],
+   "en": "Macchiato"
   },
   {
    "name": "黛煙&モシン・ナガン",
@@ -47,7 +55,8 @@
    "year": 2025,
    "related": "",
    "banner_img": "https://dollsfrontline2.wikiru.jp/attach2/E8A8AAE5958F_7A73372E706E67.png",
-   "rerun": false
+   "rerun": false,
+   "agents": []
   },
   {
    "name": "ドゥシェーヴヌイ&スオミ",
@@ -61,7 +70,11 @@
    "year": 2025,
    "related": "",
    "banner_img": "https://dollsfrontline2.wikiru.jp/attach2/E8A8AAE5958F_7A73392E706E67.png",
-   "rerun": false
+   "rerun": false,
+   "agents": [
+    "Suomi"
+   ],
+   "en": "Suomi"
   },
   {
    "name": "クルカイ&マキアート",
@@ -75,7 +88,11 @@
    "year": 2025,
    "related": "",
    "banner_img": "https://dollsfrontline2.wikiru.jp/attach2/E8A8AAE5958F_7A7331332E706E67.png",
-   "rerun": false
+   "rerun": false,
+   "agents": [
+    "Macchiato"
+   ],
+   "en": "Macchiato"
   },
   {
    "name": "ヴェクター&ドゥシェーヴヌイ",
@@ -89,7 +106,8 @@
    "year": 2025,
    "related": "",
    "banner_img": "https://dollsfrontline2.wikiru.jp/attach2/E8A8AAE5958F_7A7331372E706E67.png",
-   "rerun": false
+   "rerun": false,
+   "agents": []
   },
   {
    "name": "スプリングフィールド&ペリー",
@@ -103,7 +121,11 @@
    "year": 2025,
    "related": "",
    "banner_img": "https://dollsfrontline2.wikiru.jp/attach2/696D67_7A7332302E706E67.png",
-   "rerun": false
+   "rerun": false,
+   "agents": [
+    "Skill List"
+   ],
+   "en": "Skill List"
   },
   {
    "name": "リヴァ",
@@ -117,7 +139,8 @@
    "year": 2025,
    "related": "",
    "banner_img": "https://dollsfrontline2.wikiru.jp/attach2/E8A8AAE5958F_7A7333302E706E67.png",
-   "rerun": false
+   "rerun": false,
+   "agents": []
   },
   {
    "name": "ロベラ",
@@ -131,7 +154,8 @@
    "year": 2025,
    "related": "",
    "banner_img": "https://dollsfrontline2.wikiru.jp/attach2/E8A8AAE5958F_7A7333322E706E67.png",
-   "rerun": false
+   "rerun": false,
+   "agents": []
   }
  ]
 }
