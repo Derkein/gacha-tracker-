@@ -2,7 +2,7 @@
 const GAME_ACCENT = {          // per-game hue (used for bars/dots without a sampled color)
   zzz:"#e0a400", hsr:"#8a7bd8", wuwa:"#2fb6c0", genshin:"#d8a24a", endfield:"#e07b3a", nte:"#d94f8a",
   uma:"#3fb98f", fgo:"#c8a24a", bluearchive:"#4db6e8", gbf:"#4a7fd0",
-  arknights:"#e8b923", gfl2:"#5a9fd6",
+  arknights:"#e8b923",
 };
 const state = { games:[], tag:null, data:null, mode:"time", table:false, reverse:false, bracket:0, tabsExpanded:false, graphYear:"all", matchHigh:false };
 // character accent wins (it's the true character/element colour); banner-dominant `bar`

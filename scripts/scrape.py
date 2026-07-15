@@ -40,7 +40,6 @@ GAMES = {
     "bluearchive": {"apid": "1515877221", "name": "Blue Archive"},
     "gbf":         {"apid": "852882903",  "name": "Granblue Fantasy"},
     "arknights":   {"apid": "1478990007", "name": "Arknights"},
-    "gfl2":        {"apid": "6499011827", "name": "Girls' Frontline 2: Exilium"},
 }
 
 UA = {"User-Agent": "Mozilla/5.0 (gacha-tracker; +https://github.com/)"}
@@ -123,7 +122,7 @@ def parse_banners(hpage, year):
 
 # Games whose banner NAME is the character(s) (so 復刻 attaches per-character).
 # Event-named games (Arknights, FGO, Uma, GBF) are handled by plain "復刻 in name".
-CHRONO_GAMES = {"zzz", "hsr", "wuwa", "genshin", "nte", "endfield", "gfl2", "bluearchive"}
+CHRONO_GAMES = {"zzz", "hsr", "wuwa", "genshin", "nte", "endfield", "bluearchive"}
 _HEAD_SPLIT = re.compile(r"[&＆、,]")        # NB: not / — it would split "Fate/Grand Order"
 _HEAD_STRIP = re.compile(r"復刻|[（）()「」『』［］\[\]・･\s　]")
 

@@ -364,7 +364,10 @@
    "related": "★6 マルシル（期間限定）  ★5 ライオス（期間限定）  ★5 チルチャック（期間限定）",
    "banner_img": "https://webusstatic.yo-star.com/uy0news/aj/2ef1662b4be1e1affa1b05e10482a826.png",
    "rerun": false,
-   "agents": []
+   "agents": [
+    "Marcille"
+   ],
+   "en": "Marcille"
   },
   {
    "name": "褪せざる栄光",
@@ -379,7 +382,10 @@
    "related": "★6 ヴィーナ・ヴィクトリア  ★5 ボビング  ★5 ルシーラ",
    "banner_img": "https://webusstatic.yo-star.com/uy0news/aj/2ec5808da3ac4862e112c22912a2a126.png",
    "rerun": false,
-   "agents": []
+   "agents": [
+    "Vina Victoria"
+   ],
+   "en": "Vina Victoria"
   },
   {
    "name": "悪華繚乱",
@@ -394,7 +400,11 @@
    "related": "★6 荒蕪ラップランド（期間限定）  ★6 ウルピスフォリア  ★5 フィグリーノ",
    "banner_img": "https://webusstatic.yo-star.com/uy0news/aj/da92f1ee3219133b37a7b610e6bcd577.png",
    "rerun": false,
-   "agents": []
+   "agents": [
+    "Lappland the Decadenza",
+    "Vulpisfoglia"
+   ],
+   "en": "Lappland the Decadenza & Vulpisfoglia"
   },
   {
    "name": "熾吾生平",
@@ -409,7 +419,11 @@
    "related": "★6 ユー（期間限定）  ★6 熾炎ブレイズ  ★5 サーファー",
    "banner_img": "https://webusstatic.yo-star.com/uy0news/aj/0c5f62972e164a8cf786eb779884a40d.png",
    "rerun": false,
-   "agents": []
+   "agents": [
+    "Yu",
+    "Blaze the Igniting Spark"
+   ],
+   "en": "Yu & Blaze the Igniting Spark"
   },
   {
    "name": "河畔の渡し船",
@@ -424,7 +438,10 @@
    "related": "★6 エンテレケイア  ★5 ノウエル  ★5 サンタラ",
    "banner_img": "https://webusstatic.yo-star.com/web-cms-prod/upload/content/2025/07/31/vPK9DXcS.png",
    "rerun": false,
-   "agents": []
+   "agents": [
+    "Entelechia"
+   ],
+   "en": "Entelechia"
   },
   {
    "name": "死火より出づ",
@@ -439,7 +456,10 @@
    "related": "★6 ネクラス  ★5 ウルフェナイト  ★5 ミトム",
    "banner_img": "https://webusstatic.yo-star.com/web-cms-prod/upload/content/2025/08/22/eFBjAhvb.png",
    "rerun": false,
-   "agents": []
+   "agents": [
+    "Necrass"
+   ],
+   "en": "Necrass"
   },
   {
    "name": "指令：再構成",
@@ -454,7 +474,10 @@
    "related": "★6 Mon3tr  ★5 アランナ  ★5 セメント  ★4 ウィンドスクート",
    "banner_img": "https://webusstatic.yo-star.com/web-cms-prod/upload/content/2025/09/09/BDhn11cH.png",
    "rerun": false,
-   "agents": []
+   "agents": [
+    "Mon3tr"
+   ],
+   "en": "Mon3tr"
   },
   {
    "name": "自由なる伝道",
@@ -469,7 +492,11 @@
    "related": "★6 新約エクシア（期間限定）  ★6 レミュアン  ★5 グレースベアラー",
    "banner_img": "https://webusstatic.yo-star.com/web-cms-prod/upload/content/2025/10/07/AarjapmJ.png",
    "rerun": false,
-   "agents": []
+   "agents": [
+    "Exusiai the New Covenant",
+    "Lemuen"
+   ],
+   "en": "Exusiai the New Covenant & Lemuen"
   },
   {
    "name": "訪れぬ幕切れ",
@@ -484,7 +511,10 @@
    "related": "★6 トラゴーディア  ★5 ティッピ  ★5 ロックロック",
    "banner_img": "https://webusstatic.yo-star.com/web-cms-prod/upload/content/2025/11/06/IcwDwF-U.png",
    "rerun": false,
-   "agents": []
+   "agents": [
+    "Tragodia"
+   ],
+   "en": "Tragodia"
   },
   {
    "name": "青霆重明",
@@ -544,7 +574,10 @@
    "related": "★6 ヴィーナ・ヴィクトリア  ★5 ボビング  ★5 濯塵ハイビスカス",
    "banner_img": "https://webusstatic.yo-star.com/web-cms-prod/upload/content/2026/02/13/X1bS2OFX.png",
    "rerun": true,
-   "agents": []
+   "agents": [
+    "Vina Victoria"
+   ],
+   "en": "Vina Victoria"
   },
   {
    "name": "静寂の波長",

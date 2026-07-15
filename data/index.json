@@ -18,7 +18,7 @@
    "game": "wuwa",
    "name": "Wuthering Waves",
    "count": 36,
-   "total_oku": 139.7,
+   "total_oku": 139.6,
    "updated": "2026-07-15T03:12:28Z"
   },
   {
@@ -76,13 +76,6 @@
    "count": 36,
    "total_oku": 124.7,
    "updated": "2026-07-15T03:13:04Z"
-  },
-  {
-   "game": "gfl2",
-   "name": "Girls' Frontline 2: Exilium",
-   "count": 9,
-   "total_oku": 15.4,
-   "updated": "2026-07-15T03:13:09Z"
   }
  ]
 }

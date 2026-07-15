@@ -25,7 +25,6 @@ FANDOM = {
     "bluearchive": {"wiki": "bluearchive.fandom.com", "extract": "ba"},
     "uma":         {"wiki": "umamusume.fandom.com", "extract": "uma"},
     "fgo":         {"wiki": "fategrandorder.fandom.com", "extract": "fgo"},
-    "gfl2":        {"wiki": "girls-frontline.fandom.com", "extract": "amp"},
 }
 
 
@@ -135,7 +134,8 @@ def translate_arknights():
     data = json.loads(dfile.read_text(encoding="utf-8"))
     hit = 0
     for b in data["banners"]:
-        ops = re.findall(r"星6：([^\s星（(]+)", b.get("related", ""))[:3]
+        # related uses two formats: "星6：Name" and "★6 Name" (space)
+        ops = re.findall(r"(?:星6：|★6[ 　]+)([^\s★星（(、,]+)", b.get("related", ""))[:3]
         agents = [m[o] for o in ops if o in m]
         b["agents"] = agents[:3]
         if agents:
@@ -144,6 +144,43 @@ def translate_arknights():
             b.pop("en", None)
     dfile.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
     print(f"[arknights] translated {hit}/{len(data['banners'])} banners")
+
+
+_NAME_STRIP = re.compile(r"復刻|\d+|[（）()「」『』・･\s　]")
+GENSHIN_MAP = NAMES / "genshin_map.json"
+YATTA = "https://gi.yatta.moe/api/v2/{}/avatar"
+
+
+def refresh_genshin_map():
+    ja = getj(YATTA.format("jp"))["data"]["items"]
+    en = getj(YATTA.format("en"))["data"]["items"]
+    m = {ja[c]["name"]: en[c]["name"] for c in ja
+         if c in en and ja[c].get("name") and en[c].get("name") and "旅人" not in ja[c]["name"]}
+    NAMES.mkdir(parents=True, exist_ok=True)
+    GENSHIN_MAP.write_text(json.dumps(m, ensure_ascii=False, indent=0), encoding="utf-8")
+    print(f"genshin map: {len(m)} characters")
+
+
+def translate_genshin():
+    """Genshin banner names are the character(s). Enka (used by enrich_icons) lags on
+    brand-new characters, so override names from a committed JP->EN map built from
+    Project Amber (gi.yatta.moe), which is more current. Icons still come from Enka."""
+    dfile, mfile = DATA / "genshin.json", NAMES / "genshin_map.json"
+    if not dfile.exists() or not mfile.exists():
+        return
+    m = json.loads(mfile.read_text(encoding="utf-8"))
+    data = json.loads(dfile.read_text(encoding="utf-8"))
+    hit = 0
+    for b in data["banners"]:
+        agents = []
+        for t in re.split(r"[&＆/／、,]", b["name"]):
+            k = _NAME_STRIP.sub("", t).strip()
+            if k in m and m[k] not in agents:
+                agents.append(m[k])
+        if agents:                       # prefer the more-current map; keep enrich's if none
+            b["agents"] = agents[:3]; b["en"] = " & ".join(agents[:3]); hit += 1
+    dfile.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
+    print(f"[genshin] translated {hit}/{len(data['banners'])} banners")
 
 
 def translate_endfield():
@@ -170,8 +207,10 @@ def translate_endfield():
 def main():
     if "--refresh" in sys.argv:
         refresh_ak_map()
+        refresh_genshin_map()
     translate_arknights()
     translate_endfield()
+    translate_genshin()
     for tag, cfg in FANDOM.items():
         if (DATA / f"{tag}.json").exists():
             translate_fandom(tag, cfg)
