@@ -195,7 +195,7 @@
    "year": 2025,
    "related": "",
    "banner_img": "https://hw-media-cdn-mingchao.kurogame.com/akiwebsite/website2.0/images/1735401600000/diyl4qmlwqgqsd8sl5-1735487874926.jpg",
-   "rerun": true,
+   "rerun": false,
    "agents": [
     "Carlotta"
    ],
@@ -217,7 +217,7 @@
    "year": 2025,
    "related": "",
    "banner_img": "https://hw-media-cdn-mingchao.kurogame.com/akiwebsite/website2.0/images/1736956800000/2l8nq15vo418kbirq3-1736994711820.jpeg",
-   "rerun": true,
+   "rerun": false,
    "agents": [
     "Roccia"
    ],
@@ -261,7 +261,7 @@
    "year": 2025,
    "related": "",
    "banner_img": "https://hw-media-cdn-mingchao.kurogame.com/akiwebsite/website2.0/images/1740672000000/0t4dmgui1ldv4w9glc-1740739379907.jpeg",
-   "rerun": true,
+   "rerun": false,
    "agents": [
     "Brant"
    ],
@@ -283,7 +283,7 @@
    "year": 2025,
    "related": "",
    "banner_img": "https://hw-media-cdn-mingchao.kurogame.com/object/1742918400000/1oyj87c99o3801sev4-1742954162956.jpg",
-   "rerun": true,
+   "rerun": false,
    "agents": [
     "Cantarella"
    ],

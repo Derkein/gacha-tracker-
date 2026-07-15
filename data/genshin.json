@@ -175,7 +175,7 @@
    "year": 2024,
    "related": "",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/06/03/0/5e700294350bd2ea942800127ef0fbf5_6205033083023036495.jpeg",
-   "rerun": true,
+   "rerun": false,
    "icons": [
     "https://enka.network/ui/UI_AvatarIcon_Clorinde.png",
     "https://enka.network/ui/UI_AvatarIcon_Alhatham.png"
@@ -199,7 +199,7 @@
    "year": 2024,
    "related": "",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/06/20/0/02f62854b7ad8a16c3432e837a703083_2323391094639384563.jpeg",
-   "rerun": true,
+   "rerun": false,
    "icons": [
     "https://enka.network/ui/UI_AvatarIcon_Sigewinne.png",
     "https://enka.network/ui/UI_AvatarIcon_Furina.png"
@@ -247,7 +247,7 @@
    "year": 2024,
    "related": "",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/07/31/0/1e9dbd336af3343a96114538f0c97a31_2302900058160100692.jpeg",
-   "rerun": true,
+   "rerun": false,
    "icons": [
     "https://enka.network/ui/UI_AvatarIcon_Emilie.png",
     "https://enka.network/ui/UI_AvatarIcon_Yelan.png"
@@ -271,7 +271,7 @@
    "year": 2024,
    "related": "",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/08/26/0/084945fe36ba39ee45730b0c8d2bb03c_6348091551060473017.jpeg",
-   "rerun": true,
+   "rerun": false,
    "icons": [
     "https://enka.network/ui/UI_AvatarIcon_Mualani.png",
     "https://enka.network/ui/UI_AvatarIcon_Kazuha.png"
@@ -295,7 +295,7 @@
    "year": 2024,
    "related": "",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/09/11/91f577a717afcc9976463a0a9cfe54e8_7398512192234296705.jpg",
-   "rerun": true,
+   "rerun": false,
    "icons": [
     "https://enka.network/ui/UI_AvatarIcon_Kinich.png",
     "https://enka.network/ui/UI_AvatarIcon_Shougun.png"
@@ -319,7 +319,7 @@
    "year": 2024,
    "related": "",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/10/06/0/d999ca2ad59413c9e525e0e67b558131_1246210284913203565.jpeg",
-   "rerun": true,
+   "rerun": false,
    "icons": [
     "https://enka.network/ui/UI_AvatarIcon_Xilonen.png",
     "https://enka.network/ui/UI_AvatarIcon_Chiori.png"
@@ -367,7 +367,7 @@
    "year": 2024,
    "related": "",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/11/15/0/6c6332e9c76b4392043f56c34a2fabcf_7620603469069275850.jpeg",
-   "rerun": true,
+   "rerun": false,
    "icons": [
     "https://enka.network/ui/UI_AvatarIcon_Chasca.png",
     "https://enka.network/ui/UI_AvatarIcon_Liney.png"
@@ -463,7 +463,7 @@
    "year": 2025,
    "related": "",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/02/07/0/3c7dceda043e860cc1a859756c0aee7f_823675954244895025.jpeg",
-   "rerun": true,
+   "rerun": false,
    "icons": [
     "https://enka.network/ui/UI_AvatarIcon_Mizuki.png",
     "https://enka.network/ui/UI_AvatarIcon_Sigewinne.png"
@@ -511,7 +511,7 @@
    "year": 2025,
    "related": "イアンサ",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/03/21/5935aed29bc08c7d1e2fbb8f2b88a76f_7662838973682167949.jpg",
-   "rerun": true,
+   "rerun": false,
    "icons": [
     "https://enka.network/ui/UI_AvatarIcon_Varesa.png",
     "https://enka.network/ui/UI_AvatarIcon_Liuyun.png"

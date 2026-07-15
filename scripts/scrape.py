@@ -117,9 +117,38 @@ def parse_banners(hpage, year):
             "year": int(year),
             "related": clean(rel.group(1)) if rel else "",
             "banner_img": img.group(1) if img else None,
-            "rerun": "復刻" in name,        # 復刻 = rerun banner
         })
     return rows
+
+
+# Games whose banner NAME is the character(s) (so 復刻 attaches per-character).
+# Event-named games (Arknights, FGO, Uma, GBF) are handled by plain "復刻 in name".
+CHRONO_GAMES = {"zzz", "hsr", "wuwa", "genshin", "nte", "endfield", "gfl2", "bluearchive"}
+_HEAD_SPLIT = re.compile(r"[&＆、,]")        # NB: not / — it would split "Fate/Grand Order"
+_HEAD_STRIP = re.compile(r"復刻|[（）()「」『』［］\[\]・･\s　]")
+
+
+def mark_reruns(banners, chrono):
+    """Set `rerun` per banner.
+
+    A banner like 花火&景元復刻 is Sparkle's DEBUT paired with a Jing Yuan rerun —
+    the 復刻 belongs to the *second* character, so the banner isn't a rerun. For
+    character-named games we therefore look only at the HEADLINER (first character):
+    it's a rerun if that first character carries 復刻, or already headlined an
+    earlier banner (first appearance = debut). Event-named games just use 復刻.
+    """
+    if not chrono:
+        for b in banners:
+            b["rerun"] = "復刻" in b["name"]
+        return banners
+    seen = set()
+    for b in sorted(banners, key=lambda x: (x["start"], x["name"])):
+        head = _HEAD_SPLIT.split(b["name"])[0]
+        key = _HEAD_STRIP.sub("", head)
+        b["rerun"] = ("復刻" in head) or (key in seen)
+        if key:
+            seen.add(key)
+    return banners
 
 
 def scrape_game(tag, meta):
@@ -143,7 +172,7 @@ def scrape_game(tag, meta):
             continue
         seen.add(key)
         uniq.append(b)
-    return uniq
+    return mark_reruns(uniq, tag in CHRONO_GAMES)
 
 
 def main():
