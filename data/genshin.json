@@ -4,7 +4,7 @@
  "jp": "原神",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E5%8E%9F%E7%A5%9E",
- "updated": "2026-07-14T00:27:56Z",
+ "updated": "2026-07-15T03:12:33Z",
  "count": 44,
  "banners": [
   {
@@ -985,10 +985,10 @@
    "name": "サンドローネ",
    "start": "2026-07-01",
    "end": "2026-07-21",
-   "rev": 10.25,
+   "rev": 10.41,
    "yrank": 2,
    "ytot": 9,
-   "cum": 47,
+   "cum": 46,
    "cumtot": 102,
    "year": 2026,
    "related": "",

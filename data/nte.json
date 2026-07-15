@@ -4,7 +4,7 @@
  "jp": "NTE： Neverness to Everness",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/NTE%EF%BC%9A%20Neverness%20to%20Everness",
- "updated": "2026-07-14T00:28:00Z",
+ "updated": "2026-07-15T03:12:36Z",
  "count": 5,
  "banners": [
   {
@@ -99,7 +99,7 @@
    "name": "真紅",
    "start": "2026-07-08",
    "end": "2026-07-29",
-   "rev": 2.71,
+   "rev": 2.86,
    "yrank": 4,
    "ytot": 5,
    "cum": 4,
@@ -108,6 +108,10 @@
    "related": "",
    "banner_img": "https://appmedia.jp/wp-content/uploads/2026/07/101921_q8b4w.webp",
    "rerun": false,
+   "agents": [
+    "Shinku"
+   ],
+   "en": "Shinku",
    "icons": [
     "icons/faces/nte/2026-07-08-b29442.webp"
    ],
