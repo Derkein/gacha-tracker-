@@ -37,8 +37,8 @@ jobs:
       - name: Attach character portraits
         run: python scripts/enrich_icons.py
 
-      - name: Translate data-only game names (Arknights)
-        run: python scripts/translate_names.py
+      - name: Translate names (refresh maps so new characters get picked up)
+        run: python scripts/translate_names.py --refresh
         continue-on-error: true
 
       - name: Crop face icons from banner art (icon-less games)

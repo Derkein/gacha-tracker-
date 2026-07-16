@@ -138,5 +138,21 @@ td.l,th.l{text-align:left}
 .gsvg .dot:hover{r:7}
 .gsvg image{cursor:pointer}
 .gsvg .gring{stroke-width:2.5; paint-order:stroke; cursor:pointer}
+/* info button + methodology modal */
+.infolink{border:0; background:none; color:var(--accent); font:inherit; font-size:12.5px; font-weight:600;
+  cursor:pointer; padding:0; text-decoration:underline; text-underline-offset:2px; white-space:nowrap}
+.modal{position:fixed; inset:0; z-index:100; display:flex; align-items:center; justify-content:center;
+  background:rgba(0,0,0,.55); padding:20px; overflow-y:auto}
+.modal-card{position:relative; background:var(--surface); border:1px solid var(--base); border-radius:16px;
+  max-width:560px; width:100%; padding:26px clamp(18px,4vw,32px); box-shadow:var(--shadow); margin:auto}
+.modal-close{position:absolute; top:12px; right:14px; border:0; background:none; color:var(--muted);
+  font-size:26px; line-height:1; cursor:pointer; padding:2px 6px; border-radius:8px}
+.modal-close:hover{color:var(--ink); background:var(--track)}
+.modal-card h2{margin:0 0 4px; font-size:21px; letter-spacing:-.02em}
+.modal-sub{margin:0 0 14px; color:var(--muted); font-size:13px}
+.modal-card h3{margin:16px 0 4px; font-size:13.5px; color:var(--accent); letter-spacing:.01em}
+.modal-card p{margin:0; font-size:13.5px; color:var(--ink2); line-height:1.55}
+.modal-card p b{color:var(--ink)}
+.modal-src{margin-top:18px !important; font-size:11.5px !important; color:var(--muted) !important}
 .foot{margin-top:26px; font-size:11px; color:var(--muted); line-height:1.6}
 .loading{padding:40px 0; text-align:center; color:var(--muted)}

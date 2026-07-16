@@ -225,7 +225,7 @@ def apply_overrides(cascade):
         touched = False
         for b in data["banners"]:
             o = ov.get(b["name"])
-            if not o:
+            if not o or b.get("agents"):     # skip once the real source names the character
                 continue
             if o.get("en"):
                 b["agents"] = [o["en"]]; b["en"] = o["en"]

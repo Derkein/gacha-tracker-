@@ -103,8 +103,12 @@ function ticks(max,step){
   const t=[]; for(let v=0;v<=max+1e-9;v+=step) t.push(+v.toFixed(2)); return t;
 }
 function niceCeil(oku){ return Math.max(1, Math.ceil(oku)); }   // round up to next 100M (1億)
-// axis top: round the highest up to the chosen bracket (e.g. 2.04B @ ¥200M -> 2.2B), else auto
-function axisRound(v){ const s=state.bracket; return s ? Math.ceil(v/s - 1e-9)*s : scaleMax(v); }
+// axis top for a peak: a chosen bracket rounds up to it (2.04B @¥200M -> 2.2B); else
+// "match highest" fits tightly (next 100M), otherwise a roomy round number.
+function roundTop(peak, tight){
+  if(state.bracket) return Math.ceil(peak/state.bracket - 1e-9)*state.bracket;
+  return tight ? niceCeil(peak) : scaleMax(peak);
+}
 function poolBanners(){ const b=state.data.banners; return state.graphYear==="all" ? b : b.filter(x=>String(x.year)===state.graphYear); }
 
 // ---- avatars ----
@@ -144,8 +148,8 @@ function renderBars(){
   const pool=poolBanners();                                   // Year filter applies here too
   [...pool].sort((a,c)=>c.rev-a.rev).forEach((x,i)=>x._rank=i+1);   // rank within the shown set
   // one axis (timeline gridlines are full-height, so they can't vary per year): match-highest
-  // scales to the shown set's peak, otherwise to the game's overall peak.
-  const max = axisRound(Math.max(...(state.matchHigh?pool:all).map(x=>x.rev)));
+  // fits the axis tightly to the shown set's peak; otherwise leaves roomy headroom.
+  const max = roundTop(Math.max(...pool.map(x=>x.rev)), state.matchHigh);
   // FLIP: capture current row positions before we replace the DOM
   const old={};
   document.querySelectorAll("#chart .row").forEach(r=>{ old[r.dataset.i]=r.getBoundingClientRect().top; });
@@ -202,13 +206,13 @@ function yearSVG(year, items, gmax, step){
 function renderGraph(){
   state.data.banners.forEach((x,i)=>x._i=i);
   const pool=poolBanners();
-  const poolMax=axisRound(Math.max(...pool.map(x=>x.rev)));
+  const sharedMax=roundTop(Math.max(...pool.map(x=>x.rev)), false);
   const byYear={}; pool.forEach(x=>{(byYear[x.year]=byYear[x.year]||[]).push(x);});
   let years=Object.keys(byYear).sort();
   if(state.reverse) years.reverse();
   $("#chart").innerHTML=years.map(y=>{
     const items=byYear[y];
-    const gmax=state.matchHigh ? axisRound(Math.max(...items.map(x=>x.rev))) : poolMax;
+    const gmax=state.matchHigh ? roundTop(Math.max(...items.map(x=>x.rev)), true) : sharedMax;
     return `<div class="gyear"><div class="yhead">${y}</div>${yearSVG(y,items,gmax,state.bracket||0)}</div>`;
   }).join("");
 }
@@ -293,5 +297,12 @@ $("#bTable").onclick=function(){state.table=!state.table;
   this.classList.toggle("on",state.table); this.textContent=state.table?"Chart view":"Table view";
   $("#graphControls").hidden=state.table;
   render();};
+
+// ---- methodology modal ----
+const infoModal=$("#infoModal");
+$("#infoBtn").onclick=()=>{ infoModal.hidden=false; };
+$("#infoClose").onclick=()=>{ infoModal.hidden=true; };
+infoModal.onclick=e=>{ if(e.target===infoModal) infoModal.hidden=true; };
+addEventListener("keydown",e=>{ if(e.key==="Escape") infoModal.hidden=true; });
 
 init().catch(e=>{$("#chart").innerHTML=`<div class="loading">Failed to load data: ${e}</div>`;});

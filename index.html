@@ -13,7 +13,7 @@
   <header class="site-hd">
     <div>
       <h1>Gacha <span class="accent">Revenue</span> Tracker</h1>
-      <p>Estimated per-banner gacha revenue over time, shown in <b>yen</b>. game-i reports in “G” — per its official X, G means “about” and 1億G ≈ ¥1億 (~¥100M), i.e. G ≈ ¥1. Third-party estimates (売上予測); approximate, not official.</p>
+      <p>Estimated per-banner gacha revenue over time, shown in <b>yen</b>. Third-party estimates (売上予測) from game-i; approximate, not official. <button id="infoBtn" class="infolink">ⓘ How these numbers work</button></p>
     </div>
     <div class="updated" id="updated"></div>
   </header>
@@ -63,6 +63,32 @@
   </footer>
 </div>
 <div class="tip" id="tip" hidden></div>
+
+<div class="modal" id="infoModal" hidden>
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="infoTitle">
+    <button class="modal-close" id="infoClose" aria-label="Close">×</button>
+    <h2 id="infoTitle">How these numbers work</h2>
+    <p class="modal-sub">Where game-i's estimates come from — and why they change.</p>
+
+    <h3>What the number is</h3>
+    <p>An <b>estimate</b> of how much a banner earned from mobile gacha in <b>Japan</b>, shown here in yen. game-i reports it in <b>“G”</b> — a deliberately vague unit it says just means “<i>about</i>” (〜ぐらい). By common convention <b>1億G ≈ ¥100 million</b> (so 1G ≈ ¥1), which is how the yen figures here are derived.</p>
+
+    <h3>Where it comes from</h3>
+    <p>game-i records each app's <b>App Store / Google Play top-grossing rank every day at midnight (JST)</b>, converts that daily rank into an estimated daily revenue using a model <b>calibrated against companies' publicly disclosed earnings</b>, and adds up the days a banner runs. It's a rank → revenue estimate, <b>not</b> reported sales.</p>
+
+    <h3>Does it change after day 1?</h3>
+    <p><b>Yes.</b> While a banner is live, each new day <b>adds</b> that day's estimate, so the running total keeps climbing until the banner ends — that's why you saw ZZZ's Norma go from ~¥110M to ~¥142M. game-i also revises figures as more data arrives (values it shows in <b>blue</b> are downward corrections / statistical smoothing). Once a banner has ended, its total is essentially final.</p>
+
+    <h3>What's covered — and what isn't</h3>
+    <p>Japan only, <b>iOS (App Store, incl. iPad) + Android (Google Play)</b>. It <b>excludes</b> overseas stores, PC and browser versions (DMM / mobage / GREE), and merchandise — so a game's true worldwide revenue is meaningfully higher than what you see here.</p>
+
+    <h3>How accurate is it?</h3>
+    <p>Directional, not exact. game-i states precision <b>isn't guaranteed</b>; it's better for top-ranked titles (more disclosed earnings to calibrate against) and rougher for smaller ones. Use these numbers to <b>compare</b> banners, not as official figures.</p>
+
+    <p class="modal-src">Source &amp; full methodology: <a href="https://game-i.daa.jp/?セルランとは？" target="_blank" rel="noopener">game-i.daa.jp — セルランとは？</a> · <a href="https://game-i.daa.jp/?よくある質問" target="_blank" rel="noopener">よくある質問</a></p>
+  </div>
+</div>
+
 <script src="app.js"></script>
 </body>
 </html>
