@@ -160,3 +160,5 @@ td.l,th.l{text-align:left}
 .modal-src{margin-top:18px !important; font-size:11.5px !important; color:var(--muted) !important}
 .foot{margin-top:26px; font-size:11px; color:var(--muted); line-height:1.6}
 .loading{padding:40px 0; text-align:center; color:var(--muted)}
+.loading.err{line-height:1.7}
+.loading.err button{margin-top:10px; padding:6px 22px; cursor:pointer}

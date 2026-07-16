@@ -39,8 +39,26 @@ function barShades(hex){const[h,s,l]=hexToHsl(hex||"#888");
          hslToHex(h,Math.max(s,.22),Math.min(Math.max(l,.50),.70))];}
 
 // ---- init ----
+// no-cache revalidates with the server (ETag) so a stale or half-written cached
+// copy after a Pages redeploy can't wedge the app; throws on HTTP errors so
+// failures surface as a retry screen instead of an eternal "Loading…".
+async function getJSON(url){
+  const r = await fetch(url, {cache:"no-cache"});
+  if(!r.ok) throw new Error(`${url}: HTTP ${r.status}`);
+  return r.json();
+}
+function showError(err, retry){
+  console.error(err);
+  $("#chart").innerHTML =
+    `<div class="loading err">Couldn't load data (${esc(err.message||String(err))}).<br>` +
+    `This is usually a brief network hiccup or the site mid-redeploy.<br>` +
+    `<button class="ghost" id="retryBtn">Retry</button></div>`;
+  $("#retryBtn").onclick = retry;
+}
 async function init(){
-  const idx = await (await fetch("data/index.json")).json();
+  let idx;
+  try { idx = await getJSON("data/index.json"); }
+  catch(e){ showError(e, init); return; }
   state.games = idx.games;
   const tabs = $("#tabs"); tabs.innerHTML = "";
   state.games.forEach(g=>{
@@ -71,12 +89,18 @@ function layoutTabs(){
   toggle.textContent = `+${hidden} more ▾`;
 }
 $("#tabsToggle").onclick=()=>{ state.tabsExpanded=!state.tabsExpanded; layoutTabs(); };
+let _loadSeq = 0;
 async function selectGame(tag){
   state.tag=tag; location.hash=tag;
   document.querySelectorAll(".tab").forEach(t=>t.classList.toggle("on",t.dataset.tag===tag));
   document.documentElement.style.setProperty("--accent", GAME_ACCENT[tag]||"#e0a400");
   $("#chart").innerHTML=`<div class="loading">Loading ${tag.toUpperCase()}…</div>`;
-  state.data = await (await fetch(`data/${tag}.json`)).json();
+  const seq = ++_loadSeq;
+  let data;
+  try { data = await getJSON(`data/${tag}.json`); }
+  catch(e){ if(seq===_loadSeq) showError(e, ()=>selectGame(tag)); return; }
+  if(seq!==_loadSeq) return;   // a newer tab click won this race
+  state.data = data;
   // rank by revenue *within our dataset* — game-i's cum is against the game's full
   // history (often far larger than what we scrape), so it isn't 1..N here.
   [...state.data.banners].sort((a,b)=>b.rev-a.rev).forEach((b,i)=>b._rank=i+1);
