@@ -47,6 +47,11 @@ def _match_one(text, idx):
     exact = next(((name, e) for nk, name, e in idx if nk == nt), None)
     if exact:
         return exact
+    # Alt/SP characters use a "・" separator (丹恒・飲月, 姫子・旅立ち). If the full alt
+    # name isn't in the source, do NOT fall back to the base character — 姫子・旅立ち
+    # (Himeko • Nova) must not become plain Himeko. It'll use banner art instead.
+    if "・" in text or "･" in text:
+        return None
     return next(((name, e) for nk, name, e in idx if nk and nk in nt), None)
 
 

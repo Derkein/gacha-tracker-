@@ -207,6 +207,47 @@ def process(tag, cascade, force=False):
     return made, kept, drip_hits, len(data["banners"])
 
 
+def apply_overrides(cascade):
+    """Curated fixes for alt/SP characters missing from the primary sources
+    (e.g. 姫子・旅立ち = Himeko • Nova). Sets the English name and, if an art URL is
+    given, a clean face-cropped icon. Runs for every game, wins over source matches."""
+    ofile = ICONS / "names" / "overrides.json"
+    if not ofile.exists():
+        return
+    ov = json.loads(ofile.read_text(encoding="utf-8"))
+    outdir = ICONS / "faces" / "overrides"
+    outdir.mkdir(parents=True, exist_ok=True)
+    n = 0
+    for dfile in sorted(DATA.glob("*.json")):
+        if dfile.stem == "index":
+            continue
+        data = json.loads(dfile.read_text(encoding="utf-8"))
+        touched = False
+        for b in data["banners"]:
+            o = ov.get(b["name"])
+            if not o:
+                continue
+            if o.get("en"):
+                b["agents"] = [o["en"]]; b["en"] = o["en"]
+            if o.get("art"):
+                rel = f"icons/faces/overrides/{hashlib.md5(b['name'].encode()).hexdigest()[:8]}.webp"
+                fpath = ROOT / rel
+                if not fpath.exists():
+                    try:
+                        pim = crop_face(fetch(o["art"]), cascade, True)
+                        if pim:
+                            pim.save(fpath, "WEBP", quality=85, method=6)
+                    except Exception as e:
+                        print(f"  override {b['name']}: {e}")
+                if fpath.exists():
+                    b["icons"] = [rel]
+            n += 1; touched = True
+        if touched:
+            dfile.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
+    if n:
+        print(f"[overrides] applied {n} banner override(s)")
+
+
 def main():
     force = "--force" in sys.argv
     cascade = cv2.CascadeClassifier(CASCADE)
@@ -218,6 +259,7 @@ def main():
         made, kept, drip, tot = process(tag, cascade, force)
         via = f" ({drip} from drip art)" if drip else ""
         print(f"[{tag}] face icons: {made} new{via} + {kept} cached = {made + kept}/{tot} banners")
+    apply_overrides(cascade)
 
 
 if __name__ == "__main__":
