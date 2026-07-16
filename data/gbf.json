@@ -4,13 +4,13 @@
  "jp": "グランブルーファンタジー",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E3%82%B0%E3%83%A9%E3%83%B3%E3%83%96%E3%83%AB%E3%83%BC%E3%83%95%E3%82%A1%E3%83%B3%E3%82%BF%E3%82%B8%E3%83%BC",
- "updated": "2026-07-16T11:42:04Z",
+ "updated": "2026-07-16T18:21:55Z",
  "count": 10,
  "now": {
-  "ios": null,
-  "android": 116,
-  "month": 94,
-  "next_add": 5499654,
+  "ios": 42,
+  "android": 118,
+  "month": 97,
+  "next_add": 31641307,
   "ym": "2026/07",
   "ranks": {
    "prev": [
@@ -63,7 +63,7 @@
     111,
     161,
     null,
-    null,
+    155,
     null,
     null,
     null,
