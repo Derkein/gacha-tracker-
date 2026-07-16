@@ -22,6 +22,8 @@ body{ background:var(--page); color:var(--ink);
   -webkit-font-smoothing:antialiased; }
 .wrap{max-width:1120px; margin:0 auto; padding:26px clamp(14px,3vw,34px) 60px}
 a{color:inherit}
+/* the hidden attribute must win over class display rules (.modal/.controls set display) */
+[hidden]{display:none !important}
 
 /* header */
 .site-hd{display:flex; flex-wrap:wrap; align-items:flex-end; gap:14px 22px; margin-bottom:20px}
