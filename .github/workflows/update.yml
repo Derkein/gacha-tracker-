@@ -5,6 +5,10 @@ name: Refresh gacha data
 on:
   schedule:
     - cron: "0 21 * * *"     # daily, 21:00 UTC
+  push:
+    branches: [main]          # refresh data right after every code push
+                              # (no loop: the bot's own GITHUB_TOKEN commit
+                              #  never triggers workflows)
   workflow_dispatch:          # allow manual runs from the Actions tab
 
 concurrency:
