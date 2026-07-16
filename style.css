@@ -152,6 +152,8 @@ td.l,th.l{text-align:left}
 .modal-close:hover{color:var(--ink); background:var(--track)}
 .modal-card h2{margin:0 0 4px; font-size:21px; letter-spacing:-.02em}
 .modal-sub{margin:0 0 14px; color:var(--muted); font-size:13px}
+.modal-note{margin:0 0 4px !important; font-size:12.5px !important; color:var(--muted) !important;
+  background:var(--surface2); border:1px solid var(--border); border-radius:10px; padding:10px 12px}
 .modal-card h3{margin:16px 0 4px; font-size:13.5px; color:var(--accent); letter-spacing:.01em}
 .modal-card p{margin:0; font-size:13.5px; color:var(--ink2); line-height:1.55}
 .modal-card p b{color:var(--ink)}

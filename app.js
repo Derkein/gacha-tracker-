@@ -156,7 +156,7 @@ function renderBars(){
   let list=[...pool], html="";
   if(state.mode==="rank"){ list.sort((x,y)=> state.reverse ? x.rev-y.rev : y.rev-x.rev); html+=axesHTML(max);
     list.forEach(x=>html+=rowHTML(x,x._rank,max)); }
-  else { list.sort((x,y)=>x.start.localeCompare(y.start)); if(state.reverse) list.reverse(); let cy=null;
+  else { list.sort((x,y)=>y.start.localeCompare(x.start)); if(state.reverse) list.reverse(); let cy=null;  // newest first by default
     list.forEach(x=>{ if(x.year!==cy){cy=x.year; html+=`<div class="yhead">${cy}</div>`+axesHTML(max);}
       html+=rowHTML(x,x._rank,max); }); }
   $("#chart").innerHTML=html;
@@ -209,7 +209,7 @@ function renderGraph(){
   const sharedMax=roundTop(Math.max(...pool.map(x=>x.rev)), false);
   const byYear={}; pool.forEach(x=>{(byYear[x.year]=byYear[x.year]||[]).push(x);});
   let years=Object.keys(byYear).sort();
-  if(state.reverse) years.reverse();
+  if(!state.reverse) years.reverse();          // newest year first by default
   $("#chart").innerHTML=years.map(y=>{
     const items=byYear[y];
     const gmax=state.matchHigh ? roundTop(Math.max(...items.map(x=>x.rev)), true) : sharedMax;
@@ -276,7 +276,7 @@ $("#chart").addEventListener("pointerleave",()=>tip.hidden=true);
 function updateDirLabel(){
   $("#bDir").textContent = state.mode==="rank"
     ? (state.reverse ? "Lowest first" : "Highest first")
-    : (state.reverse ? "Newest first" : "Oldest first");
+    : (state.reverse ? "Oldest first" : "Newest first");
 }
 function setMode(m){
   state.mode=m;
