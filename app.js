@@ -108,6 +108,35 @@ async function selectGame(tag){
   renderStats(); render();
 }
 
+// tiny inverted sparkline of the daily iOS top-grossing rank (prev + current
+// month). Rank 1 sits at the top; gaps are days below the trackable ~top 200.
+function sparkline(now){
+  if(!now.ranks) return "";
+  const vals=[...now.ranks.prev, ...now.ranks.cur];
+  while(vals.length && vals[vals.length-1]==null) vals.pop();   // future days
+  const known=vals.filter(v=>v!=null);
+  if(known.length<2) return "";
+  const W=120,H=26,max=Math.max(...known),n=vals.length;
+  let d="",pen=false;
+  vals.forEach((v,i)=>{
+    if(v==null){pen=false;return;}
+    const x=(i/(n-1))*W, y=2+((v-1)/Math.max(max-1,1))*(H-4);
+    d+=`${pen?"L":"M"}${x.toFixed(1)} ${y.toFixed(1)}`; pen=true;
+  });
+  return `<svg class="spark" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none"><path d="${d}"/></svg>`;
+}
+
+function nowTile(now){
+  if(!now || (now.ios==null && now.android==null)) return "";
+  const r=v=>v==null?"200+":"#"+v;
+  const add=now.next_add?` · game-i expects ≈${G(now.next_add/1e8)} more tomorrow`:"";
+  const tip=`Daily iOS top-grossing rank, last two months (top = #1; gaps = below the trackable ~top 200, which game-i counts as ¥0)${add}`;
+  return `<div class="tile" title="${esc(tip)}"><span class="l">JP store rank today</span>`+
+         `<span class="v">iOS ${r(now.ios)}</span>`+
+         `<span class="n">Android ${r(now.android)} · monthly sales ${now.month?"#"+now.month:"—"}</span>`+
+         sparkline(now)+`</div>`;
+}
+
 function renderStats(){
   const b=state.data.banners, sum=b.reduce((a,x)=>a+x.rev,0), top=b.reduce((a,x)=>x.rev>a.rev?x:a);
   const topName = (top.agents&&top.agents.length) ? top.agents.join(" & ") : top.name;
@@ -116,7 +145,8 @@ function renderStats(){
     ["Highest banner", G(top.rev), topName],
     ["Average / banner", G(sum/b.length), "mean estimate"],
     ["Blockbuster banners", `${b.filter(x=>x.rev>=10).length}`, "worth over ¥1B each"],
-  ].map(([l,v,n])=>`<div class="tile"><span class="l">${l}</span><span class="v">${v}</span><span class="n">${esc(n)}</span></div>`).join("");
+  ].map(([l,v,n])=>`<div class="tile"><span class="l">${l}</span><span class="v">${v}</span><span class="n">${esc(n)}</span></div>`).join("")
+  + nowTile(state.data.now);
   $("#updated").textContent=`source: game-i.daa.jp · updated ${new Date(state.data.updated).toISOString().slice(0,10)}`;
 }
 

@@ -55,6 +55,8 @@ a{color:inherit}
 .tile .l{font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:.05em}
 .tile .v{font-size:22px; font-weight:800; letter-spacing:-.02em; font-variant-numeric:tabular-nums}
 .tile .n{font-size:12px; color:var(--ink2); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.tile .spark{width:100%; height:26px; margin-top:4px}
+.tile .spark path{fill:none; stroke:var(--accent); stroke-width:1.5; vector-effect:non-scaling-stroke}
 
 /* controls */
 .controls{display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:14px}
@@ -146,7 +148,11 @@ td.l,th.l{text-align:left}
 .modal{position:fixed; inset:0; z-index:100; display:flex; align-items:center; justify-content:center;
   background:rgba(0,0,0,.55); padding:20px; overflow-y:auto}
 .modal-card{position:relative; background:var(--surface); border:1px solid var(--base); border-radius:16px;
-  max-width:560px; width:100%; padding:26px clamp(18px,4vw,32px); box-shadow:var(--shadow); margin:auto}
+  max-width:560px; width:100%; padding:26px clamp(18px,4vw,32px); box-shadow:var(--shadow); margin:auto;
+  max-height:min(86vh,760px); overflow-y:auto; overscroll-behavior:contain}
+.modal-card ul{margin:4px 0 0; padding-left:20px; font-size:13.5px; color:var(--ink2); line-height:1.55}
+.modal-card li{margin:3px 0}
+.modal-card li b{color:var(--ink)}
 .modal-close{position:absolute; top:12px; right:14px; border:0; background:none; color:var(--muted);
   font-size:26px; line-height:1; cursor:pointer; padding:2px 6px; border-radius:8px}
 .modal-close:hover{color:var(--ink); background:var(--track)}

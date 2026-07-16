@@ -78,6 +78,15 @@
     <h3>Where it comes from</h3>
     <p>game-i records each app's <b>App Store / Google Play top-grossing rank every day at midnight (JST)</b>, converts that daily rank into an estimated daily revenue using a model <b>calibrated against companies' publicly disclosed earnings</b>, and adds up the days a banner runs. It's a rank → revenue estimate, <b>not</b> reported sales.</p>
 
+    <h3>How a day's revenue is split between banners</h3>
+    <p>The model assumes <b>all</b> of the app's estimated revenue that day is gacha revenue, and assigns it to whatever banners are running:</p>
+    <ul>
+      <li>Banners running <b>at the same time split the day equally</b>.</li>
+      <li>A banner's <b>first day is weighted up 80%</b>, its <b>last day down 80%</b> (launch rush vs. wind-down).</li>
+      <li>Busy periods (New Year, Golden Week) run many banners at once, so <b>each individual banner can look lower</b> than it really earned.</li>
+      <li>Rank history only exists from <b>2018</b>, so nothing older can be counted.</li>
+    </ul>
+
     <h3>Does it change after day 1?</h3>
     <p><b>Yes — but mostly in the first few days.</b> Each day the banner is live adds that day's estimate from the game's current top-grossing rank. Because a banner spikes to its highest rank at launch and then steadily falls, <b>most of the increase lands in the opening days</b>; after that the daily additions get small and the total barely moves. It stops changing once the game drops out of the tracked ranking (below ~rank 200) or the banner ends.</p>
 
@@ -85,9 +94,19 @@
     <p>Japan only, <b>iOS (App Store, incl. iPad) + Android (Google Play)</b>. It <b>excludes</b> overseas stores, PC and browser versions (DMM / mobage / GREE), and merchandise — so a game's true worldwide revenue is meaningfully higher than what you see here.</p>
 
     <h3>How accurate is it?</h3>
-    <p>Directional, not exact. game-i states precision <b>isn't guaranteed</b>; it's better for top-ranked titles (more disclosed earnings to calibrate against) and rougher for smaller ones. Use these numbers to <b>compare</b> banners, not as official figures.</p>
+    <p>Directional, not exact. game-i itself calls the method <b>どんぶり勘定</b> — a deliberate back-of-the-envelope built from statistics, regression analysis and machine prediction, with <b>no guarantee</b> of matching official figures. Known blind spots it discloses:</p>
+    <ul>
+      <li>Days <b>below ~rank 200</b> can't be tracked and are counted as <b>¥0</b> — weak banners get underestimated.</li>
+      <li>An app <b>holding #1</b> can earn far beyond the model's ceiling (青天井), so monster banners get <i>under</i>estimated too.</li>
+      <li>The model is regressed from <b>iOS ranks</b> — if a game's Android rank diverges a lot, the estimate skews.</li>
+      <li>iOS-only apps should be read at <b>about half</b> the shown value; stores like Amazon/mobage aren't included at all.</li>
+    </ul>
+    <p style="margin-top:6px">It's better for top-ranked titles (more disclosed earnings to calibrate against) and rougher for smaller ones. Use these numbers to <b>compare</b> banners, not as official figures.</p>
 
-    <p class="modal-src">Source &amp; full methodology: <a href="https://game-i.daa.jp/?セルランとは？" target="_blank" rel="noopener">game-i.daa.jp — セルランとは？</a> · <a href="https://game-i.daa.jp/?よくある質問" target="_blank" rel="noopener">よくある質問</a></p>
+    <h3>The “JP store rank today” tile</h3>
+    <p>Each game's tiles include its <b>current top-grossing rank</b> (iOS &amp; Android, Japan) straight from game-i, with a two-month sparkline of the daily iOS rank — the raw ingredient every estimate on this page is cooked from. Gaps in the line are days below the trackable ~top 200.</p>
+
+    <p class="modal-src">Source &amp; full methodology: <a href="https://game-i.daa.jp/?セルランとは？" target="_blank" rel="noopener">game-i.daa.jp — セルランとは？</a> · <a href="https://game-i.daa.jp/?サイトについて" target="_blank" rel="noopener">サイトについて</a> · <a href="https://game-i.daa.jp/?ガチャ売上分析について" target="_blank" rel="noopener">ガチャ売上分析について</a> · <a href="https://game-i.daa.jp/?よくある質問" target="_blank" rel="noopener">よくある質問</a></p>
   </div>
 </div>
 

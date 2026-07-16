@@ -24,14 +24,16 @@ BASE = "https://game-i.daa.jp/"
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 
-# tag -> game-i wiki page under ガチャ分析/ , plus display metadata
+# tag -> game-i wiki page under ガチャ分析/ , plus display metadata.
+# `apid` (App Store id) also addresses game-i's per-app page ?APP/<apid>, which we
+# scrape for today's store ranks and the daily rank history sparkline.
 GAMES = {
-    "zzz":      {"page": "ガチャ分析/ゼンレスゾーンゼロ",        "name": "Zenless Zone Zero",  "jp": "ゼンレスゾーンゼロ"},
-    "hsr":      {"page": "ガチャ分析/崩壊：スターレイル",        "name": "Honkai: Star Rail",  "jp": "崩壊：スターレイル"},
-    "wuwa":     {"page": "ガチャ分析/鳴潮",                  "name": "Wuthering Waves",    "jp": "鳴潮"},
-    "genshin":  {"page": "ガチャ分析/原神",                  "name": "Genshin Impact",     "jp": "原神"},
-    "endfield": {"page": "ガチャ分析/アークナイツ：エンドフィールド", "name": "Arknights: Endfield","jp": "アークナイツ：エンドフィールド"},
-    "nte":      {"page": "ガチャ分析/NTE： Neverness to Everness", "name": "Neverness to Everness", "jp": "NTE： Neverness to Everness"},
+    "zzz":      {"page": "ガチャ分析/ゼンレスゾーンゼロ",        "name": "Zenless Zone Zero",  "jp": "ゼンレスゾーンゼロ",  "apid": "1606356401"},
+    "hsr":      {"page": "ガチャ分析/崩壊：スターレイル",        "name": "Honkai: Star Rail",  "jp": "崩壊：スターレイル",  "apid": "1599719154"},
+    "wuwa":     {"page": "ガチャ分析/鳴潮",                  "name": "Wuthering Waves",    "jp": "鳴潮",            "apid": "6475033368"},
+    "genshin":  {"page": "ガチャ分析/原神",                  "name": "Genshin Impact",     "jp": "原神",            "apid": "1517783697"},
+    "endfield": {"page": "ガチャ分析/アークナイツ：エンドフィールド", "name": "Arknights: Endfield","jp": "アークナイツ：エンドフィールド", "apid": "6752642477"},
+    "nte":      {"page": "ガチャ分析/NTE： Neverness to Everness", "name": "Neverness to Everness", "jp": "NTE： Neverness to Everness", "apid": "6754593077"},
     # Top popular gacha titles game-i tracks (resolved by App Store id at runtime,
     # so we don't hardcode long JP page names full of ：＆！／). Data-only: these
     # use banner-art thumbnails, not character icons.
@@ -150,6 +152,44 @@ def mark_reruns(banners, chrono):
     return banners
 
 
+def _rank(pat, h):
+    m = re.search(pat, h)
+    if not m or m.group(1) == "-":
+        return None
+    return int(m.group(1).replace(",", ""))
+
+
+def scrape_now(apid):
+    """Today's store standing from game-i's per-app page (?APP/<apid>) plus the
+    daily iOS top-grossing rank history (previous + current month) that feeds the
+    page's chart via cmd=app_detail_js. Ranks are None when the app sat below the
+    trackable ~200 ("-位"); game-i counts such days as ¥0.
+    """
+    h = fetch(BASE + f"?APP/{apid}")
+    now = {
+        "ios":     _rank(r"iOS 総合: ([\d,\-]+)位", h),
+        "android": _rank(r"Android: ([\d,\-]+)位", h),
+        "month":   _rank(r"月間売上: ([\d,\-]+)位", h),
+    }
+    m = re.search(r"var max=([\d.]+);", h)                 # 翌日加算売上 (yen)
+    now["next_add"] = round(float(m.group(1))) if m else None
+    ym = datetime.now(timezone.utc).strftime("%Y/%m")
+    js = fetch(BASE + f"?cmd=app_detail_js&apid={apid}&Ym={ym}&width=95%25&height=300px")
+    # chart rows: ['16日',null,...,<iOS prev-month rank>,ann,ann,<iOS cur-month rank>,ann,ann]
+    # dropping the quoted strings keeps every comma, so column positions survive.
+    prev, cur = [], []
+    for line in re.findall(r"\[('\d+日'[^\]]*)\]", js):
+        f = re.sub(r"'[^']*'", "", line).split(",")
+        if len(f) < 11:
+            continue
+        prev.append(int(f[7]) if f[7].strip().isdigit() else None)
+        cur.append(int(f[10]) if f[10].strip().isdigit() else None)
+    if any(v is not None for v in prev + cur):
+        now["ym"] = ym
+        now["ranks"] = {"prev": prev, "cur": cur}
+    return now
+
+
 def scrape_game(tag, meta):
     meta["page"] = resolve_page(meta)
     meta.setdefault("jp", meta["page"].split("/", 1)[1] if "/" in meta["page"] else meta["page"])
@@ -185,6 +225,11 @@ def main():
         except Exception as e:
             print(f"[{tag}] FAILED: {e}", file=sys.stderr)
             continue
+        now = None
+        try:
+            now = scrape_now(meta["apid"])
+        except Exception as e:
+            print(f"[{tag}] now-status failed (non-fatal): {e}", file=sys.stderr)
         out = {
             "game": tag,
             "name": meta["name"],
@@ -193,6 +238,7 @@ def main():
             "source": page_url(meta["page"]),
             "updated": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
             "count": len(banners),
+            "now": now,
             "banners": banners,
         }
         (DATA / f"{tag}.json").write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
