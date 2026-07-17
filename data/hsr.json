@@ -126,7 +126,8 @@
     "Kafka"
    ],
    "accent": "#f0d24b",
-   "bar": "#3b589b"
+   "bar": "#3b589b",
+   "ongoing": false
   },
   {
    "name": "ブラックスワン&丹恒・飲月復刻",
@@ -176,7 +177,8 @@
     "Dan Heng • Imbibitor Lunae"
    ],
    "accent": "#4fc8a0",
-   "bar": "#444f92"
+   "bar": "#444f92",
+   "ongoing": false
   },
   {
    "name": "花火&景元復刻",
@@ -229,7 +231,8 @@
     "Jing Yuan"
    ],
    "accent": "#4a4ad8",
-   "bar": "#2c3eaa"
+   "bar": "#2c3eaa",
+   "ongoing": false
   },
   {
    "name": "黄泉",
@@ -275,7 +278,8 @@
     "Acheron"
    ],
    "accent": "#c56af0",
-   "bar": "#b62027"
+   "bar": "#b62027",
+   "ongoing": false
   },
   {
    "name": "アベンチュリン",
@@ -320,7 +324,8 @@
     "Aventurine"
    ],
    "accent": "#f0d24b",
-   "bar": "#f3dc72"
+   "bar": "#f3dc72",
+   "ongoing": false
   },
   {
    "name": "ロビン",
@@ -366,7 +371,8 @@
     "Robin"
    ],
    "accent": "#b9b9b9",
-   "bar": "#9996cf"
+   "bar": "#9996cf",
+   "ongoing": false
   },
   {
    "name": "ブートヒル",
@@ -411,7 +417,8 @@
     "Boothill"
    ],
    "accent": "#b9b9b9",
-   "bar": "#7a4690"
+   "bar": "#7a4690",
+   "ongoing": false
   },
   {
    "name": "ホタル",
@@ -457,7 +464,8 @@
     "Firefly"
    ],
    "accent": "#f0503f",
-   "bar": "#726a64"
+   "bar": "#726a64",
+   "ongoing": false
   },
   {
    "name": "ジェイド",
@@ -502,7 +510,8 @@
     "Jade"
    ],
    "accent": "#4a4ad8",
-   "bar": "#835a53"
+   "bar": "#835a53",
+   "ongoing": false
   },
   {
    "name": "雲璃",
@@ -548,7 +557,8 @@
     "Yunli"
    ],
    "accent": "#b9b9b9",
-   "bar": "#ffee4d"
+   "bar": "#ffee4d",
+   "ongoing": false
   },
   {
    "name": "椒丘",
@@ -592,7 +602,8 @@
     "Jiaoqiu"
    ],
    "accent": "#f0503f",
-   "bar": "#3152a5"
+   "bar": "#3152a5",
+   "ongoing": false
   },
   {
    "name": "飛霄",
@@ -639,7 +650,8 @@
     "Feixiao"
    ],
    "accent": "#4fc8a0",
-   "bar": "#76c7ef"
+   "bar": "#76c7ef",
+   "ongoing": false
   },
   {
    "name": "霊砂",
@@ -684,7 +696,8 @@
     "Lingsha"
    ],
    "accent": "#f0503f",
-   "bar": "#72c8f3"
+   "bar": "#72c8f3",
+   "ongoing": false
   },
   {
    "name": "乱破",
@@ -730,7 +743,8 @@
     "Rappa"
    ],
    "accent": "#f0d24b",
-   "bar": "#f73b4f"
+   "bar": "#f73b4f",
+   "ongoing": false
   },
   {
    "name": "黄泉復刻&アベンチュリン復刻",
@@ -777,7 +791,8 @@
     "Aventurine"
    ],
    "accent": "#c56af0",
-   "bar": "#f3d972"
+   "bar": "#f3d972",
+   "ongoing": false
   },
   {
    "name": "サンデー",
@@ -823,7 +838,8 @@
     "Sunday"
    ],
    "accent": "#f0d24b",
-   "bar": "#999bcc"
+   "bar": "#999bcc",
+   "ongoing": false
   },
   {
    "name": "帰忘の流離人",
@@ -868,7 +884,8 @@
     "Fugue"
    ],
    "accent": "#f0503f",
-   "bar": "#969acf"
+   "bar": "#969acf",
+   "ongoing": false
   },
   {
    "name": "マダム・ヘルタ",
@@ -914,7 +931,8 @@
     "The Herta"
    ],
    "accent": "#5fc7e8",
-   "bar": "#137bc3"
+   "bar": "#137bc3",
+   "ongoing": false
   },
   {
    "name": "アグライア",
@@ -959,7 +977,8 @@
     "Aglaea"
    ],
    "accent": "#c56af0",
-   "bar": "#137bc3"
+   "bar": "#137bc3",
+   "ongoing": false
   },
   {
    "name": "トリビー",
@@ -1005,7 +1024,8 @@
     "Tribbie"
    ],
    "accent": "#4a4ad8",
-   "bar": "#d29398"
+   "bar": "#d29398",
+   "ongoing": false
   },
   {
    "name": "モーディス",
@@ -1050,7 +1070,8 @@
     "Mydei"
    ],
    "accent": "#f0d24b",
-   "bar": "#767bef"
+   "bar": "#767bef",
+   "ongoing": false
   },
   {
    "name": "キャストリス",
@@ -1096,7 +1117,8 @@
     "Castorice"
    ],
    "accent": "#4a4ad8",
-   "bar": "#143cc2"
+   "bar": "#143cc2",
+   "ongoing": false
   },
   {
    "name": "アナイクス",
@@ -1141,7 +1163,8 @@
     "Anaxa"
    ],
    "accent": "#4fc8a0",
-   "bar": "#153ec1"
+   "bar": "#153ec1",
+   "ongoing": false
   },
   {
    "name": "ヒアンシー",
@@ -1187,7 +1210,8 @@
     "Hyacine"
    ],
    "accent": "#4fc8a0",
-   "bar": "#3340a4"
+   "bar": "#3340a4",
+   "ongoing": false
   },
   {
    "name": "サフェル",
@@ -1232,7 +1256,8 @@
     "Cipher"
    ],
    "accent": "#4a4ad8",
-   "bar": "#3141a5"
+   "bar": "#3141a5",
+   "ongoing": false
   },
   {
    "name": "ファイノン",
@@ -1266,7 +1291,8 @@
     "Phainon"
    ],
    "accent": "#b9b9b9",
-   "bar": "#a8462f"
+   "bar": "#a8462f",
+   "ongoing": false
   },
   {
    "name": "セイバー&アーチャー",
@@ -1305,7 +1331,8 @@
     "Archer"
    ],
    "accent": "#4fc8a0",
-   "bar": "#2946ad"
+   "bar": "#2946ad",
+   "ongoing": false
   },
   {
    "name": "ホタル復刻&鏡流復刻&刃復刻",
@@ -1354,7 +1381,8 @@
     "Blade"
    ],
    "accent": "#f0503f",
-   "bar": "#a9452e"
+   "bar": "#a9452e",
+   "ongoing": false
   },
   {
    "name": "セイレンス",
@@ -1399,7 +1427,8 @@
     "Hysilens"
    ],
    "accent": "#b9b9b9",
-   "bar": "#49a0f1"
+   "bar": "#49a0f1",
+   "ongoing": false
   },
   {
    "name": "ケリュドラ",
@@ -1445,7 +1474,8 @@
     "Cerydra"
    ],
    "accent": "#4fc8a0",
-   "bar": "#4c9fef"
+   "bar": "#4c9fef",
+   "ongoing": false
   },
   {
    "name": "長夜月",
@@ -1491,7 +1521,8 @@
     "Evernight"
    ],
    "accent": "#5fc7e8",
-   "bar": "#e99055"
+   "bar": "#e99055",
+   "ongoing": false
   },
   {
    "name": "丹恒・騰荒",
@@ -1536,7 +1567,8 @@
     "Dan Heng • Permansor Terrae"
    ],
    "accent": "#b9b9b9",
-   "bar": "#e99056"
+   "bar": "#e99056",
+   "ongoing": false
   },
   {
    "name": "キュレネ",
@@ -1582,7 +1614,8 @@
     "Cyrene"
    ],
    "accent": "#5fc7e8",
-   "bar": "#d78ed2"
+   "bar": "#d78ed2",
+   "ongoing": false
   },
   {
    "name": "ファイノン復刻",
@@ -1627,7 +1660,8 @@
     "Phainon"
    ],
    "accent": "#b9b9b9",
-   "bar": "#a63043"
+   "bar": "#a63043",
+   "ongoing": false
   },
   {
    "name": "ダリア",
@@ -1673,7 +1707,8 @@
     "The Dahlia"
    ],
    "accent": "#f0503f",
-   "bar": "#ec79de"
+   "bar": "#ec79de",
+   "ongoing": false
   },
   {
    "name": "帰忘の流離人復刻&霊砂復刻",
@@ -1721,7 +1756,8 @@
     "Lingsha"
    ],
    "accent": "#f0503f",
-   "bar": "#ed78df"
+   "bar": "#ed78df",
+   "ongoing": false
   },
   {
    "name": "アグライア復刻&サンデー復刻",
@@ -1763,7 +1799,8 @@
     "Sunday"
    ],
    "accent": "#c56af0",
-   "bar": "#ec79de"
+   "bar": "#ec79de",
+   "ongoing": false
   },
   {
    "name": "爻光",
@@ -1806,7 +1843,8 @@
     "Yao Guang"
    ],
    "accent": "#b9b9b9",
-   "bar": "#2d1dba"
+   "bar": "#2d1dba",
+   "ongoing": false
   },
   {
    "name": "火花",
@@ -1852,7 +1890,8 @@
     "Sparxie"
    ],
    "accent": "#f0503f",
-   "bar": "#2d1dba"
+   "bar": "#2d1dba",
+   "ongoing": false
   },
   {
    "name": "不死途",
@@ -1904,7 +1943,8 @@
     "Ashveil"
    ],
    "accent": "#c56af0",
-   "bar": "#b22480"
+   "bar": "#b22480",
+   "ongoing": false
   },
   {
    "name": "銀狼LV.999",
@@ -1950,7 +1990,8 @@
     "Silver Wolf LV.999"
    ],
    "accent": "#f0d24b",
-   "bar": "#2618bf"
+   "bar": "#2618bf",
+   "ongoing": false
   },
   {
    "name": "緋英",
@@ -1993,7 +2034,8 @@
     "Evanescia"
    ],
    "accent": "#b9b9b9",
-   "bar": "#ffb766"
+   "bar": "#ffb766",
+   "ongoing": false
   },
   {
    "name": "千冶・刃",
@@ -2041,7 +2083,8 @@
     "Mortenax Blade"
    ],
    "accent": "#f0503f",
-   "bar": "#8f474b"
+   "bar": "#8f474b",
+   "ongoing": false
   },
   {
    "name": "キュレネ復刻&ファイノン復刻",
@@ -2088,7 +2131,8 @@
     "Phainon"
    ],
    "accent": "#5fc7e8",
-   "bar": "#494096"
+   "bar": "#494096",
+   "ongoing": false
   },
   {
    "name": "姫子・旅立ち",
@@ -2107,13 +2151,7 @@
     86,
     2,
     6,
-    12,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null
+    12
    ],
    "icons": [
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1510.png"
@@ -2122,7 +2160,8 @@
     "Himeko • Nova"
    ],
    "accent": "#f0503f",
-   "bar": "#4a2ea9"
+   "bar": "#4a2ea9",
+   "ongoing": true
   }
  ]
 }

@@ -125,7 +125,8 @@
     "Ellen"
    ],
    "accent": "#b2b2b2",
-   "bar": "#0044e8"
+   "bar": "#0044e8",
+   "ongoing": false
   },
   {
    "name": "朱鳶",
@@ -170,7 +171,8 @@
     "Zhu Yuan"
    ],
    "accent": "#0d75d9",
-   "bar": "#0055d6"
+   "bar": "#0055d6",
+   "ongoing": false
   },
   {
    "name": "青衣",
@@ -216,7 +218,8 @@
     "Qingyi"
    ],
    "accent": "#0d75d9",
-   "bar": "#acb6b9"
+   "bar": "#acb6b9",
+   "ongoing": false
   },
   {
    "name": "ジェーン",
@@ -261,7 +264,8 @@
     "Jane"
    ],
    "accent": "#91daed",
-   "bar": "#e10069"
+   "bar": "#e10069",
+   "ongoing": false
   },
   {
    "name": "シーザー",
@@ -307,7 +311,8 @@
     "Caesar"
    ],
    "accent": "#ffdd4f",
-   "bar": "#d62f00"
+   "bar": "#d62f00",
+   "ongoing": false
   },
   {
    "name": "バーニス",
@@ -352,7 +357,8 @@
     "Burnice"
    ],
    "accent": "#ffdd4f",
-   "bar": "#be2618"
+   "bar": "#be2618",
+   "ongoing": false
   },
   {
    "name": "月城柳",
@@ -398,7 +404,8 @@
     "Yanagi"
    ],
    "accent": "#22bdcc",
-   "bar": "#8adbd4"
+   "bar": "#8adbd4",
+   "ongoing": false
   },
   {
    "name": "ライト",
@@ -443,7 +450,8 @@
     "Lighter"
    ],
    "accent": "#ffdd4f",
-   "bar": "#ad3229"
+   "bar": "#ad3229",
+   "ongoing": false
   },
   {
    "name": "星見雅&浅羽悠真",
@@ -504,7 +512,8 @@
     "Harumasa"
    ],
    "accent": "#22bdcc",
-   "bar": "#d62f00"
+   "bar": "#d62f00",
+   "ongoing": false
   },
   {
    "name": "アストラ",
@@ -550,7 +559,8 @@
     "Astra Yao"
    ],
    "accent": "#eef7fd",
-   "bar": "#d60015"
+   "bar": "#d60015",
+   "ongoing": false
   },
   {
    "name": "イヴリン",
@@ -602,7 +612,8 @@
     "Evelyn"
    ],
    "accent": "#eef7fd",
-   "bar": "#560ec8"
+   "bar": "#560ec8",
+   "ongoing": false
   },
   {
    "name": "0号・アンビー",
@@ -648,7 +659,8 @@
     "Soldier 0 - Anby"
    ],
    "accent": "#ffbc2e",
-   "bar": "#c87b0f"
+   "bar": "#c87b0f",
+   "ongoing": false
   },
   {
    "name": "トリガー",
@@ -693,7 +705,8 @@
     "Trigger"
    ],
    "accent": "#ffc300",
-   "bar": "#d68e00"
+   "bar": "#d68e00",
+   "ongoing": false
   },
   {
    "name": "ビビアン",
@@ -739,7 +752,8 @@
     "Vivian"
    ],
    "accent": "#8076e9",
-   "bar": "#463d99"
+   "bar": "#463d99",
+   "ongoing": false
   },
   {
    "name": "ヒューゴ",
@@ -786,7 +800,8 @@
     "Hugo"
    ],
    "accent": "#8076e9",
-   "bar": "#ad3029"
+   "bar": "#ad3029",
+   "ongoing": false
   },
   {
    "name": "儀玄",
@@ -830,7 +845,8 @@
     "Yixuan"
    ],
    "accent": "#f1cc4d",
-   "bar": "#d9c28c"
+   "bar": "#d9c28c",
+   "ongoing": false
   },
   {
    "name": "橘福福",
@@ -875,7 +891,8 @@
     "Ju Fufu"
    ],
    "accent": "#ffbf16",
-   "bar": "#f1b544"
+   "bar": "#f1b544",
+   "ongoing": false
   },
   {
    "name": "浮波柚葉",
@@ -921,7 +938,8 @@
     "Yuzuha"
    ],
    "accent": "#d54553",
-   "bar": "#b81f46"
+   "bar": "#b81f46",
+   "ongoing": false
   },
   {
    "name": "アリス",
@@ -974,7 +992,8 @@
     "Alice"
    ],
    "accent": "#d54553",
-   "bar": "#e49e81"
+   "bar": "#e49e81",
+   "ongoing": false
   },
   {
    "name": "シード",
@@ -1019,7 +1038,8 @@
     "Seed"
    ],
    "accent": "#e9f1f2",
-   "bar": "#ffa80a"
+   "bar": "#ffa80a",
+   "ongoing": false
   },
   {
    "name": "オルペウス＆「鬼火」",
@@ -1064,7 +1084,8 @@
     "Orphie & Magus"
    ],
    "accent": "#db602a",
-   "bar": "#f65916"
+   "bar": "#f65916",
+   "ongoing": false
   },
   {
    "name": "リュシア",
@@ -1110,7 +1131,8 @@
     "Lucia"
    ],
    "accent": "#4bbbc0",
-   "bar": "#9497d1"
+   "bar": "#9497d1",
+   "ongoing": false
   },
   {
    "name": "イドリー",
@@ -1155,7 +1177,8 @@
     "Yidhari"
    ],
    "accent": "#ab373e",
-   "bar": "#e8af4c"
+   "bar": "#e8af4c",
+   "ongoing": false
   },
   {
    "name": "ダイアリン",
@@ -1201,7 +1224,8 @@
     "Dialyn"
    ],
    "accent": "#adadad",
-   "bar": "#cf0716"
+   "bar": "#cf0716",
+   "ongoing": false
   },
   {
    "name": "盤岳",
@@ -1238,7 +1262,8 @@
     "Banyue"
    ],
    "accent": "#adadad",
-   "bar": "#b81e24"
+   "bar": "#b81e24",
+   "ongoing": false
   },
   {
    "name": "葉瞬光 & 照",
@@ -1287,7 +1312,8 @@
     "Zhao"
    ],
    "accent": "#f5b42e",
-   "bar": "#df9286"
+   "bar": "#df9286",
+   "ongoing": false
   },
   {
    "name": "アリス復刻&0号・アンビー復刻&アストラ復刻",
@@ -1331,7 +1357,8 @@
     "Astra Yao"
    ],
    "accent": "#d54553",
-   "bar": "#bb1b30"
+   "bar": "#bb1b30",
+   "ongoing": false
   },
   {
    "name": "千夏",
@@ -1382,7 +1409,8 @@
     "Sunna"
    ],
    "accent": "#57ddca",
-   "bar": "#88ddd7"
+   "bar": "#88ddd7",
+   "ongoing": false
   },
   {
    "name": "アリア",
@@ -1426,7 +1454,8 @@
     "Aria"
    ],
    "accent": "#65dcc9",
-   "bar": "#e3828a"
+   "bar": "#e3828a",
+   "ongoing": false
   },
   {
    "name": "南宮羽",
@@ -1473,7 +1502,8 @@
     "Nangong Yu"
    ],
    "accent": "#57ddca",
-   "bar": "#e77eb8"
+   "bar": "#e77eb8",
+   "ongoing": false
   },
   {
    "name": "シーシィア",
@@ -1518,7 +1548,8 @@
     "Cissia"
    ],
    "accent": "#da3674",
-   "bar": "#eccb79"
+   "bar": "#eccb79",
+   "ongoing": false
   },
   {
    "name": "プロメイア",
@@ -1564,7 +1595,8 @@
     "Promeia"
    ],
    "accent": "#9c69ff",
-   "bar": "#3a419c"
+   "bar": "#3a419c",
+   "ongoing": false
   },
   {
    "name": "スターライト・ビリー",
@@ -1609,7 +1641,8 @@
     "Starlight - Billy"
    ],
    "accent": "#c94b3d",
-   "bar": "#c70f12"
+   "bar": "#c70f12",
+   "ongoing": false
   },
   {
    "name": "ヴェリナ",
@@ -1655,7 +1688,8 @@
     "Velina"
    ],
    "accent": "#e8e7ea",
-   "bar": "#d9bd8c"
+   "bar": "#d9bd8c",
+   "ongoing": false
   },
   {
    "name": "ノルムー",
@@ -1681,16 +1715,6 @@
     186,
     null,
     null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
     null
    ],
    "icons": [
@@ -1700,7 +1724,8 @@
     "Norma"
    ],
    "accent": "#e8e7ea",
-   "bar": "#e1c184"
+   "bar": "#e1c184",
+   "ongoing": true
   }
  ]
 }

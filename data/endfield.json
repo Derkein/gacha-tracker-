@@ -121,7 +121,8 @@
    "icons": [
     "icons/faces/endfield/2026-01-22-216151.webp"
    ],
-   "bar": "#e3002f"
+   "bar": "#e3002f",
+   "ongoing": false
   },
   {
    "name": "ギルベルタ",
@@ -163,7 +164,8 @@
    "icons": [
     "icons/faces/endfield/2026-02-07-d9f264.webp"
    ],
-   "bar": "#d92800"
+   "bar": "#d92800",
+   "ongoing": false
   },
   {
    "name": "イヴォンヌ",
@@ -203,7 +205,8 @@
    "icons": [
     "icons/faces/endfield/2026-02-24-c0eeb3.webp"
    ],
-   "bar": "#ff5b87"
+   "bar": "#ff5b87",
+   "ongoing": false
   },
   {
    "name": "タンタン",
@@ -245,7 +248,8 @@
    "icons": [
     "icons/faces/endfield/2026-03-12-9a1839.webp"
    ],
-   "bar": "#0071d6"
+   "bar": "#0071d6",
+   "ongoing": false
   },
   {
    "name": "ロッシ",
@@ -288,7 +292,8 @@
    "icons": [
     "icons/faces/endfield/2026-03-29-7c2a05.webp"
    ],
-   "bar": "#d60015"
+   "bar": "#d60015",
+   "ongoing": false
   },
   {
    "name": "ゾアン・ファンイ",
@@ -348,7 +353,8 @@
    "icons": [
     "icons/faces/endfield/2026-04-17-98e829.webp"
    ],
-   "bar": "#78a82e"
+   "bar": "#78a82e",
+   "ongoing": false
   },
   {
    "name": "輝きの祝典",
@@ -391,7 +397,8 @@
    "icons": [
     "icons/faces/endfield/2026-05-14-a4d3df.webp"
    ],
-   "bar": "#994a3d"
+   "bar": "#994a3d",
+   "ongoing": false
   },
   {
    "name": "ミ・フ",
@@ -437,7 +444,8 @@
    "icons": [
     "icons/faces/endfield/2026-06-05-4407d0.webp"
    ],
-   "bar": "#f75986"
+   "bar": "#f75986",
+   "ongoing": false
   },
   {
    "name": "カミーユ",
@@ -481,7 +489,8 @@
    "icons": [
     "icons/faces/endfield/2026-06-26-4d7753.webp"
    ],
-   "bar": "#d6002e"
+   "bar": "#d6002e",
+   "ongoing": false
   },
   {
    "name": "オクギ",
@@ -499,35 +508,17 @@
    "rank_series": [
     199,
     17,
-    26,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    169,
-    181,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null
+    26
    ],
-   "agents": [],
+   "agents": [
+    "Arcane"
+   ],
    "icons": [
     "icons/faces/endfield/2026-07-16-992be0.webp"
    ],
-   "bar": "#475b8f"
+   "bar": "#475b8f",
+   "ongoing": true,
+   "en": "Arcane"
   }
  ]
 }

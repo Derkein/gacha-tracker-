@@ -125,7 +125,8 @@
    "icons": [
     "icons/faces/wuwa/2024-05-23-1a620b.webp"
    ],
-   "bar": "#52e5e3"
+   "bar": "#52e5e3",
+   "ongoing": false
   },
   {
    "name": "吟霖",
@@ -170,7 +171,8 @@
    "icons": [
     "icons/faces/wuwa/2024-06-06-f5c453.webp"
    ],
-   "bar": "#614c8a"
+   "bar": "#614c8a",
+   "ongoing": false
   },
   {
    "name": "今汐",
@@ -219,7 +221,8 @@
    "icons": [
     "icons/faces/wuwa/2024-06-28-810afa.webp"
    ],
-   "bar": "#2c96aa"
+   "bar": "#2c96aa",
+   "ongoing": false
   },
   {
    "name": "長離",
@@ -267,7 +270,8 @@
    "icons": [
     "icons/faces/wuwa/2024-07-22-35d494.webp"
    ],
-   "bar": "#cba59a"
+   "bar": "#cba59a",
+   "ongoing": false
   },
   {
    "name": "折枝",
@@ -315,7 +319,8 @@
    "icons": [
     "icons/faces/wuwa/2024-08-15-3aa805.webp"
    ],
-   "bar": "#d39692"
+   "bar": "#d39692",
+   "ongoing": false
   },
   {
    "name": "ショアキーパー",
@@ -365,7 +370,8 @@
    "icons": [
     "icons/faces/wuwa/2024-09-29-bbacf0.webp"
    ],
-   "bar": "#3551a1"
+   "bar": "#3551a1",
+   "ongoing": false
   },
   {
    "name": "ツバキ",
@@ -418,7 +424,8 @@
    "icons": [
     "icons/faces/wuwa/2024-11-14-c43c7f.webp"
    ],
-   "bar": "#9f4037"
+   "bar": "#9f4037",
+   "ongoing": false
   },
   {
    "name": "吟霖復刻&相里要復刻",
@@ -463,7 +470,8 @@
    "icons": [
     "icons/faces/wuwa/2024-12-12-b856e5.webp"
    ],
-   "bar": "#964156"
+   "bar": "#964156",
+   "ongoing": false
   },
   {
    "name": "カルロッタ&折枝復刻",
@@ -509,7 +517,8 @@
    "icons": [
     "icons/faces/wuwa/2025-01-02-e5d337.webp"
    ],
-   "bar": "#906b46"
+   "bar": "#906b46",
+   "ongoing": false
   },
   {
    "name": "ロココ&今汐復刻",
@@ -554,7 +563,8 @@
    "icons": [
     "icons/faces/wuwa/2025-01-23-f387fa.webp"
    ],
-   "bar": "#3342a3"
+   "bar": "#3342a3",
+   "ongoing": false
   },
   {
    "name": "フィービー",
@@ -600,7 +610,8 @@
    "icons": [
     "icons/faces/wuwa/2025-02-13-4ab033.webp"
    ],
-   "bar": "#3b5e9b"
+   "bar": "#3b5e9b",
+   "ongoing": false
   },
   {
    "name": "ブラント&長離復刻",
@@ -645,7 +656,8 @@
    "icons": [
     "icons/faces/wuwa/2025-03-06-3e3b26.webp"
    ],
-   "bar": "#38599e"
+   "bar": "#38599e",
+   "ongoing": false
   },
   {
    "name": "カンタレラ&ツバキ復刻",
@@ -691,7 +703,8 @@
    "icons": [
     "icons/faces/wuwa/2025-03-27-2bed11.webp"
    ],
-   "bar": "#2353b3"
+   "bar": "#2353b3",
+   "ongoing": false
   },
   {
    "name": "ショアキーパー復刻",
@@ -727,7 +740,8 @@
    "icons": [
     "icons/faces/wuwa/2025-04-17-7c5f23.webp"
    ],
-   "bar": "#375f9f"
+   "bar": "#375f9f",
+   "ongoing": false
   },
   {
    "name": "ザンニー",
@@ -775,7 +789,8 @@
    "icons": [
     "icons/faces/wuwa/2025-04-29-2b0d76.webp"
    ],
-   "bar": "#cec097"
+   "bar": "#cec097",
+   "ongoing": false
   },
   {
    "name": "シャコンヌ",
@@ -820,7 +835,8 @@
    "icons": [
     "icons/faces/wuwa/2025-05-22-b93e27.webp"
    ],
-   "bar": "#3a919c"
+   "bar": "#3a919c",
+   "ongoing": false
   },
   {
    "name": "カルテジア",
@@ -865,7 +881,8 @@
    "icons": [
     "icons/faces/wuwa/2025-06-12-22b106.webp"
    ],
-   "bar": "#80c3e5"
+   "bar": "#80c3e5",
+   "ongoing": false
   },
   {
    "name": "ルパ",
@@ -910,7 +927,8 @@
    "icons": [
     "icons/faces/wuwa/2025-07-03-54d4ac.webp"
    ],
-   "bar": "#a24834"
+   "bar": "#a24834",
+   "ongoing": false
   },
   {
    "name": "フローヴァ",
@@ -956,7 +974,8 @@
    "icons": [
     "icons/faces/wuwa/2025-07-24-5e63b1.webp"
    ],
-   "bar": "#a53e31"
+   "bar": "#a53e31",
+   "ongoing": false
   },
   {
    "name": "カンタレラ復刻&ブラント復刻",
@@ -994,7 +1013,8 @@
    "icons": [
     "icons/faces/wuwa/2025-08-14-e5bb26.webp"
    ],
-   "bar": "#2353b3"
+   "bar": "#2353b3",
+   "ongoing": false
   },
   {
    "name": "オーガスタ",
@@ -1039,7 +1059,8 @@
    "icons": [
     "icons/faces/wuwa/2025-08-28-ab5298.webp"
    ],
-   "bar": "#a44b33"
+   "bar": "#a44b33",
+   "ongoing": false
   },
   {
    "name": "ユーノ",
@@ -1085,7 +1106,8 @@
    "icons": [
     "icons/faces/wuwa/2025-09-17-e6469b.webp"
    ],
-   "bar": "#1f71b7"
+   "bar": "#1f71b7",
+   "ongoing": false
   },
   {
    "name": "ガルブレーナ",
@@ -1131,7 +1153,8 @@
    "icons": [
     "icons/faces/wuwa/2025-10-09-3a784c.webp"
    ],
-   "bar": "#2842ae"
+   "bar": "#2842ae",
+   "ongoing": false
   },
   {
    "name": "仇遠",
@@ -1176,7 +1199,8 @@
    "icons": [
     "icons/faces/wuwa/2025-10-30-c55a5b.webp"
    ],
-   "bar": "#93b5cf"
+   "bar": "#93b5cf",
+   "ongoing": false
   },
   {
    "name": "千咲",
@@ -1222,7 +1246,8 @@
    "icons": [
     "icons/faces/wuwa/2025-11-20-a4a1e8.webp"
    ],
-   "bar": "#8faad6"
+   "bar": "#8faad6",
+   "ongoing": false
   },
   {
    "name": "フローヴァ&カンタレラ復刻",
@@ -1260,7 +1285,8 @@
    "icons": [
     "icons/faces/wuwa/2025-12-11-7ccffa.webp"
    ],
-   "bar": "#a14035"
+   "bar": "#a14035",
+   "ongoing": false
   },
   {
    "name": "リンネー&カルテジア&シャコンヌ",
@@ -1306,7 +1332,8 @@
    "icons": [
     "icons/faces/wuwa/2025-12-25-5e994f.webp"
    ],
-   "bar": "#372aac"
+   "bar": "#372aac",
+   "ongoing": false
   },
   {
    "name": "モーニエ",
@@ -1351,7 +1378,8 @@
    "icons": [
     "icons/faces/wuwa/2026-01-15-30021a.webp"
    ],
-   "bar": "#3657a0"
+   "bar": "#3657a0",
+   "ongoing": false
   },
   {
    "name": "エイメス",
@@ -1397,7 +1425,8 @@
    "icons": [
     "icons/faces/wuwa/2026-02-05-01b739.webp"
    ],
-   "bar": "#3246a4"
+   "bar": "#3246a4",
+   "ongoing": false
   },
   {
    "name": "リューク・ヘルセン",
@@ -1442,7 +1471,8 @@
    "icons": [
     "icons/faces/wuwa/2026-02-26-95fc9b.webp"
    ],
-   "bar": "#178dbf"
+   "bar": "#178dbf",
+   "ongoing": false
   },
   {
    "name": "シグリカ",
@@ -1488,7 +1518,8 @@
    "icons": [
     "icons/faces/wuwa/2026-03-19-55323e.webp"
    ],
-   "bar": "#eaa14d"
+   "bar": "#eaa14d",
+   "ongoing": false
   },
   {
    "name": "リンネー復刻&ザンニー復刻&フィービー復刻",
@@ -1533,7 +1564,8 @@
    "icons": [
     "icons/faces/wuwa/2026-04-09-5e994f.webp"
    ],
-   "bar": "#372aac"
+   "bar": "#372aac",
+   "ongoing": false
   },
   {
    "name": "緋雪",
@@ -1579,7 +1611,8 @@
    "icons": [
     "icons/faces/wuwa/2026-04-30-f1c782.webp"
    ],
-   "bar": "#8e9cd7"
+   "bar": "#8e9cd7",
+   "ongoing": false
   },
   {
    "name": "ダーニャ",
@@ -1621,7 +1654,8 @@
    "icons": [
     "icons/faces/wuwa/2026-05-21-fe2777.webp"
    ],
-   "bar": "#3248a4"
+   "bar": "#3248a4",
+   "ongoing": false
   },
   {
    "name": "ルーシー&レベッカ&ルシラー",
@@ -1677,7 +1711,8 @@
    "icons": [
     "icons/faces/wuwa/2026-06-08-c1790b.webp"
    ],
-   "bar": "#415a95"
+   "bar": "#415a95",
+   "ongoing": false
   },
   {
    "name": "秧秧．玄翎",
@@ -1701,19 +1736,7 @@
     57,
     69,
     83,
-    104,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null
+    104
    ],
    "agents": [
     "Yangyang: Xuanling"
@@ -1722,7 +1745,8 @@
    "icons": [
     "icons/faces/wuwa/2026-07-10-8abe5a.webp"
    ],
-   "bar": "#83c7e2"
+   "bar": "#83c7e2",
+   "ongoing": true
   }
  ]
 }

@@ -238,17 +238,25 @@ def attach_rank_series(apid, banners):
     monthly feeds and aligned to the banner's start date (index 0 = start day).
     null on days below the trackable ~top 200. game-i only keeps the iOS daily
     series (its model is iOS-regressed; Android is a live snapshot only), so this
-    is iOS-only. Skips banners with no tracked day."""
+    is iOS-only.
+
+    The series stops at *today* (JST), never at the scheduled end date — a banner
+    still running has no data past today, and game-i occasionally carries stray
+    future-dated rows we must not treat as real. `ongoing` marks a run scheduled
+    to continue past today. Skips banners with no tracked day."""
+    today = _jst_now().date()
     hit = 0
     for b in banners:
         try:
             s, e = date.fromisoformat(b["start"]), date.fromisoformat(b["end"])
         except ValueError:
             continue
-        if e < s or (e - s).days > 400:                    # ignore glitchy ranges
+        b["ongoing"] = e > today
+        last = min(e, today)
+        if last < s or (e - s).days > 400:                 # not started yet / glitchy range
             continue
         series, d = [], s
-        while d <= e:
+        while d <= last:
             series.append(month_ranks(apid, f"{d.year}/{d.month:02d}", False).get(d.day))
             d += timedelta(days=1)
         if any(v is not None for v in series):

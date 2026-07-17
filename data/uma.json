@@ -131,7 +131,8 @@
     "Hishi Amazon",
     "Agnes Digital"
    ],
-   "en": "Oguri Cap & Hishi Amazon & Agnes Digital"
+   "en": "Oguri Cap & Hishi Amazon & Agnes Digital",
+   "ongoing": false
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・セレクトピックアップ サポートカードガチャ",
@@ -162,7 +163,8 @@
    "agents": [
     "Nice Nature"
    ],
-   "en": "Nice Nature"
+   "en": "Nice Nature",
+   "ongoing": false
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -197,7 +199,8 @@
     "Hokko Tarumae",
     "Tanino Gimlet"
    ],
-   "en": "Vivlos & Hokko Tarumae & Tanino Gimlet"
+   "en": "Vivlos & Hokko Tarumae & Tanino Gimlet",
+   "ongoing": false
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -234,7 +237,8 @@
     "Manhattan Cafe",
     "Winning Ticket"
    ],
-   "en": "Yukino Bijin & Manhattan Cafe & Winning Ticket"
+   "en": "Yukino Bijin & Manhattan Cafe & Winning Ticket",
+   "ongoing": false
   },
   {
    "name": "トゥインクルコレクション プリティーダービーガチャ",
@@ -286,7 +290,8 @@
     "Taiki Shuttle",
     "Curren Chan"
    ],
-   "en": "Fuji Kiseki & Taiki Shuttle & Curren Chan"
+   "en": "Fuji Kiseki & Taiki Shuttle & Curren Chan",
+   "ongoing": false
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・3rd Anniv.セレクトピックアップ サポートカードガチャ",
@@ -317,7 +322,8 @@
    "agents": [
     "Biko Pegasus"
    ],
-   "en": "Biko Pegasus"
+   "en": "Biko Pegasus",
+   "ongoing": false
   },
   {
    "name": "3rd Anniversary プリティーダービーガチャ・3rd Anniversary サポートカードガチャ",
@@ -366,7 +372,8 @@
     "Ikuno Dictus",
     "Orfevre"
    ],
-   "en": "Duramente & Ikuno Dictus & Orfevre"
+   "en": "Duramente & Ikuno Dictus & Orfevre",
+   "ongoing": false
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・3rd Anniv.セレクトピックアップ サポートカードガチャ",
@@ -396,7 +403,8 @@
    "agents": [
     "Transcend"
    ],
-   "en": "Transcend"
+   "en": "Transcend",
+   "ongoing": false
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -427,7 +435,8 @@
     "Cheval Grand",
     "Tap Dance City"
    ],
-   "en": "Rhein Kraft & Cheval Grand & Tap Dance City"
+   "en": "Rhein Kraft & Cheval Grand & Tap Dance City",
+   "ongoing": false
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -461,7 +470,8 @@
     "Daitaku Helios",
     "K.S.Miracle"
    ],
-   "en": "Daiichi Ruby & Daitaku Helios & K.S.Miracle"
+   "en": "Daiichi Ruby & Daitaku Helios & K.S.Miracle",
+   "ongoing": false
   },
   {
    "name": "トゥインクルコレクション プリティーダービーガチャ",
@@ -509,7 +519,8 @@
     46,
     11
    ],
-   "agents": []
+   "agents": [],
+   "ongoing": false
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・セレクトピックアップ サポートカードガチャ",
@@ -541,7 +552,8 @@
    "agents": [
     "Sounds of Earth"
    ],
-   "en": "Sounds of Earth"
+   "en": "Sounds of Earth",
+   "ongoing": false
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -574,7 +586,8 @@
     "Yaeno Muteki",
     "Hishi Miracle"
    ],
-   "en": "Super Creek & Yaeno Muteki & Hishi Miracle"
+   "en": "Super Creek & Yaeno Muteki & Hishi Miracle",
+   "ongoing": false
   },
   {
    "name": "トゥインクルコレクション プリティーダービーガチャ",
@@ -625,7 +638,8 @@
     11,
     14
    ],
-   "agents": []
+   "agents": [],
+   "ongoing": false
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・セレクトピックアップ サポートカードガチャ",
@@ -656,7 +670,8 @@
    "agents": [
     "North Flight"
    ],
-   "en": "North Flight"
+   "en": "North Flight",
+   "ongoing": false
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -693,7 +708,8 @@
     "Sweep Tosho",
     "Vivlos"
    ],
-   "en": "King Halo & Sweep Tosho & Vivlos"
+   "en": "King Halo & Sweep Tosho & Vivlos",
+   "ongoing": false
   },
   {
    "name": "トゥインクルコレクション プリティーダービーガチャ",
@@ -739,7 +755,8 @@
     6,
     7
    ],
-   "agents": []
+   "agents": [],
+   "ongoing": false
   },
   {
    "name": "劇場版『ウマ娘』公開記念 プリティーダービーガチャ/セレクトピックアップ サポートカードガチャ",
@@ -773,7 +790,8 @@
    "agents": [
     "Jungle Pocket"
    ],
-   "en": "Jungle Pocket"
+   "en": "Jungle Pocket",
+   "ongoing": false
   },
   {
    "name": "新育成シナリオ開幕 プリティーダービーガチャ/新育成シナリオ開幕 サポートカードガチャ",
@@ -819,7 +837,8 @@
     "Yayoi Akikawa",
     "Nishino Flower"
    ],
-   "en": "Dream Journey & Yayoi Akikawa & Nishino Flower"
+   "en": "Dream Journey & Yayoi Akikawa & Nishino Flower",
+   "ongoing": false
   },
   {
    "name": "トゥインクルコレクション プリティーダービーガチャ",
@@ -869,7 +888,8 @@
     15,
     16
    ],
-   "agents": []
+   "agents": [],
+   "ongoing": false
   },
   {
    "name": "ピックアップ プリティーダービーガチャ/セレクトピックアップ サポートカードガチャ",
@@ -900,7 +920,8 @@
    "agents": [
     "Calstone Light O"
    ],
-   "en": "Calstone Light O"
+   "en": "Calstone Light O",
+   "ongoing": false
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -939,7 +960,8 @@
     "Hokko Tarumae",
     "Smart Falcon"
    ],
-   "en": "Eishin Flash & Hokko Tarumae & Smart Falcon"
+   "en": "Eishin Flash & Hokko Tarumae & Smart Falcon",
+   "ongoing": false
   },
   {
    "name": "3.5th Anniv.セレクトピックアップ サポートカードガチャ",
@@ -966,7 +988,8 @@
     55,
     55
    ],
-   "agents": []
+   "agents": [],
+   "ongoing": false
   },
   {
    "name": "ピックアップ サポートカードガチャ",
@@ -997,7 +1020,8 @@
     "Fine Motion",
     "Mejiro Palmer"
    ],
-   "en": "Fine Motion & Mejiro Palmer"
+   "en": "Fine Motion & Mejiro Palmer",
+   "ongoing": false
   },
   {
    "name": "3.5th Anniv. プレミアム プリティーダービーガチャ・3.5th Anniv. サポートカードガチャ",
@@ -1037,7 +1061,8 @@
     "Still in Love",
     "Marvelous Sunday Time☆★"
    ],
-   "en": "Gentildonna & Still in Love & Marvelous Sunday Time☆★"
+   "en": "Gentildonna & Still in Love & Marvelous Sunday Time☆★",
+   "ongoing": false
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -1071,7 +1096,8 @@
     "Zenno Rob Roy",
     "Taiki Shuttle"
    ],
-   "en": "Neo Universe & Zenno Rob Roy & Taiki Shuttle"
+   "en": "Neo Universe & Zenno Rob Roy & Taiki Shuttle",
+   "ongoing": false
   },
   {
    "name": "トゥインクルコレクション プリティーダービーガチャ",
@@ -1118,7 +1144,8 @@
     8,
     7
    ],
-   "agents": []
+   "agents": [],
+   "ongoing": false
   },
   {
    "name": "メインストーリー第2部中編公開プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -1161,7 +1188,8 @@
     "Espoir City",
     "Sakura Laurel"
    ],
-   "en": "Cesario & Espoir City & Sakura Laurel"
+   "en": "Cesario & Espoir City & Sakura Laurel",
+   "ongoing": false
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・3.5th Anniv.セレクトピックアップ サポートカードガチャ",
@@ -1194,7 +1222,8 @@
     "El Condor Pasa",
     "Cesario"
    ],
-   "en": "Durandal & El Condor Pasa & Cesario"
+   "en": "Durandal & El Condor Pasa & Cesario",
+   "ongoing": false
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -1228,7 +1257,8 @@
     "Mayano Top Gun",
     "Hishi Amazon"
    ],
-   "en": "Seeking the Pearl & Mayano Top Gun & Hishi Amazon"
+   "en": "Seeking the Pearl & Mayano Top Gun & Hishi Amazon",
+   "ongoing": false
   },
   {
    "name": "トゥインクルコレクション プリティーダービーガチャ",
@@ -1280,7 +1310,8 @@
    "agents": [
     "Special Week"
    ],
-   "en": "Special Week"
+   "en": "Special Week",
+   "ongoing": false
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・セレクトピックアップ サポートカードガチャ",
@@ -1319,7 +1350,8 @@
    "agents": [
     "Bubble Gum Fellow"
    ],
-   "en": "Bubble Gum Fellow"
+   "en": "Bubble Gum Fellow",
+   "ongoing": false
   },
   {
    "name": "新育成シナリオ開幕 プリティーダービーガチャ・新育成シナリオ開幕 サポートカードガチャ",
@@ -1362,7 +1394,8 @@
     "Air Shakur",
     "Daiwa Scarlet"
    ],
-   "en": "Biwa Hayahide & Air Shakur & Daiwa Scarlet"
+   "en": "Biwa Hayahide & Air Shakur & Daiwa Scarlet",
+   "ongoing": false
   },
   {
    "name": "トゥインクルコレクション プリティーダービーガチャ",
@@ -1411,7 +1444,8 @@
     30,
     37
    ],
-   "agents": []
+   "agents": [],
+   "ongoing": false
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -1444,7 +1478,8 @@
     "Symboli Kris S",
     "North Flight"
    ],
-   "en": "Narita Taishin & Symboli Kris S & North Flight"
+   "en": "Narita Taishin & Symboli Kris S & North Flight",
+   "ongoing": false
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・セレクトピックアップ サポートカードガチャ",
@@ -1475,7 +1510,8 @@
    "agents": [
     "Air Messiah"
    ],
-   "en": "Air Messiah"
+   "en": "Air Messiah",
+   "ongoing": false
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -1510,7 +1546,8 @@
     "Admire Vega",
     "Agnes Digital"
    ],
-   "en": "Narita Top Road & Admire Vega & Agnes Digital"
+   "en": "Narita Top Road & Admire Vega & Agnes Digital",
+   "ongoing": false
   },
   {
    "name": "トゥインクルコレクション プリティーダービーガチャ",
@@ -1563,7 +1600,8 @@
     18,
     11
    ],
-   "agents": []
+   "agents": [],
+   "ongoing": false
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -1595,7 +1633,8 @@
     "Blast Onepiece",
     "Bubble Gum Fellow"
    ],
-   "en": "Win Variation & Blast Onepiece & Bubble Gum Fellow"
+   "en": "Win Variation & Blast Onepiece & Bubble Gum Fellow",
+   "ongoing": false
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・クリスマス特別セレクトピックアップ サポートカードガチャ",
@@ -1624,7 +1663,8 @@
    "agents": [
     "Grass Wonder"
    ],
-   "en": "Grass Wonder"
+   "en": "Grass Wonder",
+   "ongoing": false
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -1661,7 +1701,8 @@
     "Mr. C.B.",
     "Symboli Rudolf"
    ],
-   "en": "Katsuragi Ace & Mr. C.B. & Symboli Rudolf"
+   "en": "Katsuragi Ace & Mr. C.B. & Symboli Rudolf",
+   "ongoing": false
   },
   {
    "name": "トゥインクルコレクション プリティーダービーガチャ・SSR確定スピードガチャ",
@@ -1707,7 +1748,8 @@
     19,
     26
    ],
-   "agents": []
+   "agents": [],
+   "ongoing": false
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -1740,7 +1782,8 @@
     "Seeking the Pearl",
     "Mejiro Ramonu"
    ],
-   "en": "Maruzensky & Seeking the Pearl & Mejiro Ramonu"
+   "en": "Maruzensky & Seeking the Pearl & Mejiro Ramonu",
+   "ongoing": false
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -1777,7 +1820,8 @@
     "Yamanin Zephyr",
     "Curren Chan"
    ],
-   "en": "Aston Machan & Yamanin Zephyr & Curren Chan"
+   "en": "Aston Machan & Yamanin Zephyr & Curren Chan",
+   "ongoing": false
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・4th Anniv.セレクトピックアップ サポートカードガチャ",
@@ -1808,7 +1852,8 @@
    "agents": [
     "Tsurumaru Tsuyoshi"
    ],
-   "en": "Tsurumaru Tsuyoshi"
+   "en": "Tsurumaru Tsuyoshi",
+   "ongoing": false
   },
   {
    "name": "4th Anniv. プレミアム プリティーダービーガチャ・4th Anniv. サポートカードガチャ",
@@ -1856,7 +1901,8 @@
     "Shake The World!!",
     "Almond Eye"
    ],
-   "en": "Orfevre & Shake The World!! & Almond Eye"
+   "en": "Orfevre & Shake The World!! & Almond Eye",
+   "ongoing": false
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -1889,7 +1935,8 @@
     "Mejiro Bright",
     "Rice Shower"
    ],
-   "en": "Gran Alegria & Mejiro Bright & Rice Shower"
+   "en": "Gran Alegria & Mejiro Bright & Rice Shower",
+   "ongoing": false
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・4th Anniv.セレクトピックアップ サポートカードガチャ",
@@ -1920,7 +1967,8 @@
    "agents": [
     "No Reason"
    ],
-   "en": "No Reason"
+   "en": "No Reason",
+   "ongoing": false
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -1953,7 +2001,8 @@
     "Tanino Gimlet",
     "Vodka"
    ],
-   "en": "Tap Dance City & Tanino Gimlet & Vodka"
+   "en": "Tap Dance City & Tanino Gimlet & Vodka",
+   "ongoing": false
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -1987,7 +2036,8 @@
     "Daring Tact",
     "Daring Heart"
    ],
-   "en": "Sirius Symboli & Daring Tact & Daring Heart"
+   "en": "Sirius Symboli & Daring Tact & Daring Heart",
+   "ongoing": false
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・セレクトピックアップ サポートカードガチャ",
@@ -2017,7 +2067,8 @@
    "agents": [
     "Fenomeno"
    ],
-   "en": "Fenomeno"
+   "en": "Fenomeno",
+   "ongoing": false
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -2052,7 +2103,8 @@
     "Smart Falcon",
     "Transcend"
    ],
-   "en": "Copano Rickey & Smart Falcon & Transcend"
+   "en": "Copano Rickey & Smart Falcon & Transcend",
+   "ongoing": false
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -2084,7 +2136,8 @@
     "Silence Suzuka",
     "Curren Bouquetd'or"
    ],
-   "en": "Verxina & Silence Suzuka & Curren Bouquetd'or"
+   "en": "Verxina & Silence Suzuka & Curren Bouquetd'or",
+   "ongoing": false
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・セレクトピックアップ サポートカードガチャ",
@@ -2114,7 +2167,8 @@
    "agents": [
     "Loves Only You"
    ],
-   "en": "Loves Only You"
+   "en": "Loves Only You",
+   "ongoing": false
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -2151,7 +2205,8 @@
     "Cesario",
     "Rhein Kraft"
    ],
-   "en": "Mejiro Ramonu & Cesario & Rhein Kraft"
+   "en": "Mejiro Ramonu & Cesario & Rhein Kraft",
+   "ongoing": false
   },
   {
    "name": "セレクトピックアップ サポートカードガチャ",
@@ -2183,7 +2238,8 @@
     65,
     59
    ],
-   "agents": []
+   "agents": [],
+   "ongoing": false
   },
   {
    "name": "ピックアップ プリティーダービーガチャ",
@@ -2232,7 +2288,8 @@
    "agents": [
     "Chrono Genesis"
    ],
-   "en": "Chrono Genesis"
+   "en": "Chrono Genesis",
+   "ongoing": false
   },
   {
    "name": "新育成シナリオ開幕 プリティーダービーガチャ・新育成シナリオ開幕 サポートカードガチャ",
@@ -2280,7 +2337,8 @@
     "Tucker Bryne",
     "Tamamo Cross"
    ],
-   "en": "Gold City & Tucker Bryne & Tamamo Cross"
+   "en": "Gold City & Tucker Bryne & Tamamo Cross",
+   "ongoing": false
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -2314,7 +2372,8 @@
     "Mejiro Ryan",
     "Kawakami Princess"
    ],
-   "en": "Ines Fujin & Mejiro Ryan & Kawakami Princess"
+   "en": "Ines Fujin & Mejiro Ryan & Kawakami Princess",
+   "ongoing": false
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・セレクトピックアップ サポートカードガチャ",
@@ -2344,7 +2403,8 @@
    "agents": [
     "Fusaichi Pandora"
    ],
-   "en": "Fusaichi Pandora"
+   "en": "Fusaichi Pandora",
+   "ongoing": false
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -2381,7 +2441,8 @@
     "Win Variation",
     "Duramente"
    ],
-   "en": "Cheval Grand & Win Variation & Duramente"
+   "en": "Cheval Grand & Win Variation & Duramente",
+   "ongoing": false
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・4.5th Anniv.セレクトピックアップ サポートカードガチャ",
@@ -2412,7 +2473,8 @@
    "agents": [
     "Vivlos"
    ],
-   "en": "Vivlos"
+   "en": "Vivlos",
+   "ongoing": false
   },
   {
    "name": "4.5th Anniv. サポートカードガチャ",
@@ -2460,7 +2522,8 @@
     "Stay Gold",
     "Admire Groove"
    ],
-   "en": "Stay Gold & Admire Groove"
+   "en": "Stay Gold & Admire Groove",
+   "ongoing": false
   },
   {
    "name": "4.5th Anniv. プレミアム プリティーダービーガチャ",
@@ -2507,7 +2570,8 @@
    "agents": [
     "Still in Love"
    ],
-   "en": "Still in Love"
+   "en": "Still in Love",
+   "ongoing": false
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -2541,7 +2605,8 @@
     "Hishi Miracle",
     "Calstone Light O"
    ],
-   "en": "K.S.Miracle & Hishi Miracle & Calstone Light O"
+   "en": "K.S.Miracle & Hishi Miracle & Calstone Light O",
+   "ongoing": false
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -2574,7 +2639,8 @@
     "Daiichi Ruby",
     "Biko Pegasus"
    ],
-   "en": "Espoir City & Daiichi Ruby & Biko Pegasus"
+   "en": "Espoir City & Daiichi Ruby & Biko Pegasus",
+   "ongoing": false
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・4.5th Anniv.セレクトピックアップ サポートカードガチャ",
@@ -2605,7 +2671,8 @@
    "agents": [
     "Believe"
    ],
-   "en": "Believe"
+   "en": "Believe",
+   "ongoing": false
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -2639,7 +2706,8 @@
     "Fuji Kiseki",
     "Eishin Flash"
    ],
-   "en": "Marvelous Sunday Time☆★ & Fuji Kiseki & Eishin Flash"
+   "en": "Marvelous Sunday Time☆★ & Fuji Kiseki & Eishin Flash",
+   "ongoing": false
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -2672,7 +2740,8 @@
     "Curren Bouquetd'or",
     "Sakura Chitose O"
    ],
-   "en": "Tosen Jordan & Curren Bouquetd'or & Sakura Chitose O"
+   "en": "Tosen Jordan & Curren Bouquetd'or & Sakura Chitose O",
+   "ongoing": false
   },
   {
    "name": "ジャングルポケット リバイバルピックアップ プリティーダービーガチャ",
@@ -2704,7 +2773,8 @@
    "agents": [
     "Jungle Pocket"
    ],
-   "en": "Jungle Pocket"
+   "en": "Jungle Pocket",
+   "ongoing": false
   },
   {
    "name": "ダンツフレーム登場! プリティーダービーガチャ・セレクトピックアップ サポートカードガチャ",
@@ -2736,7 +2806,8 @@
    "agents": [
     "Dantsu Flame"
    ],
-   "en": "Dantsu Flame"
+   "en": "Dantsu Flame",
+   "ongoing": false
   },
   {
    "name": "新育成シナリオ開幕 サポートカードガチャ",
@@ -2778,7 +2849,8 @@
    "agents": [
     "Tokai Teio"
    ],
-   "en": "Tokai Teio"
+   "en": "Tokai Teio",
+   "ongoing": false
   },
   {
    "name": "新育成シナリオ開幕 プリティーダービーガチャ",
@@ -2820,7 +2892,8 @@
    "agents": [
     "Transcend"
    ],
-   "en": "Transcend"
+   "en": "Transcend",
+   "ongoing": false
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -2852,7 +2925,8 @@
     "Mihono Bourbon",
     "Hokko Tarumae"
    ],
-   "en": "Wonder Acute & Mihono Bourbon & Hokko Tarumae"
+   "en": "Wonder Acute & Mihono Bourbon & Hokko Tarumae",
+   "ongoing": false
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・セレクトピックアップ サポートカードガチャ",
@@ -2882,7 +2956,8 @@
    "agents": [
     "Buena Vista"
    ],
-   "en": "Buena Vista"
+   "en": "Buena Vista",
+   "ongoing": false
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -2918,7 +2993,8 @@
     "Dream Journey",
     "Gold Ship"
    ],
-   "en": "Nakayama Festa & Dream Journey & Gold Ship"
+   "en": "Nakayama Festa & Dream Journey & Gold Ship",
+   "ongoing": false
   },
   {
    "name": "イナリワン登場! ピックアップサポートカードガチャ",
@@ -2968,7 +3044,8 @@
     "Inari One",
     "Mejiro Dober"
    ],
-   "en": "Inari One & Mejiro Dober"
+   "en": "Inari One & Mejiro Dober",
+   "ongoing": false
   },
   {
    "name": "新衣装オグリキャップ登場! プレミアム プリティーダービーガチャ",
@@ -3017,7 +3094,8 @@
    "agents": [
     "Oguri Cap"
    ],
-   "en": "Oguri Cap"
+   "en": "Oguri Cap",
+   "ongoing": false
   },
   {
    "name": "クリスマス特別セレクトピックアップ サポートカードガチャ",
@@ -3064,7 +3142,8 @@
     44,
     36
    ],
-   "agents": []
+   "agents": [],
+   "ongoing": false
   },
   {
    "name": "ステイゴールド登場! プレミアム プリティーダービーガチャ",
@@ -3114,7 +3193,8 @@
    "agents": [
     "Stay Gold"
    ],
-   "en": "Stay Gold"
+   "en": "Stay Gold",
+   "ongoing": false
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -3150,7 +3230,8 @@
     "Sakura Laurel",
     "Air Groove"
    ],
-   "en": "Ikuno Dictus & Sakura Laurel & Air Groove"
+   "en": "Ikuno Dictus & Sakura Laurel & Air Groove",
+   "ongoing": false
   },
   {
    "name": "ジェンティルドンナ リバイバルピックアップ プリティーダービーガチャ/オルフェーヴル リバイバルピックアップ プリティーダービーガチャ",
@@ -3190,7 +3271,8 @@
     "Gentildonna",
     "Orfevre"
    ],
-   "en": "Gentildonna & Orfevre"
+   "en": "Gentildonna & Orfevre",
+   "ongoing": false
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・セレクトピックアップ サポートカードガチャ",
@@ -3222,7 +3304,8 @@
    "agents": [
     "Kiseki"
    ],
-   "en": "Kiseki"
+   "en": "Kiseki",
+   "ongoing": false
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -3260,7 +3343,8 @@
     "Matikanefukukitaru",
     "Neo Universe"
    ],
-   "en": "Sounds of Earth & Matikanefukukitaru & Neo Universe"
+   "en": "Sounds of Earth & Matikanefukukitaru & Neo Universe",
+   "ongoing": false
   },
   {
    "name": "5th Anniv.セレクトピックアップ サポートカードガチャ",
@@ -3291,7 +3375,8 @@
    "agents": [
     "Royce and Royce"
    ],
-   "en": "Royce and Royce"
+   "en": "Royce and Royce",
+   "ongoing": false
   },
   {
    "name": "5th Anniv. サポートカードガチャ",
@@ -3315,7 +3400,8 @@
     "Casino Drive",
     "Red Desire"
    ],
-   "en": "Forever Young & Casino Drive & Red Desire"
+   "en": "Forever Young & Casino Drive & Red Desire",
+   "ongoing": false
   },
   {
    "name": "5th Anniv. プレミアム プリティーダービーガチャ",
@@ -3370,7 +3456,8 @@
    "agents": [
     "Almond Eye"
    ],
-   "en": "Almond Eye"
+   "en": "Almond Eye",
+   "ongoing": false
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -3400,7 +3487,8 @@
     "Marche Lorraine",
     "Super Creek"
    ],
-   "en": "Loves Only You & Marche Lorraine & Super Creek"
+   "en": "Loves Only You & Marche Lorraine & Super Creek",
+   "ongoing": false
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・5th Anniv.セレクトピックアップ サポートカードガチャ",
@@ -3432,7 +3520,8 @@
    "agents": [
     "Victoire Pisa"
    ],
-   "en": "Victoire Pisa"
+   "en": "Victoire Pisa",
+   "ongoing": false
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -3466,7 +3555,8 @@
     "North Flight",
     "Daring Tact"
    ],
-   "en": "Sakura Bakushin O & North Flight & Daring Tact"
+   "en": "Sakura Bakushin O & North Flight & Daring Tact",
+   "ongoing": false
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -3499,7 +3589,8 @@
     "Aston Machan",
     "Hishi Amazon"
    ],
-   "en": "Lucky Lilac & Aston Machan & Hishi Amazon"
+   "en": "Lucky Lilac & Aston Machan & Hishi Amazon",
+   "ongoing": false
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・セレクトピックアップ サポートカードガチャ",
@@ -3530,7 +3621,8 @@
    "agents": [
     "Admire Groove"
    ],
-   "en": "Admire Groove"
+   "en": "Admire Groove",
+   "ongoing": false
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -3564,7 +3656,8 @@
     "Fuji Kiseki",
     "Agnes Digital"
    ],
-   "en": "Jungle Pocket & Fuji Kiseki & Agnes Digital"
+   "en": "Jungle Pocket & Fuji Kiseki & Agnes Digital",
+   "ongoing": false
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -3596,7 +3689,8 @@
     "Sakura Chiyono O",
     "Mejiro Ardan"
    ],
-   "en": "Daring Heart & Sakura Chiyono O & Mejiro Ardan"
+   "en": "Daring Heart & Sakura Chiyono O & Mejiro Ardan",
+   "ongoing": false
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・セレクトピックアップ サポートカードガチャ",
@@ -3626,7 +3720,8 @@
    "agents": [
     "Red Desire"
    ],
-   "en": "Red Desire"
+   "en": "Red Desire",
+   "ongoing": false
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -3666,7 +3761,8 @@
     "Gentildonna",
     "Gran Alegria"
    ],
-   "en": "Manhattan Cafe & Gentildonna & Gran Alegria"
+   "en": "Manhattan Cafe & Gentildonna & Gran Alegria",
+   "ongoing": false
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・セレクトピックアップ サポートカードガチャ",
@@ -3701,7 +3797,8 @@
    "agents": [
     "Curren Bouquetd'or"
    ],
-   "en": "Curren Bouquetd'or"
+   "en": "Curren Bouquetd'or",
+   "ongoing": false
   },
   {
    "name": "新育成シナリオ開幕 サポートカードガチャ",
@@ -3736,16 +3833,14 @@
     55,
     56,
     62,
-    70,
-    null,
-    null,
-    null
+    70
    ],
    "agents": [
     "Meisho Doto",
     "Tazuna Hayakawa"
    ],
-   "en": "Meisho Doto & Tazuna Hayakawa"
+   "en": "Meisho Doto & Tazuna Hayakawa",
+   "ongoing": true
   },
   {
    "name": "新育成シナリオ開幕 プリティーダービーガチャ",
@@ -3780,15 +3875,13 @@
     55,
     56,
     62,
-    70,
-    null,
-    null,
-    null
+    70
    ],
    "agents": [
     "Narita Top Road"
    ],
-   "en": "Narita Top Road"
+   "en": "Narita Top Road",
+   "ongoing": true
   }
  ]
 }

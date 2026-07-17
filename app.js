@@ -337,8 +337,10 @@ $("#chart").addEventListener("click",e=>{
   openBanner(state.data.banners[+el.dataset.i]);
 });
 
-// ---- banner detail modal (daily rank curve over the run) ----
+// ---- banner detail modal (daily rank curve + revenue build-up over the run) ----
 const bannerModal=$("#bannerModal");
+const dayLabel=i=>{const d=new Date(dayLabel.start); d.setDate(d.getDate()+i); return `${d.getMonth()+1}/${d.getDate()}`;};
+
 // A banner's daily iOS top-grossing rank, drawn with #1 at the top. Gaps in the
 // line are days the app sat below the trackable ~top 200 (game-i counts as ¥0).
 function rankCurveSVG(b){
@@ -347,64 +349,131 @@ function rankCurveSVG(b){
   if(known.length<1) return "";
   const worst=Math.max(...known.map(([,v])=>v));
   const ymax = worst<=10?10 : worst<=20?20 : worst<=30?30 : worst<=50?50 : worst<=100?100 : 200;
-  const W=680,H=250,ML=38,MR=14,MT=16,MB=30, pW=W-ML-MR, pH=H-MT-MB;
+  const W=680,H=230,ML=38,MR=14,MT=16,MB=26, pW=W-ML-MR, pH=H-MT-MB;
   const xOf=i=> n>1 ? ML+(i/(n-1))*pW : ML+pW/2;
   const yOf=r=> MT+((r-1)/(ymax-1))*pH;                 // rank 1 at top
   const gridR=[...new Set([1,Math.round(ymax/4),Math.round(ymax/2),Math.round(3*ymax/4),ymax])];
   const grid=gridR.map(r=>{const y=yOf(r);
     return `<line class="grid" x1="${ML}" y1="${y.toFixed(1)}" x2="${W-MR}" y2="${y.toFixed(1)}"/>`+
       `<text class="axislbl" x="${ML-6}" y="${(y+3).toFixed(1)}" text-anchor="end">#${r}</text>`;}).join("");
-  const dayDate=i=>{const d=new Date(b.start+"T00:00:00"); d.setDate(d.getDate()+i);
-    return `${d.getMonth()+1}/${d.getDate()}`;};
   const xIdx=[...new Set([0,Math.round((n-1)/3),Math.round(2*(n-1)/3),n-1])];
-  const xt=xIdx.map(i=>`<text class="axislbl" x="${xOf(i).toFixed(1)}" y="${H-8}" text-anchor="middle">${dayDate(i)}</text>`).join("");
-  // line broken across null gaps
+  const xt=xIdx.map(i=>`<text class="axislbl" x="${xOf(i).toFixed(1)}" y="${H-8}" text-anchor="middle">${dayLabel(i)}</text>`).join("");
   let d="",pen=false;
   s.forEach((v,i)=>{ if(v==null){pen=false;return;} const x=xOf(i),y=yOf(v);
     d+=`${pen?"L":"M"}${x.toFixed(1)} ${y.toFixed(1)}`; pen=true; });
-  const dots=known.map(([i,v])=>`<circle class="rc-dot" cx="${xOf(i).toFixed(1)}" cy="${yOf(v).toFixed(1)}" r="3"><title>${dayDate(i)} · #${v}</title></circle>`).join("");
-  // mark the peak (best = lowest rank number)
+  const dots=known.map(([i,v])=>`<circle class="rc-dot" cx="${xOf(i).toFixed(1)}" cy="${yOf(v).toFixed(1)}" r="3"><title>${dayLabel(i)} · #${v}</title></circle>`).join("");
   const [pi,pv]=known.reduce((a,c)=>c[1]<a[1]?c:a);
   const peak=`<circle class="rc-peak" cx="${xOf(pi).toFixed(1)}" cy="${yOf(pv).toFixed(1)}" r="5"/>`+
     `<text class="rc-peaklbl" x="${xOf(pi).toFixed(1)}" y="${(yOf(pv)-9).toFixed(1)}" text-anchor="middle">peak #${pv}</text>`;
   return `<svg class="rcsvg" viewBox="0 0 ${W} ${H}" role="img" style="--acc:${barColor(b)}">
     ${grid}<path class="rc-line" d="${d}"/>${dots}${peak}${xt}</svg>`;
 }
+
+// game-i's published rank → daily-revenue curve (億G, from its 日別加算値 table).
+// Higher rank earns more that day; below ~200 earns nothing. We don't have the
+// exact per-day yen (it shifts by date and splits across concurrent banners), so
+// we use this curve only to *shape* the run, then scale it so the run's total
+// equals game-i's own figure. It's a reconstruction, not a reported number.
+const RANK_VAL=[[1,5.90],[2,3.47],[3,3.03],[4,2.61],[5,2.03],[10,.9034],[50,.2584],[100,.1640],[200,.10]];
+function rankValue(r){
+  if(r==null) return 0;
+  if(r<=RANK_VAL[0][0]) return RANK_VAL[0][1];
+  if(r>=200) return RANK_VAL[RANK_VAL.length-1][1];
+  for(let i=0;i<RANK_VAL.length-1;i++){ const[r0,v0]=RANK_VAL[i],[r1,v1]=RANK_VAL[i+1];
+    if(r>=r0&&r<=r1){ const t=(Math.log(r)-Math.log(r0))/(Math.log(r1)-Math.log(r0));
+      return Math.exp(Math.log(v0)+t*(Math.log(v1)-Math.log(v0))); } }
+  return 0;
+}
+function dailyBreakdown(b){
+  const s=b.rank_series||[]; if(!s.length) return null;
+  const raw=s.map(rankValue), sum=raw.reduce((a,c)=>a+c,0);
+  if(sum<=0) return null;
+  let cum=0;
+  const days=s.map((rank,i)=>{ const add=b.rev*raw[i]/sum; cum+=add; return {i,rank,add,cum}; });
+  return {days};
+}
+function buildupSVG(bd,b){
+  const days=bd.days, n=days.length, total=b.rev;
+  const W=680,H=180,ML=52,MR=14,MT=12,MB=26, pW=W-ML-MR, pH=H-MT-MB;
+  const xOf=i=> n>1 ? ML+(i/(n-1))*pW : ML+pW/2;
+  const yOf=v=> MT+(1-v/total)*pH;
+  const grid=[0,.25,.5,.75,1].map(fr=>{const v=total*fr,y=yOf(v);
+    return `<line class="grid" x1="${ML}" y1="${y.toFixed(1)}" x2="${W-MR}" y2="${y.toFixed(1)}"/>`+
+      `<text class="axislbl" x="${ML-6}" y="${(y+3).toFixed(1)}" text-anchor="end">${G(v)}</text>`;}).join("");
+  const bw=Math.min(16, pW/n*0.7);
+  const bars=days.map(d=>{ if(d.add<=0) return ""; const x=xOf(d.i), y=yOf(d.add? d.add:0);
+    const top=MT+(1-d.add/total)*pH, h=MT+pH-top;
+    return `<rect class="bu-bar" x="${(x-bw/2).toFixed(1)}" y="${top.toFixed(1)}" width="${bw.toFixed(1)}" height="${Math.max(0,h).toFixed(1)}" rx="2"><title>${dayLabel(d.i)} · +${G(d.add)}</title></rect>`;}).join("");
+  const line=days.map((d,i)=>(i?"L":"M")+xOf(i).toFixed(1)+" "+yOf(d.cum).toFixed(1)).join(" ");
+  const xIdx=[...new Set([0,Math.round((n-1)/2),n-1])];
+  const xt=xIdx.map(i=>`<text class="axislbl" x="${xOf(i).toFixed(1)}" y="${H-8}" text-anchor="middle">${dayLabel(i)}</text>`).join("");
+  return `<svg class="rcsvg buildup" viewBox="0 0 ${W} ${H}" role="img" style="--acc:${barColor(b)}">
+    ${grid}${bars}<path class="bu-line" d="${line}"/>${xt}</svg>`;
+}
+function dailyTable(bd){
+  const rows=bd.days.map(d=>`<tr>
+    <td class="l">${dayLabel(d.i)}</td>
+    <td>${d.rank==null?'<span class="muted">200+</span>':'#'+d.rank}</td>
+    <td>${d.add>=0.005?G(d.add):'<span class="muted">—</span>'}</td>
+    <td>${G(d.cum)}</td></tr>`).join("");
+  return `<div class="bm-tablewrap"><table class="bm-table">
+    <thead><tr><th class="l">Date</th><th>iOS&nbsp;rank</th><th>+Est.</th><th>Cumulative</th></tr></thead>
+    <tbody>${rows}</tbody></table></div>`;
+}
+
 function openBanner(b){
+  dayLabel.start=b.start+"T00:00:00";
   const en=b.agents&&b.agents.length?b.agents.join(" & "):(b.related||"");
   const rr=b.rerun?`<span class="rr">↻ rerun</span>`:"";
-  const art=(b.banner_img||(b.icons&&b.icons[0]))
-    ? `<img class="bm-art" src="${b.banner_img||b.icons[0]}" alt="" referrerpolicy="no-referrer" onerror="this.remove()">` : "";
+  const live=b.ongoing?`<span class="bm-live">● Running</span>`:"";
+  const scheduled=Math.round((Date.parse(b.end)-Date.parse(b.start))/864e5)+1;
+  const elapsed=b.rank_series?b.rank_series.length:Math.min(scheduled,Math.round((Date.now()-Date.parse(b.start))/864e5)+1);
   const stats=[
-    ["Est. revenue", G(b.rev)],
+    [`Est. revenue${b.ongoing?" so far":""}`, G(b.rev)],
     ["All-time rank", `#${b.cum} / ${b.cumtot}`],
     [`${b.year} rank`, `#${b.yrank} / ${b.ytot}`],
-    ["Run length", `${Math.round((Date.parse(b.end)-Date.parse(b.start))/864e5)+1} days`],
+    ["Run length", b.ongoing?`Day ${elapsed} of ${scheduled}`:`${scheduled} days`],
   ].map(([l,v])=>`<div class="bm-stat"><span class="l">${l}</span><span class="v">${v}</span></div>`).join("");
+
+  // header: full-width hero art when we have banner art, else icon-left compact row
+  const title=`<h2 id="bmTitle">${esc(b.name)} ${rr}${live}</h2>
+    ${en?`<div class="bm-sub">${esc(en)}</div>`:""}
+    <div class="bm-period">${per(b.start)} – ${per(b.end)}</div>`;
+  const head=b.banner_img
+    ? `<div class="bm-hero" style="--av-ring:${barColor(b)}">
+         <img src="${b.banner_img}" alt="" referrerpolicy="no-referrer" onerror="this.remove()">
+         <div class="bm-herobar">${title}</div></div>`
+    : `<div class="bm-head" style="--av-ring:${barColor(b)}">
+         ${b.icons&&b.icons[0]?`<img class="bm-art sq" src="${b.icons[0]}" alt="" referrerpolicy="no-referrer" onerror="this.remove()">`:""}
+         <div class="bm-htext">${title}</div></div>`;
+
   const s=b.rank_series||[]; const known=s.filter(v=>v!=null);
   let curve;
   if(known.length){
     const first=s.find(v=>v!=null), last=[...s].reverse().find(v=>v!=null), best=Math.min(...known);
-    const cap=`Opened at <b>#${first}</b>, peaked at <b>#${best}</b>, closed at <b>#${last}</b> on Japan's iOS top-grossing chart.`;
+    const cap=b.ongoing
+      ? `Opened at <b>#${first}</b>, currently <b>#${last}</b> (peaked <b>#${best}</b>) — <b>still running</b>.`
+      : `Opened at <b>#${first}</b>, peaked at <b>#${best}</b>, closed at <b>#${last}</b>.`;
     curve=`<h3>Daily iOS store rank during the run</h3>
       <div class="bm-cap">${cap}</div>
       ${rankCurveSVG(b)}
-      <p class="bm-note">#1 is the top of the chart. Breaks in the line are days the app sat below game-i's trackable ~top&nbsp;200 (counted as ¥0). Rank is snapshotted at midnight JST, so a launch day can read below-200 when the banner went live after the snapshot. iOS only — game-i keeps no daily Android history.</p>`;
+      <p class="bm-note">#1 is the top of Japan's App Store top-grossing chart. Breaks in the line are days the app sat below game-i's trackable ~top&nbsp;200 (counted as ¥0). Rank is snapshotted at midnight JST, so a launch day can read below-200 when the banner went live after the snapshot. iOS only — game-i keeps no daily Android history.</p>`;
   } else {
     curve=`<h3>Daily iOS store rank during the run</h3>
       <p class="bm-note">No daily rank data for this run — the app stayed below game-i's trackable ~top&nbsp;200 throughout (counted as ¥0), or the run predates game-i's rank history.</p>`;
   }
-  $("#bmBody").innerHTML=`
-    <div class="bm-head" style="--av-ring:${barColor(b)}">
-      ${art}
-      <div class="bm-htext">
-        <h2 id="bmTitle">${esc(b.name)} ${rr}</h2>
-        ${en?`<div class="bm-sub">${esc(en)}</div>`:""}
-        <div class="bm-period">${per(b.start)} – ${per(b.end)}</div>
-      </div>
-    </div>
-    <div class="bm-stats">${stats}</div>
-    ${curve}`;
+
+  const bd=dailyBreakdown(b);
+  let build="";
+  if(bd){
+    build=`<h3>Estimated revenue build-up${b.ongoing?" so far":""}</h3>
+      <p class="bm-note bm-recon">game-i publishes only one total per banner. This splits that ${G(b.rev)} across the run by each day's rank (bars = that day's share, line = running total), using game-i's published rank→revenue curve. It's an illustration of how the total accumulated — not a separately reported daily figure.</p>
+      ${buildupSVG(bd,b)}
+      ${dailyTable(bd)}`;
+  }
+
+  $("#bmBody").innerHTML=head+`<div class="bm-stats">${stats}</div>${curve}${build}`;
+  bannerModal.querySelector(".modal-card").scrollTop=0;
   tip.hidden=true;
   bannerModal.hidden=false;
 }
