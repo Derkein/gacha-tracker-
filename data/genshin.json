@@ -4,13 +4,13 @@
  "jp": "原神",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E5%8E%9F%E7%A5%9E",
- "updated": "2026-07-17T18:53:09Z",
+ "updated": "2026-07-17T23:36:40Z",
  "count": 44,
  "now": {
-  "ios": 77,
+  "ios": 76,
   "android": 16,
   "month": 18,
-  "next_add": 18073161,
+  "next_add": 18238318,
   "ym": "2026/07",
   "ranks": {
    "prev": [
@@ -95,6 +95,7 @@
    "related": "",
    "banner_img": "https://img.gamewith.jp/img/original_6f88961e07a3956f3239879e2099b633.jpg",
    "rerun": true,
+   "ongoing": false,
    "rank_series": [
     29,
     3,
@@ -126,8 +127,7 @@
     "Raiden Shogun"
    ],
    "accent": "#b57fd4",
-   "bar": "#965b41",
-   "ongoing": false
+   "bar": "#965b41"
   },
   {
    "name": "閑雲初回とナヒーダ",
@@ -142,6 +142,7 @@
    "related": "",
    "banner_img": "https://img.gamewith.jp/img/dd5a75180ad6f4bbaa2850367c851a7a.jpeg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     22,
     3,
@@ -172,8 +173,7 @@
     "Nahida"
    ],
    "accent": "#84c23c",
-   "bar": "#eeca77",
-   "ongoing": false
+   "bar": "#eeca77"
   },
   {
    "name": "魈と八重神子",
@@ -188,6 +188,7 @@
    "related": "",
    "banner_img": "https://img.gamewith.jp/img/fe164036326d8d3da7cacfa865f0dbe0.jpeg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     20,
     9,
@@ -219,8 +220,7 @@
     "Yae Miko"
    ],
    "accent": "#b57fd4",
-   "bar": "#f2c673",
-   "ongoing": false
+   "bar": "#f2c673"
   },
   {
    "name": "千織と荒滝一斗",
@@ -235,6 +235,7 @@
    "related": "",
    "banner_img": "https://img.gamewith.jp/img/c3256486cfdc1e0b2e5cf89233a9bdaa.jpeg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     45,
     2,
@@ -265,8 +266,7 @@
     "Chiori"
    ],
    "accent": "#e0b23c",
-   "bar": "#e1c984",
-   "ongoing": false
+   "bar": "#e1c984"
   },
   {
    "name": "ヌヴィレットと楓原万葉",
@@ -281,6 +281,7 @@
    "related": "",
    "banner_img": "https://img.gamewith.jp/img/af828c392fc77832f219597638c53962.jpeg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     29,
     3,
@@ -312,8 +313,7 @@
     "Neuvillette"
    ],
    "accent": "#4a90d9",
-   "bar": "#dfc786",
-   "ongoing": false
+   "bar": "#dfc786"
   },
   {
    "name": "アルレッキーノとリネ復刻",
@@ -328,6 +328,7 @@
    "related": "",
    "banner_img": "https://img.gamewith.jp/img/e6f781ecc8eae3afd81ad8b7a48ab0c0.jpeg",
    "rerun": true,
+   "ongoing": false,
    "rank_series": [
     19,
     1,
@@ -358,8 +359,7 @@
     "Arlecchino"
    ],
    "accent": "#f0684a",
-   "bar": "#ad2b29",
-   "ongoing": false
+   "bar": "#ad2b29"
   },
   {
    "name": "放浪者復刻2と白朮復刻2",
@@ -374,6 +374,7 @@
    "related": "",
    "banner_img": "https://img.gamewith.jp/img/d9e4c0b45b6e80a38d347b6dbe548578.jpeg",
    "rerun": true,
+   "ongoing": false,
    "rank_series": [
     23,
     6,
@@ -407,8 +408,7 @@
     "Baizhu"
    ],
    "accent": "#57c69a",
-   "bar": "#408d96",
-   "ongoing": false
+   "bar": "#408d96"
   },
   {
    "name": "クロリンデ&アルハイゼン復刻2",
@@ -423,6 +423,7 @@
    "related": "",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/06/03/0/5e700294350bd2ea942800127ef0fbf5_6205033083023036495.jpeg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     42,
     1,
@@ -456,8 +457,7 @@
    ],
    "accent": "#b57fd4",
    "en": "Clorinde & Alhaitham",
-   "bar": "#9688dd",
-   "ongoing": false
+   "bar": "#9688dd"
   },
   {
    "name": "シグウィン&フリーナ復刻",
@@ -472,6 +472,7 @@
    "related": "",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/06/20/0/02f62854b7ad8a16c3432e837a703083_2323391094639384563.jpeg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     41,
     3,
@@ -506,8 +507,7 @@
    ],
    "accent": "#4a90d9",
    "en": "Sigewinne & Furina",
-   "bar": "#7eb2e7",
-   "ongoing": false
+   "bar": "#7eb2e7"
   },
   {
    "name": "ナヴィア復刻&ニィロウ復刻2",
@@ -522,6 +522,7 @@
    "related": "",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/07/12/0/0c93fbaab1d01bf2265f481f504e2252_1999101370260728182.jpeg",
    "rerun": true,
+   "ongoing": false,
    "rank_series": [
     36,
     6,
@@ -555,8 +556,7 @@
    ],
    "accent": "#e0b23c",
    "en": "Navia & Nilou",
-   "bar": "#dda453",
-   "ongoing": false
+   "bar": "#dda453"
   },
   {
    "name": "エミリエ&夜蘭復刻",
@@ -571,6 +571,7 @@
    "related": "",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/07/31/0/1e9dbd336af3343a96114538f0c97a31_2302900058160100692.jpeg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     67,
     12,
@@ -605,8 +606,7 @@
    ],
    "accent": "#84c23c",
    "en": "Emilie & Yelan",
-   "bar": "#c9ba9c",
-   "ongoing": false
+   "bar": "#c9ba9c"
   },
   {
    "name": "ムアラニ&楓原万葉復刻",
@@ -621,6 +621,7 @@
    "related": "",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/08/26/0/084945fe36ba39ee45730b0c8d2bb03c_6348091551060473017.jpeg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     44,
     8,
@@ -654,8 +655,7 @@
    ],
    "accent": "#4a90d9",
    "en": "Mualani & Kaedehara Kazuha",
-   "bar": "#1737bf",
-   "ongoing": false
+   "bar": "#1737bf"
   },
   {
    "name": "キィニチ&雷電将軍復刻",
@@ -670,6 +670,7 @@
    "related": "",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/09/11/91f577a717afcc9976463a0a9cfe54e8_7398512192234296705.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     45,
     8,
@@ -704,8 +705,7 @@
    ],
    "accent": "#84c23c",
    "en": "Kinich & Raiden Shogun",
-   "bar": "#76efc7",
-   "ongoing": false
+   "bar": "#76efc7"
   },
   {
    "name": "シロネン＆千織復刻",
@@ -720,6 +720,7 @@
    "related": "",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/10/06/0/d999ca2ad59413c9e525e0e67b558131_1246210284913203565.jpeg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     30,
     1,
@@ -753,8 +754,7 @@
    ],
    "accent": "#e0b23c",
    "en": "Xilonen & Chiori",
-   "bar": "#d99c49",
-   "ongoing": false
+   "bar": "#d99c49"
   },
   {
    "name": "ナヒーダ復刻&胡桃復刻",
@@ -769,6 +769,7 @@
    "related": "",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/10/23/0/344cd08b6b48adfa875b996ba0b219c3_8055236353833625038.jpeg",
    "rerun": true,
+   "ongoing": false,
    "rank_series": [
     49,
     13,
@@ -803,8 +804,7 @@
    ],
    "accent": "#84c23c",
    "en": "Nahida & Hu Tao",
-   "bar": "#689f50",
-   "ongoing": false
+   "bar": "#689f50"
   },
   {
    "name": "チャスカ&リネ復刻",
@@ -819,6 +819,7 @@
    "related": "",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/11/15/0/6c6332e9c76b4392043f56c34a2fabcf_7620603469069275850.jpeg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     56,
     7,
@@ -852,8 +853,7 @@
    ],
    "accent": "#57c69a",
    "en": "Chasca & Lyney",
-   "bar": "#b02648",
-   "ongoing": false
+   "bar": "#b02648"
   },
   {
    "name": "ヌヴィレット復刻&鍾離復刻",
@@ -868,6 +868,7 @@
    "related": "",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/12/04/0/c78ccd5843dbc3996f263f91a7890e95_3846122510955764502.jpeg",
    "rerun": true,
+   "ongoing": false,
    "rank_series": [
     62,
     9,
@@ -902,8 +903,7 @@
    ],
    "accent": "#4a90d9",
    "en": "Neuvillette & Zhongli",
-   "bar": "#6de4f8",
-   "ongoing": false
+   "bar": "#6de4f8"
   },
   {
    "name": "マーヴィカ&シトラリ",
@@ -918,6 +918,7 @@
    "related": "",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/12/27/0/42cec471ee55ebcd3dac4c9cc39c33a4_3081370112186905576.jpeg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     41,
     4,
@@ -951,8 +952,7 @@
    ],
    "accent": "#f0684a",
    "en": "Mavuika & Citlali",
-   "bar": "#f1be74",
-   "ongoing": false
+   "bar": "#f1be74"
   },
   {
    "name": "アルレッキーノ復刻&クロリンデ復刻",
@@ -967,6 +967,7 @@
    "related": "藍硯",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/12/30/0/bfdb5734d21590b2e27acbbeae10ac6e_4621479989988408355.jpeg",
    "rerun": true,
+   "ongoing": false,
    "rank_series": [
     21,
     5,
@@ -1001,8 +1002,7 @@
    ],
    "accent": "#f0684a",
    "en": "Arlecchino & Clorinde",
-   "bar": "#a7352f",
-   "ongoing": false
+   "bar": "#a7352f"
   },
   {
    "name": "夢見月瑞希&シグウィン復刻",
@@ -1017,6 +1017,7 @@
    "related": "",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/02/07/0/3c7dceda043e860cc1a859756c0aee7f_823675954244895025.jpeg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     21,
     18,
@@ -1050,8 +1051,7 @@
    ],
    "accent": "#57c69a",
    "en": "Yumemizuki Mizuki & Sigewinne",
-   "bar": "#86c0df",
-   "ongoing": false
+   "bar": "#86c0df"
   },
   {
    "name": "リオセスリ復刻&フリーナ復刻",
@@ -1066,6 +1066,7 @@
    "related": "",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/02/26/221c127b961eba1c62c610cc11b6f289_3469217581724871397.jpg",
    "rerun": true,
+   "ongoing": false,
    "rank_series": [
     95,
     49,
@@ -1100,8 +1101,7 @@
    ],
    "accent": "#7fc8e0",
    "en": "Wriothesley & Furina",
-   "bar": "#3c4f9b",
-   "ongoing": false
+   "bar": "#3c4f9b"
   },
   {
    "name": "ヴァレサ&閑雲復刻",
@@ -1116,6 +1116,7 @@
    "related": "イアンサ",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/03/21/5935aed29bc08c7d1e2fbb8f2b88a76f_7662838973682167949.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     31,
     13,
@@ -1149,8 +1150,7 @@
    ],
    "accent": "#b57fd4",
    "en": "Varesa & Xianyun",
-   "bar": "#9b94d1",
-   "ongoing": false
+   "bar": "#9b94d1"
   },
   {
    "name": "シロネン復刻&ウェンティ復刻",
@@ -1165,6 +1165,7 @@
    "related": "",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/04/09/dd4f139635182b7fd570b7534eda2908_1840557538363451263.jpg",
    "rerun": true,
+   "ongoing": false,
    "rank_series": [
     94,
     49,
@@ -1199,8 +1200,7 @@
    ],
    "accent": "#e0b23c",
    "en": "Xilonen & Venti",
-   "bar": "#db9e49",
-   "ongoing": false
+   "bar": "#db9e49"
   },
   {
    "name": "エスコフィエ",
@@ -1215,6 +1215,7 @@
    "related": "ナヴィア復刻",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/04/30/142a0942277004de21a7aa908ef5ce38_3367995657944649773.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     80,
     8,
@@ -1246,8 +1247,7 @@
    ],
    "accent": "#7fc8e0",
    "en": "Escoffier",
-   "bar": "#75caf0",
-   "ongoing": false
+   "bar": "#75caf0"
   },
   {
    "name": "キィニチ復刻&雷電将軍復刻",
@@ -1262,6 +1262,7 @@
    "related": "集録祈願「天を裂く雷鳴」",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/05/20/9b3533fb3602e36cf0de355ec387eead_8481502789443642874.jpg",
    "rerun": true,
+   "ongoing": false,
    "rank_series": [
     71,
     47,
@@ -1296,8 +1297,7 @@
    ],
    "accent": "#84c23c",
    "en": "Kinich & Raiden Shogun",
-   "bar": "#77eec7",
-   "ongoing": false
+   "bar": "#77eec7"
   },
   {
    "name": "スカーク",
@@ -1312,6 +1312,7 @@
    "related": "申鶴復刻",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/06/13/e82471d6437baa04dcfed78eb2fc02a3_4986421211168343162.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     38,
     3,
@@ -1343,8 +1344,7 @@
    ],
    "accent": "#7fc8e0",
    "en": "Skirk",
-   "bar": "#2a36ac",
-   "ongoing": false
+   "bar": "#2a36ac"
   },
   {
    "name": "マーヴィカ復刻&エミリエ復刻",
@@ -1359,6 +1359,7 @@
    "related": "",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/07/03/119467b87609ca06247f512e0ec5e340_6231794123022969564.jpg",
    "rerun": true,
+   "ongoing": false,
    "rank_series": [
     44,
     32,
@@ -1393,8 +1394,7 @@
    ],
    "accent": "#f0684a",
    "en": "Mavuika & Emilie",
-   "bar": "#f3b972",
-   "ongoing": false
+   "bar": "#f3b972"
   },
   {
    "name": "イネファ",
@@ -1409,6 +1409,7 @@
    "related": "シトラリ復刻",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/07/25/74bd3dd43d387175d6488d531b1dc876_2376537358052853601.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     75,
     17,
@@ -1440,8 +1441,7 @@
    ],
    "accent": "#b57fd4",
    "en": "Ineffa",
-   "bar": "#d088dd",
-   "ongoing": false
+   "bar": "#d088dd"
   },
   {
    "name": "ムアラニ復刻&チャスカ復刻",
@@ -1456,6 +1456,7 @@
    "related": "",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/08/13/5695e8cae4299e6c3c5d5609a6ea2eb6_2960019148035950589.jpg",
    "rerun": true,
+   "ongoing": false,
    "rank_series": [
     81,
     57,
@@ -1490,8 +1491,7 @@
    ],
    "accent": "#4a90d9",
    "en": "Mualani & Chasca",
-   "bar": "#2945ad",
-   "ongoing": false
+   "bar": "#2945ad"
   },
   {
    "name": "ラウマ",
@@ -1506,6 +1506,7 @@
    "related": "ナヒーダ復刻、集録祈願「露と草の盃」",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/09/08/df8ebd49c2ac99d701f3e88a96c970c6_4362035183919378694.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     101,
     7,
@@ -1537,8 +1538,7 @@
    ],
    "accent": "#84c23c",
    "en": "Lauma",
-   "bar": "#91ccd4",
-   "ongoing": false
+   "bar": "#91ccd4"
   },
   {
    "name": "フリンズ",
@@ -1553,6 +1553,7 @@
    "related": "夜蘭復刻",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/09/25/5502559493f5ec79f029c83c3a911694_4527499613479705532.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     46,
     32,
@@ -1585,8 +1586,7 @@
    ],
    "accent": "#b57fd4",
    "en": "Flins",
-   "bar": "#5b5aa8",
-   "ongoing": false
+   "bar": "#5b5aa8"
   },
   {
    "name": "ネフェル",
@@ -1601,6 +1601,7 @@
    "related": "フリーナ",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/10/17/521613c0dab0b4018fc68d926affaa6a_3857502028067489407.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     38,
     6,
@@ -1632,8 +1633,7 @@
    ],
    "accent": "#84c23c",
    "en": "Nefer",
-   "bar": "#619d55",
-   "ongoing": false
+   "bar": "#619d55"
   },
   {
    "name": "アルレッキーノ復刻&鍾離復刻",
@@ -1648,6 +1648,7 @@
    "related": "",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/11/05/dc6dc0787edd06c117eaca2e57a5287a_2988516736738081068.jpg",
    "rerun": true,
+   "ongoing": false,
    "rank_series": [
     65,
     41,
@@ -1682,8 +1683,7 @@
    ],
    "accent": "#f0684a",
    "en": "Arlecchino & Zhongli",
-   "bar": "#a8332e",
-   "ongoing": false
+   "bar": "#a8332e"
   },
   {
    "name": "ドゥリン",
@@ -1698,6 +1698,7 @@
    "related": "ウェンティ復刻",
    "banner_img": "https://pbs.twimg.com/media/G7DR9lxXwAAsdoT.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     80,
     5,
@@ -1729,8 +1730,7 @@
    ],
    "accent": "#f0684a",
    "en": "Durin",
-   "bar": "#d88d8d",
-   "ongoing": false
+   "bar": "#d88d8d"
   },
   {
    "name": "ヴァレサ復刻&シロネン復刻",
@@ -1745,6 +1745,7 @@
    "related": "",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/12/16/3ad1503120788bc3e15a09d52232afa9_2373601342062660402.jpg",
    "rerun": true,
+   "ongoing": false,
    "rank_series": [
     83,
     50,
@@ -1779,8 +1780,7 @@
    ],
    "accent": "#b57fd4",
    "en": "Varesa & Xilonen",
-   "bar": "#9b95d0",
-   "ongoing": false
+   "bar": "#9b95d0"
   },
   {
    "name": "コロンビーナ",
@@ -1795,6 +1795,7 @@
    "related": "イネファ復刻\n2025年へ",
    "banner_img": "https://pbs.twimg.com/media/G-blMLpXMAAPNmR.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     60,
     1,
@@ -1826,8 +1827,7 @@
    ],
    "accent": "#f0684a",
    "en": "Columbina",
-   "bar": "#6badfa",
-   "ongoing": false
+   "bar": "#6badfa"
   },
   {
    "name": "兹白",
@@ -1842,6 +1842,7 @@
    "related": "ヌヴィレット復刻、イルーガ",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/01/22/e5f370029d6e45ecc4e51427f7c164b5_2047444970886058009.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     28,
     23,
@@ -1872,8 +1873,7 @@
    ],
    "accent": null,
    "en": "Zibai",
-   "bar": "#d0c795",
-   "ongoing": false
+   "bar": "#d0c795"
   },
   {
    "name": "ファルカ",
@@ -1888,6 +1888,7 @@
    "related": "フリンズ",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/02/13/0a462af54a91f6a5fcb6a1d884cad245_1998948553019150990.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     65,
     7,
@@ -1917,8 +1918,7 @@
    ],
    "accent": null,
    "en": "Varka",
-   "bar": "#39899e",
-   "ongoing": false
+   "bar": "#39899e"
   },
   {
    "name": "スカーク復刻&エスコフィエ復刻",
@@ -1933,6 +1933,7 @@
    "related": "",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/03/11/93a7419d864f13f2270f89924c0b8e4a_7397518726044578515.jpg",
    "rerun": true,
+   "ongoing": false,
    "rank_series": [
     59,
     29,
@@ -1967,8 +1968,7 @@
    ],
    "accent": "#7fc8e0",
    "en": "Skirk & Escoffier",
-   "bar": "#3039a6",
-   "ongoing": false
+   "bar": "#3039a6"
   },
   {
    "name": "リンネア",
@@ -1983,6 +1983,7 @@
    "related": "チャスカ",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/04/06/daa7021a27e0b565c48577edf05a1ece_2551284884487609917.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     72,
     11,
@@ -2012,8 +2013,7 @@
    ],
    "accent": null,
    "en": "Linnea",
-   "bar": "#ecc179",
-   "ongoing": false
+   "bar": "#ecc179"
   },
   {
    "name": "ラウマ復刻&ネフェル復刻",
@@ -2028,6 +2028,7 @@
    "related": "集録祈願「ルキナのせせらぎ」",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/04/22/0/964100e3fe6295fd0483e735b463a329_4365338839486256120.webp",
    "rerun": true,
+   "ongoing": false,
    "rank_series": [
     111,
     59,
@@ -2062,8 +2063,7 @@
    ],
    "accent": "#84c23c",
    "en": "Lauma & Nefer",
-   "bar": "#90cdd5",
-   "ongoing": false
+   "bar": "#90cdd5"
   },
   {
    "name": "ニコ",
@@ -2078,6 +2078,7 @@
    "related": "ドゥリン",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/05/15/8c2fe2e9cbf65169b54d499ec2bb42fd_7520440180828628783.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     93,
     8,
@@ -2107,8 +2108,7 @@
    ],
    "accent": null,
    "en": "Nicole",
-   "bar": "#d89f8d",
-   "ongoing": false
+   "bar": "#d89f8d"
   },
   {
    "name": "ローエン",
@@ -2123,6 +2123,7 @@
    "related": "",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/06/02/0/9ac9e23478b7656719b6795b0a8cd71b_3425170184116618980.jpeg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     79,
     37,
@@ -2153,8 +2154,7 @@
    ],
    "accent": null,
    "en": "Lohen",
-   "bar": "#64b7d5",
-   "ongoing": false
+   "bar": "#64b7d5"
   },
   {
    "name": "サンドローネ",
@@ -2169,6 +2169,7 @@
    "related": "",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/06/29/0/781da55472dc1186e3e8d2d93140cf70_7777178998231754007.jpeg",
    "rerun": false,
+   "ongoing": true,
    "rank_series": [
     59,
     3,
@@ -2195,8 +2196,7 @@
    ],
    "accent": null,
    "en": "Sandrone",
-   "bar": "#84c9e1",
-   "ongoing": true
+   "bar": "#84c9e1"
   }
  ]
 }

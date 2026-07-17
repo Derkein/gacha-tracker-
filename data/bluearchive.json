@@ -4,13 +4,13 @@
  "jp": "ブルーアーカイブ",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E3%83%96%E3%83%AB%E3%83%BC%E3%82%A2%E3%83%BC%E3%82%AB%E3%82%A4%E3%83%96",
- "updated": "2026-07-17T18:55:38Z",
+ "updated": "2026-07-17T23:37:58Z",
  "count": 49,
  "now": {
   "ios": null,
-  "android": 59,
+  "android": 61,
   "month": 134,
-  "next_add": 6008212,
+  "next_add": 6028612,
   "ym": "2026/07",
   "ranks": {
    "prev": [
@@ -95,6 +95,7 @@
    "related": "★3「ミサキ」、★3「アツコ」",
    "banner_img": "https://webusstatic.yo-star.com/uy0news/ba/53d37a2f6e1e178252745dd570085678.png",
    "rerun": true,
+   "ongoing": false,
    "rank_series": [
     60,
     55,
@@ -124,6 +125,7 @@
    "related": "★3「マコト」（限定）、★3「アコ(ドレス)」（限定）、★3「イロハ」",
    "banner_img": "https://webusstatic.yo-star.com/uy0news/ba/f8ef2edfa72042c6d6035b06d72976c3.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     5,
     13,
@@ -154,6 +156,7 @@
    "related": "★3「ヒナ(ドレス)」（限定）、★3「ホシノ(水着)」（限定）",
    "banner_img": "https://i.imgur.com/A6HXQHP.jpeg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     11,
     2,
@@ -183,6 +186,7 @@
    "related": "★3「アル(ドレス)」(限定)、★3「カヨコ(ドレス)」(限定)",
    "banner_img": "https://webusstatic.yo-star.com/uy0news/ba/ce1517445f7b3d5cf69492d9ca9ce504.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     53,
     9,
@@ -219,6 +223,7 @@
    "related": "★3「アカリ(正月)」、★3「ハルナ(正月)」(限定)、★3「フウカ(正月)」(限定)",
    "banner_img": "https://webusstatic.yo-star.com/uy0news/ba/8f46392d98898d4cede5c6f513d98144.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     62,
     4,
@@ -256,6 +261,7 @@
    "related": "★3「ツバキ(ガイド)」、★3「ウミカ」、★3「イズナ」（復刻）、★2「シズコ」（復刻）、★3「ミモリ」（復刻）",
    "banner_img": "https://webusstatic.yo-star.com/uy0news/ba/a445e46df22949bfdeadd1ae704a2e75.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     78,
     25,
@@ -293,6 +299,7 @@
    "related": "★3「トキ」（限定-復刻）、★3「ナギサ」（限定-復刻）、★3「コユキ」（復刻）",
    "banner_img": "https://webusstatic.yo-star.com/uy0news/ba/7cabd55f02f707038c6b8093b813f877.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     92,
     9,
@@ -323,6 +330,7 @@
    "related": "★3「カズサ(バンド)」（限定）、★3「ヨシミ(バンド)」（限定）、★3「アコ」（復刻）",
    "banner_img": "https://webusstatic.yo-star.com/uy0news/ba/38044d101572c6509dea07839d2df1f0.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     42,
     7,
@@ -359,6 +367,7 @@
    "related": "★3「キララ」、★3「カエデ」（復刻）、★3「ツクヨ」（復刻）、★3「カホ」（復刻）",
    "banner_img": "https://webusstatic.yo-star.com/uy0news/ba/5f71a0d8fe3cf8ae478f74b645b7f1d7.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     54,
     16,
@@ -389,6 +398,7 @@
    "related": "★3「モモイ(メイド)」、★3「ミドリ(メイド)」、★3「アリス(メイド)」（復刻）、★3「トキ(バニーガール)」（復刻）",
    "banner_img": "https://webusstatic.yo-star.com/uy0news/ba/dc9627f96a2b14861f6457d134a94829.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     56,
     17,
@@ -426,6 +436,7 @@
    "related": "ピックアップ募集紹介：★3「セリカ(水着)」、★3「ノノミ(水着)」、★3「ワカモ(水着)」、★3「シロコ(水着)」",
    "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2024/05/30/-rIpmPiA.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     85,
     17,
@@ -460,6 +471,7 @@
    "related": "ピックアップ募集紹介：★3「カンナ(水着)」、★3「フブキ(水着)」",
    "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2024/06/19/_myn6t48.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     63,
     18,
@@ -496,6 +508,7 @@
    "related": "★3「シロコ＊テラー」、★3「ホシノ(臨戦)」、★3「ミカ」(復刻)",
    "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2024/07/12/qRr1rm-V.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     94,
     10,
@@ -526,6 +539,7 @@
    "related": "★3「サオリ(水着)」（限定）、★3「ヒヨリ(水着)」（限定）",
    "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2024/07/12/uHRvtppK.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     6,
     7,
@@ -557,6 +571,7 @@
    "related": "★3「トモエ(チーパオ)」、★3「マリナ(チーパオ)」",
    "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2024/08/15/pMyeFQx_.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     84,
     31,
@@ -593,6 +608,7 @@
    "related": "★3「ウイ（水着）」(限定-復刻)、★3「ヒナタ（水着）」(限定-復刻)、★3「イロハ」(復刻)、★3「ミユ」(復刻)",
    "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2024/08/27/9tzSaqr8.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     156,
     50,
@@ -630,6 +646,7 @@
    "related": "★3「キサキ」、★3「レイジョ」、★3「シュン(幼女)」(復刻)、 ★2「キリノ」(復刻)、★3「サヤ(私服)」(復刻)",
    "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2024/09/18/B8ORmm11.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     78,
     8,
@@ -668,6 +685,7 @@
    "related": "★3「マリー(アイドル)」(限定)、★3「サクラコ(アイドル)」(限定)",
    "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2024/10/16/tiFlCyBr.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     108,
     9,
@@ -703,6 +721,7 @@
    "related": "★3「サツキ」、★3「チアキ」、★3「マコト」(復刻-限定)、★3「アコ(ドレス)」(復刻-限定)",
    "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2024/11/18/VzjsH30r.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     71,
     17,
@@ -740,6 +759,7 @@
    "related": "★3「ユウカ(パジャマ)」、★3「ノア(パジャマ)」",
    "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2024/12/11/qlOW25By.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     65,
     18,
@@ -777,6 +797,7 @@
    "related": "★3「セイア」(限定)、★3「アスナ(制服)」(限定)",
    "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2025/01/13/kBZ7AFZc.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     15,
     5,
@@ -806,6 +827,7 @@
    "related": "★3「ネル(制服)」(限定)、★3「リオ」(限定)、★3「ハナコ(水着)」(復刻-限定)",
    "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2025/01/13/pv1-2q5_.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     12,
     1,
@@ -836,6 +858,7 @@
    "related": "★3「ヒマリ」(復刻)、★3「エイミ(水着)」(復刻)",
    "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2025/01/22/yV8P7ovy.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     10,
     11,
@@ -867,6 +890,7 @@
    "related": "★3「マキ(キャンプ)」、★3「ハレ(キャンプ)」(復刻)、★3「コタマ(キャンプ)」(復刻)",
    "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2025/02/05/uzrZdnSa.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     129,
     26,
@@ -904,6 +928,7 @@
    "related": "★3「セナ(私服)」、★3「ジュリ(アルバイト)」",
    "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2025/02/21/qUs02mkJ.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     108,
     99,
@@ -940,6 +965,7 @@
    "related": "★3「レイ」、★3「スミレ(アルバイト)」",
    "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2025/03/24/ixEjKAQE.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     111,
     107,
@@ -976,6 +1002,7 @@
    "related": "★3「ヒカリ」(限定)、★3「ノゾミ」(限定)",
    "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2025/04/14/mYq1MBbK.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     115,
     120,
@@ -1013,6 +1040,7 @@
    "related": "★3「ナグサ」、★3「ニヤ」",
    "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2025/05/12/yMV0-6Xv.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     110,
     72,
@@ -1049,6 +1077,7 @@
    "related": "★3「ユカリ(水着)」、★3「キキョウ(水着)」、★2「レンゲ(水着)」",
    "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2025/06/16/AejL13FQ.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     113,
     123,
@@ -1086,6 +1115,7 @@
    "related": "★3「セイア(水着)」(限定)、★3「ハスミ(水着)」(限定)",
    "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2025/07/13/-ckBBdKr.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     34,
     33,
@@ -1116,6 +1146,7 @@
    "related": "★3「ミカ(水着)」(限定)、★3「ナギサ(水着)」(限定)、★3「ヒナ(ドレス)」(復刻-限定)",
    "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2025/07/13/TT8YE8Nu.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     17,
     2,
@@ -1146,6 +1177,7 @@
    "related": "★3「カンナ(水着)」(復刻)、★3「フブキ(水着)」(復刻)",
    "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2025/08/04/f57mdicx.png",
    "rerun": true,
+   "ongoing": false,
    "rank_series": [
     15,
     13,
@@ -1175,6 +1207,7 @@
    "related": "★3「トキ」(復刻-限定)、★3「ナギサ」(復刻-限定)、★3「カンナ」(復刻)、★3「チアキ」(復刻)",
    "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2025/08/12/ydDE3Cpv.png",
    "rerun": true,
+   "ongoing": false,
    "rank_series": [
     107,
     27,
@@ -1205,6 +1238,7 @@
    "related": "★3「エリ」、★3「カノエ」",
    "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2025/08/08/2AizcFGB.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     49,
     43,
@@ -1241,6 +1275,7 @@
    "related": "★3「ミヨ」、★3「フユ」、★3「サツキ」(復刻)",
    "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2025/09/11/skdBvDtR.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     157,
     155,
@@ -1278,6 +1313,7 @@
    "related": "★3「スズミ(マジカル)」(限定)、★3「レイサ(マジカル)」(限定)",
    "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2025/10/09/5_AJBT75.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     171,
     34,
@@ -1313,6 +1349,7 @@
    "related": "★3「タカネ」、★3「ヤクモ」",
    "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2025/11/14/lgrL8RmP.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     109,
     96,
@@ -1349,6 +1386,7 @@
    "related": "★3「ツクヨ(ドレス)」、★3「ミチル(ドレス)」",
    "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2025/12/10/N8Q7qbJE.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     147,
     121,
@@ -1385,6 +1423,7 @@
    "related": "★3「キサキ」(復刻)、★3「レイジョ」、★3「ユウカ(体操服)」(復刻-限定)、★3「マリー(体操服)」(復刻-限定)\n2025年へ",
    "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2025/12/11/t5_kMfmw.png",
    "rerun": true,
+   "ongoing": false,
    "rank_series": [
     115,
     81,
@@ -1421,6 +1460,7 @@
    "related": "★3「リオ(臨戦)」(限定)、★3「ヒマリ(臨戦)」(限定)",
    "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2026/01/12/M_SNndHR.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     20,
     16,
@@ -1452,6 +1492,7 @@
    "related": "★3「ケイ」(限定)、★3「アリス(臨戦)」(限定)、★3「ホシノ(臨戦)」(復刻-限定)、★3「シロコ＊テラー」(復刻-限定)",
    "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2026/01/19/_VPXaEnU.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     32,
     12,
@@ -1482,6 +1523,7 @@
    "related": "★3「イチカ」(復刻)、★3「カスミ」(復刻)、★3「サクラコ」(復刻)、★3「エイミ(水着)」(復刻)",
    "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2026/01/30/r7866_gB.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     18,
     18,
@@ -1510,6 +1552,7 @@
    "related": "★3「ユズ(臨戦)」、★3「エイミ(臨戦)」",
    "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2026/02/06/bGugOUJJ.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     114,
     53,
@@ -1545,6 +1588,7 @@
    "related": "★3「コユキ(パジャマ)」、★3「ユウカ(パジャマ)」(復刻)、★3「ノア(パジャマ)」(復刻)、★3「ハルナ(正月)」(復刻-限定)、★3「フウカ(正月)」(復刻-限定)",
    "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2026/02/27/hd21d9B0.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     165,
     92,
@@ -1582,6 +1626,7 @@
    "related": "★3「コノカ」、★3「レナ」",
    "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2026/03/16/oKRnqXo8.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     178,
     131,
@@ -1618,6 +1663,7 @@
    "related": "★3「アカネ(制服)」、★3「セイア」(復刻-限定)、★3「アスナ(制服)」(復刻-限定)、★3「トキ(バニーガール)」(復刻)",
    "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2026/03/30/SaGKXvnI.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     173,
     176,
@@ -1655,6 +1701,7 @@
    "related": "★3「ニコ」(限定)、★3「クルミ」(限定)",
    "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2026/04/19/F_wG5U9r.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     null,
     35,
@@ -1692,6 +1739,7 @@
    "related": "★3「ムツキ(ドレス)」、★3「ハルカ(ドレス)」、★3「アル(ドレス)」(復刻)、★3「カヨコ(ドレス)」(復刻)、★3「サオリ(ドレス)」(復刻)",
    "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2026/05/25/PjCIYWho.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     167,
     81,
@@ -1729,6 +1777,7 @@
    "related": "★3「ナグサ(水着)」、★3「ユカリ(水着)」(復刻)、★3「キキョウ(水着)」(復刻)、★2「レンゲ(水着)」(復刻)",
    "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2026/06/08/LQAsCW3O.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     156,
     61,

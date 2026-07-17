@@ -4,13 +4,13 @@
  "jp": "Fate/Grand Order",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/Fate/Grand%20Order",
- "updated": "2026-07-17T18:54:55Z",
+ "updated": "2026-07-17T23:37:35Z",
  "count": 116,
  "now": {
-  "ios": 121,
+  "ios": 113,
   "android": 22,
   "month": 68,
-  "next_add": 15352986,
+  "next_add": 15486674,
   "ym": "2026/07",
   "ranks": {
    "prev": [
@@ -95,6 +95,7 @@
    "related": "全29種類\n2023年へ",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/luckybag2024_bvhra/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     6,
     2,
@@ -122,6 +123,7 @@
    "related": "ヤマトタケル,光コヤン,水着ジャンヌ,ティアマト,卑弥呼,神祖ロムルス,マーリン",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/newyear2024_pu_zawkr/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     6,
     2,
@@ -153,6 +155,7 @@
    "related": "呼延灼",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/winter2024_cp2_pu_qaedf/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     8,
     9,
@@ -181,6 +184,7 @@
    "related": "源頼光／丑御前",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/sr_collaboration_pu_ivarv/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     70,
     2,
@@ -223,6 +227,7 @@
    "related": "宮本武蔵(バーサーカー)",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/sr_collaboration_pu2_dabej/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     32,
     11,
@@ -257,6 +262,7 @@
    "related": "アルトリア･ペンドラゴン〔オルタ〕(ライダー),イシュタル,エレシュキガル",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/feasts_cp7_pu_ukaoi/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     38,
     27,
@@ -289,6 +295,7 @@
    "related": "アンドロメダ,女性サーヴァント",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/valentine2024_pu_yedsb/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     16,
     2,
@@ -332,6 +339,7 @@
    "related": "メドゥーサ(セイバー),ドゥルガー,ビーマ",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/new_chapter_cp_pu_oejsw/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     26,
     31,
@@ -366,6 +374,7 @@
    "related": "シャルルマーニュ",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/cbc2024_pu_aidnx/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     29,
     8,
@@ -408,6 +417,7 @@
    "related": "男性サーヴァント8種",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/cbc2024_memorial_pu_uiwbb/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     43,
     16,
@@ -450,6 +460,7 @@
    "related": "マリー･アントワネット〔オルタ〕",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/new_chapter_id_pu_mnarw/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     16,
     5,
@@ -485,6 +496,7 @@
    "related": "ジャンヌ･ダルク〔オルタ〕(アヴェンジャー)",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/new_chapter_id_pu2_qdcjm/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     5,
     4,
@@ -514,6 +526,7 @@
    "related": "平景清",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/new_chapter_id_pu3_lcolg/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     3,
     7,
@@ -544,6 +557,7 @@
    "related": "巌窟王 モンテ･クリスト",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/new_chapter_id_pu4_sedqa/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     8,
     2,
@@ -586,6 +600,7 @@
    "related": "ジャンヌ･ダルク(ルーラー),アルトリア･キャスター",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/new_master_spring_cp3_pu_baaed/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     2,
     2,
@@ -615,6 +630,7 @@
    "related": "メルトリリス,ネロ･クラウディウス(キャスター),ケツァル･コアトル,李書文(アサシン),項羽",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/feasts_cp8_pu_azxfu/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     10,
     9,
@@ -650,6 +666,7 @@
    "related": "イリヤスフィール･フォン･アインツベルン(キャスター),スーパーバニヤン,ボイジャー",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/successive_collaboration_pu_dwrdn/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     21,
     15,
@@ -683,6 +700,7 @@
    "related": "蒼崎青子",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/mahoyo_after_night_pu_ajvit/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     74,
     1,
@@ -725,6 +743,7 @@
    "related": "スペース･イシュタル",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/mahoyo_after_night_pu2_yepeo/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     1,
     1,
@@ -753,6 +772,7 @@
    "related": "久遠寺有珠",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/mahoyo_after_night_pu3_tvwas/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     7,
     1,
@@ -790,6 +810,7 @@
    "related": "千子村正,両儀式(セイバー)",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/mahoyo_after_night_pu4_keokn/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     1,
     2,
@@ -824,6 +845,7 @@
    "related": "アキレウス",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/re_2021summer_boys_pu_sakrb/top_banner.png",
    "rerun": true,
+   "ongoing": false,
    "rank_series": [
     10,
     7,
@@ -866,6 +888,7 @@
    "related": "沖田総司〔オルタ〕",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/re_2021summer_pu1_xksle/top_banner.png",
    "rerun": true,
+   "ongoing": false,
    "rank_series": [
     10,
     7,
@@ -905,6 +928,7 @@
    "related": "ソドムズビースト／ドラコー",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/re_lilim_harlot_pu_ujrxz/top_banner.png",
    "rerun": true,
+   "ongoing": false,
    "rank_series": [
     64,
     1,
@@ -947,6 +971,7 @@
    "related": "ラーヴァ／ティアマト",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/re_lilim_harlot_pu3_xhgbd/top_banner.png",
    "rerun": true,
+   "ongoing": false,
    "rank_series": [
     12,
     14,
@@ -983,6 +1008,7 @@
    "related": "阿曇磯良(ひびき＆千鍵)",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/dragon_castle_pu_drobl/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     28,
     10,
@@ -1025,6 +1051,7 @@
    "related": "諸葛孔明〔エルメロイⅡ世〕",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/dragon_castle_pu2_jiqou/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     28,
     30,
@@ -1059,6 +1086,7 @@
    "related": "清少納言",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/dragon_castle_pu3_twsqh/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     28,
     29,
@@ -1094,6 +1122,7 @@
    "related": "救世主トネリコ(雨の魔女トネリコ),アルトリア･キャスター(バーサーカー),メリュジーヌ(ルーラー)",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/2024summer_participation_cp2_pu_lgvbn/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     58,
     14,
@@ -1128,6 +1157,7 @@
    "related": "アビゲイル･ウィリアムズ〔夏〕,ジャンヌ･ダルク(アーチャー)",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/2024summer_participation_cp2_pu2_upjhd/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     10,
     12,
@@ -1159,6 +1189,7 @@
    "related": "玉藻の前(ランサー),アルトリア･ペンドラゴン(アーチャー)",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/2024summer_participation_cp2_pu3_ykmah/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     67,
     66,
@@ -1187,6 +1218,7 @@
    "related": "スペース･エレシュキガル",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/9th_pickup_askja/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     50,
     1,
@@ -1222,6 +1254,7 @@
    "related": "",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/9th_luckybag_owrpc/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     50,
     1,
@@ -1250,6 +1283,7 @@
    "related": "プトレマイオス,マーリン,カーマ(アサシン),坂田金時(バーサーカー),上杉謙信,シャーロック･ホームズ,楊貴妃",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/9th_pickup2_qyqkc/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     50,
     1,
@@ -1284,6 +1318,7 @@
    "related": "",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/9th_destiny_sdfrl/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     50,
     1,
@@ -1312,6 +1347,7 @@
    "related": "カルナ",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/2024summer_pu2_qydor/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     4,
     1,
@@ -1382,6 +1418,7 @@
    "related": "謎の代行者C.I.E.L",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/2024summer_pu_pbqtw/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     4,
     4,
@@ -1448,6 +1485,7 @@
    "related": "ルトリア･ペンドラゴン(ルーラー),殺生院キアラ(ムーンキャンサー),ＢＢ",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/re_summer2018_2020_pu_zjmpu/top_banner.png",
    "rerun": true,
+   "ongoing": false,
    "rank_series": [
     13,
     15,
@@ -1479,6 +1517,7 @@
    "related": "ＢＢドバイ",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/ordeal_call_3_pu_vngma/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     15,
     1,
@@ -1542,6 +1581,7 @@
    "related": "闇のコヤンスカヤ,アストルフォ(セイバー),キングプロテア,ジナコ",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/ordeal_call_3_pu2_ghyqu/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     38,
     17,
@@ -1578,6 +1618,7 @@
    "related": "アーキタイプ:アース,殺生院キアラ",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/ordeal_call_3_pu3_nkswi/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     25,
     4,
@@ -1608,6 +1649,7 @@
    "related": "千利休",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/kyoumafu2024_cp_pu_nbpgl/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     4,
     3,
@@ -1636,6 +1678,7 @@
    "related": "オベロン",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/3000man_pu_awked/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     35,
     53,
@@ -1671,6 +1714,7 @@
    "related": "カズラドロップ",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/faerie_sugoroku_pu_tsotg/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     27,
     30,
@@ -1713,6 +1757,7 @@
    "related": "メルトリリス",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/faerie_sugoroku_pu2_jlafe/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     14,
     11,
@@ -1748,6 +1793,7 @@
    "related": "モルガン,レオナルド･ダ･ヴィンチ(ライダー),メリュジーヌ(ランサー)",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/lb6_clear_cp_pu_odaal/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     17,
     16,
@@ -1782,6 +1828,7 @@
    "related": "イシュタル(アーチャー),オジマンディアス",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/mystery_house_crafters_cp_pu_fwwhs/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     15,
     16,
@@ -1813,6 +1860,7 @@
    "related": "ツタンカーメン",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/mystery_house_crafters_pu_wrbwo/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     124,
     69,
@@ -1855,6 +1903,7 @@
    "related": "ブリトマート,魔王信長",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/mystery_house_crafters_pu2_nwopl/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     3,
     11,
@@ -1887,6 +1936,7 @@
    "related": "テスカトリポカ,ククルカン,グレゴリー･ラスプーチン,紅閻魔",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/lb7_clear_cp_pu_eomae/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     47,
     21,
@@ -1925,6 +1975,7 @@
    "related": "ロウヒ",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/christmas2024_pu_vldad/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     36,
     1,
@@ -1959,6 +2010,7 @@
    "related": "シトナイ",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/christmas2024_pu2_etcmg/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     1,
     3,
@@ -1987,6 +2039,7 @@
    "related": "ファンタズムーン",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/space_phantasmoon_pu_vamqg/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     21,
     1,
@@ -2014,6 +2067,7 @@
    "related": "リチャードⅠ世,期間限定サーヴァント7騎",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/newyear2025_pu_aoyod/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     9,
     2,
@@ -2049,6 +2103,7 @@
    "related": "セイバークラス\n2024年へ",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/saber_weekly_pu_rguxb/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     8,
     8,
@@ -2077,6 +2132,7 @@
    "related": "セイバークラス",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/saber_weekly_pu2_nxnpa/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     11,
     8,
@@ -2105,6 +2161,7 @@
    "related": "ビショーネ",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/my_little_dragon_pu_mxsle/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     9,
     2,
@@ -2147,6 +2204,7 @@
    "related": "ルーラークラス",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/ruler_weekly_pu_wxiwc/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     20,
     7,
@@ -2175,6 +2233,7 @@
    "related": "アルターエゴクラス",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/alterego_weekly_pu_uyohm/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     57,
     14,
@@ -2203,6 +2262,7 @@
    "related": "小野小町,刑部姫(アサシン),女性サーヴァント",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/valentine2025_pu_lupwp/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     13,
     7,
@@ -2247,6 +2307,7 @@
    "related": "男性サーヴァント",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/cbc2025_boys_pu_cgtbi/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     17,
     23,
@@ -2282,6 +2343,7 @@
    "related": "ダンテ･アリギエーリ",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/cbc2025_pu_dtjxe/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     17,
     23,
@@ -2324,6 +2386,7 @@
    "related": "キャスタークラス",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/caster_weekly_pu_epaqi/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     76,
     53,
@@ -2352,6 +2415,7 @@
    "related": "モルガン",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/new_master_spring_cp2025_pu_ttetd/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     128,
     23,
@@ -2387,6 +2451,7 @@
    "related": "出雲阿国,坂本龍馬(ランサー),高杉晋作",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/re_kikiippatsu_pu_pkqaw/top_banner.png",
    "rerun": true,
+   "ongoing": false,
    "rank_series": [
     17,
     20,
@@ -2431,6 +2496,7 @@
    "related": "レディ･アヴァロン",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/3100man_pu_okdjc/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     15,
     21,
@@ -2466,6 +2532,7 @@
    "related": "バーサーカークラス",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/berserker_weekly_pu2_fyxho/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     36,
     18,
@@ -2494,6 +2561,7 @@
    "related": "アサシンクラス",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/assassin_weekly_pu_alekd/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     23,
     24,
@@ -2522,6 +2590,7 @@
    "related": "メタトロン･ジャンヌ",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/ordeal_call_4_pu_hyhgr/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     35,
     69,
@@ -2557,6 +2626,7 @@
    "related": "天草四郎,ジェームズ･モリアーティ(ルーラー)",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/ordeal_call_4_pu2_nyhtj/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     7,
     18,
@@ -2588,6 +2658,7 @@
    "related": "リリス",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/ordeal_call_4_pu3_sdpst/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     15,
     1,
@@ -2623,6 +2694,7 @@
    "related": "クレオパトラ,女教皇ヨハンナ,アムール〔カレン〕,ジャンヌ･ダルク(ルーラー)",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/ordeal_call_4_pu4_nepkp/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     1,
     1,
@@ -2658,6 +2730,7 @@
    "related": "司馬懿〔ライネス〕,ボイジャー,オデュッセウス,源為朝,果心居士",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/rakuruinotsubasa_cp_pu_fodbf/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     23,
     30,
@@ -2709,6 +2782,7 @@
    "related": "テュフォン･エフェメロス",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/rakuruinotsubasa_pu_grhyr/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     155,
     175,
@@ -2751,6 +2825,7 @@
    "related": "イスカンダル,プトレマイオス,諸葛孔明〔エルメロイⅡ世〕",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/rakuruinotsubasa_pu2_ngdsd/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     19,
     8,
@@ -2780,6 +2855,7 @@
    "related": "両儀式(セイバー)",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/rakuruinotsubasa_pu3_eigob/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     8,
     2,
@@ -2805,6 +2881,7 @@
    "related": "卑弥呼,源頼光／丑御前,スカサハ＝スカディ(ルーラー),アルジュナ",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/july_boxevent_cp_pu_losgy/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     16,
     15,
@@ -2847,6 +2924,7 @@
    "related": "インドラ",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/indra_event_pu_ueanw/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     60,
     64,
@@ -2889,6 +2967,7 @@
    "related": "ワンジナ",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/indra_event_pu2_kzsvb/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     11,
     12,
@@ -2917,6 +2996,7 @@
    "related": "レオナルド･ダ･ヴィンチ(ライダー),レオナルド･ダ･ヴィンチ(キャスター)",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/10th_anniversary_cp_pu_kpayw/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     32,
     25,
@@ -2948,6 +3028,7 @@
    "related": "クラス別×宝具効果別",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/10th_luckybag_bpzmq/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     69,
     1,
@@ -2979,6 +3060,7 @@
    "related": "選択した7騎",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/10th_destiny_2_acceli/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     69,
     1,
@@ -3010,6 +3092,7 @@
    "related": "選択した7騎",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/10th_destiny_1_wmlsy/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     69,
     1,
@@ -3041,6 +3124,7 @@
    "related": "テスカトリポカ",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/2025summer_pu2_mxacj/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     1,
     1,
@@ -3083,6 +3167,7 @@
    "related": "パッションリップ(セイバー)",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/2025summer_pu1_lyqpc/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     1,
     1,
@@ -3125,6 +3210,7 @@
    "related": "玉兎",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/2025summer_pu3_dvbei/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     1,
     2,
@@ -3165,6 +3251,7 @@
    "related": "ラーヴァ／ティアマト(アーチャー)",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/2025summer_pu4_qxqke/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     1,
     1,
@@ -3203,6 +3290,7 @@
    "related": "救世主トネリコ(雨の魔女トネリコ)",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/2025summer_pu5_wkqpo/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     1,
     4,
@@ -3231,6 +3319,7 @@
    "related": "モルガン",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/3200man_pu_mojod/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     11,
     12,
@@ -3266,6 +3355,7 @@
    "related": "ネモ／ノア",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/vanished_beginning_pu_mfblz/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     9,
     21,
@@ -3306,6 +3396,7 @@
    "related": "紅閻魔,ロウヒ",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/vanished_beginning_pu2_xgdwt/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     1,
     1,
@@ -3345,6 +3436,7 @@
    "related": "河上彦斎",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/shinsengumi_the_end_pu_jfwyb/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     11,
     12,
@@ -3394,6 +3486,7 @@
    "related": "土方歳三,沖田総司(セイバー)",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/shinsengumi_the_end_pu2_hxwxs/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     2,
     4,
@@ -3435,6 +3528,7 @@
    "related": "近藤勇",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/shinsengumi_the_end_pu3_whkze/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     20,
     3,
@@ -3470,6 +3564,7 @@
    "related": "魔王信長(織田信長),坂本龍馬(ランサー)",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/shinsengumi_the_end_pu4_klaqe/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     3,
     6,
@@ -3501,6 +3596,7 @@
    "related": "メタトロン･ジャンヌ",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/3300man_pu_tzhlm/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     13,
     16,
@@ -3536,6 +3632,7 @@
    "related": "ジャック･ド･モレー",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/halloween2025_pu2_sscwu/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     7,
     14,
@@ -3576,6 +3673,7 @@
    "related": "ヴァン･ゴッホ,アビゲイル･ウィリアムズ",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/feasts_cp14_pu_ydiwe/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     65,
     76,
@@ -3607,6 +3705,7 @@
    "related": "モルガン",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/2025_fop_rts_lb6_pu_lwfyq/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     54,
     59,
@@ -3635,6 +3734,7 @@
    "related": "テスカトリポカ",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/2025_fop_rts_lb7_pu_jrxrj/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     9,
     17,
@@ -3663,6 +3763,7 @@
    "related": "メドゥーサ(セイバー)",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/2025_fop_rts_oc1_pu_leyff/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     28,
     35,
@@ -3691,6 +3792,7 @@
    "related": "巌窟王 モンテ･クリスト,アレッサンドロ･ディ･カリオストロ",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/2025_fop_rts_oc2_pu_qyflk/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     39,
     33,
@@ -3720,6 +3822,7 @@
    "related": "ＢＢドバイ",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/2025_fop_rts_oc3_pu_bjnqr/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     50,
     52,
@@ -3748,6 +3851,7 @@
    "related": "リリス",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/2025_fop_rts_oc4_pu_anowv/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     28,
     31,
@@ -3776,6 +3880,7 @@
    "related": "サーヴァント363騎",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/2025_all_pu_lftru/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     17,
     12,
@@ -3815,6 +3920,7 @@
    "related": "男女別×クラス別\n2025年へ",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2026/luckybag2026_qgloz/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     18,
     2,
@@ -3849,6 +3955,7 @@
    "related": "ロード･ログレス,ファンタズムーン,アルジュナ〔オルタ〕,ビショーネ,ツタンカーメン,呼延灼(アサシン),武田信玄(武田晴信),メリュジーヌ(ルーラー)",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2026/newyear2026_pu_eqxfo/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     18,
     2,
@@ -3885,6 +3992,7 @@
    "related": "リチャードⅠ世,ギルガメッシュ(アーチャー),エルキドゥ",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2026/2026_f_s_f_cp_pu_vufug/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     2,
     3,
@@ -3920,6 +4028,7 @@
    "related": "マーリン,カーマ(アサシン),千利休,キングプロテア,メルトリリス",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2026/01/chaldean_floralia_cp_pu_wafpn/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     11,
     10,
@@ -3957,6 +4066,7 @@
    "related": "花咲翁",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2026/01/chaldean_floralia_pu_tgtvc/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     140,
     5,
@@ -3999,6 +4109,7 @@
    "related": "エレシュキガル(ランサー)",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2026/01/chaldean_floralia_pu2_mdmrb/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     4,
     9,
@@ -4036,6 +4147,7 @@
    "related": "デメテル",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2026/02/valentine2026_pu_gssnm/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     63,
     8,
@@ -4078,6 +4190,7 @@
    "related": "ロウヒほか",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2026/02/valentine2026_pu2_ghcmm/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     13,
     23,
@@ -4117,6 +4230,7 @@
    "related": "ジャック･ド･モレー(セイバー)",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2026/03/cbc2026_pu_wypvu/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     113,
     19,
@@ -4152,6 +4266,7 @@
    "related": "ジャック･ド･モレー(フォーリナー),ナポレオン",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2026/03/cbc2026_pu2_rypwv/top_banner.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     12,
     18,
@@ -4186,6 +4301,7 @@
    "related": "徴姉妹,モルガン,始皇帝,謎のヒロインX",
    "banner_img": "https://news.fate-go.jp/wp-content/uploads/2026/03/re_water_monsters_crisis_pu_lqmjm/top_banner.png",
    "rerun": true,
+   "ongoing": false,
    "rank_series": [
     67,
     82,

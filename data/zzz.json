@@ -4,13 +4,13 @@
  "jp": "ゼンレスゾーンゼロ",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E3%82%BC%E3%83%B3%E3%83%AC%E3%82%B9%E3%82%BE%E3%83%BC%E3%83%B3%E3%82%BC%E3%83%AD",
- "updated": "2026-07-17T18:51:07Z",
+ "updated": "2026-07-17T23:35:35Z",
  "count": 35,
  "now": {
-  "ios": null,
-  "android": 68,
+  "ios": 179,
+  "android": 67,
   "month": 123,
-  "next_add": 6252028,
+  "next_add": 9278671,
   "ym": "2026/07",
   "ranks": {
    "prev": [
@@ -95,6 +95,7 @@
    "related": "エレン、蒼角、アンドー",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/07/03/6bba29d65ca1eedb223a9d9c94b33941_5499962239353471418.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     null,
     2,
@@ -125,8 +126,7 @@
     "Ellen"
    ],
    "accent": "#b2b2b2",
-   "bar": "#0044e8",
-   "ongoing": false
+   "bar": "#0044e8"
   },
   {
    "name": "朱鳶",
@@ -141,6 +141,7 @@
    "related": "朱鳶、ニコ、ベン",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/07/21/57e3315ccc323046dc583de3074feb59_2617150514785173076.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     13,
     2,
@@ -171,8 +172,7 @@
     "Zhu Yuan"
    ],
    "accent": "#0d75d9",
-   "bar": "#0055d6",
-   "ongoing": false
+   "bar": "#0055d6"
   },
   {
    "name": "青衣",
@@ -187,6 +187,7 @@
    "related": "青衣、ビリー、カリン",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/08/12/e2fb82fce9aebbc008a3caa7ce347859_6557508229557722076.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     35,
     2,
@@ -218,8 +219,7 @@
     "Qingyi"
    ],
    "accent": "#0d75d9",
-   "bar": "#acb6b9",
-   "ongoing": false
+   "bar": "#acb6b9"
   },
   {
    "name": "ジェーン",
@@ -234,6 +234,7 @@
    "related": "ジェーン、セス、アンビ",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/09/01/76dda47bc80ba82a0c8c3c6495a10871_1586658923347644498.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     68,
     1,
@@ -264,8 +265,7 @@
     "Jane"
    ],
    "accent": "#91daed",
-   "bar": "#e10069",
-   "ongoing": false
+   "bar": "#e10069"
   },
   {
    "name": "シーザー",
@@ -280,6 +280,7 @@
    "related": "シーザー、パイパー、アンドー",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/09/23/4c12ff1c5a003b841e2f047710293ac0_5032913656868719596.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     39,
     2,
@@ -311,8 +312,7 @@
     "Caesar"
    ],
    "accent": "#ffdd4f",
-   "bar": "#d62f00",
-   "ongoing": false
+   "bar": "#d62f00"
   },
   {
    "name": "バーニス",
@@ -327,6 +327,7 @@
    "related": "バーニス、ルーシー、ニコ",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/10/13/c6b31b56e015e54de622a2e757e6a61e_3201649773093284741.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     70,
     3,
@@ -357,8 +358,7 @@
     "Burnice"
    ],
    "accent": "#ffdd4f",
-   "bar": "#be2618",
-   "ongoing": false
+   "bar": "#be2618"
   },
   {
    "name": "月城柳",
@@ -373,6 +373,7 @@
    "related": "月城柳、アンビー、ビリー",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/11/04/ccd3f3d80f51319c8f5068c8d9c942c9_2854112462371700529.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     50,
     2,
@@ -404,8 +405,7 @@
     "Yanagi"
    ],
    "accent": "#22bdcc",
-   "bar": "#8adbd4",
-   "ongoing": false
+   "bar": "#8adbd4"
   },
   {
    "name": "ライト",
@@ -420,6 +420,7 @@
    "related": "ライト、ベン、カリン",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/11/25/10bfcfcdb9ac34809e92aaaa93934b91_4997730475620532095.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     50,
     14,
@@ -450,8 +451,7 @@
     "Lighter"
    ],
    "accent": "#ffdd4f",
-   "bar": "#ad3229",
-   "ongoing": false
+   "bar": "#ad3229"
   },
   {
    "name": "星見雅&浅羽悠真",
@@ -466,6 +466,7 @@
    "related": "星見雅、浅羽悠真、パイパー、蒼角",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2024/12/16/77bc086606152db4e9ac4a5a41581c73_1873391038276700699.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     33,
     2,
@@ -512,8 +513,7 @@
     "Harumasa"
    ],
    "accent": "#22bdcc",
-   "bar": "#d62f00",
-   "ongoing": false
+   "bar": "#d62f00"
   },
   {
    "name": "アストラ",
@@ -528,6 +528,7 @@
    "related": "エレン復刻\n2024年へ",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/01/20/0/ad7d09f8ba8c8bc54c5e145c719fda4d_6739625479710825112.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     32,
     1,
@@ -559,8 +560,7 @@
     "Astra Yao"
    ],
    "accent": "#eef7fd",
-   "bar": "#d60015",
-   "ongoing": false
+   "bar": "#d60015"
   },
   {
    "name": "イヴリン",
@@ -575,6 +575,7 @@
    "related": "",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/02/08/0/0b392f69cae00184a2e0d4d9b0b5a1d6_5361461955412877612.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     41,
     4,
@@ -612,8 +613,7 @@
     "Evelyn"
    ],
    "accent": "#eef7fd",
-   "bar": "#560ec8",
-   "ongoing": false
+   "bar": "#560ec8"
   },
   {
    "name": "0号・アンビー",
@@ -628,6 +628,7 @@
    "related": "バーニス復刻、プルクラ",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/03/11/0/eb4187980c8d22f75bfd19d74cb5c933_8873561380462898961.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     54,
     5,
@@ -659,8 +660,7 @@
     "Soldier 0 - Anby"
    ],
    "accent": "#ffbc2e",
-   "bar": "#c87b0f",
-   "ongoing": false
+   "bar": "#c87b0f"
   },
   {
    "name": "トリガー",
@@ -675,6 +675,7 @@
    "related": "朱鳶復刻",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/03/29/0/157aea35133e59f233f37b2dad796dea_4866926260728101940.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     77,
     9,
@@ -705,8 +706,7 @@
     "Trigger"
    ],
    "accent": "#ffc300",
-   "bar": "#d68e00",
-   "ongoing": false
+   "bar": "#d68e00"
   },
   {
    "name": "ビビアン",
@@ -721,6 +721,7 @@
    "related": "ジェーン復刻",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/04/21/0/727ee4614f087227e908fe8c210edf80_8791527087210083349.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     58,
     3,
@@ -752,8 +753,7 @@
     "Vivian"
    ],
    "accent": "#8076e9",
-   "bar": "#463d99",
-   "ongoing": false
+   "bar": "#463d99"
   },
   {
    "name": "ヒューゴ",
@@ -768,6 +768,7 @@
    "related": "ライト復刻",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/05/09/5dcb663ca0ebe5b097be0a5c479f38b4_5782056941758100341.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     72,
     9,
@@ -800,8 +801,7 @@
     "Hugo"
    ],
    "accent": "#8076e9",
-   "bar": "#ad3029",
-   "ongoing": false
+   "bar": "#ad3029"
   },
   {
    "name": "儀玄",
@@ -816,6 +816,7 @@
    "related": "アストラ復刻",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/05/31/0/b68c1b88a12a4d3e3ec45c55af13f562_53862237629036960.jpeg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     57,
     1,
@@ -845,8 +846,7 @@
     "Yixuan"
    ],
    "accent": "#f1cc4d",
-   "bar": "#d9c28c",
-   "ongoing": false
+   "bar": "#d9c28c"
   },
   {
    "name": "橘福福",
@@ -861,6 +861,7 @@
    "related": "シーザー復刻",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/06/21/0/fc53b841887bc8a83b40035407d56097_7811217789272024816.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     41,
     8,
@@ -891,8 +892,7 @@
     "Ju Fufu"
    ],
    "accent": "#ffbf16",
-   "bar": "#f1b544",
-   "ongoing": false
+   "bar": "#f1b544"
   },
   {
    "name": "浮波柚葉",
@@ -907,6 +907,7 @@
    "related": "星見雅復刻",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/07/14/0/c010c73227ce08537b6f41561e588651_2767097572243287365.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     82,
     2,
@@ -938,8 +939,7 @@
     "Yuzuha"
    ],
    "accent": "#d54553",
-   "bar": "#b81f46",
-   "ongoing": false
+   "bar": "#b81f46"
   },
   {
    "name": "アリス",
@@ -954,6 +954,7 @@
    "related": "月城柳復刻",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/08/02/0/a59e10103061e577ce600dca58c2f370_1527510047349135663.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     65,
     7,
@@ -992,8 +993,7 @@
     "Alice"
    ],
    "accent": "#d54553",
-   "bar": "#e49e81",
-   "ongoing": false
+   "bar": "#e49e81"
   },
   {
    "name": "シード",
@@ -1008,6 +1008,7 @@
    "related": "トリガー復刻",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/08/31/0/1cda45e715bf919344ec39c4cfa9aa1b_2421914902883085064.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     86,
     12,
@@ -1038,8 +1039,7 @@
     "Seed"
    ],
    "accent": "#e9f1f2",
-   "bar": "#ffa80a",
-   "ongoing": false
+   "bar": "#ffa80a"
   },
   {
    "name": "オルペウス＆「鬼火」",
@@ -1054,6 +1054,7 @@
    "related": "イヴリン復刻",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/09/19/0/6530d65ca883890dddea554c29002000_842926848461823309.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     106,
     15,
@@ -1084,8 +1085,7 @@
     "Orphie & Magus"
    ],
    "accent": "#db602a",
-   "bar": "#f65916",
-   "ongoing": false
+   "bar": "#f65916"
   },
   {
    "name": "リュシア",
@@ -1100,6 +1100,7 @@
    "related": "ビビアン",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/10/12/02b6ba2c5eb17ed147bb2148c2b01ace_7318968870335504507.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     99,
     9,
@@ -1131,8 +1132,7 @@
     "Lucia"
    ],
    "accent": "#4bbbc0",
-   "bar": "#9497d1",
-   "ongoing": false
+   "bar": "#9497d1"
   },
   {
    "name": "イドリー",
@@ -1147,6 +1147,7 @@
    "related": "橘福福",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/11/01/77436e9b074181d050e0a1528d681eda_3425570479124323064.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     101,
     16,
@@ -1177,8 +1178,7 @@
     "Yidhari"
    ],
    "accent": "#ab373e",
-   "bar": "#e8af4c",
-   "ongoing": false
+   "bar": "#e8af4c"
   },
   {
    "name": "ダイアリン",
@@ -1193,6 +1193,7 @@
    "related": "ヒューゴ",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/11/22/88dc2cf83d100314bc2598b2caf728ff_873841350043859990.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     90,
     15,
@@ -1224,8 +1225,7 @@
     "Dialyn"
    ],
    "accent": "#adadad",
-   "bar": "#cf0716",
-   "ongoing": false
+   "bar": "#cf0716"
   },
   {
    "name": "盤岳",
@@ -1240,6 +1240,7 @@
    "related": "エレン",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2025/12/15/7b35c3626799ae5286d7273303856866_3485356385322714877.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     92,
     20,
@@ -1262,8 +1263,7 @@
     "Banyue"
    ],
    "accent": "#adadad",
-   "bar": "#b81e24",
-   "ongoing": false
+   "bar": "#b81e24"
   },
   {
    "name": "葉瞬光 & 照",
@@ -1278,6 +1278,7 @@
    "related": "上映御礼 チャージイベント",
    "banner_img": "https://pbs.twimg.com/media/G8fXNxcXIAE6Xp-.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     77,
     1,
@@ -1312,8 +1313,7 @@
     "Zhao"
    ],
    "accent": "#f5b42e",
-   "bar": "#df9286",
-   "ongoing": false
+   "bar": "#df9286"
   },
   {
    "name": "アリス復刻&0号・アンビー復刻&アストラ復刻",
@@ -1328,6 +1328,7 @@
    "related": "",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/01/16/dea0e549c052e574dbc0ba5fb5dc7aca_8573109417544585764.png",
    "rerun": true,
+   "ongoing": false,
    "rank_series": [
     96,
     40,
@@ -1357,8 +1358,7 @@
     "Astra Yao"
    ],
    "accent": "#d54553",
-   "bar": "#bb1b30",
-   "ongoing": false
+   "bar": "#bb1b30"
   },
   {
    "name": "千夏",
@@ -1373,6 +1373,7 @@
    "related": "儀玄復刻",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/02/03/da3e2efdf715eb1115d516dcf765077f_8633114800754574367.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     51,
     10,
@@ -1409,8 +1410,7 @@
     "Sunna"
    ],
    "accent": "#57ddca",
-   "bar": "#88ddd7",
-   "ongoing": false
+   "bar": "#88ddd7"
   },
   {
    "name": "アリア",
@@ -1425,6 +1425,7 @@
    "related": "浮波柚葉",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/03/01/397fc1681e36ee4ca233345526281987_5136538002278189903.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     143,
     15,
@@ -1454,8 +1455,7 @@
     "Aria"
    ],
    "accent": "#65dcc9",
-   "bar": "#e3828a",
-   "ongoing": false
+   "bar": "#e3828a"
   },
   {
    "name": "南宮羽",
@@ -1470,6 +1470,7 @@
    "related": "イドリー",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/03/21/3c38c029fadef707a9e7663b10a63caa_6053805145055247498.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     65,
     9,
@@ -1502,8 +1503,7 @@
     "Nangong Yu"
    ],
    "accent": "#57ddca",
-   "bar": "#e77eb8",
-   "ongoing": false
+   "bar": "#e77eb8"
   },
   {
    "name": "シーシィア",
@@ -1518,6 +1518,7 @@
    "related": "シード",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/04/11/bb59147df6a6321c0ca7214ff8a8f26c_8902418724023440394.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     130,
     20,
@@ -1548,8 +1549,7 @@
     "Cissia"
    ],
    "accent": "#da3674",
-   "bar": "#eccb79",
-   "ongoing": false
+   "bar": "#eccb79"
   },
   {
    "name": "プロメイア",
@@ -1564,6 +1564,7 @@
    "related": "リュシア",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/05/03/b1a7defea969529edd54296c094aa78e_5855656063880158867.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     132,
     13,
@@ -1595,8 +1596,7 @@
     "Promeia"
    ],
    "accent": "#9c69ff",
-   "bar": "#3a419c",
-   "ongoing": false
+   "bar": "#3a419c"
   },
   {
    "name": "スターライト・ビリー",
@@ -1611,6 +1611,7 @@
    "related": "オルペウス＆『鬼火』",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/05/23/72725b7058ee60e259cb149688595ce1_4007954319504263447.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     171,
     43,
@@ -1641,8 +1642,7 @@
     "Starlight - Billy"
    ],
    "accent": "#c94b3d",
-   "bar": "#c70f12",
-   "ongoing": false
+   "bar": "#c70f12"
   },
   {
    "name": "ヴェリナ",
@@ -1657,6 +1657,7 @@
    "related": "葉瞬光",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/06/13/207ae69f45dcf56daacd5c7285d7e24b_4241302439310508979.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     180,
     12,
@@ -1688,8 +1689,7 @@
     "Velina"
    ],
    "accent": "#e8e7ea",
-   "bar": "#d9bd8c",
-   "ongoing": false
+   "bar": "#d9bd8c"
   },
   {
    "name": "ノルムー",
@@ -1704,6 +1704,7 @@
    "related": "千夏",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/07/05/a0b3ee434966d7763569266e524cfe91_2432634877569909579.jpg",
    "rerun": false,
+   "ongoing": true,
    "rank_series": [
     128,
     23,
@@ -1724,8 +1725,7 @@
     "Norma"
    ],
    "accent": "#e8e7ea",
-   "bar": "#e1c184",
-   "ongoing": true
+   "bar": "#e1c184"
   }
  ]
 }

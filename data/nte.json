@@ -4,13 +4,13 @@
  "jp": "NTE： Neverness to Everness",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/NTE%EF%BC%9A%20Neverness%20to%20Everness",
- "updated": "2026-07-17T18:53:27Z",
+ "updated": "2026-07-17T23:36:49Z",
  "count": 5,
  "now": {
-  "ios": 162,
-  "android": 33,
+  "ios": 164,
+  "android": 34,
   "month": 57,
-  "next_add": 12235274,
+  "next_add": 11843661,
   "ym": "2026/07",
   "ranks": {
    "prev": [
@@ -95,6 +95,7 @@
    "related": "",
    "banner_img": "https://appmedia.jp/wp-content/uploads/2026/04/163020_3xopn.webp",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     41,
     41,
@@ -117,8 +118,7 @@
    "icons": [
     "icons/faces/nte/2026-04-30-1a56a5.webp"
    ],
-   "bar": "#84c3e1",
-   "ongoing": false
+   "bar": "#84c3e1"
   },
   {
    "name": "潯",
@@ -133,6 +133,7 @@
    "related": "",
    "banner_img": "https://appmedia.jp/wp-content/uploads/2026/04/100812_yx1l6.webp",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     60,
     9,
@@ -163,8 +164,7 @@
    "icons": [
     "icons/faces/nte/2026-05-13-13594a.webp"
    ],
-   "bar": "#be2645",
-   "ongoing": false
+   "bar": "#be2645"
   },
   {
    "name": "レクイエム",
@@ -179,6 +179,7 @@
    "related": "",
    "banner_img": "https://appmedia.jp/wp-content/uploads/2026/05/221003_x6ys7.webp",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     81,
     2,
@@ -209,8 +210,7 @@
    "icons": [
     "icons/faces/nte/2026-06-03-79756c.webp"
    ],
-   "bar": "#ae283c",
-   "ongoing": false
+   "bar": "#ae283c"
   },
   {
    "name": "カオス",
@@ -225,6 +225,7 @@
    "related": "",
    "banner_img": "https://appmedia.jp/wp-content/uploads/2026/05/221403_qtlvo.webp",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     109,
     24,
@@ -248,8 +249,7 @@
    "icons": [
     "icons/faces/nte/2026-06-24-edfb69.webp"
    ],
-   "bar": "#3348a3",
-   "ongoing": false
+   "bar": "#3348a3"
   },
   {
    "name": "真紅",
@@ -264,6 +264,7 @@
    "related": "",
    "banner_img": "https://appmedia.jp/wp-content/uploads/2026/07/101921_q8b4w.webp",
    "rerun": false,
+   "ongoing": true,
    "rank_series": [
     133,
     7,
@@ -284,8 +285,7 @@
    "icons": [
     "icons/faces/nte/2026-07-08-b29442.webp"
    ],
-   "bar": "#906ba8",
-   "ongoing": true
+   "bar": "#906ba8"
   }
  ]
 }

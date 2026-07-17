@@ -4,13 +4,13 @@
  "jp": "アークナイツ：エンドフィールド",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E3%82%A2%E3%83%BC%E3%82%AF%E3%83%8A%E3%82%A4%E3%83%84%EF%BC%9A%E3%82%A8%E3%83%B3%E3%83%89%E3%83%95%E3%82%A3%E3%83%BC%E3%83%AB%E3%83%89",
- "updated": "2026-07-17T18:53:20Z",
+ "updated": "2026-07-17T23:36:45Z",
  "count": 10,
  "now": {
-  "ios": 31,
+  "ios": 34,
   "android": 11,
   "month": 151,
-  "next_add": 37730919,
+  "next_add": 36052165,
   "ym": "2026/07",
   "ranks": {
    "prev": [
@@ -95,6 +95,7 @@
    "related": "",
    "banner_img": "https://arknights-endfield.wikiru.jp/attach2/696D67_3236303132322E706E67.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     null,
     9,
@@ -121,8 +122,7 @@
    "icons": [
     "icons/faces/endfield/2026-01-22-216151.webp"
    ],
-   "bar": "#e3002f",
-   "ongoing": false
+   "bar": "#e3002f"
   },
   {
    "name": "ギルベルタ",
@@ -137,6 +137,7 @@
    "related": "",
    "banner_img": "https://arknights-endfield.wikiru.jp/attach2/696D67_3236303230372E706E67.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     32,
     7,
@@ -164,8 +165,7 @@
    "icons": [
     "icons/faces/endfield/2026-02-07-d9f264.webp"
    ],
-   "bar": "#d92800",
-   "ongoing": false
+   "bar": "#d92800"
   },
   {
    "name": "イヴォンヌ",
@@ -180,6 +180,7 @@
    "related": "",
    "banner_img": "https://arknights-endfield.wikiru.jp/attach2/696D67_3236303232342E6A7067.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     89,
     9,
@@ -205,8 +206,7 @@
    "icons": [
     "icons/faces/endfield/2026-02-24-c0eeb3.webp"
    ],
-   "bar": "#ff5b87",
-   "ongoing": false
+   "bar": "#ff5b87"
   },
   {
    "name": "タンタン",
@@ -221,6 +221,7 @@
    "related": "",
    "banner_img": "https://arknights-endfield.wikiru.jp/attach2/696D67_E6B0B4E381AEE794B3E38197E5AD902E6A7067.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     97,
     9,
@@ -248,8 +249,7 @@
    "icons": [
     "icons/faces/endfield/2026-03-12-9a1839.webp"
    ],
-   "bar": "#0071d6",
-   "ongoing": false
+   "bar": "#0071d6"
   },
   {
    "name": "ロッシ",
@@ -264,6 +264,7 @@
    "related": "★6 ロッシ",
    "banner_img": "https://arknights-endfield.wikiru.jp/attach2/696D67_E382A6E383ABE38395E38391E383BCE383AB2E6A7067.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     139,
     6,
@@ -292,8 +293,7 @@
    "icons": [
     "icons/faces/endfield/2026-03-29-7c2a05.webp"
    ],
-   "bar": "#d60015",
-   "ongoing": false
+   "bar": "#d60015"
   },
   {
    "name": "ゾアン・ファンイ",
@@ -308,6 +308,7 @@
    "related": "★6ゾアン・ファンイ",
    "banner_img": "https://arknights-endfield.wikiru.jp/attach2/696D67_E698A5E99BB7E99FBFE3818DE38081E4B887E789A9E88ABDE590B9E3818F2E6A7067.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     138,
     138,
@@ -353,8 +354,7 @@
    "icons": [
     "icons/faces/endfield/2026-04-17-98e829.webp"
    ],
-   "bar": "#78a82e",
-   "ongoing": false
+   "bar": "#78a82e"
   },
   {
    "name": "輝きの祝典",
@@ -369,6 +369,7 @@
    "related": "「レーヴァテイン」「ギルベルタ」「アルデリア」「ポグラニチニク」",
    "banner_img": "https://appmedia.jp/wp-content/uploads/2026/04/222404_kbeni.webp",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     null,
     74,
@@ -397,8 +398,7 @@
    "icons": [
     "icons/faces/endfield/2026-05-14-a4d3df.webp"
    ],
-   "bar": "#994a3d",
-   "ongoing": false
+   "bar": "#994a3d"
   },
   {
    "name": "ミ・フ",
@@ -413,6 +413,7 @@
    "related": "",
    "banner_img": "https://appmedia.jp/wp-content/uploads/2026/05/221355_dbpju.webp",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     null,
     18,
@@ -444,8 +445,7 @@
    "icons": [
     "icons/faces/endfield/2026-06-05-4407d0.webp"
    ],
-   "bar": "#f75986",
-   "ongoing": false
+   "bar": "#f75986"
   },
   {
    "name": "カミーユ",
@@ -460,6 +460,7 @@
    "related": "★6 カミーユ",
    "banner_img": "https://appmedia.jp/wp-content/uploads/2026/05/221355_4n7kw.webp",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     null,
     24,
@@ -489,8 +490,7 @@
    "icons": [
     "icons/faces/endfield/2026-06-26-4d7753.webp"
    ],
-   "bar": "#d6002e",
-   "ongoing": false
+   "bar": "#d6002e"
   },
   {
    "name": "オクギ",
@@ -505,6 +505,7 @@
    "related": "★6 オクギ",
    "banner_img": "https://appmedia.jp/wp-content/uploads/2026/07/205629_2i6pf.webp",
    "rerun": false,
+   "ongoing": true,
    "rank_series": [
     199,
     17,
@@ -513,12 +514,11 @@
    "agents": [
     "Arcane"
    ],
+   "en": "Arcane",
    "icons": [
     "icons/faces/endfield/2026-07-16-992be0.webp"
    ],
-   "bar": "#475b8f",
-   "ongoing": true,
-   "en": "Arcane"
+   "bar": "#475b8f"
   }
  ]
 }

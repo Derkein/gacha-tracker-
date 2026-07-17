@@ -4,7 +4,7 @@
  "jp": "アークナイツ",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E3%82%A2%E3%83%BC%E3%82%AF%E3%83%8A%E3%82%A4%E3%83%84",
- "updated": "2026-07-17T18:56:53Z",
+ "updated": "2026-07-17T23:38:37Z",
  "count": 36,
  "now": {
   "ios": 10,
@@ -95,6 +95,7 @@
    "related": "星6：エーベンホルツ 星5：濯塵ハイビスカス 星5：アズリウス\n2023年へ",
    "banner_img": "https://pbs.twimg.com/media/GC5klj2bMAAqqCD.jpg",
    "rerun": true,
+   "ongoing": false,
    "rank_series": [
     164,
     103,
@@ -130,6 +131,7 @@
    "related": "星6：純燼エイヤフィヤトラ（限定） 星6：琳琅スワイヤー 星5：ポンシラス",
    "banner_img": "https://pbs.twimg.com/media/GD3eirHaQAA4vCp.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     81,
     2,
@@ -166,6 +168,7 @@
    "related": "星6：ティフォン 星5：サンタラ",
    "banner_img": "https://pbs.twimg.com/media/GHPc0oRbAAAZKyR.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     165,
     13,
@@ -201,6 +204,7 @@
    "related": "星6：滌火ジェシカ 星5：アーモンド",
    "banner_img": "https://pbs.twimg.com/media/GI7mE4lbgAEI2mL.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     132,
     21,
@@ -236,6 +240,7 @@
    "related": "星6：ヘドリー 星5：ヴァンデラ 星4：ヴァーダント",
    "banner_img": "https://pbs.twimg.com/media/GLLyo1Za0AA8mvy.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     null,
     30,
@@ -271,6 +276,7 @@
    "related": "星6：ヴィルトゥオーサ（限定） 星6：ヴィヴィアナ 星5：ベースライン",
    "banner_img": "https://pbs.twimg.com/media/GMUNcX-bMAA7RF4.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     107,
     1,
@@ -308,6 +314,7 @@
    "related": "星6：デーゲンブレヒャー 星5：リェータ",
    "banner_img": "https://pbs.twimg.com/media/GQgAIwgaIAEfw9C.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     null,
     21,
@@ -343,6 +350,7 @@
    "related": "星6：レイ 星5：ウォーミー",
    "banner_img": "https://pbs.twimg.com/media/GR8mCDBbcAAMXa6.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     null,
     27,
@@ -378,6 +386,7 @@
    "related": "星6：シュウ（限定） 星6：ズオ・ラウ 星5：グレインバッズ",
    "banner_img": "https://pbs.twimg.com/media/GTuG3WnbEAEbZv0.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     193,
     2,
@@ -414,6 +423,7 @@
    "related": "星6：焔影リード 星5：ハーモニー 星5：スカイフレア",
    "banner_img": "https://pbs.twimg.com/media/GVaQVyEaMAAOqEb.jpg",
    "rerun": true,
+   "ongoing": false,
    "rank_series": [
     144,
     91,
@@ -449,6 +459,7 @@
    "related": "星6：Ela（限定） 星5：Doc 星5：Iana",
    "banner_img": "https://pbs.twimg.com/media/GWnSJvxW8AAEGLU.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     null,
     10,
@@ -484,6 +495,7 @@
    "related": "星6：ASH（限定） 星5：BLITZ 星5：FROST",
    "banner_img": "https://pbs.twimg.com/media/GXqBJUkb0AAwLb0.jpg",
    "rerun": true,
+   "ongoing": false,
    "rank_series": [
     102,
     30,
@@ -516,6 +528,7 @@
    "related": "星6：アスカロン 星5：アロマ 星4：ルトナダ",
    "banner_img": "https://pbs.twimg.com/media/GZbomzYasAMBfsH.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     165,
     20,
@@ -551,6 +564,7 @@
    "related": "星6：ウィシャデル（限定） 星6：ロゴス 星5：歴陣鋭槍フェン",
    "banner_img": "https://pbs.twimg.com/media/GbHyCE4bQAAmZ-k.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     146,
     2,
@@ -587,6 +601,7 @@
    "related": "星6：ウルピアヌス 星5：ルシーラ",
    "banner_img": "https://pbs.twimg.com/media/GdxnokYagAAlqUX.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     185,
     17,
@@ -622,6 +637,7 @@
    "related": "星6：聖約イグゼキュター 星5：スプリア 星5：カンタービレ",
    "banner_img": "https://pbs.twimg.com/media/Gfd_UI0aYAA8VsV.jpg",
    "rerun": true,
+   "ongoing": false,
    "rank_series": [
     137,
     89,
@@ -657,6 +673,7 @@
    "related": "星6：ペペ（限定） 星6：ナラントゥヤ 星5：サンドレコナー\n2024年へ",
    "banner_img": "https://pbs.twimg.com/media/GhUNmwPacAEjtyj.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     141,
     4,
@@ -693,6 +710,7 @@
    "related": "星6：ニンフ 星5：ミトム",
    "banner_img": "https://pbs.twimg.com/media/GjFgoqobIAMwe7x.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     135,
     18,
@@ -728,6 +746,7 @@
    "related": "星6：滌火ジェシカ 星5：アーモンド",
    "banner_img": "https://pbs.twimg.com/media/GI7mE4lbgAEI2mL.jpg",
    "rerun": true,
+   "ongoing": false,
    "rank_series": [
     100,
     108,
@@ -763,6 +782,7 @@
    "related": "★6 マルシル（期間限定）  ★5 ライオス（期間限定）  ★5 チルチャック（期間限定）",
    "banner_img": "https://webusstatic.yo-star.com/uy0news/aj/2ef1662b4be1e1affa1b05e10482a826.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     null,
     13,
@@ -798,6 +818,7 @@
    "related": "★6 ヴィーナ・ヴィクトリア  ★5 ボビング  ★5 ルシーラ",
    "banner_img": "https://webusstatic.yo-star.com/uy0news/aj/2ec5808da3ac4862e112c22912a2a126.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     122,
     33,
@@ -833,6 +854,7 @@
    "related": "★6 荒蕪ラップランド（期間限定）  ★6 ウルピスフォリア  ★5 フィグリーノ",
    "banner_img": "https://webusstatic.yo-star.com/uy0news/aj/da92f1ee3219133b37a7b610e6bcd577.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     null,
     5,
@@ -869,6 +891,7 @@
    "related": "★6 ユー（期間限定）  ★6 熾炎ブレイズ  ★5 サーファー",
    "banner_img": "https://webusstatic.yo-star.com/uy0news/aj/0c5f62972e164a8cf786eb779884a40d.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     null,
     null,
@@ -905,6 +928,7 @@
    "related": "★6 エンテレケイア  ★5 ノウエル  ★5 サンタラ",
    "banner_img": "https://webusstatic.yo-star.com/web-cms-prod/upload/content/2025/07/31/vPK9DXcS.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     null,
     56,
@@ -940,6 +964,7 @@
    "related": "★6 ネクラス  ★5 ウルフェナイト  ★5 ミトム",
    "banner_img": "https://webusstatic.yo-star.com/web-cms-prod/upload/content/2025/08/22/eFBjAhvb.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     null,
     52,
@@ -975,6 +1000,7 @@
    "related": "★6 Mon3tr  ★5 アランナ  ★5 セメント  ★4 ウィンドスクート",
    "banner_img": "https://webusstatic.yo-star.com/web-cms-prod/upload/content/2025/09/09/BDhn11cH.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     184,
     14,
@@ -1010,6 +1036,7 @@
    "related": "★6 新約エクシア（期間限定）  ★6 レミュアン  ★5 グレースベアラー",
    "banner_img": "https://webusstatic.yo-star.com/web-cms-prod/upload/content/2025/10/07/AarjapmJ.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     168,
     null,
@@ -1046,6 +1073,7 @@
    "related": "★6 トラゴーディア  ★5 ティッピ  ★5 ロックロック",
    "banner_img": "https://webusstatic.yo-star.com/web-cms-prod/upload/content/2025/11/06/IcwDwF-U.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     155,
     26,
@@ -1081,6 +1109,7 @@
    "related": "★6 司霆レイズ  ★5 レコードキーパー  ★5 ウォーミー",
    "banner_img": "https://webusstatic.yo-star.com/web-cms-prod/upload/content/2025/12/04/SLgNvkHH.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     null,
     38,
@@ -1113,6 +1142,7 @@
    "related": "★6 斬業ホシグマ（期間限定）  ★6 ハルカ  ★5 キチセイ\n2025年へ",
    "banner_img": "https://webusstatic.yo-star.com/web-cms-prod/upload/content/2026/01/09/8RbNF8NE.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     160,
     6,
@@ -1145,6 +1175,7 @@
    "related": "★6 豊川祥子（期間限定）  ★5 三角初華（期間限定）  ★5 若葉睦（期間限定）",
    "banner_img": "https://webusstatic.yo-star.com/web-cms-prod/upload/content/2026/01/09/ciZSi_S3.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     196,
     10,
@@ -1177,6 +1208,7 @@
    "related": "★6 ヴィーナ・ヴィクトリア  ★5 ボビング  ★5 濯塵ハイビスカス",
    "banner_img": "https://webusstatic.yo-star.com/web-cms-prod/upload/content/2026/02/13/X1bS2OFX.png",
    "rerun": true,
+   "ongoing": false,
    "rank_series": [
     83,
     129,
@@ -1211,6 +1243,7 @@
    "related": "★6 マントラ★ 5 ヴェトチキ  ★5 ポンシラス  ★4 スネグーラチカ",
    "banner_img": "https://webusstatic.yo-star.com/web-cms-prod/upload/content/2026/03/12/nqwIsYw-.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     null,
     59,
@@ -1243,6 +1276,7 @@
    "related": "★6 凛御シルバーアッシュ（期間限定）  ★6 聖聆プラマニクス  ★5 スノーハンター",
    "banner_img": "https://webusstatic.yo-star.com/web-cms-prod/upload/content/2026/04/08/JaeueGgh.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     null,
     1,
@@ -1275,6 +1309,7 @@
    "related": "★6 ナスティ",
    "banner_img": "https://webusstatic.yo-star.com/web-cms-prod/upload/content/2026/05/13/FopgHbqj.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     null,
     75,
@@ -1307,6 +1342,7 @@
    "related": "★6 ティティ",
    "banner_img": "https://webusstatic.yo-star.com/web-cms-prod/upload/content/2026/06/12/IsndEHPk.png",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     null,
     81,

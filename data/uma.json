@@ -4,13 +4,13 @@
  "jp": "ウマ娘 プリティーダービー",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E3%82%A6%E3%83%9E%E5%A8%98%20%E3%83%97%E3%83%AA%E3%83%86%E3%82%A3%E3%83%BC%E3%83%80%E3%83%BC%E3%83%93%E3%83%BC",
- "updated": "2026-07-17T18:54:11Z",
+ "updated": "2026-07-17T23:37:12Z",
  "count": 99,
  "now": {
-  "ios": 70,
+  "ios": 69,
   "android": 19,
   "month": 25,
-  "next_add": 19261052,
+  "next_add": 19436937,
   "ym": "2026/07",
   "ranks": {
    "prev": [
@@ -95,6 +95,7 @@
    "related": "★3[キセキの白星]オグリキャップ,[アマゾネス・ラピス]ヒシアマゾン,[超特急！フルカラー特殊PP]アグネスデジタル,[MELTY GIFT]アイネスフウジン,[Wicked Punk]シンコウウインディ,[黄昏トライアンフ]スマートファルコン,[クリノクロア・ライン]メジロアルダン,[四白流星の襲]ヤエノムテキ",
    "banner_img": "https://pbs.twimg.com/media/GC93mNUa4AAyF3c.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     5,
     5,
@@ -131,8 +132,7 @@
     "Hishi Amazon",
     "Agnes Digital"
    ],
-   "en": "Oguri Cap & Hishi Amazon & Agnes Digital",
-   "ongoing": false
+   "en": "Oguri Cap & Hishi Amazon & Agnes Digital"
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・セレクトピックアップ サポートカードガチャ",
@@ -147,6 +147,7 @@
    "related": "★3[ネガイノカサネ]ナイスネイチャ/SSRエルコンドルパサー,SSRアグネスタキオン,SSRワンダーアキュート,SSRダイワスカーレット,SSRシンボリルドルフ,SSRケイエスミラクル,SSRメジロラモーヌ,SSRミホノブルボン,SSRアストンマーチャン,SSR佐岳メイ\n2023年へ",
    "banner_img": "https://pbs.twimg.com/media/GDXnu5jaIAAxUgG.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     3,
     1,
@@ -163,8 +164,7 @@
    "agents": [
     "Nice Nature"
    ],
-   "en": "Nice Nature",
-   "ongoing": false
+   "en": "Nice Nature"
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -179,6 +179,7 @@
    "related": "★3[Voyage étincelant]ヴィブロス/SSR [白い翼は舞い戻りて]ホッコータルマエ,SR [ギャラルホルンを磨き上げよ]タニノギムレット,R [トレセン学園]ホッコータルマエ",
    "banner_img": "https://pbs.twimg.com/media/GELIGzpbYAAyYMb.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     21,
     2,
@@ -199,8 +200,7 @@
     "Hokko Tarumae",
     "Tanino Gimlet"
    ],
-   "en": "Vivlos & Hokko Tarumae & Tanino Gimlet",
-   "ongoing": false
+   "en": "Vivlos & Hokko Tarumae & Tanino Gimlet"
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -215,6 +215,7 @@
    "related": "★3[茶の子雪ん子]ユキノビジン,★3[柳緑小夜]マンハッタンカフェ/SSR[小さな笑顔、2つ]ウイニングチケット,SSR [感謝感謝！サクラ吹雪！！]サクラバクシンオー,R[トレセン学園]ノースフライト",
    "banner_img": "https://pbs.twimg.com/media/GFI6jOeaEAAxK6-.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     33,
     11,
@@ -237,8 +238,7 @@
     "Manhattan Cafe",
     "Winning Ticket"
    ],
-   "en": "Yukino Bijin & Manhattan Cafe & Winning Ticket",
-   "ongoing": false
+   "en": "Yukino Bijin & Manhattan Cafe & Winning Ticket"
   },
   {
    "name": "トゥインクルコレクション プリティーダービーガチャ",
@@ -253,6 +253,7 @@
    "related": "★3[シュクセ・エトワーレ]フジキセキ,★3[ワイルド・フロンティア]タイキシャトル,★3[朔月のマ・シェリ]カレンチャン,★3[Rocket☆Star]シーキングザパール,★3[ティアード・ペタル]ニシノフラワー,★3[黒鉄の大志]バンブーメモリー,★3[Fluttertail Spirit]ヤマニンゼファー,★3[Flare]アストンマーチャン",
    "banner_img": "https://pbs.twimg.com/media/GFOENj4bQAAHJrN.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     11,
     16,
@@ -290,8 +291,7 @@
     "Taiki Shuttle",
     "Curren Chan"
    ],
-   "en": "Fuji Kiseki & Taiki Shuttle & Curren Chan",
-   "ongoing": false
+   "en": "Fuji Kiseki & Taiki Shuttle & Curren Chan"
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・3rd Anniv.セレクトピックアップ サポートカードガチャ",
@@ -306,6 +306,7 @@
    "related": "★2[疾風ペガサス・零式]ビコーペガサス/SSRエルコンドルパサー,SSRジャングルポケット,SSRタイキシャトル,SSRダイイチルビー,SSRゴールドシチー,SSRツインターボ,SSRケイエスミラクル,SSRマンハッタンカフェ,SSRメジロラモーヌ,SSRナカヤマフェスタ",
    "banner_img": "https://pbs.twimg.com/media/GGRBDIJaMAAlNzC.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     58,
     6,
@@ -322,8 +323,7 @@
    "agents": [
     "Biko Pegasus"
    ],
-   "en": "Biko Pegasus",
-   "ongoing": false
+   "en": "Biko Pegasus"
   },
   {
    "name": "3rd Anniversary プリティーダービーガチャ・3rd Anniversary サポートカードガチャ",
@@ -338,6 +338,7 @@
    "related": "★3[Red in Black]ドゥラメンテ,★2[Mantle of Steel]イクノディクタス/SSR [只、君臨す。]オルフェーヴル,SSR [共に描くキラメキ]都留岐涼花,SR [Time flies]トーセンジョーダン,SR [護るべきは無垢の瞳]ヤエノムテキ,Rオルフェーヴル,R都留岐涼花,Rジェンティルドンナ",
    "banner_img": "https://pbs.twimg.com/media/GHEgwcebAAANLnq.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     16,
     1,
@@ -372,8 +373,7 @@
     "Ikuno Dictus",
     "Orfevre"
    ],
-   "en": "Duramente & Ikuno Dictus & Orfevre",
-   "ongoing": false
+   "en": "Duramente & Ikuno Dictus & Orfevre"
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・3rd Anniv.セレクトピックアップ サポートカードガチャ",
@@ -388,6 +388,7 @@
    "related": "★3[ZOKU-ZOKU GIZMO]トランセンド/SSRエルコンドルパサー,SSRドゥラメンテ,SSRサウンズオブアース,SSRタニノギムレット,SSRヒシアマゾン,SSRナイスネイチャ,SSRゴールドシチー,SSRメジロマックイーン,SSRミホノブルボン,SSRマンハッタンカフェ",
    "banner_img": "https://pbs.twimg.com/media/GIcDhV-bMAAaNSs.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     6,
     1,
@@ -403,8 +404,7 @@
    "agents": [
     "Transcend"
    ],
-   "en": "Transcend",
-   "ongoing": false
+   "en": "Transcend"
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -419,6 +419,7 @@
    "related": "★3[Dream Successor]ラインクラト/SSR[Over the Ocean]シュヴァルグラン,SR [Cheers!]タップダンスシチー,R [トレセン学園]シュヴァルグラン,R [トレセン学園]ラインクラフト",
    "banner_img": "https://pbs.twimg.com/media/GJKZ-6-awAAQz80.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     1,
     2,
@@ -435,8 +436,7 @@
     "Cheval Grand",
     "Tap Dance City"
    ],
-   "en": "Rhein Kraft & Cheval Grand & Tap Dance City",
-   "ongoing": false
+   "en": "Rhein Kraft & Cheval Grand & Tap Dance City"
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -451,6 +451,7 @@
    "related": "★3[Flowing Blue]ダイイチルビー,★3[Joyful Jamboree!]ダイタクヘリオス/SSR [白い鳥のアラベスク]ケイエスミラクル,SSR [浚いの風]ヤマニンゼファー",
    "banner_img": "https://pbs.twimg.com/media/GJzm04ObAAAQ6vm.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     8,
     3,
@@ -470,8 +471,7 @@
     "Daitaku Helios",
     "K.S.Miracle"
    ],
-   "en": "Daiichi Ruby & Daitaku Helios & K.S.Miracle",
-   "ongoing": false
+   "en": "Daiichi Ruby & Daitaku Helios & K.S.Miracle"
   },
   {
    "name": "トゥインクルコレクション プリティーダービーガチャ",
@@ -486,6 +486,7 @@
    "related": "★3マルゼンスキー,★3タイキシャトル,★3エルコンドルパサー,★3エアグルーヴ,★3ファインモーション,★3ユキノビジン,★3ゴールドシチー,★3メジロドーベル",
    "banner_img": "https://pbs.twimg.com/media/GKDDrDZaAAADM4y.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     19,
     19,
@@ -519,8 +520,7 @@
     46,
     11
    ],
-   "agents": [],
-   "ongoing": false
+   "agents": []
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・セレクトピックアップ サポートカードガチャ",
@@ -535,6 +535,7 @@
    "related": "★3[リトモ・デッラ・テッラ]サウンズオブアース/SSRエルコンドルパサー,SSRジャングルポケット,SSRメジロパーマー,SSRメジロマックイーン,SSRウイニングチケット,SSRナイスネイチャ,SSRナリタブライアン,SSRシンボリルドルフ,SSRメジロマックイーン,SSRマンハッタンカフェ",
    "banner_img": "https://pbs.twimg.com/media/GLfwLCvaoAA-CQt.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     77,
     9,
@@ -552,8 +553,7 @@
    "agents": [
     "Sounds of Earth"
    ],
-   "en": "Sounds of Earth",
-   "ongoing": false
+   "en": "Sounds of Earth"
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -568,6 +568,7 @@
    "related": "★3[慈雨華影]スーパークリーク,★3[黒将Zen]ヤエノムテキ/SSR [わーく・あ・みらくる！]ヒシミラクル,SSR [Take Them Down!]ナリタタイシン,R [トレセン学園]ヒシミラクル,R [トレセン学園]ノーリーズン",
    "banner_img": "https://pbs.twimg.com/media/GMYZdhbakAAL7Kn.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     46,
     11,
@@ -586,8 +587,7 @@
     "Yaeno Muteki",
     "Hishi Miracle"
    ],
-   "en": "Super Creek & Yaeno Muteki & Hishi Miracle",
-   "ongoing": false
+   "en": "Super Creek & Yaeno Muteki & Hishi Miracle"
   },
   {
    "name": "トゥインクルコレクション プリティーダービーガチャ",
@@ -602,6 +602,7 @@
    "related": "★3メジロマックイーン,★3ナリタブライアン,★3セイウンスカイ,★3ミスターシービー,★3メジロパーマー,★3サトノダイヤモンド,★3サクラローレル,★3ヒシミラクル",
    "banner_img": "https://pbs.twimg.com/media/GMdjMCAb0AAZIdm.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     11,
     20,
@@ -638,8 +639,7 @@
     11,
     14
    ],
-   "agents": [],
-   "ongoing": false
+   "agents": []
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・セレクトピックアップ サポートカードガチャ",
@@ -654,6 +654,7 @@
    "related": "★3[Looking Fly!]ノースフライト/SSRエルコンドルパサー,SSRマルゼンスキー,SSRゴールドシップ,SSRサウンズオブアース,SSRメジロラモーヌ,SSRマヤノトップガン,SSRケイエスミラクル,SSRメジロマックイーン,SSRミホノブルボン,SSRメジロラモーヌ",
    "banner_img": "https://pbs.twimg.com/media/GN_Zgz9a0AAvM3w.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     69,
     4,
@@ -670,8 +671,7 @@
    "agents": [
     "North Flight"
    ],
-   "en": "North Flight",
-   "ongoing": false
+   "en": "North Flight"
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -686,6 +686,7 @@
    "related": "★3[Evergreen Identity]キングヘイロー,★3[リアライズ・ルーン]スイープトウショウ/SSR [アルストロメリアの夢]ヴィブロス,SSR [幸福の匂いにまどろむ]セイウンスカイ",
    "banner_img": "https://pbs.twimg.com/media/GOy5QkhacAAqPol.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     23,
     3,
@@ -708,8 +709,7 @@
     "Sweep Tosho",
     "Vivlos"
    ],
-   "en": "King Halo & Sweep Tosho & Vivlos",
-   "ongoing": false
+   "en": "King Halo & Sweep Tosho & Vivlos"
   },
   {
    "name": "トゥインクルコレクション プリティーダービーガチャ",
@@ -724,6 +724,7 @@
    "related": "★3ウオッカ,★3アイネスフウジン,★3マチカネタンホイザ,★3キタサンブラック,★3サクラチヨノオー,★3シリウスシンボリ,★3タニノギムレット,★3ネオユニヴァース",
    "banner_img": "https://pbs.twimg.com/media/GPHfsSyakAAcA_j.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     14,
     11,
@@ -755,8 +756,7 @@
     6,
     7
    ],
-   "agents": [],
-   "ongoing": false
+   "agents": []
   },
   {
    "name": "劇場版『ウマ娘』公開記念 プリティーダービーガチャ/セレクトピックアップ サポートカードガチャ",
@@ -771,6 +771,7 @@
    "related": "★3[王者の喊声]ジャングルポケット/SSRエルコンドルパサー,SSRドゥラメンテ,SSRウイニングチケット,SSRナリタブライアン,SSRキングヘイロー,SSRヴィブロス,SSRタップダンスシチー,SSRサトノダイヤモンド,SSRメジロラモーヌ,SSRアストンマーチャン",
    "banner_img": "https://pbs.twimg.com/media/GP6_fOpbgAAXAb1.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     18,
     1,
@@ -790,8 +791,7 @@
    "agents": [
     "Jungle Pocket"
    ],
-   "en": "Jungle Pocket",
-   "ongoing": false
+   "en": "Jungle Pocket"
   },
   {
    "name": "新育成シナリオ開幕 プリティーダービーガチャ/新育成シナリオ開幕 サポートカードガチャ",
@@ -806,6 +806,7 @@
    "related": "★3[夢路のよすが]ドリームジャーニー/SSR [謹製ッ！特大夢にんじん！]秋川理事長,SSR [朝焼け苺の畑にて]ニシノフラワー,R[トレセン学園]秋川理事長",
    "banner_img": "https://pbs.twimg.com/media/GQ98QY-a8AAgbWz.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     23,
     1,
@@ -837,8 +838,7 @@
     "Yayoi Akikawa",
     "Nishino Flower"
    ],
-   "en": "Dream Journey & Yayoi Akikawa & Nishino Flower",
-   "ongoing": false
+   "en": "Dream Journey & Yayoi Akikawa & Nishino Flower"
   },
   {
    "name": "トゥインクルコレクション プリティーダービーガチャ",
@@ -853,6 +853,7 @@
    "related": "★3マルゼンスキー,★3オグリキャップ,★3エルコンドルパサー,★3アグネスデジタル,★3イナリワン,★3スマートファルコン,★3コパノリッキー,★3ワンダーアキュート",
    "banner_img": "https://pbs.twimg.com/media/GT3VJdIbwAAZtTy.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     7,
     6,
@@ -888,8 +889,7 @@
     15,
     16
    ],
-   "agents": [],
-   "ongoing": false
+   "agents": []
   },
   {
    "name": "ピックアップ プリティーダービーガチャ/セレクトピックアップ サポートカードガチャ",
@@ -904,6 +904,7 @@
    "related": "★3[真実一路]カルストンライトオ/SSRドゥラメンテ,SSRタイキシャトル,SSRサクラバクシンオー,SSRホッコータルマエ,SSRキングヘイロー,SSRゴールドシチー,SSRケイエスミラクル,SSRメジロマックイーン,SSRミホノブルボン,SSRアストンマーチャン",
    "banner_img": "https://pbs.twimg.com/media/GS0Y28SbMAACH6H.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     24,
     3,
@@ -920,8 +921,7 @@
    "agents": [
     "Calstone Light O"
    ],
-   "en": "Calstone Light O",
-   "ongoing": false
+   "en": "Calstone Light O"
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -936,6 +936,7 @@
    "related": "★3[Reines Plätschern]エイシンフラッシュ,★3[パステルマリン・ロコドル]ホッコータルマエ/SSR [波間のオフショット]スマートファルコン,SSR [Lucky☆Summertime]コパノリッキー",
    "banner_img": "https://pbs.twimg.com/media/GTn4bY5bwAAA4I9.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     28,
     3,
@@ -960,8 +961,7 @@
     "Hokko Tarumae",
     "Smart Falcon"
    ],
-   "en": "Eishin Flash & Hokko Tarumae & Smart Falcon",
-   "ongoing": false
+   "en": "Eishin Flash & Hokko Tarumae & Smart Falcon"
   },
   {
    "name": "3.5th Anniv.セレクトピックアップ サポートカードガチャ",
@@ -976,6 +976,7 @@
    "related": "SSRエルコンドルパサー,SSRドゥラメンテ,SSRサウンズオブアース,SSRホッコータルマエ,SSRウイニングチケット,SSRオルフェーヴル,SSRゴールドシチー,SSRメジロマックイーン,SSRサトノダイヤモンド,SSRアストンマーチャン",
    "banner_img": "https://pbs.twimg.com/media/GU6Sa8oa4AQpZT4.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     43,
     11,
@@ -988,8 +989,7 @@
     55,
     55
    ],
-   "agents": [],
-   "ongoing": false
+   "agents": []
   },
   {
    "name": "ピックアップ サポートカードガチャ",
@@ -1004,6 +1004,7 @@
    "related": "SSR[歴史も美食も余すところなく]ファインモーション,SR [救いはあるよっ♪]メジロパーマー",
    "banner_img": "https://pbs.twimg.com/media/GU6SASgbAAAwIPR.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     43,
     11,
@@ -1020,8 +1021,7 @@
     "Fine Motion",
     "Mejiro Palmer"
    ],
-   "en": "Fine Motion & Mejiro Palmer",
-   "ongoing": false
+   "en": "Fine Motion & Mejiro Palmer"
   },
   {
    "name": "3.5th Anniv. プレミアム プリティーダービーガチャ・3.5th Anniv. サポートカードガチャ",
@@ -1036,6 +1036,7 @@
    "related": "★3[Regina dei fiori]ジェンティルドンナ/SSR[Devilish Whispers]スティルインラブ,SR [みんなにグッドマーベラス☆]マーベラスサンデー,R[トレセン学園]スティルインラブ,R[トレセン学園]ブエナビスタ",
    "banner_img": "https://pbs.twimg.com/media/GVtxqfnaEAAOt6L.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     28,
     1,
@@ -1061,8 +1062,7 @@
     "Still in Love",
     "Marvelous Sunday Time☆★"
    ],
-   "en": "Gentildonna & Still in Love & Marvelous Sunday Time☆★",
-   "ongoing": false
+   "en": "Gentildonna & Still in Love & Marvelous Sunday Time☆★"
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -1077,6 +1077,7 @@
    "related": "★3[Like “ZEER”]ネオユニヴァース,★3[Inlaid Stories]ゼンノロブロイ/SSR[月下のSunshine]タイキシャトル,SSR[悩み事かい？ポニーちゃん]フジキセキ",
    "banner_img": "https://pbs.twimg.com/media/GWMrgKkaAAAh5M2.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     6,
     4,
@@ -1096,8 +1097,7 @@
     "Zenno Rob Roy",
     "Taiki Shuttle"
    ],
-   "en": "Neo Universe & Zenno Rob Roy & Taiki Shuttle",
-   "ongoing": false
+   "en": "Neo Universe & Zenno Rob Roy & Taiki Shuttle"
   },
   {
    "name": "トゥインクルコレクション プリティーダービーガチャ",
@@ -1112,6 +1112,7 @@
    "related": "★3フジキセキ,★3タイキシャトル,★3ファインモーション,★3アイネスフウジン,★3ゴールドシチー,★3ニシノフラワー,★3バンブーメモリー,★3ダイタクヘリオス",
    "banner_img": "https://pbs.twimg.com/media/GWcILjDXEAAbnny.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     1,
     1,
@@ -1144,8 +1145,7 @@
     8,
     7
    ],
-   "agents": [],
-   "ongoing": false
+   "agents": []
   },
   {
    "name": "メインストーリー第2部中編公開プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -1160,6 +1160,7 @@
    "related": "★3[Future Weaver]シーザリオ/SSR [KNOCK 'EM DOWN!]エスポワールシチー,SR [君の花衣]サクラローレル,R [トレセン学園]エスポワールシチー",
    "banner_img": "https://pbs.twimg.com/media/GXFUycNbEAAUmo4.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     8,
     2,
@@ -1188,8 +1189,7 @@
     "Espoir City",
     "Sakura Laurel"
    ],
-   "en": "Cesario & Espoir City & Sakura Laurel",
-   "ongoing": false
+   "en": "Cesario & Espoir City & Sakura Laurel"
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・3.5th Anniv.セレクトピックアップ サポートカードガチャ",
@@ -1204,6 +1204,7 @@
    "related": "★3[Chevalier fidèle]デュランダル/SSR [大望は飛んでいく]エルコンドルパサー,SSRヤマニンゼファー,SSRメジロラモーヌ,SSRウイニングチケット,SSRゴールドシチー,SSRオルフェーヴル,SSRケイエスミラクル,SSRメジロマックイーン,SSRメジロラモーヌ,SSRサトノダイヤモンド,R [トレセン学園]シーザリオ",
    "banner_img": "https://pbs.twimg.com/media/GX401IcaUAECKwk.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     28,
     2,
@@ -1222,8 +1223,7 @@
     "El Condor Pasa",
     "Cesario"
    ],
-   "en": "Durandal & El Condor Pasa & Cesario",
-   "ongoing": false
+   "en": "Durandal & El Condor Pasa & Cesario"
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -1238,6 +1238,7 @@
    "related": "★3[Be♪Witched]シーキングザパール,★3[ろっきん☆MewMeow]マヤノトップガン/SSR [牙を立て、リフレイン]ヒシアマゾン,SSR [咆哮のアポヤンド]ナリタブライアン",
    "banner_img": "https://pbs.twimg.com/media/GYsVageaIAAbnfo.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     8,
     7,
@@ -1257,8 +1258,7 @@
     "Mayano Top Gun",
     "Hishi Amazon"
    ],
-   "en": "Seeking the Pearl & Mayano Top Gun & Hishi Amazon",
-   "ongoing": false
+   "en": "Seeking the Pearl & Mayano Top Gun & Hishi Amazon"
   },
   {
    "name": "トゥインクルコレクション プリティーダービーガチャ",
@@ -1273,6 +1273,7 @@
    "related": "★ [ほっぴん♪ビタミンハート]スペシャルウィーク,★3タマモクロス,★3トーセンジョーダン,★3サクラチヨノオー,★3メジロアルダン,★3ヤエノムテキ,★3カツラギエース,★3ネオユニヴァース",
    "banner_img": "https://pbs.twimg.com/media/GYxeeNoboAA_Lta.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     7,
     15,
@@ -1310,8 +1311,7 @@
    "agents": [
     "Special Week"
    ],
-   "en": "Special Week",
-   "ongoing": false
+   "en": "Special Week"
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・セレクトピックアップ サポートカードガチャ",
@@ -1326,6 +1326,7 @@
    "related": "★3[POPPING!]バブルガムフェロー/SSRエルコンドルパサー,SSRドゥラメンテ,SSRメジロラモーヌ,SSRウイニングチケット,SSRオルフェーヴル,SSRヴィブロス,SSRナリタタイシン,SSRメジロマックイーン,SSRネオユニヴァース,SSR都留岐涼花",
    "banner_img": "https://pbs.twimg.com/media/GZk-ncwa4AABztw.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     77,
     17,
@@ -1350,8 +1351,7 @@
    "agents": [
     "Bubble Gum Fellow"
    ],
-   "en": "Bubble Gum Fellow",
-   "ongoing": false
+   "en": "Bubble Gum Fellow"
   },
   {
    "name": "新育成シナリオ開幕 プリティーダービーガチャ・新育成シナリオ開幕 サポートカードガチャ",
@@ -1366,6 +1366,7 @@
    "related": "★3[Engineered Victory]ビワハヤヒデ/SSR[Cocoon]エアシャカール,SSR[緋色の君へ風が吹く]ダイワスカーレット",
    "banner_img": "https://pbs.twimg.com/media/GbBrGFUakAARTP2.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     98,
     2,
@@ -1394,8 +1395,7 @@
     "Air Shakur",
     "Daiwa Scarlet"
    ],
-   "en": "Biwa Hayahide & Air Shakur & Daiwa Scarlet",
-   "ongoing": false
+   "en": "Biwa Hayahide & Air Shakur & Daiwa Scarlet"
   },
   {
    "name": "トゥインクルコレクション プリティーダービーガチャ",
@@ -1410,6 +1410,7 @@
    "related": "★3サイレンススズカ,★3ヒシアマゾン,★3メジロライアン,★3カワカミプリンセス,★3マーベラスサンデー,★3メジロドーベル,★3キタサンブラック,★3メジロラモーヌ",
    "banner_img": "https://pbs.twimg.com/media/GbRIuthbQAAKEXt.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     10,
     8,
@@ -1444,8 +1445,7 @@
     30,
     37
    ],
-   "agents": [],
-   "ongoing": false
+   "agents": []
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -1460,6 +1460,7 @@
    "related": "★3[迷光オーヴァライド]ナリタタイシン/SSR [COOL⇔CRAZY/Buddy]シンボリクリスエス,SR [お任せ！オートクチュール]ノースフライト",
    "banner_img": "https://pbs.twimg.com/media/Gb1LTpWbwAA83x6.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     13,
     11,
@@ -1478,8 +1479,7 @@
     "Symboli Kris S",
     "North Flight"
    ],
-   "en": "Narita Taishin & Symboli Kris S & North Flight",
-   "ongoing": false
+   "en": "Narita Taishin & Symboli Kris S & North Flight"
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・セレクトピックアップ サポートカードガチャ",
@@ -1494,6 +1494,7 @@
    "related": "★3[Inherited Hope]エアメサイア/SSRヴィブロス,SSRシュヴァルグラン,SSRメジロラモーヌ,SSRオルフェーヴル,SSRメジロマックイーン,SSRナリタタイシン,SSRサトノダイヤモンド,SSRネオユニヴァース,SSR秋川理事長,SSR都留岐涼花",
    "banner_img": "https://pbs.twimg.com/media/GcoqtPPacAAHD8C.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     10,
     9,
@@ -1510,8 +1511,7 @@
    "agents": [
     "Air Messiah"
    ],
-   "en": "Air Messiah",
-   "ongoing": false
+   "en": "Air Messiah"
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -1526,6 +1526,7 @@
    "related": "★3[Celestial Road]ナリタトップロード,★3[Glacialis Vega]アドマイヤベガ/SSR [【告知】新刊あります！]アグネスデジタル,SSR [不屈の遠吠え]メイショウドトウ",
    "banner_img": "https://pbs.twimg.com/media/GdcK3r-akAAflWh.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     24,
     7,
@@ -1546,8 +1547,7 @@
     "Admire Vega",
     "Agnes Digital"
    ],
-   "en": "Narita Top Road & Admire Vega & Agnes Digital",
-   "ongoing": false
+   "en": "Narita Top Road & Admire Vega & Agnes Digital"
   },
   {
    "name": "トゥインクルコレクション プリティーダービーガチャ",
@@ -1562,6 +1562,7 @@
    "related": "★3トウカイテイオー,★3テイエムオペラオー,★3マンハッタンカフェ,★3エアシャカール,★3メジロパーマー,★3キタサンブラック,★3メジロブライト,★3シンボリクリスエス",
    "banner_img": "https://pbs.twimg.com/media/GdwwrL-bUAAmXP2.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     37,
     23,
@@ -1600,8 +1601,7 @@
     18,
     11
    ],
-   "agents": [],
-   "ongoing": false
+   "agents": []
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -1616,6 +1616,7 @@
    "related": "★3[ドラマティック・チュチュ]ウインバリアシオン/SSR[Blast Off!]ブラストワンピース,SR[先陣スプラッシュ！]バブルガムフェロー,R[トレセン学園]ブラストワンピース,R[トレセン学園]バブルガムフェロー",
    "banner_img": "https://pbs.twimg.com/media/GeZ-CigbwAAZKrs.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     49,
     7,
@@ -1633,8 +1634,7 @@
     "Blast Onepiece",
     "Bubble Gum Fellow"
    ],
-   "en": "Win Variation & Blast Onepiece & Bubble Gum Fellow",
-   "ongoing": false
+   "en": "Win Variation & Blast Onepiece & Bubble Gum Fellow"
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・クリスマス特別セレクトピックアップ サポートカードガチャ",
@@ -1649,6 +1649,7 @@
    "related": "★3[蒼炎の誉]グラスワンダー/SSRヴィブロス,SSRスマートファルコン,SSRダンツフレーム,SSRサウンズオブアース,SSRシュヴァルグラン,SSRニシノフラワー,SSRファインモーション,SSRオルフェーヴル,SSRナリタタイシン,SSR秋川理事長",
    "banner_img": "https://pbs.twimg.com/media/GfITuUNa8AAXovb.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     39,
     7,
@@ -1663,8 +1664,7 @@
    "agents": [
     "Grass Wonder"
    ],
-   "en": "Grass Wonder",
-   "ongoing": false
+   "en": "Grass Wonder"
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -1679,6 +1679,7 @@
    "related": "★3[雅号・墨龍]カツラギエース,★3[絢爛花道歌舞く君]ミスターシービー/SSR [雲煙飛動]シンボリルドルフ,SSR [深窓の少女へ]メジロアルダン",
    "banner_img": "https://pbs.twimg.com/media/Gfxh8gTaQAE0B5l.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     46,
     5,
@@ -1701,8 +1702,7 @@
     "Mr. C.B.",
     "Symboli Rudolf"
    ],
-   "en": "Katsuragi Ace & Mr. C.B. & Symboli Rudolf",
-   "ongoing": false
+   "en": "Katsuragi Ace & Mr. C.B. & Symboli Rudolf"
   },
   {
    "name": "トゥインクルコレクション プリティーダービーガチャ・SSR確定スピードガチャ",
@@ -1717,6 +1717,7 @@
    "related": "★3ミホノブルボン,★3アイネスフウジン,★3ナイスネイチャ,★3シリウスシンボリ,★3 サトノクラウン,★3シュヴァルグラン,★3ヴィブロス,★3ドゥラメンテ",
    "banner_img": "https://pbs.twimg.com/media/GglBGGga8AA3zPT.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     11,
     9,
@@ -1748,8 +1749,7 @@
     19,
     26
    ],
-   "agents": [],
-   "ongoing": false
+   "agents": []
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -1764,6 +1764,7 @@
    "related": "★3[祝ひ寿ぐ神速天女]マルゼンスキー/SSR [飛び立つヴィーナス]シーキングザパール,SR [月下麗人]メジロラモーヌ",
    "banner_img": "https://pbs.twimg.com/media/Gg5nldOaYAAW2jr.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     13,
     10,
@@ -1782,8 +1783,7 @@
     "Seeking the Pearl",
     "Mejiro Ramonu"
    ],
-   "en": "Maruzensky & Seeking the Pearl & Mejiro Ramonu",
-   "ongoing": false
+   "en": "Maruzensky & Seeking the Pearl & Mejiro Ramonu"
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -1798,6 +1798,7 @@
    "related": "★3[溶けない砂糖菓子]アストンマーチャン,★3[Sugary Wind]ヤマニンゼファー/SSR[Cutest in Ur ♡]カレンチャン,SSR[鉄の乙女も微笑んで]イクノディクタス",
    "banner_img": "https://pbs.twimg.com/media/GilxCp-bYAE0eA1.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     51,
     10,
@@ -1820,8 +1821,7 @@
     "Yamanin Zephyr",
     "Curren Chan"
    ],
-   "en": "Aston Machan & Yamanin Zephyr & Curren Chan",
-   "ongoing": false
+   "en": "Aston Machan & Yamanin Zephyr & Curren Chan"
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・4th Anniv.セレクトピックアップ サポートカードガチャ",
@@ -1836,6 +1836,7 @@
    "related": "★2[志、高し、強し！]ツルマルツヨシ/SSRスティルインラブ,SSRスマートファルコン,SSRニシノフラワー,SSRセイウンスカイ,SSRケイエスミラクル,SSRファインモーション,SSRゴールドシチー,SSRウオッカ,SSRメジロマックイーン,SSRタイキシャトル",
    "banner_img": "https://pbs.twimg.com/media/Gjt2_k0aYAAEZLh.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     83,
     20,
@@ -1852,8 +1853,7 @@
    "agents": [
     "Tsurumaru Tsuyoshi"
    ],
-   "en": "Tsurumaru Tsuyoshi",
-   "ongoing": false
+   "en": "Tsurumaru Tsuyoshi"
   },
   {
    "name": "4th Anniv. プレミアム プリティーダービーガチャ・4th Anniv. サポートカードガチャ",
@@ -1868,6 +1868,7 @@
    "related": "★3[総攬]オルフェーヴル/SSR[導きの光]伝説の体現者,SSR[世界を変える眼差し]アーモンドアイ,SR [喜びの咲く刻]ラッキーライラック,SR[メロンなささやき]メジロマックイーン,R[トレセン学園]アーモンドアイ,R[トレセン学園]ラッキーライラック,R[トレセン学園]グランアレグリア",
    "banner_img": "https://pbs.twimg.com/media/GkhWgBnbQAA6sp5.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     31,
     1,
@@ -1901,8 +1902,7 @@
     "Shake The World!!",
     "Almond Eye"
    ],
-   "en": "Orfevre & Shake The World!! & Almond Eye",
-   "ongoing": false
+   "en": "Orfevre & Shake The World!! & Almond Eye"
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -1917,6 +1917,7 @@
    "related": "★ [すまいる・まい・うぇい！]グランアレグリア/SSR[春、来たれり]メジロブライト,SR[『しあわせの青いバラ』]ライスシャワー",
    "banner_img": "https://pbs.twimg.com/media/GlumJMVasAAG4ce.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     10,
     1,
@@ -1935,8 +1936,7 @@
     "Mejiro Bright",
     "Rice Shower"
    ],
-   "en": "Gran Alegria & Mejiro Bright & Rice Shower",
-   "ongoing": false
+   "en": "Gran Alegria & Mejiro Bright & Rice Shower"
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・4th Anniv.セレクトピックアップ サポートカードガチャ",
@@ -1951,6 +1951,7 @@
    "related": "★3[紅色塗早駆具足]ノーリーズン/SSRスティルインラブ,SSRスマートファルコン,SSRナリタブライアン,SSRエアシャカール,SSRメジロアルダン,SSRシンボリクリスエス,SSRニシノフラワー,SSRフジキセキ,SSRダイワスカーレット,SSRナリタタイシン",
    "banner_img": "https://pbs.twimg.com/media/GmiF88haEAkZBuz.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     7,
     2,
@@ -1967,8 +1968,7 @@
    "agents": [
     "No Reason"
    ],
-   "en": "No Reason",
-   "ongoing": false
+   "en": "No Reason"
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -1983,6 +1983,7 @@
    "related": "★3[Tap! Tap! Tap!]タップダンスシチー,★3[With a Twist]タニノギムレット/SSR [Ballroom Tempest]ウオッカ,SSR [誘うは夢心地]ドリームジャーニー,R [トレセン学園]ドリームジャーニー",
    "banner_img": "https://pbs.twimg.com/media/GnVmb5pbcAAyWCo.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     15,
     7,
@@ -2001,8 +2002,7 @@
     "Tanino Gimlet",
     "Vodka"
    ],
-   "en": "Tap Dance City & Tanino Gimlet & Vodka",
-   "ongoing": false
+   "en": "Tap Dance City & Tanino Gimlet & Vodka"
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -2017,6 +2017,7 @@
    "related": "★3[Louve stellaire]シリウスシンボリ/SSR [無垢の白妙]デアリングタクト,SR [Daring Music]デアリングハート,R [トレセン学園]デアリングタクト,R [トレセン学園]デアリングハート",
    "banner_img": "https://pbs.twimg.com/media/GoJGmu7bQAA9gtN.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     40,
     11,
@@ -2036,8 +2037,7 @@
     "Daring Tact",
     "Daring Heart"
    ],
-   "en": "Sirius Symboli & Daring Tact & Daring Heart",
-   "ongoing": false
+   "en": "Sirius Symboli & Daring Tact & Daring Heart"
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・セレクトピックアップ サポートカードガチャ",
@@ -2052,6 +2052,7 @@
    "related": "★3[義心の黒焔]フェノーメノ/SSRスティルインラブ,SSRスマートファルコン,SSRエアシャカール,SSRサウンズオブアース,SSRシュヴァルグラン,SSRシンボリクリスエス,SSRヒシアマゾン,SSRフジキセキ,SSR ダイワスカーレット,SSR ナリタタイシン",
    "banner_img": "https://pbs.twimg.com/media/GpBvplibcAAWTXb.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     35,
     19,
@@ -2067,8 +2068,7 @@
    "agents": [
     "Fenomeno"
    ],
-   "en": "Fenomeno",
-   "ongoing": false
+   "en": "Fenomeno"
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -2083,6 +2083,7 @@
    "related": "★3[光彩陸離☆招福衣]コパノリッキー,★3[ルミナス☆トワラー]スマートファルコン/SSR[繋がれパレード・ノーツ♪]トランセンド,SSR [Luz de ensueño]ブエナビスタ,R [トレセン学園]トランセンド",
    "banner_img": "https://pbs.twimg.com/media/GpwGhNaaYAERare.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     59,
     9,
@@ -2103,8 +2104,7 @@
     "Smart Falcon",
     "Transcend"
    ],
-   "en": "Copano Rickey & Smart Falcon & Transcend",
-   "ongoing": false
+   "en": "Copano Rickey & Smart Falcon & Transcend"
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -2119,6 +2119,7 @@
    "related": "★3[Le beau sommet]ヴィルシーナ/SSR [My Beloved Scenery]サイレンススズカ,SR [一輪ずつ、喜びを束ねて]カレンブーケドール,R [トレセン学園]カレンブーケドール",
    "banner_img": "https://pbs.twimg.com/media/Gqt473VaIAA9gza.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     33,
     6,
@@ -2136,8 +2137,7 @@
     "Silence Suzuka",
     "Curren Bouquetd'or"
    ],
-   "en": "Verxina & Silence Suzuka & Curren Bouquetd'or",
-   "ongoing": false
+   "en": "Verxina & Silence Suzuka & Curren Bouquetd'or"
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・セレクトピックアップ サポートカードガチャ",
@@ -2152,6 +2152,7 @@
    "related": "★3[9927 Wishes]ラヴズオンリーユー/SSRスティルインラブ,SSRスマートファルコン,SSRエアシャカール,SSR ホッコータルマエ,SSRシンボリクリスエス,SSRエスポワールシチー,SSRニシノフラワー,SSRオルフェーヴル,SSRダイワスカーレット,SSR コパノリッキー",
    "banner_img": "https://pbs.twimg.com/media/GrcPKLQa8AAKgj1.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     22,
     11,
@@ -2167,8 +2168,7 @@
    "agents": [
     "Loves Only You"
    ],
-   "en": "Loves Only You",
-   "ongoing": false
+   "en": "Loves Only You"
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -2183,6 +2183,7 @@
    "related": "★3[Untouchable Eden]メジロラモーヌ,★3[Twinbell Queen]シーザリオ/SSR[Unveiled Dream]ラインクラフト,SSR [Blooming Buds]デアリングハート,R[トレセン学園]エアメサイア",
    "banner_img": "https://pbs.twimg.com/media/GsKlqBiaUAQgC4b.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     28,
     13,
@@ -2205,8 +2206,7 @@
     "Cesario",
     "Rhein Kraft"
    ],
-   "en": "Mejiro Ramonu & Cesario & Rhein Kraft",
-   "ongoing": false
+   "en": "Mejiro Ramonu & Cesario & Rhein Kraft"
   },
   {
    "name": "セレクトピックアップ サポートカードガチャ",
@@ -2221,6 +2221,7 @@
    "related": "SSRスティルインラブ,SSRスマートファルコン,SSRエアシャカール,SSRダンツフレーム,SSRメジロアルダン,SSRブラストワンピース,SSRファインモーション,SSRシンボリルドルフ,SSRダイワスカーレット,SSRナリタタイシン",
    "banner_img": "https://pbs.twimg.com/media/GtStC8GbMAEoru0.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     80,
     8,
@@ -2238,8 +2239,7 @@
     65,
     59
    ],
-   "agents": [],
-   "ongoing": false
+   "agents": []
   },
   {
    "name": "ピックアップ プリティーダービーガチャ",
@@ -2254,6 +2254,7 @@
    "related": "★3[陸離の編纂者]クロノジェネシス",
    "banner_img": "https://pbs.twimg.com/media/GtSsLecbQAAxEWo.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     80,
     8,
@@ -2288,8 +2289,7 @@
    "agents": [
     "Chrono Genesis"
    ],
-   "en": "Chrono Genesis",
-   "ongoing": false
+   "en": "Chrono Genesis"
   },
   {
    "name": "新育成シナリオ開幕 プリティーダービーガチャ・新育成シナリオ開幕 サポートカードガチャ",
@@ -2304,6 +2304,7 @@
    "related": "★3[Boho Flare]ゴールドシチー/SSR[本能は吼えているか！？]タッカーブライン,SSR[白き稲妻の如く]タマモクロス,R[無人島PJ責任者]タッカーブライン",
    "banner_img": "https://pbs.twimg.com/media/GuayeMLbEAE28bs.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     59,
     2,
@@ -2337,8 +2338,7 @@
     "Tucker Bryne",
     "Tamamo Cross"
    ],
-   "en": "Gold City & Tucker Bryne & Tamamo Cross",
-   "ongoing": false
+   "en": "Gold City & Tucker Bryne & Tamamo Cross"
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -2353,6 +2353,7 @@
    "related": "★3[Hello Hello Island]アイネスフウジン/SSR [瞳に闘志を胸に勝利の渇望を]メジロライアン,SR [私たちのプリンセス流儀]カワカミプリンセス",
    "banner_img": "https://pbs.twimg.com/media/Gvi4oQ6a4AAa7tM.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     26,
     20,
@@ -2372,8 +2373,7 @@
     "Mejiro Ryan",
     "Kawakami Princess"
    ],
-   "en": "Ines Fujin & Mejiro Ryan & Kawakami Princess",
-   "ongoing": false
+   "en": "Ines Fujin & Mejiro Ryan & Kawakami Princess"
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・セレクトピックアップ サポートカードガチャ",
@@ -2388,6 +2388,7 @@
    "related": "★3[Assorted Cuteness♡]フサイチパンドラ/SSRアーモンドアイ,SSRドリームジャーニー,SSRメイショウドトウ,SSRナリタブライアン,SSRエアシャカール,SSRダンツフレーム ・SSRシンボリクリスエス,SSRブラストワンピース,SSRファインモーション,SSR シンボリルドルフ",
    "banner_img": "https://pbs.twimg.com/media/Gwbh9WfbEAIXOIC.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     32,
     6,
@@ -2403,8 +2404,7 @@
    "agents": [
     "Fusaichi Pandora"
    ],
-   "en": "Fusaichi Pandora",
-   "ongoing": false
+   "en": "Fusaichi Pandora"
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -2419,6 +2419,7 @@
    "related": "★3[晴島花麗]サトノクラウン ★3[夏凪ネイビードロップ]シュヴァルグラン/SSR[水面のプリンシパル]ウインバリアシオン,SSR [Tranquillo]ドゥラメンテ,R [トレセン学園]ウインバリアシオン",
    "banner_img": "https://pbs.twimg.com/media/GxJ4PwpaoAA6XNL.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     31,
     9,
@@ -2441,8 +2442,7 @@
     "Win Variation",
     "Duramente"
    ],
-   "en": "Cheval Grand & Win Variation & Duramente",
-   "ongoing": false
+   "en": "Cheval Grand & Win Variation & Duramente"
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・4.5th Anniv.セレクトピックアップ サポートカードガチャ",
@@ -2457,6 +2457,7 @@
    "related": "★ [Éclat d'été]ヴィブロス/SSRアーモンドアイ,SSRドリームジャーニー,SSRナリタブライアン,SSRエアシャカール,SSRダンツフレーム,SSRシンボリクリスエス,SSRブラストワンピース,SSRデアリングタクト,SSRダイワスカーレット,SSRナリタタイシン",
    "banner_img": "https://pbs.twimg.com/media/GyR-_qLaIAA8mmq.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     64,
     12,
@@ -2473,8 +2474,7 @@
    "agents": [
     "Vivlos"
    ],
-   "en": "Vivlos",
-   "ongoing": false
+   "en": "Vivlos"
   },
   {
    "name": "4.5th Anniv. サポートカードガチャ",
@@ -2489,6 +2489,7 @@
    "related": "SSR[気まぐれ渡り星]ステイゴールド,SSR[氷結晶の静域]アドマイヤグルーヴ,R[トレセン学園]ステイゴールド,R[トレセン学園]アドマイヤグルーヴ,R [トレセン学園]クロノジェネシス",
    "banner_img": "https://pbs.twimg.com/media/GzFeo36bYAAT1gk.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     47,
     1,
@@ -2522,8 +2523,7 @@
     "Stay Gold",
     "Admire Groove"
    ],
-   "en": "Stay Gold & Admire Groove",
-   "ongoing": false
+   "en": "Stay Gold & Admire Groove"
   },
   {
    "name": "4.5th Anniv. プレミアム プリティーダービーガチャ",
@@ -2538,6 +2538,7 @@
    "related": "★3[緋想の誓衣]スティルインラブ",
    "banner_img": "https://pbs.twimg.com/media/GzFejBxa0AAmWsE.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     47,
     1,
@@ -2570,8 +2571,7 @@
    "agents": [
     "Still in Love"
    ],
-   "en": "Still in Love",
-   "ongoing": false
+   "en": "Still in Love"
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -2586,6 +2586,7 @@
    "related": "★3[秋日色アンダンテ]ケイエスミラクル,★3[ハッピー・リトル・ノーツ]ヒシミラクル/SSR [カルストンライトオ、猫です]カルストンライトオ,SSR [今宵、我が君のために]デュランダル,R [トレセン学園]カルストンライトオ,R [トレセン学園]デュランダル",
    "banner_img": "https://pbs.twimg.com/media/GzfPX5vaQAAq71C.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     8,
     9,
@@ -2605,8 +2606,7 @@
     "Hishi Miracle",
     "Calstone Light O"
    ],
-   "en": "K.S.Miracle & Hishi Miracle & Calstone Light O",
-   "ongoing": false
+   "en": "K.S.Miracle & Hishi Miracle & Calstone Light O"
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -2621,6 +2621,7 @@
    "related": "★3[Red Devil Gear]エスポワールシチー/SSR [Inseparable]ダイイチルビー,SR [ニャンともイカすヒーローさ]ビコーペガサス",
    "banner_img": "https://pbs.twimg.com/media/G0X4QEQaQAApLhP.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     20,
     7,
@@ -2639,8 +2640,7 @@
     "Daiichi Ruby",
     "Biko Pegasus"
    ],
-   "en": "Espoir City & Daiichi Ruby & Biko Pegasus",
-   "ongoing": false
+   "en": "Espoir City & Daiichi Ruby & Biko Pegasus"
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・4.5th Anniv.セレクトピックアップ サポートカードガチャ",
@@ -2655,6 +2655,7 @@
    "related": "★3[精粋]ビリーヴ/SSRアーモンドアイ,SSRドリームジャーニー,SSRエアシャカール,SSRブエナビスタ,SSRウオッカ,SSRサイレンススズカ,SSRカレンチャン,SSRデアリングタクト,SSRシンボリルドルフ,SSRダイワスカーレット",
    "banner_img": "https://pbs.twimg.com/media/G1LYqH-aMAAwnCp.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     26,
     5,
@@ -2671,8 +2672,7 @@
    "agents": [
     "Believe"
    ],
-   "en": "Believe",
-   "ongoing": false
+   "en": "Believe"
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -2687,6 +2687,7 @@
    "related": "★3 [マジックナイトガーランド]ヒシアケボノ ,★3 [トリック☆リボネッタ]マーベラスサンデー/SSR [壇上より魔法を込めて]フジキセキ,SSR [Zirkus der Träume]エイシンフラッシュ",
    "banner_img": "https://pbs.twimg.com/media/G1-3yuoasAEFjxo.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     23,
     18,
@@ -2706,8 +2707,7 @@
     "Fuji Kiseki",
     "Eishin Flash"
    ],
-   "en": "Marvelous Sunday Time☆★ & Fuji Kiseki & Eishin Flash",
-   "ongoing": false
+   "en": "Marvelous Sunday Time☆★ & Fuji Kiseki & Eishin Flash"
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -2722,6 +2722,7 @@
    "related": "★3[Highkey☆Hallowed]トーセンジョーダン/SSR [決意のフローラ]カレンブーケドール,SR [静寂を煎じ]サクラチトセオー,R [トレセン学園]サクラチトセオー",
    "banner_img": "https://pbs.twimg.com/media/G23g69Ea4AAT6b-.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     66,
     35,
@@ -2740,8 +2741,7 @@
     "Curren Bouquetd'or",
     "Sakura Chitose O"
    ],
-   "en": "Tosen Jordan & Curren Bouquetd'or & Sakura Chitose O",
-   "ongoing": false
+   "en": "Tosen Jordan & Curren Bouquetd'or & Sakura Chitose O"
   },
   {
    "name": "ジャングルポケット リバイバルピックアップ プリティーダービーガチャ",
@@ -2756,6 +2756,7 @@
    "related": "★3[王者の喊声]ジャングルポケット",
    "banner_img": "https://pbs.twimg.com/media/G3iF0eka8AA0KNR.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     161,
     147,
@@ -2773,8 +2774,7 @@
    "agents": [
     "Jungle Pocket"
    ],
-   "en": "Jungle Pocket",
-   "ongoing": false
+   "en": "Jungle Pocket"
   },
   {
    "name": "ダンツフレーム登場! プリティーダービーガチャ・セレクトピックアップ サポートカードガチャ",
@@ -2789,6 +2789,7 @@
    "related": "★3 [まんなか◎スポットライト]ダンツフレーム/SSRアーモンドアイ,SSRシーキングザパール,SSRメジロアルダン,SSRエスポワールシチー,SSRニシノフラワー,SSRカレンチャン,SSRシンボリルドルフ,SSRダイワスカーレット,SSRイクノディクタス,SSRコパノリッキー",
    "banner_img": "https://pbs.twimg.com/media/G3ipK5xawAEigKT.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     161,
     147,
@@ -2806,8 +2807,7 @@
    "agents": [
     "Dantsu Flame"
    ],
-   "en": "Dantsu Flame",
-   "ongoing": false
+   "en": "Dantsu Flame"
   },
   {
    "name": "新育成シナリオ開幕 サポートカードガチャ",
@@ -2822,6 +2822,7 @@
    "related": "SSR [ゆるり、ゆこま旅館]保科健子,SSR [天才的ユートピア]トウカイテイオー,R [ゆこま旅館女将]保科健子",
    "banner_img": "https://pbs.twimg.com/media/G4ZX8sAasAI5wmS.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     71,
     2,
@@ -2849,8 +2850,7 @@
    "agents": [
     "Tokai Teio"
    ],
-   "en": "Tokai Teio",
-   "ongoing": false
+   "en": "Tokai Teio"
   },
   {
    "name": "新育成シナリオ開幕 プリティーダービーガチャ",
@@ -2865,6 +2865,7 @@
    "related": "★3[宵闇ネオカグラ]トランセンド",
    "banner_img": "https://pbs.twimg.com/media/G4ZXGtOasAQMdE-.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     71,
     2,
@@ -2892,8 +2893,7 @@
    "agents": [
     "Transcend"
    ],
-   "en": "Transcend",
-   "ongoing": false
+   "en": "Transcend"
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -2908,6 +2908,7 @@
    "related": "★3[柔灯・湯の香の装い]ワンダーアキュート/SSR [無機の闘志]ミホノブルボン,SR [続け故郷へ、けっぱり道！]ホッコータルマエ",
    "banner_img": "https://pbs.twimg.com/media/G5XJ9yfakAA54JZ.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     27,
     2,
@@ -2925,8 +2926,7 @@
     "Mihono Bourbon",
     "Hokko Tarumae"
    ],
-   "en": "Wonder Acute & Mihono Bourbon & Hokko Tarumae",
-   "ongoing": false
+   "en": "Wonder Acute & Mihono Bourbon & Hokko Tarumae"
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・セレクトピックアップ サポートカードガチャ",
@@ -2941,6 +2941,7 @@
    "related": "★3[Heroína Inocente]ブエナビスタ/SSRアーモンドアイ,SSRラインクラフト.SSRメジロアルダン,SSRエスポワールシチー,SSRトランセンド,SSRデアリングタクト,SSRシンボリルドルフ,SSRダイワスカーレット,SSRイクノディクタス,SSRコパノリッキー",
    "banner_img": "https://pbs.twimg.com/media/G6Fge6yaoAEo8LC.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     23,
     1,
@@ -2956,8 +2957,7 @@
    "agents": [
     "Buena Vista"
    ],
-   "en": "Buena Vista",
-   "ongoing": false
+   "en": "Buena Vista"
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -2972,6 +2972,7 @@
    "related": "★3[祝祭遊戯]ナカヤマフェスタ,★3 [雪白の夢路]ドリームジャーニー/SSR [激録！爆走トナカイ事件]ゴールドシップ,SSR [ぬくもりのノエル]フェノーメノ,R [トレセン学園]フェノーメノ",
    "banner_img": "https://pbs.twimg.com/media/G6z3An5aAAEO4Es.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     28,
     15,
@@ -2993,8 +2994,7 @@
     "Dream Journey",
     "Gold Ship"
    ],
-   "en": "Nakayama Festa & Dream Journey & Gold Ship",
-   "ongoing": false
+   "en": "Nakayama Festa & Dream Journey & Gold Ship"
   },
   {
    "name": "イナリワン登場! ピックアップサポートカードガチャ",
@@ -3009,6 +3009,7 @@
    "related": "SSR [故郷に錦を飾るんでい！]イナリワン,SR [ぬくもりフォー・ユー]メジロドーベル",
    "banner_img": "https://pbs.twimg.com/media/G721AGsaMAEKgsT.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     59,
     2,
@@ -3044,8 +3045,7 @@
     "Inari One",
     "Mejiro Dober"
    ],
-   "en": "Inari One & Mejiro Dober",
-   "ongoing": false
+   "en": "Inari One & Mejiro Dober"
   },
   {
    "name": "新衣装オグリキャップ登場! プレミアム プリティーダービーガチャ",
@@ -3060,6 +3060,7 @@
    "related": "★3[シンデレラグレイ]オグリキャップ",
    "banner_img": "https://pbs.twimg.com/media/G720PdBbAAAnXsk.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     59,
     2,
@@ -3094,8 +3095,7 @@
    "agents": [
     "Oguri Cap"
    ],
-   "en": "Oguri Cap",
-   "ongoing": false
+   "en": "Oguri Cap"
   },
   {
    "name": "クリスマス特別セレクトピックアップ サポートカードガチャ",
@@ -3110,6 +3110,7 @@
    "related": "SSRアーモンドアイ,SSRラインクラフト,SSRドリームジャーニー,SSRエアシャカール,SSRメジロブライト,SSRタマモクロス,SSRデアリングタクト,SSRダイワスカーレット,SSRデアリングハート,SSRイクノディクタス",
    "banner_img": "https://pbs.twimg.com/media/G8r6TQ_bkAAeZ8_.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     37,
     43,
@@ -3142,8 +3143,7 @@
     44,
     36
    ],
-   "agents": [],
-   "ongoing": false
+   "agents": []
   },
   {
    "name": "ステイゴールド登場! プレミアム プリティーダービーガチャ",
@@ -3158,6 +3158,7 @@
    "related": "★[Sunlit Outsider]ステイゴールド",
    "banner_img": "https://pbs.twimg.com/media/G8r6Py0boAAo1E1.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     37,
     43,
@@ -3193,8 +3194,7 @@
    "agents": [
     "Stay Gold"
    ],
-   "en": "Stay Gold",
-   "ongoing": false
+   "en": "Stay Gold"
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -3209,6 +3209,7 @@
    "related": "★3[逍遥、整然たる路を]イクノディクタス,★3[Nouvelle pousse]サクラローレル/SSR[心覚えし、京の華]エアグルーヴ,SSR[ゆかし、きらめきの旅路]ファインモーション",
    "banner_img": "https://pbs.twimg.com/media/G9EEoh6b0AAzeVF.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     23,
     9,
@@ -3230,8 +3231,7 @@
     "Sakura Laurel",
     "Air Groove"
    ],
-   "en": "Ikuno Dictus & Sakura Laurel & Air Groove",
-   "ongoing": false
+   "en": "Ikuno Dictus & Sakura Laurel & Air Groove"
   },
   {
    "name": "ジェンティルドンナ リバイバルピックアップ プリティーダービーガチャ/オルフェーヴル リバイバルピックアップ プリティーダービーガチャ",
@@ -3239,13 +3239,14 @@
    "end": "2026-01-19",
    "rev": 2.92,
    "yrank": 12,
-   "ytot": 19,
+   "ytot": 20,
    "cum": 163,
    "cumtot": 214,
    "year": 2026,
    "related": "★3[Regina dei fiori]ジェンティルドンナ,★3[総攬]オルフェーヴル",
    "banner_img": "https://pbs.twimg.com/media/G9EGhLaaAAAZbDc.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     30,
     9,
@@ -3271,8 +3272,7 @@
     "Gentildonna",
     "Orfevre"
    ],
-   "en": "Gentildonna & Orfevre",
-   "ongoing": false
+   "en": "Gentildonna & Orfevre"
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・セレクトピックアップ サポートカードガチャ",
@@ -3280,13 +3280,14 @@
    "end": "2026-01-30",
    "rev": 3.17,
    "yrank": 11,
-   "ytot": 19,
+   "ytot": 20,
    "cum": 158,
    "cumtot": 214,
    "year": 2026,
    "related": "★3[Miracle Author]キセキ/SSRアーモンドアイ,SSRラインクラフト,SSRドリームジャーニー,SSRエアシャカール,SSRタマモクロス,SSRフジキセキ,SSRウインバリアシオン,SSRデアリングタクト,SSRダイワスカーレット,SSRデアリングハート",
    "banner_img": "https://pbs.twimg.com/media/G-_qS35aQAA4AU1.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     36,
     10,
@@ -3304,8 +3305,7 @@
    "agents": [
     "Kiseki"
    ],
-   "en": "Kiseki",
-   "ongoing": false
+   "en": "Kiseki"
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -3313,13 +3313,14 @@
    "end": "2026-02-14",
    "rev": 2.9,
    "yrank": 13,
-   "ytot": 19,
+   "ytot": 20,
    "cum": 164,
    "cumtot": 214,
    "year": 2026,
    "related": "★3 [Baa Baa Patisserie]タイキシャトル ,★3 [ソナタ・アッラ・メンタ]サウンズオブアース/SSR [吉兆招福チョコ来たる]マチカネフクキタル,SSR [星跨ぐメッセージ]ネオユニヴァース",
    "banner_img": "https://pbs.twimg.com/media/G_zTkizbYAAFAt0.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     58,
     31,
@@ -3343,8 +3344,7 @@
     "Matikanefukukitaru",
     "Neo Universe"
    ],
-   "en": "Sounds of Earth & Matikanefukukitaru & Neo Universe",
-   "ongoing": false
+   "en": "Sounds of Earth & Matikanefukukitaru & Neo Universe"
   },
   {
    "name": "5th Anniv.セレクトピックアップ サポートカードガチャ",
@@ -3352,13 +3352,14 @@
    "end": "2026-02-24",
    "rev": 2.27,
    "yrank": 17,
-   "ytot": 19,
+   "ytot": 20,
    "cum": 178,
    "cumtot": 214,
    "year": 2026,
    "related": "★2[Inspiring Genius]ロイスアンドロイス/SSRアーモンドアイ,SSRアドマイヤグルーヴ,SSRラインクラフト,SSRドリームジャーニー,SSRエアシャカール,SSRタマモクロス,SSRステイゴールド,SSRフジキセキ,SSRデアリングタクト,SSRデュランダル",
    "banner_img": "https://pbs.twimg.com/media/HBFivQ0bYAA74OP.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     143,
     40,
@@ -3375,8 +3376,7 @@
    "agents": [
     "Royce and Royce"
    ],
-   "en": "Royce and Royce",
-   "ongoing": false
+   "en": "Royce and Royce"
   },
   {
    "name": "5th Anniv. サポートカードガチャ",
@@ -3384,13 +3384,14 @@
    "end": "2026-02-25",
    "rev": 2.89,
    "yrank": 14,
-   "ytot": 19,
+   "ytot": 20,
    "cum": 165,
    "cumtot": 214,
    "year": 2026,
    "related": "SSR [Innovator]フォーエバーヤング,SSR[American Dream]カジノドライヴ,SR[Fervent Yearning]レッドディザイア,SR[Sushi-Go-Round!]タイキシャトル,R [トレセン学園]フォーエバーヤング,R [『DREAMS』責任者]カジノドライヴ ,R トレセン学園]レッドディザイア,R[トレセン学園]ヴィクトワールピサ",
    "banner_img": "https://pbs.twimg.com/media/HB5DpCOaQAEXUKI.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     45,
     1
@@ -3400,8 +3401,7 @@
     "Casino Drive",
     "Red Desire"
    ],
-   "en": "Forever Young & Casino Drive & Red Desire",
-   "ongoing": false
+   "en": "Forever Young & Casino Drive & Red Desire"
   },
   {
    "name": "5th Anniv. プレミアム プリティーダービーガチャ",
@@ -3409,13 +3409,14 @@
    "end": "2026-03-30",
    "rev": 39.77,
    "yrank": 1,
-   "ytot": 19,
+   "ytot": 20,
    "cum": 18,
    "cumtot": 214,
    "year": 2026,
    "related": "★3[The Changer]アーモンドアイ",
    "banner_img": "https://pbs.twimg.com/media/HB5CvOVaAAELyjt.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     45,
     1,
@@ -3456,8 +3457,7 @@
    "agents": [
     "Almond Eye"
    ],
-   "en": "Almond Eye",
-   "ongoing": false
+   "en": "Almond Eye"
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -3465,13 +3465,14 @@
    "end": "2026-03-19",
    "rev": 3.63,
    "yrank": 8,
-   "ytot": 19,
+   "ytot": 20,
    "cum": 147,
    "cumtot": 214,
    "year": 2026,
    "related": "★3[Love-Linked Aster]ラヴズオンリーユー/SSR [響け、二人の凱歌]マルシュロレーヌ,SR [温もりの一皿、召し上がれ♪]スーパークリーク,R [トレセン学園]マルシュロレーヌ",
    "banner_img": "https://pbs.twimg.com/media/HDGStzpaMAAeRCY.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     1,
     4,
@@ -3487,8 +3488,7 @@
     "Marche Lorraine",
     "Super Creek"
    ],
-   "en": "Loves Only You & Marche Lorraine & Super Creek",
-   "ongoing": false
+   "en": "Loves Only You & Marche Lorraine & Super Creek"
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・5th Anniv.セレクトピックアップ サポートカードガチャ",
@@ -3496,13 +3496,14 @@
    "end": "2026-03-30",
    "rev": 5.55,
    "yrank": 4,
-   "ytot": 19,
+   "ytot": 20,
    "cum": 128,
    "cumtot": 214,
    "year": 2026,
    "related": "★3[Lueur Angélique]ヴィクトワールピサ/SSRトウカイテイオー,SSRアドマイヤグルーヴ,SSRドリームジャーニー,SSRカルストンライトオ,SSRフェノーメノ,SSRカレンブーケドール,SSRファインモーション,SSRタマモクロス,SSRミホノブルボン,SSRステイゴールド",
    "banner_img": "https://pbs.twimg.com/media/HDvfZrxbIAA_eUg.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     19,
     2,
@@ -3520,8 +3521,7 @@
    "agents": [
     "Victoire Pisa"
    ],
-   "en": "Victoire Pisa",
-   "ongoing": false
+   "en": "Victoire Pisa"
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -3529,13 +3529,14 @@
    "end": "2026-04-10",
    "rev": 3.35,
    "yrank": 10,
-   "ytot": 19,
+   "ytot": 20,
    "cum": 155,
    "cumtot": 214,
    "year": 2026,
    "related": "★3[春雷の韋駄天]サクラバクシンオー,★3[水縹の一閃]ノースフライト/SSR[白に至る純真]デアリングタクト,SSR[白に至る覚悟]デアリングハート",
    "banner_img": "https://pbs.twimg.com/media/HEoI1S_aIAAXORt.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     13,
     10,
@@ -3555,8 +3556,7 @@
     "North Flight",
     "Daring Tact"
    ],
-   "en": "Sakura Bakushin O & North Flight & Daring Tact",
-   "ongoing": false
+   "en": "Sakura Bakushin O & North Flight & Daring Tact"
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -3564,13 +3564,14 @@
    "end": "2026-04-20",
    "rev": 2.7,
    "yrank": 15,
-   "ytot": 19,
+   "ytot": 20,
    "cum": 170,
    "cumtot": 214,
    "year": 2026,
    "related": "★3[万折不撓の纏]ラッキーライラック/SSR [単焦点でつかまえて]アストンマーチャン,SR [そびえ立つ背中]ヒシアマゾン",
    "banner_img": "https://pbs.twimg.com/media/HFgyu0_bYAAGX9B.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     92,
     12,
@@ -3589,8 +3590,7 @@
     "Aston Machan",
     "Hishi Amazon"
    ],
-   "en": "Lucky Lilac & Aston Machan & Hishi Amazon",
-   "ongoing": false
+   "en": "Lucky Lilac & Aston Machan & Hishi Amazon"
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・セレクトピックアップ サポートカードガチャ",
@@ -3598,13 +3598,14 @@
    "end": "2026-04-30",
    "rev": 3.37,
    "yrank": 9,
-   "ytot": 19,
+   "ytot": 20,
    "cum": 153,
    "cumtot": 214,
    "year": 2026,
    "related": "★3[Glacial Queen]アドマイヤグルーヴ/SSRトウカイテイオー,SSRアーモンドアイ,SSRエイシンフラッシュ,SSRドリームジャーニー,SSRカルストンライトオ,SSRカレンブーケドール,SSRミホノブルボン,SSRタマモクロス,SSRステイゴールド,SSRダイイチルビー",
    "banner_img": "https://pbs.twimg.com/media/HGUSZusbkAAv-iw.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     29,
     8,
@@ -3621,8 +3622,7 @@
    "agents": [
     "Admire Groove"
    ],
-   "en": "Admire Groove",
-   "ongoing": false
+   "en": "Admire Groove"
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -3630,13 +3630,14 @@
    "end": "2026-05-11",
    "rev": 5.46,
    "yrank": 5,
-   "ytot": 19,
+   "ytot": 20,
    "cum": 129,
    "cumtot": 214,
    "year": 2026,
    "related": "★3[ヴァーミリオン・ヘッド]ジャングルポケット,★3[ブランシュ・エトワール]フジキセキ/SSR [全てに挑む勇ましき者]アグネスデジタル,SSR [刀光散らしてClash！]タップダンスシチー",
    "banner_img": "https://pbs.twimg.com/media/HHHx_Lua0AAegcu.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     60,
     12,
@@ -3656,8 +3657,7 @@
     "Fuji Kiseki",
     "Agnes Digital"
    ],
-   "en": "Jungle Pocket & Fuji Kiseki & Agnes Digital",
-   "ongoing": false
+   "en": "Jungle Pocket & Fuji Kiseki & Agnes Digital"
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -3665,13 +3665,14 @@
    "end": "2026-05-20",
    "rev": 1.9,
    "yrank": 18,
-   "ytot": 19,
+   "ytot": 20,
    "cum": 189,
    "cumtot": 214,
    "year": 2026,
    "related": "★3[Daring Darling!]デアリングハート/SSR [賑やかな未来を乗せて走れ！]サクラチヨノオー,SR [夕映えに身をゆだねて]メジロアルダン",
    "banner_img": "https://pbs.twimg.com/media/HIAbYjvbQAAr2Ql.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     35,
     19,
@@ -3689,8 +3690,7 @@
     "Sakura Chiyono O",
     "Mejiro Ardan"
    ],
-   "en": "Daring Heart & Sakura Chiyono O & Mejiro Ardan",
-   "ongoing": false
+   "en": "Daring Heart & Sakura Chiyono O & Mejiro Ardan"
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・セレクトピックアップ サポートカードガチャ",
@@ -3698,13 +3698,14 @@
    "end": "2026-05-29",
    "rev": 2.55,
    "yrank": 16,
-   "ytot": 19,
+   "ytot": 20,
    "cum": 171,
    "cumtot": 214,
    "year": 2026,
    "related": "★3[Divine Raiment]レッドディザイア/SSRトウカイテイオー,SSRエイシンフラッシュ,SSRアドマイヤグルーヴ.SSRカルストンライトオ,SSRフェノーメノ,SSRドゥラメンテ,SSRネオユニヴァース,SSRミホノブルボン,SSRタマモクロス,SSRステイゴールド",
    "banner_img": "https://pbs.twimg.com/media/HIuxx3JbYAE64Vv.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     28,
     11,
@@ -3720,8 +3721,7 @@
    "agents": [
     "Red Desire"
    ],
-   "en": "Red Desire",
-   "ongoing": false
+   "en": "Red Desire"
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
@@ -3729,13 +3729,14 @@
    "end": "2026-06-15",
    "rev": 4.16,
    "yrank": 6,
-   "ytot": 19,
+   "ytot": 20,
    "cum": 135,
    "cumtot": 214,
    "year": 2026,
    "related": "★3[幽玄薔薇]マンハッタンカフェ,★3 [La dama perfetta]ジェンティルドンナ/SSR [スマイル・エバーアフター]グランアレグリア,SSR [永久の誓い、永久の輝き]サトノダイヤモンド",
    "banner_img": "https://pbs.twimg.com/media/HJdIOApaAAAw_Y4.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     62,
     10,
@@ -3761,8 +3762,7 @@
     "Gentildonna",
     "Gran Alegria"
    ],
-   "en": "Manhattan Cafe & Gentildonna & Gran Alegria",
-   "ongoing": false
+   "en": "Manhattan Cafe & Gentildonna & Gran Alegria"
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・セレクトピックアップ サポートカードガチャ",
@@ -3770,13 +3770,14 @@
    "end": "2026-06-29",
    "rev": 3.9,
    "yrank": 7,
-   "ytot": 19,
+   "ytot": 20,
    "cum": 138,
    "cumtot": 214,
    "year": 2026,
    "related": "★3 [花宿しのクチュール]カレンブーケドール/SSRエアグルーヴ,SSRトウカイテイオー,SSRマチカネフクキタル,SSRエイシンフラッシュ,SSRアドマイヤグルーヴ,SSRフェノーメノ,SSRイナリワン,SSRネオユニヴァース,SSRファインモーション,SSRステイゴールド",
    "banner_img": "https://pbs.twimg.com/media/HK0rNC1bMAAoUZk.jpg",
    "rerun": false,
+   "ongoing": false,
    "rank_series": [
     85,
     15,
@@ -3797,8 +3798,7 @@
    "agents": [
     "Curren Bouquetd'or"
    ],
-   "en": "Curren Bouquetd'or",
-   "ongoing": false
+   "en": "Curren Bouquetd'or"
   },
   {
    "name": "新育成シナリオ開幕 サポートカードガチャ",
@@ -3806,13 +3806,14 @@
    "end": "2026-07-21",
    "rev": 5.72,
    "yrank": 3,
-   "ytot": 19,
+   "ytot": 20,
    "cum": 122,
    "cumtot": 214,
    "year": 2026,
    "related": "SSR [その執念は怒濤が如く]メイショウドトウ,SSR [一杯のノスタルジア]駿川たづな",
    "banner_img": "https://pbs.twimg.com/media/HL8xuWUacAA4iZ3.jpg",
    "rerun": false,
+   "ongoing": true,
    "rank_series": [
     83,
     2,
@@ -3839,8 +3840,7 @@
     "Meisho Doto",
     "Tazuna Hayakawa"
    ],
-   "en": "Meisho Doto & Tazuna Hayakawa",
-   "ongoing": true
+   "en": "Meisho Doto & Tazuna Hayakawa"
   },
   {
    "name": "新育成シナリオ開幕 プリティーダービーガチャ",
@@ -3848,13 +3848,14 @@
    "end": "2026-07-21",
    "rev": 5.72,
    "yrank": 2,
-   "ytot": 19,
+   "ytot": 20,
    "cum": 121,
    "cumtot": 214,
    "year": 2026,
    "related": "★3 [万福龍湯伝・頂]ナリタトップロード",
    "banner_img": "https://pbs.twimg.com/media/HL8xZ1HbkAAGKMl.jpg",
    "rerun": false,
+   "ongoing": true,
    "rank_series": [
     83,
     2,
@@ -3880,8 +3881,7 @@
    "agents": [
     "Narita Top Road"
    ],
-   "en": "Narita Top Road",
-   "ongoing": true
+   "en": "Narita Top Road"
   }
  ]
 }
