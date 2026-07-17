@@ -4,13 +4,13 @@
  "jp": "アークナイツ",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E3%82%A2%E3%83%BC%E3%82%AF%E3%83%8A%E3%82%A4%E3%83%84",
- "updated": "2026-07-16T11:42:14Z",
+ "updated": "2026-07-17T18:56:53Z",
  "count": 36,
  "now": {
-  "ios": 26,
-  "android": 45,
-  "month": 153,
-  "next_add": 45774167,
+  "ios": 10,
+  "android": 4,
+  "month": 63,
+  "next_add": 86514952,
   "ym": "2026/07",
   "ranks": {
    "prev": [
@@ -63,8 +63,8 @@
     167,
     167,
     144,
-    null,
-    null,
+    7,
+    10,
     null,
     null,
     null,
@@ -95,6 +95,23 @@
    "related": "星6：エーベンホルツ 星5：濯塵ハイビスカス 星5：アズリウス\n2023年へ",
    "banner_img": "https://pbs.twimg.com/media/GC5klj2bMAAqqCD.jpg",
    "rerun": true,
+   "rank_series": [
+    164,
+    103,
+    132,
+    151,
+    177,
+    197,
+    null,
+    null,
+    null,
+    157,
+    117,
+    81,
+    2,
+    3,
+    8
+   ],
    "agents": [
     "Ebenholz"
    ],
@@ -113,6 +130,23 @@
    "related": "星6：純燼エイヤフィヤトラ（限定） 星6：琳琅スワイヤー 星5：ポンシラス",
    "banner_img": "https://pbs.twimg.com/media/GD3eirHaQAA4vCp.jpg",
    "rerun": false,
+   "rank_series": [
+    81,
+    2,
+    3,
+    8,
+    11,
+    21,
+    28,
+    36,
+    42,
+    53,
+    44,
+    45,
+    46,
+    41,
+    30
+   ],
    "agents": [
     "Eyjafjalla the Hvít Aska",
     "Swire the Elegant Wit"
@@ -132,6 +166,23 @@
    "related": "星6：ティフォン 星5：サンタラ",
    "banner_img": "https://pbs.twimg.com/media/GHPc0oRbAAAZKyR.jpg",
    "rerun": false,
+   "rank_series": [
+    165,
+    13,
+    13,
+    39,
+    53,
+    65,
+    78,
+    98,
+    64,
+    63,
+    79,
+    98,
+    99,
+    103,
+    101
+   ],
    "agents": [
     "Typhon"
    ],
@@ -150,6 +201,23 @@
    "related": "星6：滌火ジェシカ 星5：アーモンド",
    "banner_img": "https://pbs.twimg.com/media/GI7mE4lbgAEI2mL.jpg",
    "rerun": false,
+   "rank_series": [
+    132,
+    21,
+    32,
+    61,
+    100,
+    124,
+    130,
+    125,
+    117,
+    125,
+    142,
+    120,
+    143,
+    163,
+    142
+   ],
    "agents": [
     "Jessica the Liberated"
    ],
@@ -168,6 +236,23 @@
    "related": "星6：ヘドリー 星5：ヴァンデラ 星4：ヴァーダント",
    "banner_img": "https://pbs.twimg.com/media/GLLyo1Za0AA8mvy.jpg",
    "rerun": false,
+   "rank_series": [
+    null,
+    30,
+    51,
+    75,
+    129,
+    148,
+    168,
+    null,
+    138,
+    138,
+    169,
+    130,
+    144,
+    121,
+    107
+   ],
    "agents": [
     "Hoederer"
    ],
@@ -186,6 +271,24 @@
    "related": "星6：ヴィルトゥオーサ（限定） 星6：ヴィヴィアナ 星5：ベースライン",
    "banner_img": "https://pbs.twimg.com/media/GMUNcX-bMAA7RF4.jpg",
    "rerun": false,
+   "rank_series": [
+    107,
+    1,
+    5,
+    14,
+    15,
+    24,
+    26,
+    33,
+    35,
+    46,
+    53,
+    45,
+    40,
+    40,
+    36,
+    55
+   ],
    "agents": [
     "Virtuosa",
     "Viviana"
@@ -205,6 +308,23 @@
    "related": "星6：デーゲンブレヒャー 星5：リェータ",
    "banner_img": "https://pbs.twimg.com/media/GQgAIwgaIAEfw9C.jpg",
    "rerun": false,
+   "rank_series": [
+    null,
+    21,
+    30,
+    57,
+    95,
+    116,
+    136,
+    168,
+    198,
+    177,
+    185,
+    144,
+    80,
+    102,
+    125
+   ],
    "agents": [
     "Degenbrecher"
    ],
@@ -223,6 +343,23 @@
    "related": "星6：レイ 星5：ウォーミー",
    "banner_img": "https://pbs.twimg.com/media/GR8mCDBbcAAMXa6.jpg",
    "rerun": false,
+   "rank_series": [
+    null,
+    27,
+    45,
+    84,
+    130,
+    147,
+    161,
+    153,
+    165,
+    null,
+    null,
+    166,
+    171,
+    190,
+    null
+   ],
    "agents": [
     "Ray"
    ],
@@ -241,6 +378,23 @@
    "related": "星6：シュウ（限定） 星6：ズオ・ラウ 星5：グレインバッズ",
    "banner_img": "https://pbs.twimg.com/media/GTuG3WnbEAEbZv0.jpg",
    "rerun": false,
+   "rank_series": [
+    193,
+    2,
+    9,
+    14,
+    23,
+    31,
+    37,
+    45,
+    56,
+    62,
+    63,
+    54,
+    53,
+    52,
+    37
+   ],
    "agents": [
     "Shu",
     "Zuo Le"
@@ -260,6 +414,23 @@
    "related": "星6：焔影リード 星5：ハーモニー 星5：スカイフレア",
    "banner_img": "https://pbs.twimg.com/media/GVaQVyEaMAAOqEb.jpg",
    "rerun": true,
+   "rank_series": [
+    144,
+    91,
+    100,
+    111,
+    115,
+    113,
+    107,
+    95,
+    125,
+    193,
+    null,
+    196,
+    159,
+    179,
+    197
+   ],
    "agents": [
     "Reed the Flame Shadow"
    ],
@@ -278,6 +449,23 @@
    "related": "星6：Ela（限定） 星5：Doc 星5：Iana",
    "banner_img": "https://pbs.twimg.com/media/GWnSJvxW8AAEGLU.jpg",
    "rerun": false,
+   "rank_series": [
+    null,
+    10,
+    13,
+    32,
+    56,
+    73,
+    70,
+    92,
+    82,
+    65,
+    76,
+    89,
+    93,
+    103,
+    102
+   ],
    "agents": [
     "Ela"
    ],
@@ -296,6 +484,23 @@
    "related": "星6：ASH（限定） 星5：BLITZ 星5：FROST",
    "banner_img": "https://pbs.twimg.com/media/GXqBJUkb0AAwLb0.jpg",
    "rerun": true,
+   "rank_series": [
+    102,
+    30,
+    52,
+    76,
+    94,
+    105,
+    117,
+    120,
+    76,
+    72,
+    81,
+    93,
+    126,
+    98,
+    94
+   ],
    "agents": []
   },
   {
@@ -311,6 +516,23 @@
    "related": "星6：アスカロン 星5：アロマ 星4：ルトナダ",
    "banner_img": "https://pbs.twimg.com/media/GZbomzYasAMBfsH.jpg",
    "rerun": false,
+   "rank_series": [
+    165,
+    20,
+    25,
+    50,
+    79,
+    104,
+    119,
+    146,
+    172,
+    110,
+    134,
+    154,
+    175,
+    159,
+    170
+   ],
    "agents": [
     "Ascalon"
    ],
@@ -329,6 +551,23 @@
    "related": "星6：ウィシャデル（限定） 星6：ロゴス 星5：歴陣鋭槍フェン",
    "banner_img": "https://pbs.twimg.com/media/GbHyCE4bQAAmZ-k.jpg",
    "rerun": false,
+   "rank_series": [
+    146,
+    2,
+    4,
+    11,
+    17,
+    21,
+    22,
+    30,
+    38,
+    36,
+    35,
+    34,
+    29,
+    32,
+    23
+   ],
    "agents": [
     "Wiš'adel",
     "Logos"
@@ -348,6 +587,23 @@
    "related": "星6：ウルピアヌス 星5：ルシーラ",
    "banner_img": "https://pbs.twimg.com/media/GdxnokYagAAlqUX.jpg",
    "rerun": false,
+   "rank_series": [
+    185,
+    17,
+    22,
+    42,
+    69,
+    87,
+    107,
+    125,
+    144,
+    159,
+    175,
+    184,
+    172,
+    165,
+    152
+   ],
    "agents": [
     "Ulpianus"
    ],
@@ -366,6 +622,23 @@
    "related": "星6：聖約イグゼキュター 星5：スプリア 星5：カンタービレ",
    "banner_img": "https://pbs.twimg.com/media/Gfd_UI0aYAA8VsV.jpg",
    "rerun": true,
+   "rank_series": [
+    137,
+    89,
+    118,
+    164,
+    185,
+    176,
+    181,
+    173,
+    167,
+    163,
+    162,
+    138,
+    171,
+    200,
+    null
+   ],
    "agents": [
     "Executor the Ex Foedere"
    ],
@@ -384,6 +657,23 @@
    "related": "星6：ペペ（限定） 星6：ナラントゥヤ 星5：サンドレコナー\n2024年へ",
    "banner_img": "https://pbs.twimg.com/media/GhUNmwPacAEjtyj.jpg",
    "rerun": false,
+   "rank_series": [
+    141,
+    4,
+    9,
+    14,
+    23,
+    33,
+    48,
+    58,
+    68,
+    68,
+    69,
+    66,
+    75,
+    74,
+    53
+   ],
    "agents": [
     "Pepe",
     "Narantuya"
@@ -403,6 +693,23 @@
    "related": "星6：ニンフ 星5：ミトム",
    "banner_img": "https://pbs.twimg.com/media/GjFgoqobIAMwe7x.jpg",
    "rerun": false,
+   "rank_series": [
+    135,
+    18,
+    21,
+    40,
+    62,
+    63,
+    80,
+    105,
+    63,
+    61,
+    67,
+    84,
+    88,
+    96,
+    111
+   ],
    "agents": [
     "Nymph"
    ],
@@ -421,6 +728,23 @@
    "related": "星6：滌火ジェシカ 星5：アーモンド",
    "banner_img": "https://pbs.twimg.com/media/GI7mE4lbgAEI2mL.jpg",
    "rerun": true,
+   "rank_series": [
+    100,
+    108,
+    126,
+    141,
+    163,
+    186,
+    null,
+    null,
+    null,
+    null,
+    null,
+    13,
+    13,
+    25,
+    53
+   ],
    "agents": [
     "Jessica the Liberated"
    ],
@@ -439,6 +763,23 @@
    "related": "★6 マルシル（期間限定）  ★5 ライオス（期間限定）  ★5 チルチャック（期間限定）",
    "banner_img": "https://webusstatic.yo-star.com/uy0news/aj/2ef1662b4be1e1affa1b05e10482a826.png",
    "rerun": false,
+   "rank_series": [
+    null,
+    13,
+    13,
+    25,
+    53,
+    82,
+    99,
+    100,
+    89,
+    104,
+    118,
+    117,
+    131,
+    116,
+    103
+   ],
    "agents": [
     "Marcille"
    ],
@@ -457,6 +798,23 @@
    "related": "★6 ヴィーナ・ヴィクトリア  ★5 ボビング  ★5 ルシーラ",
    "banner_img": "https://webusstatic.yo-star.com/uy0news/aj/2ec5808da3ac4862e112c22912a2a126.png",
    "rerun": false,
+   "rank_series": [
+    122,
+    33,
+    31,
+    68,
+    105,
+    128,
+    144,
+    165,
+    173,
+    null,
+    null,
+    null,
+    199,
+    174,
+    174
+   ],
    "agents": [
     "Vina Victoria"
    ],
@@ -475,6 +833,23 @@
    "related": "★6 荒蕪ラップランド（期間限定）  ★6 ウルピスフォリア  ★5 フィグリーノ",
    "banner_img": "https://webusstatic.yo-star.com/uy0news/aj/da92f1ee3219133b37a7b610e6bcd577.png",
    "rerun": false,
+   "rank_series": [
+    null,
+    5,
+    3,
+    9,
+    15,
+    28,
+    36,
+    46,
+    41,
+    47,
+    50,
+    50,
+    49,
+    44,
+    39
+   ],
    "agents": [
     "Lappland the Decadenza",
     "Vulpisfoglia"
@@ -494,6 +869,23 @@
    "related": "★6 ユー（期間限定）  ★6 熾炎ブレイズ  ★5 サーファー",
    "banner_img": "https://webusstatic.yo-star.com/uy0news/aj/0c5f62972e164a8cf786eb779884a40d.png",
    "rerun": false,
+   "rank_series": [
+    null,
+    null,
+    9,
+    17,
+    29,
+    38,
+    51,
+    65,
+    75,
+    72,
+    63,
+    64,
+    58,
+    58,
+    49
+   ],
    "agents": [
     "Yu",
     "Blaze the Igniting Spark"
@@ -513,6 +905,23 @@
    "related": "★6 エンテレケイア  ★5 ノウエル  ★5 サンタラ",
    "banner_img": "https://webusstatic.yo-star.com/web-cms-prod/upload/content/2025/07/31/vPK9DXcS.png",
    "rerun": false,
+   "rank_series": [
+    null,
+    56,
+    68,
+    93,
+    122,
+    132,
+    127,
+    139,
+    142,
+    181,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
    "agents": [
     "Entelechia"
    ],
@@ -531,6 +940,23 @@
    "related": "★6 ネクラス  ★5 ウルフェナイト  ★5 ミトム",
    "banner_img": "https://webusstatic.yo-star.com/web-cms-prod/upload/content/2025/08/22/eFBjAhvb.png",
    "rerun": false,
+   "rank_series": [
+    null,
+    52,
+    38,
+    70,
+    109,
+    115,
+    140,
+    178,
+    141,
+    107,
+    124,
+    133,
+    156,
+    166,
+    181
+   ],
    "agents": [
     "Necrass"
    ],
@@ -549,6 +975,23 @@
    "related": "★6 Mon3tr  ★5 アランナ  ★5 セメント  ★4 ウィンドスクート",
    "banner_img": "https://webusstatic.yo-star.com/web-cms-prod/upload/content/2025/09/09/BDhn11cH.png",
    "rerun": false,
+   "rank_series": [
+    184,
+    14,
+    14,
+    28,
+    58,
+    81,
+    88,
+    102,
+    103,
+    131,
+    157,
+    154,
+    151,
+    146,
+    132
+   ],
    "agents": [
     "Mon3tr"
    ],
@@ -567,6 +1010,23 @@
    "related": "★6 新約エクシア（期間限定）  ★6 レミュアン  ★5 グレースベアラー",
    "banner_img": "https://webusstatic.yo-star.com/web-cms-prod/upload/content/2025/10/07/AarjapmJ.png",
    "rerun": false,
+   "rank_series": [
+    168,
+    null,
+    1,
+    6,
+    10,
+    16,
+    22,
+    26,
+    29,
+    33,
+    40,
+    32,
+    32,
+    30,
+    24
+   ],
    "agents": [
     "Exusiai the New Covenant",
     "Lemuen"
@@ -586,6 +1046,23 @@
    "related": "★6 トラゴーディア  ★5 ティッピ  ★5 ロックロック",
    "banner_img": "https://webusstatic.yo-star.com/web-cms-prod/upload/content/2025/11/06/IcwDwF-U.png",
    "rerun": false,
+   "rank_series": [
+    155,
+    26,
+    35,
+    59,
+    75,
+    97,
+    121,
+    133,
+    138,
+    136,
+    142,
+    139,
+    130,
+    138,
+    161
+   ],
    "agents": [
     "Tragodia"
    ],
@@ -604,6 +1081,23 @@
    "related": "★6 司霆レイズ  ★5 レコードキーパー  ★5 ウォーミー",
    "banner_img": "https://webusstatic.yo-star.com/web-cms-prod/upload/content/2025/12/04/SLgNvkHH.png",
    "rerun": false,
+   "rank_series": [
+    null,
+    38,
+    45,
+    75,
+    99,
+    130,
+    149,
+    184,
+    127,
+    110,
+    123,
+    145,
+    185,
+    191,
+    82
+   ],
    "agents": []
   },
   {
@@ -619,6 +1113,23 @@
    "related": "★6 斬業ホシグマ（期間限定）  ★6 ハルカ  ★5 キチセイ\n2025年へ",
    "banner_img": "https://webusstatic.yo-star.com/web-cms-prod/upload/content/2026/01/09/8RbNF8NE.png",
    "rerun": false,
+   "rank_series": [
+    160,
+    6,
+    7,
+    13,
+    23,
+    35,
+    49,
+    74,
+    68,
+    71,
+    81,
+    89,
+    79,
+    78,
+    69
+   ],
    "agents": []
   },
   {
@@ -634,6 +1145,23 @@
    "related": "★6 豊川祥子（期間限定）  ★5 三角初華（期間限定）  ★5 若葉睦（期間限定）",
    "banner_img": "https://webusstatic.yo-star.com/web-cms-prod/upload/content/2026/01/09/ciZSi_S3.png",
    "rerun": false,
+   "rank_series": [
+    196,
+    10,
+    11,
+    22,
+    38,
+    61,
+    79,
+    88,
+    79,
+    89,
+    94,
+    104,
+    93,
+    89,
+    80
+   ],
    "agents": []
   },
   {
@@ -649,6 +1177,22 @@
    "related": "★6 ヴィーナ・ヴィクトリア  ★5 ボビング  ★5 濯塵ハイビスカス",
    "banner_img": "https://webusstatic.yo-star.com/web-cms-prod/upload/content/2026/02/13/X1bS2OFX.png",
    "rerun": true,
+   "rank_series": [
+    83,
+    129,
+    164,
+    180,
+    200,
+    158,
+    155,
+    173,
+    null,
+    null,
+    50,
+    43,
+    76,
+    110
+   ],
    "agents": [
     "Vina Victoria"
    ],
@@ -667,6 +1211,23 @@
    "related": "★6 マントラ★ 5 ヴェトチキ  ★5 ポンシラス  ★4 スネグーラチカ",
    "banner_img": "https://webusstatic.yo-star.com/web-cms-prod/upload/content/2026/03/12/nqwIsYw-.png",
    "rerun": false,
+   "rank_series": [
+    null,
+    59,
+    60,
+    94,
+    125,
+    157,
+    169,
+    181,
+    180,
+    189,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
    "agents": []
   },
   {
@@ -682,6 +1243,23 @@
    "related": "★6 凛御シルバーアッシュ（期間限定）  ★6 聖聆プラマニクス  ★5 スノーハンター",
    "banner_img": "https://webusstatic.yo-star.com/web-cms-prod/upload/content/2026/04/08/JaeueGgh.png",
    "rerun": false,
+   "rank_series": [
+    null,
+    1,
+    3,
+    12,
+    12,
+    24,
+    30,
+    40,
+    37,
+    48,
+    58,
+    49,
+    48,
+    42,
+    38
+   ],
    "agents": []
   },
   {
@@ -697,6 +1275,23 @@
    "related": "★6 ナスティ",
    "banner_img": "https://webusstatic.yo-star.com/web-cms-prod/upload/content/2026/05/13/FopgHbqj.png",
    "rerun": false,
+   "rank_series": [
+    null,
+    75,
+    81,
+    121,
+    156,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
    "agents": []
   },
   {
@@ -712,6 +1307,23 @@
    "related": "★6 ティティ",
    "banner_img": "https://webusstatic.yo-star.com/web-cms-prod/upload/content/2026/06/12/IsndEHPk.png",
    "rerun": false,
+   "rank_series": [
+    null,
+    81,
+    72,
+    130,
+    196,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    72,
+    77,
+    93
+   ],
    "agents": []
   }
  ]

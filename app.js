@@ -290,7 +290,8 @@ function render(){
   renderBars();
 }
 function buildTable(){
-  const rows=[...state.data.banners].sort((a,b)=>b.rev-a.rev).map(b=>`<tr>
+  state.data.banners.forEach((x,i)=>x._i=i);
+  const rows=[...state.data.banners].sort((a,b)=>b.rev-a.rev).map(b=>`<tr data-i="${b._i}"${b.rank_series&&b.rank_series.length?' class="clk"':''}>
     <td>#${b.cum}</td><td class="l">${esc(b.name)}</td>
     <td class="l" style="color:var(--muted)">${esc((b.agents||[]).join(", "))}</td>
     <td>${G(b.rev)}</td>
@@ -300,6 +301,10 @@ function buildTable(){
     <th class="l">Agent(s)</th><th>Revenue</th><th class="l">Period</th><th class="l">Yr rank</th></tr></thead>
     <tbody>${rows}</tbody></table>`;
 }
+$("#tablewrap").addEventListener("click",e=>{
+  const tr=e.target.closest("tr[data-i]"); if(!tr) return;
+  openBanner(state.data.banners[+tr.dataset.i]);
+});
 
 // ---- tooltip (works over bar rows AND graph dots — both carry data-i) ----
 const tip=$("#tip");
@@ -307,13 +312,15 @@ function showTip(b,e){
   const en=b.agents&&b.agents.length?b.agents.join(" & "):(b.related||"");
   const art=b.banner_img?`<img class="art" src="${b.banner_img}" alt="" referrerpolicy="no-referrer" onerror="this.remove()">`:"";
   const rr=b.rerun?` <span class="rr">↻ rerun</span>`:"";
+  const hint=(b.rank_series&&b.rank_series.length)
+    ? `<div class="tiphint">▸ Click to see daily rankings during the run</div>` : "";
   tip.innerHTML=`${art}<div class="body">
     <h4><span class="dot" style="background:${barColor(b)}"></span>${esc(b.name)}${rr}</h4>
     <div style="color:var(--muted);font-size:11.5px">${esc(en)}</div>
     <dl><dt>Period</dt><dd>${per(b.start)} – ${per(b.end)}</dd>
     <dt>Est. revenue</dt><dd><b>${G(b.rev)}</b></dd>
     <dt>All-time rank</dt><dd>#${b.cum} / ${b.cumtot}</dd>
-    <dt>${b.year} rank</dt><dd>#${b.yrank} / ${b.ytot}</dd></dl></div>`;
+    <dt>${b.year} rank</dt><dd>#${b.yrank} / ${b.ytot}</dd></dl>${hint}</div>`;
   tip.hidden=false;
   const pad=15,w=tip.offsetWidth,h=tip.offsetHeight;
   let x=e.clientX+pad,y=e.clientY+pad;
@@ -325,6 +332,84 @@ $("#chart").addEventListener("pointermove",e=>{
   showTip(state.data.banners[+el.dataset.i],e);
 });
 $("#chart").addEventListener("pointerleave",()=>tip.hidden=true);
+$("#chart").addEventListener("click",e=>{
+  const el=e.target.closest("[data-i]"); if(!el) return;
+  openBanner(state.data.banners[+el.dataset.i]);
+});
+
+// ---- banner detail modal (daily rank curve over the run) ----
+const bannerModal=$("#bannerModal");
+// A banner's daily iOS top-grossing rank, drawn with #1 at the top. Gaps in the
+// line are days the app sat below the trackable ~top 200 (game-i counts as ¥0).
+function rankCurveSVG(b){
+  const s=b.rank_series||[]; const n=s.length;
+  const known=s.map((v,i)=>[i,v]).filter(([,v])=>v!=null);
+  if(known.length<1) return "";
+  const worst=Math.max(...known.map(([,v])=>v));
+  const ymax = worst<=10?10 : worst<=20?20 : worst<=30?30 : worst<=50?50 : worst<=100?100 : 200;
+  const W=680,H=250,ML=38,MR=14,MT=16,MB=30, pW=W-ML-MR, pH=H-MT-MB;
+  const xOf=i=> n>1 ? ML+(i/(n-1))*pW : ML+pW/2;
+  const yOf=r=> MT+((r-1)/(ymax-1))*pH;                 // rank 1 at top
+  const gridR=[...new Set([1,Math.round(ymax/4),Math.round(ymax/2),Math.round(3*ymax/4),ymax])];
+  const grid=gridR.map(r=>{const y=yOf(r);
+    return `<line class="grid" x1="${ML}" y1="${y.toFixed(1)}" x2="${W-MR}" y2="${y.toFixed(1)}"/>`+
+      `<text class="axislbl" x="${ML-6}" y="${(y+3).toFixed(1)}" text-anchor="end">#${r}</text>`;}).join("");
+  const dayDate=i=>{const d=new Date(b.start+"T00:00:00"); d.setDate(d.getDate()+i);
+    return `${d.getMonth()+1}/${d.getDate()}`;};
+  const xIdx=[...new Set([0,Math.round((n-1)/3),Math.round(2*(n-1)/3),n-1])];
+  const xt=xIdx.map(i=>`<text class="axislbl" x="${xOf(i).toFixed(1)}" y="${H-8}" text-anchor="middle">${dayDate(i)}</text>`).join("");
+  // line broken across null gaps
+  let d="",pen=false;
+  s.forEach((v,i)=>{ if(v==null){pen=false;return;} const x=xOf(i),y=yOf(v);
+    d+=`${pen?"L":"M"}${x.toFixed(1)} ${y.toFixed(1)}`; pen=true; });
+  const dots=known.map(([i,v])=>`<circle class="rc-dot" cx="${xOf(i).toFixed(1)}" cy="${yOf(v).toFixed(1)}" r="3"><title>${dayDate(i)} · #${v}</title></circle>`).join("");
+  // mark the peak (best = lowest rank number)
+  const [pi,pv]=known.reduce((a,c)=>c[1]<a[1]?c:a);
+  const peak=`<circle class="rc-peak" cx="${xOf(pi).toFixed(1)}" cy="${yOf(pv).toFixed(1)}" r="5"/>`+
+    `<text class="rc-peaklbl" x="${xOf(pi).toFixed(1)}" y="${(yOf(pv)-9).toFixed(1)}" text-anchor="middle">peak #${pv}</text>`;
+  return `<svg class="rcsvg" viewBox="0 0 ${W} ${H}" role="img" style="--acc:${barColor(b)}">
+    ${grid}<path class="rc-line" d="${d}"/>${dots}${peak}${xt}</svg>`;
+}
+function openBanner(b){
+  const en=b.agents&&b.agents.length?b.agents.join(" & "):(b.related||"");
+  const rr=b.rerun?`<span class="rr">↻ rerun</span>`:"";
+  const art=(b.banner_img||(b.icons&&b.icons[0]))
+    ? `<img class="bm-art" src="${b.banner_img||b.icons[0]}" alt="" referrerpolicy="no-referrer" onerror="this.remove()">` : "";
+  const stats=[
+    ["Est. revenue", G(b.rev)],
+    ["All-time rank", `#${b.cum} / ${b.cumtot}`],
+    [`${b.year} rank`, `#${b.yrank} / ${b.ytot}`],
+    ["Run length", `${Math.round((Date.parse(b.end)-Date.parse(b.start))/864e5)+1} days`],
+  ].map(([l,v])=>`<div class="bm-stat"><span class="l">${l}</span><span class="v">${v}</span></div>`).join("");
+  const s=b.rank_series||[]; const known=s.filter(v=>v!=null);
+  let curve;
+  if(known.length){
+    const first=s.find(v=>v!=null), last=[...s].reverse().find(v=>v!=null), best=Math.min(...known);
+    const cap=`Opened at <b>#${first}</b>, peaked at <b>#${best}</b>, closed at <b>#${last}</b> on Japan's iOS top-grossing chart.`;
+    curve=`<h3>Daily iOS store rank during the run</h3>
+      <div class="bm-cap">${cap}</div>
+      ${rankCurveSVG(b)}
+      <p class="bm-note">#1 is the top of the chart. Breaks in the line are days the app sat below game-i's trackable ~top&nbsp;200 (counted as ¥0). Rank is snapshotted at midnight JST, so a launch day can read below-200 when the banner went live after the snapshot. iOS only — game-i keeps no daily Android history.</p>`;
+  } else {
+    curve=`<h3>Daily iOS store rank during the run</h3>
+      <p class="bm-note">No daily rank data for this run — the app stayed below game-i's trackable ~top&nbsp;200 throughout (counted as ¥0), or the run predates game-i's rank history.</p>`;
+  }
+  $("#bmBody").innerHTML=`
+    <div class="bm-head" style="--av-ring:${barColor(b)}">
+      ${art}
+      <div class="bm-htext">
+        <h2 id="bmTitle">${esc(b.name)} ${rr}</h2>
+        ${en?`<div class="bm-sub">${esc(en)}</div>`:""}
+        <div class="bm-period">${per(b.start)} – ${per(b.end)}</div>
+      </div>
+    </div>
+    <div class="bm-stats">${stats}</div>
+    ${curve}`;
+  tip.hidden=true;
+  bannerModal.hidden=false;
+}
+$("#bmClose").onclick=()=>{ bannerModal.hidden=true; };
+bannerModal.onclick=e=>{ if(e.target===bannerModal) bannerModal.hidden=true; };
 
 // ---- controls ----
 function updateDirLabel(){
@@ -357,6 +442,6 @@ const infoModal=$("#infoModal");
 $("#infoBtn").onclick=()=>{ infoModal.hidden=false; };
 $("#infoClose").onclick=()=>{ infoModal.hidden=true; };
 infoModal.onclick=e=>{ if(e.target===infoModal) infoModal.hidden=true; };
-addEventListener("keydown",e=>{ if(e.key==="Escape") infoModal.hidden=true; });
+addEventListener("keydown",e=>{ if(e.key==="Escape"){ infoModal.hidden=true; bannerModal.hidden=true; } });
 
 init().catch(e=>{$("#chart").innerHTML=`<div class="loading">Failed to load data: ${e}</div>`;});

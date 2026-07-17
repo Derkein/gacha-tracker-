@@ -17,7 +17,7 @@ Each banner record:
     banner_img  official banner splash art URL (may be null)
 """
 import re, json, time, html, sys, urllib.request, urllib.parse, urllib.error
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta, date
 from pathlib import Path
 
 BASE = "https://game-i.daa.jp/"
@@ -159,12 +159,62 @@ def _rank(pat, h):
     return int(m.group(1).replace(",", ""))
 
 
+def _jst_now():
+    return datetime.now(timezone.utc) + timedelta(hours=9)   # game-i is JST
+
+
+def _prev_ym(ym):
+    y, m = map(int, ym.split("/"))
+    m -= 1
+    if m == 0:
+        y, m = y - 1, 12
+    return f"{y}/{m:02d}"
+
+
+# game-i's per-app chart feed (cmd=app_detail_js) returns two months of daily
+# top-grossing ranks per request: the requested month (当月, column 10) and the
+# one before it (前月, column 7). We cache both so stitching a banner's run pulls
+# each month at most once per store. Ranks are None on days the app sat below the
+# trackable ~top 200 ("null" in the feed) — game-i counts those as ¥0.
+_month_cache = {}
+
+
+def _parse_feed(js):
+    prev, cur = {}, {}
+    for line in re.findall(r"\[('\d+日'[^\]]*)\]", js):
+        day = int(re.match(r"'(\d+)日'", line).group(1))
+        f = re.sub(r"'[^']*'", "", line).split(",")   # drop quoted date+annotations, keep commas
+        if len(f) < 11:
+            continue
+        prev[day] = int(f[7]) if f[7].strip().isdigit() else None
+        cur[day] = int(f[10]) if f[10].strip().isdigit() else None
+    return prev, cur
+
+
+def month_ranks(apid, ym, android=False):
+    """{day:int -> rank|None} of daily top-grossing rank for one month, cached."""
+    key = (apid, ym, android)
+    if key in _month_cache:
+        return _month_cache[key]
+    url = BASE + f"?cmd=app_detail_js&apid={apid}&Ym={ym}&width=95%25&height=300px&And={'1' if android else ''}"
+    try:
+        prev, cur = _parse_feed(fetch(url))
+        time.sleep(0.25)
+    except Exception:
+        prev, cur = {}, {}
+    _month_cache[key] = cur
+    _month_cache.setdefault((apid, _prev_ym(ym), android), prev)   # free previous month
+    return cur
+
+
+def _month_list(d, ym):
+    return [d.get(k) for k in range(1, (max(d) if d else 0) + 1)]
+
+
 def scrape_now(apid):
     """Today's store standing from game-i's per-app page (?APP/<apid>) plus the
-    daily iOS top-grossing rank history (previous + current month) that feeds the
-    page's chart via cmd=app_detail_js. Ranks are None when the app sat below the
-    trackable ~200 ("-位"); game-i counts such days as ¥0.
-    """
+    daily iOS top-grossing rank history (previous + current month) for the tile
+    sparkline."""
     h = fetch(BASE + f"?APP/{apid}")
     now = {
         "ios":     _rank(r"iOS 総合: ([\d,\-]+)位", h),
@@ -173,21 +223,38 @@ def scrape_now(apid):
     }
     m = re.search(r"var max=([\d.]+);", h)                 # 翌日加算売上 (yen)
     now["next_add"] = round(float(m.group(1))) if m else None
-    ym = datetime.now(timezone.utc).strftime("%Y/%m")
-    js = fetch(BASE + f"?cmd=app_detail_js&apid={apid}&Ym={ym}&width=95%25&height=300px")
-    # chart rows: ['16日',null,...,<iOS prev-month rank>,ann,ann,<iOS cur-month rank>,ann,ann]
-    # dropping the quoted strings keeps every comma, so column positions survive.
-    prev, cur = [], []
-    for line in re.findall(r"\[('\d+日'[^\]]*)\]", js):
-        f = re.sub(r"'[^']*'", "", line).split(",")
-        if len(f) < 11:
-            continue
-        prev.append(int(f[7]) if f[7].strip().isdigit() else None)
-        cur.append(int(f[10]) if f[10].strip().isdigit() else None)
-    if any(v is not None for v in prev + cur):
+    ym = _jst_now().strftime("%Y/%m")
+    cur = month_ranks(apid, ym)                            # caches previous month too
+    prev = month_ranks(apid, _prev_ym(ym))                 # cache hit
+    pa, ca = _month_list(prev, ym), _month_list(cur, ym)
+    if any(v is not None for v in pa + ca):
         now["ym"] = ym
-        now["ranks"] = {"prev": prev, "cur": cur}
+        now["ranks"] = {"prev": pa, "cur": ca}
     return now
+
+
+def attach_rank_series(apid, banners):
+    """Per-banner daily iOS top-grossing rank across each run, stitched from the
+    monthly feeds and aligned to the banner's start date (index 0 = start day).
+    null on days below the trackable ~top 200. game-i only keeps the iOS daily
+    series (its model is iOS-regressed; Android is a live snapshot only), so this
+    is iOS-only. Skips banners with no tracked day."""
+    hit = 0
+    for b in banners:
+        try:
+            s, e = date.fromisoformat(b["start"]), date.fromisoformat(b["end"])
+        except ValueError:
+            continue
+        if e < s or (e - s).days > 400:                    # ignore glitchy ranges
+            continue
+        series, d = [], s
+        while d <= e:
+            series.append(month_ranks(apid, f"{d.year}/{d.month:02d}", False).get(d.day))
+            d += timedelta(days=1)
+        if any(v is not None for v in series):
+            b["rank_series"] = series
+            hit += 1
+    return hit
 
 
 def scrape_game(tag, meta):
@@ -230,6 +297,11 @@ def main():
             now = scrape_now(meta["apid"])
         except Exception as e:
             print(f"[{tag}] now-status failed (non-fatal): {e}", file=sys.stderr)
+        try:
+            got = attach_rank_series(meta["apid"], banners)
+            print(f"[{tag}] daily rank series on {got}/{len(banners)} banners")
+        except Exception as e:
+            print(f"[{tag}] rank-series failed (non-fatal): {e}", file=sys.stderr)
         out = {
             "game": tag,
             "name": meta["name"],

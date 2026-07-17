@@ -81,7 +81,8 @@ a{color:inherit}
 .axis{position:absolute; top:0; bottom:0; width:1px; background:var(--grid); pointer-events:none}
 .axis span{position:absolute; top:-3px; left:5px; font-size:10.5px; color:var(--muted); font-variant-numeric:tabular-nums}
 .yhead{font-size:11px; font-weight:800; color:var(--muted); letter-spacing:.08em; margin:16px 0 5px; text-transform:uppercase; position:relative; z-index:1}
-.row{display:grid; grid-template-columns:30px 46px 1fr; align-items:center; gap:11px; padding:5px 0; position:relative; z-index:1}
+.row{display:grid; grid-template-columns:30px 46px 1fr; align-items:center; gap:11px; padding:5px 0; position:relative; z-index:1; cursor:pointer}
+.row:hover .nm b{text-decoration:underline; text-decoration-color:var(--av-ring); text-underline-offset:2px}
 .row:hover .barfill{filter:brightness(1.10)}
 .rk{font-size:12px; font-weight:800; color:var(--muted); text-align:center; font-variant-numeric:tabular-nums}
 .rk.m1{color:#e0a400}.rk.m2{color:#9aa2ad}.rk.m3{color:#c08040}
@@ -122,6 +123,7 @@ a{color:inherit}
 .tip .dot{width:9px; height:9px; border-radius:50%; flex:none}
 .tip dl{margin:6px 0 0; display:grid; grid-template-columns:auto 1fr; gap:2px 12px}
 .tip dt{color:var(--muted)} .tip dd{margin:0; text-align:right; font-variant-numeric:tabular-nums}
+.tip .tiphint{margin-top:8px; padding-top:7px; border-top:1px solid var(--border); color:var(--accent); font-size:11px; font-weight:700}
 
 /* table */
 .tablewrap{overflow-x:auto}
@@ -129,6 +131,7 @@ table{border-collapse:collapse; width:100%; font-size:12.5px; margin-top:4px}
 th,td{padding:6px 10px; border-bottom:1px solid var(--grid); text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap}
 th{color:var(--muted); font-weight:650; position:sticky; top:0; background:var(--page)}
 td.l,th.l{text-align:left}
+tr.clk{cursor:pointer} tr.clk:hover td{background:var(--track)}
 
 /* graph view (small multiples, one per year) */
 .gyear{margin-bottom:18px}
@@ -164,6 +167,28 @@ td.l,th.l{text-align:left}
 .modal-card p{margin:0; font-size:13.5px; color:var(--ink2); line-height:1.55}
 .modal-card p b{color:var(--ink)}
 .modal-src{margin-top:18px !important; font-size:11.5px !important; color:var(--muted) !important}
+
+/* banner detail modal */
+.bmodal{max-width:640px}
+.bm-head{display:flex; gap:14px; align-items:center; margin:2px 34px 16px 0}
+.bm-art{width:96px; height:60px; object-fit:cover; border-radius:9px; border:2px solid var(--av-ring); flex:none; background:var(--track)}
+.bm-htext h2{margin:0; font-size:19px; letter-spacing:-.02em; line-height:1.2}
+.bm-htext h2 .rr{font-size:11px; vertical-align:middle}
+.bm-sub{color:var(--muted); font-size:12.5px; margin-top:2px}
+.bm-period{color:var(--ink2); font-size:12px; margin-top:3px; font-variant-numeric:tabular-nums}
+.bm-stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(110px,1fr)); gap:8px; margin-bottom:6px}
+.bm-stat{background:var(--surface2); border:1px solid var(--border); border-radius:10px; padding:8px 11px; display:flex; flex-direction:column; gap:1px}
+.bm-stat .l{font-size:10.5px; color:var(--muted); text-transform:uppercase; letter-spacing:.04em}
+.bm-stat .v{font-size:15px; font-weight:750; font-variant-numeric:tabular-nums}
+.bm-cap{font-size:12.5px; color:var(--ink2); margin:2px 0 6px} .bm-cap b{color:var(--ink)}
+.bm-note{font-size:11.5px !important; color:var(--muted) !important; margin-top:8px !important; line-height:1.5}
+.rcsvg{width:100%; height:auto; display:block; overflow:visible; margin-top:2px}
+.rcsvg .grid{stroke:var(--grid); stroke-width:1}
+.rcsvg .axislbl{fill:var(--muted); font-size:10px; font-family:system-ui,sans-serif}
+.rcsvg .rc-line{fill:none; stroke:var(--acc); stroke-width:2.4; stroke-linejoin:round; stroke-linecap:round}
+.rcsvg .rc-dot{fill:var(--acc); stroke:var(--surface); stroke-width:1.5}
+.rcsvg .rc-peak{fill:var(--surface); stroke:var(--acc); stroke-width:2.5}
+.rcsvg .rc-peaklbl{fill:var(--ink); font-size:10.5px; font-weight:700; font-family:system-ui,sans-serif}
 .foot{margin-top:26px; font-size:11px; color:var(--muted); line-height:1.6}
 .loading{padding:40px 0; text-align:center; color:var(--muted)}
 .loading.err{line-height:1.7}
