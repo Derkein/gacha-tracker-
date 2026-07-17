@@ -150,7 +150,7 @@ function renderStats(){
   $("#updated").textContent=`source: game-i.daa.jp · updated ${new Date(state.data.updated).toISOString().slice(0,10)}`;
 }
 
-function esc(s){return (s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
+function esc(s){return (s||"").replace(/[&<>"'`]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;","`":"&#96;"}[c]));}
 function scaleMax(m){const nice=[5,10,15,20,25,30,40,50,75,100,150,200];return nice.find(n=>n>=m)||Math.ceil(m/50)*50;}
 function ticks(max,step){
   if(!step) step = max<=1?0.2 : max<=2.5?0.5 : max<=6?1 : max<=12?2 : max<=25?5 : max<=50?10 : max<=100?25 : 50;
@@ -166,18 +166,29 @@ function roundTop(peak, tight){
 function poolBanners(){ const b=state.data.banners; return state.graphYear==="all" ? b : b.filter(x=>String(x.year)===state.graphYear); }
 
 // ---- avatars ----
+// No inline onerror handlers: image fallbacks are handled by one delegated
+// listener (below), so a strict CSP with no 'unsafe-inline' script can apply and
+// scraped names never land in an executable context. src/name are escaped too.
 function avatarHTML(b){
   if(b.icons&&b.icons.length){
-    let h=`<img src="${b.icons[0]}" alt="" referrerpolicy="no-referrer" onerror="this.replaceWith(mono('${esc(b.name)}'))">`;
-    if(b.icons[1]) h+=`<img class="extra" src="${b.icons[1]}" alt="" referrerpolicy="no-referrer" onerror="this.remove()">`;
-    if(b.icons[2]) h+=`<img class="extra e2" src="${b.icons[2]}" alt="" referrerpolicy="no-referrer" onerror="this.remove()">`;
+    let h=`<img src="${esc(b.icons[0])}" alt="" referrerpolicy="no-referrer" data-fb="mono" data-nm="${esc(b.name)}">`;
+    if(b.icons[1]) h+=`<img class="extra" src="${esc(b.icons[1])}" alt="" referrerpolicy="no-referrer" data-fb="remove">`;
+    if(b.icons[2]) h+=`<img class="extra e2" src="${esc(b.icons[2])}" alt="" referrerpolicy="no-referrer" data-fb="remove">`;
     return h;
   }
-  if(b.banner_img) return `<img class="artav" src="${b.banner_img}" alt="" referrerpolicy="no-referrer" onerror="this.replaceWith(mono('${esc(b.name)}'))">`;
+  if(b.banner_img) return `<img class="artav" src="${esc(b.banner_img)}" alt="" referrerpolicy="no-referrer" data-fb="mono" data-nm="${esc(b.name)}">`;
   return monoStr(b.name);
 }
 function monoStr(name){return `<span class="mono">${esc((name||"?").trim()[0]||"?")}</span>`;}
 window.mono=function(name){const d=document.createElement("span");d.className="mono";d.textContent=(name||"?").trim()[0]||"?";return d;};
+// image load failures fall back here instead of via inline handlers (error does
+// not bubble, so listen in the capture phase).
+document.addEventListener("error", e=>{
+  const el=e.target;
+  if(!el || el.tagName!=="IMG") return;
+  if(el.dataset.fb==="remove") el.remove();
+  else if(el.dataset.fb==="mono") el.replaceWith(mono(el.dataset.nm||""));
+}, true);
 
 // ---- bar rows (timeline / ranking) with FLIP reordering ----
 function rowHTML(b,rank,max){
@@ -248,7 +259,7 @@ function yearSVG(year, items, gmax, step){
     if(url){
       const id=`clip_${year}_${p.b._i}`;
       return `<clipPath id="${id}"><circle cx="${cx}" cy="${cy}" r="${R}"/></clipPath>`+
-        `<image href="${url}" x="${(p.x-R).toFixed(1)}" y="${(p.y-R).toFixed(1)}" width="${2*R}" height="${2*R}" `+
+        `<image href="${esc(url)}" x="${(p.x-R).toFixed(1)}" y="${(p.y-R).toFixed(1)}" width="${2*R}" height="${2*R}" `+
         `preserveAspectRatio="xMidYMid slice" clip-path="url(#${id})" data-i="${p.b._i}"/>`+
         `<circle class="gring" cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="${acc}" data-i="${p.b._i}"/>`;
     }
@@ -310,7 +321,7 @@ $("#tablewrap").addEventListener("click",e=>{
 const tip=$("#tip");
 function showTip(b,e){
   const en=b.agents&&b.agents.length?b.agents.join(" & "):(b.related||"");
-  const art=b.banner_img?`<img class="art" src="${b.banner_img}" alt="" referrerpolicy="no-referrer" onerror="this.remove()">`:"";
+  const art=b.banner_img?`<img class="art" src="${esc(b.banner_img)}" alt="" referrerpolicy="no-referrer" data-fb="remove">`:"";
   const rr=b.rerun?` <span class="rr">↻ rerun</span>`:"";
   const hint=(b.rank_series&&b.rank_series.length)
     ? `<div class="tiphint">▸ Click to see daily rankings during the run</div>` : "";
@@ -444,10 +455,10 @@ function openBanner(b){
     <div class="bm-period">${per(b.start)} – ${per(b.end)}</div>`;
   const head=b.banner_img
     ? `<div class="bm-hero" style="--av-ring:${barColor(b)}">
-         <img src="${b.banner_img}" alt="" referrerpolicy="no-referrer" onerror="this.remove()">
+         <img src="${esc(b.banner_img)}" alt="" referrerpolicy="no-referrer" data-fb="remove">
          <div class="bm-herobar">${title}</div></div>`
     : `<div class="bm-head" style="--av-ring:${barColor(b)}">
-         ${b.icons&&b.icons[0]?`<img class="bm-art sq" src="${b.icons[0]}" alt="" referrerpolicy="no-referrer" onerror="this.remove()">`:""}
+         ${b.icons&&b.icons[0]?`<img class="bm-art sq" src="${esc(b.icons[0])}" alt="" referrerpolicy="no-referrer" data-fb="remove">`:""}
          <div class="bm-htext">${title}</div></div>`;
 
   const s=b.rank_series||[]; const known=s.filter(v=>v!=null);
