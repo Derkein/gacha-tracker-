@@ -4,7 +4,7 @@ name: Refresh gacha data
 # changes back to main. GitHub Pages (deploy-from-branch) then redeploys.
 on:
   schedule:
-    - cron: "0 21 * * *"     # daily, 21:00 UTC
+    - cron: "10 15 * * *"    # daily, 15:10 UTC = 00:10 JST — 10 min after game-i's 00:00 JST ranking rollover
   push:
     branches: [main]          # refresh data right after every code push
                               # (no loop: the bot's own GITHUB_TOKEN commit
