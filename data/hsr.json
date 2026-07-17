@@ -2116,13 +2116,12 @@
     null
    ],
    "icons": [
-    "icons/faces/overrides/a57ac2e0.webp"
+    "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1510.png"
    ],
    "agents": [
     "Himeko • Nova"
    ],
-   "accent": null,
-   "en": "Himeko • Nova",
+   "accent": "#f0503f",
    "bar": "#4a2ea9"
   }
  ]
