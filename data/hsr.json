@@ -4,13 +4,13 @@
  "jp": "崩壊：スターレイル",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E5%B4%A9%E5%A3%8A%EF%BC%9A%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%AC%E3%82%A4%E3%83%AB",
- "updated": "2026-07-16T21:59:43Z",
+ "updated": "2026-07-17T18:11:20Z",
  "count": 45,
  "now": {
-  "ios": 8,
+  "ios": 12,
   "android": 3,
-  "month": 30,
-  "next_add": 110206791,
+  "month": 27,
+  "next_add": 80255111,
   "ym": "2026/07",
   "ranks": {
    "prev": [
@@ -64,7 +64,7 @@
     86,
     2,
     6,
-    null,
+    12,
     null,
     null,
     null,
@@ -785,7 +785,7 @@
    "rev": 5.52,
    "yrank": 16,
    "ytot": 18,
-   "cum": 49,
+   "cum": 50,
    "cumtot": 59,
    "year": 2025,
    "related": "アナイクス",
@@ -1074,23 +1074,22 @@
    "name": "姫子・旅立ち",
    "start": "2026-07-15",
    "end": "2026-07-24",
-   "rev": 5.15,
+   "rev": 5.99,
    "yrank": 6,
    "ytot": 12,
-   "cum": 50,
+   "cum": 49,
    "cumtot": 59,
    "year": 2026,
    "related": "火花、丹恒・騰荒、長夜月",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/07/13/dac99c7f389ebbe7e6daa4236ab67122_2577942517555224803.png",
    "rerun": false,
    "icons": [
-    "icons/faces/overrides/a57ac2e0.webp"
+    "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1510.png"
    ],
    "agents": [
     "Himeko • Nova"
    ],
-   "accent": null,
-   "en": "Himeko • Nova",
+   "accent": "#f0503f",
    "bar": "#4a2ea9"
   }
  ]

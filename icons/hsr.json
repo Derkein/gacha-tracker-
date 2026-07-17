@@ -404,6 +404,21 @@
   "accent": "#f0503f",
   "en": "Mortenax Blade"
  },
+ "遠坂凛": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1508.png",
+  "accent": "#4a4ad8",
+  "en": "Rin Tohsaka"
+ },
+ "ギルガメッシュ": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1509.png",
+  "accent": "#c56af0",
+  "en": "Gilgamesh"
+ },
+ "姫子・旅立ち": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1510.png",
+  "accent": "#f0503f",
+  "en": "Himeko • Nova"
+ },
  "{NICKNAME}": {
   "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/8010.png",
   "accent": "#c56af0",
