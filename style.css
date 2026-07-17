@@ -117,6 +117,7 @@ a{color:inherit}
 /* tooltip */
 .tip{position:fixed; z-index:60; pointer-events:none; background:var(--surface); color:var(--ink);
   border:1px solid var(--base); border-radius:12px; padding:0; box-shadow:var(--shadow); max-width:270px; overflow:hidden}
+#bmTip{z-index:120}    /* above the banner modal (z-index 100) */
 .tip img.art{display:block; width:100%; height:120px; object-fit:cover; background:var(--track)}
 .tip .body{padding:10px 12px; font-size:12.5px}
 .tip h4{margin:0 0 3px; font-size:14px; display:flex; align-items:center; gap:7px}
@@ -171,7 +172,7 @@ tr.clk{cursor:pointer} tr.clk:hover td{background:var(--track)}
 /* banner detail modal */
 .bmodal{max-width:660px}
 .bm-hero{margin:0 0 15px}
-.bm-hero img{width:100%; max-height:172px; object-fit:cover; border-radius:12px; display:block; border:1px solid var(--border)}
+.bm-hero img{width:100%; height:auto; max-height:300px; object-fit:cover; border-radius:12px; display:block; border:1px solid var(--border)}
 .bm-herobar{margin-top:11px}
 .bm-head{display:flex; gap:14px; align-items:center; margin:2px 34px 16px 0}
 .bm-art{width:96px; height:60px; object-fit:cover; border-radius:9px; border:2px solid var(--av-ring); flex:none; background:var(--track)}
@@ -194,8 +195,10 @@ tr.clk{cursor:pointer} tr.clk:hover td{background:var(--track)}
 .rcsvg .rc-dot{fill:var(--acc); stroke:var(--surface); stroke-width:1.5}
 .rcsvg .rc-peak{fill:var(--surface); stroke:var(--acc); stroke-width:2.5}
 .rcsvg .rc-peaklbl{fill:var(--ink); font-size:10.5px; font-weight:700; font-family:system-ui,sans-serif}
-.rcsvg .bu-bar{fill:var(--acc); opacity:.38}
+.rcsvg .bu-bar{fill:var(--acc); opacity:.30}
 .rcsvg .bu-line{fill:none; stroke:var(--acc); stroke-width:2.4; stroke-linejoin:round; stroke-linecap:round}
+.rcsvg .rc-hit{fill:transparent; cursor:pointer}
+.rcsvg .rc-hit:hover{fill:var(--acc); fill-opacity:.18}
 .bm-recon{border-left:2px solid var(--accent); padding-left:9px !important}
 .bm-tablewrap{max-height:230px; overflow-y:auto; margin-top:10px; border:1px solid var(--border); border-radius:10px}
 .bm-table{font-size:12px; margin:0}

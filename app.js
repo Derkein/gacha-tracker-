@@ -361,12 +361,13 @@ function rankCurveSVG(b){
   let d="",pen=false;
   s.forEach((v,i)=>{ if(v==null){pen=false;return;} const x=xOf(i),y=yOf(v);
     d+=`${pen?"L":"M"}${x.toFixed(1)} ${y.toFixed(1)}`; pen=true; });
-  const dots=known.map(([i,v])=>`<circle class="rc-dot" cx="${xOf(i).toFixed(1)}" cy="${yOf(v).toFixed(1)}" r="3"><title>${dayLabel(i)} · #${v}</title></circle>`).join("");
+  const dots=known.map(([i,v])=>`<circle class="rc-dot" cx="${xOf(i).toFixed(1)}" cy="${yOf(v).toFixed(1)}" r="3"/>`).join("");
   const [pi,pv]=known.reduce((a,c)=>c[1]<a[1]?c:a);
   const peak=`<circle class="rc-peak" cx="${xOf(pi).toFixed(1)}" cy="${yOf(pv).toFixed(1)}" r="5"/>`+
     `<text class="rc-peaklbl" x="${xOf(pi).toFixed(1)}" y="${(yOf(pv)-9).toFixed(1)}" text-anchor="middle">peak #${pv}</text>`;
+  const hits=known.map(([i,v])=>`<circle class="rc-hit" data-day="${i}" cx="${xOf(i).toFixed(1)}" cy="${yOf(v).toFixed(1)}" r="9"/>`).join("");
   return `<svg class="rcsvg" viewBox="0 0 ${W} ${H}" role="img" style="--acc:${barColor(b)}">
-    ${grid}<path class="rc-line" d="${d}"/>${dots}${peak}${xt}</svg>`;
+    ${grid}<path class="rc-line" d="${d}"/>${dots}${peak}${hits}${xt}</svg>`;
 }
 
 // game-i's published rank → daily-revenue curve (億G, from its 日別加算値 table).
@@ -401,14 +402,16 @@ function buildupSVG(bd,b){
     return `<line class="grid" x1="${ML}" y1="${y.toFixed(1)}" x2="${W-MR}" y2="${y.toFixed(1)}"/>`+
       `<text class="axislbl" x="${ML-6}" y="${(y+3).toFixed(1)}" text-anchor="end">${G(v)}</text>`;}).join("");
   const bw=Math.min(16, pW/n*0.7);
-  const bars=days.map(d=>{ if(d.add<=0) return ""; const x=xOf(d.i), y=yOf(d.add? d.add:0);
+  const bars=days.map(d=>{ if(d.add<=0) return ""; const x=xOf(d.i);
     const top=MT+(1-d.add/total)*pH, h=MT+pH-top;
-    return `<rect class="bu-bar" x="${(x-bw/2).toFixed(1)}" y="${top.toFixed(1)}" width="${bw.toFixed(1)}" height="${Math.max(0,h).toFixed(1)}" rx="2"><title>${dayLabel(d.i)} · +${G(d.add)}</title></rect>`;}).join("");
+    return `<rect class="bu-bar" x="${(x-bw/2).toFixed(1)}" y="${top.toFixed(1)}" width="${bw.toFixed(1)}" height="${Math.max(0,h).toFixed(1)}" rx="2"/>`;}).join("");
   const line=days.map((d,i)=>(i?"L":"M")+xOf(i).toFixed(1)+" "+yOf(d.cum).toFixed(1)).join(" ");
+  const cdots=days.map((d,i)=>`<circle class="rc-dot" cx="${xOf(i).toFixed(1)}" cy="${yOf(d.cum).toFixed(1)}" r="3"/>`).join("");
+  const hits=days.map((d,i)=>`<circle class="rc-hit" data-day="${i}" cx="${xOf(i).toFixed(1)}" cy="${yOf(d.cum).toFixed(1)}" r="9"/>`).join("");
   const xIdx=[...new Set([0,Math.round((n-1)/2),n-1])];
   const xt=xIdx.map(i=>`<text class="axislbl" x="${xOf(i).toFixed(1)}" y="${H-8}" text-anchor="middle">${dayLabel(i)}</text>`).join("");
   return `<svg class="rcsvg buildup" viewBox="0 0 ${W} ${H}" role="img" style="--acc:${barColor(b)}">
-    ${grid}${bars}<path class="bu-line" d="${line}"/>${xt}</svg>`;
+    ${grid}${bars}<path class="bu-line" d="${line}"/>${cdots}${hits}${xt}</svg>`;
 }
 function dailyTable(bd){
   const rows=bd.days.map(d=>`<tr>
@@ -464,6 +467,8 @@ function openBanner(b){
   }
 
   const bd=dailyBreakdown(b);
+  // context for the shared hover tooltip on both charts (keyed by day index)
+  _bmCtx={start:b.start, scheduled, days:(bd?bd.days:[]).map(x=>x)};
   let build="";
   if(bd){
     build=`<h3>Estimated revenue build-up${b.ongoing?" so far":""}</h3>
@@ -477,8 +482,35 @@ function openBanner(b){
   tip.hidden=true;
   bannerModal.hidden=false;
 }
-$("#bmClose").onclick=()=>{ bannerModal.hidden=true; };
-bannerModal.onclick=e=>{ if(e.target===bannerModal) bannerModal.hidden=true; };
+$("#bmClose").onclick=()=>{ bannerModal.hidden=true; bmTip.hidden=true; };
+bannerModal.onclick=e=>{ if(e.target===bannerModal){ bannerModal.hidden=true; bmTip.hidden=true; } };
+
+// shared hover tooltip for both in-modal charts (rank curve + revenue build-up)
+let _bmCtx=null;
+const bmTip=$("#bmTip");
+function showBmTip(dayIdx,e){
+  const day=_bmCtx&&_bmCtx.days[dayIdx]; if(!day){ bmTip.hidden=true; return; }
+  const d=new Date(_bmCtx.start+"T00:00:00"); d.setDate(d.getDate()+day.i);
+  const dateStr=d.toLocaleDateString("en",{month:"short",day:"numeric",year:"numeric"});
+  const rank = day.rank==null ? `<span style="color:var(--muted)">below top 200</span>` : `#${day.rank}`;
+  const add  = day.rank==null ? "¥0" : (day.add>=0.005 ? "+"+G(day.add) : "≈¥0");
+  bmTip.innerHTML=`<div class="body">
+    <h4>${dateStr}</h4>
+    <div style="color:var(--muted);font-size:11.5px">Day ${day.i+1} of ${_bmCtx.scheduled}</div>
+    <dl><dt>iOS rank</dt><dd>${rank}</dd>
+    <dt>Est. that day</dt><dd>${add}</dd>
+    <dt>Cumulative</dt><dd><b>${G(day.cum)}</b></dd></dl></div>`;
+  bmTip.hidden=false;
+  const pad=14,w=bmTip.offsetWidth,h=bmTip.offsetHeight;
+  let x=e.clientX+pad,y=e.clientY+pad;
+  if(x+w>innerWidth)x=e.clientX-w-pad; if(y+h>innerHeight)y=e.clientY-h-pad;
+  bmTip.style.left=Math.max(6,x)+"px"; bmTip.style.top=Math.max(6,y)+"px";
+}
+$("#bmBody").addEventListener("pointermove",e=>{
+  const el=e.target.closest("[data-day]"); if(!el){ bmTip.hidden=true; return; }
+  showBmTip(+el.dataset.day,e);
+});
+$("#bmBody").addEventListener("pointerleave",()=>bmTip.hidden=true);
 
 // ---- controls ----
 function updateDirLabel(){
