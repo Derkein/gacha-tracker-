@@ -150,6 +150,25 @@ tr.clk{cursor:pointer} tr.clk:hover td{background:var(--track)}
 .gsvg .dot:hover{r:7}
 .gsvg image{cursor:pointer}
 .gsvg .gring{stroke-width:2.5; paint-order:stroke; cursor:pointer}
+/* by-year breakdown view */
+.yr-head{font-size:12.5px; color:var(--ink2); margin:2px 0 4px}
+.yr-note{font-size:11.5px; color:var(--muted); margin:0 0 12px}
+.yr-row{display:grid; grid-template-columns:60px 1fr; gap:14px; align-items:center; padding:12px 0; border-top:1px solid var(--grid)}
+.yr-row:first-of-type{border-top:0}
+.yr-y{font-size:21px; font-weight:800; letter-spacing:-.02em; display:flex; flex-direction:column; line-height:1.1}
+.yr-prog{font-size:8.5px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.04em; margin-top:2px}
+.yr-body{min-width:0}
+.yr-line{display:flex; align-items:baseline; gap:6px 13px; flex-wrap:wrap; margin-bottom:7px}
+.yr-v{font-size:17px; font-weight:800; font-variant-numeric:tabular-nums}
+.yr-pct{font-size:12px; color:var(--muted)}
+.yr-yoy{font-size:12px; font-weight:750; margin-left:auto; font-variant-numeric:tabular-nums; white-space:nowrap}
+.yr-yoy.up{color:#1f9d57} .yr-yoy.down{color:#d64b45} .yr-yoy.flat{color:var(--muted); font-weight:600}
+@media (prefers-color-scheme:dark){ .yr-yoy.up{color:#46c684} .yr-yoy.down{color:#f0736c} }
+:root[data-theme=dark] .yr-yoy.up{color:#46c684} :root[data-theme=dark] .yr-yoy.down{color:#f0736c}
+.yr-track{height:15px; background:var(--track); border-radius:8px; overflow:hidden}
+.yr-fill{height:100%; background:var(--accent); border-radius:0 6px 6px 0; min-width:3px;
+  animation:barGrow .6s cubic-bezier(.2,.7,.2,1) both}
+
 /* info button + methodology modal */
 .infolink{border:0; background:none; color:var(--accent); font:inherit; font-size:12.5px; font-weight:600;
   cursor:pointer; padding:0; text-decoration:underline; text-underline-offset:2px; white-space:nowrap}

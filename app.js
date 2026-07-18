@@ -330,10 +330,44 @@ function populateGraphYears(){
 function render(){
   document.body.dataset.view = state.table ? "table" : state.mode;   // lets CSS tailor per view (e.g. mobile graph)
   $("#chartwrap").hidden=state.table; $("#tablewrap").hidden=!state.table;
-  $("#graphControls").hidden=state.table;
+  $("#graphControls").hidden=state.table || state.mode==="year";     // year/match/round don't apply to the yearly view
   if(state.table){ buildTable(); return; }
   if(state.mode==="graph"){ renderGraph(); return; }
+  if(state.mode==="year"){ renderYearly(); return; }
   renderBars();
+}
+
+// ---- by-year breakdown: revenue per calendar year, its share of the game's
+// tracked total, and the change vs the previous year ----
+function renderYearly(){
+  const all=state.data.banners;
+  const total=all.reduce((a,b)=>a+b.rev,0);
+  const byYear={}, cnt={};
+  all.forEach(b=>{ byYear[b.year]=(byYear[b.year]||0)+b.rev; cnt[b.year]=(cnt[b.year]||0)+1; });
+  const years=Object.keys(byYear).map(Number).sort((a,b)=>a-b);
+  const max=Math.max(...years.map(y=>byYear[y]));
+  const nowYear=new Date(state.data.updated).getUTCFullYear();
+  const order=[...years].sort((a,b)=>b-a);
+  if(state.reverse) order.reverse();
+  const head=`<div class="yr-head"><b>${esc(state.data.name)}</b> — ${G(total)} total across ${years.length} year${years.length>1?"s":""}</div>`
+    + `<div class="yr-note">Coverage generally starts around 2024, and the current year is still in progress — treat the first and latest years as partial.</div>`;
+  const rows=order.map(y=>{
+    const rev=byYear[y], prev=byYear[y-1];
+    const yoy = prev!=null ? (rev-prev)/prev*100 : null;
+    const pct = total ? rev/total*100 : 0;
+    const w=Math.max(1.5, rev/max*100);
+    const yoyHTML = yoy==null ? `<span class="yr-yoy flat">first tracked year</span>`
+      : `<span class="yr-yoy ${yoy>=0?"up":"down"}">${yoy>=0?"▲":"▼"} ${Math.abs(yoy).toFixed(0)}% vs ${y-1}</span>`;
+    return `<div class="yr-row">
+      <div class="yr-y">${y}${y===nowYear?`<span class="yr-prog">in progress</span>`:""}</div>
+      <div class="yr-body">
+        <div class="yr-line"><span class="yr-v">${G(rev)}</span>
+          <span class="yr-pct">${pct.toFixed(1)}% of total · ${cnt[y]} banner${cnt[y]>1?"s":""}</span>
+          ${yoyHTML}</div>
+        <div class="yr-track"><div class="yr-fill" style="width:${w}%"></div></div>
+      </div></div>`;
+  }).join("");
+  $("#chart").innerHTML=head+rows;
 }
 function buildTable(){
   state.data.banners.forEach((x,i)=>x._i=i);
@@ -583,16 +617,17 @@ function updateDirLabel(){
 }
 function setMode(m){
   state.mode=m;
-  [["bTime","time"],["bGraph","graph"],["bRank","rank"]].forEach(([id,mm])=>{
+  [["bTime","time"],["bGraph","graph"],["bRank","rank"],["bYear","year"]].forEach(([id,mm])=>{
     const el=$("#"+id); el.classList.toggle("on",m===mm); el.setAttribute("aria-selected",m===mm);
   });
-  $("#graphControls").hidden = state.table;      // Year / Match highest / Round-to apply to all chart views
+  $("#graphControls").hidden = state.table || m==="year";   // Year / Match highest / Round-to apply to the chart views
   updateDirLabel();
   if(!state.table) render();
 }
 $("#bTime").onclick=()=>setMode("time");
 $("#bRank").onclick=()=>setMode("rank");
 $("#bGraph").onclick=()=>setMode("graph");
+$("#bYear").onclick=()=>setMode("year");
 $("#bDir").onclick=()=>{ state.reverse=!state.reverse; updateDirLabel(); if(!state.table) render(); };
 $("#brk").onchange=function(){ state.bracket=+this.value; if(!state.table) render(); };
 $("#matchHigh").onchange=function(){ state.matchHigh=this.checked; if(!state.table) render(); };
