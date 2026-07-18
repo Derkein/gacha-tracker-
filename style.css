@@ -235,13 +235,27 @@ tr.clk{cursor:pointer} tr.clk:hover td{background:var(--track)}
   .ghost{padding:8px 13px}
   .hint{margin-left:0; width:100%; font-size:11.5px}
 
-  /* bar chart: fit the viewport instead of forcing a 620px horizontal scroll */
+  /* timeline / ranking bars: fit the viewport (no forced 620px scroll) and drop
+     the crowded repeating gridlines — each bar's value label is the scale. The
+     avatar/rank shrink so the bar itself gets the width. */
   .chart{min-width:0}
-  .val{font-size:12px}
+  .axis{display:none}
+  .row{grid-template-columns:22px 40px 1fr; gap:9px; padding:6px 0}
+  .row + .row{border-top:1px solid var(--grid)}
+  .av{width:40px; height:40px}
+  .av img,.av .mono{width:40px; height:40px}
+  .av img.extra{display:none}          /* secondary-unit pips clutter narrow rows */
+  .rk{font-size:11px}
+  .track{height:16px}
+  .val{font-size:12.5px}
   .nm b{font-size:13.5px}
+  .yhead{margin:15px 0 4px}
 
-  /* graph small-multiples: a touch taller so points stay tappable */
-  .gsvg{min-height:200px}
+  /* graph: render larger and swipe sideways instead of a tiny strip */
+  body[data-view=graph] .gsvg{min-width:560px}
+  body[data-view=graph] #graphControls::after{
+    content:"↔ swipe the chart sideways to see the whole year";
+    flex-basis:100%; font-size:11px; color:var(--muted); margin-top:1px}
 
   /* modals: use nearly the full screen, bigger close target */
   .modal{padding:8px}

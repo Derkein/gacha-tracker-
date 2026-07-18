@@ -294,6 +294,7 @@ function populateGraphYears(){
 }
 
 function render(){
+  document.body.dataset.view = state.table ? "table" : state.mode;   // lets CSS tailor per view (e.g. mobile graph)
   $("#chartwrap").hidden=state.table; $("#tablewrap").hidden=!state.table;
   $("#graphControls").hidden=state.table;
   if(state.table){ buildTable(); return; }
@@ -339,6 +340,7 @@ function showTip(b,e){
   tip.style.left=x+"px"; tip.style.top=Math.max(6,y)+"px";
 }
 $("#chart").addEventListener("pointermove",e=>{
+  if(e.pointerType==="touch"){ tip.hidden=true; return; }   // touch: a tap opens the full modal instead of a hover card
   const el=e.target.closest("[data-i]"); if(!el){tip.hidden=true;return;}
   showTip(state.data.banners[+el.dataset.i],e);
 });
