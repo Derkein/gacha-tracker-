@@ -209,3 +209,48 @@ tr.clk{cursor:pointer} tr.clk:hover td{background:var(--track)}
 .loading{padding:40px 0; text-align:center; color:var(--muted)}
 .loading.err{line-height:1.7}
 .loading.err button{margin-top:10px; padding:6px 22px; cursor:pointer}
+
+/* ============================================================
+   Mobile (≤640px). Everything here is inside this media query,
+   so it layers on top only for narrow screens — the desktop
+   layout above is completely unaffected.
+   ============================================================ */
+@media (max-width:640px){
+  .wrap{padding:16px 12px 48px}
+
+  /* header */
+  .site-hd{gap:6px 16px; margin-bottom:14px}
+  .site-hd p{font-size:12.5px}
+  .updated{margin-left:0; width:100%; text-align:left; white-space:normal}
+
+  /* stat tiles: two equal columns (minmax(0,…) lets the nowrap text ellipsize
+     instead of forcing one column wider) */
+  .tiles{grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:8px; margin:12px 0 16px}
+  .tile{padding:11px 13px; min-width:0}
+  .tile .v{font-size:19px}
+
+  /* controls: roomier tap targets, hint on its own line */
+  .controls{gap:8px; margin-bottom:12px}
+  .seg button{padding:8px 14px}
+  .ghost{padding:8px 13px}
+  .hint{margin-left:0; width:100%; font-size:11.5px}
+
+  /* bar chart: fit the viewport instead of forcing a 620px horizontal scroll */
+  .chart{min-width:0}
+  .val{font-size:12px}
+  .nm b{font-size:13.5px}
+
+  /* graph small-multiples: a touch taller so points stay tappable */
+  .gsvg{min-height:200px}
+
+  /* modals: use nearly the full screen, bigger close target */
+  .modal{padding:8px}
+  .modal-card{padding:22px 15px; max-height:94vh; border-radius:14px}
+  .modal-close{top:8px; right:8px; font-size:28px; padding:4px 10px}
+  .bmodal{max-width:100%}
+  .bm-head{margin-right:30px}
+  .bm-herobar h2,.bm-htext h2{font-size:18px}
+  .bm-stats{grid-template-columns:1fr 1fr}
+  .bm-tablewrap{overflow-x:auto}
+  .bm-table td,.bm-table th{padding:5px 9px}
+}
