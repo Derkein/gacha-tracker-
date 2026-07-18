@@ -104,6 +104,7 @@ async function selectGame(tag){
   // rank by revenue *within our dataset* — game-i's cum is against the game's full
   // history (often far larger than what we scrape), so it isn't 1..N here.
   [...state.data.banners].sort((a,b)=>b.rev-a.rev).forEach((b,i)=>b._rank=i+1);
+  computeSharing();
   populateGraphYears();
   renderStats(); render();
 }
@@ -190,18 +191,51 @@ document.addEventListener("error", e=>{
   else if(el.dataset.fb==="mono") el.replaceWith(mono(el.dataset.nm||""));
 }, true);
 
+// ---- concurrent-banner "shared revenue" detection ----
+// game-i splits each day's revenue equally among every banner running that day
+// (see the methodology dialog). For each banner we find which days overlapped
+// another banner and what share of its reconstructed revenue that represents, so
+// the chart can flag the split. HoYo games merge simultaneous characters into one
+// "A&B" entry, so this mostly lights up on event games (FGO, Arknights, …) where
+// separate banners genuinely run at once. Computed once per game load.
+const SHARE_MIN_DAYS = 3;                         // ignore trivial 1-day changeovers
+function computeSharing(){
+  const all=state.data.banners, DAY=864e5;
+  const spans=all.map(b=>({s:Date.parse(b.start), e:Date.parse(b.end), b}));
+  for(const {s,e,b} of spans){
+    const totalDays=Math.round((e-s)/DAY)+1, series=b.rank_series;
+    let sharedDays=0, maxN=1, rawTot=0, rawShared=0; const withMap=new Map();
+    for(let i=0,t=s; t<=e; t+=DAY,i++){
+      const others=spans.filter(sp=>sp.b!==b && sp.s<=t && t<=sp.e).map(sp=>sp.b);
+      const raw = series ? rankValue(series[i]) : 1;   // weight by that day's reconstructed value
+      rawTot += raw;
+      if(others.length){ sharedDays++; rawShared+=raw; maxN=Math.max(maxN,others.length+1);
+        others.forEach(o=>withMap.set(o,(withMap.get(o)||0)+1)); }
+    }
+    b._share = { days:sharedDays, totalDays, maxN, revFrac: rawTot? rawShared/rawTot : 0,
+      on: sharedDays>=SHARE_MIN_DAYS,
+      with:[...withMap.entries()].sort((a,c)=>c[1]-a[1])
+              .map(([o,d])=>({name:(o.agents&&o.agents.length?o.agents.join(" & "):o.name), days:d})) };
+  }
+}
+
 // ---- bar rows (timeline / ranking) with FLIP reordering ----
 function rowHTML(b,rank,max){
   const c=barColor(b), [bl,bd]=barShades(c);
   const w=Math.max(1.2,(b.rev/max)*100), m=rank<=3?` m${rank}`:"";
   const en=b.agents&&b.agents.length?b.agents.join(" & "):"";
   const rr=b.rerun?`<span class="rr" title="Rerun banner">↻ rerun</span>`:"";
+  const sh=b._share;
+  // hatched right-hand segment = the share of revenue split with a concurrent
+  // banner (detail lives in the hover tooltip + click-to-open modal, not a badge)
+  const shSeg = sh&&sh.on
+    ? `<span class="shared" style="width:${Math.min(100,Math.round(sh.revFrac*100))}%" title="~${Math.round(sh.revFrac*100)}% split with a concurrent banner"></span>` : "";
   return `<div class="row" data-i="${b._i}" style="--bar-l:${bl};--bar-d:${bd};--av-ring:${c}">
     <div class="rk${m}">${rank}</div>
     <div class="av">${avatarHTML(b)}</div>
     <div class="meta">
       <div class="nm"><b>${esc(b.name)}</b>${en?`<span class="en">${esc(en)}</span>`:""}${rr}</div>
-      <div class="barline"><div class="track"><div class="barfill" style="width:${w}%"></div></div>
+      <div class="barline"><div class="track"><div class="barfill" style="width:${w}%">${shSeg}</div></div>
         <span class="val">${G(b.rev)}</span></div>
     </div></div>`;
 }
@@ -326,13 +360,16 @@ function showTip(b,e){
   const rr=b.rerun?` <span class="rr">↻ rerun</span>`:"";
   const hint=(b.rank_series&&b.rank_series.length)
     ? `<div class="tiphint">▸ Click to see daily rankings during the run</div>` : "";
+  const sh=b._share;
+  const shRow = sh&&sh.on
+    ? `<dt>Shared run</dt><dd>${sh.days}d, ${sh.maxN}-way</dd>` : "";
   tip.innerHTML=`${art}<div class="body">
     <h4><span class="dot" style="background:${barColor(b)}"></span>${esc(b.name)}${rr}</h4>
     <div style="color:var(--muted);font-size:11.5px">${esc(en)}</div>
     <dl><dt>Period</dt><dd>${per(b.start)} – ${per(b.end)}</dd>
     <dt>Est. revenue</dt><dd><b>${G(b.rev)}</b></dd>
     <dt>All-time rank</dt><dd>#${b.cum} / ${b.cumtot}</dd>
-    <dt>${b.year} rank</dt><dd>#${b.yrank} / ${b.ytot}</dd></dl>${hint}</div>`;
+    <dt>${b.year} rank</dt><dd>#${b.yrank} / ${b.ytot}</dd>${shRow}</dl>${hint}</div>`;
   tip.hidden=false;
   const pad=15,w=tip.offsetWidth,h=tip.offsetHeight;
   let x=e.clientX+pad,y=e.clientY+pad;
@@ -402,8 +439,12 @@ function dailyBreakdown(b){
   const s=b.rank_series||[]; if(!s.length) return null;
   const raw=s.map(rankValue), sum=raw.reduce((a,c)=>a+c,0);
   if(sum<=0) return null;
+  const all=state.data.banners, DAY=864e5, s0=Date.parse(b.start);
   let cum=0;
-  const days=s.map((rank,i)=>{ const add=b.rev*raw[i]/sum; cum+=add; return {i,rank,add,cum}; });
+  const days=s.map((rank,i)=>{ const add=b.rev*raw[i]/sum; cum+=add;
+    const t=s0+i*DAY;
+    const shared=all.some(o=>o!==b && Date.parse(o.start)<=t && t<=Date.parse(o.end));
+    return {i,rank,add,cum,shared}; });
   return {days};
 }
 function buildupSVG(bd,b){
@@ -417,7 +458,7 @@ function buildupSVG(bd,b){
   const bw=Math.min(16, pW/n*0.7);
   const bars=days.map(d=>{ if(d.add<=0) return ""; const x=xOf(d.i);
     const top=MT+(1-d.add/total)*pH, h=MT+pH-top;
-    return `<rect class="bu-bar" x="${(x-bw/2).toFixed(1)}" y="${top.toFixed(1)}" width="${bw.toFixed(1)}" height="${Math.max(0,h).toFixed(1)}" rx="2"/>`;}).join("");
+    return `<rect class="bu-bar${d.shared?' shr':''}" x="${(x-bw/2).toFixed(1)}" y="${top.toFixed(1)}" width="${bw.toFixed(1)}" height="${Math.max(0,h).toFixed(1)}" rx="2"/>`;}).join("");
   const line=days.map((d,i)=>(i?"L":"M")+xOf(i).toFixed(1)+" "+yOf(d.cum).toFixed(1)).join(" ");
   const cdots=days.map((d,i)=>`<circle class="rc-dot" cx="${xOf(i).toFixed(1)}" cy="${yOf(d.cum).toFixed(1)}" r="3"/>`).join("");
   const hits=days.map((d,i)=>`<circle class="rc-hit" data-day="${i}" cx="${xOf(i).toFixed(1)}" cy="${yOf(d.cum).toFixed(1)}" r="9"/>`).join("");
@@ -479,6 +520,15 @@ function openBanner(b){
       <p class="bm-note">No daily rank data for this run — the app stayed below game-i's trackable ~top&nbsp;200 throughout (counted as ¥0), or the run predates game-i's rank history.</p>`;
   }
 
+  const sh=b._share;
+  let shareBlock="";
+  if(sh&&sh.on){
+    const names=sh.with.map(x=>`${esc(x.name)} <span class="muted">(${x.days}d)</span>`).join(", ");
+    shareBlock=`<h3>Shared with concurrent banners</h3>
+      <p class="bm-note">game-i splits each day's revenue equally among every banner running that day. This one overlapped <b>${sh.with.length}</b> other banner${sh.with.length>1?"s":""} on <b>${sh.days}</b> of its ${sh.totalDays} days — up to a <b>${sh.maxN}-way</b> split — worth about <b>${Math.round(sh.revFrac*100)}%</b> of its estimated revenue. The hatched part of its bar and the hatched days below mark that shared portion.</p>
+      <p class="bm-note bm-recon">Ran alongside: ${names}</p>`;
+  }
+
   const bd=dailyBreakdown(b);
   // context for the shared hover tooltip on both charts (keyed by day index)
   _bmCtx={start:b.start, scheduled, days:(bd?bd.days:[]).map(x=>x)};
@@ -490,7 +540,7 @@ function openBanner(b){
       ${dailyTable(bd)}`;
   }
 
-  $("#bmBody").innerHTML=head+`<div class="bm-stats">${stats}</div>${curve}${build}`;
+  $("#bmBody").innerHTML=head+`<div class="bm-stats">${stats}</div>${curve}${shareBlock}${build}`;
   bannerModal.querySelector(".modal-card").scrollTop=0;
   tip.hidden=true;
   bannerModal.hidden=false;

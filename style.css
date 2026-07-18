@@ -113,6 +113,10 @@ a{color:inherit}
 @keyframes barGrow{from{width:0}}
 .val{font-size:13px; font-weight:800; font-variant-numeric:tabular-nums; white-space:nowrap}
 .val small{font-weight:500; color:var(--ink2); font-size:11px}
+/* portion of a bar earned while sharing the day's revenue with another banner */
+.barfill .shared{position:absolute; right:0; top:0; bottom:0; z-index:1;
+  box-shadow:inset 1px 0 0 rgba(255,255,255,.65);
+  background-image:repeating-linear-gradient(-45deg, rgba(0,0,0,.30) 0 2px, rgba(255,255,255,.16) 2px 6px)}
 
 /* tooltip */
 .tip{position:fixed; z-index:60; pointer-events:none; background:var(--surface); color:var(--ink);
@@ -196,6 +200,7 @@ tr.clk{cursor:pointer} tr.clk:hover td{background:var(--track)}
 .rcsvg .rc-peak{fill:var(--surface); stroke:var(--acc); stroke-width:2.5}
 .rcsvg .rc-peaklbl{fill:var(--ink); font-size:10.5px; font-weight:700; font-family:system-ui,sans-serif}
 .rcsvg .bu-bar{fill:var(--acc); opacity:.30}
+.rcsvg .bu-bar.shr{fill:var(--muted); opacity:.55}   /* days whose revenue was split with a concurrent banner */
 .rcsvg .bu-line{fill:none; stroke:var(--acc); stroke-width:2.4; stroke-linejoin:round; stroke-linecap:round}
 .rcsvg .rc-hit{fill:transparent; cursor:pointer}
 .rcsvg .rc-hit:hover{fill:var(--acc); fill-opacity:.18}
