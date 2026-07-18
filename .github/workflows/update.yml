@@ -4,7 +4,14 @@ name: Refresh gacha data
 # changes back to main. GitHub Pages (deploy-from-branch) then redeploys.
 on:
   schedule:
-    - cron: "10 15 * * *"    # daily, 15:10 UTC = 00:10 JST — 10 min after game-i's 00:00 JST ranking rollover
+    # game-i rolls its daily tally at 00:00 JST (15:00 UTC). GitHub's scheduled
+    # runs are often delayed 10-40 min and are sometimes dropped entirely under
+    # load, so we fire a few times across the first hour after midnight JST. The
+    # "no changes" guard + the refresh-data concurrency group make the extra runs
+    # cheap no-ops once the day's data is already committed.
+    - cron: "10 15 * * *"    # 00:10 JST — target (10 min after the rollover)
+    - cron: "40 15 * * *"    # 00:40 JST — fallback if the first is delayed/dropped
+    - cron: "20 16 * * *"    # 01:20 JST — last-chance fallback
   push:
     branches: [main]          # refresh data right after every code push
                               # (no loop: the bot's own GITHUB_TOKEN commit
