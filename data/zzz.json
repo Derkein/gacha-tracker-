@@ -4,13 +4,13 @@
  "jp": "ゼンレスゾーンゼロ",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E3%82%BC%E3%83%B3%E3%83%AC%E3%82%B9%E3%82%BE%E3%83%BC%E3%83%B3%E3%82%BC%E3%83%AD",
- "updated": "2026-07-19T00:51:38Z",
+ "updated": "2026-07-19T16:05:26Z",
  "count": 35,
  "now": {
-  "ios": 143,
-  "android": 68,
-  "month": 123,
-  "next_add": 13395609,
+  "ios": 150,
+  "android": 73,
+  "month": 124,
+  "next_add": 12897302,
   "ym": "2026/07",
   "ranks": {
    "prev": [
@@ -66,7 +66,7 @@
     null,
     null,
     145,
-    null,
+    150,
     null,
     null,
     null,
@@ -1695,7 +1695,7 @@
    "name": "ノルムー",
    "start": "2026-07-08",
    "end": "2026-07-28",
-   "rev": 1.69,
+   "rev": 1.82,
    "yrank": 8,
    "ytot": 9,
    "cum": 33,
@@ -1717,7 +1717,8 @@
     null,
     null,
     null,
-    145
+    145,
+    150
    ],
    "icons": [
     "https://enka.network/ui/zzz/IconRoleCircle65.png"
