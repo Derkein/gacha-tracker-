@@ -212,7 +212,9 @@ function computeSharing(){
       if(others.length){ sharedDays++; rawShared+=raw; maxN=Math.max(maxN,others.length+1);
         others.forEach(o=>withMap.set(o,(withMap.get(o)||0)+1)); }
     }
-    b._share = { days:sharedDays, totalDays, maxN, revFrac: rawTot? rawShared/rawTot : 0,
+    const revFrac = rawTot ? rawShared/rawTot : 0;
+    const sharedRev = b.rev*revFrac, soloRev = b.rev - sharedRev;
+    b._share = { days:sharedDays, totalDays, maxN, revFrac, sharedRev, soloRev,
       on: sharedDays>=SHARE_MIN_DAYS,
       with:[...withMap.entries()].sort((a,c)=>c[1]-a[1])
               .map(([o,d])=>({name:(o.agents&&o.agents.length?o.agents.join(" & "):o.name), days:d})) };
@@ -396,7 +398,8 @@ function showTip(b,e){
     ? `<div class="tiphint">▸ Click to see daily rankings during the run</div>` : "";
   const sh=b._share;
   const shRow = sh&&sh.on
-    ? `<dt>Shared run</dt><dd>${sh.days}d, ${sh.maxN}-way</dd>` : "";
+    ? `<dt>On its own</dt><dd>${G(sh.soloRev)}</dd>`
+    + `<dt>While shared</dt><dd>${G(sh.sharedRev)}</dd>` : "";
   tip.innerHTML=`${art}<div class="body">
     <h4><span class="dot" style="background:${barColor(b)}"></span>${esc(b.name)}${rr}</h4>
     <div style="color:var(--muted);font-size:11.5px">${esc(en)}</div>
@@ -559,7 +562,12 @@ function openBanner(b){
   if(sh&&sh.on){
     const names=sh.with.map(x=>`${esc(x.name)} <span class="muted">(${x.days}d)</span>`).join(", ");
     shareBlock=`<h3>Shared with concurrent banners</h3>
-      <p class="bm-note">game-i splits each day's revenue equally among every banner running that day. This one overlapped <b>${sh.with.length}</b> other banner${sh.with.length>1?"s":""} on <b>${sh.days}</b> of its ${sh.totalDays} days — up to a <b>${sh.maxN}-way</b> split — worth about <b>${Math.round(sh.revFrac*100)}%</b> of its estimated revenue. The hatched part of its bar and the hatched days below mark that shared portion.</p>
+      <p class="bm-note">game-i splits each day's revenue equally among every banner running that day. This one overlapped <b>${sh.with.length}</b> other banner${sh.with.length>1?"s":""} on <b>${sh.days}</b> of its ${sh.totalDays} days — up to a <b>${sh.maxN}-way</b> split. The hatched part of its bar (and the hatched days below) mark that portion.</p>
+      <div class="bm-stats bm-share3">
+        <div class="bm-stat"><span class="l">On its own</span><span class="v">${G(sh.soloRev)}</span></div>
+        <div class="bm-stat"><span class="l">While shared</span><span class="v">${G(sh.sharedRev)}</span></div>
+        <div class="bm-stat sum"><span class="l">Total</span><span class="v">${G(b.rev)}</span></div>
+      </div>
       <p class="bm-note bm-recon">Ran alongside: ${names}</p>`;
   }
 

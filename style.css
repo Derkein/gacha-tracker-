@@ -223,6 +223,9 @@ tr.clk{cursor:pointer} tr.clk:hover td{background:var(--track)}
 .rcsvg .bu-line{fill:none; stroke:var(--acc); stroke-width:2.4; stroke-linejoin:round; stroke-linecap:round}
 .rcsvg .rc-hit{fill:transparent; cursor:pointer}
 .rcsvg .rc-hit:hover{fill:var(--acc); fill-opacity:.18}
+.bm-share3{grid-template-columns:1fr 1fr 1fr; margin-top:2px}
+.bm-share3 .bm-stat.sum{border-color:var(--accent)}
+.bm-share3 .bm-stat.sum .v{color:var(--accent)}
 .bm-recon{border-left:2px solid var(--accent); padding-left:9px !important}
 .bm-tablewrap{max-height:230px; overflow-y:auto; margin-top:10px; border:1px solid var(--border); border-radius:10px}
 .bm-table{font-size:12px; margin:0}
