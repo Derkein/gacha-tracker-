@@ -6,7 +6,7 @@ An auto-updating, fan-made site that charts **estimated per-banner gacha revenue
 
 It doesn't measure or estimate anything itself: every number comes from [**game-i.daa.jp**](https://game-i.daa.jp/)'s published estimates (売上予測). This project just re-presents them.
 
-Covered: **Zenless Zone Zero · Honkai: Star Rail · Wuthering Waves · Genshin Impact · Arknights: Endfield · Neverness to Everness · Umamusume · Fate/Grand Order · Blue Archive · Granblue Fantasy · Arknights.**
+Covered: **Zenless Zone Zero · Honkai: Star Rail · Wuthering Waves · Genshin Impact · Arknights: Endfield · Neverness to Everness · Umamusume · Fate/Grand Order · Blue Archive · Arknights.**
 
 > Coverage varies by game and generally begins around **2024**, so titles older than that are missing their earlier banners.
 

@@ -32,21 +32,21 @@
    "game": "endfield",
    "name": "Arknights: Endfield",
    "count": 10,
-   "total_oku": 36.0,
+   "total_oku": 36.1,
    "updated": "2026-07-18T21:01:08Z"
   },
   {
    "game": "nte",
    "name": "Neverness to Everness",
    "count": 5,
-   "total_oku": 19.6,
+   "total_oku": 19.5,
    "updated": "2026-07-18T21:01:11Z"
   },
   {
    "game": "uma",
    "name": "Umamusume: Pretty Derby",
    "count": 100,
-   "total_oku": 605.0,
+   "total_oku": 604.9,
    "updated": "2026-07-18T21:01:33Z"
   },
   {
@@ -62,13 +62,6 @@
    "count": 49,
    "total_oku": 160.6,
    "updated": "2026-07-18T21:02:16Z"
-  },
-  {
-   "game": "gbf",
-   "name": "Granblue Fantasy",
-   "count": 10,
-   "total_oku": 339.6,
-   "updated": "2026-07-18T21:02:32Z"
   },
   {
    "game": "arknights",
