@@ -4,13 +4,13 @@
  "jp": "原神",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E5%8E%9F%E7%A5%9E",
- "updated": "2026-07-19T23:50:57Z",
+ "updated": "2026-07-20T17:05:11Z",
  "count": 44,
  "now": {
-  "ios": 67,
-  "android": 15,
-  "month": 20,
-  "next_add": 17166032,
+  "ios": 72,
+  "android": 11,
+  "month": 21,
+  "next_add": 16068523,
   "ym": "2026/07",
   "ranks": {
    "prev": [
@@ -67,7 +67,7 @@
     80,
     78,
     72,
-    null,
+    72,
     null,
     null,
     null,
@@ -2160,7 +2160,7 @@
    "name": "サンドローネ",
    "start": "2026-07-01",
    "end": "2026-07-21",
-   "rev": 11.32,
+   "rev": 11.48,
    "yrank": 2,
    "ytot": 9,
    "cum": 43,
@@ -2169,7 +2169,7 @@
    "related": "",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/06/29/0/781da55472dc1186e3e8d2d93140cf70_7777178998231754007.jpeg",
    "rerun": false,
-   "ongoing": true,
+   "ongoing": false,
    "rank_series": [
     59,
     3,
@@ -2190,6 +2190,7 @@
     88,
     80,
     78,
+    72,
     72
    ],
    "icons": [],

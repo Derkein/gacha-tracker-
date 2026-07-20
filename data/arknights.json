@@ -4,13 +4,13 @@
  "jp": "アークナイツ",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E3%82%A2%E3%83%BC%E3%82%AF%E3%83%8A%E3%82%A4%E3%83%84",
- "updated": "2026-07-19T23:52:57Z",
+ "updated": "2026-07-20T17:07:28Z",
  "count": 36,
  "now": {
-  "ios": 27,
+  "ios": 34,
   "android": 3,
-  "month": 53,
-  "next_add": 37240000,
+  "month": 51,
+  "next_add": 30628388,
   "ym": "2026/07",
   "ranks": {
    "prev": [
@@ -67,7 +67,7 @@
     10,
     13,
     22,
-    null,
+    34,
     null,
     null,
     null,
