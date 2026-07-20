@@ -59,7 +59,11 @@ async function init(){
   let idx;
   try { idx = await getJSON("data/index.json"); }
   catch(e){ showError(e, init); return; }
-  state.games = idx.games;
+  state.games = (idx && idx.games) || [];
+  if(!state.games.length){                    // empty index (e.g. a failed data refresh) — don't crash
+    showError(new Error("no games in the data index (a refresh may have failed)"), init);
+    return;
+  }
   const tabs = $("#tabs"); tabs.innerHTML = "";
   state.games.forEach(g=>{
     const b=document.createElement("button"); b.className="tab"; b.dataset.tag=g.game;

@@ -325,8 +325,35 @@ def main():
         print(f"[{tag}] {len(banners)} banners, total {total} 億G -> data/{tag}.json")
         summary.append({"game": tag, "name": meta["name"], "count": len(banners),
                         "total_oku": total, "updated": out["updated"]})
-    (DATA / "index.json").write_text(json.dumps({"games": summary}, ensure_ascii=False, indent=1), encoding="utf-8")
-    print(f"wrote data/index.json with {len(summary)} games")
+
+    # Rebuild the index from what's on disk, preferring this run's fresh summary
+    # and falling back to the already-committed data file for any game that failed
+    # (e.g. a game-i timeout). A failed scrape must NEVER drop a game or, worst of
+    # all, publish an empty index that breaks the site — so we keep the last-good
+    # entry and only fail loudly if literally nothing usable exists.
+    fresh = {s["game"]: s for s in summary}
+    games = []
+    for tag in GAMES:
+        if tag in fresh:
+            games.append(fresh[tag]); continue
+        p = DATA / f"{tag}.json"
+        if p.exists():
+            try:
+                d = json.loads(p.read_text(encoding="utf-8"))
+                games.append({"game": tag, "name": d.get("name", tag), "count": len(d["banners"]),
+                              "total_oku": round(sum(b["rev"] for b in d["banners"]), 1),
+                              "updated": d["updated"]})
+            except Exception as e:
+                print(f"[{tag}] could not read existing data: {e}", file=sys.stderr)
+    if not games:
+        print("all scrapes failed and no existing data on disk — leaving index.json untouched", file=sys.stderr)
+        sys.exit(1)
+    (DATA / "index.json").write_text(json.dumps({"games": games}, ensure_ascii=False, indent=1), encoding="utf-8")
+    kept = len(games) - len(fresh)
+    print(f"wrote data/index.json with {len(games)} games ({len(fresh)} fresh, {kept} kept from disk)")
+    if not fresh:
+        print("WARNING: every game failed to scrape this run (game-i unreachable?)", file=sys.stderr)
+        sys.exit(1)   # fail the CI step so a total outage doesn't commit a no-op 'refresh'
 
 
 if __name__ == "__main__":
