@@ -4,13 +4,13 @@
  "jp": "ゼンレスゾーンゼロ",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E3%82%BC%E3%83%B3%E3%83%AC%E3%82%B9%E3%82%BE%E3%83%BC%E3%83%B3%E3%82%BC%E3%83%AD",
- "updated": "2026-07-20T17:08:15Z",
+ "updated": "2026-07-21T16:38:22Z",
  "count": 35,
  "now": {
-  "ios": 164,
-  "android": 65,
-  "month": 124,
-  "next_add": 10061871,
+  "ios": 170,
+  "android": 57,
+  "month": 126,
+  "next_add": 9696537,
   "ym": "2026/07",
   "ranks": {
    "prev": [
@@ -68,7 +68,7 @@
     145,
     150,
     164,
-    null,
+    170,
     null,
     null,
     null,
@@ -1141,7 +1141,7 @@
    "rev": 2.0,
    "yrank": 16,
    "ytot": 17,
-   "cum": 32,
+   "cum": 33,
    "cumtot": 35,
    "year": 2025,
    "related": "橘福福",
@@ -1695,10 +1695,10 @@
    "name": "ノルムー",
    "start": "2026-07-08",
    "end": "2026-07-28",
-   "rev": 1.93,
+   "rev": 2.02,
    "yrank": 8,
    "ytot": 9,
-   "cum": 33,
+   "cum": 32,
    "cumtot": 35,
    "year": 2026,
    "related": "千夏",
@@ -1719,7 +1719,8 @@
     null,
     145,
     150,
-    164
+    164,
+    170
    ],
    "icons": [
     "https://enka.network/ui/zzz/IconRoleCircle65.png"
