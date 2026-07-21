@@ -232,6 +232,19 @@ def scrape_now(apid):
     return now
 
 
+def scrape_monthly(apid):
+    """game-i's per-app monthly revenue table (月次売上予測) as {'YYYY-MM': 億G}.
+    This is game-i's own monthly total, independent of our per-banner figures —
+    the site uses it to reconcile against the banners active each month."""
+    h = fetch(BASE + f"?APP/{apid}")
+    i = h.find("月次売上予測")
+    if i < 0:
+        return {}
+    seg = re.sub(r"<[^>]+>", " ", h[i:i + 16000])
+    return {f"{y}-{mo}": float(v) for y, mo, v in
+            re.findall(r"(20\d\d)/(\d\d)\s*([\d.]+)億G", seg)}
+
+
 def attach_rank_series(apid, banners):
     """Per-banner daily iOS top-grossing rank across each run, stitched from the
     monthly feeds and aligned to the banner's start date (index 0 = start day).
@@ -304,6 +317,11 @@ def main():
             now = scrape_now(meta["apid"])
         except Exception as e:
             print(f"[{tag}] now-status failed (non-fatal): {e}", file=sys.stderr)
+        monthly = {}
+        try:
+            monthly = scrape_monthly(meta["apid"])
+        except Exception as e:
+            print(f"[{tag}] monthly failed (non-fatal): {e}", file=sys.stderr)
         try:
             got = attach_rank_series(meta["apid"], banners)
             print(f"[{tag}] daily rank series on {got}/{len(banners)} banners")
@@ -318,6 +336,7 @@ def main():
             "updated": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
             "count": len(banners),
             "now": now,
+            "monthly": monthly,
             "banners": banners,
         }
         (DATA / f"{tag}.json").write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")

@@ -108,7 +108,9 @@ async function selectGame(tag){
   // rank by revenue *within our dataset* — game-i's cum is against the game's full
   // history (often far larger than what we scrape), so it isn't 1..N here.
   [...state.data.banners].sort((a,b)=>b.rev-a.rev).forEach((b,i)=>b._rank=i+1);
+  state.data.banners.forEach((x,i)=>x._i=i);
   computeSharing();
+  computeMonthly();
   populateGraphYears();
   renderStats(); render();
 }
@@ -336,11 +338,65 @@ function populateGraphYears(){
 function render(){
   document.body.dataset.view = state.table ? "table" : state.mode;   // lets CSS tailor per view (e.g. mobile graph)
   $("#chartwrap").hidden=state.table; $("#tablewrap").hidden=!state.table;
-  $("#graphControls").hidden=state.table || state.mode==="year";     // year/match/round don't apply to the yearly view
+  $("#graphControls").hidden=state.table || state.mode==="year" || state.mode==="month";
   if(state.table){ buildTable(); return; }
   if(state.mode==="graph"){ renderGraph(); return; }
   if(state.mode==="year"){ renderYearly(); return; }
+  if(state.mode==="month"){ renderMonthly(); return; }
   renderBars();
+}
+
+// ---- by-month view: game-i's published monthly revenue (月次売上予測) reconciled
+// against the banners active that month. Our per-month figure attributes each
+// banner's reconstructed daily revenue to the calendar month it fell in, so the
+// two should line up closely — a big gap flags a month game-i's banner list is
+// behind on (or days with no banner running). ----
+function computeMonthly(){
+  const byMonth={};
+  state.data.banners.forEach(b=>{
+    const s=b.rank_series; if(!s||!s.length) return;
+    const raw=s.map(rankValue), tot=raw.reduce((a,c)=>a+c,0); if(tot<=0) return;
+    const s0=new Date(b.start+"T00:00:00"), per={};
+    raw.forEach((rw,i)=>{ if(rw<=0) return; const dt=new Date(s0); dt.setDate(dt.getDate()+i);
+      const ym=`${dt.getFullYear()}-${String(dt.getMonth()+1).padStart(2,"0")}`;
+      per[ym]=(per[ym]||0)+b.rev*rw/tot; });
+    for(const ym in per){ const M=byMonth[ym]||(byMonth[ym]={ours:0,banners:[]});
+      M.ours+=per[ym];
+      M.banners.push({name:(b.agents&&b.agents.length?b.agents.join(" & "):b.name), rev:per[ym], i:b._i}); }
+  });
+  for(const ym in byMonth) byMonth[ym].banners.sort((a,c)=>c.rev-a.rev);
+  state.monthly=byMonth;
+}
+function renderMonthly(){
+  const gi=state.data.monthly||{}, bm=state.monthly||{};
+  const months=[...new Set([...Object.keys(gi),...Object.keys(bm)])].sort();
+  if(!months.length){ $("#chart").innerHTML=`<div class="loading">No monthly data for this game.</div>`; return; }
+  const max=Math.max(...months.map(m=>Math.max(gi[m]||0,(bm[m]&&bm[m].ours)||0)),0.1);
+  let order=[...months].reverse();
+  if(state.reverse) order.reverse();
+  let html=`<div class="yr-note">game-i's published <b>monthly revenue</b> (月次売上予測) reconciled against the banners active that month. Our banner figure attributes each banner's reconstructed daily revenue to its month, so the two should line up — a large gap means game-i's banner list is behind for that month, or the month had days with no banner.</div>`;
+  let curY=null;
+  order.forEach(ym=>{
+    const y=ym.slice(0,4), mo=+ym.slice(5,7);
+    if(y!==curY){ curY=y; html+=`<div class="yhead">${y}</div>`; }
+    const g=gi[ym], o=(bm[ym]&&bm[ym].ours)||0, bl=(bm[ym]&&bm[ym].banners)||[];
+    const barVal=g!=null?g:o, w=Math.max(1.5,barVal/max*100);
+    let recon;
+    if(g==null) recon=`<span class="mo-x">no game-i figure</span>`;
+    else if(!bl.length) recon=`<span class="mo-x" title="game-i's banner list has nothing for this month">no banner detail</span>`;
+    else { const diff=g?(o-g)/g*100:0, ok=Math.abs(diff)<=12;
+      recon=`<span class="mo-match ${ok?"ok":"off"}">${G(o)} from ${bl.length} banner${bl.length>1?"s":""} · ${diff>=0?"+":""}${diff.toFixed(0)}%</span>`; }
+    const names=bl.length
+      ? `<div class="mo-banners">`+bl.slice(0,4).map(x=>`<span class="mo-b" data-i="${x.i}">${esc(x.name)} <span class="mo-bv">${G(x.rev)}</span></span>`).join("")
+        +(bl.length>4?`<span class="mo-more">+${bl.length-4} more</span>`:"")+`</div>` : "";
+    html+=`<div class="mo-row">
+      <div class="mo-m">${MONTHS[mo-1]||ym}</div>
+      <div class="mo-body">
+        <div class="mo-line"><span class="mo-v">${g!=null?G(g):"—"}</span>${recon}</div>
+        <div class="yr-track"><div class="yr-fill" style="width:${w}%"></div></div>
+        ${names}</div></div>`;
+  });
+  $("#chart").innerHTML=html;
 }
 
 // ---- by-year breakdown: revenue per calendar year, its share of the game's
@@ -629,10 +685,10 @@ function updateDirLabel(){
 }
 function setMode(m){
   state.mode=m;
-  [["bTime","time"],["bGraph","graph"],["bRank","rank"],["bYear","year"]].forEach(([id,mm])=>{
+  [["bTime","time"],["bGraph","graph"],["bRank","rank"],["bYear","year"],["bMonth","month"]].forEach(([id,mm])=>{
     const el=$("#"+id); el.classList.toggle("on",m===mm); el.setAttribute("aria-selected",m===mm);
   });
-  $("#graphControls").hidden = state.table || m==="year";   // Year / Match highest / Round-to apply to the chart views
+  $("#graphControls").hidden = state.table || m==="year" || m==="month";
   updateDirLabel();
   if(!state.table) render();
 }
@@ -640,6 +696,7 @@ $("#bTime").onclick=()=>setMode("time");
 $("#bRank").onclick=()=>setMode("rank");
 $("#bGraph").onclick=()=>setMode("graph");
 $("#bYear").onclick=()=>setMode("year");
+$("#bMonth").onclick=()=>setMode("month");
 $("#bDir").onclick=()=>{ state.reverse=!state.reverse; updateDirLabel(); if(!state.table) render(); };
 $("#brk").onchange=function(){ state.bracket=+this.value; if(!state.table) render(); };
 $("#matchHigh").onchange=function(){ state.matchHigh=this.checked; if(!state.table) render(); };
