@@ -186,6 +186,9 @@ tr.clk{cursor:pointer} tr.clk:hover td{background:var(--track)}
 .mo-b:hover{text-decoration:underline; text-underline-offset:2px}
 .mo-bv{color:var(--muted); font-variant-numeric:tabular-nums}
 .mo-more{color:var(--muted); font-size:11px}
+.mo-warn{font-size:12px; color:var(--ink2); background:var(--surface2); border:1px solid var(--border);
+  border-left:3px solid #d9a441; border-radius:8px; padding:9px 12px; margin:0 0 12px; line-height:1.5}
+.mo-warn b{color:var(--ink)}
 
 /* info button + methodology modal */
 .infolink{border:0; background:none; color:var(--accent); font:inherit; font-size:12.5px; font-weight:600;

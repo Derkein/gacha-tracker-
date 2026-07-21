@@ -374,7 +374,14 @@ function renderMonthly(){
   const max=Math.max(...months.map(m=>Math.max(gi[m]||0,(bm[m]&&bm[m].ours)||0)),0.1);
   let order=[...months].reverse();
   if(state.reverse) order.reverse();
+  // warn when the game rides low in the ranks: its banners drop below game-i's
+  // trackable top-200 within a few days, so the per-banner reconstruction is
+  // shaky and won't reconcile well with the monthly totals.
+  let dtot=0,dnul=0;
+  state.data.banners.forEach(b=>{const s=b.rank_series||[]; dtot+=s.length; dnul+=s.filter(x=>x==null).length;});
+  const lowRank = dtot && dnul/dtot>=0.15;
   let html=`<div class="yr-note">game-i's published <b>monthly revenue</b> (月次売上予測) reconciled against the banners active that month. Our banner figure attributes each banner's reconstructed daily revenue to its month, so the two should line up — a large gap means game-i's banner list is behind for that month, or the month had days with no banner.</div>`;
+  if(lowRank) html+=`<div class="mo-warn">⚠ Many of this game's banners fall <b>below game-i's trackable top&nbsp;200</b> within a few days, so the per-banner reconstruction is unreliable here — the banner sums often won't match the monthly figures. Treat game-i's <b>monthly number as the reliable one</b>.</div>`;
   let curY=null;
   order.forEach(ym=>{
     const y=ym.slice(0,4), mo=+ym.slice(5,7);
