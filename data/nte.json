@@ -4,13 +4,13 @@
  "jp": "NTE： Neverness to Everness",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/NTE%EF%BC%9A%20Neverness%20to%20Everness",
- "updated": "2026-07-22T00:28:06Z",
+ "updated": "2026-07-22T16:40:56Z",
  "count": 5,
  "now": {
-  "ios": 186,
-  "android": 53,
+  "ios": null,
+  "android": 60,
   "month": 65,
-  "next_add": 7473349,
+  "next_add": 6070888,
   "ym": "2026/07",
   "ranks": {
    "prev": [
@@ -82,7 +82,7 @@
   }
  },
  "monthly": {
-  "2026-07": 4.87,
+  "2026-07": 4.92,
   "2026-06": 8.09,
   "2026-05": 6.82
  },
@@ -260,7 +260,7 @@
    "name": "真紅",
    "start": "2026-07-08",
    "end": "2026-07-29",
-   "rev": 3.64,
+   "rev": 3.7,
    "yrank": 3,
    "ytot": 5,
    "cum": 3,
@@ -285,7 +285,8 @@
     169,
     169,
     196,
-    188
+    188,
+    null
    ],
    "agents": [
     "Shinku"
