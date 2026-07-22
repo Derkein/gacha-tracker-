@@ -117,6 +117,13 @@ a{color:inherit}
 .barfill .shared{position:absolute; right:0; top:0; bottom:0; z-index:1;
   box-shadow:inset 1px 0 0 rgba(255,255,255,.65);
   background-image:repeating-linear-gradient(-45deg, rgba(0,0,0,.30) 0 2px, rgba(255,255,255,.16) 2px 6px)}
+/* synthetic 'unlisted revenue' entries (game-i monthly minus listed banners) */
+.av .mono.syn{background:var(--muted); font-size:19px}
+.synrow .nm b{color:var(--ink2); font-weight:750}
+.synrow .barfill{background-image:repeating-linear-gradient(-45deg,transparent 0 5px,rgba(127,127,127,.32) 5px 10px)}
+.bm-art.syn{display:flex; align-items:center; justify-content:center; background:var(--track);
+  color:var(--muted); font-size:26px; font-weight:700; border-color:var(--base); border-style:dashed}
+.gsvg .syndot{fill:var(--muted)}
 
 /* tooltip */
 .tip{position:fixed; z-index:60; pointer-events:none; background:var(--surface); color:var(--ink);

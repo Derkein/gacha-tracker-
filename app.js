@@ -107,10 +107,12 @@ async function selectGame(tag){
   state.data = data;
   // rank by revenue *within our dataset* — game-i's cum is against the game's full
   // history (often far larger than what we scrape), so it isn't 1..N here.
+  state.data.banners = state.data.banners.filter(b=>!b._synthetic);   // defensive on re-entry
+  computeMonthly();                                        // per-month attribution from real banners
+  state.data.banners = state.data.banners.concat(computeUnlisted());  // + synthetic 'unlisted revenue'
   [...state.data.banners].sort((a,b)=>b.rev-a.rev).forEach((b,i)=>b._rank=i+1);
   state.data.banners.forEach((x,i)=>x._i=i);
   computeSharing();
-  computeMonthly();
   populateGraphYears();
   renderStats(); render();
 }
@@ -177,6 +179,7 @@ function poolBanners(){ const b=state.data.banners; return state.graphYear==="al
 // listener (below), so a strict CSP with no 'unsafe-inline' script can apply and
 // scraped names never land in an executable context. src/name are escaped too.
 function avatarHTML(b){
+  if(b._synthetic) return `<span class="mono syn">≈</span>`;
   if(b.icons&&b.icons.length){
     let h=`<img src="${esc(b.icons[0])}" alt="" referrerpolicy="no-referrer" data-fb="mono" data-nm="${esc(b.name)}">`;
     if(b.icons[1]) h+=`<img class="extra" src="${esc(b.icons[1])}" alt="" referrerpolicy="no-referrer" data-fb="remove">`;
@@ -205,8 +208,35 @@ document.addEventListener("error", e=>{
 // "A&B" entry, so this mostly lights up on event games (FGO, Arknights, …) where
 // separate banners genuinely run at once. Computed once per game load.
 const SHARE_MIN_DAYS = 3;                         // ignore trivial 1-day changeovers
+// Synthetic "unlisted revenue" entries: when game-i's monthly total for a month
+// is much larger than the banners it has listed (a rate-up/event game-i hasn't
+// logged yet, or off-banner sales), add one entry for the difference so the
+// game's timeline/graph/totals reflect that it kept earning. Only big positive
+// gaps — small residuals are just reconstruction noise, and low-rank games
+// (monthly < banners) get none. Derived client-side from the monthly table.
+function computeUnlisted(){
+  const gi=state.data.monthly||{}, bm=state.monthly||{}, out=[];
+  // only within our banner-coverage window — months before the first tracked
+  // banner are "not covered yet", not "game-i's list is behind".
+  const real=state.data.banners.filter(b=>!b._synthetic);
+  if(!real.length) return out;
+  const firstYm=real.reduce((m,b)=>b.start.slice(0,7)<m?b.start.slice(0,7):m,"9999-99");
+  for(const ym in gi){
+    if(ym<=firstYm) continue;              // skip pre-coverage months and the partial first month
+    const g=gi[ym]; if(!g) continue;
+    const gap=g-((bm[ym]&&bm[ym].ours)||0);
+    if(gap<1 || gap<g*0.4) continue;                 // >= 1億 (¥100M) AND >= 40% of the month
+    const [y,mo]=ym.split("-").map(Number), last=new Date(y,mo,0).getDate();
+    out.push({ name:"No rate-up banner listed",
+      agents:["game-i monthly — not attributed to a banner"],
+      rev:+gap.toFixed(2), start:`${ym}-01`, end:`${ym}-${String(last).padStart(2,"0")}`,
+      year:y, _synthetic:true, cum:null, cumtot:null, yrank:null, ytot:null });
+  }
+  return out;
+}
+
 function computeSharing(){
-  const all=state.data.banners, DAY=864e5;
+  const all=state.data.banners.filter(b=>!b._synthetic), DAY=864e5;
   const spans=all.map(b=>({s:Date.parse(b.start), e:Date.parse(b.end), b}));
   for(const {s,e,b} of spans){
     const totalDays=Math.round((e-s)/DAY)+1, series=b.rank_series;
@@ -238,7 +268,7 @@ function rowHTML(b,rank,max){
   // banner (detail lives in the hover tooltip + click-to-open modal, not a badge)
   const shSeg = sh&&sh.on
     ? `<span class="shared" style="width:${Math.min(100,Math.round(sh.revFrac*100))}%" title="~${Math.round(sh.revFrac*100)}% split with a concurrent banner"></span>` : "";
-  return `<div class="row" data-i="${b._i}" style="--bar-l:${bl};--bar-d:${bd};--av-ring:${c}">
+  return `<div class="row${b._synthetic?" synrow":""}" data-i="${b._i}" style="--bar-l:${bl};--bar-d:${bd};--av-ring:${c}">
     <div class="rk${m}">${rank}</div>
     <div class="av">${avatarHTML(b)}</div>
     <div class="meta">
@@ -305,7 +335,7 @@ function yearSVG(year, items, gmax, step){
         `preserveAspectRatio="xMidYMid slice" clip-path="url(#${id})" data-i="${p.b._i}"/>`+
         `<circle class="gring" cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="${acc}" data-i="${p.b._i}"/>`;
     }
-    return `<circle class="dot" data-i="${p.b._i}" cx="${cx}" cy="${cy}" r="5" fill="${acc}"/>`;
+    return `<circle class="dot${p.b._synthetic?" syndot":""}" data-i="${p.b._i}" cx="${cx}" cy="${cy}" r="5" fill="${acc}"/>`;
   }).join("");
   return `<svg class="gsvg" viewBox="0 0 ${W} ${H}" role="img">
     ${grid}<path class="area" d="${area}"/><path class="line" d="${line}"/>${marks}${xt}</svg>`;
@@ -354,6 +384,7 @@ function render(){
 function computeMonthly(){
   const byMonth={};
   state.data.banners.forEach(b=>{
+    if(b._synthetic) return;                 // reconciliation uses real banners only
     const s=b.rank_series; if(!s||!s.length) return;
     const raw=s.map(rankValue), tot=raw.reduce((a,c)=>a+c,0); if(tot<=0) return;
     const s0=new Date(b.start+"T00:00:00"), per={};
@@ -440,12 +471,12 @@ function renderYearly(){
 }
 function buildTable(){
   state.data.banners.forEach((x,i)=>x._i=i);
-  const rows=[...state.data.banners].sort((a,b)=>b.rev-a.rev).map(b=>`<tr data-i="${b._i}"${b.rank_series&&b.rank_series.length?' class="clk"':''}>
-    <td>#${b.cum}</td><td class="l">${esc(b.name)}</td>
+  const rows=[...state.data.banners].sort((a,b)=>b.rev-a.rev).map(b=>`<tr data-i="${b._i}" class="clk">
+    <td>${b.cum!=null?"#"+b.cum:"—"}</td><td class="l">${esc(b.name)}</td>
     <td class="l" style="color:var(--muted)">${esc((b.agents||[]).join(", "))}</td>
     <td>${G(b.rev)}</td>
     <td class="l" style="color:var(--muted)">${per(b.start)} – ${per(b.end)}</td>
-    <td class="l">${b.year} · #${b.yrank}/${b.ytot}</td></tr>`).join("");
+    <td class="l">${b.yrank!=null?`${b.year} · #${b.yrank}/${b.ytot}`:b.year}</td></tr>`).join("");
   $("#tablewrap").innerHTML=`<table><thead><tr><th>Rank</th><th class="l">Banner</th>
     <th class="l">Agent(s)</th><th>Revenue</th><th class="l">Period</th><th class="l">Yr rank</th></tr></thead>
     <tbody>${rows}</tbody></table>`;
@@ -457,7 +488,18 @@ $("#tablewrap").addEventListener("click",e=>{
 
 // ---- tooltip (works over bar rows AND graph dots — both carry data-i) ----
 const tip=$("#tip");
+function place(el,e){ const pad=15,w=el.offsetWidth,h=el.offsetHeight;
+  let x=e.clientX+pad,y=e.clientY+pad;
+  if(x+w>innerWidth)x=e.clientX-w-pad; if(y+h>innerHeight)y=e.clientY-h-pad;
+  el.style.left=Math.max(6,x)+"px"; el.style.top=Math.max(6,y)+"px"; }
 function showTip(b,e){
+  if(b._synthetic){
+    tip.innerHTML=`<div class="body"><h4><span class="dot" style="background:var(--muted)"></span>${esc(b.name)}</h4>
+      <div style="color:var(--muted);font-size:11.5px">${MONTHS[+b.start.slice(5,7)-1]} ${b.year}</div>
+      <dl><dt>Est. revenue</dt><dd><b>${G(b.rev)}</b></dd></dl>
+      <div class="tiphint" style="color:var(--muted);border-color:var(--border)">game-i's monthly total that no listed banner covers — likely an event game-i hasn't logged</div></div>`;
+    tip.hidden=false; place(tip,e); return;
+  }
   const en=b.agents&&b.agents.length?b.agents.join(" & "):(b.related||"");
   const art=b.banner_img?`<img class="art" src="${esc(b.banner_img)}" alt="" referrerpolicy="no-referrer" data-fb="remove">`:"";
   const rr=b.rerun?` <span class="rr">↻ rerun</span>`:"";
@@ -583,6 +625,19 @@ function dailyTable(bd){
 }
 
 function openBanner(b){
+  if(b._synthetic){
+    const mo=`${MONTHS[+b.start.slice(5,7)-1]} ${b.year}`;
+    $("#bmBody").innerHTML=`
+      <div class="bm-head" style="--av-ring:var(--muted)">
+        <span class="bm-art sq mono syn">≈</span>
+        <div class="bm-htext"><h2 id="bmTitle">${esc(b.name)}</h2>
+          <div class="bm-sub">${mo}</div></div></div>
+      <div class="bm-stats">
+        <div class="bm-stat"><span class="l">Unlisted revenue</span><span class="v">${G(b.rev)}</span></div>
+        <div class="bm-stat"><span class="l">Month</span><span class="v" style="font-size:13px">${mo}</span></div></div>
+      <p class="bm-note">This is <b>not a game-i banner</b>. game-i's monthly total for ${mo} is <b>${G(b.rev)}</b> higher than the banners it has listed — most likely a rate-up/event game-i hasn't logged yet (its banner list lags), or off-banner sales. We show it so the game's timeline and totals aren't left looking idle. The figure comes straight from game-i's monthly table (月次売上予測); there's no per-day rank detail because it isn't tied to a listed banner.</p>`;
+    bannerModal.querySelector(".modal-card").scrollTop=0; tip.hidden=true; bannerModal.hidden=false; return;
+  }
   dayLabel.start=b.start+"T00:00:00";
   const en=b.agents&&b.agents.length?b.agents.join(" & "):(b.related||"");
   const rr=b.rerun?`<span class="rr">↻ rerun</span>`:"";
