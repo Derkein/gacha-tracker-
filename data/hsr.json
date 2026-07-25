@@ -4,13 +4,13 @@
  "jp": "崩壊：スターレイル",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E5%B4%A9%E5%A3%8A%EF%BC%9A%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%AC%E3%82%A4%E3%83%AB",
- "updated": "2026-07-24T17:55:41Z",
+ "updated": "2026-07-25T16:11:29Z",
  "count": 46,
  "now": {
-  "ios": 3,
-  "android": 10,
-  "month": 21,
-  "next_add": 299937855,
+  "ios": 7,
+  "android": 2,
+  "month": 19,
+  "next_add": 99687618,
   "ym": "2026/07",
   "ranks": {
    "prev": [
@@ -72,7 +72,7 @@
     50,
     57,
     3,
-    null,
+    7,
     null,
     null,
     null,
@@ -82,7 +82,7 @@
   }
  },
  "monthly": {
-  "2026-07": 13.39,
+  "2026-07": 14.61,
   "2026-06": 13.4,
   "2026-05": 14.61,
   "2026-04": 17.36,
@@ -2215,7 +2215,7 @@
    "name": "遠坂凛&ギルガメッシュ",
    "start": "2026-07-24",
    "end": "2026-08-25",
-   "rev": 2.49,
+   "rev": 3.71,
    "yrank": 9,
    "ytot": 12,
    "cum": 57,
@@ -2227,7 +2227,8 @@
    "ongoing": true,
    "rank_series": [
     57,
-    3
+    3,
+    7
    ],
    "icons": [
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1508.png",
