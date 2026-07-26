@@ -393,7 +393,7 @@ function computeMonthly(){
       per[ym]=(per[ym]||0)+b.rev*rw/tot; });
     for(const ym in per){ const M=byMonth[ym]||(byMonth[ym]={ours:0,banners:[]});
       M.ours+=per[ym];
-      M.banners.push({name:(b.agents&&b.agents.length?b.agents.join(" & "):b.name), rev:per[ym], i:b._i}); }
+      M.banners.push({name:(b.agents&&b.agents.length?b.agents.join(" & "):b.name), rev:per[ym], total:b.rev, i:b._i}); }
   });
   for(const ym in byMonth) byMonth[ym].banners.sort((a,c)=>c.rev-a.rev);
   state.monthly=byMonth;
@@ -411,7 +411,7 @@ function renderMonthly(){
   let dtot=0,dnul=0;
   state.data.banners.forEach(b=>{const s=b.rank_series||[]; dtot+=s.length; dnul+=s.filter(x=>x==null).length;});
   const lowRank = dtot && dnul/dtot>=0.15;
-  let html=`<div class="yr-note">game-i's published <b>monthly revenue</b> (月次売上予測) reconciled against the banners active that month. Our banner figure attributes each banner's reconstructed daily revenue to its month, so the two should line up — a large gap means game-i's banner list is behind for that month, or the month had days with no banner.</div>`;
+  let html=`<div class="yr-note">game-i's published <b>monthly revenue</b> (月次売上予測) reconciled against the banners active that month. Each banner figure is only <b>that month's share</b> of its run — a banner that crosses into the next month shows “<b>of ¥total</b>”, and its total on the timeline is higher. A large monthly gap means game-i's banner list is behind, or the month had days with no banner.</div>`;
   if(lowRank) html+=`<div class="mo-warn">⚠ Many of this game's banners fall <b>below game-i's trackable top&nbsp;200</b> within a few days. game-i counts those days as <b>¥0</b> even though the app is still selling, so here its <b>monthly total undercounts</b> and the per-banner reconstruction is shaky — the two are separate rough estimates and will diverge. Take both as ballpark, not exact.</div>`;
   let curY=null;
   order.forEach(ym=>{
@@ -425,7 +425,10 @@ function renderMonthly(){
     else { const diff=g?(o-g)/g*100:0, ok=Math.abs(diff)<=12;
       recon=`<span class="mo-match ${ok?"ok":"off"}">${G(o)} from ${bl.length} banner${bl.length>1?"s":""} · ${diff>=0?"+":""}${diff.toFixed(0)}%</span>`; }
     const names=bl.length
-      ? `<div class="mo-banners">`+bl.slice(0,4).map(x=>`<span class="mo-b" data-i="${x.i}">${esc(x.name)} <span class="mo-bv">${G(x.rev)}</span></span>`).join("")
+      ? `<div class="mo-banners">`+bl.slice(0,4).map(x=>{
+          const part = x.total && x.rev < x.total-1e-9;   // banner runs into an adjacent month
+          return `<span class="mo-b" data-i="${x.i}"${part?` title="This banner also runs in another month — ${G(x.total)} total across its whole run"`:""}>${esc(x.name)} <span class="mo-bv">${G(x.rev)}${part?` <span class="mo-of">of ${G(x.total)}</span>`:""}</span></span>`;
+        }).join("")
         +(bl.length>4?`<span class="mo-more">+${bl.length-4} more</span>`:"")+`</div>` : "";
     html+=`<div class="mo-row">
       <div class="mo-m">${MONTHS[mo-1]||ym}</div>
