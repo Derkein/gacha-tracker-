@@ -4,13 +4,13 @@
  "jp": "原神",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E5%8E%9F%E7%A5%9E",
- "updated": "2026-07-21T20:25:51Z",
- "count": 44,
+ "updated": "2026-07-25T17:19:59Z",
+ "count": 45,
  "now": {
-  "ios": 24,
-  "android": 12,
-  "month": 21,
-  "next_add": 45049999,
+  "ios": 103,
+  "android": 10,
+  "month": 22,
+  "next_add": 13299160,
   "ym": "2026/07",
   "ranks": {
    "prev": [
@@ -69,10 +69,10 @@
     72,
     72,
     30,
-    null,
-    null,
-    null,
-    null,
+    32,
+    64,
+    84,
+    101,
     null,
     null,
     null,
@@ -82,7 +82,7 @@
   }
  },
  "monthly": {
-  "2026-07": 12.07,
+  "2026-07": 12.92,
   "2026-06": 5.08,
   "2026-05": 5.97,
   "2026-04": 5.6,
@@ -2233,6 +2233,40 @@
    "accent": null,
    "en": "Sandrone",
    "bar": "#84c9e1"
+  },
+  {
+   "name": "コロンビーナ復刻&雷電将軍復刻",
+   "start": "2026-07-21",
+   "end": "2026-08-11",
+   "rev": 1.16,
+   "yrank": 10,
+   "ytot": 10,
+   "cum": 103,
+   "cumtot": 103,
+   "year": 2026,
+   "related": "",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/07/16/0/7ffc11a507b64fe3e2985ab283a571a9_5317296703043248121.jpeg",
+   "rerun": true,
+   "ongoing": true,
+   "rank_series": [
+    72,
+    30,
+    32,
+    64,
+    84,
+    101
+   ],
+   "icons": [
+    "https://enka.network/ui/UI_AvatarIcon_Columbina.png",
+    "https://enka.network/ui/UI_AvatarIcon_Shougun.png"
+   ],
+   "agents": [
+    "Columbina",
+    "Raiden Shogun"
+   ],
+   "accent": "#f0684a",
+   "en": "Columbina & Raiden Shogun",
+   "bar": "#6caff9"
   }
  ]
 }
