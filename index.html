@@ -9,7 +9,7 @@
 <title>Gacha Revenue Tracker</title>
 <meta name="description" content="Estimated gacha banner revenue over time for Zenless Zone Zero, Honkai: Star Rail, Wuthering Waves, Genshin Impact and Arknights: Endfield. Auto-updated from game-i.daa.jp.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>%F0%9F%8E%B0</text></svg>">
-<link rel="stylesheet" href="style.css?v=22">
+<link rel="stylesheet" href="style.css?v=23">
 </head>
 <body>
 <div class="wrap">
@@ -91,6 +91,11 @@
     <h3>Where it comes from</h3>
     <p>game-i records each app's <b>App Store / Google Play top-grossing rank every day at midnight (JST)</b>, converts that daily rank into an estimated daily revenue using a model <b>calibrated against companies' publicly disclosed earnings</b>, and adds up the days a banner runs. It's a rank → revenue estimate, <b>not</b> reported sales.</p>
 
+    <h3>Banner A peaked at #2, banner B at #3 — so why does game-i say B earned more?</h3>
+    <p>Because <b>a rank isn't worth a fixed amount</b>. game-i multiplies each day's rank by a <b>daily value that changes with the date</b> (its own note: <i>加算値は月／日によって変動します</i> — “the value varies by month and day”). Its live table shows the same rank paying different amounts day to day — e.g. <b>#2 was worth ≈¥344M on Jul 26 but ≈¥282M on Jul 27</b>.</p>
+    <p>The biggest swing is the <b>start of the month</b>: game-i deliberately sets early-month days as the <b>highest of the month</b> — <i>月初の加算値は月内で最も高い数値</i> — because <b>credit-card billing and carrier spending-limit resets</b> push spending up then (it cites New Year's Day sales records). So <b>whichever banner's peak lands nearer the 1st gets a bigger multiplier</b>. A #3 that peaked on the 2nd can out-earn a #2 that peaked mid-month — even though #2 is the better rank on any single day. (There's also a smaller correction based on how spread-out that day's rankings were — <i>標準偏差に応じて補正</i>.)</p>
+    <p>In short: <b>rank sets the shape, the calendar scales it.</b> That's why the cumulative total can rank a lower-peaking banner higher, and why the daily <b>ranks</b> are the more dependable part of game-i's data than the exact yen.</p>
+
     <h3>How a day's revenue is split between banners</h3>
     <p>The model assumes <b>all</b> of the app's estimated revenue that day is gacha revenue, and assigns it to whatever banners are running:</p>
     <ul>
@@ -134,6 +139,6 @@
   </div>
 </div>
 
-<script src="app.js?v=22"></script>
+<script src="app.js?v=23"></script>
 </body>
 </html>
