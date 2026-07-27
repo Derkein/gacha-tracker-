@@ -4,13 +4,13 @@
  "jp": "崩壊：スターレイル",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E5%B4%A9%E5%A3%8A%EF%BC%9A%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%AC%E3%82%A4%E3%83%AB",
- "updated": "2026-07-26T17:20:12Z",
+ "updated": "2026-07-27T17:06:04Z",
  "count": 46,
  "now": {
-  "ios": 11,
+  "ios": 16,
   "android": 2,
   "month": 19,
-  "next_add": 70104285,
+  "next_add": 58447059,
   "ym": "2026/07",
   "ranks": {
    "prev": [
@@ -74,7 +74,7 @@
     3,
     7,
     11,
-    null,
+    17,
     null,
     null,
     null
@@ -82,7 +82,7 @@
   }
  },
  "monthly": {
-  "2026-07": 15.33,
+  "2026-07": 15.92,
   "2026-06": 13.4,
   "2026-05": 14.61,
   "2026-04": 17.36,
@@ -131,7 +131,7 @@
    "rev": 4.69,
    "yrank": 17,
    "ytot": 17,
-   "cum": 51,
+   "cum": 52,
    "cumtot": 60,
    "year": 2024,
    "related": "Dr.レイシオ、カフカ、素裳、ナターシヤ、フック",
@@ -1666,7 +1666,7 @@
    "rev": 4.49,
    "yrank": 17,
    "ytot": 18,
-   "cum": 54,
+   "cum": 55,
    "cumtot": 60,
    "year": 2025,
    "related": "サフェル復刻, モーディス復刻",
@@ -1940,9 +1940,9 @@
    "start": "2026-03-25",
    "end": "2026-04-21",
    "rev": 4.6,
-   "yrank": 7,
+   "yrank": 8,
    "ytot": 12,
-   "cum": 53,
+   "cum": 54,
    "cumtot": 60,
    "year": 2026,
    "related": "ヒアンシー、ブートヒル",
@@ -2215,10 +2215,10 @@
    "name": "遠坂凛&ギルガメッシュ",
    "start": "2026-07-24",
    "end": "2026-08-25",
-   "rev": 4.43,
-   "yrank": 8,
+   "rev": 5.02,
+   "yrank": 7,
    "ytot": 12,
-   "cum": 55,
+   "cum": 51,
    "cumtot": 60,
    "year": 2026,
    "related": "",
@@ -2229,7 +2229,8 @@
     57,
     3,
     7,
-    11
+    11,
+    17
    ],
    "icons": [
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1508.png",
