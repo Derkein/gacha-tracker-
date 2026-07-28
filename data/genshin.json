@@ -4,13 +4,13 @@
  "jp": "原神",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E5%8E%9F%E7%A5%9E",
- "updated": "2026-07-28T16:49:24Z",
+ "updated": "2026-07-28T17:10:03Z",
  "count": 45,
  "now": {
-  "ios": 149,
+  "ios": 143,
   "android": 20,
   "month": 23,
-  "next_add": 12648129,
+  "next_add": 12732460,
   "ym": "2026/07",
   "ranks": {
    "prev": [
