@@ -4,13 +4,13 @@
  "jp": "崩壊：スターレイル",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E5%B4%A9%E5%A3%8A%EF%BC%9A%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%AC%E3%82%A4%E3%83%AB",
- "updated": "2026-07-28T17:47:11Z",
+ "updated": "2026-07-29T16:38:08Z",
  "count": 46,
  "now": {
-  "ios": 26,
+  "ios": 38,
   "android": 2,
   "month": 19,
-  "next_add": 37240000,
+  "next_add": 32676283,
   "ym": "2026/07",
   "ranks": {
    "prev": [
@@ -76,13 +76,13 @@
     11,
     17,
     25,
-    null,
+    35,
     null
    ]
   }
  },
  "monthly": {
-  "2026-07": 16.31,
+  "2026-07": 16.61,
   "2026-06": 13.4,
   "2026-05": 14.61,
   "2026-04": 17.36,
@@ -1573,7 +1573,7 @@
    "rev": 5.52,
    "yrank": 16,
    "ytot": 18,
-   "cum": 50,
+   "cum": 51,
    "cumtot": 60,
    "year": 2025,
    "related": "アナイクス",
@@ -2215,10 +2215,10 @@
    "name": "遠坂凛&ギルガメッシュ",
    "start": "2026-07-24",
    "end": "2026-08-25",
-   "rev": 5.4,
+   "rev": 5.7,
    "yrank": 7,
    "ytot": 12,
-   "cum": 51,
+   "cum": 50,
    "cumtot": 60,
    "year": 2026,
    "related": "",
@@ -2231,7 +2231,8 @@
     7,
     11,
     17,
-    25
+    25,
+    35
    ],
    "icons": [
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1508.png",

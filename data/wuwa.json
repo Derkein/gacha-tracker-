@@ -4,13 +4,13 @@
  "jp": "鳴潮",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E9%B3%B4%E6%BD%AE",
- "updated": "2026-07-28T17:47:34Z",
+ "updated": "2026-07-29T16:38:32Z",
  "count": 36,
  "now": {
-  "ios": 122,
+  "ios": 93,
   "android": 23,
-  "month": 63,
-  "next_add": 13029068,
+  "month": 64,
+  "next_add": 15110704,
   "ym": "2026/07",
   "ranks": {
    "prev": [
@@ -76,13 +76,13 @@
     136,
     127,
     127,
-    null,
+    102,
     null
    ]
   }
  },
  "monthly": {
-  "2026-07": 6.56,
+  "2026-07": 6.7,
   "2026-06": 6.34,
   "2026-05": 8.48,
   "2026-04": 2.84,
@@ -260,7 +260,7 @@
    "rev": 4.82,
    "yrank": 4,
    "ytot": 10,
-   "cum": 11,
+   "cum": 12,
    "cumtot": 38,
    "year": 2024,
    "related": "",
@@ -1747,16 +1747,16 @@
    "name": "秧秧．玄翎",
    "start": "2026-07-10",
    "end": "2026-07-30",
-   "rev": 4.79,
+   "rev": 4.92,
    "yrank": 5,
    "ytot": 9,
-   "cum": 12,
+   "cum": 11,
    "cumtot": 38,
    "year": 2026,
    "related": "",
    "banner_img": "https://i.mopix.cc/pI0ghq.jpg",
    "rerun": false,
-   "ongoing": true,
+   "ongoing": false,
    "rank_series": [
     57,
     10,
@@ -1777,7 +1777,8 @@
     139,
     136,
     127,
-    127
+    127,
+    102
    ],
    "agents": [
     "Yangyang: Xuanling"

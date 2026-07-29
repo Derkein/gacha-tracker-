@@ -278,5 +278,15 @@
   "icon": "https://enka.network/ui/zzz/IconRoleCircle65.png",
   "accent": "#e8e7ea",
   "en": "Norma"
+ },
+ "レミエール": {
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle67.png",
+  "accent": "#e8e7ea",
+  "en": "Remielle"
+ },
+ "シグリッド": {
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle66.png",
+  "accent": "#e8e7ea",
+  "en": "Sigrid"
  }
 }
