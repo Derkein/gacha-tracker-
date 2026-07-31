@@ -4,49 +4,16 @@
  "jp": "NTE： Neverness to Everness",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/NTE%EF%BC%9A%20Neverness%20to%20Everness",
- "updated": "2026-07-30T17:54:09Z",
- "count": 5,
+ "updated": "2026-07-31T16:53:38Z",
+ "count": 6,
  "now": {
-  "ios": 42,
-  "android": 23,
-  "month": 72,
-  "next_add": 40222000,
-  "ym": "2026/07",
+  "ios": 88,
+  "android": 21,
+  "month": 84,
+  "next_add": 36320092,
+  "ym": "2026/08",
   "ranks": {
    "prev": [
-    118,
-    78,
-    81,
-    2,
-    11,
-    15,
-    22,
-    29,
-    50,
-    60,
-    62,
-    69,
-    85,
-    93,
-    97,
-    80,
-    81,
-    86,
-    104,
-    107,
-    117,
-    110,
-    113,
-    109,
-    24,
-    51,
-    89,
-    132,
-    139,
-    143,
-    null
-   ],
-   "cur": [
     174,
     119,
     139,
@@ -78,6 +45,39 @@
     179,
     18,
     39
+   ],
+   "cur": [
+    84,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
    ]
   }
  },
@@ -302,6 +302,36 @@
     "icons/faces/nte/2026-07-08-b29442.webp"
    ],
    "bar": "#906ba8"
+  },
+  {
+   "name": "イロヒ",
+   "start": "2026-07-29",
+   "end": "2026-08-18",
+   "rev": 1.08,
+   "yrank": 6,
+   "ytot": 6,
+   "cum": 6,
+   "cumtot": 6,
+   "year": 2026,
+   "related": "",
+   "banner_img": "https://appmedia.jp/wp-content/uploads/2026/05/030207_5plcs.webp",
+   "rerun": false,
+   "ongoing": true,
+   "rank_series": [
+    179,
+    18,
+    39,
+    84
+   ],
+   "agents": [
+    "Iroi"
+   ],
+   "en": "Iroi",
+   "icons": [
+    "icons/faces/nte/2026-07-29-e9416b.webp"
+   ],
+   "accent": "#71a398",
+   "bar": "#99ada9"
   }
  ]
 }
