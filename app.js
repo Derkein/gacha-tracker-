@@ -221,12 +221,25 @@ function computeUnlisted(){
   const real=state.data.banners.filter(b=>!b._synthetic);
   if(!real.length) return out;
   const firstYm=real.reduce((m,b)=>b.start.slice(0,7)<m?b.start.slice(0,7):m,"9999-99");
+  const spans=real.map(b=>[Date.parse(b.start),Date.parse(b.end)]);
+  const cutoff=Date.parse(state.data.updated)+9*3600e3;   // ~now (JST) — don't count future days
   for(const ym in gi){
     if(ym<=firstYm) continue;              // skip pre-coverage months and the partial first month
     const g=gi[ym]; if(!g) continue;
     const gap=g-((bm[ym]&&bm[ym].ours)||0);
     if(gap<1 || gap<g*0.4) continue;                 // >= 1億 (¥100M) AND >= 40% of the month
     const [y,mo]=ym.split("-").map(Number), last=new Date(y,mo,0).getDate();
+    // Require days with NO listed banner running. Otherwise a large gap is just
+    // a valuation artifact (month-start boost, or an ongoing banner whose current
+    // month is under-reconstructed) rather than genuinely unlisted revenue —
+    // e.g. an in-progress month whose only banner is clearly running.
+    let counted=0, uncovered=0;
+    for(let dd=1; dd<=last; dd++){
+      const t=Date.UTC(y,mo-1,dd); if(t>cutoff) break;
+      counted++;
+      if(!spans.some(([s,e])=>s<=t && t<=e)) uncovered++;
+    }
+    if(!counted || uncovered/counted<0.4) continue;
     out.push({ name:"No rate-up banner listed",
       agents:["game-i monthly — not attributed to a banner"],
       rev:+gap.toFixed(2), start:`${ym}-01`, end:`${ym}-${String(last).padStart(2,"0")}`,
