@@ -4,13 +4,13 @@
  "jp": "崩壊：スターレイル",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E5%B4%A9%E5%A3%8A%EF%BC%9A%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%AC%E3%82%A4%E3%83%AB",
- "updated": "2026-07-31T17:56:05Z",
+ "updated": "2026-08-01T16:10:50Z",
  "count": 46,
  "now": {
-  "ios": 57,
-  "android": 3,
-  "month": 58,
-  "next_add": 49866095,
+  "ios": 27,
+  "android": 14,
+  "month": 33,
+  "next_add": 46740000,
   "ym": "2026/08",
   "ranks": {
    "prev": [
@@ -48,7 +48,7 @@
    ],
    "cur": [
     58,
-    null,
+    27,
     null,
     null,
     null,
@@ -82,6 +82,7 @@
   }
  },
  "monthly": {
+  "2026-08": 1.25,
   "2026-07": 16.85,
   "2026-06": 13.4,
   "2026-05": 14.61,
@@ -748,7 +749,7 @@
    "rev": 6.51,
    "yrank": 16,
    "ytot": 17,
-   "cum": 48,
+   "cum": 49,
    "cumtot": 60,
    "year": 2024,
    "related": "丹恒・飲月復刻、リンクス、雪衣、御空",
@@ -2215,10 +2216,10 @@
    "name": "遠坂凛&ギルガメッシュ",
    "start": "2026-07-24",
    "end": "2026-08-25",
-   "rev": 6.24,
+   "rev": 7.2,
    "yrank": 7,
    "ytot": 12,
-   "cum": 49,
+   "cum": 48,
    "cumtot": 60,
    "year": 2026,
    "related": "",
@@ -2234,7 +2235,8 @@
     25,
     35,
     48,
-    58
+    58,
+    27
    ],
    "icons": [
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1508.png",
