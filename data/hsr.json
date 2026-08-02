@@ -4,13 +4,13 @@
  "jp": "崩壊：スターレイル",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E5%B4%A9%E5%A3%8A%EF%BC%9A%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%AC%E3%82%A4%E3%83%AB",
- "updated": "2026-08-01T17:18:44Z",
+ "updated": "2026-08-02T17:20:07Z",
  "count": 46,
  "now": {
-  "ios": 30,
-  "android": 14,
-  "month": 33,
-  "next_add": 43906388,
+  "ios": 34,
+  "android": 16,
+  "month": 37,
+  "next_add": 36371211,
   "ym": "2026/08",
   "ranks": {
    "prev": [
@@ -49,7 +49,7 @@
    "cur": [
     58,
     27,
-    null,
+    34,
     null,
     null,
     null,
@@ -82,7 +82,7 @@
   }
  },
  "monthly": {
-  "2026-08": 1.25,
+  "2026-08": 1.64,
   "2026-07": 16.85,
   "2026-06": 13.4,
   "2026-05": 14.61,
@@ -1170,7 +1170,7 @@
    "rev": 7.49,
    "yrank": 14,
    "ytot": 18,
-   "cum": 47,
+   "cum": 48,
    "cumtot": 60,
    "year": 2025,
    "related": "Dr.レイシオ復刻",
@@ -2216,10 +2216,10 @@
    "name": "遠坂凛&ギルガメッシュ",
    "start": "2026-07-24",
    "end": "2026-08-25",
-   "rev": 7.2,
+   "rev": 7.59,
    "yrank": 7,
    "ytot": 12,
-   "cum": 48,
+   "cum": 47,
    "cumtot": 60,
    "year": 2026,
    "related": "",
@@ -2236,7 +2236,8 @@
     35,
     48,
     58,
-    27
+    27,
+    34
    ],
    "icons": [
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1508.png",
