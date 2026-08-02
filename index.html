@@ -3,13 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- Defense-in-depth: no inline/remote scripts, no framing, no plugins. Images
+<!-- Defense-in-depth: no remote scripts, no framing, no plugins. The one inline
+     script is the pre-paint theme setter, allow-listed by its sha256 hash. Images
      may load from any HTTPS host (character art CDNs) or data: (the favicon). -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' https: data:; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-wBdtWdXsHnAU2DdByySW4LlXFAScrBvmBgkXtydwJdg='; style-src 'self' 'unsafe-inline'; img-src 'self' https: data:; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<!-- apply a saved light/dark override before first paint (no flash); full toggle logic is in app.js -->
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <title>Gacha Revenue Tracker</title>
 <meta name="description" content="Estimated gacha banner revenue over time for Zenless Zone Zero, Honkai: Star Rail, Wuthering Waves, Genshin Impact and Arknights: Endfield. Auto-updated from game-i.daa.jp.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>%F0%9F%8E%B0</text></svg>">
-<link rel="stylesheet" href="style.css?v=25">
+<link rel="stylesheet" href="style.css?v=26">
 </head>
 <body>
 <div class="wrap">
@@ -18,7 +21,10 @@
       <h1>Gacha <span class="accent">Revenue</span> Tracker</h1>
       <p>Estimated per-banner gacha revenue over time, shown in <b>yen</b>. Third-party estimates (売上予測) from game-i; approximate, not official. <button id="infoBtn" class="infolink">ⓘ How these numbers work</button></p>
     </div>
-    <div class="updated" id="updated"></div>
+    <div class="hd-side">
+      <button id="themeBtn" class="themebtn" title="Theme" aria-label="Color theme"></button>
+      <div class="updated" id="updated"></div>
+    </div>
   </header>
 
   <div class="tabsrow">
@@ -139,6 +145,6 @@
   </div>
 </div>
 
-<script src="app.js?v=25"></script>
+<script src="app.js?v=26"></script>
 </body>
 </html>

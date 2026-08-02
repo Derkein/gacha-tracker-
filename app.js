@@ -9,6 +9,25 @@ const state = { games:[], tag:null, data:null, mode:"time", table:false, reverse
 // is the fallback for games with no accent (e.g. Endfield); then the per-game hue.
 const barColor = b => b.accent || b.bar || GAME_ACCENT[state.tag];
 const $ = s => document.querySelector(s);
+
+// ---- theme toggle (Auto → Light → Dark). Auto follows the OS; an explicit
+// choice is stored and also applied pre-paint by the inline <head> script. ----
+const THEMES=["auto","light","dark"], TICON={auto:"◐",light:"☀",dark:"☾"};
+function applyTheme(t){
+  if(t==="auto") document.documentElement.removeAttribute("data-theme");
+  else document.documentElement.setAttribute("data-theme",t);
+  const btn=$("#themeBtn");
+  if(btn){ btn.textContent=TICON[t];
+    btn.title=`Theme: ${t[0].toUpperCase()+t.slice(1)}${t==="auto"?" (follows your system)":""} — click to change`;
+    btn.setAttribute("aria-label",btn.title); }
+}
+let _theme = (()=>{ try{ return localStorage.getItem("theme")||"auto"; }catch(e){ return "auto"; } })();
+applyTheme(_theme);
+$("#themeBtn").onclick=()=>{
+  _theme=THEMES[(THEMES.indexOf(_theme)+1)%THEMES.length];
+  try{ localStorage.setItem("theme",_theme); }catch(e){}
+  applyTheme(_theme);
+};
 const fmtDate = new Intl.DateTimeFormat("en",{year:"numeric",month:"short",day:"numeric"});
 const per = s => fmtDate.format(new Date(s+"T00:00:00"));
 const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
