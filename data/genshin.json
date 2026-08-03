@@ -4,13 +4,13 @@
  "jp": "原神",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E5%8E%9F%E7%A5%9E",
- "updated": "2026-08-02T17:37:15Z",
+ "updated": "2026-08-03T17:18:31Z",
  "count": 45,
  "now": {
-  "ios": 107,
-  "android": 37,
-  "month": 133,
-  "next_add": 15725086,
+  "ios": 126,
+  "android": 36,
+  "month": 128,
+  "next_add": 12567019,
   "ym": "2026/08",
   "ranks": {
    "prev": [
@@ -50,7 +50,7 @@
     162,
     106,
     107,
-    null,
+    127,
     null,
     null,
     null,
@@ -2238,7 +2238,7 @@
    "name": "コロンビーナ復刻&雷電将軍復刻",
    "start": "2026-07-21",
    "end": "2026-08-11",
-   "rev": 2.4,
+   "rev": 2.56,
    "yrank": 10,
    "ytot": 10,
    "cum": 100,
@@ -2262,7 +2262,8 @@
     184,
     162,
     106,
-    107
+    107,
+    127
    ],
    "icons": [
     "https://enka.network/ui/UI_AvatarIcon_Columbina.png",
