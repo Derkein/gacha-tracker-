@@ -4,13 +4,13 @@
  "jp": "NTE： Neverness to Everness",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/NTE%EF%BC%9A%20Neverness%20to%20Everness",
- "updated": "2026-08-09T18:50:28Z",
+ "updated": "2026-08-10T16:09:09Z",
  "count": 6,
  "now": {
   "ios": null,
-  "android": 66,
-  "month": 155,
-  "next_add": 5737572,
+  "android": 65,
+  "month": 160,
+  "next_add": 5944287,
   "ym": "2026/08",
   "ranks": {
    "prev": [
@@ -82,7 +82,7 @@
   }
  },
  "monthly": {
-  "2026-08": 1.27,
+  "2026-08": 1.33,
   "2026-07": 6.29,
   "2026-06": 8.09,
   "2026-05": 6.82
@@ -308,7 +308,7 @@
    "name": "イロヒ",
    "start": "2026-07-29",
    "end": "2026-08-18",
-   "rev": 2.11,
+   "rev": 2.18,
    "yrank": 6,
    "ytot": 6,
    "cum": 6,
@@ -328,6 +328,7 @@
     143,
     178,
     196,
+    null,
     null,
     null,
     null,
