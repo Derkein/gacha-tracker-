@@ -4,7 +4,7 @@
  "jp": "NTE： Neverness to Everness",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/NTE%EF%BC%9A%20Neverness%20to%20Everness",
- "updated": "2026-08-11T03:11:05Z",
+ "updated": "2026-08-11T03:32:25Z",
  "count": 6,
  "now": {
   "ios": null,
@@ -85,7 +85,8 @@
   "2026-08": 1.33,
   "2026-07": 6.29,
   "2026-06": 8.09,
-  "2026-05": 6.82
+  "2026-05": 6.82,
+  "2026-04": 0.2978
  },
  "banners": [
   {

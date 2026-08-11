@@ -4,11 +4,11 @@
  "jp": "アークナイツ",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E3%82%A2%E3%83%BC%E3%82%AF%E3%83%8A%E3%82%A4%E3%83%84",
- "updated": "2026-08-11T03:13:01Z",
- "count": 37,
+ "updated": "2026-08-11T03:33:59Z",
+ "count": 43,
  "now": {
   "ios": 172,
-  "android": 50,
+  "android": 49,
   "month": 146,
   "next_add": 9017984,
   "ym": "2026/08",
@@ -224,6 +224,42 @@
     "Typhon"
    ],
    "en": "Typhon"
+  },
+  {
+   "name": "砂漠の導き手(復刻)",
+   "start": "2024-03-05",
+   "end": "2024-03-19",
+   "rev": 0.9263,
+   "yrank": 17,
+   "ytot": 17,
+   "cum": 92,
+   "cumtot": 99,
+   "year": 2024,
+   "related": "星6：ドロシー 星5：承曦グレイ 星5：フィリオプシス",
+   "banner_img": "https://pbs.twimg.com/media/GHzSLv9aoAA-cBR.jpg",
+   "rerun": true,
+   "ongoing": false,
+   "rank_series": [
+    98,
+    64,
+    63,
+    79,
+    98,
+    99,
+    103,
+    101,
+    90,
+    124,
+    164,
+    146,
+    134,
+    135,
+    132
+   ],
+   "agents": [
+    "Dorothy"
+   ],
+   "en": "Dorothy"
   },
   {
    "name": "銃声",
@@ -913,6 +949,75 @@
    "en": "Lappland the Decadenza & Vulpisfoglia"
   },
   {
+   "name": "実証、完成、先導",
+   "start": "2025-06-05",
+   "end": "2025-06-19",
+   "rev": 0.8749,
+   "yrank": 14,
+   "ytot": 17,
+   "cum": 93,
+   "cumtot": 99,
+   "year": 2025,
+   "related": "★6 引星ソーンズ  ★5 テクノ  ★5 グレインバッズ",
+   "banner_img": "https://webusstatic.yo-star.com/uy0news/aj/0e2f463d9bfe8201b42db63dd9bc1cf3.png",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    null,
+    45,
+    39,
+    79,
+    123,
+    151,
+    197,
+    null,
+    173,
+    153,
+    167,
+    184,
+    192,
+    183,
+    null
+   ],
+   "agents": []
+  },
+  {
+   "name": "さすらう者(復刻)",
+   "start": "2025-06-20",
+   "end": "2025-07-04",
+   "rev": 0.8448,
+   "yrank": 16,
+   "ytot": 17,
+   "cum": 95,
+   "cumtot": 99,
+   "year": 2025,
+   "related": "★6 デーゲンブレヒャー  ★5 リェータ  ★5 ブラックナイト",
+   "banner_img": "https://webusstatic.yo-star.com/uy0news/aj/fbfa0096f1bca7f6c8dae32d25905425.png",
+   "rerun": true,
+   "ongoing": false,
+   "rank_series": [
+    null,
+    180,
+    160,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    121,
+    143,
+    163
+   ],
+   "agents": [
+    "Degenbrecher"
+   ],
+   "en": "Degenbrecher"
+  },
+  {
    "name": "熾吾生平",
    "start": "2025-07-17",
    "end": "2025-07-31",
@@ -1058,6 +1163,42 @@
    "en": "Mon3tr"
   },
   {
+   "name": "死か/終わりか(復刻)",
+   "start": "2025-09-30",
+   "end": "2025-10-14",
+   "rev": 0.8473,
+   "yrank": 15,
+   "ytot": 17,
+   "cum": 94,
+   "cumtot": 99,
+   "year": 2025,
+   "related": "★6 アスカロン  ★5 アロマ  ★5 ベースライン  ★4 ルトナダ",
+   "banner_img": "https://webusstatic.yo-star.com/web-cms-prod/upload/content/2025/09/25/os8S-HER.png",
+   "rerun": true,
+   "ongoing": false,
+   "rank_series": [
+    132,
+    131,
+    146,
+    165,
+    192,
+    198,
+    null,
+    null,
+    null,
+    187,
+    null,
+    196,
+    197,
+    181,
+    168
+   ],
+   "agents": [
+    "Ascalon"
+   ],
+   "en": "Ascalon"
+  },
+  {
    "name": "自由なる伝道",
    "start": "2025-10-14",
    "end": "2025-10-28",
@@ -1129,6 +1270,42 @@
     "Tragodia"
    ],
    "en": "Tragodia"
+  },
+  {
+   "name": "海淵に沈む錨(復刻)",
+   "start": "2025-11-27",
+   "end": "2025-12-11",
+   "rev": 0.7144,
+   "yrank": 17,
+   "ytot": 17,
+   "cum": 96,
+   "cumtot": 99,
+   "year": 2025,
+   "related": "★6 ウルピアヌス  ★5 ルシーラ  ★5 サンドレコナー",
+   "banner_img": "https://webusstatic.yo-star.com/web-cms-prod/upload/content/2025/11/18/PQ7HIphY.png",
+   "rerun": true,
+   "ongoing": false,
+   "rank_series": [
+    161,
+    113,
+    138,
+    169,
+    null,
+    177,
+    187,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "agents": [
+    "Ulpianus"
+   ],
+   "en": "Ulpianus"
   },
   {
    "name": "青霆重明",
@@ -1361,6 +1538,22 @@
     null,
     null
    ],
+   "agents": []
+  },
+  {
+   "name": "実証、完成、先導(復刻)",
+   "start": "2026-06-05",
+   "end": "2026-06-19",
+   "rev": 0.5412,
+   "yrank": 9,
+   "ytot": 9,
+   "cum": 99,
+   "cumtot": 99,
+   "year": 2026,
+   "related": "",
+   "banner_img": "https://webusstatic.yo-star.com/web-cms-prod/upload/content/2026/05/29/8-vhLDXk.png",
+   "rerun": true,
+   "ongoing": false,
    "agents": []
   },
   {

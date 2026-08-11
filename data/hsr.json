@@ -4,8 +4,8 @@
  "jp": "崩壊：スターレイル",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E5%B4%A9%E5%A3%8A%EF%BC%9A%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%AC%E3%82%A4%E3%83%AB",
- "updated": "2026-08-11T03:09:55Z",
- "count": 46,
+ "updated": "2026-08-11T03:31:31Z",
+ "count": 48,
  "now": {
   "ios": 71,
   "android": 19,
@@ -1990,6 +1990,45 @@
    "bar": "#b22480"
   },
   {
+   "name": "ブートヒル復刻",
+   "start": "2026-04-08",
+   "end": "2026-04-21",
+   "rev": 0.898,
+   "yrank": 12,
+   "ytot": 13,
+   "cum": 60,
+   "cumtot": 61,
+   "year": 2026,
+   "related": "不死途",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/04/03/7f82f6076f49c67097613c6076021c58_7781893289418800900.png",
+   "rerun": true,
+   "ongoing": false,
+   "rank_series": [
+    107,
+    77,
+    94,
+    133,
+    88,
+    89,
+    108,
+    115,
+    97,
+    95,
+    95,
+    90,
+    78,
+    79
+   ],
+   "icons": [
+    "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1315.png"
+   ],
+   "agents": [
+    "Boothill"
+   ],
+   "accent": "#b9b9b9",
+   "bar": "#f3ce72"
+  },
+  {
    "name": "銀狼LV.999",
    "start": "2026-04-22",
    "end": "2026-05-13",
@@ -2257,6 +2296,38 @@
    ],
    "accent": "#4a4ad8",
    "bar": "#d60020"
+  },
+  {
+   "name": "姫子・旅立ち",
+   "start": "2026-08-05",
+   "end": "2026-08-25",
+   "rev": 0.7215,
+   "yrank": 13,
+   "ytot": 13,
+   "cum": 61,
+   "cumtot": 61,
+   "year": 2026,
+   "related": "ケリュドラ、アナイクス、アベンチュリン",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/community/2026/08/03/14d901831325538a8a5a09750e363840_4270131693465695787.png",
+   "rerun": true,
+   "ongoing": true,
+   "rank_series": [
+    48,
+    27,
+    39,
+    61,
+    79,
+    77,
+    78
+   ],
+   "icons": [
+    "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1510.png"
+   ],
+   "agents": [
+    "Himeko • Nova"
+   ],
+   "accent": "#f0503f",
+   "bar": "#4a2ea9"
   }
  ]
 }

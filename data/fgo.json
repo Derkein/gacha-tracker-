@@ -4,8 +4,8 @@
  "jp": "Fate/Grand Order",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/Fate/Grand%20Order",
- "updated": "2026-08-11T03:12:03Z",
- "count": 116,
+ "updated": "2026-08-11T03:33:12Z",
+ "count": 153,
  "now": {
   "ios": 8,
   "android": 1,
@@ -275,6 +275,35 @@
    "en": "Miyamoto Musashi"
   },
   {
+   "name": "「Fate/stay night」20周年記念 アルトリア･ペンドラゴン(セイバー)ピックアップ",
+   "start": "2024-01-30",
+   "end": "2024-02-06",
+   "rev": 0.536,
+   "yrank": 64,
+   "ytot": 67,
+   "cum": 472,
+   "cumtot": 488,
+   "year": 2024,
+   "related": "アルトリア･ペンドラゴン(セイバー)",
+   "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/fate-20th_cp_pu_rupkj/top_banner.png",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    32,
+    26,
+    38,
+    27,
+    22,
+    16,
+    21,
+    25
+   ],
+   "agents": [
+    "Crown Saber"
+   ],
+   "en": "Crown Saber"
+  },
+  {
    "name": "「巡霊の祝祭 第7弾」ピックアップ",
    "start": "2024-02-01",
    "end": "2024-02-11",
@@ -428,6 +457,38 @@
     "Charlemagne"
    ],
    "en": "Charlemagne"
+  },
+  {
+   "name": "CBC2024 ピックアップ",
+   "start": "2024-03-10",
+   "end": "2024-03-20",
+   "rev": 0.9381,
+   "yrank": 55,
+   "ytot": 67,
+   "cum": 445,
+   "cumtot": 488,
+   "year": 2024,
+   "related": "男性サーヴァント16種",
+   "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/cbc2024_boys_pu_stckh/top_banner.png",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    27,
+    27,
+    32,
+    43,
+    16,
+    22,
+    23,
+    22,
+    16,
+    15,
+    16
+   ],
+   "agents": [
+    "Sieg"
+   ],
+   "en": "Sieg"
   },
   {
    "name": "ホワイトデーメモリアルピックアップ",
@@ -677,6 +738,35 @@
     "Quetzalcoatl"
    ],
    "en": "Meltryllis & Quetzalcoatl"
+  },
+  {
+   "name": "オーディール･コール:新任務開放キャンペーン 第6弾 レディ･アヴァロンピックアップ",
+   "start": "2024-04-13",
+   "end": "2024-04-20",
+   "rev": 0.6604,
+   "yrank": 60,
+   "ytot": 67,
+   "cum": 459,
+   "cumtot": 488,
+   "year": 2024,
+   "related": "レディ･アヴァロン",
+   "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/ordeal_call_cp6_pu_zxpjt/top_banner.png",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    56,
+    18,
+    19,
+    24,
+    21,
+    15,
+    35,
+    41
+   ],
+   "agents": [
+    "Lady Avalon"
+   ],
+   "en": "Lady Avalon"
   },
   {
    "name": "歴代コラボレーションイベントピックアップ",
@@ -941,6 +1031,71 @@
    "agents": []
   },
   {
+   "name": "復刻 カルデア･サマーアドベンチャー！ カーマ(アヴェンジャー)ピックアップ",
+   "start": "2024-05-24",
+   "end": "2024-06-07",
+   "rev": 0.8775,
+   "yrank": 57,
+   "ytot": 67,
+   "cum": 449,
+   "cumtot": 488,
+   "year": 2024,
+   "related": "カーマ",
+   "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/re_2021summer_pu2_lsghi/top_banner.png",
+   "rerun": true,
+   "ongoing": false,
+   "rank_series": [
+    108,
+    27,
+    25,
+    36,
+    49,
+    56,
+    64,
+    73,
+    70,
+    54,
+    61,
+    65,
+    72,
+    63,
+    64
+   ],
+   "agents": [
+    "Kama"
+   ],
+   "en": "Kama"
+  },
+  {
+   "name": "幕間の物語キャンペーン第19弾 コンスタンティノス11世ピックアップ",
+   "start": "2024-05-31",
+   "end": "2024-06-07",
+   "rev": 0.5534,
+   "yrank": 63,
+   "ytot": 67,
+   "cum": 470,
+   "cumtot": 488,
+   "year": 2024,
+   "related": "コンスタンティノス11世",
+   "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/intermission19_pu_qfoda/top_banner.png",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    73,
+    70,
+    54,
+    61,
+    65,
+    72,
+    63,
+    64
+   ],
+   "agents": [
+    "Constantine XI"
+   ],
+   "en": "Constantine XI"
+  },
+  {
    "name": "復刻 Fate/Grand Order Arcade×Fate/Grand Orderコラボレーションイベント ソドムズビースト／ドラコーピックアップ",
    "start": "2024-06-07",
    "end": "2024-06-28",
@@ -984,6 +1139,36 @@
    "en": "Sodom's Beast"
   },
   {
+   "name": "復刻 Fate/Grand Order Arcade×Fate/Grand Orderコラボレーションイベントピックアップ2",
+   "start": "2024-06-11",
+   "end": "2024-06-18",
+   "rev": 0.9777,
+   "yrank": 54,
+   "ytot": 67,
+   "cum": 441,
+   "cumtot": 488,
+   "year": 2024,
+   "related": "スカサハ,ジャック･ド･モレー",
+   "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/re_lilim_harlot_pu2_vnkky/top_banner.png",
+   "rerun": true,
+   "ongoing": false,
+   "rank_series": [
+    7,
+    9,
+    12,
+    14,
+    14,
+    13,
+    20,
+    22
+   ],
+   "agents": [
+    "Scáthach-Skaði",
+    "Jacques de Molay"
+   ],
+   "en": "Scáthach-Skaði & Jacques de Molay"
+  },
+  {
    "name": "復刻 Fate/Grand Order Arcade×Fate/Grand Orderコラボレーションイベント ラーヴァ／ティアマトピックアップ",
    "start": "2024-06-13",
    "end": "2024-06-28",
@@ -1019,6 +1204,68 @@
     "Larva"
    ],
    "en": "Larva"
+  },
+  {
+   "name": "復刻 Fate/Grand Order Arcade×Fate/Grand Orderコラボレーションイベントピックアップ4",
+   "start": "2024-06-19",
+   "end": "2024-06-28",
+   "rev": 0.4714,
+   "yrank": 66,
+   "ytot": 67,
+   "cum": 477,
+   "cumtot": 488,
+   "year": 2024,
+   "related": "モードレッド,ジャック･ザ･リッパー,ナイチンゲール,山の翁",
+   "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/re_lilim_harlot_pu4_ednqe/top_banner.png",
+   "rerun": true,
+   "ongoing": false,
+   "rank_series": [
+    26,
+    28,
+    35,
+    19,
+    17,
+    21,
+    26,
+    28,
+    31,
+    28
+   ],
+   "agents": [
+    "Mordred",
+    "Jack the Ripper",
+    "Nightingale"
+   ],
+   "en": "Mordred & Jack the Ripper & Nightingale"
+  },
+  {
+   "name": "幕間の物語キャンペーン第20弾 太公望ピックアップ",
+   "start": "2024-06-21",
+   "end": "2024-06-28",
+   "rev": 0.3884,
+   "yrank": 67,
+   "ytot": 67,
+   "cum": 482,
+   "cumtot": 488,
+   "year": 2024,
+   "related": "太公望",
+   "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/intermission20_pu_jebic/top_banner.png",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    35,
+    19,
+    17,
+    21,
+    26,
+    28,
+    31,
+    28
+   ],
+   "agents": [
+    "Perfect Fishing Spot"
+   ],
+   "en": "Perfect Fishing Spot"
   },
   {
    "name": "踊るドラゴン･キャッスル！ 阿曇磯良(ひびき＆千鍵)ピックアップ",
@@ -1806,6 +2053,34 @@
    "en": "Meltryllis"
   },
   {
+   "name": "復刻 歴代DL記念ピックアップ",
+   "start": "2024-10-26",
+   "end": "2024-11-01",
+   "rev": 0.6755,
+   "yrank": 59,
+   "ytot": 67,
+   "cum": 458,
+   "cumtot": 488,
+   "year": 2024,
+   "related": "期間限定サーヴァント26騎",
+   "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/3000man_pu2_lbqvo/top_banner.png",
+   "rerun": true,
+   "ongoing": false,
+   "rank_series": [
+    21,
+    18,
+    19,
+    12,
+    15,
+    27,
+    17
+   ],
+   "agents": [
+    "Arctic Summer World"
+   ],
+   "en": "Arctic Summer World"
+  },
+  {
    "name": "「Lostbelt No.6」クリア応援キャンペーンピックアップ",
    "start": "2024-11-01",
    "end": "2024-11-12",
@@ -1949,6 +2224,97 @@
    "en": "Britomart & Beyond the Aeons"
   },
   {
+   "name": "ぶち壊せ！ ミステリーハウス･クラフターズピックアップ3",
+   "start": "2024-11-21",
+   "end": "2024-12-01",
+   "rev": 0.5993,
+   "yrank": 62,
+   "ytot": 67,
+   "cum": 466,
+   "cumtot": 488,
+   "year": 2024,
+   "related": "スーパーバニヤン,ヴァン･ゴッホ",
+   "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/mystery_house_crafters_pu3_fulsc/top_banner.png",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    33,
+    31,
+    37,
+    50,
+    24,
+    29,
+    40,
+    60,
+    57,
+    70,
+    47
+   ],
+   "agents": [
+    "Super Bunyan",
+    "Van Gogh"
+   ],
+   "en": "Super Bunyan & Van Gogh"
+  },
+  {
+   "name": "幕間の物語キャンペーン第21弾 徴姉妹ピックアップ",
+   "start": "2024-11-28",
+   "end": "2024-12-05",
+   "rev": 0.4921,
+   "yrank": 65,
+   "ytot": 67,
+   "cum": 475,
+   "cumtot": 488,
+   "year": 2024,
+   "related": "徴姉妹",
+   "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/intermission21_pu_ntlpe/top_banner.png",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    60,
+    57,
+    70,
+    47,
+    21,
+    21,
+    18,
+    17
+   ],
+   "agents": [
+    "Trung Sisters"
+   ],
+   "en": "Trung Sisters"
+  },
+  {
+   "name": "幕間の物語キャンペーン第21弾 ドゥルガーピックアップ",
+   "start": "2024-11-30",
+   "end": "2024-12-07",
+   "rev": 0.6121,
+   "yrank": 61,
+   "ytot": 67,
+   "cum": 463,
+   "cumtot": 488,
+   "year": 2024,
+   "related": "ドゥルガー",
+   "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/intermission21_pu2_zodby/top_banner.png",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    70,
+    47,
+    21,
+    21,
+    18,
+    17,
+    22,
+    29
+   ],
+   "agents": [
+    "Durga"
+   ],
+   "en": "Durga"
+  },
+  {
    "name": "「Lostbelt No.7」クリア応援キャンペーンピックアップ",
    "start": "2024-12-01",
    "end": "2024-12-16",
@@ -2050,6 +2416,65 @@
     "Sitonai"
    ],
    "en": "Sitonai"
+  },
+  {
+   "name": "ポホヨラのクリスマス･イブ 司馬懿〔ライネス〕ピックアップ",
+   "start": "2024-12-15",
+   "end": "2024-12-22",
+   "rev": 0.8827,
+   "yrank": 56,
+   "ytot": 67,
+   "cum": 448,
+   "cumtot": 488,
+   "year": 2024,
+   "related": "司馬懿〔ライネス〕",
+   "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/christmas2024_pu3_iejax/top_banner.png",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    6,
+    9,
+    12,
+    13,
+    17,
+    20,
+    24,
+    19
+   ],
+   "agents": [
+    "Mercury Choco"
+   ],
+   "en": "Mercury Choco"
+  },
+  {
+   "name": "ポホヨラのクリスマス･イブピックアップ4",
+   "start": "2024-12-17",
+   "end": "2024-12-24",
+   "rev": 0.793,
+   "yrank": 58,
+   "ytot": 67,
+   "cum": 452,
+   "cumtot": 488,
+   "year": 2024,
+   "related": "葛飾北斎(フォーリナー),アビゲイル･ウィリアムズ",
+   "banner_img": "https://news.fate-go.jp/wp-content/uploads/2024/christmas2024_pu4_owqaq/top_banner.png",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    12,
+    13,
+    17,
+    20,
+    24,
+    19,
+    18,
+    22
+   ],
+   "agents": [
+    "Katsushika Hokusai",
+    "Abigail Williams"
+   ],
+   "en": "Katsushika Hokusai & Abigail Williams"
   },
   {
    "name": "スペース･ファンタズムーン アナザー･クリスマス ファンタズムーンピックアップ",
@@ -2246,6 +2671,163 @@
    "en": "Ruler"
   },
   {
+   "name": "育て！ マイ･リトル･ドラゴン メドゥーサ(セイバー)ピックアップ",
+   "start": "2025-01-23",
+   "end": "2025-02-05",
+   "rev": 0.7638,
+   "yrank": 55,
+   "ytot": 69,
+   "cum": 453,
+   "cumtot": 488,
+   "year": 2025,
+   "related": "メドゥーサ(セイバー)",
+   "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/my_little_dragon_pu2_rfklh/top_banner.png",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    16,
+    18,
+    21,
+    20,
+    19,
+    14,
+    17,
+    27,
+    42,
+    65,
+    35,
+    29,
+    22,
+    19
+   ],
+   "agents": [
+    "Medusa"
+   ],
+   "en": "Medusa"
+  },
+  {
+   "name": "「巡霊の祝祭 第9弾」ピックアップ",
+   "start": "2025-01-24",
+   "end": "2025-02-04",
+   "rev": 0.6195,
+   "yrank": 57,
+   "ytot": 69,
+   "cum": 461,
+   "cumtot": 488,
+   "year": 2025,
+   "related": "平景清,ブリュンヒルデ(ランサー),ボイジャ",
+   "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/feasts_cp9_pu_plxag/top_banner.png",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    18,
+    21,
+    20,
+    19,
+    14,
+    17,
+    27,
+    42,
+    65,
+    35,
+    29,
+    22
+   ],
+   "agents": [
+    "Taira no Kagekiyo",
+    "Brynhildr",
+    "Voyager"
+   ],
+   "en": "Taira no Kagekiyo & Brynhildr & Voyager"
+  },
+  {
+   "name": "【週替り】アーチャーピックアップ1",
+   "start": "2025-01-27",
+   "end": "2025-02-03",
+   "rev": 0.4327,
+   "yrank": 65,
+   "ytot": 69,
+   "cum": 480,
+   "cumtot": 488,
+   "year": 2025,
+   "related": "アーチャークラス",
+   "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/archer_weekly_pu_pekaq/top_banner.png",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    19,
+    14,
+    17,
+    27,
+    42,
+    65,
+    35,
+    29
+   ],
+   "agents": [
+    "Class Archer"
+   ],
+   "en": "Class Archer"
+  },
+  {
+   "name": "「奏章Ⅱ」クリア応援キャンペーン 巌窟王 モンテ･クリストピックアップ",
+   "start": "2025-02-01",
+   "end": "2025-02-08",
+   "rev": 0.5285,
+   "yrank": 61,
+   "ytot": 69,
+   "cum": 474,
+   "cumtot": 488,
+   "year": 2025,
+   "related": "巌窟王 モンテ･クリスト",
+   "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/ordeal_call_2_clear_cp_pu_oekam/top_banner.png",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    65,
+    35,
+    29,
+    22,
+    19,
+    22,
+    39,
+    62
+   ],
+   "agents": [
+    "The Count of Monte Cristo"
+   ],
+   "en": "The Count of Monte Cristo"
+  },
+  {
+   "name": "【週替り】アーチャーピックアップ2",
+   "start": "2025-02-03",
+   "end": "2025-02-10",
+   "rev": 0.6027,
+   "yrank": 58,
+   "ytot": 69,
+   "cum": 465,
+   "cumtot": 488,
+   "year": 2025,
+   "related": "アーチャークラス",
+   "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/archer_weekly_pu2_pighr/top_banner.png",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    29,
+    22,
+    19,
+    22,
+    39,
+    62,
+    54,
+    57
+   ],
+   "agents": [
+    "Class Archer"
+   ],
+   "en": "Class Archer"
+  },
+  {
    "name": "【週替り】アルターエゴピックアップ",
    "start": "2025-02-10",
    "end": "2025-02-17",
@@ -2318,6 +2900,64 @@
     "Orion"
    ],
    "en": "Ono no Komachi & Osakabehime & Orion"
+  },
+  {
+   "name": "【週替り】ランサーピックアップ1",
+   "start": "2025-02-17",
+   "end": "2025-02-24",
+   "rev": 0.7101,
+   "yrank": 56,
+   "ytot": 69,
+   "cum": 457,
+   "cumtot": 488,
+   "year": 2025,
+   "related": "ランサークラス",
+   "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/lancer_weekly_pu_niugx/top_banner.png",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    17,
+    13,
+    18,
+    29,
+    52,
+    61,
+    52,
+    60
+   ],
+   "agents": [
+    "Tōhachi Bishamonten"
+   ],
+   "en": "Tōhachi Bishamonten"
+  },
+  {
+   "name": "【週替り】アヴェンジャーピックアップ",
+   "start": "2025-03-03",
+   "end": "2025-03-10",
+   "rev": 0.9484,
+   "yrank": 54,
+   "ytot": 69,
+   "cum": 444,
+   "cumtot": 488,
+   "year": 2025,
+   "related": "アヴェンジャークラス",
+   "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/avenger_weekly_pu_fdwql/top_banner.png",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    42,
+    26,
+    17,
+    23,
+    6,
+    10,
+    14,
+    19
+   ],
+   "agents": [
+    "Avenger"
+   ],
+   "en": "Avenger"
   },
   {
    "name": "CBC2025 ピックアップ",
@@ -2399,6 +3039,93 @@
    "en": "Dante Alighieri"
   },
   {
+   "name": "CBC2025 彼の名はダンテ ～ホテル･デノヴォのコンシェルジュ～ ジェームズ･モリアーティ(アーチャー)(新宿のアーチャー)ピックアップ",
+   "start": "2025-03-07",
+   "end": "2025-03-14",
+   "rev": 0.5542,
+   "yrank": 60,
+   "ytot": 69,
+   "cum": 469,
+   "cumtot": 488,
+   "year": 2025,
+   "related": "ジェームズ･モリアーティ(アーチャー)",
+   "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/cbc2025_pu2_iehax/top_banner.png",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    6,
+    10,
+    14,
+    19,
+    23,
+    21,
+    30,
+    41
+   ],
+   "agents": [
+    "James Moriarty"
+   ],
+   "en": "James Moriarty"
+  },
+  {
+   "name": "【週替り】ライダーピックアップ1",
+   "start": "2025-03-10",
+   "end": "2025-03-17",
+   "rev": 0.3574,
+   "yrank": 69,
+   "ytot": 69,
+   "cum": 486,
+   "cumtot": 488,
+   "year": 2025,
+   "related": "ライダークラス",
+   "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/rider_weekly_pu_cslee/top_banner.png",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    19,
+    23,
+    21,
+    30,
+    41,
+    57,
+    51,
+    48
+   ],
+   "agents": [
+    "Tōhachi Bishamonten"
+   ],
+   "en": "Tōhachi Bishamonten"
+  },
+  {
+   "name": "【週替り】ライダーピックアップ2",
+   "start": "2025-03-17",
+   "end": "2025-03-24",
+   "rev": 0.3871,
+   "yrank": 67,
+   "ytot": 69,
+   "cum": 483,
+   "cumtot": 488,
+   "year": 2025,
+   "related": "ライダークラス",
+   "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/rider_weekly_pu2_wegds/top_banner.png",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    48,
+    49,
+    43,
+    62,
+    77,
+    86,
+    79,
+    76
+   ],
+   "agents": [
+    "Tōhachi Bishamonten"
+   ],
+   "en": "Tōhachi Bishamonten"
+  },
+  {
    "name": "【週替り】キャスターピックアップ1",
    "start": "2025-03-24",
    "end": "2025-03-31",
@@ -2464,6 +3191,35 @@
    "en": "Morgan"
   },
   {
+   "name": "【週替り】キャスターピックアップ2",
+   "start": "2025-03-31",
+   "end": "2025-04-07",
+   "rev": 0.9561,
+   "yrank": 53,
+   "ytot": 69,
+   "cum": 443,
+   "cumtot": 488,
+   "year": 2025,
+   "related": "キャスタークラス",
+   "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/caster_weekly_pu2_rbgvc/top_banner.png",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    6,
+    12,
+    17,
+    20,
+    20,
+    26,
+    24,
+    24
+   ],
+   "agents": [
+    "Class Caster"
+   ],
+   "en": "Class Caster"
+  },
+  {
    "name": "復刻 ぐだぐだ龍馬危機一髪！ピックアップ",
    "start": "2025-04-02",
    "end": "2025-04-23",
@@ -2509,6 +3265,67 @@
    "en": "Izumo no Okuni & White Oath & Takasugi Shinsaku"
   },
   {
+   "name": "「巡霊の祝祭 第11弾」ピックアップ",
+   "start": "2025-04-04",
+   "end": "2025-04-13",
+   "rev": 0.4379,
+   "yrank": 64,
+   "ytot": 69,
+   "cum": 479,
+   "cumtot": 488,
+   "year": 2025,
+   "related": "徴姉妹,武田信玄(武田晴信)",
+   "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/feasts_cp11_pu_tgjgv/top_banner.png",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    20,
+    26,
+    24,
+    24,
+    18,
+    15,
+    21,
+    22,
+    27,
+    26
+   ],
+   "agents": [
+    "Trung Sisters",
+    "Takeda Shingen"
+   ],
+   "en": "Trung Sisters & Takeda Shingen"
+  },
+  {
+   "name": "【週替り】フォーリナーピックアップ",
+   "start": "2025-04-07",
+   "end": "2025-04-14",
+   "rev": 0.3606,
+   "yrank": 68,
+   "ytot": 69,
+   "cum": 485,
+   "cumtot": 488,
+   "year": 2025,
+   "related": "フォーリナークラス",
+   "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/foreigner_weekly_pu_pu_atzwb/top_banner.png",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    24,
+    18,
+    15,
+    21,
+    22,
+    27,
+    26,
+    29
+   ],
+   "agents": [
+    "Foreigner"
+   ],
+   "en": "Foreigner"
+  },
+  {
    "name": "3100万DL記念 レディ･アヴァロンピックアップ",
    "start": "2025-04-09",
    "end": "2025-04-23",
@@ -2543,6 +3360,35 @@
     "Lady Avalon"
    ],
    "en": "Lady Avalon"
+  },
+  {
+   "name": "【週替り】バーサーカーピックアップ1",
+   "start": "2025-04-14",
+   "end": "2025-04-21",
+   "rev": 0.439,
+   "yrank": 63,
+   "ytot": 69,
+   "cum": 478,
+   "cumtot": 488,
+   "year": 2025,
+   "related": "バーサーカークラス",
+   "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/berserker_weekly_pu_bedip/top_banner.png",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    29,
+    22,
+    21,
+    29,
+    43,
+    49,
+    37,
+    36
+   ],
+   "agents": [
+    "Class Berserker"
+   ],
+   "en": "Class Berserker"
   },
   {
    "name": "【週替り】バーサーカーピックアップ2",
@@ -3007,6 +3853,61 @@
     "Wandjina"
    ],
    "en": "Wandjina"
+  },
+  {
+   "name": "インドラの大試練 アナスタシアピックアップ",
+   "start": "2025-07-08",
+   "end": "2025-07-14",
+   "rev": 0.4814,
+   "yrank": 62,
+   "ytot": 69,
+   "cum": 476,
+   "cumtot": 488,
+   "year": 2025,
+   "related": "アナスタシア",
+   "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/indra_event_pu3_oqlad/top_banner.png",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    16,
+    18,
+    15,
+    14,
+    17,
+    20,
+    19
+   ],
+   "agents": [
+    "Anastasia"
+   ],
+   "en": "Anastasia"
+  },
+  {
+   "name": "インドラの大試練 キングプロテアピックアップ",
+   "start": "2025-07-09",
+   "end": "2025-07-14",
+   "rev": 0.4218,
+   "yrank": 66,
+   "ytot": 69,
+   "cum": 481,
+   "cumtot": 488,
+   "year": 2025,
+   "related": "キングプロテア",
+   "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/indra_event_pu4_uikgp/top_banner.png",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    18,
+    15,
+    14,
+    17,
+    20,
+    19
+   ],
+   "agents": [
+    "Kingprotea"
+   ],
+   "en": "Kingprotea"
   },
   {
    "name": "「Fate/Grand Order Fes. 2025 ～10th Anniversary～」カウントダウンピックアップ",
@@ -3686,6 +4587,38 @@
    "en": "Jacques de Molay"
   },
   {
+   "name": "ファイナル･ハロウィン2025ピックアップ3",
+   "start": "2025-10-28",
+   "end": "2025-11-06",
+   "rev": 0.5942,
+   "yrank": 59,
+   "ytot": 69,
+   "cum": 467,
+   "cumtot": 488,
+   "year": 2025,
+   "related": "刑部姫(アサシン),ヴラド三世",
+   "banner_img": "https://news.fate-go.jp/wp-content/uploads/2025/halloween2025_pu3_urnnl/top_banner.png",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    41,
+    28,
+    45,
+    65,
+    76,
+    45,
+    54,
+    59,
+    42,
+    26
+   ],
+   "agents": [
+    "Osakabehime",
+    "Vlad III"
+   ],
+   "en": "Osakabehime & Vlad III"
+  },
+  {
    "name": "「巡霊の祝祭 第14弾」ピックアップ",
    "start": "2025-10-31",
    "end": "2025-11-09",
@@ -4160,6 +5093,175 @@
    "agents": []
   },
   {
+   "name": "カルデアン･フロラリア 葛飾北斎(フォーリナー)ピックアップ",
+   "start": "2026-01-27",
+   "end": "2026-02-13",
+   "rev": 0.8537,
+   "yrank": 12,
+   "ytot": 17,
+   "cum": 450,
+   "cumtot": 488,
+   "year": 2026,
+   "related": "葛飾北斎(フォーリナー)",
+   "banner_img": "https://news.fate-go.jp/wp-content/uploads/2026/01/chaldean_floralia_pu3_wutau/top_banner.png",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    16,
+    24,
+    41,
+    56,
+    44,
+    56,
+    45,
+    58,
+    71,
+    89,
+    87,
+    72,
+    53,
+    55,
+    60,
+    69,
+    58,
+    63
+   ],
+   "agents": [
+    "Katsushika Hokusai"
+   ],
+   "en": "Katsushika Hokusai"
+  },
+  {
+   "name": "カルデアン･フロラリア カズラドロップピックアップ",
+   "start": "2026-01-29",
+   "end": "2026-02-13",
+   "rev": 0.6388,
+   "yrank": 13,
+   "ytot": 17,
+   "cum": 460,
+   "cumtot": 488,
+   "year": 2026,
+   "related": "カズラドロップ",
+   "banner_img": "https://news.fate-go.jp/wp-content/uploads/2026/01/chaldean_floralia_pu4_cewjo/top_banner.png",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    41,
+    56,
+    44,
+    56,
+    45,
+    58,
+    71,
+    89,
+    87,
+    72,
+    53,
+    55,
+    60,
+    69,
+    58,
+    63
+   ],
+   "agents": [
+    "Kazuradrop"
+   ],
+   "en": "Kazuradrop"
+  },
+  {
+   "name": "カルデアン･フロラリア 項羽ピックアップ",
+   "start": "2026-01-31",
+   "end": "2026-02-13",
+   "rev": 0.54,
+   "yrank": 15,
+   "ytot": 17,
+   "cum": 471,
+   "cumtot": 488,
+   "year": 2026,
+   "related": "項羽",
+   "banner_img": "https://news.fate-go.jp/wp-content/uploads/2026/01/chaldean_floralia_pu5_yomxy/top_banner.png",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    44,
+    56,
+    45,
+    58,
+    71,
+    89,
+    87,
+    72,
+    53,
+    55,
+    60,
+    69,
+    58,
+    63
+   ],
+   "agents": [
+    "Xiang Yu's Sword"
+   ],
+   "en": "Xiang Yu's Sword"
+  },
+  {
+   "name": "「FGO カルデア･サテライトステーション 2026」開催記念キャンペーン インドラピックアップ",
+   "start": "2026-02-05",
+   "end": "2026-02-12",
+   "rev": 0.1795,
+   "yrank": 17,
+   "ytot": 17,
+   "cum": 488,
+   "cumtot": 488,
+   "year": 2026,
+   "related": "インドラ",
+   "banner_img": "https://news.fate-go.jp/wp-content/uploads/2026/02/winter2026_cp2_pu_dvzvh/top_banner.png",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    89,
+    87,
+    72,
+    53,
+    55,
+    60,
+    69,
+    58
+   ],
+   "agents": [
+    "Indra"
+   ],
+   "en": "Indra"
+  },
+  {
+   "name": "バレンタイン2026開幕直前ピックアップ",
+   "start": "2026-02-06",
+   "end": "2026-02-13",
+   "rev": 0.2425,
+   "yrank": 16,
+   "ytot": 17,
+   "cum": 487,
+   "cumtot": 488,
+   "year": 2026,
+   "related": "小野小町ほか",
+   "banner_img": "https://news.fate-go.jp/wp-content/uploads/2026/02/valentine2026_cp_pu_eqcvj/top_banner.png",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    87,
+    72,
+    53,
+    55,
+    60,
+    69,
+    58,
+    63
+   ],
+   "agents": [
+    "Ono no Komachi"
+   ],
+   "en": "Ono no Komachi"
+  },
+  {
    "name": "バレンタイン2026 デメテルピックアップ",
    "start": "2026-02-13",
    "end": "2026-03-06",
@@ -4312,6 +5414,38 @@
     "Napoléon"
    ],
    "en": "Jacques de Molay & Napoléon"
+  },
+  {
+   "name": "CBC2026 ピックアップ",
+   "start": "2026-03-15",
+   "end": "2026-03-25",
+   "rev": 0.559,
+   "yrank": 14,
+   "ytot": 17,
+   "cum": 468,
+   "cumtot": 488,
+   "year": 2026,
+   "related": "男性サーヴァント",
+   "banner_img": "https://news.fate-go.jp/wp-content/uploads/2026/03/cbc2026_boys_pu_ilzra/top_banner.png",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    33,
+    48,
+    51,
+    62,
+    67,
+    82,
+    56,
+    49,
+    64,
+    71,
+    68
+   ],
+   "agents": [
+    "Daddy Letters Live"
+   ],
+   "en": "Daddy Letters Live"
   },
   {
    "name": "復刻 水怪クライシスピックアップ",

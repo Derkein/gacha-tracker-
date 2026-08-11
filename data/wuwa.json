@@ -4,8 +4,8 @@
  "jp": "鳴潮",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E9%B3%B4%E6%BD%AE",
- "updated": "2026-08-11T03:10:20Z",
- "count": 37,
+ "updated": "2026-08-11T03:31:51Z",
+ "count": 39,
  "now": {
   "ios": 134,
   "android": 20,
@@ -353,6 +353,54 @@
    "bar": "#d39692"
   },
   {
+   "name": "相里要",
+   "start": "2024-09-07",
+   "end": "2024-09-28",
+   "rev": 0.8876,
+   "yrank": 9,
+   "ytot": 10,
+   "cum": 38,
+   "cumtot": 39,
+   "year": 2024,
+   "related": "",
+   "banner_img": "https://hw-media-cdn-mingchao.kurogame.com/object/1725379200000/0fa108uwu1xxyf45b0-1725422738003.JPG",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    null,
+    57,
+    84,
+    128,
+    183,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "agents": [
+    "Xiangli Yao"
+   ],
+   "en": "Xiangli Yao",
+   "icons": [
+    "icons/faces/wuwa/2024-09-07-0cc42c.webp"
+   ],
+   "accent": "#4e60b1",
+   "bar": "#85bae0"
+  },
+  {
    "name": "ショアキーパー",
    "start": "2024-09-29",
    "end": "2024-10-24",
@@ -402,6 +450,53 @@
     "icons/faces/wuwa/2024-09-29-bbacf0.webp"
    ],
    "bar": "#3551a1"
+  },
+  {
+   "name": "忌炎復刻",
+   "start": "2024-10-24",
+   "end": "2024-11-13",
+   "rev": 0.874,
+   "yrank": 10,
+   "ytot": 10,
+   "cum": 39,
+   "cumtot": 39,
+   "year": 2024,
+   "related": "釉瑚",
+   "banner_img": "https://hw-media-cdn-mingchao.kurogame.com/object/1729612800000/2kuvbi4l82zmirbpa2-1729648580503.jpg",
+   "rerun": true,
+   "ongoing": false,
+   "rank_series": [
+    157,
+    70,
+    125,
+    177,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    197
+   ],
+   "agents": [
+    "Jiyan"
+   ],
+   "en": "Jiyan",
+   "icons": [
+    "icons/faces/wuwa/2024-10-24-48541f.webp"
+   ],
+   "accent": "#30cfb2",
+   "bar": "#07cecf"
   },
   {
    "name": "ツバキ",
