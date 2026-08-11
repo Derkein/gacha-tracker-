@@ -4,13 +4,13 @@
  "jp": "鳴潮",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E9%B3%B4%E6%BD%AE",
- "updated": "2026-08-11T03:31:51Z",
+ "updated": "2026-08-11T16:09:10Z",
  "count": 39,
  "now": {
   "ios": 134,
   "android": 20,
-  "month": 54,
-  "next_add": 13127212,
+  "month": 56,
+  "next_add": 12859309,
   "ym": "2026/08",
   "ranks": {
    "prev": [
@@ -58,7 +58,7 @@
     123,
     133,
     135,
-    null,
+    134,
     null,
     null,
     null,
@@ -82,7 +82,7 @@
   }
  },
  "monthly": {
-  "2026-08": 2.94,
+  "2026-08": 3.07,
   "2026-07": 7.43,
   "2026-06": 6.34,
   "2026-05": 8.48,
@@ -397,7 +397,6 @@
    "icons": [
     "icons/faces/wuwa/2024-09-07-0cc42c.webp"
    ],
-   "accent": "#4e60b1",
    "bar": "#85bae0"
   },
   {
@@ -495,7 +494,6 @@
    "icons": [
     "icons/faces/wuwa/2024-10-24-48541f.webp"
    ],
-   "accent": "#30cfb2",
    "bar": "#07cecf"
   },
   {
@@ -505,7 +503,7 @@
    "rev": 3.69,
    "yrank": 5,
    "ytot": 10,
-   "cum": 18,
+   "cum": 19,
    "cumtot": 39,
    "year": 2024,
    "related": "",
@@ -1889,10 +1887,10 @@
    "name": "穗穗",
    "start": "2026-07-30",
    "end": "2026-08-19",
-   "rev": 3.6,
+   "rev": 3.73,
    "yrank": 8,
    "ytot": 10,
-   "cum": 19,
+   "cum": 18,
    "cumtot": 39,
    "year": 2026,
    "related": "",
@@ -1912,7 +1910,8 @@
     137,
     123,
     133,
-    135
+    135,
+    134
    ],
    "agents": [
     "Suisui"
