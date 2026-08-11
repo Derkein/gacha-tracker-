@@ -101,17 +101,22 @@ def parse_banners(hpage, year):
         t = re.sub(r"<[^>]+>", " ", t)
         t = html.unescape(re.sub(r"\s+", " ", t))
         mp = re.search(r"実施期間\s*(\d{4})年(\d{2})月(\d{2})日\s*～\s*(\d{4})年(\d{2})月(\d{2})日", t)
-        mr = re.search(r"売上予測\s*([\d.]+)億G", t)
+        # game-i shows small/brand-new totals in 万G (10,000s) instead of 億G (1e8);
+        # accept both (and thousands separators) so day-1 banners aren't dropped.
+        mr = re.search(r"売上予測\s*([\d,.]+)\s*(億|万)G", t)
         mk = re.search(r"集計順位\s*【年間】(\d+)位\s*/\s*全(\d+)件\s*【累計】(\d+)位\s*/\s*全(\d+)件", t)
         if not (mp and mr and mk):
             continue
+        rev = float(mr.group(1).replace(",", ""))
+        if mr.group(2) == "万":          # 万G -> 億G (1億 = 10,000万)
+            rev = round(rev / 10000.0, 4)
         img = re.search(r'data-src="([^"]+)"', body) or re.search(r'<img[^>]+src="(https?://[^"]+)"', body)
         rel = re.search(r"関連キャラなど\s*</h4>\s*<p>(.*?)</p>", body, re.S)
         rows.append({
             "name": name,
             "start": f"{mp.group(1)}-{mp.group(2)}-{mp.group(3)}",
             "end": f"{mp.group(4)}-{mp.group(5)}-{mp.group(6)}",
-            "rev": float(mr.group(1)),
+            "rev": rev,
             "yrank": int(mk.group(1)), "ytot": int(mk.group(2)),
             "cum": int(mk.group(3)), "cumtot": int(mk.group(4)),
             "year": int(year),
@@ -241,8 +246,11 @@ def scrape_monthly(apid):
     if i < 0:
         return {}
     seg = re.sub(r"<[^>]+>", " ", h[i:i + 16000])
-    return {f"{y}-{mo}": float(v) for y, mo, v in
-            re.findall(r"(20\d\d)/(\d\d)\s*([\d.]+)億G", seg)}
+    out = {}
+    for y, mo, v, unit in re.findall(r"(20\d\d)/(\d\d)\s*([\d,.]+)\s*(億|万)G", seg):
+        val = float(v.replace(",", ""))
+        out[f"{y}-{mo}"] = round(val / 10000.0, 4) if unit == "万" else val
+    return out
 
 
 def attach_rank_series(apid, banners):
