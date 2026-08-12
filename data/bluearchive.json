@@ -4,13 +4,13 @@
  "jp": "ブルーアーカイブ",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E3%83%96%E3%83%AB%E3%83%BC%E3%82%A2%E3%83%BC%E3%82%AB%E3%82%A4%E3%83%96",
- "updated": "2026-08-11T03:12:32Z",
- "count": 49,
+ "updated": "2026-08-11T17:18:10Z",
+ "count": 90,
  "now": {
-  "ios": 45,
-  "android": 3,
-  "month": 31,
-  "next_add": 23195540,
+  "ios": 40,
+  "android": 4,
+  "month": 34,
+  "next_add": 27979776,
   "ym": "2026/08",
   "ranks": {
    "prev": [
@@ -58,7 +58,7 @@
     26,
     38,
     52,
-    null,
+    46,
     null,
     null,
     null,
@@ -82,7 +82,7 @@
   }
  },
  "monthly": {
-  "2026-08": 4.82,
+  "2026-08": 5.04,
   "2026-07": 4.28,
   "2026-06": 4.11,
   "2026-05": 2.96,
@@ -119,6 +119,37 @@
   "2023-10": 11.93
  },
  "banners": [
+  {
+   "name": "「あらたまの 年も事業も かくしこそ」（復刻）&「四つ手重ねて たのしきをつめ」（復刻）&「巫女は隣で丸くなる」（復刻）&「初春の 音の絆も かくしこそ」（復刻）&「千草たばねて しあわせをつめ」（復刻）",
+   "start": "2024-01-10",
+   "end": "2024-01-17",
+   "rev": 0.9034,
+   "yrank": 23,
+   "ytot": 38,
+   "cum": 109,
+   "cumtot": 199,
+   "year": 2024,
+   "related": "★3「アル（正月）」（限定）、★3「ムツキ（正月）」（限定）、★3「セリカ（正月）」、★3「カヨコ（正月）」、★3「ハルカ（正月）」\n2023年へ",
+   "banner_img": "https://webusstatic.yo-star.com/uy0news/ba/ec7edc80358dcc7756c50d8abb5a3772.png",
+   "rerun": true,
+   "ongoing": false,
+   "rank_series": [
+    79,
+    29,
+    28,
+    53,
+    62,
+    61,
+    67,
+    60
+   ],
+   "agents": [
+    "Rikuhachima Aru",
+    "Asagi Mutsuki",
+    "Kuromi Serika"
+   ],
+   "en": "Rikuhachima Aru & Asagi Mutsuki & Kuromi Serika"
+  },
   {
    "name": "「逃げ水を夢に見て」（復刻）&「徒桜を拾い集めて」（復刻）",
    "start": "2024-01-17",
@@ -211,6 +242,37 @@
    "en": "Sorasaki Hina & Takanashi Hoshino"
   },
   {
+   "name": "「自由意志のもと誇りにかけて」（復刻）&「大聖堂からバザールにかけて」（復刻）&「ドレスコードは鋼の白衣」（復刻）",
+   "start": "2024-02-14",
+   "end": "2024-02-21",
+   "rev": 0.9115,
+   "yrank": 22,
+   "ytot": 38,
+   "cum": 106,
+   "cumtot": 199,
+   "year": 2024,
+   "related": "★3「セナ」、★3「チヒロ」、★3「ミネ」",
+   "banner_img": "https://webusstatic.yo-star.com/uy0news/ba/3b3a1de3baa8588767a1be43671bf6b5.png",
+   "rerun": true,
+   "ongoing": false,
+   "rank_series": [
+    66,
+    65,
+    70,
+    77,
+    67,
+    61,
+    62,
+    53
+   ],
+   "agents": [
+    "Himuro Sena",
+    "Kagami Chihiro",
+    "Aomori Mine"
+   ],
+   "en": "Himuro Sena & Kagami Chihiro & Aomori Mine"
+  },
+  {
    "name": "「悪党円舞曲(アウトローワルツァー)」&「美しく明けきメタル」",
    "start": "2024-02-21",
    "end": "2024-03-06",
@@ -286,6 +348,36 @@
    "en": "Wanibuchi Akari & Kurodate Haruna & Aikiyo Fuuka"
   },
   {
+   "name": "「声なき言葉たちの残花」(復刻)&「故なき力添えの賛歌」(復刻)&「偽りなき信仰の甘果」(復刻)",
+   "start": "2024-03-20",
+   "end": "2024-03-27",
+   "rev": 0.7821,
+   "yrank": 27,
+   "ytot": 38,
+   "cum": 123,
+   "cumtot": 199,
+   "year": 2024,
+   "related": "★3「ウイ」、★3「ヒナタ」、★3「サクラコ」",
+   "banner_img": "https://webusstatic.yo-star.com/uy0news/ba/bc4b8101ffdd0db568be61f4e1f1473e.png",
+   "rerun": true,
+   "ongoing": false,
+   "rank_series": [
+    57,
+    30,
+    56,
+    90,
+    104,
+    106,
+    78,
+    78
+   ],
+   "agents": [
+    "Kozeki Ui",
+    "Wakaba Hinata"
+   ],
+   "en": "Kozeki Ui & Wakaba Hinata"
+  },
+  {
    "name": "「夢を守りし はるはなの」&「夢を誘ひし しおさいの」&「祭り囃子はしのぶれど」&「いつか花咲く少女の夢」",
    "start": "2024-03-27",
    "end": "2024-04-11",
@@ -322,6 +414,34 @@
     "Satohama Umika"
    ],
    "en": "Kasuga Tsubaki & Satohama Umika"
+  },
+  {
+   "name": "「挑戦は甘い夢の外で！」＆「黒猫は甘い夢の中で」&「ステンドグラスに誘われて」",
+   "start": "2024-04-11",
+   "end": "2024-04-17",
+   "rev": 0.6125,
+   "yrank": 34,
+   "ytot": 38,
+   "cum": 156,
+   "cumtot": 199,
+   "year": 2024,
+   "related": "★3「レイサ」（復刻）、★3「カズサ」（復刻）、★3「ナツ」（復刻）、★2「マリー」（復刻）",
+   "banner_img": "https://webusstatic.yo-star.com/uy0news/ba/7f3c1c5fa80cd5de9b8aa4e5e7ce81ac.png",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    95,
+    69,
+    79,
+    91,
+    99,
+    108,
+    92
+   ],
+   "agents": [
+    "Yutori Natsu"
+   ],
+   "en": "Yutori Natsu"
   },
   {
    "name": "「Where there's Toki there's victory.」&「Where there's tea party there's hope. 」&「解に導く番狂わせ」",
@@ -423,6 +543,37 @@
    "en": "Yozakura Kirara & Isami Kaede & Oono Tsukuyo"
   },
   {
+   "name": "「カンパニーで飲茶を！」&「ノワールに唄えば」&「未来のどけき梅の園」&「しずこころなく梅咲き誇る！」",
+   "start": "2024-05-15",
+   "end": "2024-05-22",
+   "rev": 0.8741,
+   "yrank": 24,
+   "ytot": 38,
+   "cum": 111,
+   "cumtot": 199,
+   "year": 2024,
+   "related": "★3「ルミ」（復刻）、★3「ミナ」（復刻）、★3「シュン」（復刻）、★3「ココナ」（復刻）",
+   "banner_img": "https://webusstatic.yo-star.com/uy0news/ba/74fb6768fefbb7312ab7f6908854ce35.png",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    65,
+    28,
+    41,
+    68,
+    72,
+    67,
+    72,
+    56
+   ],
+   "agents": [
+    "Akeshiro Rumi",
+    "Konoe Mina",
+    "Sunohara Shun"
+   ],
+   "en": "Akeshiro Rumi & Konoe Mina & Sunohara Shun"
+  },
+  {
    "name": "「掃天する複素共役(ソウテンスルメイドインジェミニ)」&「掃海する複素共役(ソウカイスルメイドバイジェミニ)」&「メイド勇者は不思議な世界の夢を見る」&「遅刻ウサギのワイルドカード」",
    "start": "2024-05-22",
    "end": "2024-06-05",
@@ -496,6 +647,39 @@
    "en": "Kuromi Serika & Izayoi Nonomi & Kosaka Wakamo"
   },
   {
+   "name": "「色に出でにけりわが夏は」&「ものや詠もうと心問ふまで」&「過ぐるものとは 知りながら」",
+   "start": "2024-06-16",
+   "end": "2024-06-26",
+   "rev": 0.9921,
+   "yrank": 21,
+   "ytot": 38,
+   "cum": 100,
+   "cumtot": 199,
+   "year": 2024,
+   "related": "★3「イズナ(水着)」（限定-復刻）、★3「チセ(水着)」（限定-復刻）、★3「ミモリ(水着)」（復刻）",
+   "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2024/05/30/m39Mubey.png",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    80,
+    28,
+    43,
+    56,
+    73,
+    92,
+    113,
+    110,
+    92,
+    68,
+    63
+   ],
+   "agents": [
+    "Waraku Chise",
+    "Mizuha Mimori"
+   ],
+   "en": "Waraku Chise & Mizuha Mimori"
+  },
+  {
    "name": "司令室より監視員、スライダーに急行を」&「監視員、了解。ドーナッツアイス食べたらね」",
    "start": "2024-06-26",
    "end": "2024-07-10",
@@ -531,6 +715,65 @@
     "Nemugaki Fubuki"
    ],
    "en": "Ogata Kanna & Nemugaki Fubuki"
+  },
+  {
+   "name": "「緊急浮上 泡影を導べに」&「微速前進 安らぎの浜辺へ」&「急速潜航 活路は水底に」",
+   "start": "2024-07-10",
+   "end": "2024-07-17",
+   "rev": 0.8364,
+   "yrank": 25,
+   "ytot": 38,
+   "cum": 114,
+   "cumtot": 199,
+   "year": 2024,
+   "related": "★3「モエ(水着)」、★3「ミヤコ(水着)」(復刻)、★3「サキ(水着)」(復刻)",
+   "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2024/07/02/yVuSDyqB.png",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    95,
+    37,
+    53,
+    86,
+    120,
+    111,
+    122,
+    121
+   ],
+   "agents": [
+    "Kazekura Moe",
+    "Tsukiyuki Miyako",
+    "Sorai Saki"
+   ],
+   "en": "Kazekura Moe & Tsukiyuki Miyako & Sorai Saki"
+  },
+  {
+   "name": "「積み重ねる誓いの翼」&「積み上げる尽力の翼」",
+   "start": "2024-07-17",
+   "end": "2024-07-22",
+   "rev": 0.5053,
+   "yrank": 35,
+   "ytot": 38,
+   "cum": 169,
+   "cumtot": 199,
+   "year": 2024,
+   "related": "★3「ホシノ」(復刻)、★3「ヒナ」(復刻)",
+   "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2024/07/10/78DzVVbQ.png",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    121,
+    114,
+    143,
+    176,
+    135,
+    94
+   ],
+   "agents": [
+    "Takanashi Hoshino",
+    "Sorasaki Hina"
+   ],
+   "en": "Takanashi Hoshino & Sorasaki Hina"
   },
   {
    "name": "「この場所が永遠の彼方」&「あの場所は約束の最中」&「君は無邪気な夜の希望(復刻)」",
@@ -594,6 +837,67 @@
     "Tsuchinaga Hiyori"
    ],
    "en": "Joumae Saori & Tsuchinaga Hiyori"
+  },
+  {
+   "name": "「ペンは銃より強し！」&「晴れのち失脚、所により大荒れ」&「忠言、耳に突撃」",
+   "start": "2024-08-07",
+   "end": "2024-08-14",
+   "rev": 0.8189,
+   "yrank": 26,
+   "ytot": 38,
+   "cum": 118,
+   "cumtot": 199,
+   "year": 2024,
+   "related": "★3「メル」(復刻)、★2「モミジ」(復刻)、★3「チェリノ」(復刻)、★3「マリナ」(復刻)",
+   "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2024/07/29/d918_BqX.png",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    17,
+    25,
+    54,
+    91,
+    103,
+    106,
+    108,
+    103
+   ],
+   "agents": [
+    "Himeki Meru",
+    "Akiizumi Momiji",
+    "Renkawa Cherino"
+   ],
+   "en": "Himeki Meru & Akiizumi Momiji & Renkawa Cherino"
+  },
+  {
+   "name": "「工務の道も一歩から」(復刻)&「ステアミルクは湯けむりと共に」(復刻)",
+   "start": "2024-08-14",
+   "end": "2024-08-21",
+   "rev": 0.7056,
+   "yrank": 31,
+   "ytot": 38,
+   "cum": 137,
+   "cumtot": 199,
+   "year": 2024,
+   "related": "★3「ミノリ」(復刻)、★3「シグレ(温泉)」(復刻)",
+   "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2024/08/05/gm5TIfWu.png",
+   "rerun": true,
+   "ongoing": false,
+   "rank_series": [
+    103,
+    79,
+    99,
+    128,
+    115,
+    106,
+    106,
+    84
+   ],
+   "agents": [
+    "Yasumori Minori",
+    "Mayoi Shigure"
+   ],
+   "en": "Yasumori Minori & Mayoi Shigure"
   },
   {
    "name": "「雪の下に咲く二十一日」&「雪の上に立つ三日天下」",
@@ -671,6 +975,37 @@
    "en": "Kozeki Ui & Wakaba Hinata & Natsume Iroha"
   },
   {
+   "name": "「問答無用のストレートアップ」&「着替えたらジャックポットを」、「無軌道なハットトリック」＆「昼下がりのロイヤルフラッシュ」",
+   "start": "2024-09-18",
+   "end": "2024-09-25",
+   "rev": 0.7507,
+   "yrank": 30,
+   "ytot": 38,
+   "cum": 128,
+   "cumtot": 199,
+   "year": 2024,
+   "related": "★3「ネル(バニーガール)」(限定-復刻)、★3「カリン(バニーガール)」(限定-復刻)、★3「アスナ(バニーガール)」(復刻)、★3「アカネ(バニーガール)」(復刻)",
+   "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2024/09/05/DBltDSMd.png",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    143,
+    56,
+    68,
+    108,
+    128,
+    99,
+    96,
+    78
+   ],
+   "agents": [
+    "Mikamo Neru",
+    "Kakudate Karin",
+    "Ichinose Asuna"
+   ],
+   "en": "Mikamo Neru & Kakudate Karin & Ichinose Asuna"
+  },
+  {
    "name": "「黒君は遠き慮り有りて」＆「行は是れ武のカンフー！」、「やがて未来に変わる庇護」＆「年がら年中無我夢チュー！」",
    "start": "2024-09-25",
    "end": "2024-10-10",
@@ -710,6 +1045,67 @@
    "en": "Ryuuge Kisaki & Kayama Reijo & Sunohara Shun"
   },
   {
+   "name": "「ただ四囲は夢幻なりや？」&「正しいは無限なりや！」、「駆け出した向日葵の憧れ」",
+   "start": "2024-10-10",
+   "end": "2024-10-16",
+   "rev": 0.6553,
+   "yrank": 32,
+   "ytot": 38,
+   "cum": 144,
+   "cumtot": 199,
+   "year": 2024,
+   "related": "★3「アズサ(水着)」(復刻-限定)、★3「マシロ(水着)」(復刻-限定)、★3「ヒフミ(水着)」(復刻)",
+   "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2024/09/26/qp6IkhPm.png",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    70,
+    34,
+    51,
+    86,
+    118,
+    140,
+    124
+   ],
+   "agents": [
+    "Shirasu Azusa",
+    "Shizuyama Mashiro",
+    "Ajitani Hifumi"
+   ],
+   "en": "Shirasu Azusa & Shizuyama Mashiro & Ajitani Hifumi"
+  },
+  {
+   "name": "「夢見る乙女よ 大志を抱け！」&「はるは短し 走れよ乙女」&「おもい忍ばせ 進めよ乙女」",
+   "start": "2024-10-16",
+   "end": "2024-10-23",
+   "rev": 0.6129,
+   "yrank": 33,
+   "ytot": 38,
+   "cum": 155,
+   "cumtot": 199,
+   "year": 2024,
+   "related": "★3「ユカリ」(復刻)、★3「レンゲ」(復刻)、★3「キキョウ」(復刻)",
+   "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2024/10/10/UGHXoOFL.png",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    124,
+    79,
+    121,
+    159,
+    173,
+    169,
+    112,
+    108
+   ],
+   "agents": [
+    "Kadenokouji Yukari",
+    "Fuwa Renge",
+    "Kiryuu Kikyou"
+   ],
+   "en": "Kadenokouji Yukari & Fuwa Renge & Kiryuu Kikyou"
+  },
+  {
    "name": "「ラボニに捧ぐ輝きの詠」」&「オリーブに祈る平和の詩」",
    "start": "2024-10-23",
    "end": "2024-11-06",
@@ -744,6 +1140,67 @@
     "Iochi Mari"
    ],
    "en": "Iochi Mari"
+  },
+  {
+   "name": "「故無き力添えの賛歌」&「雪代水は廻り行く」",
+   "start": "2024-11-06",
+   "end": "2024-11-13",
+   "rev": 0.4794,
+   "yrank": 36,
+   "ytot": 38,
+   "cum": 172,
+   "cumtot": 199,
+   "year": 2024,
+   "related": "★3「サオリ」(復刻)、★3「ヒナタ」(復刻)",
+   "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2024/10/25/YJHQbYE7.png",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    60,
+    47,
+    94,
+    145,
+    176,
+    178,
+    198,
+    171
+   ],
+   "agents": [
+    "Joumae Saori",
+    "Wakaba Hinata"
+   ],
+   "en": "Joumae Saori & Wakaba Hinata"
+  },
+  {
+   "name": "「海統べる寄り添いの月光」&「夏乱す容赦なき太陽」、「吹き抜ける風の在り処」",
+   "start": "2024-11-13",
+   "end": "2024-11-20",
+   "rev": 0.7775,
+   "yrank": 28,
+   "ytot": 38,
+   "cum": 124,
+   "cumtot": 199,
+   "year": 2024,
+   "related": "★3「ヒナ(水着)」(限定-復刻)、★3「イオリ(水着)」(限定-復刻)、★3「シロコ(ライディング)」(復刻)",
+   "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2024/10/30/SU0Q2kLp.png",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    171,
+    34,
+    50,
+    86,
+    101,
+    96,
+    93,
+    71
+   ],
+   "agents": [
+    "Sorasaki Hina",
+    "Shiromi Iori",
+    "Shiroko Terror"
+   ],
+   "en": "Sorasaki Hina & Shiromi Iori & Shiroko Terror"
   },
   {
    "name": "「京極サツキは諦めない」&「元宮チアキは見逃さない」、「我等がために宙は鳴る！」＆「天に仕うはすべて音」",
@@ -784,6 +1241,97 @@
    "en": "Kyougoku Satsuki & Motomiya Chiaki & Hanuma Makoto"
   },
   {
+   "name": "「温泉を始めるのなら爆破から！」&「そして正義はいつも隣から！」&「Snipe the target \"L-seven\" !」&「義勇は温泉のように熱く！」",
+   "start": "2024-12-04",
+   "end": "2024-12-11",
+   "rev": 0.3761,
+   "yrank": 37,
+   "ytot": 38,
+   "cum": 179,
+   "cumtot": 199,
+   "year": 2024,
+   "related": "★3「カスミ」(復刻)、★3「イチカ」(復刻)、★3「イオリ」(復刻)、★3「メグ」(復刻)",
+   "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2024/11/26/oqCUfgWp.png",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    103,
+    92,
+    128,
+    173,
+    176,
+    184,
+    190,
+    196
+   ],
+   "agents": [
+    "Kinugawa Kasumi",
+    "Shiromi Iori"
+   ],
+   "en": "Kinugawa Kasumi & Shiromi Iori"
+  },
+  {
+   "name": "「晴れ空に響く情熱」&「明け空に説く こころ模様」&「曇り硝子に描く刹那」",
+   "start": "2024-12-11",
+   "end": "2024-12-18",
+   "rev": 0.3109,
+   "yrank": 38,
+   "ytot": 38,
+   "cum": 185,
+   "cumtot": 199,
+   "year": 2024,
+   "related": "★3「ウタハ(応援団)」(復刻)、★3「コトリ(応援団)」(復刻)、★3「ノア」(復刻)",
+   "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2024/12/04/atz57hmd.png",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    196,
+    164,
+    184,
+    null,
+    196,
+    null,
+    null,
+    196
+   ],
+   "agents": [
+    "Shiraishi Utaha",
+    "Toyomi Kotori",
+    "Ushio Noa"
+   ],
+   "en": "Shiraishi Utaha & Toyomi Kotori & Ushio Noa"
+  },
+  {
+   "name": "「理性と情熱のEquation」&「憧憬と慈愛のDevotion」、「未知と探求のReformation」",
+   "start": "2024-12-18",
+   "end": "2024-12-24",
+   "rev": 0.7545,
+   "yrank": 29,
+   "ytot": 38,
+   "cum": 127,
+   "cumtot": 199,
+   "year": 2024,
+   "related": "★3「ユウカ(体操服)」(限定-復刻)、★3「マリー(体操服)」(限定-復刻)、★3「ハルナ(体操服)」(復刻)",
+   "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2024/12/12/4sloUJ5E.png",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    196,
+    28,
+    44,
+    75,
+    106,
+    107,
+    65
+   ],
+   "agents": [
+    "Hayase Yuuka",
+    "Iochi Mari",
+    "Kurodate Haruna"
+   ],
+   "en": "Hayase Yuuka & Iochi Mari & Kurodate Haruna"
+  },
+  {
    "name": "「夜明けに贈る方程式」&「静寂に満ちる回想録」",
    "start": "2024-12-24",
    "end": "2025-01-08",
@@ -820,6 +1368,66 @@
     "Ushio Noa"
    ],
    "en": "Hayase Yuuka & Ushio Noa"
+  },
+  {
+   "name": "「あらたまの 年も事業も かくしこそ」＆「四つ手重ねて たのしきをつめ」、「初春の 音の絆も かくしこそ」＆「千草たばねて しあわせをつめ」",
+   "start": "2025-01-08",
+   "end": "2025-01-15",
+   "rev": 0.5785,
+   "yrank": 28,
+   "ytot": 37,
+   "cum": 162,
+   "cumtot": 199,
+   "year": 2025,
+   "related": "★3「アル(正月)」(限定-復刻)、★3「ムツキ(正月)」(限定-復刻)、★3「カヨコ(正月)」(復刻)、★3「ハルカ(正月)」(復刻)\n2024年へ",
+   "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/faq/2024/12/24/g_n786X1.png",
+   "rerun": true,
+   "ongoing": false,
+   "rank_series": [
+    105,
+    99,
+    67,
+    102,
+    112,
+    119,
+    107,
+    100
+   ],
+   "agents": [
+    "Rikuhachima Aru",
+    "Asagi Mutsuki",
+    "Onikata Kayoko"
+   ],
+   "en": "Rikuhachima Aru & Asagi Mutsuki & Onikata Kayoko"
+  },
+  {
+   "name": "「メイド勇者は不思議な世界の夢を見る」＆「遅刻ウサギのワイルドカード」＆「掃天する複素共役(メイドインジェミニ)」＆「掃海する複素共役(メイドバイジェミニ)」",
+   "start": "2025-01-15",
+   "end": "2025-01-20",
+   "rev": 0.7716,
+   "yrank": 23,
+   "ytot": 37,
+   "cum": 125,
+   "cumtot": 199,
+   "year": 2025,
+   "related": "★3「アリス(メイド)」(復刻)、★3「トキ(バニー)」(復刻)、★3「モモイ(メイド)」(復刻)、★3「ミドリ(メイド)」(復刻)",
+   "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2025/01/08/JE2o75bN.png",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    100,
+    99,
+    134,
+    139,
+    114,
+    15
+   ],
+   "agents": [
+    "The Great Adventure of Alice the Brave!",
+    "Asuma Toki",
+    "Saiba Momoi"
+   ],
+   "en": "The Great Adventure of Alice the Brave! & Asuma Toki & Saiba Momoi"
   },
   {
    "name": "「優しく希望は降りしきる」&「気ままな太陽は空の下」",
@@ -990,6 +1598,67 @@
    "en": "Himuro Sena & Ushimaki Juri"
   },
   {
+   "name": "「雪夜に贈るぬくもりのハレルヤ！」&「聖夜に響く慈愛のキャロル」",
+   "start": "2025-03-12",
+   "end": "2025-03-19",
+   "rev": 0.3114,
+   "yrank": 36,
+   "ytot": 37,
+   "cum": 184,
+   "cumtot": 199,
+   "year": 2025,
+   "related": "★3「ハナエ(クリスマス)」(復刻)、★3「セリナ(クリスマス)」(復刻)",
+   "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2025/03/03/46vW1kfC.png",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    147,
+    138,
+    188,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "agents": [
+    "Asagao Hanae",
+    "Sumi Serina"
+   ],
+   "en": "Asagao Hanae & Sumi Serina"
+  },
+  {
+   "name": "「今年こそ 煌めく美食に 舌鼓！」、「あたらしき　年になれども　食道楽」、「馳走のこころは　かはらざりけり」、「幾重のかをり 早たちにけり」",
+   "start": "2025-03-19",
+   "end": "2025-03-26",
+   "rev": 0.7318,
+   "yrank": 24,
+   "ytot": 37,
+   "cum": 131,
+   "cumtot": 199,
+   "year": 2025,
+   "related": "★3「イズミ(正月)」、★3「ハルナ(正月)」(復刻-限定)、★3「フウカ(正月)」(復刻-限定)、★3「アカリ(正月)」(復刻)",
+   "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2025/03/13/WIwe9DqB.png",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    null,
+    32,
+    58,
+    94,
+    110,
+    118,
+    116,
+    111
+   ],
+   "agents": [
+    "Shishidou Izumi",
+    "Kurodate Haruna",
+    "Aikiyo Fuuka"
+   ],
+   "en": "Shishidou Izumi & Kurodate Haruna & Aikiyo Fuuka"
+  },
+  {
    "name": "「筋肉１番努力は２番」＆「背負いし４番が夢を打つ」",
    "start": "2025-03-26",
    "end": "2025-04-09",
@@ -1025,6 +1694,66 @@
     "Otohana Sumire"
    ],
    "en": "Nomasa Rei & Otohana Sumire"
+  },
+  {
+   "name": "「密やかに花咲く心」、「悪党円舞曲(アウトローワルツァー)」&「美しく明けきメタル」",
+   "start": "2025-04-09",
+   "end": "2025-04-16",
+   "rev": 0.7297,
+   "yrank": 25,
+   "ytot": 37,
+   "cum": 133,
+   "cumtot": 199,
+   "year": 2025,
+   "related": "「サオリ(ドレス)」、★3「アル(ドレス)」(復刻)、★3「カヨコ(ドレス)」(復刻)",
+   "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2025/03/31/OcKj6l3u.png",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    191,
+    49,
+    28,
+    60,
+    85,
+    102,
+    118,
+    106
+   ],
+   "agents": [
+    "Joumae Saori",
+    "Rikuhachima Aru",
+    "Onikata Kayoko"
+   ],
+   "en": "Joumae Saori & Rikuhachima Aru & Onikata Kayoko"
+  },
+  {
+   "name": "「カンパニーで飲茶を！」&「ノワールに唄えば」",
+   "start": "2025-04-16",
+   "end": "2025-04-22",
+   "rev": 0.2968,
+   "yrank": 37,
+   "ytot": 37,
+   "cum": 187,
+   "cumtot": 199,
+   "year": 2025,
+   "related": "★3「ルミ」(復刻)、★3「ミナ」(復刻)",
+   "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2025/04/09/96_1VGU3.png",
+   "rerun": true,
+   "ongoing": false,
+   "rank_series": [
+    106,
+    122,
+    200,
+    null,
+    null,
+    null,
+    115
+   ],
+   "agents": [
+    "Akeshiro Rumi",
+    "Konoe Mina"
+   ],
+   "en": "Akeshiro Rumi & Konoe Mina"
   },
   {
    "name": "「切符はいけん、きまぐれジュンキュー」&「定刻ドリフト、いたずらトッキュー！」",
@@ -1065,6 +1794,68 @@
    "en": "Tachibana Hikari & Tachibana Nozomi"
   },
   {
+   "name": "「雪代水は廻り行く」＆「徒桜を拾い集めて」＆「木枯らしに目を引かれ」",
+   "start": "2025-05-07",
+   "end": "2025-05-14",
+   "rev": 0.5889,
+   "yrank": 27,
+   "ytot": 37,
+   "cum": 160,
+   "cumtot": 199,
+   "year": 2025,
+   "related": "★3「サオリ」(復刻)、★3「アツコ」(復刻)、★3「ヒヨリ」(復刻)",
+   "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2025/04/23/0Ilr11Dx.png",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    52,
+    42,
+    81,
+    137,
+    152,
+    151,
+    161,
+    154
+   ],
+   "agents": [
+    "Joumae Saori",
+    "Hakari Atsuko",
+    "Tsuchinaga Hiyori"
+   ],
+   "en": "Joumae Saori & Hakari Atsuko & Tsuchinaga Hiyori"
+  },
+  {
+   "name": "「you me を繋ぎし さかずきの」、「夢を守りし はるはなの」＆「夢を誘ひし しおさいの」",
+   "start": "2025-05-14",
+   "end": "2025-05-21",
+   "rev": 0.5636,
+   "yrank": 29,
+   "ytot": 37,
+   "cum": 163,
+   "cumtot": 199,
+   "year": 2025,
+   "related": "★3「フィーナ(ガイド)」、★3「ツバキ(ガイド)」(復刻)、★3「ウミカ」(復刻)",
+   "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2025/04/28/0L7OpZ-N.png",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    154,
+    86,
+    103,
+    143,
+    157,
+    156,
+    111,
+    110
+   ],
+   "agents": [
+    "Asahina Pina",
+    "Kasuga Tsubaki",
+    "Satohama Umika"
+   ],
+   "en": "Asahina Pina & Kasuga Tsubaki & Satohama Umika"
+  },
+  {
    "name": "「乙女よ 忘れたまふことなかれ」＆「あさき夢みし 隔てなく」",
    "start": "2025-05-21",
    "end": "2025-06-04",
@@ -1100,6 +1891,73 @@
     "Amachi Niya"
    ],
    "en": "Goryou Nagusa & Amachi Niya"
+  },
+  {
+   "name": "「I need to be in romantic」、「Who says you can't be sweet」＆「Ain't too proud to rely on!」、「おもい忍ばせ　進めよ乙女」",
+   "start": "2025-06-04",
+   "end": "2025-06-18",
+   "rev": 0.8648,
+   "yrank": 21,
+   "ytot": 37,
+   "cum": 112,
+   "cumtot": 199,
+   "year": 2025,
+   "related": "★3「ナツ(バンド)」、★3「カズサ(バンド)」(復刻-限定)、★3「ヨシミ(バンド)」(復刻-限定)、★3「キキョウ」(復刻)",
+   "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2025/05/26/xNmoh5SR.png",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    141,
+    59,
+    37,
+    74,
+    110,
+    134,
+    163,
+    181,
+    196,
+    193,
+    null,
+    180,
+    182,
+    161,
+    148
+   ],
+   "agents": [
+    "Yutori Natsu",
+    "Ibaragi Yoshimi"
+   ],
+   "en": "Yutori Natsu & Ibaragi Yoshimi"
+  },
+  {
+   "name": "「色に出でにけりわが夏は」＆「ものや詠もうと心問ふまで」、「夢見る乙女よ大志を抱け！」＆「はるは短し走れよ乙女」",
+   "start": "2025-06-18",
+   "end": "2025-06-25",
+   "rev": 0.5052,
+   "yrank": 31,
+   "ytot": 37,
+   "cum": 170,
+   "cumtot": 199,
+   "year": 2025,
+   "related": "★3「イズナ(水着)」(復刻-限定)、★3「チセ(水着)」(復刻-限定)、★3「ユカリ」(復刻)、★3「レンゲ」(復刻)",
+   "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2025/06/04/jiv-wMmw.png",
+   "rerun": true,
+   "ongoing": false,
+   "rank_series": [
+    148,
+    87,
+    107,
+    145,
+    155,
+    108,
+    114,
+    113
+   ],
+   "agents": [
+    "Waraku Chise",
+    "Kadenokouji Yukari"
+   ],
+   "en": "Waraku Chise & Kadenokouji Yukari"
   },
   {
    "name": "「あお海の 百すじの波 みだれ花！」＆「夏おもひ 繚れおもい 乱るるは」",
@@ -1138,6 +1996,43 @@
     "Fuwa Renge"
    ],
    "en": "Kadenokouji Yukari & Kiryuu Kikyou & Fuwa Renge"
+  },
+  {
+   "name": "「微速前進 安らぎの浜辺へ」＆「急速潜航 活路は水底に」＆「緊急浮上 泡影を導べに」",
+   "start": "2025-07-09",
+   "end": "2025-07-22",
+   "rev": 0.8275,
+   "yrank": 22,
+   "ytot": 37,
+   "cum": 116,
+   "cumtot": 199,
+   "year": 2025,
+   "related": "★3「ミヤコ(水着)」(復刻)、★3「サキ(水着)」(復刻)、★3「モエ(水着)」(復刻)",
+   "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2025/06/30/a-HoYYrg.png",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    160,
+    137,
+    193,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    199,
+    41,
+    34
+   ],
+   "agents": [
+    "Tsukiyuki Miyako",
+    "Sorai Saki",
+    "Kazekura Moe"
+   ],
+   "en": "Tsukiyuki Miyako & Sorai Saki & Kazekura Moe"
   },
   {
    "name": "「ただ思惟は夏夜の先にただありて」&「正しいは波間の煌めきに隠されて」",
@@ -1300,6 +2195,75 @@
    "en": "Shirao Eri & Itagaki Kanoe"
   },
   {
+   "name": "「夏霞が陽炎を隠して」、「花曇りに白波を映して」＆「片時雨を白日が覆って」、「願いよ響け、夏空に」＆「笑顔よ続け、夏の日に」",
+   "start": "2025-09-03",
+   "end": "2025-09-17",
+   "rev": 0.9537,
+   "yrank": 20,
+   "ytot": 37,
+   "cum": 104,
+   "cumtot": 199,
+   "year": 2025,
+   "related": "★3「ミサキ(水着)」、★3「サオリ(水着)」(復刻-限定)、★3「ヒヨリ(水着)」(復刻-限定)、★3「ノノミ(水着)」(復刻)、★3「シロコ(水着)」(復刻)",
+   "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2025/08/26/Ycngd7jN.png",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    111,
+    60,
+    43,
+    83,
+    119,
+    151,
+    176,
+    null,
+    null,
+    null,
+    null,
+    null,
+    172,
+    183,
+    155
+   ],
+   "agents": [
+    "Imashino Misaki",
+    "Joumae Saori",
+    "Tsuchinaga Hiyori"
+   ],
+   "en": "Imashino Misaki & Joumae Saori & Tsuchinaga Hiyori"
+  },
+  {
+   "name": "「問答無用のストレートアップ」&「着替えたらジャックポットを」、「昼下がりのロイヤルフラッシュ」",
+   "start": "2025-09-17",
+   "end": "2025-09-24",
+   "rev": 0.511,
+   "yrank": 30,
+   "ytot": 37,
+   "cum": 167,
+   "cumtot": 199,
+   "year": 2025,
+   "related": "★3「ネル(バニーガール)」(復刻-限定)、★3「カリン(バニーガール)」(復刻-限定)、★3「アカネ(バニーガール)」(復刻)",
+   "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2025/09/10/9XRbkr8P.png",
+   "rerun": true,
+   "ongoing": false,
+   "rank_series": [
+    155,
+    89,
+    117,
+    164,
+    167,
+    158,
+    163,
+    157
+   ],
+   "agents": [
+    "Mikamo Neru",
+    "Kakudate Karin",
+    "Murokasa Akane"
+   ],
+   "en": "Mikamo Neru & Kakudate Karin & Murokasa Akane"
+  },
+  {
    "name": "「Amiable,Advisor, Analytica!」＆「Collect, Convey, Conclude★★★」",
    "start": "2025-09-24",
    "end": "2025-10-08",
@@ -1338,6 +2302,68 @@
    "en": "Sakurai Miyo & Wakasa Fuyu & Kyougoku Satsuki"
   },
   {
+   "name": "「雪夜は星月のしずくに酔って」＆「こちらRABBIT4、証明をこの手に」",
+   "start": "2025-10-08",
+   "end": "2025-10-15",
+   "rev": 0.4658,
+   "yrank": 33,
+   "ytot": 37,
+   "cum": 174,
+   "cumtot": 199,
+   "year": 2025,
+   "related": "★3「リツ」、★3「シグレ」(復刻)、★3「ミユ」(復刻)",
+   "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2025/09/26/6OhrvE-j.png",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    126,
+    51,
+    75,
+    142,
+    185,
+    null,
+    null,
+    null
+   ],
+   "agents": [
+    "Usuba Ritsu",
+    "Mayoi Shigure",
+    "Kasumizawa Miyu"
+   ],
+   "en": "Usuba Ritsu & Mayoi Shigure & Kasumizawa Miyu"
+  },
+  {
+   "name": "「海統べる寄り添いの月光」&「夏乱す容赦なき太陽」、「過ぐるものとは 知りながら」",
+   "start": "2025-10-15",
+   "end": "2025-10-22",
+   "rev": 0.4751,
+   "yrank": 32,
+   "ytot": 37,
+   "cum": 173,
+   "cumtot": 199,
+   "year": 2025,
+   "related": "★3「ヒナ(水着)」(復刻-限定)、★3「イオリ(水着)」(復刻-限定)、★3「ミモリ(水着)」(復刻)",
+   "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2025/10/03/EYC-xcya.png",
+   "rerun": true,
+   "ongoing": false,
+   "rank_series": [
+    null,
+    98,
+    131,
+    180,
+    194,
+    147,
+    172,
+    171
+   ],
+   "agents": [
+    "Sorasaki Hina",
+    "Shiromi Iori",
+    "Mizuha Mimori"
+   ],
+   "en": "Sorasaki Hina & Shiromi Iori & Mizuha Mimori"
+  },
+  {
    "name": "「正義の味方の、あなたを追って。」&「あなたの元気が、決意をくれた。」",
    "start": "2025-10-22",
    "end": "2025-11-05",
@@ -1372,6 +2398,68 @@
     "Morizuki Suzumi"
    ],
    "en": "Morizuki Suzumi"
+  },
+  {
+   "name": "「雪の下に咲く二十一日」＆「雪の上に立つ三日天下」＆「こちらRABBIT1、理想をこの眼に」＆「こちらRABBIT2、規範はこの脚に」＆「こちらRABBIT3、計算はこの胸に」",
+   "start": "2025-11-05",
+   "end": "2025-11-12",
+   "rev": 0.3583,
+   "yrank": 35,
+   "ytot": 37,
+   "cum": 181,
+   "cumtot": 199,
+   "year": 2025,
+   "related": "★3「トモエ(チーパオ)」(復刻)、★3「マリナ(チーパオ)」(復刻)、★3「ミヤコ」(復刻)、★3「サキ」(復刻)、★3「モエ」(復刻)",
+   "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2025/10/23/7g6myJsC.png",
+   "rerun": true,
+   "ongoing": false,
+   "rank_series": [
+    98,
+    87,
+    144,
+    192,
+    190,
+    199,
+    null,
+    null
+   ],
+   "agents": [
+    "Sashiro Tomoe",
+    "Ikekura Marina",
+    "Tsukiyuki Miyako"
+   ],
+   "en": "Sashiro Tomoe & Ikekura Marina & Tsukiyuki Miyako"
+  },
+  {
+   "name": "「遺して巣立つその日まで」、「灼熱無き隠れ家の燦夏」＆「白波凪ぐ安息日の残火」、「挑戦は甘い夢の外で！」＆「ドレスコードは鋼の白衣」",
+   "start": "2025-11-12",
+   "end": "2025-11-19",
+   "rev": 0.7126,
+   "yrank": 26,
+   "ytot": 37,
+   "cum": 135,
+   "cumtot": 199,
+   "year": 2025,
+   "related": "★3「スバル」、★3「ウイ(水着)」(復刻-限定)、★3「ヒナタ(水着)」(復刻-限定)、★3「レイサ」(復刻)、★3「ミネ」(復刻)",
+   "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2025/11/07/MOnWETUX.png",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    null,
+    39,
+    56,
+    79,
+    109,
+    115,
+    125,
+    109
+   ],
+   "agents": [
+    "Kakehashi Subaru",
+    "Kozeki Ui",
+    "Wakaba Hinata"
+   ],
+   "en": "Kakehashi Subaru & Kozeki Ui & Wakaba Hinata"
   },
   {
    "name": "「批評は拳銃よりも恐ろしい？」＆「紙は銃弾にだって耐えられる！」",
@@ -1409,6 +2497,74 @@
     "Aramaki Yakumo"
    ],
    "en": "Miyoshi Takane & Aramaki Yakumo"
+  },
+  {
+   "name": "「ラボニに捧ぐ輝きの詠」＆「オリーブに祈る平和の詩」、「好きの奥山 添い遂げて」＆「黒猫は甘い夢の中で」",
+   "start": "2025-12-03",
+   "end": "2025-12-17",
+   "rev": 0.9676,
+   "yrank": 19,
+   "ytot": 37,
+   "cum": 103,
+   "cumtot": 199,
+   "year": 2025,
+   "related": "★3「マリー(アイドル)」(復刻-限定)、★3「サクラコ(アイドル)」(復刻-限定)、★3「カホ」(復刻)、★3「カズサ」(復刻)",
+   "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2025/11/26/iLBFm3bf.png",
+   "rerun": true,
+   "ongoing": false,
+   "rank_series": [
+    143,
+    61,
+    62,
+    97,
+    133,
+    130,
+    156,
+    190,
+    182,
+    195,
+    null,
+    184,
+    164,
+    165,
+    156
+   ],
+   "agents": [
+    "Iochi Mari",
+    "Kuwakami Kaho"
+   ],
+   "en": "Iochi Mari & Kuwakami Kaho"
+  },
+  {
+   "name": "「ペンは銃より強し！」＆「工務の道も一歩から」＆「ステアミルクは湯けむりと共に」＆「希望よ届け、夏風に」",
+   "start": "2025-12-17",
+   "end": "2025-12-24",
+   "rev": 0.4403,
+   "yrank": 34,
+   "ytot": 37,
+   "cum": 178,
+   "cumtot": 199,
+   "year": 2025,
+   "related": "★3「メル」(復刻)、★2「モミジ」(復刻)、★3「シグレ(温泉)」(復刻)、★3「セリカ(水着)」(復刻)",
+   "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2025/11/26/0zURbn4g.png",
+   "rerun": true,
+   "ongoing": false,
+   "rank_series": [
+    156,
+    125,
+    188,
+    null,
+    null,
+    143,
+    149,
+    147
+   ],
+   "agents": [
+    "Himeki Meru",
+    "Akiizumi Momiji",
+    "Mayoi Shigure"
+   ],
+   "en": "Himeki Meru & Akiizumi Momiji & Mayoi Shigure"
   },
   {
    "name": "「表舞台に、星ひとつ」&「ヒトツボシ在る、舞台裏」",
@@ -1613,6 +2769,37 @@
    "en": "Hanaoka Yuzu & Izumimoto Eimi"
   },
   {
+   "name": "「掃天する複素共役(メイドインジェミニ)」＆「掃海する複素共役(メイドバイジェミニ)」＆「メイド勇者は不思議な世界の夢を見る」＆「初春の 音の絆も かくしこそ」",
+   "start": "2026-02-25",
+   "end": "2026-03-04",
+   "rev": 0.9685,
+   "yrank": 12,
+   "ytot": 15,
+   "cum": 102,
+   "cumtot": 199,
+   "year": 2026,
+   "related": "★3「モモイ(メイド)」(復刻)、★3「ミドリ(メイド)」(復刻)、★3「アリス(メイド)」(復刻)、★3「カヨコ(正月)」(復刻)",
+   "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2026/02/10/IlMnsRSE.png",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    126,
+    68,
+    96,
+    148,
+    179,
+    166,
+    173,
+    165
+   ],
+   "agents": [
+    "Saiba Momoi",
+    "Saiba Midori",
+    "The Great Adventure of Alice the Brave!"
+   ],
+   "en": "Saiba Momoi & Saiba Midori & The Great Adventure of Alice the Brave!"
+  },
+  {
    "name": "「月満ちる夜の合言葉」、「夜明けに贈る方程式」&「静寂に満ちる回想録」、「あたらしき 年になれども 食道楽」&「馳走のこころは かはらざりけり」",
    "start": "2026-03-04",
    "end": "2026-03-18",
@@ -1726,6 +2913,36 @@
    "en": "Murokasa Akane & Yurizono Seia & Ichinose Asuna"
   },
   {
+   "name": "「天体より注ぐ情報の光」＆「暁光にとける感情の音」＆「晴天彩る情熱の色」＆「逃げ水を夢に見て」",
+   "start": "2026-04-15",
+   "end": "2026-04-21",
+   "rev": 0.3624,
+   "yrank": 15,
+   "ytot": 15,
+   "cum": 180,
+   "cumtot": 199,
+   "year": 2026,
+   "related": "★3「ハレ(キャンプ)」(復刻)、★3「コタマ(キャンプ)」(復刻)、★3「マキ(キャンプ)」(復刻)、★3「ミサキ」(復刻)",
+   "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2026/04/13/p7eKoNLj.png",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    null,
+    160,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "agents": [
+    "Omagari Hare",
+    "Otose Kotama",
+    "Konuri Maki"
+   ],
+   "en": "Omagari Hare & Otose Kotama & Konuri Maki"
+  },
+  {
    "name": "「こちらFOX2、真心はこの胸に」＆「こちらFOX3、経験はこの脚に」",
    "start": "2026-04-21",
    "end": "2026-05-06",
@@ -1762,6 +2979,75 @@
     "Takakura Kurumi"
    ],
    "en": "Yoshino Niko & Takakura Kurumi"
+  },
+  {
+   "name": "「筋肉１番努力は２番」＆「背負いし４番が夢を打つ」＆「幾重のかをり 早たちにけり」＆「今年こそ 煌めく美食に 舌鼓！」＆「千草たばねて しあわせをつめ」",
+   "start": "2026-05-06",
+   "end": "2026-05-20",
+   "rev": 0.699,
+   "yrank": 13,
+   "ytot": 15,
+   "cum": 139,
+   "cumtot": 199,
+   "year": 2026,
+   "related": "★3「スミレ(アルバイト)」(復刻)、★3「レイ」(復刻)、★3「アカリ(正月)」(復刻)、★3「イズミ(正月)」(復刻)、★3「ハルカ(正月)」(復刻)",
+   "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2026/04/30/W7vx_wIP.png",
+   "rerun": true,
+   "ongoing": false,
+   "rank_series": [
+    119,
+    87,
+    184,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "agents": [
+    "Otohana Sumire",
+    "Nomasa Rei",
+    "Wanibuchi Akari"
+   ],
+   "en": "Otohana Sumire & Nomasa Rei & Wanibuchi Akari"
+  },
+  {
+   "name": "「やってこYour take on！」、「巻いてこMy take on！」&「夢を守りし はるはなの」&「夢を誘ひし しおさいの」&「you me を繋ぎし さかずきの」",
+   "start": "2026-05-20",
+   "end": "2026-05-27",
+   "rev": 0.6297,
+   "yrank": 14,
+   "ytot": 15,
+   "cum": 150,
+   "cumtot": 199,
+   "year": 2026,
+   "related": "★3「エリカ」、★3「キララ」(復刻)、★3「ツバキ(ガイド)」(復刻) 、★3「ウミカ」(復刻) 、★3「フィーナ(ガイド)」 (復刻)",
+   "banner_img": "https://webusstatic.yo-star.com/bluearchive_jp_web/mainsite/upload/news/2026/05/14/70xmhGn7.png",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    null,
+    129,
+    105,
+    139,
+    191,
+    181,
+    198,
+    167
+   ],
+   "agents": [
+    "Hatami Erika",
+    "Yozakura Kirara",
+    "Kasuga Tsubaki"
+   ],
+   "en": "Hatami Erika & Yozakura Kirara & Kasuga Tsubaki"
   },
   {
    "name": "「いたずらクイーンの物語」＆「心どぎまぎ 暴走ポルカ」、「悪党円舞曲(アウトローワルツァー)」＆「美しく明けきメタル」＆「密やかに花咲く心」",
