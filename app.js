@@ -267,22 +267,30 @@ function computeUnlisted(){
   return out;
 }
 
+// Is a banner actually up on day `t`? A paused-and-resumed run only counts its
+// sub-periods (so the gap is another banner's solo time, not shared).
+function runsOn(b, t){
+  const R = b._runs; return R.length===1 ? (R[0][0]<=t && t<=R[0][1]) : R.some(([a,z])=>a<=t && t<=z);
+}
 function computeSharing(){
   const all=state.data.banners.filter(b=>!b._synthetic), DAY=864e5;
-  const spans=all.map(b=>({s:Date.parse(b.start), e:Date.parse(b.end), b}));
-  for(const {s,e,b} of spans){
-    const totalDays=Math.round((e-s)/DAY)+1, series=b.rank_series;
-    let sharedDays=0, maxN=1, rawTot=0, rawShared=0; const withMap=new Map();
+  all.forEach(b=>{ b._runs = b.periods ? b.periods.map(p=>[Date.parse(p[0]),Date.parse(p[1])])
+                                       : [[Date.parse(b.start),Date.parse(b.end)]]; });
+  for(const b of all){
+    const s=Date.parse(b.start), e=Date.parse(b.end), series=b.rank_series;
+    let sharedDays=0, runDays=0, maxN=1, rawTot=0, rawShared=0; const withMap=new Map();
     for(let i=0,t=s; t<=e; t+=DAY,i++){
-      const others=spans.filter(sp=>sp.b!==b && sp.s<=t && t<=sp.e).map(sp=>sp.b);
-      const raw = series ? rankValue(series[i]) : 1;   // weight by that day's reconstructed value
+      if(!runsOn(b,t)) continue;                        // skip the paused gap of a split run
+      runDays++;
+      const raw = series ? rankValue(series[i]) : 1;    // weight by that day's reconstructed value
       rawTot += raw;
+      const others=all.filter(o=>o!==b && runsOn(o,t));
       if(others.length){ sharedDays++; rawShared+=raw; maxN=Math.max(maxN,others.length+1);
         others.forEach(o=>withMap.set(o,(withMap.get(o)||0)+1)); }
     }
     const revFrac = rawTot ? rawShared/rawTot : 0;
     const sharedRev = b.rev*revFrac, soloRev = b.rev - sharedRev;
-    b._share = { days:sharedDays, totalDays, maxN, revFrac, sharedRev, soloRev,
+    b._share = { days:sharedDays, totalDays:runDays, maxN, revFrac, sharedRev, soloRev,
       on: sharedDays>=SHARE_MIN_DAYS,
       with:[...withMap.entries()].sort((a,c)=>c[1]-a[1])
               .map(([o,d])=>({name:(o.agents&&o.agents.length?o.agents.join(" & "):o.name), days:d})) };
@@ -624,7 +632,7 @@ function dailyBreakdown(b){
   let cum=0;
   const days=s.map((rank,i)=>{ const add=b.rev*raw[i]/sum; cum+=add;
     const t=s0+i*DAY;
-    const shared=all.some(o=>o!==b && Date.parse(o.start)<=t && t<=Date.parse(o.end));
+    const shared=all.some(o=>o!==b && !o._synthetic && o._runs && runsOn(o,t) && runsOn(b,t));
     return {i,rank,add,cum,shared}; });
   return {days};
 }

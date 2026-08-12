@@ -4,13 +4,13 @@
  "jp": "崩壊：スターレイル",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E5%B4%A9%E5%A3%8A%EF%BC%9A%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%AC%E3%82%A4%E3%83%AB",
- "updated": "2026-08-11T17:15:59Z",
- "count": 48,
+ "updated": "2026-08-12T03:51:35Z",
+ "count": 47,
  "now": {
-  "ios": 73,
-  "android": 18,
+  "ios": 68,
+  "android": 24,
   "month": 49,
-  "next_add": 15923076,
+  "next_add": 16663569,
   "ym": "2026/08",
   "ranks": {
    "prev": [
@@ -2219,8 +2219,8 @@
   {
    "name": "姫子・旅立ち",
    "start": "2026-07-15",
-   "end": "2026-07-24",
-   "rev": 8.51,
+   "end": "2026-08-25",
+   "rev": 9.3128,
    "yrank": 7,
    "ytot": 13,
    "cum": 45,
@@ -2228,8 +2228,18 @@
    "year": 2026,
    "related": "火花、丹恒・騰荒、長夜月",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/07/13/dac99c7f389ebbe7e6daa4236ab67122_2577942517555224803.png",
+   "periods": [
+    [
+     "2026-07-15",
+     "2026-07-24"
+    ],
+    [
+     "2026-08-05",
+     "2026-08-25"
+    ]
+   ],
    "rerun": false,
-   "ongoing": false,
+   "ongoing": true,
    "rank_series": [
     86,
     2,
@@ -2240,7 +2250,26 @@
     30,
     41,
     50,
-    57
+    57,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    48,
+    27,
+    39,
+    61,
+    79,
+    77,
+    78,
+    73
    ],
    "icons": [
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1510.png"
@@ -2297,39 +2326,6 @@
    ],
    "accent": "#4a4ad8",
    "bar": "#d60020"
-  },
-  {
-   "name": "姫子・旅立ち",
-   "start": "2026-08-05",
-   "end": "2026-08-25",
-   "rev": 0.8028,
-   "yrank": 13,
-   "ytot": 13,
-   "cum": 61,
-   "cumtot": 61,
-   "year": 2026,
-   "related": "ケリュドラ、アナイクス、アベンチュリン",
-   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/community/2026/08/03/14d901831325538a8a5a09750e363840_4270131693465695787.png",
-   "rerun": true,
-   "ongoing": true,
-   "rank_series": [
-    48,
-    27,
-    39,
-    61,
-    79,
-    77,
-    78,
-    73
-   ],
-   "icons": [
-    "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1510.png"
-   ],
-   "agents": [
-    "Himeko • Nova"
-   ],
-   "accent": "#f0503f",
-   "bar": "#4a2ea9"
   }
  ]
 }

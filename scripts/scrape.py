@@ -156,6 +156,39 @@ def mark_reruns(banners, chrono):
     return banners
 
 
+def merge_split_runs(banners):
+    """Combine consecutive entries with the SAME name that game-i split when a
+    limited banner was paused and resumed within one patch — e.g. HSR ran Himeko,
+    paused her for another limited banner, then resumed her alongside it. That's
+    ONE continuous run, not a rerun. We sum the revenue, span the earliest start
+    to the latest end, and keep the original sub-periods so the rank series can
+    null out the gap days (when the banner wasn't actually up). A genuine rerun is
+    a later patch — a gap far larger than a pause — so it stays separate."""
+    from collections import OrderedDict
+    groups = OrderedDict()
+    for b in banners:
+        groups.setdefault(b["name"], []).append(b)
+    out = []
+    for name, g in groups.items():
+        g.sort(key=lambda x: x["start"])
+        clusters = [[g[0]]]
+        for b in g[1:]:
+            gap = (date.fromisoformat(b["start"]) - date.fromisoformat(clusters[-1][-1]["end"])).days
+            (clusters[-1].append(b) if gap <= 35 else clusters.append([b]))
+        for cl in clusters:
+            if len(cl) == 1:
+                out.append(cl[0])
+                continue
+            m = dict(max(cl, key=lambda x: x["rev"]))     # keep ranks/img from the biggest slice
+            m["start"] = min(x["start"] for x in cl)
+            m["end"] = max(x["end"] for x in cl)
+            m["rev"] = round(sum(x["rev"] for x in cl), 4)
+            m["periods"] = [[x["start"], x["end"]] for x in cl]
+            out.append(m)
+    out.sort(key=lambda x: (x["start"], x["name"]))
+    return out
+
+
 def _rank(pat, h):
     m = re.search(pat, h)
     if not m or m.group(1) == "-":
@@ -275,9 +308,13 @@ def attach_rank_series(apid, banners):
         last = min(e, today)
         if last < s or (e - s).days > 400:                 # not started yet / glitchy range
             continue
+        # merged (paused-and-resumed) runs carry their sub-periods; null the gap
+        # days so revenue isn't attributed to days the banner wasn't actually up.
+        pspans = [(date.fromisoformat(p0), date.fromisoformat(p1)) for p0, p1 in b["periods"]] if b.get("periods") else None
         series, d = [], s
         while d <= last:
-            series.append(month_ranks(apid, f"{d.year}/{d.month:02d}", False).get(d.day))
+            up = pspans is None or any(p0 <= d <= p1 for p0, p1 in pspans)
+            series.append(month_ranks(apid, f"{d.year}/{d.month:02d}", False).get(d.day) if up else None)
             d += timedelta(days=1)
         if any(v is not None for v in series):
             b["rank_series"] = series
@@ -306,6 +343,7 @@ def scrape_game(tag, meta):
             continue
         seen.add(key)
         uniq.append(b)
+    uniq = merge_split_runs(uniq)                 # fold paused-and-resumed runs into one
     return mark_reruns(uniq, tag in CHRONO_GAMES)
 
 
