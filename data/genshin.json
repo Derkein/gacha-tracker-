@@ -2304,9 +2304,12 @@
     10
    ],
    "icons": [],
-   "agents": [],
+   "agents": [
+    "Odette"
+   ],
    "accent": null,
-   "bar": "#63afdb"
+   "bar": "#63afdb",
+   "en": "Odette"
   }
  ]
 }

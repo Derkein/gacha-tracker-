@@ -117,11 +117,14 @@ def translate_fandom(tag, cfg):
 # ---- Arknights (game-data map) ----
 def refresh_ak_map():
     ja, en = getj(AK_SRC.format("ja_JP")), getj(AK_SRC.format("en_US"))
-    m = {v["name"]: en[cid]["name"] for cid, v in ja.items()
-         if v.get("name") and en.get(cid, {}).get("name") and v.get("profession") not in ("TOKEN", "TRAP")}
+    fresh = {v["name"]: en[cid]["name"] for cid, v in ja.items()
+             if v.get("name") and en.get(cid, {}).get("name") and v.get("profession") not in ("TOKEN", "TRAP")}
     NAMES.mkdir(parents=True, exist_ok=True)
+    m = json.loads(AK_MAP.read_text(encoding="utf-8")) if AK_MAP.exists() else {}   # merge, never drop
+    added = [k for k in fresh if k not in m]
+    m.update(fresh)
     AK_MAP.write_text(json.dumps(m, ensure_ascii=False, indent=0), encoding="utf-8")
-    print(f"arknights map: {len(m)} operators")
+    print(f"arknights map: {len(m)} operators (+{len(added)} new)")
 
 
 def translate_arknights():
@@ -154,11 +157,17 @@ YATTA = "https://gi.yatta.moe/api/v2/{}/avatar"
 def refresh_genshin_map():
     ja = getj(YATTA.format("jp"))["data"]["items"]
     en = getj(YATTA.format("en"))["data"]["items"]
-    m = {ja[c]["name"]: en[c]["name"] for c in ja
-         if c in en and ja[c].get("name") and en[c].get("name") and "旅人" not in ja[c]["name"]}
+    fresh = {ja[c]["name"]: en[c]["name"] for c in ja
+             if c in en and ja[c].get("name") and en[c].get("name") and "旅人" not in ja[c]["name"]}
     NAMES.mkdir(parents=True, exist_ok=True)
+    # Merge, never drop: yatta.moe is CDN-cached / eventually-consistent, so a
+    # single fetch can transiently miss a brand-new character. Overwriting would
+    # wipe names we already had (and undo them on the site) — so only add/update.
+    m = json.loads(GENSHIN_MAP.read_text(encoding="utf-8")) if GENSHIN_MAP.exists() else {}
+    added = [k for k in fresh if k not in m]
+    m.update(fresh)
     GENSHIN_MAP.write_text(json.dumps(m, ensure_ascii=False, indent=0), encoding="utf-8")
-    print(f"genshin map: {len(m)} characters")
+    print(f"genshin map: {len(m)} characters (+{len(added)} new{': '+','.join(added) if added else ''})")
 
 
 def translate_genshin():
