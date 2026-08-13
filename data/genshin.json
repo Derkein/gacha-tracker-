@@ -4,7 +4,7 @@
  "jp": "原神",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E5%8E%9F%E7%A5%9E",
- "updated": "2026-08-13T12:30:01Z",
+ "updated": "2026-08-13T12:38:39Z",
  "count": 104,
  "now": {
   "ios": 17,
@@ -160,7 +160,8 @@
     "Venti"
    ],
    "accent": "#57c69a",
-   "en": "Venti"
+   "en": "Venti",
+   "bar": "#47ae9e"
   },
   {
    "name": "クレーピックアップ",
@@ -207,7 +208,8 @@
     "Klee"
    ],
    "accent": "#f0684a",
-   "en": "Klee"
+   "en": "Klee",
+   "bar": "#da4e3c"
   },
   {
    "name": "タルタリヤピックアップ",
@@ -300,7 +302,8 @@
     "Zhongli"
    ],
    "accent": "#e0b23c",
-   "en": "Zhongli"
+   "en": "Zhongli",
+   "bar": "#e2a857"
   },
   {
    "name": "アルベドピックアップ",
@@ -346,7 +349,8 @@
     "Albedo"
    ],
    "accent": "#e0b23c",
-   "en": "Albedo"
+   "en": "Albedo",
+   "bar": "#efca76"
   },
   {
    "name": "甘雨ピックアップ",
@@ -393,7 +397,8 @@
     "Ganyu"
    ],
    "accent": "#7fc8e0",
-   "en": "Ganyu"
+   "en": "Ganyu",
+   "bar": "#66b3d5"
   },
   {
    "name": "魈ピックアップ",
@@ -432,7 +437,8 @@
     "Xiao"
    ],
    "accent": "#57c69a",
-   "en": "Xiao"
+   "en": "Xiao",
+   "bar": "#3e8a98"
   },
   {
    "name": "刻晴ピックアップ",
@@ -472,7 +478,8 @@
     "Keqing"
    ],
    "accent": "#b57fd4",
-   "en": "Keqing"
+   "en": "Keqing",
+   "bar": "#9f91d4"
   },
   {
    "name": "胡桃ピックアップ",
@@ -512,7 +519,8 @@
     "Hu Tao"
    ],
    "accent": "#f0684a",
-   "en": "Hu Tao"
+   "en": "Hu Tao",
+   "bar": "#dc5a3d"
   },
   {
    "name": "ウェンティ復刻",
@@ -558,7 +566,8 @@
     "Venti"
    ],
    "accent": "#57c69a",
-   "en": "Venti"
+   "en": "Venti",
+   "bar": "#86dfcc"
   },
   {
    "name": "タルタリヤ復刻",
@@ -605,7 +614,8 @@
     "Tartaglia"
    ],
    "accent": "#4a90d9",
-   "en": "Tartaglia"
+   "en": "Tartaglia",
+   "bar": "#78d9ed"
   },
   {
    "name": "鍾離復刻",
@@ -698,7 +708,8 @@
     "Eula"
    ],
    "accent": "#7fc8e0",
-   "en": "Eula"
+   "en": "Eula",
+   "bar": "#8ac3db"
   },
   {
    "name": "クレー復刻",
@@ -744,7 +755,8 @@
     "Klee"
    ],
    "accent": "#f0684a",
-   "en": "Klee"
+   "en": "Klee",
+   "bar": "#da523a"
   },
   {
    "name": "楓原万葉ピックアップ",
@@ -791,7 +803,8 @@
     "Kaedehara Kazuha"
    ],
    "accent": "#57c69a",
-   "en": "Kaedehara Kazuha"
+   "en": "Kaedehara Kazuha",
+   "bar": "#5da096"
   },
   {
    "name": "神里綾華ピックアップ",
@@ -837,7 +850,8 @@
     "Kamisato Ayaka"
    ],
    "accent": "#7fc8e0",
-   "en": "Kamisato Ayaka"
+   "en": "Kamisato Ayaka",
+   "bar": "#66b8d6"
   },
   {
    "name": "宵宮ピックアップ",
@@ -884,7 +898,8 @@
     "Yoimiya"
    ],
    "accent": "#f0684a",
-   "en": "Yoimiya"
+   "en": "Yoimiya",
+   "bar": "#da533d"
   },
   {
    "name": "雷電将軍ピックアップ",
@@ -930,7 +945,8 @@
     "Raiden Shogun"
    ],
    "accent": "#b57fd4",
-   "en": "Raiden Shogun"
+   "en": "Raiden Shogun",
+   "bar": "#6353a6"
   },
   {
    "name": "珊瑚宮心海ピックアップ",
@@ -977,7 +993,8 @@
     "Sangonomiya Kokomi"
    ],
    "accent": "#4a90d9",
-   "en": "Sangonomiya Kokomi"
+   "en": "Sangonomiya Kokomi",
+   "bar": "#52d6ff"
   },
   {
    "name": "タルタリヤ復刻2",
@@ -1023,7 +1040,8 @@
     "Tartaglia"
    ],
    "accent": "#4a90d9",
-   "en": "Tartaglia"
+   "en": "Tartaglia",
+   "bar": "#81d0e4"
   },
   {
    "name": "胡桃復刻",
@@ -1070,7 +1088,8 @@
     "Hu Tao"
    ],
    "accent": "#f0684a",
-   "en": "Hu Tao"
+   "en": "Hu Tao",
+   "bar": "#df573d"
   },
   {
    "name": "エウルア復刻&アルベド復刻",
@@ -1165,7 +1184,8 @@
     "Arataki Itto"
    ],
    "accent": "#e0b23c",
-   "en": "Arataki Itto"
+   "en": "Arataki Itto",
+   "bar": "#d89a49"
   },
   {
    "name": "申鶴ピックアップ＆魈復刻",
@@ -1308,7 +1328,8 @@
     "Yae Miko"
    ],
    "accent": "#b57fd4",
-   "en": "Yae Miko"
+   "en": "Yae Miko",
+   "bar": "#ce89dc"
   },
   {
    "name": "雷電将軍復刻&珊瑚宮心海復刻",
@@ -1568,7 +1589,8 @@
     "Arataki Itto"
    ],
    "accent": "#e0b23c",
-   "en": "Arataki Itto"
+   "en": "Arataki Itto",
+   "bar": "#dcbe89"
   },
   {
    "name": "楓原万葉復刻&クレー復刻2",
@@ -1707,7 +1729,8 @@
     "Zhongli"
    ],
    "accent": "#84c23c",
-   "en": "Tighnari & Zhongli"
+   "en": "Tighnari & Zhongli",
+   "bar": "#e4da81"
   },
   {
    "name": "心海と甘雨復刻",
@@ -1751,7 +1774,8 @@
     "Ganyu"
    ],
    "accent": "#7fc8e0",
-   "en": "Ganyu"
+   "en": "Ganyu",
+   "bar": "#84c2e1"
   },
   {
    "name": "セノとウェンティ復刻※6日から値上げ",
@@ -1795,7 +1819,8 @@
     "Venti"
    ],
    "accent": "#b57fd4",
-   "en": "Cyno & Venti"
+   "en": "Cyno & Venti",
+   "bar": "#9d8cd9"
   },
   {
    "name": "ニィロウとアルベド復刻",
@@ -1841,7 +1866,8 @@
     "Albedo"
    ],
    "accent": "#4a90d9",
-   "en": "Nilou & Albedo"
+   "en": "Nilou & Albedo",
+   "bar": "#dec387"
   },
   {
    "name": "ナヒーダと宵宮",
@@ -1931,7 +1957,8 @@
     "Tartaglia"
    ],
    "accent": "#b57fd4",
-   "en": "Yae Miko & Tartaglia"
+   "en": "Yae Miko & Tartaglia",
+   "bar": "#ca8bda"
   },
   {
    "name": "放浪者と荒瀧一斗",
@@ -1979,7 +2006,8 @@
     "Arataki Itto"
    ],
    "accent": "#57c69a",
-   "en": "Wanderer & Arataki Itto"
+   "en": "Wanderer & Arataki Itto",
+   "bar": "#49a6e6"
   },
   {
    "name": "雷電将軍と神里綾人",
@@ -2028,7 +2056,8 @@
     "Kamisato Ayato"
    ],
    "accent": "#b57fd4",
-   "en": "Raiden Shogun & Kamisato Ayato"
+   "en": "Raiden Shogun & Kamisato Ayato",
+   "bar": "#6555a8"
   },
   {
    "name": "アルハイゼンと魈",
@@ -2076,7 +2105,8 @@
     "Xiao"
    ],
    "accent": "#84c23c",
-   "en": "Alhaitham & Xiao"
+   "en": "Alhaitham & Xiao",
+   "bar": "#75a630"
   },
   {
    "name": "胡桃復刻2と夜蘭復刻",
@@ -2125,7 +2155,8 @@
     "Yelan"
    ],
    "accent": "#f0684a",
-   "en": "Hu Tao & Yelan"
+   "en": "Hu Tao & Yelan",
+   "bar": "#e09f85"
   },
   {
    "name": "Dehya and Cyno",
@@ -2218,7 +2249,8 @@
    "agents": [
     "Shenhe"
    ],
-   "accent": "#7fc8e0"
+   "accent": "#7fc8e0",
+   "bar": "#85c1e0"
   },
   {
    "name": "ナヒーダ2とニィロウ2",
@@ -2266,7 +2298,8 @@
     "Nilou"
    ],
    "accent": "#84c23c",
-   "en": "Nahida & Nilou"
+   "en": "Nahida & Nilou",
+   "bar": "#71a14a"
   },
   {
    "name": "白朮と甘雨復刻",
@@ -2315,7 +2348,8 @@
     "Ganyu"
    ],
    "accent": "#84c23c",
-   "en": "Baizhu & Ganyu"
+   "en": "Baizhu & Ganyu",
+   "bar": "#428394"
   },
   {
    "name": "宵宮復刻３と八重神子復刻２",
@@ -2363,7 +2397,8 @@
     "Yae Miko"
    ],
    "accent": "#f0684a",
-   "en": "Yoimiya & Yae Miko"
+   "en": "Yoimiya & Yae Miko",
+   "bar": "#e49a81"
   },
   {
    "name": "アルハイゼン復刻と楓原万葉復刻２",
@@ -2412,7 +2447,8 @@
     "Kaedehara Kazuha"
    ],
    "accent": "#84c23c",
-   "en": "Alhaitham & Kaedehara Kazuha"
+   "en": "Alhaitham & Kaedehara Kazuha",
+   "bar": "#73a246"
   },
   {
    "name": "エウルア復刻2&クレー復刻3",
@@ -2460,7 +2496,8 @@
     "Klee"
    ],
    "accent": "#7fc8e0",
-   "en": "Eula & Klee"
+   "en": "Eula & Klee",
+   "bar": "#8ac2db"
   },
   {
    "name": "珊瑚宮心海復刻3&放浪者復刻",
@@ -2509,7 +2546,8 @@
     "Wanderer"
    ],
    "accent": "#4a90d9",
-   "en": "Sangonomiya Kokomi & Wanderer"
+   "en": "Sangonomiya Kokomi & Wanderer",
+   "bar": "#4ea7e4"
   },
   {
    "name": "リネピックアップと夜蘭復刻2",
@@ -2557,7 +2595,8 @@
     "Yelan"
    ],
    "accent": "#f0684a",
-   "en": "Lyney & Yelan"
+   "en": "Lyney & Yelan",
+   "bar": "#ab2c3c"
   },
   {
    "name": "鍾離復刻4&タルタリヤ復刻4",
@@ -2606,7 +2645,8 @@
     "Tartaglia"
    ],
    "accent": "#e0b23c",
-   "en": "Zhongli & Tartaglia"
+   "en": "Zhongli & Tartaglia",
+   "bar": "#05ced1"
   },
   {
    "name": "ヌヴィレット初回&胡桃復刻3",
@@ -2654,7 +2694,8 @@
     "Hu Tao"
    ],
    "accent": "#4a90d9",
-   "en": "Neuvillette & Hu Tao"
+   "en": "Neuvillette & Hu Tao",
+   "bar": "#e0e580"
   },
   {
    "name": "リオセスリ初回&ウェンティ復刻4",
@@ -2703,7 +2744,8 @@
     "Venti"
    ],
    "accent": "#7fc8e0",
-   "en": "Wriothesley & Venti"
+   "en": "Wriothesley & Venti",
+   "bar": "#d2e085"
   },
   {
    "name": "フリーナ初回＆白朮復刻",
@@ -2751,7 +2793,8 @@
     "Baizhu"
    ],
    "accent": "#4a90d9",
-   "en": "Furina & Baizhu"
+   "en": "Furina & Baizhu",
+   "bar": "#8bc1da"
   },
   {
    "name": "セノ復刻と神里綾人復刻",
@@ -2800,7 +2843,8 @@
     "Kamisato Ayato"
    ],
    "accent": "#b57fd4",
-   "en": "Cyno & Kamisato Ayato"
+   "en": "Cyno & Kamisato Ayato",
+   "bar": "#8ac1db"
   },
   {
    "name": "ナヴィア初回＆神里綾華",
@@ -2848,7 +2892,8 @@
     "Kamisato Ayaka"
    ],
    "accent": "#e0b23c",
-   "en": "Navia & Kamisato Ayaka"
+   "en": "Navia & Kamisato Ayaka",
+   "bar": "#985e3e"
   },
   {
    "name": "雷電将軍と宵宮復刻",
@@ -2897,7 +2942,8 @@
     "Yoimiya"
    ],
    "accent": "#b57fd4",
-   "en": "Raiden Shogun & Yoimiya"
+   "en": "Raiden Shogun & Yoimiya",
+   "bar": "#965b41"
   },
   {
    "name": "閑雲初回とナヒーダ",
@@ -2945,7 +2991,8 @@
     "Nahida"
    ],
    "accent": "#57c69a",
-   "en": "Xianyun & Nahida"
+   "en": "Xianyun & Nahida",
+   "bar": "#eeca77"
   },
   {
    "name": "魈と八重神子",
@@ -2994,7 +3041,8 @@
     "Yae Miko"
    ],
    "accent": "#57c69a",
-   "en": "Xiao & Yae Miko"
+   "en": "Xiao & Yae Miko",
+   "bar": "#f2c673"
   },
   {
    "name": "千織と荒滝一斗",
@@ -3040,7 +3088,8 @@
     "Chiori"
    ],
    "accent": "#e0b23c",
-   "en": "Chiori"
+   "en": "Chiori",
+   "bar": "#e1c984"
   },
   {
    "name": "ヌヴィレットと楓原万葉",
@@ -3089,7 +3138,8 @@
     "Kaedehara Kazuha"
    ],
    "accent": "#4a90d9",
-   "en": "Neuvillette & Kaedehara Kazuha"
+   "en": "Neuvillette & Kaedehara Kazuha",
+   "bar": "#dfc786"
   },
   {
    "name": "アルレッキーノとリネ復刻",
@@ -3137,7 +3187,8 @@
     "Lyney"
    ],
    "accent": "#f0684a",
-   "en": "Arlecchino & Lyney"
+   "en": "Arlecchino & Lyney",
+   "bar": "#ad2b29"
   },
   {
    "name": "放浪者復刻2と白朮復刻2",
@@ -3186,7 +3237,8 @@
     "Baizhu"
    ],
    "accent": "#57c69a",
-   "en": "Wanderer & Baizhu"
+   "en": "Wanderer & Baizhu",
+   "bar": "#408d96"
   },
   {
    "name": "クロリンデ&アルハイゼン復刻2",
@@ -3234,7 +3286,8 @@
     "Alhaitham"
    ],
    "accent": "#b57fd4",
-   "en": "Clorinde & Alhaitham"
+   "en": "Clorinde & Alhaitham",
+   "bar": "#9688dd"
   },
   {
    "name": "シグウィン&フリーナ復刻",
@@ -3283,7 +3336,8 @@
     "Furina"
    ],
    "accent": "#4a90d9",
-   "en": "Sigewinne & Furina"
+   "en": "Sigewinne & Furina",
+   "bar": "#7eb2e7"
   },
   {
    "name": "ナヴィア復刻&ニィロウ復刻2",
@@ -3331,7 +3385,8 @@
     "Nilou"
    ],
    "accent": "#e0b23c",
-   "en": "Navia & Nilou"
+   "en": "Navia & Nilou",
+   "bar": "#dda453"
   },
   {
    "name": "エミリエ&夜蘭復刻",
@@ -3380,7 +3435,8 @@
     "Yelan"
    ],
    "accent": "#84c23c",
-   "en": "Emilie & Yelan"
+   "en": "Emilie & Yelan",
+   "bar": "#c9ba9c"
   },
   {
    "name": "ムアラニ&楓原万葉復刻",
@@ -3428,7 +3484,8 @@
     "Kaedehara Kazuha"
    ],
    "accent": "#4a90d9",
-   "en": "Mualani & Kaedehara Kazuha"
+   "en": "Mualani & Kaedehara Kazuha",
+   "bar": "#1737bf"
   },
   {
    "name": "キィニチ&雷電将軍復刻",
@@ -3477,7 +3534,8 @@
     "Raiden Shogun"
    ],
    "accent": "#84c23c",
-   "en": "Kinich & Raiden Shogun"
+   "en": "Kinich & Raiden Shogun",
+   "bar": "#76efc7"
   },
   {
    "name": "シロネン＆千織復刻",
@@ -3525,7 +3583,8 @@
     "Chiori"
    ],
    "accent": "#e0b23c",
-   "en": "Xilonen & Chiori"
+   "en": "Xilonen & Chiori",
+   "bar": "#d99c49"
   },
   {
    "name": "ナヒーダ復刻&胡桃復刻",
@@ -3574,7 +3633,8 @@
     "Hu Tao"
    ],
    "accent": "#84c23c",
-   "en": "Nahida & Hu Tao"
+   "en": "Nahida & Hu Tao",
+   "bar": "#689f50"
   },
   {
    "name": "チャスカ&リネ復刻",
@@ -3622,7 +3682,8 @@
     "Lyney"
    ],
    "accent": "#57c69a",
-   "en": "Chasca & Lyney"
+   "en": "Chasca & Lyney",
+   "bar": "#b02648"
   },
   {
    "name": "ヌヴィレット復刻&鍾離復刻",
@@ -3671,7 +3732,8 @@
     "Zhongli"
    ],
    "accent": "#4a90d9",
-   "en": "Neuvillette & Zhongli"
+   "en": "Neuvillette & Zhongli",
+   "bar": "#6de4f8"
   },
   {
    "name": "マーヴィカ&シトラリ",
@@ -3719,7 +3781,8 @@
     "Citlali"
    ],
    "accent": "#f0684a",
-   "en": "Mavuika & Citlali"
+   "en": "Mavuika & Citlali",
+   "bar": "#f1be74"
   },
   {
    "name": "アルレッキーノ復刻&クロリンデ復刻",
@@ -3768,7 +3831,8 @@
     "Clorinde"
    ],
    "accent": "#f0684a",
-   "en": "Arlecchino & Clorinde"
+   "en": "Arlecchino & Clorinde",
+   "bar": "#a7352f"
   },
   {
    "name": "夢見月瑞希&シグウィン復刻",
@@ -3816,7 +3880,8 @@
     "Sigewinne"
    ],
    "accent": "#57c69a",
-   "en": "Yumemizuki Mizuki & Sigewinne"
+   "en": "Yumemizuki Mizuki & Sigewinne",
+   "bar": "#86c0df"
   },
   {
    "name": "リオセスリ復刻&フリーナ復刻",
@@ -3865,7 +3930,8 @@
     "Furina"
    ],
    "accent": "#7fc8e0",
-   "en": "Wriothesley & Furina"
+   "en": "Wriothesley & Furina",
+   "bar": "#3c4f9b"
   },
   {
    "name": "ヴァレサ&閑雲復刻",
@@ -3913,7 +3979,8 @@
     "Xianyun"
    ],
    "accent": "#b57fd4",
-   "en": "Varesa & Xianyun"
+   "en": "Varesa & Xianyun",
+   "bar": "#9b94d1"
   },
   {
    "name": "シロネン復刻&ウェンティ復刻",
@@ -3962,7 +4029,8 @@
     "Venti"
    ],
    "accent": "#e0b23c",
-   "en": "Xilonen & Venti"
+   "en": "Xilonen & Venti",
+   "bar": "#db9e49"
   },
   {
    "name": "エスコフィエ",
@@ -4008,7 +4076,8 @@
     "Escoffier"
    ],
    "accent": "#7fc8e0",
-   "en": "Escoffier"
+   "en": "Escoffier",
+   "bar": "#75caf0"
   },
   {
    "name": "キィニチ復刻&雷電将軍復刻",
@@ -4057,7 +4126,8 @@
     "Raiden Shogun"
    ],
    "accent": "#84c23c",
-   "en": "Kinich & Raiden Shogun"
+   "en": "Kinich & Raiden Shogun",
+   "bar": "#77eec7"
   },
   {
    "name": "スカーク",
@@ -4103,7 +4173,8 @@
     "Skirk"
    ],
    "accent": "#7fc8e0",
-   "en": "Skirk"
+   "en": "Skirk",
+   "bar": "#2a36ac"
   },
   {
    "name": "マーヴィカ復刻&エミリエ復刻",
@@ -4152,7 +4223,8 @@
     "Emilie"
    ],
    "accent": "#f0684a",
-   "en": "Mavuika & Emilie"
+   "en": "Mavuika & Emilie",
+   "bar": "#f3b972"
   },
   {
    "name": "イネファ",
@@ -4198,7 +4270,8 @@
     "Ineffa"
    ],
    "accent": "#b57fd4",
-   "en": "Ineffa"
+   "en": "Ineffa",
+   "bar": "#d088dd"
   },
   {
    "name": "ムアラニ復刻&チャスカ復刻",
@@ -4247,7 +4320,8 @@
     "Chasca"
    ],
    "accent": "#4a90d9",
-   "en": "Mualani & Chasca"
+   "en": "Mualani & Chasca",
+   "bar": "#2945ad"
   },
   {
    "name": "ラウマ",
@@ -4293,7 +4367,8 @@
     "Lauma"
    ],
    "accent": "#84c23c",
-   "en": "Lauma"
+   "en": "Lauma",
+   "bar": "#91ccd4"
   },
   {
    "name": "フリンズ",
@@ -4340,7 +4415,8 @@
     "Flins"
    ],
    "accent": "#b57fd4",
-   "en": "Flins"
+   "en": "Flins",
+   "bar": "#5b5aa8"
   },
   {
    "name": "ネフェル",
@@ -4386,7 +4462,8 @@
     "Nefer"
    ],
    "accent": "#84c23c",
-   "en": "Nefer"
+   "en": "Nefer",
+   "bar": "#619d55"
   },
   {
    "name": "アルレッキーノ復刻&鍾離復刻",
@@ -4435,7 +4512,8 @@
     "Zhongli"
    ],
    "accent": "#f0684a",
-   "en": "Arlecchino & Zhongli"
+   "en": "Arlecchino & Zhongli",
+   "bar": "#a8332e"
   },
   {
    "name": "ドゥリン",
@@ -4481,7 +4559,8 @@
     "Durin"
    ],
    "accent": "#f0684a",
-   "en": "Durin"
+   "en": "Durin",
+   "bar": "#d88d8d"
   },
   {
    "name": "ヴァレサ復刻&シロネン復刻",
@@ -4530,7 +4609,8 @@
     "Xilonen"
    ],
    "accent": "#b57fd4",
-   "en": "Varesa & Xilonen"
+   "en": "Varesa & Xilonen",
+   "bar": "#9b95d0"
   },
   {
    "name": "コロンビーナ",
@@ -4576,7 +4656,8 @@
     "Columbina"
    ],
    "accent": "#f0684a",
-   "en": "Columbina"
+   "en": "Columbina",
+   "bar": "#6badfa"
   },
   {
    "name": "兹白",
@@ -4621,7 +4702,8 @@
     "Zibai"
    ],
    "accent": null,
-   "en": "Zibai"
+   "en": "Zibai",
+   "bar": "#d0c795"
   },
   {
    "name": "ファルカ",
@@ -4665,7 +4747,8 @@
     "Varka"
    ],
    "accent": null,
-   "en": "Varka"
+   "en": "Varka",
+   "bar": "#39899e"
   },
   {
    "name": "スカーク復刻&エスコフィエ復刻",
@@ -4714,7 +4797,8 @@
     "Escoffier"
    ],
    "accent": "#7fc8e0",
-   "en": "Skirk & Escoffier"
+   "en": "Skirk & Escoffier",
+   "bar": "#3039a6"
   },
   {
    "name": "リンネア",
@@ -4758,7 +4842,8 @@
     "Linnea"
    ],
    "accent": null,
-   "en": "Linnea"
+   "en": "Linnea",
+   "bar": "#ecc179"
   },
   {
    "name": "ラウマ復刻&ネフェル復刻",
@@ -4807,7 +4892,8 @@
     "Nefer"
    ],
    "accent": "#84c23c",
-   "en": "Lauma & Nefer"
+   "en": "Lauma & Nefer",
+   "bar": "#90cdd5"
   },
   {
    "name": "ニコ",
@@ -4851,7 +4937,8 @@
     "Nicole"
    ],
    "accent": null,
-   "en": "Nicole"
+   "en": "Nicole",
+   "bar": "#d89f8d"
   },
   {
    "name": "ローエン",
@@ -4896,7 +4983,8 @@
     "Lohen"
    ],
    "accent": null,
-   "en": "Lohen"
+   "en": "Lohen",
+   "bar": "#64b7d5"
   },
   {
    "name": "サンドローネ",
@@ -4940,7 +5028,8 @@
     "Sandrone"
    ],
    "accent": null,
-   "en": "Sandrone"
+   "en": "Sandrone",
+   "bar": "#84c9e1"
   },
   {
    "name": "コロンビーナ復刻&雷電将軍復刻",
@@ -4989,7 +5078,8 @@
     "Raiden Shogun"
    ],
    "accent": "#f0684a",
-   "en": "Columbina & Raiden Shogun"
+   "en": "Columbina & Raiden Shogun",
+   "bar": "#6caff9"
   },
   {
    "name": "オデット",
@@ -5014,7 +5104,8 @@
     "Odette"
    ],
    "accent": null,
-   "en": "Odette"
+   "en": "Odette",
+   "bar": "#63afdb"
   }
  ]
 }
