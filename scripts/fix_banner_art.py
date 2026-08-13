@@ -73,7 +73,9 @@ def load_paimon():
         for m in re.finditer(r"\{(.*?)\}", js, re.S):
             b = m.group(1)
             def g(k):
-                mm = re.search(k + r":\s*'([^']*)'", b); return mm.group(1) if mm else None
+                # values are single- OR double-quoted; wishes with an apostrophe
+                # ("The Moongrass' Enlightenment") are double-quoted, so match either
+                mm = re.search(k + r":\s*(['\"])(.*?)\1", b); return mm.group(2) if mm else None
             name, short, start = g("name"), g("shortName"), g("start")
             img = re.search(r"image:\s*(\d+)", b)
             if name and short and start and img:
@@ -100,7 +102,7 @@ def resolve(banner, entries):
             continue
         sn = _norm(short)
         if sn and (sn == lead or sn in lead or lead in sn):
-            return IMG_BASE + quote(f"{name} {img}.png")
+            return IMG_BASE + quote(f"{name} {img}.png", safe="'")   # keep apostrophes literal
     return None
 
 
