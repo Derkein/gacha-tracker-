@@ -149,7 +149,7 @@ def translate_arknights():
     print(f"[arknights] translated {hit}/{len(data['banners'])} banners")
 
 
-_NAME_STRIP = re.compile(r"復刻|\d+|[（）()「」『』・･\s　]")
+_NAME_STRIP = re.compile(r"復刻|ピックアップ|初回|※.*|\d+|[（）()「」『』・･\s　]")
 GENSHIN_MAP = NAMES / "genshin_map.json"
 YATTA = "https://gi.yatta.moe/api/v2/{}/avatar"
 
@@ -182,7 +182,7 @@ def translate_genshin():
     hit = 0
     for b in data["banners"]:
         agents = []
-        for t in re.split(r"[&＆/／、,]", b["name"]):
+        for t in re.split(r"[&＆/／、,と]", b["name"]):   # と = Genshin's character "and"
             k = _NAME_STRIP.sub("", t).strip()
             if k in m and m[k] not in agents:
                 agents.append(m[k])

@@ -131,9 +131,16 @@ def parse_banners(hpage, year):
 CHRONO_GAMES = {"zzz", "hsr", "wuwa", "genshin", "nte", "endfield", "bluearchive"}
 _HEAD_SPLIT = re.compile(r"[&＆、,]")        # NB: not / — it would split "Fate/Grand Order"
 _HEAD_STRIP = re.compile(r"復刻|[（）()「」『』［］\[\]・･\s　]")
+# Genshin lists its two concurrent 5-stars joined by と ("and"), and tags each with
+# ピックアップ / 初回 / 復刻 / a rerun number / a ※note. The headliner is the FIRST one,
+# so we must split on と and strip those tags to key it. と is a Genshin-only convention
+# here — Blue Archive / Arknights use と as a normal particle inside titles, so this
+# split must NOT be applied to them (hence the per-game switch in mark_reruns).
+_HEAD_SPLIT_G = re.compile(r"[&＆、,と]")
+_HEAD_STRIP_G = re.compile(r"復刻|ピックアップ|初回|※.*|\d+|[（）()「」『』［］\[\]・･\s　]")
 
 
-def mark_reruns(banners, chrono):
+def mark_reruns(banners, chrono, tag=None):
     """Set `rerun` per banner.
 
     A banner like 花火&景元復刻 is Sparkle's DEBUT paired with a Jing Yuan rerun —
@@ -146,10 +153,11 @@ def mark_reruns(banners, chrono):
         for b in banners:
             b["rerun"] = "復刻" in b["name"]
         return banners
+    split, strip = (_HEAD_SPLIT_G, _HEAD_STRIP_G) if tag == "genshin" else (_HEAD_SPLIT, _HEAD_STRIP)
     seen = set()
     for b in sorted(banners, key=lambda x: (x["start"], x["name"])):
-        head = _HEAD_SPLIT.split(b["name"])[0]
-        key = _HEAD_STRIP.sub("", head)
+        head = split.split(b["name"])[0]
+        key = strip.sub("", head)
         b["rerun"] = ("復刻" in head) or (key in seen)
         if key:
             seen.add(key)
@@ -371,7 +379,7 @@ def scrape_game(tag, meta):
         seen.add(key)
         uniq.append(b)
     uniq = merge_split_runs(uniq)                 # fold paused-and-resumed runs into one
-    return mark_reruns(uniq, tag in CHRONO_GAMES)
+    return mark_reruns(uniq, tag in CHRONO_GAMES, tag)
 
 
 def main():

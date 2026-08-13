@@ -217,6 +217,13 @@ document.addEventListener("error", e=>{
   if(!el || el.tagName!=="IMG") return;
   if(el.dataset.fb==="remove") el.remove();
   else if(el.dataset.fb==="mono") el.replaceWith(mono(el.dataset.nm||""));
+  // game-i's banner art is often a hotlinked Discord CDN URL that expires; when it
+  // 404s, swap in the (stable) Enka portrait once instead of showing nothing.
+  else if(el.dataset.fb==="art"){
+    const alt=el.dataset.alt;
+    if(alt && el.getAttribute("src")!==alt){ el.dataset.fb="remove"; el.src=alt; }
+    else el.remove();
+  }
 }, true);
 
 // ---- concurrent-banner "shared revenue" detection ----
@@ -544,7 +551,7 @@ function showTip(b,e){
     tip.hidden=false; place(tip,e); return;
   }
   const en=b.agents&&b.agents.length?b.agents.join(" & "):(b.related||"");
-  const art=b.banner_img?`<img class="art" src="${esc(b.banner_img)}" alt="" referrerpolicy="no-referrer" data-fb="remove">`:"";
+  const art=b.banner_img?`<img class="art" src="${esc(b.banner_img)}" alt="" referrerpolicy="no-referrer" data-fb="art" data-alt="${esc((b.icons&&b.icons[0])||"")}">`:"";
   const rr=b.rerun?` <span class="rr">↻ rerun</span>`:"";
   const hint=(b.rank_series&&b.rank_series.length)
     ? `<div class="tiphint">▸ Click to see daily rankings during the run</div>` : "";
@@ -700,7 +707,7 @@ function openBanner(b){
     <div class="bm-period">${per(b.start)} – ${per(b.end)}</div>`;
   const head=b.banner_img
     ? `<div class="bm-hero" style="--av-ring:${barColor(b)}">
-         <img src="${esc(b.banner_img)}" alt="" referrerpolicy="no-referrer" data-fb="remove">
+         <img src="${esc(b.banner_img)}" alt="" referrerpolicy="no-referrer" data-fb="art" data-alt="${esc((b.icons&&b.icons[0])||"")}">
          <div class="bm-herobar">${title}</div></div>`
     : `<div class="bm-head" style="--av-ring:${barColor(b)}">
          ${b.icons&&b.icons[0]?`<img class="bm-art sq" src="${esc(b.icons[0])}" alt="" referrerpolicy="no-referrer" data-fb="remove">`:""}

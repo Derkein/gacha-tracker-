@@ -576,12 +576,14 @@
     52
    ],
    "icons": [
+    "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1112.png",
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1102.png"
    ],
    "agents": [
+    "Topaz & Numby",
     "Seele"
    ],
-   "accent": "#4a4ad8",
+   "accent": "#f0503f",
    "bar": "#e0d085"
   },
   {

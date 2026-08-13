@@ -17,8 +17,14 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 ICONS = ROOT / "icons"
 
-# characters that split a bundle/duo banner title into individual characters
-SPLIT = re.compile(r"[&＆/／、,]|復刻")
+# characters that split a bundle/duo banner title into individual characters.
+# と ("and") joins Genshin's two concurrent 5-stars; the tags ピックアップ/初回/復刻/
+# ※note mark each one and must be dropped so the name underneath can match. game-i
+# occasionally stores a title in English instead ("Dehya and Cyno", "Shenhe Ayaka"),
+# so we also split on whitespace and the word "and". (This runs only on games with an
+# icon map — zzz/genshin/hsr — none of which use と or a space inside a real character
+# name, so splitting on them here is safe.)
+SPLIT = re.compile(r"[&＆/／、,と]|復刻|ピックアップ|初回|※.*|\band\b|\s+", re.I)
 # punctuation to ignore when comparing names (incl. & so combined-unit names like
 # "オルペウス&「鬼火」" normalize the same whether the wiki uses full/half-width)
 STRIP = re.compile(r"[「」『』（）()・･\.\-\s　&＆：:]")
@@ -33,6 +39,18 @@ def build_index(cmap):
     idx = []
     for name, e in cmap.items():
         idx.append((norm(name), name, e))
+        # A paired entry whose Enka key is itself "&"-joined — Topaz's トパーズ&カブ
+        # (Topaz & Numby), ZZZ's オルペウス&「鬼火」 — is usually listed by its lead name
+        # alone on game-i. Register that lead as an alias to the same entry so
+        # "トパーズ&ゼーレ復刻" finds Topaz, not just the Seele rerun.
+        head = re.split(r"[&＆]", name)[0]
+        if head and head != name:
+            idx.append((norm(head), name, e))
+        # Also index the English name, for the rare titles game-i stores in English
+        # ("Dehya and Cyno", "Shenhe Ayaka") that never match the Japanese key.
+        en = e.get("en")
+        if en:
+            idx.append((norm(en), name, e))
     idx.sort(key=lambda x: -len(x[0]))
     return idx
 
@@ -96,6 +114,19 @@ def enrich(tag):
         b["accent"] = matches[0]["accent"] if matches else None
         if matches:
             hit += 1
+    # Re-derive rerun from the resolved headliner: a banner is a rerun if that
+    # character (agents[0]) already led an earlier banner. Keyed on the canonical
+    # English name, this holds whether game-i titled the banner in JP or EN, and
+    # catches reruns the raw-title scan missed (e.g. the English "Shenhe Ayaka").
+    # Only escalates to True — never clears a 復刻 the scraper already found.
+    seen = set()
+    for b in sorted(data["banners"], key=lambda x: (x["start"], x["name"])):
+        lead = (b.get("agents") or [None])[0]
+        if not lead:
+            continue
+        if lead in seen:
+            b["rerun"] = True
+        seen.add(lead)
     dfile.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
     return hit, len(data["banners"])
 
