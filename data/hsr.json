@@ -4,13 +4,13 @@
  "jp": "崩壊：スターレイル",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E5%B4%A9%E5%A3%8A%EF%BC%9A%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%AC%E3%82%A4%E3%83%AB",
- "updated": "2026-08-13T13:44:30Z",
+ "updated": "2026-08-13T15:12:30Z",
  "count": 60,
  "now": {
-  "ios": 90,
+  "ios": 97,
   "android": 29,
-  "month": 49,
-  "next_add": 14777317,
+  "month": 50,
+  "next_add": 16517074,
   "ym": "2026/08",
   "ranks": {
    "prev": [
@@ -60,7 +60,7 @@
     78,
     73,
     80,
-    null,
+    97,
     null,
     null,
     null,
@@ -82,7 +82,7 @@
   }
  },
  "monthly": {
-  "2026-08": 3.8,
+  "2026-08": 3.95,
   "2026-07": 16.85,
   "2026-06": 13.4,
   "2026-05": 14.61,
@@ -2456,9 +2456,9 @@
    "start": "2026-02-13",
    "end": "2026-03-03",
    "rev": 8.93,
-   "yrank": 5,
+   "yrank": 6,
    "ytot": 13,
-   "cum": 42,
+   "cum": 43,
    "cumtot": 61,
    "year": 2026,
    "related": "長夜月、セイレンス、ブラックスワン",
@@ -2600,9 +2600,9 @@
    "start": "2026-04-08",
    "end": "2026-04-21",
    "rev": 0.898,
-   "yrank": 12,
+   "yrank": 13,
    "ytot": 13,
-   "cum": 60,
+   "cum": 61,
    "cumtot": 61,
    "year": 2026,
    "related": "不死途",
@@ -2826,7 +2826,7 @@
    "name": "姫子・旅立ち",
    "start": "2026-07-15",
    "end": "2026-08-25",
-   "rev": 9.3875,
+   "rev": 9.4603,
    "yrank": 7,
    "ytot": 13,
    "cum": 45,
@@ -2876,7 +2876,8 @@
     77,
     78,
     73,
-    80
+    80,
+    97
    ],
    "icons": [
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1510.png"
@@ -2891,10 +2892,10 @@
    "name": "遠坂凛&ギルガメッシュ",
    "start": "2026-07-24",
    "end": "2026-08-25",
-   "rev": 8.87,
-   "yrank": 6,
+   "rev": 8.94,
+   "yrank": 5,
    "ytot": 13,
-   "cum": 43,
+   "cum": 42,
    "cumtot": 61,
    "year": 2026,
    "related": "",
@@ -2922,7 +2923,8 @@
     77,
     78,
     73,
-    80
+    80,
+    97
    ],
    "icons": [
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1508.png",
