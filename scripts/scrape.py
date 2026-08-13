@@ -286,7 +286,7 @@ def scrape_monthly(apid):
     return out
 
 
-def attach_rank_series(apid, banners):
+def attach_rank_series(apid, banners, tag=None):
     """Per-banner daily iOS top-grossing rank across each run, stitched from the
     monthly feeds and aligned to the banner's start date (index 0 = start day).
     null on days below the trackable ~top 200. game-i only keeps the iOS daily
@@ -298,6 +298,20 @@ def attach_rank_series(apid, banners):
     future-dated rows we must not treat as real. `ongoing` marks a run scheduled
     to continue past today. Skips banners with no tracked day."""
     today = _jst_now().date()
+    # A finished banner's rank series never changes, so reuse the one we already
+    # computed last run and only fetch the network for new or still-running
+    # banners. Essential now that we backfill full history — otherwise every daily
+    # run would re-fetch years of month feeds.
+    prev = {}
+    if tag:
+        pf = DATA / f"{tag}.json"
+        if pf.exists():
+            try:
+                for ob in json.loads(pf.read_text(encoding="utf-8")).get("banners", []):
+                    if ob.get("rank_series") and not ob.get("ongoing"):
+                        prev[(ob["start"], ob["end"], ob["name"])] = ob["rank_series"]
+            except Exception:
+                pass
     hit = 0
     for b in banners:
         try:
@@ -305,6 +319,11 @@ def attach_rank_series(apid, banners):
         except ValueError:
             continue
         b["ongoing"] = e > today
+        cached = prev.get((b["start"], b["end"], b["name"]))
+        if cached is not None and not b["ongoing"]:        # finished + unchanged -> reuse
+            b["rank_series"] = cached
+            hit += 1
+            continue
         last = min(e, today)
         if last < s or (e - s).days > 400:                 # not started yet / glitchy range
             continue
@@ -326,14 +345,19 @@ def scrape_game(tag, meta):
     meta["page"] = resolve_page(meta)
     meta.setdefault("jp", meta["page"].split("/", 1)[1] if "/" in meta["page"] else meta["page"])
     h0 = fetch(page_url(meta["page"]))
-    years = sorted(set(re.findall(r"yyyy=(20\d\d)", h0)))
-    # the default page is the newest year; make sure it's included
-    newest = max([int(y) for y in years] + [datetime.now().year])
-    all_years = sorted(set(int(y) for y in years) | {newest})
-    banners = []
-    for y in all_years:
+    # game-i only *links* the last couple of years on the default page, but every
+    # older year back to the game's launch is reachable at ?yyyy=YYYY. Walk back
+    # from this year until a year has no banners (past the game's first year);
+    # game-i's data itself starts in 2018, so that's the floor.
+    newest = datetime.now().year
+    banners, y = [], newest
+    while y >= 2018:
         hp = h0 if y == newest else fetch(page_url(meta["page"], y))
-        banners += parse_banners(hp, y)
+        rows = parse_banners(hp, y)
+        if not rows and y < newest:
+            break                       # gone past the game's first tracked year
+        banners += rows
+        y -= 1
         time.sleep(0.4)
     # de-dupe by (start,name) and sort chronologically
     seen, uniq = set(), []
@@ -369,7 +393,7 @@ def main():
         except Exception as e:
             print(f"[{tag}] monthly failed (non-fatal): {e}", file=sys.stderr)
         try:
-            got = attach_rank_series(meta["apid"], banners)
+            got = attach_rank_series(meta["apid"], banners, tag)
             print(f"[{tag}] daily rank series on {got}/{len(banners)} banners")
         except Exception as e:
             print(f"[{tag}] rank-series failed (non-fatal): {e}", file=sys.stderr)
