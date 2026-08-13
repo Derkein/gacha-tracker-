@@ -4,7 +4,7 @@
  "jp": "原神",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E5%8E%9F%E7%A5%9E",
- "updated": "2026-08-13T12:38:39Z",
+ "updated": "2026-08-13T13:08:59Z",
  "count": 104,
  "now": {
   "ios": 17,
@@ -255,7 +255,8 @@
     "Tartaglia"
    ],
    "accent": "#4a90d9",
-   "en": "Tartaglia"
+   "en": "Tartaglia",
+   "bar": "#75dbf0"
   },
   {
    "name": "鍾離ピックアップ",
@@ -661,7 +662,8 @@
     "Zhongli"
    ],
    "accent": "#e0b23c",
-   "en": "Zhongli"
+   "en": "Zhongli",
+   "bar": "#f2cf73"
   },
   {
    "name": "エウルアピックアップ",
@@ -1137,7 +1139,8 @@
     "Albedo"
    ],
    "accent": "#7fc8e0",
-   "en": "Eula & Albedo"
+   "en": "Eula & Albedo",
+   "bar": "#87c4de"
   },
   {
    "name": "荒瀧一斗ピックアップ",
@@ -1233,7 +1236,8 @@
     "Xiao"
    ],
    "accent": "#7fc8e0",
-   "en": "Shenhe & Xiao"
+   "en": "Shenhe & Xiao",
+   "bar": "#87c6de"
   },
   {
    "name": "甘雨復刻&鍾離復刻",
@@ -1282,7 +1286,8 @@
     "Zhongli"
    ],
    "accent": "#7fc8e0",
-   "en": "Ganyu & Zhongli"
+   "en": "Ganyu & Zhongli",
+   "bar": "#83c3e2"
   },
   {
    "name": "八重神子ピックアップ",
@@ -1378,7 +1383,8 @@
     "Sangonomiya Kokomi"
    ],
    "accent": "#b57fd4",
-   "en": "Raiden Shogun & Sangonomiya Kokomi"
+   "en": "Raiden Shogun & Sangonomiya Kokomi",
+   "bar": "#a28dd8"
   },
   {
    "name": "神里綾人ピックアップ&ウェンティ復刻",
@@ -1426,7 +1432,8 @@
     "Venti"
    ],
    "accent": "#4a90d9",
-   "en": "Kamisato Ayato & Venti"
+   "en": "Kamisato Ayato & Venti",
+   "bar": "#548ab8"
   },
   {
    "name": "神里綾華復刻",
@@ -1493,7 +1500,8 @@
     "Kamisato Ayaka"
    ],
    "accent": "#7fc8e0",
-   "en": "Kamisato Ayaka"
+   "en": "Kamisato Ayaka",
+   "bar": "#85c6e0"
   },
   {
    "name": "夜蘭ピックアップ＆魈復刻",
@@ -1542,7 +1550,8 @@
     "Xiao"
    ],
    "accent": "#4a90d9",
-   "en": "Yelan & Xiao"
+   "en": "Yelan & Xiao",
+   "bar": "#519be4"
   },
   {
    "name": "荒瀧一斗復刻",
@@ -1638,7 +1647,8 @@
     "Klee"
    ],
    "accent": "#57c69a",
-   "en": "Kaedehara Kazuha & Klee"
+   "en": "Kaedehara Kazuha & Klee",
+   "bar": "#9c453a"
   },
   {
    "name": "宵宮復刻",
@@ -1685,7 +1695,8 @@
     "Yoimiya"
    ],
    "accent": "#f0684a",
-   "en": "Yoimiya"
+   "en": "Yoimiya",
+   "bar": "#e6997f"
   },
   {
    "name": "ティナリと鍾離復刻",
@@ -2204,7 +2215,8 @@
     "Dehya",
     "Cyno"
    ],
-   "accent": "#f0684a"
+   "accent": "#f0684a",
+   "bar": "#f0b275"
   },
   {
    "name": "Shenhe Ayaka",
