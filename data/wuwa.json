@@ -4,13 +4,13 @@
  "jp": "鳴潮",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E9%B3%B4%E6%BD%AE",
- "updated": "2026-08-13T16:34:24Z",
+ "updated": "2026-08-13T17:16:48Z",
  "count": 39,
  "now": {
-  "ios": 147,
+  "ios": 148,
   "android": 26,
   "month": 59,
-  "next_add": 15581184,
+  "next_add": 15563918,
   "ym": "2026/08",
   "ranks": {
    "prev": [
