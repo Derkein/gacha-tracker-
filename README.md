@@ -8,7 +8,7 @@ It doesn't measure or estimate anything itself: every number comes from [**game-
 
 Covered: **Zenless Zone Zero · Honkai: Star Rail · Wuthering Waves · Genshin Impact · Arknights: Endfield · Neverness to Everness · Umamusume · Fate/Grand Order · Blue Archive · Arknights.**
 
-> Coverage varies by game and generally begins around **2024**, so titles older than that are missing their earlier banners.
+> Coverage runs from each game's **launch** to today (e.g. back to 2020 for Genshin, 2023 for Star Rail). game-i's own data begins in **2018**, so only a game older than that (like FGO) is missing its pre-2018 banners.
 
 ## What you can do
 

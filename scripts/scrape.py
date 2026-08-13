@@ -320,7 +320,10 @@ def attach_rank_series(apid, banners, tag=None):
             continue
         b["ongoing"] = e > today
         cached = prev.get((b["start"], b["end"], b["name"]))
-        if cached is not None and not b["ongoing"]:        # finished + unchanged -> reuse
+        # Trust the cache only for banners that ended before last year. game-i still
+        # edits the recent window — adds reruns, backfills late rows — so always
+        # re-fetch this year and the one before it; older history never changes.
+        if cached is not None and not b["ongoing"] and e.year < today.year - 1:
             b["rank_series"] = cached
             hit += 1
             continue
