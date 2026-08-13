@@ -4,7 +4,7 @@
  "jp": "原神",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E5%8E%9F%E7%A5%9E",
- "updated": "2026-08-13T13:08:59Z",
+ "updated": "2026-08-13T13:45:10Z",
  "count": 104,
  "now": {
   "ios": 17,
@@ -1922,7 +1922,8 @@
     "Yoimiya"
    ],
    "accent": "#84c23c",
-   "en": "Nahida & Yoimiya"
+   "en": "Nahida & Yoimiya",
+   "bar": "#a0cd98"
   },
   {
    "name": "八重神子 & タルタリヤピックアップ",
