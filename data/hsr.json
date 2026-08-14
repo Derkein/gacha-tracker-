@@ -4,13 +4,13 @@
  "jp": "崩壊：スターレイル",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E5%B4%A9%E5%A3%8A%EF%BC%9A%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%AC%E3%82%A4%E3%83%AB",
- "updated": "2026-08-13T17:16:26Z",
+ "updated": "2026-08-14T16:01:41Z",
  "count": 60,
  "now": {
-  "ios": 100,
-  "android": 29,
-  "month": 50,
-  "next_add": 16399465,
+  "ios": 105,
+  "android": 14,
+  "month": 54,
+  "next_add": 15897146,
   "ym": "2026/08",
   "ranks": {
    "prev": [
@@ -61,7 +61,7 @@
     73,
     80,
     97,
-    null,
+    105,
     null,
     null,
     null,
@@ -82,7 +82,7 @@
   }
  },
  "monthly": {
-  "2026-08": 3.95,
+  "2026-08": 4.11,
   "2026-07": 16.85,
   "2026-06": 13.4,
   "2026-05": 14.61,
@@ -2040,7 +2040,7 @@
    "rev": 9.01,
    "yrank": 12,
    "ytot": 18,
-   "cum": 41,
+   "cum": 42,
    "cumtot": 61,
    "year": 2025,
    "related": "カフカ復刻",
@@ -2826,7 +2826,7 @@
    "name": "姫子・旅立ち",
    "start": "2026-07-15",
    "end": "2026-08-25",
-   "rev": 9.4603,
+   "rev": 9.54,
    "yrank": 7,
    "ytot": 13,
    "cum": 45,
@@ -2877,7 +2877,8 @@
     78,
     73,
     80,
-    97
+    97,
+    105
    ],
    "icons": [
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1510.png"
@@ -2892,10 +2893,10 @@
    "name": "遠坂凛&ギルガメッシュ",
    "start": "2026-07-24",
    "end": "2026-08-25",
-   "rev": 8.94,
+   "rev": 9.02,
    "yrank": 5,
    "ytot": 13,
-   "cum": 42,
+   "cum": 41,
    "cumtot": 61,
    "year": 2026,
    "related": "",
@@ -2924,7 +2925,8 @@
     78,
     73,
     80,
-    97
+    97,
+    105
    ],
    "icons": [
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1508.png",
