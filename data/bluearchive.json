@@ -4,13 +4,13 @@
  "jp": "ブルーアーカイブ",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E3%83%96%E3%83%AB%E3%83%BC%E3%82%A2%E3%83%BC%E3%82%AB%E3%82%A4%E3%83%96",
- "updated": "2026-08-17T01:00:03Z",
+ "updated": "2026-08-17T16:00:09Z",
  "count": 199,
  "now": {
   "ios": null,
   "android": 41,
   "month": 39,
-  "next_add": 5642055,
+  "next_add": 5514850,
   "ym": "2026/08",
   "ranks": {
    "prev": [
@@ -82,7 +82,7 @@
   }
  },
  "monthly": {
-  "2026-08": 5.66,
+  "2026-08": 5.72,
   "2026-07": 4.28,
   "2026-06": 4.11,
   "2026-05": 2.96,
@@ -142,8 +142,7 @@
     14,
     13,
     13
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "赤の季節、黒の制服",
@@ -175,8 +174,7 @@
     67,
     60,
     76
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "桜花爛漫お祭り騒ぎ！～空に徒花 地に忍び～",
@@ -208,8 +206,7 @@
     103,
     107,
     122
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "その味は身命を賭してでも",
@@ -234,8 +231,7 @@
     156,
     148,
     153
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "悪は一日にして成らず",
@@ -260,8 +256,7 @@
     158,
     186,
     207
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "機械たちは旅立ちの夢を見るか？",
@@ -293,8 +288,7 @@
     279,
     244,
     198
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "共鳴する風信子",
@@ -326,8 +320,7 @@
     277,
     268,
     275
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "ご奉仕は火力支援のあとで",
@@ -352,8 +345,7 @@
     275,
     295,
     364
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "晴れのち失脚、所により大荒れ",
@@ -385,8 +377,7 @@
     261,
     255,
     264
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "夢を奏でる春告げのRPG",
@@ -418,8 +409,7 @@
     463,
     477,
     266
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "花散らす仮面舞踏会",
@@ -451,8 +441,7 @@
     295,
     268,
     257
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "淫らを温ねて正しきを知るっ",
@@ -484,8 +473,7 @@
     337,
     355,
     270
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "ひたむきな愛で紡いで",
@@ -509,8 +497,7 @@
     333,
     332,
     195
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "ただ四囲は夢幻なりや？ & 正しいは無限なりや！",
@@ -543,8 +530,7 @@
     178,
     191,
     162
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "駆け出した向日葵の憧れ",
@@ -576,8 +562,7 @@
     214,
     211,
     162
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "海統べる寄り添いの月光 & 夏乱す容赦なき太陽",
@@ -609,8 +594,7 @@
     133,
     115,
     98
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "吹き抜ける風の在り処",
@@ -642,8 +626,7 @@
     269,
     266,
     210
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "やがて未来に変わる庇護",
@@ -675,8 +658,7 @@
     null,
     null,
     null
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "年がら年中無我夢チュー！",
@@ -708,8 +690,7 @@
     null,
     null,
     null
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "閃きよ、この世界を照らして",
@@ -724,8 +705,7 @@
    "related": "★3 ヒビキ",
    "banner_img": "https://webusstatic.yo-star.com/uy0news/ba/9c66c04f409cbc21e79ff7f1b496bec0.png",
    "rerun": false,
-   "ongoing": false,
-   "agents": []
+   "ongoing": false
   },
   {
    "name": "問答無用のストレートアップ & 着替えたらジャックポットを",
@@ -756,8 +736,7 @@
     145,
     126,
     99
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "無軌道なハットトリック",
@@ -790,8 +769,7 @@
     200,
     null,
     194
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "ステンドグラスに誘われて",
@@ -816,8 +794,7 @@
     null,
     null,
     200
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "舞い降りた電子色の歌姫",
@@ -849,8 +826,7 @@
     null,
     177,
     186
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "夜明けに珈琲を 手の甲に誓いを",
@@ -881,8 +857,7 @@
     null,
     null,
     null
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "革命と極楽のオートノミー & 責務と休息のアンティノミー",
@@ -915,8 +890,7 @@
     null,
     null,
     null
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "湯けむりは星月夜に溶けて",
@@ -948,8 +922,7 @@
     null,
     null,
     null
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "あらたまの年も事業もかくしこそ & 四つ手重ねてたのしきをつめ",
@@ -981,8 +954,7 @@
     159,
     172,
     132
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "巫女は隣で丸くなる",
@@ -1014,8 +986,7 @@
     175,
     198,
     118
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "太陽と雨のすれ違い",
@@ -1037,8 +1008,7 @@
     12,
     19,
     20
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "自由意志のもと誇りにかけて & 大聖堂からバザールにかけて",
@@ -1066,8 +1036,7 @@
     132,
     134,
     130
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "いつか花咲く少女の夢",
@@ -1092,8 +1061,7 @@
     188,
     null,
     176
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "祭り囃子はしのぶれど(復刻)",
@@ -1118,8 +1086,7 @@
     188,
     null,
     176
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "淫らを温ねて正しきを知るっ(復刻) & その味は身命を賭してでも(復刻)",
@@ -1144,8 +1111,7 @@
     197,
     null,
     200
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "声無き言葉たちの残花 & 故無き力添えの賛歌",
@@ -1177,8 +1143,7 @@
     null,
     null,
     null
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "忠言、耳に突撃",
@@ -1203,8 +1168,7 @@
     null,
     null,
     null
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "晴れのち失脚、所により大荒れ(復刻)",
@@ -1229,8 +1193,7 @@
     null,
     null,
     null
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "Snipe the target \"L-seven\" !",
@@ -1255,8 +1218,7 @@
     null,
     null,
     null
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "共鳴する風信子(復刻)",
@@ -1281,8 +1243,7 @@
     null,
     null,
     null
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "「こちらRABBIT1、理想をこの眼に」 & 「こちらRABBIT2、規範はこの脚に」",
@@ -1314,12 +1275,7 @@
     null,
     null,
     null
-   ],
-   "agents": [
-    "Tsukiyuki Miyako",
-    "Sorai Saki"
-   ],
-   "en": "Tsukiyuki Miyako & Sorai Saki"
+   ]
   },
   {
    "name": "「こちらRABBIT4、証明をこの手に」 & 「奮い立つグラジオラス」",
@@ -1351,12 +1307,7 @@
     null,
     null,
     null
-   ],
-   "agents": [
-    "Kasumizawa Miyu",
-    "Kenzaki Tsurugi"
-   ],
-   "en": "Kasumizawa Miyu & Kenzaki Tsurugi"
+   ]
   },
   {
    "name": "「正しいは無限なりや！」(復刻) & 「ただ四囲は夢幻なりや？」(復刻)",
@@ -1381,12 +1332,7 @@
     112,
     111,
     111
-   ],
-   "agents": [
-    "Shizuyama Mashiro",
-    "Shirasu Azusa"
-   ],
-   "en": "Shizuyama Mashiro & Shirasu Azusa"
+   ]
   },
   {
    "name": "「駆け出した向日葵の憧れ」(復刻)",
@@ -1411,11 +1357,7 @@
     112,
     111,
     111
-   ],
-   "agents": [
-    "Ajitani Hifumi"
-   ],
-   "en": "Ajitani Hifumi"
+   ]
   },
   {
    "name": "「色は隠れど 咲きぬるを」 & 「我が身終ぞ 常ならむ！」",
@@ -1447,12 +1389,7 @@
     163,
     175,
     163
-   ],
-   "agents": [
-    "Natsume Iroha",
-    "Isami Kaede"
-   ],
-   "en": "Natsume Iroha & Isami Kaede"
+   ]
   },
   {
    "name": "「夢を奏でる春告げのRPG」(復刻)",
@@ -1483,11 +1420,7 @@
     null,
     null,
     null
-   ],
-   "agents": [
-    "Hanaoka Yuzu"
-   ],
-   "en": "Hanaoka Yuzu"
+   ]
   },
   {
    "name": "「星ひとつ、23.4°見上げて」",
@@ -1518,11 +1451,7 @@
     null,
     null,
     null
-   ],
-   "agents": [
-    "Oono Tsukuyo"
-   ],
-   "en": "Oono Tsukuyo"
+   ]
   },
   {
    "name": "「木枯らしに目を引かれ」",
@@ -1555,11 +1484,7 @@
     null,
     null,
     178
-   ],
-   "agents": [
-    "Tsuchinaga Hiyori"
-   ],
-   "en": "Tsuchinaga Hiyori"
+   ]
   },
   {
    "name": "「逃げ水を夢に見て」",
@@ -1592,12 +1517,7 @@
     null,
     null,
     178
-   ],
-   "agents": [
-    "Imashino Misaki",
-    "Tsuchinaga Hiyori"
-   ],
-   "en": "Imashino Misaki & Tsuchinaga Hiyori"
+   ]
   },
   {
    "name": "「徒桜を拾い集めて」",
@@ -1629,11 +1549,7 @@
     147,
     153,
     158
-   ],
-   "agents": [
-    "Hakari Atsuko"
-   ],
-   "en": "Hakari Atsuko"
+   ]
   },
   {
    "name": "「花散らす仮面舞踏会」(復刻)",
@@ -1665,12 +1581,7 @@
     147,
     153,
     158
-   ],
-   "agents": [
-    "Shirasu Azusa",
-    "Urawa Hanako"
-   ],
-   "en": "Shirasu Azusa & Urawa Hanako"
+   ]
   },
   {
    "name": "「笑顔よ続け、夏の日に」 & 「想いよ開け、夏の夜に」",
@@ -1702,12 +1613,7 @@
     128,
     127,
     89
-   ],
-   "agents": [
-    "Izayoi Nonomi",
-    "Kosaka Wakamo"
-   ],
-   "en": "Izayoi Nonomi & Kosaka Wakamo"
+   ]
   },
   {
    "name": "「積み重ねる誓いの翼」 & 「積み上げる尽力の翼」",
@@ -1739,12 +1645,7 @@
     72,
     79,
     51
-   ],
-   "agents": [
-    "Takanashi Hoshino",
-    "Sorasaki Hina"
-   ],
-   "en": "Takanashi Hoshino & Sorasaki Hina"
+   ]
   },
   {
    "name": "「たそがれからみなもへと」",
@@ -1767,11 +1668,7 @@
     11,
     15,
     15
-   ],
-   "agents": [
-    "Takanashi Hoshino"
-   ],
-   "en": "Takanashi Hoshino"
+   ]
   },
   {
    "name": "「色に出でにけりわが夏は」＆「ものや詠もうと心問ふまで」",
@@ -1798,11 +1695,7 @@
     60,
     57,
     27
-   ],
-   "agents": [
-    "Waraku Chise"
-   ],
-   "en": "Waraku Chise"
+   ]
   },
   {
    "name": "「吹き抜ける風の在り処」（復刻）＆「機械たちは旅立ちの夢を見るか？」（復刻）",
@@ -1826,8 +1719,7 @@
     79,
     86,
     83
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "「雪代水は廻り行く」 & 「悪は一日にして成らず」（復刻）",
@@ -1860,12 +1752,7 @@
     81,
     75,
     59
-   ],
-   "agents": [
-    "Joumae Saori",
-    "Rikuhachima Aru"
-   ],
-   "en": "Joumae Saori & Rikuhachima Aru"
+   ]
   },
   {
    "name": "「こちらRABBIT3、計算をこの胸に」 ＆ 「黒猫は甘い夢の中で」",
@@ -1897,11 +1784,7 @@
     127,
     111,
     98
-   ],
-   "agents": [
-    "Kazekura Moe"
-   ],
-   "en": "Kazekura Moe"
+   ]
   },
   {
    "name": "「海統べる寄り添いの月光」（復刻） &「夏乱す容赦なき太陽」（復刻）",
@@ -1926,12 +1809,7 @@
     52,
     55,
     51
-   ],
-   "agents": [
-    "Sorasaki Hina",
-    "Shiromi Iori"
-   ],
-   "en": "Sorasaki Hina & Shiromi Iori"
+   ]
   },
   {
    "name": "「ステンドグラスに誘われて」 （復刻）& 「未来のどけき梅の園」",
@@ -1956,13 +1834,7 @@
     107,
     121,
     129
-   ],
-   "agents": [
-    "Yutori Natsu",
-    "Iochi Mari",
-    "Sunohara Shun"
-   ],
-   "en": "Yutori Natsu & Iochi Mari & Sunohara Shun"
+   ]
   },
   {
    "name": "「しずこころなく梅咲き誇る！」 & 「やがて未来に変わる庇護」（復刻） & 「年がら年中無我夢チュー！」（復刻）",
@@ -1987,13 +1859,7 @@
     86,
     100,
     102
-   ],
-   "agents": [
-    "Sunohara Kokona",
-    "Sunohara Shun",
-    "Nakatsukasa Kirino"
-   ],
-   "en": "Sunohara Kokona & Sunohara Shun & Nakatsukasa Kirino"
+   ]
   },
   {
    "name": "「晴れ空に響く情熱」 & 「曇り硝子に描く刹那」",
@@ -2025,12 +1891,7 @@
     88,
     87,
     75
-   ],
-   "agents": [
-    "Shiraishi Utaha",
-    "Ushio Noa"
-   ],
-   "en": "Shiraishi Utaha & Ushio Noa"
+   ]
   },
   {
    "name": "「昼下がりのロイヤルフラッシュ」&「問答無用のストレートアップ」（復刻）&「着替えたらジャックポットを」（復刻）&「無軌道なハットトリック」（復刻）",
@@ -2055,8 +1916,7 @@
     31,
     43,
     39
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "「閃きよ、この世界を照らして」(復刻)&「夜明けに珈琲を 手の甲に誓いを」(復刻)",
@@ -2081,12 +1941,7 @@
     61,
     72,
     66
-   ],
-   "agents": [
-    "Nekozuka Hibiki",
-    "Amau Ako"
-   ],
-   "en": "Nekozuka Hibiki & Amau Ako"
+   ]
   },
   {
    "name": "「理性と情熱のEquation」＆「憧憬と慈愛のDevotion」",
@@ -2118,12 +1973,7 @@
     59,
     64,
     50
-   ],
-   "agents": [
-    "Hayase Yuuka",
-    "Iochi Mari"
-   ],
-   "en": "Hayase Yuuka & Iochi Mari"
+   ]
   },
   {
    "name": "「淫らを温ねて正しきを知るっ」(復刻)＆「Paint the school “red” !」",
@@ -2148,12 +1998,7 @@
     108,
     119,
     114
-   ],
-   "agents": [
-    "Shimoe Koharu",
-    "Konuri Maki"
-   ],
-   "en": "Shimoe Koharu & Konuri Maki"
+   ]
   },
   {
    "name": "「涼やかなる夢想の可能性」＆「胸燃ゆる理想の可変性」",
@@ -2185,12 +2030,7 @@
     108,
     92,
     68
-   ],
-   "agents": [
-    "Akeboshi Himari",
-    "Izumimoto Eimi"
-   ],
-   "en": "Akeboshi Himari & Izumimoto Eimi"
+   ]
   },
   {
    "name": "「雪夜は星月のしずくに酔って」＆「革命と極楽のオートノミー」（復刻）＆「責務と休息のアンティノミー」（復刻）＆「湯けむりは星月夜に溶けて」（復刻）",
@@ -2215,13 +2055,7 @@
     132,
     135,
     130
-   ],
-   "agents": [
-    "Mayoi Shigure",
-    "Renkawa Cherino",
-    "Hinomiya Chinatsu"
-   ],
-   "en": "Mayoi Shigure & Renkawa Cherino & Hinomiya Chinatsu"
+   ]
   },
   {
    "name": "「機械たちは旅立ちの夢を見るか？」（復刻）＆「夢を奏でる春告げのRPG」（復刻）＆「共鳴する風信子」（復刻）",
@@ -2246,13 +2080,7 @@
     155,
     160,
     154
-   ],
-   "agents": [
-    "The Great Adventure of Alice the Brave!",
-    "Hanaoka Yuzu",
-    "Saiba Midori"
-   ],
-   "en": "The Great Adventure of Alice the Brave! & Hanaoka Yuzu & Saiba Midori"
+   ]
   },
   {
    "name": "「あたらしき　年になれども　食道楽」＆「馳走のこころは　かはらざりけり」",
@@ -2284,12 +2112,7 @@
     82,
     77,
     69
-   ],
-   "agents": [
-    "Kurodate Haruna",
-    "Aikiyo Fuuka"
-   ],
-   "en": "Kurodate Haruna & Aikiyo Fuuka"
+   ]
   },
   {
    "name": "「ドレスコードは鋼の白衣」&「自由意志のもと誇りにかけて」（復刻）&「大聖堂からバザールにかけて」（復刻）",
@@ -2320,13 +2143,7 @@
     154,
     27,
     11
-   ],
-   "agents": [
-    "Aomori Mine",
-    "Himuro Sena",
-    "Kagami Chihiro"
-   ],
-   "en": "Aomori Mine & Himuro Sena & Kagami Chihiro"
+   ]
   },
   {
    "name": "「君は無邪気な夜の希望」",
@@ -2351,11 +2168,7 @@
     5,
     6,
     6
-   ],
-   "agents": [
-    "Misono Mika"
-   ],
-   "en": "Misono Mika"
+   ]
   },
   {
    "name": "「義勇は温泉のように熱く！」＆「正義は珈琲のように甘く」",
@@ -2383,12 +2196,7 @@
     49,
     49,
     35
-   ],
-   "agents": [
-    "Shimokura Megu",
-    "Ogata Kanna"
-   ],
-   "en": "Shimokura Megu & Ogata Kanna"
+   ]
   },
   {
    "name": "「雪夜に贈るぬくもりのハレルヤ！」（復刻）&「聖夜に響く慈愛のキャロル」（復刻）",
@@ -2413,12 +2221,7 @@
     11,
     14,
     29
-   ],
-   "agents": [
-    "Asagao Hanae",
-    "Sumi Serina"
-   ],
-   "en": "Asagao Hanae & Sumi Serina"
+   ]
   },
   {
    "name": "「偽りなき信仰の甘果」＆「声なき言葉たちの残花」（復刻）＆「故なき力添えの賛歌」（復刻）",
@@ -2448,12 +2251,7 @@
     42,
     47,
     41
-   ],
-   "agents": [
-    "Kozeki Ui",
-    "Wakaba Hinata"
-   ],
-   "en": "Kozeki Ui & Wakaba Hinata"
+   ]
   },
   {
    "name": "「Where there's Toki there's victory.」＆「Where there's tea party there's hope. 」",
@@ -2485,12 +2283,7 @@
     38,
     38,
     29
-   ],
-   "agents": [
-    "Asuma Toki",
-    "Kirifuji Nagisa"
-   ],
-   "en": "Asuma Toki & Kirifuji Nagisa"
+   ]
   },
   {
    "name": "「解に導く番狂わせ」＆「親愛なる、はじまりの君へ 」",
@@ -2522,12 +2315,7 @@
     105,
     91,
     75
-   ],
-   "agents": [
-    "Kurosaki Koyuki",
-    "Shiroko Terror"
-   ],
-   "en": "Kurosaki Koyuki & Shiroko Terror"
+   ]
   },
   {
    "name": "「初春の　音の絆も　かくしこそ」＆「千草たばねて　しあわせをつめ」＆「あらたまの 年も事業も かくしこそ」（復刻）＆「四つ手重ねて たのしきをつめ」（復刻）＆「巫女は隣で丸くなる」（復刻）",
@@ -2559,13 +2347,7 @@
     49,
     51,
     44
-   ],
-   "agents": [
-    "Onikata Kayoko",
-    "Igusa Haruka",
-    "Rikuhachima Aru"
-   ],
-   "en": "Onikata Kayoko & Igusa Haruka & Rikuhachima Aru"
+   ]
   },
   {
    "name": "「祭り囃子はしのぶれど」（復刻）＆「いつか花咲く少女の夢」（復刻）",
@@ -2590,12 +2372,7 @@
     120,
     115,
     122
-   ],
-   "agents": [
-    "Kawawa Shizuko",
-    "Mizuha Mimori"
-   ],
-   "en": "Kawawa Shizuko & Mizuha Mimori"
+   ]
   },
   {
    "name": "「好きの奥山　添い遂げて」＆「色は隠れど 咲きぬるを 」（復刻）＆「我が身終ぞ 常ならむ！」（復刻）＆「星ひとつ、23.4°見上げて」（復刻）",
@@ -2620,13 +2397,7 @@
     48,
     52,
     51
-   ],
-   "agents": [
-    "Kuwakami Kaho",
-    "Natsume Iroha",
-    "Isami Kaede"
-   ],
-   "en": "Kuwakami Kaho & Natsume Iroha & Isami Kaede"
+   ]
   },
   {
    "name": "「晴れのち失脚、所により大荒れ」（復刻）＆「忠言、耳に突撃」（復刻）",
@@ -2651,12 +2422,7 @@
     70,
     74,
     71
-   ],
-   "agents": [
-    "Renkawa Cherino",
-    "Ikekura Marina"
-   ],
-   "en": "Renkawa Cherino & Ikekura Marina"
+   ]
   },
   {
    "name": "「メイド勇者は不思議な世界の夢を見る」＆「遅刻ウサギのワイルドカード」",
@@ -2688,8 +2454,7 @@
     55,
     58,
     52
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "「挑戦は甘い夢の外で！」＆「黒猫は甘い夢の中で」（復刻）&「ステンドグラスに誘われて」（復刻）",
@@ -2714,11 +2479,7 @@
     64,
     81,
     55
-   ],
-   "agents": [
-    "Yutori Natsu"
-   ],
-   "en": "Yutori Natsu"
+   ]
   },
   {
    "name": "「ただ四囲は夢幻なりや？」（復刻）&「正しいは無限なりや！」（復刻）&「駆け出した向日葵の憧れ」（復刻）",
@@ -2743,13 +2504,7 @@
     44,
     43,
     33
-   ],
-   "agents": [
-    "Shirasu Azusa",
-    "Shizuyama Mashiro",
-    "Ajitani Hifumi"
-   ],
-   "en": "Shirasu Azusa & Shizuyama Mashiro & Ajitani Hifumi"
+   ]
   },
   {
    "name": "「カンパニーで飲茶を！」&「ノワールに唄えば」",
@@ -2781,12 +2536,7 @@
     124,
     130,
     126
-   ],
-   "agents": [
-    "Akeshiro Rumi",
-    "Konoe Mina"
-   ],
-   "en": "Akeshiro Rumi & Konoe Mina"
+   ]
   },
   {
    "name": "「工務の道も一歩から」&「こちらRABBIT1、理想をこの眼に」（復刻）&「こちらRABBIT2、規範はこの脚に」（復刻）",
@@ -2811,13 +2561,7 @@
     125,
     130,
     124
-   ],
-   "agents": [
-    "Yasumori Minori",
-    "Tsukiyuki Miyako",
-    "Sorai Saki"
-   ],
-   "en": "Yasumori Minori & Tsukiyuki Miyako & Sorai Saki"
+   ]
   },
   {
    "name": "「こちらRABBIT4、証明をこの手に」（復刻）&「こちらRABBIT3、計算はこの胸に」（復刻）",
@@ -2842,12 +2586,7 @@
     109,
     117,
     121
-   ],
-   "agents": [
-    "Kasumizawa Miyu",
-    "Kazekura Moe"
-   ],
-   "en": "Kasumizawa Miyu & Kazekura Moe"
+   ]
   },
   {
    "name": "「微速前進 安らぎの浜辺へ」&「急速潜航 活路は水底に」",
@@ -2879,12 +2618,7 @@
     106,
     114,
     99
-   ],
-   "agents": [
-    "Tsukiyuki Miyako",
-    "Sorai Saki"
-   ],
-   "en": "Tsukiyuki Miyako & Sorai Saki"
+   ]
   },
   {
    "name": "「海統べる寄り添いの月光」（復刻）&「夏乱す容赦なき太陽」（復刻）",
@@ -2909,12 +2643,7 @@
     70,
     73,
     63
-   ],
-   "agents": [
-    "Sorasaki Hina",
-    "Shiromi Iori"
-   ],
-   "en": "Sorasaki Hina & Shiromi Iori"
+   ]
   },
   {
    "name": "「吹き抜ける風の在り処」（復刻）&「花散らす仮面舞踏会」（復刻）",
@@ -2937,13 +2666,7 @@
     129,
     103,
     97
-   ],
-   "agents": [
-    "Shiroko Terror",
-    "Shirasu Azusa",
-    "Urawa Hanako"
-   ],
-   "en": "Shiroko Terror & Shirasu Azusa & Urawa Hanako"
+   ]
   },
   {
    "name": "「願いよ響け、夏空に」&「笑顔よ続け、夏の日に」（復刻）&「想いよ開け、夏の夜に」（復刻）",
@@ -2968,13 +2691,7 @@
     67,
     65,
     19
-   ],
-   "agents": [
-    "Shiroko Terror",
-    "Izayoi Nonomi",
-    "Kosaka Wakamo"
-   ],
-   "en": "Shiroko Terror & Izayoi Nonomi & Kosaka Wakamo"
+   ]
   },
   {
    "name": "「灼熱無き隠れ家の燦夏」&「白波凪ぐ安息日の残火」",
@@ -3001,12 +2718,7 @@
     26,
     29,
     22
-   ],
-   "agents": [
-    "Kozeki Ui",
-    "Wakaba Hinata"
-   ],
-   "en": "Kozeki Ui & Wakaba Hinata"
+   ]
   },
   {
    "name": "「しどけなく水面揺らす十日」&「太陽と雨のすれ違い」（復刻）",
@@ -3031,12 +2743,7 @@
     10,
     10,
     9
-   ],
-   "agents": [
-    "Urawa Hanako",
-    "Kosaka Wakamo"
-   ],
-   "en": "Urawa Hanako & Kosaka Wakamo"
+   ]
   },
   {
    "name": "「やがて未来に変わる庇護」（復刻）&「年がら年中無我夢チュー！」（復刻）&「しずこころなく梅咲き誇る！」（復刻）",
@@ -3061,13 +2768,7 @@
     66,
     60,
     65
-   ],
-   "agents": [
-    "Sunohara Shun",
-    "Nakatsukasa Kirino",
-    "Yakushi Saya"
-   ],
-   "en": "Sunohara Shun & Nakatsukasa Kirino & Yakushi Saya"
+   ]
   },
   {
    "name": "「過ぐるものとは 知りながら」&「色に出でにけりわが夏は」（復刻）&「ものや詠もうと心問ふまで」（復刻）",
@@ -3092,12 +2793,7 @@
     34,
     37,
     30
-   ],
-   "agents": [
-    "Mizuha Mimori",
-    "Waraku Chise"
-   ],
-   "en": "Mizuha Mimori & Waraku Chise"
+   ]
   },
   {
    "name": "「ペンは銃より強し！」&「晴れのち失脚、所により大荒れ」（復刻）&「忠言、耳に突撃」（復刻）",
@@ -3129,13 +2825,7 @@
     108,
     108,
     107
-   ],
-   "agents": [
-    "Himeki Meru",
-    "Akiizumi Momiji",
-    "Renkawa Cherino"
-   ],
-   "en": "Himeki Meru & Akiizumi Momiji & Renkawa Cherino"
+   ]
   },
   {
    "name": "「明け空に説く こころ模様」&「晴れ空に響く情熱」（復刻）&「曇り硝子に描く刹那」（復刻）",
@@ -3162,13 +2852,7 @@
     114,
     98,
     87
-   ],
-   "agents": [
-    "Toyomi Kotori",
-    "Shiraishi Utaha",
-    "Ushio Noa"
-   ],
-   "en": "Toyomi Kotori & Shiraishi Utaha & Ushio Noa"
+   ]
   },
   {
    "name": "「未知と探求のReformation」&「理性と情熱のEquation」（復刻）&「憧憬と慈愛のDevotion」（復刻）",
@@ -3198,13 +2882,7 @@
     58,
     57,
     52
-   ],
-   "agents": [
-    "Kurodate Haruna",
-    "Hayase Yuuka",
-    "Iochi Mari"
-   ],
-   "en": "Kurodate Haruna & Hayase Yuuka & Iochi Mari"
+   ]
   },
   {
    "name": "「そして正義はいつも隣から！」&「温泉を始めるのなら爆破から！」",
@@ -3236,11 +2914,7 @@
     86,
     79,
     68
-   ],
-   "agents": [
-    "Kinugawa Kasumi"
-   ],
-   "en": "Kinugawa Kasumi"
+   ]
   },
   {
    "name": "「ステアミルクは湯けむりと共に」&「湯けむりは星月夜に溶けて」（復刻）&「革命と極楽のオートノミー」（復刻）&「責務と休息のアンティノミー」（復刻）",
@@ -3265,13 +2939,7 @@
     99,
     102,
     93
-   ],
-   "agents": [
-    "Mayoi Shigure",
-    "Operation Record of No. 227 Hot Spring Resort",
-    "Cherry Blossom Festival"
-   ],
-   "en": "Mayoi Shigure & Operation Record of No. 227 Hot Spring Resort & Cherry Blossom Festival"
+   ]
   },
   {
    "name": "「雪夜は星月のしずくに酔って」（復刻）&「義勇は温泉のように熱く！」（復刻）",
@@ -3295,12 +2963,7 @@
     112,
     108,
     87
-   ],
-   "agents": [
-    "Mayoi Shigure",
-    "Shimokura Megu"
-   ],
-   "en": "Mayoi Shigure & Shimokura Megu"
+   ]
   },
   {
    "name": "「駆け抜けるエースの電撃」&「絡め取る女王の掌握」",
@@ -3333,11 +2996,7 @@
     55,
     56,
     45
-   ],
-   "agents": [
-    "Misaka Mikoto"
-   ],
-   "en": "Misaka Mikoto"
+   ]
   },
   {
    "name": "「夢見る乙女よ 大志を抱け！」",
@@ -3362,11 +3021,7 @@
     87,
     97,
     83
-   ],
-   "agents": [
-    "Kadenokouji Yukari"
-   ],
-   "en": "Kadenokouji Yukari"
+   ]
   },
   {
    "name": "「雪代水は廻り行く」（復刻）&「木枯らしに目を引かれ」（復刻）",
@@ -3391,12 +3046,7 @@
     98,
     99,
     90
-   ],
-   "agents": [
-    "Joumae Saori",
-    "Tsuchinaga Hiyori"
-   ],
-   "en": "Joumae Saori & Tsuchinaga Hiyori"
+   ]
   },
   {
    "name": "「はるは短し 走れよ乙女」&「おもい忍ばせ 進めよ乙女」",
@@ -3428,12 +3078,7 @@
     80,
     85,
     77
-   ],
-   "agents": [
-    "Fuwa Renge",
-    "Kiryuu Kikyou"
-   ],
-   "en": "Fuwa Renge & Kiryuu Kikyou"
+   ]
   },
   {
    "name": "「心躍る予想の可用性」&「涼やかなる夢想の可能性」（復刻）",
@@ -3458,12 +3103,7 @@
     73,
     80,
     65
-   ],
-   "agents": [
-    "Izumimoto Eimi",
-    "Akeboshi Himari"
-   ],
-   "en": "Izumimoto Eimi & Akeboshi Himari"
+   ]
   },
   {
    "name": "「培われし努力の不可逆性」&「胸燃ゆる理想の可変性」（復刻）",
@@ -3488,12 +3128,7 @@
     159,
     168,
     167
-   ],
-   "agents": [
-    "Otohana Sumire",
-    "Izumimoto Eimi"
-   ],
-   "en": "Otohana Sumire & Izumimoto Eimi"
+   ]
   },
   {
    "name": "「雪夜に贈るぬくもりのハレルヤ！」＆「聖夜に響く慈愛のキャロル」",
@@ -3525,12 +3160,7 @@
     65,
     59,
     11
-   ],
-   "agents": [
-    "Asagao Hanae",
-    "Sumi Serina"
-   ],
-   "en": "Asagao Hanae & Sumi Serina"
+   ]
   },
   {
    "name": "「問答無用のストレートアップ」（復刻）&「着替えたらジャックポットを」（復刻）&「無軌道なハットトリック」（復刻）&「昼下がりのロイヤルフラッシュ」（復刻）",
@@ -3555,13 +3185,7 @@
     75,
     65,
     59
-   ],
-   "agents": [
-    "Mikamo Neru",
-    "Kakudate Karin",
-    "Ichinose Asuna"
-   ],
-   "en": "Mikamo Neru & Kakudate Karin & Ichinose Asuna"
+   ]
   },
   {
    "name": "「天体より注ぐ情報の光」&「暁光にとける感情の音」",
@@ -3593,12 +3217,7 @@
     83,
     84,
     79
-   ],
-   "agents": [
-    "Omagari Hare",
-    "Otose Kotama"
-   ],
-   "en": "Omagari Hare & Otose Kotama"
+   ]
   },
   {
    "name": "「あらたまの 年も事業も かくしこそ」（復刻）&「四つ手重ねて たのしきをつめ」（復刻）&「巫女は隣で丸くなる」（復刻）&「初春の 音の絆も かくしこそ」（復刻）&「千草たばねて しあわせをつめ」（復刻）",
@@ -3623,13 +3242,7 @@
     61,
     67,
     60
-   ],
-   "agents": [
-    "Rikuhachima Aru",
-    "Asagi Mutsuki",
-    "Kuromi Serika"
-   ],
-   "en": "Rikuhachima Aru & Asagi Mutsuki & Kuromi Serika"
+   ]
   },
   {
    "name": "「逃げ水を夢に見て」（復刻）&「徒桜を拾い集めて」（復刻）",
@@ -3654,12 +3267,7 @@
     20,
     11,
     5
-   ],
-   "agents": [
-    "Imashino Misaki",
-    "Hakari Atsuko"
-   ],
-   "en": "Imashino Misaki & Hakari Atsuko"
+   ]
   },
   {
    "name": "「我等がために宙は鳴る！」&「天に仕うはすべて音」&「色は隠れど 咲きぬるを」（復刻）",
@@ -3684,13 +3292,7 @@
     16,
     22,
     11
-   ],
-   "agents": [
-    "Hanuma Makoto",
-    "Amau Ako",
-    "Natsume Iroha"
-   ],
-   "en": "Hanuma Makoto & Amau Ako & Natsume Iroha"
+   ]
   },
   {
    "name": "「優しい空の奏で方」&「たそがれからみなもへと」(復刻)",
@@ -3715,12 +3317,7 @@
     7,
     11,
     9
-   ],
-   "agents": [
-    "Sorasaki Hina",
-    "Takanashi Hoshino"
-   ],
-   "en": "Sorasaki Hina & Takanashi Hoshino"
+   ]
   },
   {
    "name": "「自由意志のもと誇りにかけて」（復刻）&「大聖堂からバザールにかけて」（復刻）&「ドレスコードは鋼の白衣」（復刻）",
@@ -3745,13 +3342,7 @@
     61,
     62,
     53
-   ],
-   "agents": [
-    "Himuro Sena",
-    "Kagami Chihiro",
-    "Aomori Mine"
-   ],
-   "en": "Himuro Sena & Kagami Chihiro & Aomori Mine"
+   ]
   },
   {
    "name": "「悪党円舞曲(アウトローワルツァー)」&「美しく明けきメタル」",
@@ -3783,12 +3374,7 @@
     83,
     79,
     62
-   ],
-   "agents": [
-    "Rikuhachima Aru",
-    "Onikata Kayoko"
-   ],
-   "en": "Rikuhachima Aru & Onikata Kayoko"
+   ]
   },
   {
    "name": "「幾重のかをり 早たちにけり」&「あたらしき 年になれども 食道楽」（復刻）&「馳走のこころは かはらざりけり」（復刻）",
@@ -3820,13 +3406,7 @@
     71,
     73,
     57
-   ],
-   "agents": [
-    "Wanibuchi Akari",
-    "Kurodate Haruna",
-    "Aikiyo Fuuka"
-   ],
-   "en": "Wanibuchi Akari & Kurodate Haruna & Aikiyo Fuuka"
+   ]
   },
   {
    "name": "「声なき言葉たちの残花」(復刻)&「故なき力添えの賛歌」(復刻)&「偽りなき信仰の甘果」(復刻)",
@@ -3851,12 +3431,7 @@
     106,
     78,
     78
-   ],
-   "agents": [
-    "Kozeki Ui",
-    "Wakaba Hinata"
-   ],
-   "en": "Kozeki Ui & Wakaba Hinata"
+   ]
   },
   {
    "name": "「夢を守りし はるはなの」&「夢を誘ひし しおさいの」&「祭り囃子はしのぶれど」&「いつか花咲く少女の夢」",
@@ -3889,12 +3464,7 @@
     109,
     118,
     95
-   ],
-   "agents": [
-    "Kasuga Tsubaki",
-    "Satohama Umika"
-   ],
-   "en": "Kasuga Tsubaki & Satohama Umika"
+   ]
   },
   {
    "name": "「挑戦は甘い夢の外で！」＆「黒猫は甘い夢の中で」&「ステンドグラスに誘われて」",
@@ -3918,11 +3488,7 @@
     99,
     108,
     92
-   ],
-   "agents": [
-    "Yutori Natsu"
-   ],
-   "en": "Yutori Natsu"
+   ]
   },
   {
    "name": "「Where there's Toki there's victory.」&「Where there's tea party there's hope. 」&「解に導く番狂わせ」",
@@ -3947,13 +3513,7 @@
     39,
     51,
     42
-   ],
-   "agents": [
-    "Asuma Toki",
-    "Kirifuji Nagisa",
-    "Kurosaki Koyuki"
-   ],
-   "en": "Asuma Toki & Kirifuji Nagisa & Kurosaki Koyuki"
+   ]
   },
   {
    "name": "「Who says you can't be sweet」&「Ain't too proud to rely on!」&「夜明けに珈琲を 手の甲に誓いを」",
@@ -3985,12 +3545,7 @@
     55,
     54,
     54
-   ],
-   "agents": [
-    "Ibaragi Yoshimi",
-    "Amau Ako"
-   ],
-   "en": "Ibaragi Yoshimi & Amau Ako"
+   ]
   },
   {
    "name": "「巻いてこMy take on！」&「我が身終ぞ 常ならむ！」&「星ひとつ、23.4°見上げて」&「好きの奥山 添い遂げて」",
@@ -4015,13 +3570,7 @@
     60,
     67,
     65
-   ],
-   "agents": [
-    "Yozakura Kirara",
-    "Isami Kaede",
-    "Oono Tsukuyo"
-   ],
-   "en": "Yozakura Kirara & Isami Kaede & Oono Tsukuyo"
+   ]
   },
   {
    "name": "「カンパニーで飲茶を！」&「ノワールに唄えば」&「未来のどけき梅の園」&「しずこころなく梅咲き誇る！」",
@@ -4046,13 +3595,7 @@
     67,
     72,
     56
-   ],
-   "agents": [
-    "Akeshiro Rumi",
-    "Konoe Mina",
-    "Sunohara Shun"
-   ],
-   "en": "Akeshiro Rumi & Konoe Mina & Sunohara Shun"
+   ]
   },
   {
    "name": "「掃天する複素共役(ソウテンスルメイドインジェミニ)」&「掃海する複素共役(ソウカイスルメイドバイジェミニ)」&「メイド勇者は不思議な世界の夢を見る」&「遅刻ウサギのワイルドカード」",
@@ -4084,13 +3627,7 @@
     92,
     103,
     85
-   ],
-   "agents": [
-    "Saiba Momoi",
-    "Saiba Midori",
-    "The Great Adventure of Alice the Brave!"
-   ],
-   "en": "Saiba Momoi & Saiba Midori & The Great Adventure of Alice the Brave!"
+   ]
   },
   {
    "name": "「希望よ届け、夏風に」、復刻ピックアップ募集「笑顔よ続け、夏の日に」、復刻ピックアップ募集「想いよ開け、夏の夜に」",
@@ -4119,13 +3656,7 @@
     108,
     110,
     80
-   ],
-   "agents": [
-    "Kuromi Serika",
-    "Izayoi Nonomi",
-    "Kosaka Wakamo"
-   ],
-   "en": "Kuromi Serika & Izayoi Nonomi & Kosaka Wakamo"
+   ]
   },
   {
    "name": "「色に出でにけりわが夏は」&「ものや詠もうと心問ふまで」&「過ぐるものとは 知りながら」",
@@ -4153,12 +3684,7 @@
     92,
     68,
     63
-   ],
-   "agents": [
-    "Waraku Chise",
-    "Mizuha Mimori"
-   ],
-   "en": "Waraku Chise & Mizuha Mimori"
+   ]
   },
   {
    "name": "司令室より監視員、スライダーに急行を」&「監視員、了解。ドーナッツアイス食べたらね」",
@@ -4190,12 +3716,7 @@
     110,
     114,
     95
-   ],
-   "agents": [
-    "Ogata Kanna",
-    "Nemugaki Fubuki"
-   ],
-   "en": "Ogata Kanna & Nemugaki Fubuki"
+   ]
   },
   {
    "name": "「緊急浮上 泡影を導べに」&「微速前進 安らぎの浜辺へ」&「急速潜航 活路は水底に」",
@@ -4220,13 +3741,7 @@
     111,
     122,
     121
-   ],
-   "agents": [
-    "Kazekura Moe",
-    "Tsukiyuki Miyako",
-    "Sorai Saki"
-   ],
-   "en": "Kazekura Moe & Tsukiyuki Miyako & Sorai Saki"
+   ]
   },
   {
    "name": "「積み重ねる誓いの翼」&「積み上げる尽力の翼」",
@@ -4249,12 +3764,7 @@
     176,
     135,
     94
-   ],
-   "agents": [
-    "Takanashi Hoshino",
-    "Sorasaki Hina"
-   ],
-   "en": "Takanashi Hoshino & Sorasaki Hina"
+   ]
   },
   {
    "name": "「この場所が永遠の彼方」&「あの場所は約束の最中」&「君は無邪気な夜の希望(復刻)」",
@@ -4279,13 +3789,7 @@
     6,
     9,
     6
-   ],
-   "agents": [
-    "Shiroko Terror",
-    "Takanashi Hoshino",
-    "Misono Mika"
-   ],
-   "en": "Shiroko Terror & Takanashi Hoshino & Misono Mika"
+   ]
   },
   {
    "name": "「花曇りに白波を映して」&「片時雨を白日が覆って」",
@@ -4312,12 +3816,7 @@
     49,
     52,
     17
-   ],
-   "agents": [
-    "Joumae Saori",
-    "Tsuchinaga Hiyori"
-   ],
-   "en": "Joumae Saori & Tsuchinaga Hiyori"
+   ]
   },
   {
    "name": "「ペンは銃より強し！」&「晴れのち失脚、所により大荒れ」&「忠言、耳に突撃」",
@@ -4342,13 +3841,7 @@
     106,
     108,
     103
-   ],
-   "agents": [
-    "Himeki Meru",
-    "Akiizumi Momiji",
-    "Renkawa Cherino"
-   ],
-   "en": "Himeki Meru & Akiizumi Momiji & Renkawa Cherino"
+   ]
   },
   {
    "name": "「工務の道も一歩から」(復刻)&「ステアミルクは湯けむりと共に」(復刻)",
@@ -4373,12 +3866,7 @@
     106,
     106,
     84
-   ],
-   "agents": [
-    "Yasumori Minori",
-    "Mayoi Shigure"
-   ],
-   "en": "Yasumori Minori & Mayoi Shigure"
+   ]
   },
   {
    "name": "「雪の下に咲く二十一日」&「雪の上に立つ三日天下」",
@@ -4410,12 +3898,7 @@
     126,
     145,
     156
-   ],
-   "agents": [
-    "Sashiro Tomoe",
-    "Ikekura Marina"
-   ],
-   "en": "Sashiro Tomoe & Ikekura Marina"
+   ]
   },
   {
    "name": "「灼熱無き隠れ家の燦夏」&「白波凪ぐ安息日の残火」、「色は隠れど 咲きぬるを」& 「こちら RABBIT4、証明をこの手に」",
@@ -4447,13 +3930,7 @@
     176,
     156,
     143
-   ],
-   "agents": [
-    "Kozeki Ui",
-    "Wakaba Hinata",
-    "Natsume Iroha"
-   ],
-   "en": "Kozeki Ui & Wakaba Hinata & Natsume Iroha"
+   ]
   },
   {
    "name": "「問答無用のストレートアップ」&「着替えたらジャックポットを」、「無軌道なハットトリック」＆「昼下がりのロイヤルフラッシュ」",
@@ -4478,13 +3955,7 @@
     99,
     96,
     78
-   ],
-   "agents": [
-    "Mikamo Neru",
-    "Kakudate Karin",
-    "Ichinose Asuna"
-   ],
-   "en": "Mikamo Neru & Kakudate Karin & Ichinose Asuna"
+   ]
   },
   {
    "name": "「黒君は遠き慮り有りて」＆「行は是れ武のカンフー！」、「やがて未来に変わる庇護」＆「年がら年中無我夢チュー！」",
@@ -4517,13 +3988,7 @@
     93,
     87,
     70
-   ],
-   "agents": [
-    "Ryuuge Kisaki",
-    "Kayama Reijo",
-    "Sunohara Shun"
-   ],
-   "en": "Ryuuge Kisaki & Kayama Reijo & Sunohara Shun"
+   ]
   },
   {
    "name": "「ただ四囲は夢幻なりや？」&「正しいは無限なりや！」、「駆け出した向日葵の憧れ」",
@@ -4547,13 +4012,7 @@
     118,
     140,
     124
-   ],
-   "agents": [
-    "Shirasu Azusa",
-    "Shizuyama Mashiro",
-    "Ajitani Hifumi"
-   ],
-   "en": "Shirasu Azusa & Shizuyama Mashiro & Ajitani Hifumi"
+   ]
   },
   {
    "name": "「夢見る乙女よ 大志を抱け！」&「はるは短し 走れよ乙女」&「おもい忍ばせ 進めよ乙女」",
@@ -4578,13 +4037,7 @@
     169,
     112,
     108
-   ],
-   "agents": [
-    "Kadenokouji Yukari",
-    "Fuwa Renge",
-    "Kiryuu Kikyou"
-   ],
-   "en": "Kadenokouji Yukari & Fuwa Renge & Kiryuu Kikyou"
+   ]
   },
   {
    "name": "「ラボニに捧ぐ輝きの詠」」&「オリーブに祈る平和の詩」",
@@ -4616,11 +4069,7 @@
     71,
     71,
     60
-   ],
-   "agents": [
-    "Iochi Mari"
-   ],
-   "en": "Iochi Mari"
+   ]
   },
   {
    "name": "「故無き力添えの賛歌」&「雪代水は廻り行く」",
@@ -4645,12 +4094,7 @@
     178,
     198,
     171
-   ],
-   "agents": [
-    "Joumae Saori",
-    "Wakaba Hinata"
-   ],
-   "en": "Joumae Saori & Wakaba Hinata"
+   ]
   },
   {
    "name": "「海統べる寄り添いの月光」&「夏乱す容赦なき太陽」、「吹き抜ける風の在り処」",
@@ -4675,13 +4119,7 @@
     96,
     93,
     71
-   ],
-   "agents": [
-    "Sorasaki Hina",
-    "Shiromi Iori",
-    "Shiroko Terror"
-   ],
-   "en": "Sorasaki Hina & Shiromi Iori & Shiroko Terror"
+   ]
   },
   {
    "name": "「京極サツキは諦めない」&「元宮チアキは見逃さない」、「我等がために宙は鳴る！」＆「天に仕うはすべて音」",
@@ -4713,13 +4151,7 @@
     84,
     101,
     103
-   ],
-   "agents": [
-    "Kyougoku Satsuki",
-    "Motomiya Chiaki",
-    "Hanuma Makoto"
-   ],
-   "en": "Kyougoku Satsuki & Motomiya Chiaki & Hanuma Makoto"
+   ]
   },
   {
    "name": "「温泉を始めるのなら爆破から！」&「そして正義はいつも隣から！」&「Snipe the target \"L-seven\" !」&「義勇は温泉のように熱く！」",
@@ -4744,12 +4176,7 @@
     184,
     190,
     196
-   ],
-   "agents": [
-    "Kinugawa Kasumi",
-    "Shiromi Iori"
-   ],
-   "en": "Kinugawa Kasumi & Shiromi Iori"
+   ]
   },
   {
    "name": "「晴れ空に響く情熱」&「明け空に説く こころ模様」&「曇り硝子に描く刹那」",
@@ -4774,13 +4201,7 @@
     null,
     null,
     196
-   ],
-   "agents": [
-    "Shiraishi Utaha",
-    "Toyomi Kotori",
-    "Ushio Noa"
-   ],
-   "en": "Shiraishi Utaha & Toyomi Kotori & Ushio Noa"
+   ]
   },
   {
    "name": "「理性と情熱のEquation」&「憧憬と慈愛のDevotion」、「未知と探求のReformation」",
@@ -4804,13 +4225,7 @@
     106,
     107,
     65
-   ],
-   "agents": [
-    "Hayase Yuuka",
-    "Iochi Mari",
-    "Kurodate Haruna"
-   ],
-   "en": "Hayase Yuuka & Iochi Mari & Kurodate Haruna"
+   ]
   },
   {
    "name": "「夜明けに贈る方程式」&「静寂に満ちる回想録」",
@@ -4843,12 +4258,7 @@
     115,
     123,
     105
-   ],
-   "agents": [
-    "Hayase Yuuka",
-    "Ushio Noa"
-   ],
-   "en": "Hayase Yuuka & Ushio Noa"
+   ]
   },
   {
    "name": "「あらたまの 年も事業も かくしこそ」＆「四つ手重ねて たのしきをつめ」、「初春の 音の絆も かくしこそ」＆「千草たばねて しあわせをつめ」",
@@ -4873,13 +4283,7 @@
     119,
     107,
     100
-   ],
-   "agents": [
-    "Rikuhachima Aru",
-    "Asagi Mutsuki",
-    "Onikata Kayoko"
-   ],
-   "en": "Rikuhachima Aru & Asagi Mutsuki & Onikata Kayoko"
+   ]
   },
   {
    "name": "「メイド勇者は不思議な世界の夢を見る」＆「遅刻ウサギのワイルドカード」＆「掃天する複素共役(メイドインジェミニ)」＆「掃海する複素共役(メイドバイジェミニ)」",
@@ -4902,13 +4306,7 @@
     139,
     114,
     15
-   ],
-   "agents": [
-    "The Great Adventure of Alice the Brave!",
-    "Asuma Toki",
-    "Saiba Momoi"
-   ],
-   "en": "The Great Adventure of Alice the Brave! & Asuma Toki & Saiba Momoi"
+   ]
   },
   {
    "name": "「優しく希望は降りしきる」&「気ままな太陽は空の下」",
@@ -4933,12 +4331,7 @@
     29,
     26,
     12
-   ],
-   "agents": [
-    "Yurizono Seia",
-    "Ichinose Asuna"
-   ],
-   "en": "Yurizono Seia & Ichinose Asuna"
+   ]
   },
   {
    "name": "「自由主義者はとく駆けり」＆「合理主義者はかく語れり」、「しどけなく水面揺らす十日」",
@@ -4963,13 +4356,7 @@
     17,
     14,
     10
-   ],
-   "agents": [
-    "Mikamo Neru",
-    "Tsukatsuki Rio",
-    "Urawa Hanako"
-   ],
-   "en": "Mikamo Neru & Tsukatsuki Rio & Urawa Hanako"
+   ]
   },
   {
    "name": "「心躍る予想の可用性」&「涼やかなる夢想の可能性」",
@@ -4996,12 +4383,7 @@
     132,
     137,
     129
-   ],
-   "agents": [
-    "Akeboshi Himari",
-    "Izumimoto Eimi"
-   ],
-   "en": "Akeboshi Himari & Izumimoto Eimi"
+   ]
   },
   {
    "name": "「晴天彩る情熱の色」、「天体より注ぐ情報の光」&「暁光にとける感情の音」",
@@ -5033,13 +4415,7 @@
     126,
     117,
     108
-   ],
-   "agents": [
-    "Konuri Maki",
-    "Omagari Hare",
-    "Otose Kotama"
-   ],
-   "en": "Konuri Maki & Omagari Hare & Otose Kotama"
+   ]
   },
   {
    "name": "「自由な午後にときめきを」&「隠し味は努力と笑顔」",
@@ -5071,12 +4447,7 @@
     140,
     156,
     147
-   ],
-   "agents": [
-    "Himuro Sena",
-    "Ushimaki Juri"
-   ],
-   "en": "Himuro Sena & Ushimaki Juri"
+   ]
   },
   {
    "name": "「雪夜に贈るぬくもりのハレルヤ！」&「聖夜に響く慈愛のキャロル」",
@@ -5101,12 +4472,7 @@
     null,
     null,
     null
-   ],
-   "agents": [
-    "Asagao Hanae",
-    "Sumi Serina"
-   ],
-   "en": "Asagao Hanae & Sumi Serina"
+   ]
   },
   {
    "name": "「今年こそ 煌めく美食に 舌鼓！」、「あたらしき　年になれども　食道楽」、「馳走のこころは　かはらざりけり」、「幾重のかをり 早たちにけり」",
@@ -5131,13 +4497,7 @@
     118,
     116,
     111
-   ],
-   "agents": [
-    "Shishidou Izumi",
-    "Kurodate Haruna",
-    "Aikiyo Fuuka"
-   ],
-   "en": "Shishidou Izumi & Kurodate Haruna & Aikiyo Fuuka"
+   ]
   },
   {
    "name": "「筋肉１番努力は２番」＆「背負いし４番が夢を打つ」",
@@ -5169,12 +4529,7 @@
     169,
     186,
     191
-   ],
-   "agents": [
-    "Nomasa Rei",
-    "Otohana Sumire"
-   ],
-   "en": "Nomasa Rei & Otohana Sumire"
+   ]
   },
   {
    "name": "「密やかに花咲く心」、「悪党円舞曲(アウトローワルツァー)」&「美しく明けきメタル」",
@@ -5199,13 +4554,7 @@
     102,
     118,
     106
-   ],
-   "agents": [
-    "Joumae Saori",
-    "Rikuhachima Aru",
-    "Onikata Kayoko"
-   ],
-   "en": "Joumae Saori & Rikuhachima Aru & Onikata Kayoko"
+   ]
   },
   {
    "name": "「カンパニーで飲茶を！」&「ノワールに唄えば」",
@@ -5229,12 +4578,7 @@
     null,
     null,
     115
-   ],
-   "agents": [
-    "Akeshiro Rumi",
-    "Konoe Mina"
-   ],
-   "en": "Akeshiro Rumi & Konoe Mina"
+   ]
   },
   {
    "name": "「切符はいけん、きまぐれジュンキュー」&「定刻ドリフト、いたずらトッキュー！」",
@@ -5267,12 +4611,7 @@
     72,
     63,
     52
-   ],
-   "agents": [
-    "Tachibana Hikari",
-    "Tachibana Nozomi"
-   ],
-   "en": "Tachibana Hikari & Tachibana Nozomi"
+   ]
   },
   {
    "name": "「雪代水は廻り行く」＆「徒桜を拾い集めて」＆「木枯らしに目を引かれ」",
@@ -5297,13 +4636,7 @@
     151,
     161,
     154
-   ],
-   "agents": [
-    "Joumae Saori",
-    "Hakari Atsuko",
-    "Tsuchinaga Hiyori"
-   ],
-   "en": "Joumae Saori & Hakari Atsuko & Tsuchinaga Hiyori"
+   ]
   },
   {
    "name": "「you me を繋ぎし さかずきの」、「夢を守りし はるはなの」＆「夢を誘ひし しおさいの」",
@@ -5328,13 +4661,7 @@
     156,
     111,
     110
-   ],
-   "agents": [
-    "Asahina Pina",
-    "Kasuga Tsubaki",
-    "Satohama Umika"
-   ],
-   "en": "Asahina Pina & Kasuga Tsubaki & Satohama Umika"
+   ]
   },
   {
    "name": "「乙女よ 忘れたまふことなかれ」＆「あさき夢みし 隔てなく」",
@@ -5366,12 +4693,7 @@
     108,
     132,
     141
-   ],
-   "agents": [
-    "Goryou Nagusa",
-    "Amachi Niya"
-   ],
-   "en": "Goryou Nagusa & Amachi Niya"
+   ]
   },
   {
    "name": "「I need to be in romantic」、「Who says you can't be sweet」＆「Ain't too proud to rely on!」、「おもい忍ばせ　進めよ乙女」",
@@ -5403,12 +4725,7 @@
     182,
     161,
     148
-   ],
-   "agents": [
-    "Yutori Natsu",
-    "Ibaragi Yoshimi"
-   ],
-   "en": "Yutori Natsu & Ibaragi Yoshimi"
+   ]
   },
   {
    "name": "「色に出でにけりわが夏は」＆「ものや詠もうと心問ふまで」、「夢見る乙女よ大志を抱け！」＆「はるは短し走れよ乙女」",
@@ -5433,12 +4750,7 @@
     108,
     114,
     113
-   ],
-   "agents": [
-    "Waraku Chise",
-    "Kadenokouji Yukari"
-   ],
-   "en": "Waraku Chise & Kadenokouji Yukari"
+   ]
   },
   {
    "name": "「あお海の 百すじの波 みだれ花！」＆「夏おもひ 繚れおもい 乱るるは」",
@@ -5470,13 +4782,7 @@
     159,
     173,
     160
-   ],
-   "agents": [
-    "Kadenokouji Yukari",
-    "Kiryuu Kikyou",
-    "Fuwa Renge"
-   ],
-   "en": "Kadenokouji Yukari & Kiryuu Kikyou & Fuwa Renge"
+   ]
   },
   {
    "name": "「微速前進 安らぎの浜辺へ」＆「急速潜航 活路は水底に」＆「緊急浮上 泡影を導べに」",
@@ -5507,13 +4813,7 @@
     199,
     41,
     34
-   ],
-   "agents": [
-    "Tsukiyuki Miyako",
-    "Sorai Saki",
-    "Kazekura Moe"
-   ],
-   "en": "Tsukiyuki Miyako & Sorai Saki & Kazekura Moe"
+   ]
   },
   {
    "name": "「ただ思惟は夏夜の先にただありて」&「正しいは波間の煌めきに隠されて」",
@@ -5539,12 +4839,7 @@
     29,
     32,
     17
-   ],
-   "agents": [
-    "Yurizono Seia",
-    "Hanekawa Hasumi"
-   ],
-   "en": "Yurizono Seia & Hanekawa Hasumi"
+   ]
   },
   {
    "name": "「真夏の波のお気に召すまま」＆「短き夜の星の夢」、「優しい空の奏で方」",
@@ -5569,13 +4864,7 @@
     13,
     17,
     15
-   ],
-   "agents": [
-    "Misono Mika",
-    "Kirifuji Nagisa",
-    "Sorasaki Hina"
-   ],
-   "en": "Misono Mika & Kirifuji Nagisa & Sorasaki Hina"
+   ]
   },
   {
    "name": "「司令室より監視員、スライダーに急行を」&「監視員、了解。ドーナッツアイス食べたらね」",
@@ -5600,12 +4889,7 @@
     121,
     106,
     107
-   ],
-   "agents": [
-    "Ogata Kanna",
-    "Nemugaki Fubuki"
-   ],
-   "en": "Ogata Kanna & Nemugaki Fubuki"
+   ]
   },
   {
    "name": "「Where there's Toki there's victory.」＆「Where there's tea party there's hope. 」、「正義は珈琲のように甘く」＆「元宮チアキは見逃さない」",
@@ -5630,13 +4914,7 @@
     72,
     55,
     49
-   ],
-   "agents": [
-    "Asuma Toki",
-    "Kirifuji Nagisa",
-    "Ogata Kanna"
-   ],
-   "en": "Asuma Toki & Kirifuji Nagisa & Ogata Kanna"
+   ]
   },
   {
    "name": "「星よ、見て！夢に奔るは魔導の筆！」＆「影よ、聴け 幻纏うは数多の声」",
@@ -5668,12 +4946,7 @@
     118,
     114,
     111
-   ],
-   "agents": [
-    "Shirao Eri",
-    "Itagaki Kanoe"
-   ],
-   "en": "Shirao Eri & Itagaki Kanoe"
+   ]
   },
   {
    "name": "「夏霞が陽炎を隠して」、「花曇りに白波を映して」＆「片時雨を白日が覆って」、「願いよ響け、夏空に」＆「笑顔よ続け、夏の日に」",
@@ -5705,13 +4978,7 @@
     172,
     183,
     155
-   ],
-   "agents": [
-    "Imashino Misaki",
-    "Joumae Saori",
-    "Tsuchinaga Hiyori"
-   ],
-   "en": "Imashino Misaki & Joumae Saori & Tsuchinaga Hiyori"
+   ]
   },
   {
    "name": "「問答無用のストレートアップ」&「着替えたらジャックポットを」、「昼下がりのロイヤルフラッシュ」",
@@ -5736,13 +5003,7 @@
     158,
     163,
     157
-   ],
-   "agents": [
-    "Mikamo Neru",
-    "Kakudate Karin",
-    "Murokasa Akane"
-   ],
-   "en": "Mikamo Neru & Kakudate Karin & Murokasa Akane"
+   ]
   },
   {
    "name": "「Amiable,Advisor, Analytica!」＆「Collect, Convey, Conclude★★★」",
@@ -5774,13 +5035,7 @@
     158,
     162,
     126
-   ],
-   "agents": [
-    "Sakurai Miyo",
-    "Wakasa Fuyu",
-    "Kyougoku Satsuki"
-   ],
-   "en": "Sakurai Miyo & Wakasa Fuyu & Kyougoku Satsuki"
+   ]
   },
   {
    "name": "「雪夜は星月のしずくに酔って」＆「こちらRABBIT4、証明をこの手に」",
@@ -5805,13 +5060,7 @@
     null,
     null,
     null
-   ],
-   "agents": [
-    "Usuba Ritsu",
-    "Mayoi Shigure",
-    "Kasumizawa Miyu"
-   ],
-   "en": "Usuba Ritsu & Mayoi Shigure & Kasumizawa Miyu"
+   ]
   },
   {
    "name": "「海統べる寄り添いの月光」&「夏乱す容赦なき太陽」、「過ぐるものとは 知りながら」",
@@ -5836,13 +5085,7 @@
     147,
     172,
     171
-   ],
-   "agents": [
-    "Sorasaki Hina",
-    "Shiromi Iori",
-    "Mizuha Mimori"
-   ],
-   "en": "Sorasaki Hina & Shiromi Iori & Mizuha Mimori"
+   ]
   },
   {
    "name": "「正義の味方の、あなたを追って。」&「あなたの元気が、決意をくれた。」",
@@ -5874,11 +5117,7 @@
     100,
     109,
     98
-   ],
-   "agents": [
-    "Morizuki Suzumi"
-   ],
-   "en": "Morizuki Suzumi"
+   ]
   },
   {
    "name": "「雪の下に咲く二十一日」＆「雪の上に立つ三日天下」＆「こちらRABBIT1、理想をこの眼に」＆「こちらRABBIT2、規範はこの脚に」＆「こちらRABBIT3、計算はこの胸に」",
@@ -5903,13 +5142,7 @@
     199,
     null,
     null
-   ],
-   "agents": [
-    "Sashiro Tomoe",
-    "Ikekura Marina",
-    "Tsukiyuki Miyako"
-   ],
-   "en": "Sashiro Tomoe & Ikekura Marina & Tsukiyuki Miyako"
+   ]
   },
   {
    "name": "「遺して巣立つその日まで」、「灼熱無き隠れ家の燦夏」＆「白波凪ぐ安息日の残火」、「挑戦は甘い夢の外で！」＆「ドレスコードは鋼の白衣」",
@@ -5934,13 +5167,7 @@
     115,
     125,
     109
-   ],
-   "agents": [
-    "Kakehashi Subaru",
-    "Kozeki Ui",
-    "Wakaba Hinata"
-   ],
-   "en": "Kakehashi Subaru & Kozeki Ui & Wakaba Hinata"
+   ]
   },
   {
    "name": "「批評は拳銃よりも恐ろしい？」＆「紙は銃弾にだって耐えられる！」",
@@ -5972,12 +5199,7 @@
     135,
     126,
     143
-   ],
-   "agents": [
-    "Miyoshi Takane",
-    "Aramaki Yakumo"
-   ],
-   "en": "Miyoshi Takane & Aramaki Yakumo"
+   ]
   },
   {
    "name": "「ラボニに捧ぐ輝きの詠」＆「オリーブに祈る平和の詩」、「好きの奥山 添い遂げて」＆「黒猫は甘い夢の中で」",
@@ -6009,12 +5231,7 @@
     164,
     165,
     156
-   ],
-   "agents": [
-    "Iochi Mari",
-    "Kuwakami Kaho"
-   ],
-   "en": "Iochi Mari & Kuwakami Kaho"
+   ]
   },
   {
    "name": "「ペンは銃より強し！」＆「工務の道も一歩から」＆「ステアミルクは湯けむりと共に」＆「希望よ届け、夏風に」",
@@ -6039,13 +5256,7 @@
     143,
     149,
     147
-   ],
-   "agents": [
-    "Himeki Meru",
-    "Akiizumi Momiji",
-    "Mayoi Shigure"
-   ],
-   "en": "Himeki Meru & Akiizumi Momiji & Mayoi Shigure"
+   ]
   },
   {
    "name": "「表舞台に、星ひとつ」&「ヒトツボシ在る、舞台裏」",
@@ -6077,12 +5288,7 @@
     125,
     144,
     115
-   ],
-   "agents": [
-    "Oono Tsukuyo",
-    "Chidori Michiru"
-   ],
-   "en": "Oono Tsukuyo & Chidori Michiru"
+   ]
   },
   {
    "name": "「黒君は遠き慮り有りて」＆「行は是れ武のカンフー！」、「理性と情熱のEquation」＆「憧憬と慈愛のDevotion」",
@@ -6113,13 +5319,7 @@
     154,
     33,
     20
-   ],
-   "agents": [
-    "Ryuuge Kisaki",
-    "Kayama Reijo",
-    "Hayase Yuuka"
-   ],
-   "en": "Ryuuge Kisaki & Kayama Reijo & Hayase Yuuka"
+   ]
   },
   {
    "name": "「世界の合理を統べるもの」＆「世界の真理に触れるもの」",
@@ -6146,12 +5346,7 @@
     51,
     57,
     32
-   ],
-   "agents": [
-    "Tsukatsuki Rio",
-    "Akeboshi Himari"
-   ],
-   "en": "Tsukatsuki Rio & Akeboshi Himari"
+   ]
   },
   {
    "name": "「夢を継ぐもの」＆「機械たちは夢の終わりに星を見る」、「あの場所は約束の最中」＆「この場所が永遠の彼方」",
@@ -6176,13 +5371,7 @@
     21,
     21,
     18
-   ],
-   "agents": [
-    "Tendou Kei",
-    "The Great Adventure of Alice the Brave!",
-    "Takanashi Hoshino"
-   ],
-   "en": "Tendou Kei & The Great Adventure of Alice the Brave! & Takanashi Hoshino"
+   ]
   },
   {
    "name": "「そして正義はいつも隣から！」＆「温泉を始めるのなら爆破から！」＆「偽りなき信仰の甘果」＆「心躍る予想の可用性」",
@@ -6207,11 +5396,7 @@
     125,
     134,
     114
-   ],
-   "agents": [
-    "Kinugawa Kasumi"
-   ],
-   "en": "Kinugawa Kasumi"
+   ]
   },
   {
    "name": "「明日を謳う友情のRPG」＆「想い惹かれる断想の不可逆性」",
@@ -6242,12 +5427,7 @@
     131,
     135,
     126
-   ],
-   "agents": [
-    "Hanaoka Yuzu",
-    "Izumimoto Eimi"
-   ],
-   "en": "Hanaoka Yuzu & Izumimoto Eimi"
+   ]
   },
   {
    "name": "「掃天する複素共役(メイドインジェミニ)」＆「掃海する複素共役(メイドバイジェミニ)」＆「メイド勇者は不思議な世界の夢を見る」＆「初春の 音の絆も かくしこそ」",
@@ -6272,13 +5452,7 @@
     166,
     173,
     165
-   ],
-   "agents": [
-    "Saiba Momoi",
-    "Saiba Midori",
-    "The Great Adventure of Alice the Brave!"
-   ],
-   "en": "Saiba Momoi & Saiba Midori & The Great Adventure of Alice the Brave!"
+   ]
   },
   {
    "name": "「月満ちる夜の合言葉」、「夜明けに贈る方程式」&「静寂に満ちる回想録」、「あたらしき 年になれども 食道楽」&「馳走のこころは かはらざりけり」",
@@ -6310,13 +5484,7 @@
     null,
     null,
     178
-   ],
-   "agents": [
-    "Kurosaki Koyuki",
-    "Hayase Yuuka",
-    "Ushio Noa"
-   ],
-   "en": "Kurosaki Koyuki & Hayase Yuuka & Ushio Noa"
+   ]
   },
   {
    "name": "「書類は踊る、されど進まず」＆「生地よ、踊れ！裁ち縫うは感性の針！」",
@@ -6348,12 +5516,7 @@
     null,
     null,
     173
-   ],
-   "agents": [
-    "Shima Konoka",
-    "Kinui Rena"
-   ],
-   "en": "Shima Konoka & Kinui Rena"
+   ]
   },
   {
    "name": "「放課後はお掃除をともに」、「優しく希望は降りしきる」＆「気ままな太陽は空の下」、「遅刻ウサギのワイルドカード」",
@@ -6385,13 +5548,7 @@
     null,
     null,
     null
-   ],
-   "agents": [
-    "Murokasa Akane",
-    "Yurizono Seia",
-    "Ichinose Asuna"
-   ],
-   "en": "Murokasa Akane & Yurizono Seia & Ichinose Asuna"
+   ]
   },
   {
    "name": "「天体より注ぐ情報の光」＆「暁光にとける感情の音」＆「晴天彩る情熱の色」＆「逃げ水を夢に見て」",
@@ -6415,13 +5572,7 @@
     null,
     null,
     null
-   ],
-   "agents": [
-    "Omagari Hare",
-    "Otose Kotama",
-    "Konuri Maki"
-   ],
-   "en": "Omagari Hare & Otose Kotama & Konuri Maki"
+   ]
   },
   {
    "name": "「こちらFOX2、真心はこの胸に」＆「こちらFOX3、経験はこの脚に」",
@@ -6454,12 +5605,7 @@
     156,
     145,
     119
-   ],
-   "agents": [
-    "Yoshino Niko",
-    "Takakura Kurumi"
-   ],
-   "en": "Yoshino Niko & Takakura Kurumi"
+   ]
   },
   {
    "name": "「筋肉１番努力は２番」＆「背負いし４番が夢を打つ」＆「幾重のかをり 早たちにけり」＆「今年こそ 煌めく美食に 舌鼓！」＆「千草たばねて しあわせをつめ」",
@@ -6491,13 +5637,7 @@
     null,
     null,
     null
-   ],
-   "agents": [
-    "Otohana Sumire",
-    "Nomasa Rei",
-    "Wanibuchi Akari"
-   ],
-   "en": "Otohana Sumire & Nomasa Rei & Wanibuchi Akari"
+   ]
   },
   {
    "name": "「やってこYour take on！」、「巻いてこMy take on！」&「夢を守りし はるはなの」&「夢を誘ひし しおさいの」&「you me を繋ぎし さかずきの」",
@@ -6522,13 +5662,7 @@
     181,
     198,
     167
-   ],
-   "agents": [
-    "Hatami Erika",
-    "Yozakura Kirara",
-    "Kasuga Tsubaki"
-   ],
-   "en": "Hatami Erika & Yozakura Kirara & Kasuga Tsubaki"
+   ]
   },
   {
    "name": "「いたずらクイーンの物語」＆「心どぎまぎ 暴走ポルカ」、「悪党円舞曲(アウトローワルツァー)」＆「美しく明けきメタル」＆「密やかに花咲く心」",
@@ -6560,13 +5694,7 @@
     164,
     191,
     156
-   ],
-   "agents": [
-    "Asagi Mutsuki",
-    "Igusa Haruka",
-    "Rikuhachima Aru"
-   ],
-   "en": "Asagi Mutsuki & Igusa Haruka & Rikuhachima Aru"
+   ]
   },
   {
    "name": "「夏恋し 百の思い出 花きらり」、「あお海の 百すじの波 みだれ花！」＆「夏おもひ 繚れおもい 乱るるは」",
@@ -6591,13 +5719,7 @@
     136,
     157,
     150
-   ],
-   "agents": [
-    "Goryou Nagusa",
-    "Kadenokouji Yukari",
-    "Kiryuu Kikyou"
-   ],
-   "en": "Goryou Nagusa & Kadenokouji Yukari & Kiryuu Kikyou"
+   ]
   }
  ]
 }

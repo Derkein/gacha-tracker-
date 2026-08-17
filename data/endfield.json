@@ -4,13 +4,13 @@
  "jp": "アークナイツ：エンドフィールド",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E3%82%A2%E3%83%BC%E3%82%AF%E3%83%8A%E3%82%A4%E3%83%84%EF%BC%9A%E3%82%A8%E3%83%B3%E3%83%89%E3%83%95%E3%82%A3%E3%83%BC%E3%83%AB%E3%83%89",
- "updated": "2026-08-17T00:58:41Z",
+ "updated": "2026-08-17T15:58:59Z",
  "count": 11,
  "now": {
   "ios": null,
   "android": 50,
-  "month": 163,
-  "next_add": 5654804,
+  "month": 164,
+  "next_add": 5081299,
   "ym": "2026/08",
   "ranks": {
    "prev": [
@@ -82,7 +82,7 @@
   }
  },
  "monthly": {
-  "2026-08": 1.86,
+  "2026-08": 1.91,
   "2026-07": 3.61,
   "2026-06": 2.86,
   "2026-05": 2.36,
@@ -125,10 +125,6 @@
     31,
     32
    ],
-   "agents": [
-    "Laevatain"
-   ],
-   "en": "Laevatain",
    "icons": [
     "icons/faces/endfield/2026-01-22-216151.webp"
    ],
@@ -168,10 +164,6 @@
     91,
     89
    ],
-   "agents": [
-    "Gilberta"
-   ],
-   "en": "Gilberta",
    "icons": [
     "icons/faces/endfield/2026-02-07-d9f264.webp"
    ],
@@ -209,10 +201,6 @@
     113,
     110
    ],
-   "agents": [
-    "Yvonne"
-   ],
-   "en": "Yvonne",
    "icons": [
     "icons/faces/endfield/2026-02-24-c0eeb3.webp"
    ],
@@ -252,10 +240,6 @@
     140,
     139
    ],
-   "agents": [
-    "Tantan"
-   ],
-   "en": "Tantan",
    "icons": [
     "icons/faces/endfield/2026-03-12-9a1839.webp"
    ],
@@ -296,10 +280,6 @@
     149,
     143
    ],
-   "agents": [
-    "Rossi"
-   ],
-   "en": "Rossi",
    "icons": [
     "icons/faces/endfield/2026-03-29-7c2a05.webp"
    ],
@@ -357,10 +337,6 @@
     166,
     177
    ],
-   "agents": [
-    "Zhuang Fangyi"
-   ],
-   "en": "Zhuang Fangyi",
    "icons": [
     "icons/faces/endfield/2026-04-17-98e829.webp"
    ],
@@ -404,7 +380,6 @@
     null,
     null
    ],
-   "agents": [],
    "icons": [
     "icons/faces/endfield/2026-05-14-a4d3df.webp"
    ],
@@ -448,10 +423,6 @@
     null,
     null
    ],
-   "agents": [
-    "Mi Fu"
-   ],
-   "en": "Mi Fu",
    "icons": [
     "icons/faces/endfield/2026-06-05-4407d0.webp"
    ],
@@ -493,10 +464,6 @@
     null,
     null
    ],
-   "agents": [
-    "Camille"
-   ],
-   "en": "Camille",
    "icons": [
     "icons/faces/endfield/2026-06-26-4d7753.webp"
    ],
@@ -543,10 +510,6 @@
     null,
     null
    ],
-   "agents": [
-    "Arcane"
-   ],
-   "en": "Arcane",
    "icons": [
     "icons/faces/endfield/2026-07-16-992be0.webp"
    ],
@@ -556,7 +519,7 @@
    "name": "リーノ",
    "start": "2026-08-09",
    "end": "2026-09-02",
-   "rev": 1.28,
+   "rev": 1.35,
    "yrank": 10,
    "ytot": 11,
    "cum": 10,
@@ -575,12 +538,9 @@
     154,
     null,
     null,
+    null,
     null
    ],
-   "agents": [
-    "Liino"
-   ],
-   "en": "Liino",
    "icons": [
     "icons/faces/endfield/2026-08-09-51715d.webp"
    ],

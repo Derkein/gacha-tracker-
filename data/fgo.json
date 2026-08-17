@@ -4,13 +4,13 @@
  "jp": "Fate/Grand Order",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/Fate/Grand%20Order",
- "updated": "2026-08-17T00:59:37Z",
+ "updated": "2026-08-17T15:59:47Z",
  "count": 486,
  "now": {
-  "ios": 1,
+  "ios": 7,
   "android": 1,
   "month": 2,
-  "next_add": 490000000,
+  "next_add": 98649206,
   "ym": "2026/08",
   "ranks": {
    "prev": [
@@ -64,7 +64,7 @@
     1,
     1,
     1,
-    null,
+    7,
     null,
     null,
     null,
@@ -82,7 +82,7 @@
   }
  },
  "monthly": {
-  "2026-08": 48.74,
+  "2026-08": 49.76,
   "2026-07": 7.58,
   "2026-06": 7.8,
   "2026-05": 10.13,
@@ -141,8 +141,7 @@
     1,
     1,
     1
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "正月福袋2018",
@@ -178,8 +177,7 @@
     1,
     1,
     1
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "復刻贋作イベント",
@@ -211,12 +209,7 @@
     3,
     3,
     3
-   ],
-   "agents": [
-    "Jeanne d'Arc Alter Santa Lily",
-    "Leonardo Da Vinci"
-   ],
-   "en": "Jeanne d'Arc Alter Santa Lily & Leonardo Da Vinci"
+   ]
   },
   {
    "name": "節分2018",
@@ -248,13 +241,7 @@
     3,
     3,
     4
-   ],
-   "agents": [
-    "Sakata Kintoki",
-    "Minamoto no Raikō",
-    "Shuten Dōji"
-   ],
-   "en": "Sakata Kintoki & Minamoto no Raikō & Shuten Dōji"
+   ]
   },
   {
    "name": "Fate/EXTRA Last Encoreアニメ放送記念",
@@ -286,13 +273,7 @@
     1,
     1,
     1
-   ],
-   "agents": [
-    "Francis Drake",
-    "Nero Claudius",
-    "Gawain"
-   ],
-   "en": "Francis Drake & Nero Claudius & Gawain"
+   ]
   },
   {
    "name": "バレンタイン2018",
@@ -325,8 +306,7 @@
     1,
     3,
     4
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "復刻バレンタイン2017",
@@ -358,8 +338,7 @@
     1,
     1,
     2
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "復刻空の境界",
@@ -391,13 +370,7 @@
     3,
     3,
     4
-   ],
-   "agents": [
-    "Moon Rabbit",
-    "Asagami Fujino",
-    "Elizabeth of the End"
-   ],
-   "en": "Moon Rabbit & Asagami Fujino & Elizabeth of the End"
+   ]
   },
   {
    "name": "FGO THE STAGE Blu-ray&DVD発売記念",
@@ -429,13 +402,7 @@
     4,
     2,
     2
-   ],
-   "agents": [
-    "Artoria Caster",
-    "Mordred",
-    "Lancelot"
-   ],
-   "en": "Artoria Caster & Mordred & Lancelot"
+   ]
   },
   {
    "name": "冬祭り2017~18",
@@ -467,12 +434,7 @@
     4,
     2,
     2
-   ],
-   "agents": [
-    "Ozymandias",
-    "Cleopatra"
-   ],
-   "en": "Ozymandias & Cleopatra"
+   ]
   },
   {
    "name": "1200万DL記念",
@@ -504,13 +466,7 @@
     4,
     4,
     2
-   ],
-   "agents": [
-    "Sesshōin Kiara",
-    "Passionlip",
-    "Suzuka Gozen"
-   ],
-   "en": "Sesshōin Kiara & Passionlip & Suzuka Gozen"
+   ]
   },
   {
    "name": "CBC2018",
@@ -542,8 +498,7 @@
     1,
     3,
     3
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "復刻 セイバーウォーズ ～リリィのコスモ武者修行～",
@@ -575,13 +530,7 @@
     5,
     9,
     13
-   ],
-   "agents": [
-    "Mysterious Heroine X",
-    "Artoria Caster",
-    "Altera"
-   ],
-   "en": "Mysterious Heroine X & Artoria Caster & Altera"
+   ]
   },
   {
    "name": "クラス別召喚",
@@ -613,8 +562,7 @@
     2,
     2,
     2
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "アナスタシア第1弾",
@@ -646,12 +594,7 @@
     3,
     4,
     3
-   ],
-   "agents": [
-    "Anastasia",
-    "Headlong Rush Chocolate"
-   ],
-   "en": "Anastasia & Headlong Rush Chocolate"
+   ]
   },
   {
    "name": "アナスタシア第2弾",
@@ -683,8 +626,7 @@
     2,
     4,
     4
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "復刻 星の三蔵ちゃん、天竺に行く",
@@ -713,12 +655,7 @@
     1,
     2,
     5
-   ],
-   "agents": [
-    "The Three Great Heroes",
-    "Li Shuwen"
-   ],
-   "en": "The Three Great Heroes & Li Shuwen"
+   ]
   },
   {
    "name": "アポコラボ直前",
@@ -750,8 +687,7 @@
     2,
     1,
     1
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "アポクリファコラボ",
@@ -783,8 +719,7 @@
     4,
     7,
     1
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "虚月館殺人事件",
@@ -816,13 +751,7 @@
     8,
     8,
     1
-   ],
-   "agents": [
-    "Sherlock Holmes",
-    "Lancelot",
-    "Fionn mac Cumhaill"
-   ],
-   "en": "Sherlock Holmes & Lancelot & Fionn mac Cumhaill"
+   ]
   },
   {
    "name": "復刻明治維新第1弾",
@@ -854,13 +783,7 @@
     4,
     9,
     2
-   ],
-   "agents": [
-    "Hijikata Toshizō",
-    "EMIYA",
-    "Direct Current-Style Grateful Cookies"
-   ],
-   "en": "Hijikata Toshizō & EMIYA & Direct Current-Style Grateful Cookies"
+   ]
   },
   {
    "name": "復刻明治維新第2弾",
@@ -892,11 +815,7 @@
     4,
     5,
     4
-   ],
-   "agents": [
-    "Okita Sōji"
-   ],
-   "en": "Okita Sōji"
+   ]
   },
   {
    "name": "1300万DL記念",
@@ -928,8 +847,7 @@
     4,
     3,
     1
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "帝都聖杯奇譚",
@@ -961,12 +879,7 @@
     2,
     2,
     2
-   ],
-   "agents": [
-    "EMIYA",
-    "Li Shuwen"
-   ],
-   "en": "EMIYA & Li Shuwen"
+   ]
   },
   {
    "name": "復刻水着2017第1弾",
@@ -1000,8 +913,7 @@
     3,
     1,
     2
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "復刻水着2017第2弾",
@@ -1028,11 +940,7 @@
     3,
     1,
     2
-   ],
-   "agents": [
-    "Cool-Mint Chocolate Bullet"
-   ],
-   "en": "Cool-Mint Chocolate Bullet"
+   ]
   },
   {
    "name": "復刻水着2017第3弾",
@@ -1057,12 +965,7 @@
     3,
     1,
     2
-   ],
-   "agents": [
-    "Queen Medb",
-    "Scheherazade"
-   ],
-   "en": "Queen Medb & Scheherazade"
+   ]
   },
   {
    "name": "ゲッテル開幕直前",
@@ -1094,11 +997,7 @@
     1,
     2,
     2
-   ],
-   "agents": [
-    "Napoléon"
-   ],
-   "en": "Napoléon"
+   ]
   },
   {
    "name": "ゲッテルデメルング",
@@ -1130,12 +1029,7 @@
     2,
     1,
     1
-   ],
-   "agents": [
-    "Sigurd",
-    "Brynhildr"
-   ],
-   "en": "Sigurd & Brynhildr"
+   ]
   },
   {
    "name": "3周年福袋",
@@ -1167,8 +1061,7 @@
     1,
     1,
     1
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "3周年記念",
@@ -1200,13 +1093,7 @@
     1,
     1,
     1
-   ],
-   "agents": [
-    "Scáthach-Skaði",
-    "Artoria Caster",
-    "Jeanne d'Arc"
-   ],
-   "en": "Scáthach-Skaði & Artoria Caster & Jeanne d'Arc"
+   ]
   },
   {
    "name": "水着2018第1弾",
@@ -1244,8 +1131,7 @@
     3,
     null,
     1
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "水着2018第2弾",
@@ -1283,8 +1169,7 @@
     3,
     null,
     1
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "水着2018第3弾",
@@ -1315,8 +1200,7 @@
     3,
     null,
     1
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "FGOメモリーズ",
@@ -1348,11 +1232,7 @@
     1,
     2,
     7
-   ],
-   "agents": [
-    "Leonardo Da Vinci"
-   ],
-   "en": "Leonardo Da Vinci"
+   ]
   },
   {
    "name": "1400万DL記念",
@@ -1384,11 +1264,7 @@
     2,
     3,
     4
-   ],
-   "agents": [
-    "Aqua Marie"
-   ],
-   "en": "Aqua Marie"
+   ]
   },
   {
    "name": "復刻 Fate/Accel Zero Order",
@@ -1420,12 +1296,7 @@
     3,
     3,
     3
-   ],
-   "agents": [
-    "Iskandar",
-    "Artoria Caster"
-   ],
-   "en": "Iskandar & Artoria Caster"
+   ]
   },
   {
    "name": "京まふ2018",
@@ -1457,8 +1328,7 @@
     1,
     1,
     2
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "バトル･イン･ニューヨーク 2018",
@@ -1492,12 +1362,7 @@
     8,
     6,
     5
-   ],
-   "agents": [
-    "Gilgamesh",
-    "Queen of Sheba"
-   ],
-   "en": "Gilgamesh & Queen of Sheba"
+   ]
   },
   {
    "name": "復刻ハロウィン2017",
@@ -1529,13 +1394,7 @@
     28,
     26,
     3
-   ],
-   "agents": [
-    "Osakabehime",
-    "Elizabeth of the End",
-    "Carmilla"
-   ],
-   "en": "Osakabehime & Elizabeth of the End & Carmilla"
+   ]
   },
   {
    "name": "幕間第7弾",
@@ -1567,12 +1426,7 @@
     1,
     1,
     1
-   ],
-   "agents": [
-    "Queen Medb",
-    "Katō Danzō"
-   ],
-   "en": "Queen Medb & Katō Danzō"
+   ]
   },
   {
    "name": "ハロウィン2018",
@@ -1604,13 +1458,7 @@
     11,
     10,
     10
-   ],
-   "agents": [
-    "Sitonai",
-    "Mochizuki Chiyome",
-    "Ibaraki Dōji"
-   ],
-   "en": "Sitonai & Mochizuki Chiyome & Ibaraki Dōji"
+   ]
   },
   {
    "name": "1500万DL記念",
@@ -1642,13 +1490,7 @@
     2,
     2,
     3
-   ],
-   "agents": [
-    "Abigail Williams",
-    "Servant List",
-    "Circe"
-   ],
-   "en": "Abigail Williams & Servant List & Circe"
+   ]
   },
   {
    "name": "復刻クリスマス2017",
@@ -1680,13 +1522,7 @@
     11,
     11,
     7
-   ],
-   "agents": [
-    "Space Ereshkigal",
-    "Enkidu",
-    "Altera"
-   ],
-   "en": "Space Ereshkigal & Enkidu & Altera"
+   ]
   },
   {
    "name": "シンピックアップ1",
@@ -1718,13 +1554,7 @@
     1,
     1,
     1
-   ],
-   "agents": [
-    "Xiang Yu's Sword",
-    "Lanling Wang",
-    "Qin Liangyu"
-   ],
-   "en": "Xiang Yu's Sword & Lanling Wang & Qin Liangyu"
+   ]
   },
   {
    "name": "シンピックアップ2",
@@ -1756,13 +1586,7 @@
     1,
     2,
     3
-   ],
-   "agents": [
-    "Shi Huang Di",
-    "Up-to-Date Gifted Confectionery",
-    "Red Hare"
-   ],
-   "en": "Shi Huang Di & Up-to-Date Gifted Confectionery & Red Hare"
+   ]
   },
   {
    "name": "クリスマス2018",
@@ -1793,13 +1617,7 @@
     1,
     1,
     2
-   ],
-   "agents": [
-    "Bradamante",
-    "Quetzalcoatl",
-    "Martha"
-   ],
-   "en": "Bradamante & Quetzalcoatl & Martha"
+   ]
   },
   {
    "name": "サーカスガチャ",
@@ -1827,13 +1645,7 @@
     6,
     6,
     6
-   ],
-   "agents": [
-    "Napoléon",
-    "Valkyrie",
-    "Thomas Edison"
-   ],
-   "en": "Napoléon & Valkyrie & Thomas Edison"
+   ]
   },
   {
    "name": "正月日替わりピックアップ",
@@ -1865,12 +1677,7 @@
     1,
     1,
     1
-   ],
-   "agents": [
-    "Gilgamesh",
-    "Cleopatra"
-   ],
-   "en": "Gilgamesh & Cleopatra"
+   ]
   },
   {
    "name": "福袋2019",
@@ -1897,8 +1704,7 @@
     1,
     1,
     1
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "閻魔亭ピックアップ1",
@@ -1930,13 +1736,7 @@
     1,
     1,
     1
-   ],
-   "agents": [
-    "Beni-Enma",
-    "Tamamo no Mae",
-    "Fionn mac Cumhaill"
-   ],
-   "en": "Beni-Enma & Tamamo no Mae & Fionn mac Cumhaill"
+   ]
   },
   {
    "name": "閻魔亭ピックアップ2",
@@ -1968,13 +1768,7 @@
     7,
     8,
     9
-   ],
-   "agents": [
-    "Li Shuwen",
-    "Diarmuid Ua Duibhne",
-    "Tomoe Gozen"
-   ],
-   "en": "Li Shuwen & Diarmuid Ua Duibhne & Tomoe Gozen"
+   ]
   },
   {
    "name": "バビロニアピックアップ",
@@ -2006,12 +1800,7 @@
     9,
     9,
     9
-   ],
-   "agents": [
-    "Enkidu",
-    "Gilgamesh"
-   ],
-   "en": "Enkidu & Gilgamesh"
+   ]
   },
   {
    "name": "HF2019ピックアップ",
@@ -2043,12 +1832,7 @@
     9,
     9,
     4
-   ],
-   "agents": [
-    "Artoria Caster",
-    "Heracles"
-   ],
-   "en": "Artoria Caster & Heracles"
+   ]
   },
   {
    "name": "冬祭りピックアップ2",
@@ -2080,12 +1864,7 @@
     1,
     2,
     5
-   ],
-   "agents": [
-    "Ivan the Terrible",
-    "Queen of Sheba"
-   ],
-   "en": "Ivan the Terrible & Queen of Sheba"
+   ]
   },
   {
    "name": "復刻プリヤ",
@@ -2117,13 +1896,7 @@
     4,
     5,
     6
-   ],
-   "agents": [
-    "Illyasviel von Einzbern",
-    "Queen Medb",
-    "Miyu Edelfelt"
-   ],
-   "en": "Illyasviel von Einzbern & Queen Medb & Miyu Edelfelt"
+   ]
   },
   {
    "name": "バレンタイン2019",
@@ -2155,12 +1928,7 @@
     3,
     3,
     3
-   ],
-   "agents": [
-    "Picture Scroll Chocolate",
-    "Orion"
-   ],
-   "en": "Picture Scroll Chocolate & Orion"
+   ]
   },
   {
    "name": "復刻バレンタイン2018",
@@ -2192,11 +1960,7 @@
     2,
     7,
     7
-   ],
-   "agents": [
-    "Semiramis"
-   ],
-   "en": "Semiramis"
+   ]
   },
   {
    "name": "復刻CCC",
@@ -2233,13 +1997,7 @@
     3,
     4,
     2
-   ],
-   "agents": [
-    "Meltryllis",
-    "Passionlip",
-    "Suzuka Gozen"
-   ],
-   "en": "Meltryllis & Passionlip & Suzuka Gozen"
+   ]
   },
   {
    "name": "復刻CCC2",
@@ -2271,13 +2029,7 @@
     2,
     2,
     1
-   ],
-   "agents": [
-    "Kingprotea",
-    "Gawain",
-    "Tristan"
-   ],
-   "en": "Kingprotea & Gawain & Tristan"
+   ]
   },
   {
    "name": "CBC2019",
@@ -2309,11 +2061,7 @@
     2,
     5,
     3
-   ],
-   "agents": [
-    "James Moriarty"
-   ],
-   "en": "James Moriarty"
+   ]
   },
   {
    "name": "大奥ピックアップ",
@@ -2345,12 +2093,7 @@
     1,
     1,
     2
-   ],
-   "agents": [
-    "Kama",
-    "Parvati"
-   ],
-   "en": "Kama & Parvati"
+   ]
   },
   {
    "name": "大奥ピックアップ2",
@@ -2382,13 +2125,7 @@
     1,
     1,
     1
-   ],
-   "agents": [
-    "Scheherazade",
-    "Sesshōin Kiara",
-    "Yagyū Munenori"
-   ],
-   "en": "Scheherazade & Sesshōin Kiara & Yagyū Munenori"
+   ]
   },
   {
    "name": "1600万DL記念",
@@ -2420,11 +2157,7 @@
     8,
     5,
     3
-   ],
-   "agents": [
-    "Mysterious Hot Cocoa X"
-   ],
-   "en": "Mysterious Hot Cocoa X"
+   ]
   },
   {
    "name": "復刻ぐだぐだ帝都2019",
@@ -2456,12 +2189,7 @@
     3,
     5,
     4
-   ],
-   "agents": [
-    "Hijikata Toshizō",
-    "EMIYA"
-   ],
-   "en": "Hijikata Toshizō & EMIYA"
+   ]
   },
   {
    "name": "事件簿コラボ直前ピックアップ",
@@ -2493,8 +2221,7 @@
     6,
     5,
     5
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "ライネスピックアップ",
@@ -2526,13 +2253,7 @@
     6,
     10,
     1
-   ],
-   "agents": [
-    "Mercury Choco",
-    "Astraea",
-    "EMIYA"
-   ],
-   "en": "Mercury Choco & Astraea & EMIYA"
+   ]
   },
   {
    "name": "クラス別ピックアップ",
@@ -2566,8 +2287,7 @@
     1,
     1,
     2
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "鳴鳳荘ピックアップ",
@@ -2599,12 +2319,7 @@
     1,
     3,
     13
-   ],
-   "agents": [
-    "Jeanne d'Arc Alter Santa Lily",
-    "Tristan"
-   ],
-   "en": "Jeanne d'Arc Alter Santa Lily & Tristan"
+   ]
   },
   {
    "name": "マンガで分かるFGO",
@@ -2636,13 +2351,7 @@
     42,
     47,
     10
-   ],
-   "agents": [
-    "Leonardo Da Vinci",
-    "Altera",
-    "Elizabeth of the End"
-   ],
-   "en": "Leonardo Da Vinci & Altera & Elizabeth of the End"
+   ]
   },
   {
    "name": "幕間ピックアップ",
@@ -2674,13 +2383,7 @@
     1,
     2,
     4
-   ],
-   "agents": [
-    "Li Shuwen",
-    "Osakabehime",
-    "Tales of Chaldean Heavy Industries"
-   ],
-   "en": "Li Shuwen & Osakabehime & Tales of Chaldean Heavy Industries"
+   ]
   },
   {
    "name": "2部4章直前ピックアップ",
@@ -2712,12 +2415,7 @@
     4,
     6,
     10
-   ],
-   "agents": [
-    "Arjuna",
-    "Rama"
-   ],
-   "en": "Arjuna & Rama"
+   ]
   },
   {
    "name": "ユガ･クシェートラピックアップ",
@@ -2749,13 +2447,7 @@
     1,
     1,
     1
-   ],
-   "agents": [
-    "Jinako Carigiri",
-    "Lakshmibai",
-    "William Tell"
-   ],
-   "en": "Jinako Carigiri & Lakshmibai & William Tell"
+   ]
   },
   {
    "name": "ユガ･クシェートラピックアップ2",
@@ -2787,12 +2479,7 @@
     1,
     1,
     1
-   ],
-   "agents": [
-    "Account Recovery",
-    "Karna"
-   ],
-   "en": "Account Recovery & Karna"
+   ]
   },
   {
    "name": "1700万DL記念ピックアップ召喚",
@@ -2824,8 +2511,7 @@
     1,
     1,
     1
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "ぐだぐだファイナル本能寺2019ピックアップ召喚",
@@ -2857,12 +2543,7 @@
     11,
     9,
     2
-   ],
-   "agents": [
-    "Beyond the Aeons",
-    "Mori Nagayoshi"
-   ],
-   "en": "Beyond the Aeons & Mori Nagayoshi"
+   ]
   },
   {
    "name": "復刻 サバ★フェスピックアップ1",
@@ -2897,8 +2578,7 @@
     14,
     9,
     7
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "復刻 サバ★フェスピックアップ2",
@@ -2933,13 +2613,7 @@
     14,
     9,
     7
-   ],
-   "agents": [
-    "Edmond Dantès",
-    "Gilgamesh",
-    "Robin Hood"
-   ],
-   "en": "Edmond Dantès & Gilgamesh & Robin Hood"
+   ]
   },
   {
    "name": "復刻 サバ★フェスピックアップ3",
@@ -2967,11 +2641,7 @@
     14,
     9,
     7
-   ],
-   "agents": [
-    "Huyan Zhuo's Island Choco"
-   ],
-   "en": "Huyan Zhuo's Island Choco"
+   ]
   },
   {
    "name": "4周年記念福袋",
@@ -3003,11 +2673,7 @@
     1,
     1,
     2
-   ],
-   "agents": [
-    "Don Quixote"
-   ],
-   "en": "Don Quixote"
+   ]
   },
   {
    "name": "Lostbelt＆亜種特異点ピックアップ",
@@ -3039,11 +2705,7 @@
     1,
     1,
     2
-   ],
-   "agents": [
-    "Leonardo Da Vinci"
-   ],
-   "en": "Leonardo Da Vinci"
+   ]
   },
   {
    "name": "ラスベガス御前試合ピックアップ1",
@@ -3082,12 +2744,7 @@
     1,
     3,
     6
-   ],
-   "agents": [
-    "Parfait Demon Sword Buster",
-    "Las Vegas Official Bout"
-   ],
-   "en": "Parfait Demon Sword Buster & Las Vegas Official Bout"
+   ]
   },
   {
    "name": "マーリンピックアップ（8月18日）",
@@ -3105,11 +2762,7 @@
    "ongoing": false,
    "rank_series": [
     2
-   ],
-   "agents": [
-    "Merlin"
-   ],
-   "en": "Merlin"
+   ]
   },
   {
    "name": "ラスベガス御前試合ピックアップ2",
@@ -3141,13 +2794,7 @@
     1,
     3,
     6
-   ],
-   "agents": [
-    "Golden Round Table Roulette",
-    "Okita J Sōji",
-    "Mysterious Alter Ego Λ"
-   ],
-   "en": "Golden Round Table Roulette & Okita J Sōji & Mysterious Alter Ego Λ"
+   ]
   },
   {
    "name": "マーリンピックアップ（8月25日）",
@@ -3165,11 +2812,7 @@
    "ongoing": false,
    "rank_series": [
     1
-   ],
-   "agents": [
-    "Merlin"
-   ],
-   "en": "Merlin"
+   ]
   },
   {
    "name": "マーリンピックアップ（9月01日）",
@@ -3187,11 +2830,7 @@
    "ongoing": false,
    "rank_series": [
     9
-   ],
-   "agents": [
-    "Merlin"
-   ],
-   "en": "Merlin"
+   ]
   },
   {
    "name": "クラス別ピックアップ(日替り)",
@@ -3225,8 +2864,7 @@
     2,
     2,
     3
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "バトル･イン･ニューヨーク 2019ピックアップ",
@@ -3258,11 +2896,7 @@
     3,
     6,
     4
-   ],
-   "agents": [
-    "Gilgamesh"
-   ],
-   "en": "Gilgamesh"
+   ]
   },
   {
    "name": "京まふ2019ピックアップ",
@@ -3294,12 +2928,7 @@
     2,
     2,
     2
-   ],
-   "agents": [
-    "Sakata Kintoki",
-    "Picture Scroll Chocolate"
-   ],
-   "en": "Sakata Kintoki & Picture Scroll Chocolate"
+   ]
   },
   {
    "name": "バビロニアピックアップ",
@@ -3331,12 +2960,7 @@
     3,
     5,
     9
-   ],
-   "agents": [
-    "Enkidu",
-    "Ishtar"
-   ],
-   "en": "Enkidu & Ishtar"
+   ]
   },
   {
    "name": "復刻 ハロウィン2018ピックアップ",
@@ -3368,12 +2992,7 @@
     18,
     25,
     28
-   ],
-   "agents": [
-    "Sitonai",
-    "Shuten Dōji"
-   ],
-   "en": "Sitonai & Shuten Dōji"
+   ]
   },
   {
    "name": "セイバーウォーズ２開催直前ピックアップ",
@@ -3409,11 +3028,7 @@
     5,
     7,
     8
-   ],
-   "agents": [
-    "Mysterious Heroine X"
-   ],
-   "en": "Mysterious Heroine X"
+   ]
   },
   {
    "name": "セイバーウォーズ２ピックアップ",
@@ -3445,12 +3060,7 @@
     5,
     7,
     8
-   ],
-   "agents": [
-    "Space Ishtar",
-    "Calamity Jane"
-   ],
-   "en": "Space Ishtar & Calamity Jane"
+   ]
   },
   {
    "name": "セイバーウォーズ２ピックアップ2",
@@ -3482,12 +3092,7 @@
     4,
     6,
     4
-   ],
-   "agents": [
-    "Mysterious Hot Cocoa X",
-    "Yagyū Munenori"
-   ],
-   "en": "Mysterious Hot Cocoa X & Yagyū Munenori"
+   ]
   },
   {
    "name": "1800万DL記念ピックアップ",
@@ -3512,11 +3117,7 @@
     4,
     6,
     4
-   ],
-   "agents": [
-    "Scáthach-Skaði"
-   ],
-   "en": "Scáthach-Skaði"
+   ]
   },
   {
    "name": "「Fate/Prototype 蒼銀のフラグメンツ」ドラマCD完結記念ピックアップ",
@@ -3548,12 +3149,7 @@
     2,
     3,
     3
-   ],
-   "agents": [
-    "King's Horse",
-    "Ozymandias"
-   ],
-   "en": "King's Horse & Ozymandias"
+   ]
   },
   {
    "name": "クリスマス2019ピックアップ",
@@ -3585,12 +3181,7 @@
     13,
     11,
     10
-   ],
-   "agents": [
-    "Bunny Ears",
-    "Nightingale"
-   ],
-   "en": "Bunny Ears & Nightingale"
+   ]
   },
   {
    "name": "幕間の物語キャンペーン第11弾ピックアップ",
@@ -3622,12 +3213,7 @@
     1,
     3,
     4
-   ],
-   "agents": [
-    "Anastasia",
-    "Napoléon"
-   ],
-   "en": "Anastasia & Napoléon"
+   ]
   },
   {
    "name": "アトランティスピックアップ",
@@ -3658,12 +3244,7 @@
     5,
     2,
     4
-   ],
-   "agents": [
-    "Super Orion",
-    "Europa"
-   ],
-   "en": "Super Orion & Europa"
+   ]
   },
   {
    "name": "アトランティスピックアップ2",
@@ -3687,11 +3268,7 @@
     5,
     2,
     4
-   ],
-   "agents": [
-    "Achilles"
-   ],
-   "en": "Achilles"
+   ]
   },
   {
    "name": "ニューイヤー2020ピックアップ(日替り)",
@@ -3723,11 +3300,7 @@
     1,
     2,
     3
-   ],
-   "agents": [
-    "Yang Guifei"
-   ],
-   "en": "Yang Guifei"
+   ]
   },
   {
    "name": "福袋召喚2020(クラス別)",
@@ -3754,8 +3327,7 @@
     1,
     1,
     1
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "復刻 雀のお宿の活動日誌ピックアップ(日替り)",
@@ -3787,12 +3359,7 @@
     2,
     6,
     19
-   ],
-   "agents": [
-    "Beni-Enma",
-    "Tamamo no Mae"
-   ],
-   "en": "Beni-Enma & Tamamo no Mae"
+   ]
   },
   {
    "name": "復刻 雀のお宿の活動日誌ピックアップ2(日替り)",
@@ -3824,11 +3391,7 @@
     115,
     17,
     17
-   ],
-   "agents": [
-    "Li Shuwen"
-   ],
-   "en": "Li Shuwen"
+   ]
   },
   {
    "name": "アマゾネス･ドットコムプレミアムピックアップ(日替り)",
@@ -3860,12 +3423,7 @@
     22,
     21,
     13
-   ],
-   "agents": [
-    "Cleopatra",
-    "Osakabehime"
-   ],
-   "en": "Cleopatra & Osakabehime"
+   ]
   },
   {
    "name": "亜種特異点Ⅰコミック発売記念ピックアップ(日替り)",
@@ -3897,8 +3455,7 @@
     1,
     1,
     2
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "幕間の物語キャンペーン第12弾ピックアップ(日替り)",
@@ -3930,12 +3487,7 @@
     4,
     3,
     3
-   ],
-   "agents": [
-    "Bradamante",
-    "Xiang Yu's Sword"
-   ],
-   "en": "Bradamante & Xiang Yu's Sword"
+   ]
   },
   {
    "name": "バレンタイン2020ピックアップ(日替り)",
@@ -3967,11 +3519,7 @@
     3,
     8,
     8
-   ],
-   "agents": [
-    "Sei Shōnagon"
-   ],
-   "en": "Sei Shōnagon"
+   ]
   },
   {
    "name": "1900万DL記念ピックアップ",
@@ -4003,11 +3551,7 @@
     2,
     2,
     3
-   ],
-   "agents": [
-    "Space Ereshkigal"
-   ],
-   "en": "Space Ereshkigal"
+   ]
   },
   {
    "name": "カルデアボーイズコレクション2020ピックアップ(日替り)",
@@ -4039,11 +3583,7 @@
     4,
     7,
     13
-   ],
-   "agents": [
-    "Odysseus"
-   ],
-   "en": "Odysseus"
+   ]
   },
   {
    "name": "復刻 Fate/Apocrypha×Fate/Grand Orderスペシャルイベントピックアップ(日替)",
@@ -4075,13 +3615,7 @@
     11,
     15,
     22
-   ],
-   "agents": [
-    "Bunny Ears",
-    "Mordred",
-    "Achilles"
-   ],
-   "en": "Bunny Ears & Mordred & Achilles"
+   ]
   },
   {
    "name": "オリュンポスピックアップ",
@@ -4113,11 +3647,7 @@
     5,
     7,
     6
-   ],
-   "agents": [
-    "Dioscuri"
-   ],
-   "en": "Dioscuri"
+   ]
   },
   {
    "name": "オリュンポスピックアップ2",
@@ -4149,11 +3679,7 @@
     3,
     5,
     8
-   ],
-   "agents": [
-    "Romulus-Quirinus"
-   ],
-   "en": "Romulus-Quirinus"
+   ]
   },
   {
    "name": "2000万DL記念ピックアップ",
@@ -4188,13 +3714,7 @@
     3,
     3,
     4
-   ],
-   "agents": [
-    "Miyamoto Musashi",
-    "Gilgamesh",
-    "Ishtar"
-   ],
-   "en": "Miyamoto Musashi & Gilgamesh & Ishtar"
+   ]
   },
   {
    "name": "復刻 ぐだぐだファイナル本能寺2019ピックアップ",
@@ -4226,13 +3746,7 @@
     30,
     47,
     34
-   ],
-   "agents": [
-    "Beyond the Aeons",
-    "Oden Chocolate",
-    "Li Shuwen"
-   ],
-   "en": "Beyond the Aeons & Oden Chocolate & Li Shuwen"
+   ]
   },
   {
    "name": "Fate/Requiemコラボレーションイベント開幕直前ピックアップ",
@@ -4264,13 +3778,7 @@
     3,
     3,
     6
-   ],
-   "agents": [
-    "Jinako Carigiri",
-    "Osakabehime",
-    "Thomas Edison"
-   ],
-   "en": "Jinako Carigiri & Osakabehime & Thomas Edison"
+   ]
   },
   {
    "name": "Fate/Requiemコラボレーションイベントピックアップ",
@@ -4302,11 +3810,7 @@
     16,
     12,
     10
-   ],
-   "agents": [
-    "Voyager"
-   ],
-   "en": "Voyager"
+   ]
   },
   {
    "name": "復刻 ラスベガス御前試合ピックアップ1",
@@ -4345,11 +3849,7 @@
     22,
     15,
     4
-   ],
-   "agents": [
-    "Parfait Demon Sword Buster"
-   ],
-   "en": "Parfait Demon Sword Buster"
+   ]
   },
   {
    "name": "復刻 【日曜限定】マーリンピックアップ",
@@ -4395,11 +3895,7 @@
     null,
     null,
     15
-   ],
-   "agents": [
-    "Merlin"
-   ],
-   "en": "Merlin"
+   ]
   },
   {
    "name": "復刻 ラスベガス御前試合ピックアップ2",
@@ -4431,11 +3927,7 @@
     22,
     15,
     4
-   ],
-   "agents": [
-    "Lord Logres"
-   ],
-   "en": "Lord Logres"
+   ]
   },
   {
    "name": "幕間の物語キャンペーン第13弾ピックアップ",
@@ -4467,12 +3959,7 @@
     6,
     8,
     12
-   ],
-   "agents": [
-    "Sherlock Holmes",
-    "Mercury Choco"
-   ],
-   "en": "Sherlock Holmes & Mercury Choco"
+   ]
   },
   {
    "name": "水着含む全体攻撃宝具ピックアップ",
@@ -4504,11 +3991,7 @@
     6,
     9,
     9
-   ],
-   "agents": [
-    "Huyan Zhuo's Island Choco"
-   ],
-   "en": "Huyan Zhuo's Island Choco"
+   ]
   },
   {
    "name": "「メイン･インタールード 深海電脳楽土 SE.RA.PH」リリース記念ピックアップ",
@@ -4540,12 +4023,7 @@
     4,
     9,
     5
-   ],
-   "agents": [
-    "Meltryllis",
-    "Kingprotea"
-   ],
-   "en": "Meltryllis & Kingprotea"
+   ]
   },
   {
    "name": "復刻 徳川廻天迷宮 大奥ピックアップ",
@@ -4577,12 +4055,7 @@
     41,
     15,
     18
-   ],
-   "agents": [
-    "Kama",
-    "Sesshōin Kiara"
-   ],
-   "en": "Kama & Sesshōin Kiara"
+   ]
   },
   {
    "name": "5周年記念英霊紀行ピックアップ",
@@ -4614,8 +4087,7 @@
     3,
     1,
     1
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "5周年記念ピックアップ",
@@ -4647,12 +4119,7 @@
     2,
     3,
     2
-   ],
-   "agents": [
-    "Artoria Caster",
-    "Other Items"
-   ],
-   "en": "Artoria Caster & Other Items"
+   ]
   },
   {
    "name": "5周年記念福袋",
@@ -4684,11 +4151,7 @@
     2,
     3,
     2
-   ],
-   "agents": [
-    "Huang Feihu"
-   ],
-   "en": "Huang Feihu"
+   ]
   },
   {
    "name": "サーヴァント･サマーキャンプ！ピックアップ1",
@@ -4727,12 +4190,7 @@
     7,
     6,
     7
-   ],
-   "agents": [
-    "Passionlip",
-    "Spread ☆ Rainbow!"
-   ],
-   "en": "Passionlip & Spread ☆ Rainbow!"
+   ]
   },
   {
    "name": "サーヴァント･サマーキャンプ！ピックアップ男性召喚",
@@ -4771,11 +4229,7 @@
     7,
     6,
     7
-   ],
-   "agents": [
-    "Sigurd"
-   ],
-   "en": "Sigurd"
+   ]
   },
   {
    "name": "サーヴァント･サマーキャンプ！ピックアップ2",
@@ -4807,8 +4261,7 @@
     7,
     6,
     7
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "2100万DL記念ピックアップ(日替り)",
@@ -4846,11 +4299,7 @@
     15,
     16,
     14
-   ],
-   "agents": [
-    "Shi Huang Di"
-   ],
-   "en": "Shi Huang Di"
+   ]
   },
   {
    "name": "幕間の物語キャンペーン第14弾ピックアップ",
@@ -4882,11 +4331,7 @@
     16,
     14,
     14
-   ],
-   "agents": [
-    "Shuten Dōji"
-   ],
-   "en": "Shuten Dōji"
+   ]
   },
   {
    "name": "影の国の舞闘会ピックアップ(日替り)",
@@ -4918,11 +4363,7 @@
     28,
     40,
     25
-   ],
-   "agents": [
-    "Scáthach-Skaði"
-   ],
-   "en": "Scáthach-Skaði"
+   ]
   },
   {
    "name": "復刻 クリスマス2019ピックアップ",
@@ -4957,13 +4398,7 @@
     21,
     22,
     16
-   ],
-   "agents": [
-    "Bunny Ears",
-    "Bradamante",
-    "Nightingale"
-   ],
-   "en": "Bunny Ears & Bradamante & Nightingale"
+   ]
   },
   {
    "name": "ぐだぐだ邪馬台国2020ピックアップ",
@@ -4995,11 +4430,7 @@
     21,
     22,
     16
-   ],
-   "agents": [
-    "Himiko"
-   ],
-   "en": "Himiko"
+   ]
   },
   {
    "name": "「虚数大海戦」開幕直前ピックアップ",
@@ -5031,11 +4462,7 @@
     2,
     3,
     5
-   ],
-   "agents": [
-    "Yang Guifei"
-   ],
-   "en": "Yang Guifei"
+   ]
   },
   {
    "name": "虚数大海戦ピックアップ",
@@ -5067,12 +4494,7 @@
     5,
     6,
     7
-   ],
-   "agents": [
-    "Nemo",
-    "Van Gogh"
-   ],
-   "en": "Nemo & Van Gogh"
+   ]
   },
   {
    "name": "2200万DL記念ピックアップ",
@@ -5104,11 +4526,7 @@
     1,
     3,
     4
-   ],
-   "agents": [
-    "Picture Scroll Chocolate"
-   ],
-   "en": "Picture Scroll Chocolate"
+   ]
   },
   {
    "name": "2部5.5章開幕直前ピックアップ",
@@ -5140,12 +4558,7 @@
     4,
     6,
     10
-   ],
-   "agents": [
-    "Sakata Kintoki",
-    "Minamoto no Raikō"
-   ],
-   "en": "Sakata Kintoki & Minamoto no Raikō"
+   ]
   },
   {
    "name": "平安京ピックアップ召喚",
@@ -5177,11 +4590,7 @@
     3,
     1,
     2
-   ],
-   "agents": [
-    "Ashiya Dōman"
-   ],
-   "en": "Ashiya Dōman"
+   ]
   },
   {
    "name": "平安京ピックアップ2",
@@ -5213,11 +4622,7 @@
     8,
     6,
     8
-   ],
-   "agents": [
-    "Ibuki Dōji"
-   ],
-   "en": "Ibuki Dōji"
+   ]
   },
   {
    "name": "クリスマス2020ピックアップ",
@@ -5249,11 +4654,7 @@
     8,
     12,
     10
-   ],
-   "agents": [
-    "Vritra"
-   ],
-   "en": "Vritra"
+   ]
   },
   {
    "name": "クリスマス2020ピックアップ2",
@@ -5279,12 +4680,7 @@
     12,
     10,
     5
-   ],
-   "agents": [
-    "Arjuna",
-    "Karna"
-   ],
-   "en": "Arjuna & Karna"
+   ]
   },
   {
    "name": "ニューイヤー2021ピックアップ(日替り)",
@@ -5316,12 +4712,7 @@
     3,
     2,
     3
-   ],
-   "agents": [
-    "Senji Muramasa",
-    "Cool-Mint Chocolate Bullet"
-   ],
-   "en": "Senji Muramasa & Cool-Mint Chocolate Bullet"
+   ]
   },
   {
    "name": "福袋召喚2021(紅白×三騎士･四騎士･EXTRA別)",
@@ -5348,8 +4739,7 @@
     1,
     1,
     1
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "復刻 セイバーウォーズ２ピックアップ",
@@ -5381,11 +4771,7 @@
     11,
     11,
     9
-   ],
-   "agents": [
-    "Space Ishtar"
-   ],
-   "en": "Space Ishtar"
+   ]
   },
   {
    "name": "復刻 セイバーウォーズ２ピックアップ2",
@@ -5417,11 +4803,7 @@
     2,
     6,
     10
-   ],
-   "agents": [
-    "Mysterious Heroine X"
-   ],
-   "en": "Mysterious Heroine X"
+   ]
   },
   {
    "name": "いざ鎌倉にさよならをピックアップ(日替り)",
@@ -5453,11 +4835,7 @@
     27,
     28,
     22
-   ],
-   "agents": [
-    "Taira no Kagekiyo"
-   ],
-   "en": "Taira no Kagekiyo"
+   ]
   },
   {
    "name": "Fate/Grand Order Memories Ⅲ」発売記念概念礼装ピックアップ(日替り)",
@@ -5489,11 +4867,7 @@
     19,
     33,
     29
-   ],
-   "agents": [
-    "Other Items"
-   ],
-   "en": "Other Items"
+   ]
   },
   {
    "name": "聖杯戦線 ～ブルータスよ、おまえもか～ピックアップ(日替り)",
@@ -5525,11 +4899,7 @@
     3,
     6,
     9
-   ],
-   "agents": [
-    "Romulus-Quirinus"
-   ],
-   "en": "Romulus-Quirinus"
+   ]
   },
   {
    "name": "バレンタイン2021ピックアップ(日替り)",
@@ -5561,11 +4931,7 @@
     8,
     11,
     15
-   ],
-   "agents": [
-    "Heavenly Heart"
-   ],
-   "en": "Heavenly Heart"
+   ]
   },
   {
    "name": "復刻 バレンタイン2020ピックアップ",
@@ -5597,11 +4963,7 @@
     54,
     38,
     37
-   ],
-   "agents": [
-    "Sei Shōnagon"
-   ],
-   "en": "Sei Shōnagon"
+   ]
   },
   {
    "name": "2300万DL記念ピックアップ",
@@ -5633,11 +4995,7 @@
     11,
     15,
     8
-   ],
-   "agents": [
-    "Artoria Pendragon"
-   ],
-   "en": "Artoria Pendragon"
+   ]
   },
   {
    "name": "カルデアボーイズコレクション2021ピックアップ(日替り)",
@@ -5669,11 +5027,7 @@
     15,
     19,
     21
-   ],
-   "agents": [
-    "Amakusa Shirō"
-   ],
-   "en": "Amakusa Shirō"
+   ]
   },
   {
    "name": "「カルデアボーイズコレクション2021ピックアップ3",
@@ -5705,11 +5059,7 @@
     37,
     23,
     21
-   ],
-   "agents": [
-    "Voyager"
-   ],
-   "en": "Voyager"
+   ]
   },
   {
    "name": "クラス別ピックアップ(日替り)",
@@ -5743,8 +5093,7 @@
     4,
     17,
     26
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "アキハバラ･エクスプロージョン！ピックアップ(日替り)",
@@ -5776,11 +5125,7 @@
     29,
     60,
     103
-   ],
-   "agents": [
-    "Galatea"
-   ],
-   "en": "Galatea"
+   ]
   },
   {
    "name": "春爛漫ピックアップ(日替り)",
@@ -5812,12 +5157,7 @@
     26,
     9,
     7
-   ],
-   "agents": [
-    "The Dragon of Smoke Escaping from Mount Fuji",
-    "Tamamo no Mae"
-   ],
-   "en": "The Dragon of Smoke Escaping from Mount Fuji & Tamamo no Mae"
+   ]
   },
   {
    "name": "サーヴァント強化クエスト 第13弾ピックアップ",
@@ -5849,13 +5189,7 @@
     39,
     24,
     3
-   ],
-   "agents": [
-    "Vlad III",
-    "Quetzalcoatl",
-    "James Moriarty"
-   ],
-   "en": "Vlad III & Quetzalcoatl & James Moriarty"
+   ]
   },
   {
    "name": "FGO Waltz in the MOONLIGHT/LOSTROOMコラボレーションイベント開幕直前ピックアップ(日替り)",
@@ -5887,12 +5221,7 @@
     17,
     20,
     20
-   ],
-   "agents": [
-    "Shuten Dōji",
-    "Jeanne d'Arc"
-   ],
-   "en": "Shuten Dōji & Jeanne d'Arc"
+   ]
   },
   {
    "name": "「劇場版 Fate/Grand Order -神聖円卓領域キャメロット- Paladin; Agateram」公開直前ピックアップ(日替り)",
@@ -5918,13 +5247,7 @@
     49,
     26,
     38
-   ],
-   "agents": [
-    "Ozymandias",
-    "The Three Great Heroes",
-    "Leonardo Da Vinci"
-   ],
-   "en": "Ozymandias & The Three Great Heroes & Leonardo Da Vinci"
+   ]
   },
   {
    "name": "聖杯戦線 ～僕のスーパー・キャメロット2021～ピックアップ(日替り)",
@@ -5956,12 +5279,7 @@
     19,
     24,
     34
-   ],
-   "agents": [
-    "Black Helmet",
-    "Mordred"
-   ],
-   "en": "Black Helmet & Mordred"
+   ]
   },
   {
    "name": "復刻 サーヴァント･サマーキャンプ！ピックアップ1(日替り)",
@@ -6000,11 +5318,7 @@
     26,
     17,
     21
-   ],
-   "agents": [
-    "Passionlip"
-   ],
-   "en": "Passionlip"
+   ]
   },
   {
    "name": "復刻 サーヴァント･サマーキャンプ！ピックアップ男性(日替り)",
@@ -6043,11 +5357,7 @@
     26,
     17,
     21
-   ],
-   "agents": [
-    "Sigurd"
-   ],
-   "en": "Sigurd"
+   ]
   },
   {
    "name": "復刻 サーヴァント･サマーキャンプ！ピックアップ2(日替り)",
@@ -6079,8 +5389,7 @@
     26,
     17,
     21
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "「Lostbelt No.6 妖精円卓領域 アヴァロン･ル･フェ 星の生まれる刻」開幕直前ピックアップ",
@@ -6112,11 +5421,7 @@
     1,
     1,
     3
-   ],
-   "agents": [
-    "Leonardo Da Vinci"
-   ],
-   "en": "Leonardo Da Vinci"
+   ]
   },
   {
    "name": "アヴァロン･ル･フェピックアップ(日替り)",
@@ -6148,11 +5453,7 @@
     6,
     4,
     8
-   ],
-   "agents": [
-    "Morgan"
-   ],
-   "en": "Morgan"
+   ]
   },
   {
    "name": "アヴァロン･ル･フェピックアップ2",
@@ -6177,11 +5478,7 @@
     17,
     15,
     8
-   ],
-   "agents": [
-    "Artoria Caster"
-   ],
-   "en": "Artoria Caster"
+   ]
   },
   {
    "name": "アヴァロン･ル･フェピックアップ3",
@@ -6213,11 +5510,7 @@
     14,
     16,
     8
-   ],
-   "agents": [
-    "Mélusine"
-   ],
-   "en": "Mélusine"
+   ]
   },
   {
    "name": "「Fate/Grand Order Fes. 2021 ～6th Anniversary～」開催記念ピックアップ",
@@ -6240,11 +5533,7 @@
     19,
     47,
     53
-   ],
-   "agents": [
-    "Sherlock Holmes"
-   ],
-   "en": "Sherlock Holmes"
+   ]
   },
   {
    "name": "6周年記念ピックアップ",
@@ -6276,11 +5565,7 @@
     1,
     2,
     2
-   ],
-   "agents": [
-    "Koyanskaya of Light"
-   ],
-   "en": "Koyanskaya of Light"
+   ]
   },
   {
    "name": "6周年記念福袋召喚(登場年別×クラス分類別)",
@@ -6312,8 +5597,7 @@
     1,
     2,
     2
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "第2部 第6章完結記念ピックアップ",
@@ -6345,11 +5629,7 @@
     2,
     4,
     2
-   ],
-   "agents": [
-    "Oberon"
-   ],
-   "en": "Oberon"
+   ]
   },
   {
    "name": "第2部 第6章完結記念ピックアップ2",
@@ -6381,11 +5661,7 @@
     6,
     8,
     8
-   ],
-   "agents": [
-    "Morgan"
-   ],
-   "en": "Morgan"
+   ]
   },
   {
    "name": "カルデア･サマーアドベンチャー！開幕直前ピックアップ(日替り)",
@@ -6410,12 +5686,7 @@
     21,
     19,
     21
-   ],
-   "agents": [
-    "Nemo",
-    "Francis Drake"
-   ],
-   "en": "Nemo & Francis Drake"
+   ]
   },
   {
    "name": "カルデア･サマーアドベンチャー！ピックアップ1",
@@ -6454,11 +5725,7 @@
     4,
     5,
     7
-   ],
-   "agents": [
-    "Oden Chocolate"
-   ],
-   "en": "Oden Chocolate"
+   ]
   },
   {
    "name": "カルデア･サマーアドベンチャー！ピックアップ男性",
@@ -6497,11 +5764,7 @@
     4,
     5,
     7
-   ],
-   "agents": [
-    "Achilles"
-   ],
-   "en": "Achilles"
+   ]
   },
   {
    "name": "カルデア･サマーアドベンチャー！ピックアップ2",
@@ -6533,8 +5796,7 @@
     4,
     5,
     7
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "幕間の物語キャンペーン第17弾ピックアップ(日替り)",
@@ -6582,11 +5844,7 @@
     8,
     11,
     13
-   ],
-   "agents": [
-    "Van Gogh"
-   ],
-   "en": "Van Gogh"
+   ]
   },
   {
    "name": "「MELTY BLOOD: TYPE LUMINA」セイバー参戦記念ピックアップ",
@@ -6611,8 +5869,7 @@
     15,
     22,
     18
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "チェイテ･ハロウィン･トリロジーピックアップ(日替り)",
@@ -6644,13 +5901,7 @@
     26,
     30,
     28
-   ],
-   "agents": [
-    "Cleopatra",
-    "Osakabehime",
-    "Vlad III"
-   ],
-   "en": "Cleopatra & Osakabehime & Vlad III"
+   ]
   },
   {
    "name": "「Fate/Grand Carnival 2nd Season」Blu-ray&DVD発売記念ピックアップ",
@@ -6675,11 +5926,7 @@
     20,
     26,
     30
-   ],
-   "agents": [
-    "Space Ereshkigal"
-   ],
-   "en": "Space Ereshkigal"
+   ]
   },
   {
    "name": "ハロウィン･ライジング！ピックアップ",
@@ -6711,11 +5958,7 @@
     16,
     9,
     14
-   ],
-   "agents": [
-    "Jacques de Molay"
-   ],
-   "en": "Jacques de Molay"
+   ]
   },
   {
    "name": "ハロウィン･ライジング！ピックアップ2",
@@ -6745,11 +5988,7 @@
     16,
     9,
     14
-   ],
-   "agents": [
-    "Napoléon"
-   ],
-   "en": "Napoléon"
+   ]
   },
   {
    "name": "TVアニメ「Fate/Apocrypha」Blu-ray Disc Box&Original Soundtrackリリース記念ピックアップ",
@@ -6781,11 +6020,7 @@
     6,
     7,
     15
-   ],
-   "agents": [
-    "Karna"
-   ],
-   "en": "Karna"
+   ]
   },
   {
    "name": "復刻 ぐだぐだ邪馬台国2020ピックアップ",
@@ -6817,13 +6052,7 @@
     8,
     13,
     19
-   ],
-   "agents": [
-    "Okita Sōji",
-    "Hijikata Toshizō",
-    "Himiko"
-   ],
-   "en": "Okita Sōji & Hijikata Toshizō & Himiko"
+   ]
   },
   {
    "name": "2400万DL記念ピックアップ",
@@ -6855,12 +6084,7 @@
     9,
     1,
     1
-   ],
-   "agents": [
-    "Ibuki Dōji",
-    "Sakata Kintoki"
-   ],
-   "en": "Ibuki Dōji & Sakata Kintoki"
+   ]
   },
   {
    "name": "ぐだぐだ龍馬危機一髪！ピックアップ",
@@ -6892,11 +6116,7 @@
     8,
     14,
     23
-   ],
-   "agents": [
-    "Izumo no Okuni"
-   ],
-   "en": "Izumo no Okuni"
+   ]
   },
   {
    "name": "ぐだぐだ龍馬危機一髪！ピックアップ2",
@@ -6928,12 +6148,7 @@
     12,
     15,
     13
-   ],
-   "agents": [
-    "GUDAGUDA Teito Seihai Kitan",
-    "Beyond the Aeons"
-   ],
-   "en": "GUDAGUDA Teito Seihai Kitan & Beyond the Aeons"
+   ]
   },
   {
    "name": "幕間の物語キャンペーン第18弾ピックアップ",
@@ -6965,12 +6180,7 @@
     9,
     17,
     20
-   ],
-   "agents": [
-    "Galatea",
-    "The Dragon of Smoke Escaping from Mount Fuji"
-   ],
-   "en": "Galatea & The Dragon of Smoke Escaping from Mount Fuji"
+   ]
   },
   {
    "name": "メイキング･クリスマス･パーティー！ピックアップ",
@@ -7002,12 +6212,7 @@
     4,
     7,
     7
-   ],
-   "agents": [
-    "Beni-Enma",
-    "Scáthach-Skaði"
-   ],
-   "en": "Beni-Enma & Scáthach-Skaði"
+   ]
   },
   {
    "name": "アヴァロン･ル･フェクリア応援ピックアップ",
@@ -7039,11 +6244,7 @@
     7,
     7,
     6
-   ],
-   "agents": [
-    "Mélusine"
-   ],
-   "en": "Mélusine"
+   ]
   },
   {
    "name": "ツングースカ･サンクチュアリピックアップ",
@@ -7070,11 +6271,7 @@
     7,
     7,
     6
-   ],
-   "agents": [
-    "Perfect Fishing Spot"
-   ],
-   "en": "Perfect Fishing Spot"
+   ]
   },
   {
    "name": "ニューイヤー2022ピックアップ",
@@ -7101,13 +6298,7 @@
     3,
     2,
     2
-   ],
-   "agents": [
-    "Koyanskaya of Darkness",
-    "Scáthach-Skaði",
-    "King's Horse"
-   ],
-   "en": "Koyanskaya of Darkness & Scáthach-Skaði & King's Horse"
+   ]
   },
   {
    "name": "福袋召喚2022(宝具タイプ別)",
@@ -7134,8 +6325,7 @@
     3,
     2,
     2
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "光のコヤンスカヤピックアップ",
@@ -7155,11 +6345,7 @@
     2,
     1,
     3
-   ],
-   "agents": [
-    "Koyanskaya of Light"
-   ],
-   "en": "Koyanskaya of Light"
+   ]
   },
   {
    "name": "復刻 レディ･ライネスの事件簿 -Plus Episode-ピックアップ",
@@ -7198,11 +6384,7 @@
     14,
     24,
     27
-   ],
-   "agents": [
-    "Mercury Choco"
-   ],
-   "en": "Mercury Choco"
+   ]
   },
   {
    "name": "復刻 レディ･ライネスの事件簿 -Plus Episode-ピックアップ2",
@@ -7225,8 +6407,7 @@
     18,
     29,
     24
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "アルジュナ＆カルナピックアップ",
@@ -7250,12 +6431,7 @@
     11,
     14,
     27
-   ],
-   "agents": [
-    "Arjuna",
-    "Karna"
-   ],
-   "en": "Arjuna & Karna"
+   ]
   },
   {
    "name": "監獄塔無料開放記念ピックアップ",
@@ -7279,12 +6455,7 @@
     11,
     14,
     27
-   ],
-   "agents": [
-    "Edmond Dantès",
-    "Nightingale"
-   ],
-   "en": "Edmond Dantès & Nightingale"
+   ]
   },
   {
    "name": "冥界のメリークリスマス無料開放記念ピックアップ",
@@ -7308,12 +6479,7 @@
     9,
     14,
     24
-   ],
-   "agents": [
-    "Space Ereshkigal",
-    "Ishtar"
-   ],
-   "en": "Space Ereshkigal & Ishtar"
+   ]
   },
   {
    "name": "バレンタイン2022開催直前ピックアップ",
@@ -7338,11 +6504,7 @@
     9,
     13,
     21
-   ],
-   "agents": [
-    "Las Vegas Official Bout Rerun"
-   ],
-   "en": "Las Vegas Official Bout Rerun"
+   ]
   },
   {
    "name": "バレンタイン2022ピックアップ",
@@ -7374,12 +6536,7 @@
     16,
     20,
     22
-   ],
-   "agents": [
-    "Bazenan-Style Sweets for Valentine",
-    "Chevalier d'Eon"
-   ],
-   "en": "Bazenan-Style Sweets for Valentine & Chevalier d'Eon"
+   ]
   },
   {
    "name": "復刻 バレンタイン2021 カレン･Ｃ･オルテンシア(アムール〔カレン〕)ピックアップ",
@@ -7404,8 +6561,7 @@
     16,
     20,
     22
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "深海電脳楽土 SE.RA.PH無料開放記念ピックアップ",
@@ -7426,12 +6582,7 @@
     20,
     37,
     47
-   ],
-   "agents": [
-    "Meltryllis",
-    "Kingprotea"
-   ],
-   "en": "Meltryllis & Kingprotea"
+   ]
   },
   {
    "name": "ホワイトデー･スペクタクルズピックアップ",
@@ -7463,8 +6614,7 @@
     2,
     5,
     9
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "ホワイトデー･スペクタクルズ マーリンピックアップ",
@@ -7484,11 +6634,7 @@
     11,
     7,
     2
-   ],
-   "agents": [
-    "Merlin"
-   ],
-   "en": "Merlin"
+   ]
   },
   {
    "name": "バトル･イン･ニューヨーク 2022ピックアップ",
@@ -7520,12 +6666,7 @@
     22,
     33,
     33
-   ],
-   "agents": [
-    "Odysseus",
-    "Nikola Tesla"
-   ],
-   "en": "Odysseus & Nikola Tesla"
+   ]
   },
   {
    "name": "バトル･イン･ニューヨーク 2022 ギルガメッシュ(アーチャー)ピックアップ",
@@ -7550,11 +6691,7 @@
     22,
     33,
     33
-   ],
-   "agents": [
-    "Gilgamesh"
-   ],
-   "en": "Gilgamesh"
+   ]
   },
   {
    "name": "「Lostbelt No.2」ピックアップ",
@@ -7579,13 +6716,7 @@
     33,
     40,
     49
-   ],
-   "agents": [
-    "Scáthach-Skaði",
-    "Brynhildr",
-    "Sigurd"
-   ],
-   "en": "Scáthach-Skaði & Brynhildr & Sigurd"
+   ]
   },
   {
    "name": "水怪クライシス 徴姉妹ピックアップ",
@@ -7624,11 +6755,7 @@
     29,
     24,
     32
-   ],
-   "agents": [
-    "Trung Sisters"
-   ],
-   "en": "Trung Sisters"
+   ]
   },
   {
    "name": "水怪クライシス モルガンピックアップ",
@@ -7653,11 +6780,7 @@
     6,
     7,
     8
-   ],
-   "agents": [
-    "Morgan"
-   ],
-   "en": "Morgan"
+   ]
   },
   {
    "name": "マンガで分かる！FGOコラボレーションイベント開幕直前ピックアップ",
@@ -7695,12 +6818,7 @@
     44,
     50,
     58
-   ],
-   "agents": [
-    "Bunny Ears",
-    "Leonardo Da Vinci"
-   ],
-   "en": "Bunny Ears & Leonardo Da Vinci"
+   ]
   },
   {
    "name": "マンガで分かる！Fate/Grand Orderコラボレーションイベントピックアップ",
@@ -7739,11 +6857,7 @@
     5,
     6,
     8
-   ],
-   "agents": [
-    "Super Bunyan"
-   ],
-   "en": "Super Bunyan"
+   ]
   },
   {
    "name": "2500万DL記念 アルトリア･キャスターピックアップ",
@@ -7768,11 +6882,7 @@
     5,
     6,
     8
-   ],
-   "agents": [
-    "Artoria Caster"
-   ],
-   "en": "Artoria Caster"
+   ]
   },
   {
    "name": "2500万DL記念ピックアップ召喚",
@@ -7796,13 +6906,7 @@
     5,
     6,
     8
-   ],
-   "agents": [
-    "Jacques de Molay",
-    "Jeanne d'Arc Alter Santa Lily",
-    "Jeunesse Crane"
-   ],
-   "en": "Jacques de Molay & Jeanne d'Arc Alter Santa Lily & Jeunesse Crane"
+   ]
   },
   {
    "name": "死想顕現界域 トラオム 或る幻想の生と死」登場サーヴァント先行ピックアップ",
@@ -7841,11 +6945,7 @@
     5,
     7,
     7
-   ],
-   "agents": [
-    "Constantine XI"
-   ],
-   "en": "Constantine XI"
+   ]
   },
   {
    "name": "「メイン･インタールード 非霊長生存圏 ツングースカ･サンクチュアリ」リリース記念ピックアップ",
@@ -7870,11 +6970,7 @@
     70,
     78,
     94
-   ],
-   "agents": [
-    "Perfect Fishing Spot"
-   ],
-   "en": "Perfect Fishing Spot"
+   ]
   },
   {
    "name": "トラオム シャルルマーニュピックアップ",
@@ -7906,11 +7002,7 @@
     4,
     5,
     8
-   ],
-   "agents": [
-    "Charlemagne"
-   ],
-   "en": "Charlemagne"
+   ]
   },
   {
    "name": "トラオム ジェームズ･モリアーティ(ルーラー)ピックアップ",
@@ -7935,11 +7027,7 @@
     4,
     5,
     8
-   ],
-   "agents": [
-    "James Moriarty"
-   ],
-   "en": "James Moriarty"
+   ]
   },
   {
    "name": "トラオム シャーロック･ホームズピックアップ",
@@ -7964,11 +7052,7 @@
     8,
     5,
     19
-   ],
-   "agents": [
-    "Sherlock Holmes"
-   ],
-   "en": "Sherlock Holmes"
+   ]
   },
   {
    "name": "聖杯戦線 ～ムーンサルト･オペレーション～ピックアップ",
@@ -8000,11 +7084,7 @@
     20,
     29,
     34
-   ],
-   "agents": [
-    "Jinako Carigiri"
-   ],
-   "en": "Jinako Carigiri"
+   ]
   },
   {
    "name": "聖杯戦線 ～ムーンサルト･オペレーション～ピックアップ2",
@@ -8032,11 +7112,7 @@
     20,
     29,
     34
-   ],
-   "agents": [
-    "Huyan Zhuo's Island Choco"
-   ],
-   "en": "Huyan Zhuo's Island Choco"
+   ]
   },
   {
    "name": "「Lostbelt No.3」ピックアップ",
@@ -8061,13 +7137,7 @@
     20,
     29,
     34
-   ],
-   "agents": [
-    "Shi Huang Di",
-    "Li Shuwen",
-    "Xiang Yu's Sword"
-   ],
-   "en": "Shi Huang Di & Li Shuwen & Xiang Yu's Sword"
+   ]
   },
   {
    "name": "南溟弓張八犬伝 曲亭馬琴ピックアップ",
@@ -8106,11 +7176,7 @@
     12,
     10,
     17
-   ],
-   "agents": [
-    "Kyokutei Bakin"
-   ],
-   "en": "Kyokutei Bakin"
+   ]
   },
   {
    "name": "南溟弓張八犬伝 源為朝ピックアップ",
@@ -8145,11 +7211,7 @@
     12,
     10,
     17
-   ],
-   "agents": [
-    "Mini Tametomo with Smartphone-Transformation Feature"
-   ],
-   "en": "Mini Tametomo with Smartphone-Transformation Feature"
+   ]
   },
   {
    "name": "南溟弓張八犬伝 葛飾北斎(フォーリナー)ピックアップ",
@@ -8174,8 +7236,7 @@
     16,
     23,
     29
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "メイン･インタールード 徳川廻天迷宮 大奥」リリース記念ピックアップ",
@@ -8202,12 +7263,7 @@
     17,
     14,
     4
-   ],
-   "agents": [
-    "Kama",
-    "Sesshōin Kiara"
-   ],
-   "en": "Kama & Sesshōin Kiara"
+   ]
   },
   {
    "name": "7周年カウントダウンピックアップ",
@@ -8235,11 +7291,7 @@
     9,
     14,
     18
-   ],
-   "agents": [
-    "Cool-Mint Chocolate Bullet"
-   ],
-   "en": "Cool-Mint Chocolate Bullet"
+   ]
   },
   {
    "name": "7周年記念 アーキタイプ:アース ピックアップ召喚",
@@ -8267,8 +7319,7 @@
     2,
     1,
     1
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "7周年記念福袋召喚(クラス別20分割)",
@@ -8296,8 +7347,7 @@
     2,
     1,
     1
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "7周年記念限定サーヴァント日替りピックアップ",
@@ -8323,12 +7373,7 @@
     1,
     1,
     2
-   ],
-   "agents": [
-    "Moon Rabbit",
-    "Mysterious Heroine X"
-   ],
-   "en": "Moon Rabbit & Mysterious Heroine X"
+   ]
   },
   {
    "name": "アークティック･サマーワールド！ レディ･アヴァロンピックアップ",
@@ -8367,11 +7412,7 @@
     7,
     6,
     7
-   ],
-   "agents": [
-    "Lady Avalon"
-   ],
-   "en": "Lady Avalon"
+   ]
   },
   {
    "name": "アークティック･サマーワールド！ 伊吹童子(バーサーカー)ピックアップ",
@@ -8406,11 +7447,7 @@
     7,
     6,
     7
-   ],
-   "agents": [
-    "Ibuki Dōji"
-   ],
-   "en": "Ibuki Dōji"
+   ]
   },
   {
    "name": "アークティック･サマーワールド！ スカサハ＝スカディ(ルーラー)ピックアップ",
@@ -8442,11 +7479,7 @@
     7,
     6,
     7
-   ],
-   "agents": [
-    "Blue Luluhawa-Flavoured Shaved Ice"
-   ],
-   "en": "Blue Luluhawa-Flavoured Shaved Ice"
+   ]
   },
   {
    "name": "復刻 水着2021ピックアップ",
@@ -8474,11 +7507,7 @@
     7,
     6,
     7
-   ],
-   "agents": [
-    "Costume Dress"
-   ],
-   "en": "Costume Dress"
+   ]
   },
   {
    "name": "2600万DL記念 スペース･イシュタルピックアップ",
@@ -8510,11 +7539,7 @@
     22,
     31,
     47
-   ],
-   "agents": [
-    "Space Ishtar"
-   ],
-   "en": "Space Ishtar"
+   ]
   },
   {
    "name": "2600万DL記念ピックアップ",
@@ -8544,13 +7569,7 @@
     12,
     9,
     22
-   ],
-   "agents": [
-    "Ishtar",
-    "Space Ereshkigal",
-    "Mysterious Hot Cocoa X"
-   ],
-   "en": "Ishtar & Space Ereshkigal & Mysterious Hot Cocoa X"
+   ]
   },
   {
    "name": "「Lostbelt No.4」ピックアップ",
@@ -8575,12 +7594,7 @@
     22,
     31,
     47
-   ],
-   "agents": [
-    "Account Recovery",
-    "Karna"
-   ],
-   "en": "Account Recovery & Karna"
+   ]
   },
   {
    "name": "ぐだぐだ新邪馬台国 千利休ピックアップ",
@@ -8619,11 +7633,7 @@
     29,
     33,
     37
-   ],
-   "agents": [
-    "Sen no Rikyū"
-   ],
-   "en": "Sen no Rikyū"
+   ]
   },
   {
    "name": "京まふ2022出展記念ぐだぐだピックアップ",
@@ -8649,13 +7659,7 @@
     1,
     2,
     4
-   ],
-   "agents": [
-    "Beyond the Aeons",
-    "Hijikata Toshizō",
-    "Himiko"
-   ],
-   "en": "Beyond the Aeons & Hijikata Toshizō & Himiko"
+   ]
   },
   {
    "name": "Lostbelt No.5 アトランティス」ピックアップ",
@@ -8680,11 +7684,7 @@
     29,
     33,
     37
-   ],
-   "agents": [
-    "Super Orion"
-   ],
-   "en": "Super Orion"
+   ]
   },
   {
    "name": "「Lostbelt No.5 オリュンポス」ピックアップ",
@@ -8711,12 +7711,7 @@
     37,
     5,
     1
-   ],
-   "agents": [
-    "Europa",
-    "Romulus"
-   ],
-   "en": "Europa & Romulus"
+   ]
   },
   {
    "name": "108人のハロウィン･リベリオン！ ～小竜娘水滸演義～ 呼延灼ピックアップ",
@@ -8755,11 +7750,7 @@
     8,
     13,
     21
-   ],
-   "agents": [
-    "Huyan Zhuo"
-   ],
-   "en": "Huyan Zhuo"
+   ]
   },
   {
    "name": "カルデア妖精騎士杯開幕直前 モルガンピックアップ",
@@ -8784,11 +7775,7 @@
     6,
     9,
     2
-   ],
-   "agents": [
-    "Morgan"
-   ],
-   "en": "Morgan"
+   ]
   },
   {
    "name": "特異点修復応援キャンペーンピックアップ召喚(第三特異点)",
@@ -8808,11 +7795,7 @@
     5,
     2,
     3
-   ],
-   "agents": [
-    "Francis Drake"
-   ],
-   "en": "Francis Drake"
+   ]
   },
   {
    "name": "特異点修復応援キャンペーンピックアップ召喚(第四特異点)",
@@ -8834,12 +7817,7 @@
     6,
     9,
     2
-   ],
-   "agents": [
-    "Mordred",
-    "Jack the Ripper"
-   ],
-   "en": "Mordred & Jack the Ripper"
+   ]
   },
   {
    "name": "カルデア妖精騎士杯 ブリトマートピックアップ",
@@ -8871,11 +7849,7 @@
     1,
     4,
     11
-   ],
-   "agents": [
-    "Britomart"
-   ],
-   "en": "Britomart"
+   ]
   },
   {
    "name": "特異点修復応援キャンペーンピックアップ召喚(監獄塔)",
@@ -8895,11 +7869,7 @@
     2,
     1,
     1
-   ],
-   "agents": [
-    "Edmond Dantès"
-   ],
-   "en": "Edmond Dantès"
+   ]
   },
   {
    "name": "特異点修復応援キャンペーンピックアップ召喚(第五特異点)",
@@ -8921,11 +7891,7 @@
     7,
     10,
     10
-   ],
-   "agents": [
-    "Queen Medb"
-   ],
-   "en": "Queen Medb"
+   ]
   },
   {
    "name": "カルデア妖精騎士杯関門クエストピックアップ",
@@ -8946,11 +7912,7 @@
     7,
     10,
     10
-   ],
-   "agents": [
-    "Charlemagne"
-   ],
-   "en": "Charlemagne"
+   ]
   },
   {
    "name": "特異点修復応援キャンペーンピックアップ召喚(第六特異点)",
@@ -8970,11 +7932,7 @@
     10,
     16,
     12
-   ],
-   "agents": [
-    "Ozymandias"
-   ],
-   "en": "Ozymandias"
+   ]
   },
   {
    "name": "カルデア妖精騎士杯関門クエストピックアップ2",
@@ -8996,13 +7954,7 @@
     13,
     1,
     1
-   ],
-   "agents": [
-    "Sigurd",
-    "Brynhildr",
-    "Sakata Kintoki"
-   ],
-   "en": "Sigurd & Brynhildr & Sakata Kintoki"
+   ]
   },
   {
    "name": "特異点修復応援キャンペーンピックアップ召喚(第七特異点)",
@@ -9024,12 +7976,7 @@
     1,
     1,
     4
-   ],
-   "agents": [
-    "Enkidu",
-    "Quetzalcoatl"
-   ],
-   "en": "Enkidu & Quetzalcoatl"
+   ]
   },
   {
    "name": "「Lostbelt No.7」開幕前メインクエストクリア応援ピックアップ",
@@ -9059,12 +8006,7 @@
     5,
     9,
     12
-   ],
-   "agents": [
-    "Leonardo Da Vinci",
-    "Artoria Caster"
-   ],
-   "en": "Leonardo Da Vinci & Artoria Caster"
+   ]
   },
   {
    "name": "特異点修復応援キャンペーンピックアップ召喚(亜種特異点)",
@@ -9087,13 +8029,7 @@
     3,
     4,
     5
-   ],
-   "agents": [
-    "Miyamoto Musashi",
-    "James Moriarty",
-    "Abigail Williams"
-   ],
-   "en": "Miyamoto Musashi & James Moriarty & Abigail Williams"
+   ]
   },
   {
    "name": "「Lostbelt No.6」ピックアップ",
@@ -9133,13 +8069,7 @@
     4,
     2,
     4
-   ],
-   "agents": [
-    "Senji Muramasa",
-    "Mélusine",
-    "Oberon"
-   ],
-   "en": "Senji Muramasa & Mélusine & Oberon"
+   ]
   },
   {
    "name": "復刻 クリスマス2020ピックアップ",
@@ -9169,13 +8099,7 @@
     2,
     2,
     2
-   ],
-   "agents": [
-    "Arjuna",
-    "Vritra",
-    "Karna"
-   ],
-   "en": "Arjuna & Vritra & Karna"
+   ]
   },
   {
    "name": "「MELTY BLOOD: TYPE LUMINA」新規サーヴァント参戦記念 アルトリア･ペンドラゴン(セイバー)ピックアップ",
@@ -9198,8 +8122,7 @@
     8,
     9,
     2
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "「Fate/EXTRA Last Encore」Blu-ray Disc Box Standard Edition&Original Soundtrackリリース記念 ネロ･クラウディウス〔ブライド〕ピックアップ",
@@ -9224,11 +8147,7 @@
     2,
     3,
     4
-   ],
-   "agents": [
-    "Nero Claudius"
-   ],
-   "en": "Nero Claudius"
+   ]
   },
   {
    "name": "「Lostbelt No.7」開幕直前 光のコヤンスカヤピックアップ",
@@ -9258,11 +8177,7 @@
     20,
     21,
     18
-   ],
-   "agents": [
-    "Koyanskaya of Light"
-   ],
-   "en": "Koyanskaya of Light"
+   ]
   },
   {
    "name": "2023年お正月福袋召喚(クラス別×宝具効果別)",
@@ -9290,8 +8205,7 @@
     6,
     2,
     4
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "ニューイヤー2023ピックアップ",
@@ -9319,11 +8233,7 @@
     6,
     2,
     4
-   ],
-   "agents": [
-    "Grigori Rasputin"
-   ],
-   "en": "Grigori Rasputin"
+   ]
   },
   {
    "name": "「Lostbelt No.7」(後編)開幕直前 ネモピックアップ",
@@ -9348,11 +8258,7 @@
     120,
     143,
     146
-   ],
-   "agents": [
-    "Nemo"
-   ],
-   "en": "Nemo"
+   ]
   },
   {
    "name": "「Lostbelt No.7」(後編)開幕直前 ニトクリス〔オルタ〕ピックアップ",
@@ -9384,11 +8290,7 @@
     40,
     44,
     19
-   ],
-   "agents": [
-    "I Wonder What This Is?"
-   ],
-   "en": "I Wonder What This Is?"
+   ]
   },
   {
    "name": "ナウイ･ミクトラン テスカトリポカピックアップ",
@@ -9420,11 +8322,7 @@
     3,
     5,
     3
-   ],
-   "agents": [
-    "Tezcatlipoca"
-   ],
-   "en": "Tezcatlipoca"
+   ]
   },
   {
    "name": "ナウイ･ミクトラン ククルカンピックアップ",
@@ -9456,11 +8354,7 @@
     1,
     2,
     2
-   ],
-   "agents": [
-    "Kukulkan"
-   ],
-   "en": "Kukulkan"
+   ]
   },
   {
    "name": "2700万DL記念 エレシュキガルピックアップ",
@@ -9485,11 +8379,7 @@
     1,
     1,
     2
-   ],
-   "agents": [
-    "Space Ereshkigal"
-   ],
-   "en": "Space Ereshkigal"
+   ]
   },
   {
    "name": "バレンタイン2023ピックアップ",
@@ -9528,11 +8418,7 @@
     49,
     9,
     11
-   ],
-   "agents": [
-    "Popess Johanna"
-   ],
-   "en": "Popess Johanna"
+   ]
   },
   {
    "name": "復刻 バレンタイン2016～2022ピックアップ",
@@ -9559,11 +8445,7 @@
     16,
     17,
     24
-   ],
-   "agents": [
-    "Orion"
-   ],
-   "en": "Orion"
+   ]
   },
   {
    "name": "ホワイトデーメモリアルピックアップ",
@@ -9604,11 +8486,7 @@
     9,
     9,
     13
-   ],
-   "agents": [
-    "Daddy Letters Live"
-   ],
-   "en": "Daddy Letters Live"
+   ]
   },
   {
    "name": "CBC2023 カルデア重工物語 高杉晋作ピックアップ",
@@ -9647,11 +8525,7 @@
     12,
     11,
     13
-   ],
-   "agents": [
-    "Takasugi Shinsaku"
-   ],
-   "en": "Takasugi Shinsaku"
+   ]
   },
   {
    "name": "CBC2023 カルデア重工物語 魔王信長(織田信長)ピックアップ",
@@ -9685,11 +8559,7 @@
     12,
     11,
     13
-   ],
-   "agents": [
-    "Beyond the Aeons"
-   ],
-   "en": "Beyond the Aeons"
+   ]
   },
   {
    "name": "CBC2023 カルデア重工物語 坂本龍馬(ランサー)ピックアップ",
@@ -9721,11 +8591,7 @@
     12,
     11,
     13
-   ],
-   "agents": [
-    "White Oath"
-   ],
-   "en": "White Oath"
+   ]
   },
   {
    "name": "CBC2023 ピックアップ",
@@ -9755,11 +8621,7 @@
     12,
     11,
     13
-   ],
-   "agents": [
-    "Odysseus"
-   ],
-   "en": "Odysseus"
+   ]
   },
   {
    "name": "「春の新米マスター応援キャンペーン2023！」ピックアップ",
@@ -9788,12 +8650,7 @@
     12,
     11,
     13
-   ],
-   "agents": [
-    "Gilgamesh",
-    "Merlin"
-   ],
-   "en": "Gilgamesh & Merlin"
+   ]
   },
   {
    "name": "「巡霊の祝祭 第1弾」ピックアップ",
@@ -9822,13 +8679,7 @@
     39,
     45,
     50
-   ],
-   "agents": [
-    "Shuten Dōji",
-    "Sakata Kintoki",
-    "Quetzalcoatl"
-   ],
-   "en": "Shuten Dōji & Sakata Kintoki & Quetzalcoatl"
+   ]
   },
   {
    "name": "巡霊の祝祭 第1弾」ピックアップ2",
@@ -9857,13 +8708,7 @@
     108,
     1,
     1
-   ],
-   "agents": [
-    "Ibuki Dōji",
-    "Minamoto no Raikō",
-    "Bradamante"
-   ],
-   "en": "Ibuki Dōji & Minamoto no Raikō & Bradamante"
+   ]
   },
   {
    "name": "Fate/Grand Order Arcade×Fate/Grand Orderコラボレーションイベント開幕直前ピックアップ",
@@ -9909,11 +8754,7 @@
     9,
     10,
     7
-   ],
-   "agents": [
-    "Larva"
-   ],
-   "en": "Larva"
+   ]
   },
   {
    "name": "Fate/Grand Order Arcade×Fate/Grand Orderコラボレーションイベント ソドムズビースト／ドラコーピックアップ",
@@ -9952,11 +8793,7 @@
     9,
     10,
     7
-   ],
-   "agents": [
-    "Sodom's Beast"
-   ],
-   "en": "Sodom's Beast"
+   ]
   },
   {
    "name": "Fate/Grand Order Arcade×Fate/Grand Orderコラボレーションイベントピックアップ2",
@@ -9988,12 +8825,7 @@
     8,
     8,
     9
-   ],
-   "agents": [
-    "Jacques de Molay",
-    "Lady Avalon"
-   ],
-   "en": "Jacques de Molay & Lady Avalon"
+   ]
   },
   {
    "name": "Fate/Grand Order Arcade×Fate/Grand Orderコラボレーションイベントピックアップ3",
@@ -10018,12 +8850,7 @@
     6,
     7,
     6
-   ],
-   "agents": [
-    "Scáthach-Skaði",
-    "Nightingale"
-   ],
-   "en": "Scáthach-Skaði & Nightingale"
+   ]
   },
   {
    "name": "Fate/Grand Order Arcade×Fate/Grand Orderコラボレーションイベントピックアップ4",
@@ -10048,12 +8875,7 @@
     6,
     8,
     8
-   ],
-   "agents": [
-    "Mordred",
-    "Jack the Ripper"
-   ],
-   "en": "Mordred & Jack the Ripper"
+   ]
   },
   {
    "name": "「巡霊の祝祭 第2弾」ピックアップ",
@@ -10082,12 +8904,7 @@
     18,
     33,
     59
-   ],
-   "agents": [
-    "Okita Sōji",
-    "Mysterious Heroine X"
-   ],
-   "en": "Okita Sōji & Mysterious Heroine X"
+   ]
   },
   {
    "name": "「オーディール･コール」開幕直前ピックアップ",
@@ -10114,12 +8931,7 @@
     160,
     7,
     2
-   ],
-   "agents": [
-    "Ivan the Terrible",
-    "Anastasia"
-   ],
-   "en": "Ivan the Terrible & Anastasia"
+   ]
   },
   {
    "name": "風雲からくりイリヤ城 イリヤスフィール･フォン･アインツベルン(キャスター)ピックアップ",
@@ -10144,11 +8956,7 @@
     38,
     29,
     26
-   ],
-   "agents": [
-    "Illyasviel von Einzbern"
-   ],
-   "en": "Illyasviel von Einzbern"
+   ]
   },
   {
    "name": "風雲からくりイリヤ城 果心居士ピックアップ",
@@ -10173,11 +8981,7 @@
     38,
     29,
     26
-   ],
-   "agents": [
-    "Kashin Koji"
-   ],
-   "en": "Kashin Koji"
+   ]
   },
   {
    "name": "風雲からくりイリヤ城 シトナイピックアップ",
@@ -10202,11 +9006,7 @@
     26,
     26,
     31
-   ],
-   "agents": [
-    "Sitonai"
-   ],
-   "en": "Sitonai"
+   ]
   },
   {
    "name": "復刻「ネロ祭＆バトル･イン･ニューヨークピックアップ」",
@@ -10231,11 +9031,7 @@
     35,
     41,
     42
-   ],
-   "agents": [
-    "Nero Claudius"
-   ],
-   "en": "Nero Claudius"
+   ]
   },
   {
    "name": "「奏章Ⅰ」開幕直前ピックアップ",
@@ -10264,12 +9060,7 @@
     21,
     32,
     28
-   ],
-   "agents": [
-    "Kukulkan",
-    "I Wonder What This Is?"
-   ],
-   "en": "Kukulkan & I Wonder What This Is?"
+   ]
   },
   {
    "name": "ペーパームーン ビーマピックアップ",
@@ -10301,11 +9092,7 @@
     10,
     11,
     11
-   ],
-   "agents": [
-    "Bhima"
-   ],
-   "en": "Bhima"
+   ]
   },
   {
    "name": "ペーパームーン カーマ(アサシン)",
@@ -10337,11 +9124,7 @@
     9,
     6,
     4
-   ],
-   "agents": [
-    "Kama"
-   ],
-   "en": "Kama"
+   ]
   },
   {
    "name": "ペーパームーン ドゥルガーピックアップ",
@@ -10380,11 +9163,7 @@
     11,
     18,
     17
-   ],
-   "agents": [
-    "Durga"
-   ],
-   "en": "Durga"
+   ]
   },
   {
    "name": "2800万DL記念ピックアップ召喚",
@@ -10416,12 +9195,7 @@
     6,
     10,
     10
-   ],
-   "agents": [
-    "Cool-Mint Chocolate Bullet",
-    "Golden Round Table Roulette"
-   ],
-   "en": "Cool-Mint Chocolate Bullet & Golden Round Table Roulette"
+   ]
   },
   {
    "name": "「Fate/strange Fake -Whispers of Dawn-」放送記念 ピックアップ",
@@ -10447,12 +9221,7 @@
     4,
     6,
     6
-   ],
-   "agents": [
-    "Gilgamesh",
-    "Enkidu"
-   ],
-   "en": "Gilgamesh & Enkidu"
+   ]
   },
   {
    "name": "「巡霊の祝祭 第3弾」ピックアップ",
@@ -10479,13 +9248,7 @@
     6,
     10,
     10
-   ],
-   "agents": [
-    "Scáthach-Skaði",
-    "Jeanne d'Arc Alter Santa Lily",
-    "The Dragon of Smoke Escaping from Mount Fuji"
-   ],
-   "en": "Scáthach-Skaði & Jeanne d'Arc Alter Santa Lily & The Dragon of Smoke Escaping from Mount Fuji"
+   ]
   },
   {
    "name": "ミスティックアイズ･シンフォニー メドゥーサ(セイバー)ピックアップ",
@@ -10524,11 +9287,7 @@
     33,
     37,
     35
-   ],
-   "agents": [
-    "Medusa"
-   ],
-   "en": "Medusa"
+   ]
   },
   {
    "name": "ミスティックアイズ･シンフォニー 曲亭馬琴ピックアップ",
@@ -10553,11 +9312,7 @@
     10,
     8,
     11
-   ],
-   "agents": [
-    "Kyokutei Bakin"
-   ],
-   "en": "Kyokutei Bakin"
+   ]
   },
   {
    "name": "ミスティックアイズ･シンフォニー 呼延灼ピックアップ",
@@ -10582,11 +9337,7 @@
     11,
     18,
     17
-   ],
-   "agents": [
-    "Huyan Zhuo"
-   ],
-   "en": "Huyan Zhuo"
+   ]
   },
   {
    "name": "ミスティックアイズ･シンフォニーピックアップ4",
@@ -10615,12 +9366,7 @@
     57,
     38,
     33
-   ],
-   "agents": [
-    "Vritra",
-    "Jeunesse Crane"
-   ],
-   "en": "Vritra & Jeunesse Crane"
+   ]
   },
   {
    "name": "「Fate/Grand Order Fes. 2023 夏祭り ～8th Anniversary～」開催直前ピックアップ",
@@ -10647,12 +9393,7 @@
     59,
     59,
     28
-   ],
-   "agents": [
-    "James Moriarty",
-    "Leonardo Da Vinci"
-   ],
-   "en": "James Moriarty & Leonardo Da Vinci"
+   ]
   },
   {
    "name": "8周年記念 救世主トネリコ(雨の魔女トネリコ)ピックアップ",
@@ -10680,11 +9421,7 @@
     6,
     6,
     3
-   ],
-   "agents": [
-    "Aesc the Savior"
-   ],
-   "en": "Aesc the Savior"
+   ]
   },
   {
    "name": "8周年記念福袋",
@@ -10712,8 +9449,7 @@
     6,
     6,
     3
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "8周年記念限定日替りピックアップ",
@@ -10742,12 +9478,7 @@
     6,
     3,
     2
-   ],
-   "agents": [
-    "Trung Sisters",
-    "Constantine XI"
-   ],
-   "en": "Trung Sisters & Constantine XI"
+   ]
   },
   {
    "name": "デスティニーオーダー召喚",
@@ -10775,8 +9506,7 @@
     6,
     6,
     3
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "サーヴァント･サマー･フェスティバル2023！ アルトリア･キャスター(バーサーカー)ピックアップ",
@@ -10815,8 +9545,7 @@
     2,
     5,
     4
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "サーヴァント･サマー･フェスティバル2023！ オベロンピックアップ",
@@ -10855,11 +9584,7 @@
     2,
     5,
     4
-   ],
-   "agents": [
-    "Oberon"
-   ],
-   "en": "Oberon"
+   ]
   },
   {
    "name": "サーヴァント･サマー･フェスティバル2023！ メリュジーヌ(ルーラー)ピックアップ",
@@ -10894,11 +9619,7 @@
     2,
     5,
     4
-   ],
-   "agents": [
-    "Mélusine"
-   ],
-   "en": "Mélusine"
+   ]
   },
   {
    "name": "サーヴァント･サマー･フェスティバル2023！ テスカトリポカピックアップ",
@@ -10931,11 +9652,7 @@
     2,
     5,
     4
-   ],
-   "agents": [
-    "Tezcatlipoca"
-   ],
-   "en": "Tezcatlipoca"
+   ]
   },
   {
    "name": "復刻 水着2022ピックアップ",
@@ -10964,11 +9681,7 @@
     3,
     6,
     12
-   ],
-   "agents": [
-    "Lady Avalon"
-   ],
-   "en": "Lady Avalon"
+   ]
   },
   {
    "name": "ハンティングクエスト 第13弾 ピックアップ",
@@ -11001,12 +9714,7 @@
     8,
     11,
     19
-   ],
-   "agents": [
-    "Kama",
-    "Sesshōin Kiara"
-   ],
-   "en": "Kama & Sesshōin Kiara"
+   ]
   },
   {
    "name": "オーディール･コール:新任務開放キャンペーン 第2弾ピックアップ",
@@ -11035,13 +9743,7 @@
     21,
     20,
     26
-   ],
-   "agents": [
-    "Senji Muramasa",
-    "Ashiya Dōman",
-    "Grigori Rasputin"
-   ],
-   "en": "Senji Muramasa & Ashiya Dōman & Grigori Rasputin"
+   ]
   },
   {
    "name": "「巡霊の祝祭 第4弾」ピックアップ",
@@ -11070,11 +9772,7 @@
     2,
     5,
     13
-   ],
-   "agents": [
-    "Illyasviel von Einzbern"
-   ],
-   "en": "Illyasviel von Einzbern"
+   ]
   },
   {
    "name": "京まふ2023出展記念 ピックアップ",
@@ -11103,12 +9801,7 @@
     28,
     30,
     36
-   ],
-   "agents": [
-    "Ibuki Dōji",
-    "Beni-Enma"
-   ],
-   "en": "Ibuki Dōji & Beni-Enma"
+   ]
   },
   {
    "name": "ワンジナ･ワールドツアー！ピックアップ",
@@ -11147,12 +9840,7 @@
     53,
     53,
     55
-   ],
-   "agents": [
-    "Wandjina",
-    "Voyager"
-   ],
-   "en": "Wandjina & Voyager"
+   ]
   },
   {
    "name": "ワンジナ･ワールドツアー！ピックアップ2",
@@ -11179,12 +9867,7 @@
     35,
     31,
     34
-   ],
-   "agents": [
-    "Cleopatra",
-    "Ozymandias"
-   ],
-   "en": "Cleopatra & Ozymandias"
+   ]
   },
   {
    "name": "オーディール･コール:新任務開放キャンペーン 第3弾ピックアップ",
@@ -11211,12 +9894,7 @@
     55,
     17,
     21
-   ],
-   "agents": [
-    "Sigurd",
-    "Shi Huang Di"
-   ],
-   "en": "Sigurd & Shi Huang Di"
+   ]
   },
   {
    "name": "「巡霊の祝祭 第5弾」ピックアップ",
@@ -11243,11 +9921,7 @@
     2,
     6,
     10
-   ],
-   "agents": [
-    "Mercury Choco"
-   ],
-   "en": "Mercury Choco"
+   ]
   },
   {
    "name": "【リリース3000日突破記念特別】ピックアップ",
@@ -11275,12 +9949,7 @@
     17,
     16,
     37
-   ],
-   "agents": [
-    "Artoria Caster",
-    "Morgan"
-   ],
-   "en": "Artoria Caster & Morgan"
+   ]
   },
   {
    "name": "聖杯戦線 ～白天の城、黒夜の城～ プトレマイオスピックアップ",
@@ -11319,11 +9988,7 @@
     56,
     57,
     64
-   ],
-   "agents": [
-    "Ptolemaios"
-   ],
-   "en": "Ptolemaios"
+   ]
   },
   {
    "name": "聖杯戦線 ～白天の城、黒夜の城～ 太公望ピックアップ",
@@ -11353,11 +10018,7 @@
     55,
     58,
     65
-   ],
-   "agents": [
-    "Perfect Fishing Spot"
-   ],
-   "en": "Perfect Fishing Spot"
+   ]
   },
   {
    "name": "聖杯戦線 ～白天の城、黒夜の城～ピックアップ3",
@@ -11389,11 +10050,7 @@
     56,
     57,
     64
-   ],
-   "agents": [
-    "Iskandar"
-   ],
-   "en": "Iskandar"
+   ]
   },
   {
    "name": "オーディール･コール:新任務開放キャンペーン 第4弾ピックアップ",
@@ -11419,12 +10076,7 @@
     23,
     28,
     28
-   ],
-   "agents": [
-    "Account Recovery",
-    "Jinako Carigiri"
-   ],
-   "en": "Account Recovery & Jinako Carigiri"
+   ]
   },
   {
    "name": "2900万DL記念 メリュジーヌ(ランサー)(妖精騎士ランスロット)ピックアップ",
@@ -11456,11 +10108,7 @@
     48,
     37,
     1
-   ],
-   "agents": [
-    "Mélusine"
-   ],
-   "en": "Mélusine"
+   ]
   },
   {
    "name": "「巡霊の祝祭 第6弾」ピックアップ",
@@ -11489,13 +10137,7 @@
     1,
     8,
     10
-   ],
-   "agents": [
-    "Beyond the Aeons",
-    "White Oath",
-    "Nightingale"
-   ],
-   "en": "Beyond the Aeons & White Oath & Nightingale"
+   ]
   },
   {
    "name": "ぐだぐだ超五稜郭 武田信玄(武田晴信)ピックアップ",
@@ -11533,11 +10175,7 @@
     15,
     17,
     14
-   ],
-   "agents": [
-    "Takeda Shingen"
-   ],
-   "en": "Takeda Shingen"
+   ]
   },
   {
    "name": "ぐだぐだ超五稜郭ピックアップ2",
@@ -11564,12 +10202,7 @@
     1,
     2,
     5
-   ],
-   "agents": [
-    "Okita Sōji",
-    "Hijikata Toshizō"
-   ],
-   "en": "Okita Sōji & Hijikata Toshizō"
+   ]
   },
   {
    "name": "ぐだぐだ超五稜郭 上杉謙信ピックアップ",
@@ -11600,11 +10233,7 @@
     15,
     17,
     14
-   ],
-   "agents": [
-    "Uesugi Kenshin"
-   ],
-   "en": "Uesugi Kenshin"
+   ]
   },
   {
    "name": "ぐだぐだ超五稜郭ピックアップ4",
@@ -11632,12 +10261,7 @@
     15,
     17,
     14
-   ],
-   "agents": [
-    "Izumo no Okuni",
-    "Sen no Rikyū"
-   ],
-   "en": "Izumo no Okuni & Sen no Rikyū"
+   ]
   },
   {
    "name": "雪原のメリー･クリスマス2023 ネモピックアップ",
@@ -11666,11 +10290,7 @@
     27,
     23,
     17
-   ],
-   "agents": [
-    "Nemo"
-   ],
-   "en": "Nemo"
+   ]
   },
   {
    "name": "雪原のメリー･クリスマス2023 ブリトマートピックアップ",
@@ -11698,11 +10318,7 @@
     27,
     23,
     17
-   ],
-   "agents": [
-    "Britomart"
-   ],
-   "en": "Britomart"
+   ]
   },
   {
    "name": "雪原のメリー･クリスマス2023 BBピックアップ",
@@ -11727,11 +10343,7 @@
     27,
     23,
     17
-   ],
-   "agents": [
-    "BB"
-   ],
-   "en": "BB"
+   ]
   },
   {
    "name": "雪原のメリー･クリスマス2023 スカサハ＝スカディ(キャスター)ピックアップ",
@@ -11755,11 +10367,7 @@
     27,
     23,
     17
-   ],
-   "agents": [
-    "Scáthach-Skaði"
-   ],
-   "en": "Scáthach-Skaði"
+   ]
   },
   {
    "name": "2024年お正月福袋召喚(男女別×宝具タイプ･効果別)",
@@ -11786,8 +10394,7 @@
     6,
     9,
     8
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "ニューイヤー2024ピックアップ",
@@ -11814,12 +10421,7 @@
     6,
     9,
     8
-   ],
-   "agents": [
-    "Yamato Takeru",
-    "Koyanskaya of Light"
-   ],
-   "en": "Yamato Takeru & Koyanskaya of Light"
+   ]
   },
   {
    "name": "FGO カルデア･サテライトステーション 2023-2024」開催記念キャンペーン 呼延灼ピックアップ",
@@ -11844,11 +10446,7 @@
     85,
     85,
     70
-   ],
-   "agents": [
-    "Huyan Zhuo"
-   ],
-   "en": "Huyan Zhuo"
+   ]
   },
   {
    "name": "Fate/Samurai Remnant×Fate/Grand Orderコラボレーションイベント 源頼光／丑御前ピックアップ",
@@ -11887,11 +10485,7 @@
     21,
     25,
     27
-   ],
-   "agents": [
-    "Ushi Gozen"
-   ],
-   "en": "Ushi Gozen"
+   ]
   },
   {
    "name": "Fate/Samurai Remnant×Fate/Grand Orderコラボレーションイベント 宮本武蔵(バーサーカー)ピックアップ",
@@ -11922,11 +10516,7 @@
     21,
     25,
     27
-   ],
-   "agents": [
-    "Miyamoto Musashi"
-   ],
-   "en": "Miyamoto Musashi"
+   ]
   },
   {
    "name": "「Fate/stay night」20周年記念 アルトリア･ペンドラゴン(セイバー)ピックアップ",
@@ -11951,11 +10541,7 @@
     16,
     21,
     25
-   ],
-   "agents": [
-    "Crown Saber"
-   ],
-   "en": "Crown Saber"
+   ]
   },
   {
    "name": "「巡霊の祝祭 第7弾」ピックアップ",
@@ -11983,12 +10569,7 @@
     9,
     6,
     7
-   ],
-   "agents": [
-    "Ishtar",
-    "Space Ereshkigal"
-   ],
-   "en": "Ishtar & Space Ereshkigal"
+   ]
   },
   {
    "name": "バレンタイン2024ピックアップ",
@@ -12027,12 +10608,7 @@
     21,
     26,
     29
-   ],
-   "agents": [
-    "Andromeda",
-    "Orion"
-   ],
-   "en": "Andromeda & Orion"
+   ]
   },
   {
    "name": "「奏章Ⅱ」開幕直前ピックアップ",
@@ -12061,13 +10637,7 @@
     11,
     20,
     27
-   ],
-   "agents": [
-    "Medusa",
-    "Durga",
-    "Bhima"
-   ],
-   "en": "Medusa & Durga & Bhima"
+   ]
   },
   {
    "name": "CBC2024 モンジョワ･騎士道！ シャルルマーニュピックアップ",
@@ -12106,11 +10676,7 @@
     3,
     7,
     8
-   ],
-   "agents": [
-    "Charlemagne"
-   ],
-   "en": "Charlemagne"
+   ]
   },
   {
    "name": "CBC2024 ピックアップ",
@@ -12138,11 +10704,7 @@
     16,
     15,
     16
-   ],
-   "agents": [
-    "Sieg"
-   ],
-   "en": "Sieg"
+   ]
   },
   {
    "name": "ホワイトデーメモリアルピックアップ",
@@ -12181,11 +10743,7 @@
     6,
     9,
     10
-   ],
-   "agents": [
-    "Sieg"
-   ],
-   "en": "Sieg"
+   ]
   },
   {
    "name": "イド マリー･アントワネット〔オルタ〕ピックアップ",
@@ -12217,11 +10775,7 @@
     6,
     9,
     10
-   ],
-   "agents": [
-    "The Days We Once Saw"
-   ],
-   "en": "The Days We Once Saw"
+   ]
   },
   {
    "name": "イド ジャンヌ･ダルク〔オルタ〕(アヴェンジャー)ピックアップ",
@@ -12250,8 +10804,7 @@
     6,
     9,
     10
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "イド 平景清ピックアップ",
@@ -12278,11 +10831,7 @@
     6,
     9,
     10
-   ],
-   "agents": [
-    "Taira no Kagekiyo"
-   ],
-   "en": "Taira no Kagekiyo"
+   ]
   },
   {
    "name": "イド 巌窟王 モンテ･クリストピックアップ",
@@ -12321,11 +10870,7 @@
     19,
     24,
     21
-   ],
-   "agents": [
-    "The Count of Monte Cristo"
-   ],
-   "en": "The Count of Monte Cristo"
+   ]
   },
   {
    "name": "「春の新米マスター応援キャンペーン2024！」ピックアップ",
@@ -12350,12 +10895,7 @@
     10,
     9,
     11
-   ],
-   "agents": [
-    "Jeanne d'Arc",
-    "Artoria Caster"
-   ],
-   "en": "Jeanne d'Arc & Artoria Caster"
+   ]
   },
   {
    "name": "「巡霊の祝祭 第8弾」ピックアップ",
@@ -12386,12 +10926,7 @@
     18,
     19,
     24
-   ],
-   "agents": [
-    "Meltryllis",
-    "Quetzalcoatl"
-   ],
-   "en": "Meltryllis & Quetzalcoatl"
+   ]
   },
   {
    "name": "オーディール･コール:新任務開放キャンペーン 第6弾 レディ･アヴァロンピックアップ",
@@ -12416,11 +10951,7 @@
     15,
     35,
     41
-   ],
-   "agents": [
-    "Lady Avalon"
-   ],
-   "en": "Lady Avalon"
+   ]
   },
   {
    "name": "歴代コラボレーションイベントピックアップ",
@@ -12449,12 +10980,7 @@
     74,
     1,
     1
-   ],
-   "agents": [
-    "Super Bunyan",
-    "Voyager"
-   ],
-   "en": "Super Bunyan & Voyager"
+   ]
   },
   {
    "name": "魔法使いの夜×Fate/Grand Orderコラボレーションイベント 蒼崎青子ピックアップ",
@@ -12493,11 +11019,7 @@
     26,
     19,
     10
-   ],
-   "agents": [
-    "Aozaki Aoko"
-   ],
-   "en": "Aozaki Aoko"
+   ]
   },
   {
    "name": "魔法使いの夜×Fate/Grand Orderコラボレーションイベント スペース･イシュタルピックアップ",
@@ -12522,11 +11044,7 @@
     1,
     2,
     5
-   ],
-   "agents": [
-    "Space Ishtar"
-   ],
-   "en": "Space Ishtar"
+   ]
   },
   {
    "name": "魔法使いの夜×Fate/Grand Orderコラボレーションイベント 久遠寺有珠ピックアップ",
@@ -12560,11 +11078,7 @@
     26,
     19,
     10
-   ],
-   "agents": [
-    "Kuonji Alice"
-   ],
-   "en": "Kuonji Alice"
+   ]
   },
   {
    "name": "魔法使いの夜×Fate/Grand Orderコラボレーションイベントピックアップ4",
@@ -12595,11 +11109,7 @@
     21,
     26,
     19
-   ],
-   "agents": [
-    "Senji Muramasa"
-   ],
-   "en": "Senji Muramasa"
+   ]
   },
   {
    "name": "復刻 カルデア･サマーアドベンチャー！ アキレウスピックアップ",
@@ -12638,11 +11148,7 @@
     72,
     63,
     64
-   ],
-   "agents": [
-    "Achilles"
-   ],
-   "en": "Achilles"
+   ]
   },
   {
    "name": "復刻 カルデア･サマーアドベンチャー！ 沖田総司〔オルタ〕(セイバー)ピックアップ",
@@ -12681,8 +11187,7 @@
     72,
     63,
     64
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "復刻 カルデア･サマーアドベンチャー！ カーマ(アヴェンジャー)ピックアップ",
@@ -12714,11 +11219,7 @@
     72,
     63,
     64
-   ],
-   "agents": [
-    "Kama"
-   ],
-   "en": "Kama"
+   ]
   },
   {
    "name": "幕間の物語キャンペーン第19弾 コンスタンティノス11世ピックアップ",
@@ -12743,11 +11244,7 @@
     72,
     63,
     64
-   ],
-   "agents": [
-    "Constantine XI"
-   ],
-   "en": "Constantine XI"
+   ]
   },
   {
    "name": "復刻 Fate/Grand Order Arcade×Fate/Grand Orderコラボレーションイベント ソドムズビースト／ドラコーピックアップ",
@@ -12786,11 +11283,7 @@
     28,
     31,
     28
-   ],
-   "agents": [
-    "Sodom's Beast"
-   ],
-   "en": "Sodom's Beast"
+   ]
   },
   {
    "name": "復刻 Fate/Grand Order Arcade×Fate/Grand Orderコラボレーションイベントピックアップ2",
@@ -12815,12 +11308,7 @@
     13,
     20,
     22
-   ],
-   "agents": [
-    "Scáthach-Skaði",
-    "Jacques de Molay"
-   ],
-   "en": "Scáthach-Skaði & Jacques de Molay"
+   ]
   },
   {
    "name": "復刻 Fate/Grand Order Arcade×Fate/Grand Orderコラボレーションイベント ラーヴァ／ティアマトピックアップ",
@@ -12853,11 +11341,7 @@
     28,
     31,
     28
-   ],
-   "agents": [
-    "Larva"
-   ],
-   "en": "Larva"
+   ]
   },
   {
    "name": "復刻 Fate/Grand Order Arcade×Fate/Grand Orderコラボレーションイベントピックアップ4",
@@ -12884,13 +11368,7 @@
     28,
     31,
     28
-   ],
-   "agents": [
-    "Mordred",
-    "Jack the Ripper",
-    "Nightingale"
-   ],
-   "en": "Mordred & Jack the Ripper & Nightingale"
+   ]
   },
   {
    "name": "幕間の物語キャンペーン第20弾 太公望ピックアップ",
@@ -12915,11 +11393,7 @@
     28,
     31,
     28
-   ],
-   "agents": [
-    "Perfect Fishing Spot"
-   ],
-   "en": "Perfect Fishing Spot"
+   ]
   },
   {
    "name": "踊るドラゴン･キャッスル！ 阿曇磯良(ひびき＆千鍵)ピックアップ",
@@ -12958,11 +11432,7 @@
     10,
     10,
     12
-   ],
-   "agents": [
-    "Dancing Dragon Castle"
-   ],
-   "en": "Dancing Dragon Castle"
+   ]
   },
   {
    "name": "踊るドラゴン･キャッスル！ 諸葛孔明〔エルメロイⅡ世〕ピックアップ",
@@ -12996,8 +11466,7 @@
     10,
     10,
     12
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "踊るドラゴン･キャッスル！ 清少納言(アーチャー)ピックアップ",
@@ -13029,11 +11498,7 @@
     10,
     10,
     12
-   ],
-   "agents": [
-    "Sei Shōnagon"
-   ],
-   "en": "Sei Shōnagon"
+   ]
   },
   {
    "name": "「水着イベント2024」参加条件クリア応援キャンペーン 第2弾ピックアップ",
@@ -13063,12 +11528,7 @@
     13,
     30,
     33
-   ],
-   "agents": [
-    "Tales of Morgania",
-    "Mélusine"
-   ],
-   "en": "Tales of Morgania & Mélusine"
+   ]
   },
   {
    "name": "「水着イベント2024」参加条件クリア応援キャンペーン 第2弾ピックアップ2",
@@ -13096,11 +11556,7 @@
     66,
     80,
     48
-   ],
-   "agents": [
-    "Starry Night"
-   ],
-   "en": "Starry Night"
+   ]
   },
   {
    "name": "水着イベント2024」参加条件クリア応援キャンペーン 第2弾ピックアップ3",
@@ -13128,8 +11584,7 @@
     80,
     102,
     92
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "9周年記念 スペース･エレシュキガルピックアップ",
@@ -13161,11 +11616,7 @@
     1,
     2,
     4
-   ],
-   "agents": [
-    "Space Ereshkigal"
-   ],
-   "en": "Space Ereshkigal"
+   ]
   },
   {
    "name": "9周年記念福袋召喚(5周年以降 パビリオン別17分割)",
@@ -13193,8 +11644,7 @@
     3,
     4,
     4
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "9周年記念限定サーヴァント日替りピックアップ召喚",
@@ -13223,13 +11673,7 @@
     4,
     4,
     1
-   ],
-   "agents": [
-    "Ptolemaios",
-    "Merlin",
-    "Kama"
-   ],
-   "en": "Ptolemaios & Merlin & Kama"
+   ]
   },
   {
    "name": "デスティニーオーダー召喚",
@@ -13257,8 +11701,7 @@
     3,
     4,
     4
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "ＢＢプレゼンツ☆セレブサマー･エクスペリエンス！ カルナピックアップ",
@@ -13325,11 +11768,7 @@
     24,
     44,
     27
-   ],
-   "agents": [
-    "Karna"
-   ],
-   "en": "Karna"
+   ]
   },
   {
    "name": "ＢＢプレゼンツ☆セレブサマー･エクスペリエンス！ 謎の代行者C.I.E.Lピックアップ",
@@ -13392,11 +11831,7 @@
     24,
     44,
     27
-   ],
-   "agents": [
-    "Mysterious Executor C.I.E.L"
-   ],
-   "en": "Mysterious Executor C.I.E.L"
+   ]
   },
   {
    "name": "復刻 水着2018～2020ピックアップ",
@@ -13423,12 +11858,7 @@
     15,
     1,
     1
-   ],
-   "agents": [
-    "One Summer's Mirage Set",
-    "BB"
-   ],
-   "en": "One Summer's Mirage Set & BB"
+   ]
   },
   {
    "name": "アーキタイプ･インセプション ＢＢドバイピックアップ",
@@ -13488,11 +11918,7 @@
     10,
     9,
     11
-   ],
-   "agents": [
-    "BB Dubai"
-   ],
-   "en": "BB Dubai"
+   ]
   },
   {
    "name": "アーキタイプ･インセプションピックアップ2",
@@ -13523,13 +11949,7 @@
     3,
     6,
     8
-   ],
-   "agents": [
-    "Koyanskaya of Darkness",
-    "Bunny Ears",
-    "Kingprotea"
-   ],
-   "en": "Koyanskaya of Darkness & Bunny Ears & Kingprotea"
+   ]
   },
   {
    "name": "アーキタイプ･インセプションピックアップ3",
@@ -13556,11 +11976,7 @@
     15,
     12,
     21
-   ],
-   "agents": [
-    "Sesshōin Kiara"
-   ],
-   "en": "Sesshōin Kiara"
+   ]
   },
   {
    "name": "京まふ2024出展記念 千利休ピックアップ",
@@ -13585,11 +12001,7 @@
     11,
     15,
     12
-   ],
-   "agents": [
-    "Sen no Rikyū"
-   ],
-   "en": "Sen no Rikyū"
+   ]
   },
   {
    "name": "3000万DL記念 オベロンピックアップ",
@@ -13621,11 +12033,7 @@
     27,
     30,
     1
-   ],
-   "agents": [
-    "Oberon"
-   ],
-   "en": "Oberon"
+   ]
   },
   {
    "name": "妖精双六虫籠遊戯 まだ見ぬ完璧なあなたへ カズラドロップピックアップ",
@@ -13664,11 +12072,7 @@
     14,
     16,
     15
-   ],
-   "agents": [
-    "Kazuradrop"
-   ],
-   "en": "Kazuradrop"
+   ]
   },
   {
    "name": "妖精双六虫籠遊戯 まだ見ぬ完璧なあなたへ メルトリリスピックアップ",
@@ -13700,11 +12104,7 @@
     14,
     16,
     15
-   ],
-   "agents": [
-    "Meltryllis"
-   ],
-   "en": "Meltryllis"
+   ]
   },
   {
    "name": "復刻 歴代DL記念ピックアップ",
@@ -13728,11 +12128,7 @@
     15,
     27,
     17
-   ],
-   "agents": [
-    "Arctic Summer World"
-   ],
-   "en": "Arctic Summer World"
+   ]
   },
   {
    "name": "「Lostbelt No.6」クリア応援キャンペーンピックアップ",
@@ -13761,13 +12157,7 @@
     50,
     57,
     109
-   ],
-   "agents": [
-    "Morgan",
-    "Leonardo Da Vinci",
-    "Mélusine"
-   ],
-   "en": "Morgan & Leonardo Da Vinci & Mélusine"
+   ]
   },
   {
    "name": "ぶち壊せ！ ミステリーハウス･クラフターズ開幕直前ピックアップ",
@@ -13794,12 +12184,7 @@
     124,
     69,
     3
-   ],
-   "agents": [
-    "Ishtar",
-    "Ozymandias"
-   ],
-   "en": "Ishtar & Ozymandias"
+   ]
   },
   {
    "name": "ぶち壊せ！ ミステリーハウス･クラフターズ ツタンカーメンピックアップ",
@@ -13838,11 +12223,7 @@
     21,
     21,
     18
-   ],
-   "agents": [
-    "Tutankhamun"
-   ],
-   "en": "Tutankhamun"
+   ]
   },
   {
    "name": "ぶち壊せ！ ミステリーハウス･クラフターズピックアップ2",
@@ -13870,12 +12251,7 @@
     37,
     50,
     24
-   ],
-   "agents": [
-    "Britomart",
-    "Beyond the Aeons"
-   ],
-   "en": "Britomart & Beyond the Aeons"
+   ]
   },
   {
    "name": "ぶち壊せ！ ミステリーハウス･クラフターズピックアップ3",
@@ -13903,12 +12279,7 @@
     57,
     70,
     47
-   ],
-   "agents": [
-    "Super Bunyan",
-    "Van Gogh"
-   ],
-   "en": "Super Bunyan & Van Gogh"
+   ]
   },
   {
    "name": "幕間の物語キャンペーン第21弾 徴姉妹ピックアップ",
@@ -13933,11 +12304,7 @@
     21,
     18,
     17
-   ],
-   "agents": [
-    "Trung Sisters"
-   ],
-   "en": "Trung Sisters"
+   ]
   },
   {
    "name": "幕間の物語キャンペーン第21弾 ドゥルガーピックアップ",
@@ -13962,11 +12329,7 @@
     17,
     22,
     29
-   ],
-   "agents": [
-    "Durga"
-   ],
-   "en": "Durga"
+   ]
   },
   {
    "name": "「Lostbelt No.7」クリア応援キャンペーンピックアップ",
@@ -13999,13 +12362,7 @@
     3,
     6,
     9
-   ],
-   "agents": [
-    "Tezcatlipoca",
-    "Kukulkan",
-    "Grigori Rasputin"
-   ],
-   "en": "Tezcatlipoca & Kukulkan & Grigori Rasputin"
+   ]
   },
   {
    "name": "ポホヨラのクリスマス･イブ ロウヒピックアップ",
@@ -14036,11 +12393,7 @@
     19,
     18,
     22
-   ],
-   "agents": [
-    "Louhi"
-   ],
-   "en": "Louhi"
+   ]
   },
   {
    "name": "ポホヨラのクリスマス･イブ シトナイピックアップ",
@@ -14065,11 +12418,7 @@
     13,
     17,
     20
-   ],
-   "agents": [
-    "Sitonai"
-   ],
-   "en": "Sitonai"
+   ]
   },
   {
    "name": "ポホヨラのクリスマス･イブ 司馬懿〔ライネス〕ピックアップ",
@@ -14094,11 +12443,7 @@
     20,
     24,
     19
-   ],
-   "agents": [
-    "Mercury Choco"
-   ],
-   "en": "Mercury Choco"
+   ]
   },
   {
    "name": "ポホヨラのクリスマス･イブピックアップ4",
@@ -14123,12 +12468,7 @@
     19,
     18,
     22
-   ],
-   "agents": [
-    "Katsushika Hokusai",
-    "Abigail Williams"
-   ],
-   "en": "Katsushika Hokusai & Abigail Williams"
+   ]
   },
   {
    "name": "スペース･ファンタズムーン アナザー･クリスマス ファンタズムーンピックアップ",
@@ -14152,11 +12492,7 @@
     8,
     8,
     11
-   ],
-   "agents": [
-    "Phantasmoon"
-   ],
-   "en": "Phantasmoon"
+   ]
   },
   {
    "name": "ニューイヤー2025ピックアップ",
@@ -14188,11 +12524,7 @@
     11,
     8,
     9
-   ],
-   "agents": [
-    "Richard I"
-   ],
-   "en": "Richard I"
+   ]
   },
   {
    "name": "【週替り】セイバーピックアップ1",
@@ -14217,11 +12549,7 @@
     13,
     12,
     11
-   ],
-   "agents": [
-    "Class Saber"
-   ],
-   "en": "Class Saber"
+   ]
   },
   {
    "name": "【週替り】セイバーピックアップ2",
@@ -14246,11 +12574,7 @@
     13,
     16,
     20
-   ],
-   "agents": [
-    "Class Saber"
-   ],
-   "en": "Class Saber"
+   ]
   },
   {
    "name": "育て！ マイ･リトル･ドラゴン ビショーネピックアップ",
@@ -14289,11 +12613,7 @@
     29,
     22,
     19
-   ],
-   "agents": [
-    "Biscione"
-   ],
-   "en": "Biscione"
+   ]
   },
   {
    "name": "【週替り】ルーラーピックアップ",
@@ -14318,11 +12638,7 @@
     21,
     20,
     19
-   ],
-   "agents": [
-    "Ruler"
-   ],
-   "en": "Ruler"
+   ]
   },
   {
    "name": "育て！ マイ･リトル･ドラゴン メドゥーサ(セイバー)ピックアップ",
@@ -14353,11 +12669,7 @@
     29,
     22,
     19
-   ],
-   "agents": [
-    "Medusa"
-   ],
-   "en": "Medusa"
+   ]
   },
   {
    "name": "「巡霊の祝祭 第9弾」ピックアップ",
@@ -14386,13 +12698,7 @@
     35,
     29,
     22
-   ],
-   "agents": [
-    "Taira no Kagekiyo",
-    "Brynhildr",
-    "Voyager"
-   ],
-   "en": "Taira no Kagekiyo & Brynhildr & Voyager"
+   ]
   },
   {
    "name": "【週替り】アーチャーピックアップ1",
@@ -14417,11 +12723,7 @@
     65,
     35,
     29
-   ],
-   "agents": [
-    "Class Archer"
-   ],
-   "en": "Class Archer"
+   ]
   },
   {
    "name": "「奏章Ⅱ」クリア応援キャンペーン 巌窟王 モンテ･クリストピックアップ",
@@ -14446,11 +12748,7 @@
     22,
     39,
     62
-   ],
-   "agents": [
-    "The Count of Monte Cristo"
-   ],
-   "en": "The Count of Monte Cristo"
+   ]
   },
   {
    "name": "【週替り】アーチャーピックアップ2",
@@ -14475,11 +12773,7 @@
     62,
     54,
     57
-   ],
-   "agents": [
-    "Class Archer"
-   ],
-   "en": "Class Archer"
+   ]
   },
   {
    "name": "【週替り】アルターエゴピックアップ",
@@ -14504,11 +12798,7 @@
     15,
     20,
     17
-   ],
-   "agents": [
-    "Alter Ego"
-   ],
-   "en": "Alter Ego"
+   ]
   },
   {
    "name": "バレンタイン2025ピックアップ",
@@ -14547,13 +12837,7 @@
     42,
     26,
     17
-   ],
-   "agents": [
-    "Ono no Komachi",
-    "Osakabehime",
-    "Orion"
-   ],
-   "en": "Ono no Komachi & Osakabehime & Orion"
+   ]
   },
   {
    "name": "【週替り】ランサーピックアップ1",
@@ -14578,11 +12862,7 @@
     61,
     52,
     60
-   ],
-   "agents": [
-    "Tōhachi Bishamonten"
-   ],
-   "en": "Tōhachi Bishamonten"
+   ]
   },
   {
    "name": "【週替り】アヴェンジャーピックアップ",
@@ -14607,11 +12887,7 @@
     10,
     14,
     19
-   ],
-   "agents": [
-    "Avenger"
-   ],
-   "en": "Avenger"
+   ]
   },
   {
    "name": "CBC2025 ピックアップ",
@@ -14643,11 +12919,7 @@
     48,
     49,
     43
-   ],
-   "agents": [
-    "Daddy Letters Live"
-   ],
-   "en": "Daddy Letters Live"
+   ]
   },
   {
    "name": "CBC2025 彼の名はダンテ ～ホテル･デノヴォのコンシェルジュ～ ダンテ･アリギエーリピックアップ",
@@ -14686,11 +12958,7 @@
     76,
     53,
     37
-   ],
-   "agents": [
-    "Dante Alighieri"
-   ],
-   "en": "Dante Alighieri"
+   ]
   },
   {
    "name": "CBC2025 彼の名はダンテ ～ホテル･デノヴォのコンシェルジュ～ ジェームズ･モリアーティ(アーチャー)(新宿のアーチャー)ピックアップ",
@@ -14715,11 +12983,7 @@
     21,
     30,
     41
-   ],
-   "agents": [
-    "James Moriarty"
-   ],
-   "en": "James Moriarty"
+   ]
   },
   {
    "name": "【週替り】ライダーピックアップ1",
@@ -14744,11 +13008,7 @@
     57,
     51,
     48
-   ],
-   "agents": [
-    "Tōhachi Bishamonten"
-   ],
-   "en": "Tōhachi Bishamonten"
+   ]
   },
   {
    "name": "【週替り】ライダーピックアップ2",
@@ -14773,11 +13033,7 @@
     86,
     79,
     76
-   ],
-   "agents": [
-    "Tōhachi Bishamonten"
-   ],
-   "en": "Tōhachi Bishamonten"
+   ]
   },
   {
    "name": "【週替り】キャスターピックアップ1",
@@ -14802,11 +13058,7 @@
     128,
     23,
     6
-   ],
-   "agents": [
-    "Class Caster"
-   ],
-   "en": "Class Caster"
+   ]
   },
   {
    "name": "「春の新米マスター応援キャンペーン2025！」 モルガンピックアップ",
@@ -14838,11 +13090,7 @@
     21,
     22,
     27
-   ],
-   "agents": [
-    "Morgan"
-   ],
-   "en": "Morgan"
+   ]
   },
   {
    "name": "【週替り】キャスターピックアップ2",
@@ -14867,11 +13115,7 @@
     26,
     24,
     24
-   ],
-   "agents": [
-    "Class Caster"
-   ],
-   "en": "Class Caster"
+   ]
   },
   {
    "name": "復刻 ぐだぐだ龍馬危機一髪！ピックアップ",
@@ -14910,13 +13154,7 @@
     36,
     18,
     6
-   ],
-   "agents": [
-    "Izumo no Okuni",
-    "White Oath",
-    "Takasugi Shinsaku"
-   ],
-   "en": "Izumo no Okuni & White Oath & Takasugi Shinsaku"
+   ]
   },
   {
    "name": "「巡霊の祝祭 第11弾」ピックアップ",
@@ -14943,12 +13181,7 @@
     22,
     27,
     26
-   ],
-   "agents": [
-    "Trung Sisters",
-    "Takeda Shingen"
-   ],
-   "en": "Trung Sisters & Takeda Shingen"
+   ]
   },
   {
    "name": "【週替り】フォーリナーピックアップ",
@@ -14973,11 +13206,7 @@
     27,
     26,
     29
-   ],
-   "agents": [
-    "Foreigner"
-   ],
-   "en": "Foreigner"
+   ]
   },
   {
    "name": "3100万DL記念 レディ･アヴァロンピックアップ",
@@ -15009,11 +13238,7 @@
     36,
     18,
     6
-   ],
-   "agents": [
-    "Lady Avalon"
-   ],
-   "en": "Lady Avalon"
+   ]
   },
   {
    "name": "【週替り】バーサーカーピックアップ1",
@@ -15038,11 +13263,7 @@
     49,
     37,
     36
-   ],
-   "agents": [
-    "Class Berserker"
-   ],
-   "en": "Class Berserker"
+   ]
   },
   {
    "name": "【週替り】バーサーカーピックアップ2",
@@ -15067,11 +13288,7 @@
     31,
     24,
     23
-   ],
-   "agents": [
-    "Class Berserker"
-   ],
-   "en": "Class Berserker"
+   ]
   },
   {
    "name": "【週替り】アサシンピックアップ1",
@@ -15096,11 +13313,7 @@
     18,
     21,
     25
-   ],
-   "agents": [
-    "Class Assassin"
-   ],
-   "en": "Class Assassin"
+   ]
   },
   {
    "name": "トリニティ･メタトロニオス メタトロン･ジャンヌピックアップ",
@@ -15132,11 +13345,7 @@
     4,
     9,
     6
-   ],
-   "agents": [
-    "Metatron Jeanne"
-   ],
-   "en": "Metatron Jeanne"
+   ]
   },
   {
    "name": "トリニティ･メタトロニオスピックアップ2",
@@ -15163,12 +13372,7 @@
     1,
     1,
     3
-   ],
-   "agents": [
-    "Amakusa Shirō",
-    "James Moriarty"
-   ],
-   "en": "Amakusa Shirō & James Moriarty"
+   ]
   },
   {
    "name": "トリニティ･メタトロニオス リリスピックアップ",
@@ -15200,11 +13404,7 @@
     10,
     7,
     5
-   ],
-   "agents": [
-    "Lilith"
-   ],
-   "en": "Lilith"
+   ]
   },
   {
    "name": "トリニティ･メタトロニオスピックアップ4",
@@ -15235,12 +13435,7 @@
     7,
     5,
     7
-   ],
-   "agents": [
-    "Cleopatra",
-    "Popess Johanna"
-   ],
-   "en": "Cleopatra & Popess Johanna"
+   ]
   },
   {
    "name": "「落涙の翼」開幕直前キャンペーンピックアップ",
@@ -15286,13 +13481,7 @@
     10,
     15,
     16
-   ],
-   "agents": [
-    "Mercury Choco",
-    "Voyager",
-    "Odysseus"
-   ],
-   "en": "Mercury Choco & Voyager & Odysseus"
+   ]
   },
   {
    "name": "落涙の翼 テュフォン･エフェメロスピックアップ",
@@ -15331,11 +13520,7 @@
     10,
     15,
     16
-   ],
-   "agents": [
-    "Typhon Ephemeros"
-   ],
-   "en": "Typhon Ephemeros"
+   ]
   },
   {
    "name": "落涙の翼ピックアップ2召喚",
@@ -15360,12 +13545,7 @@
     12,
     16,
     14
-   ],
-   "agents": [
-    "Iskandar",
-    "Ptolemaios"
-   ],
-   "en": "Iskandar & Ptolemaios"
+   ]
   },
   {
    "name": "落涙の翼 両儀式(セイバー)ピックアップ",
@@ -15390,8 +13570,7 @@
     16,
     14,
     15
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "「7月ボックスイベント」開幕直前キャンペーンピックアップ",
@@ -15428,13 +13607,7 @@
     17,
     20,
     19
-   ],
-   "agents": [
-    "Himiko",
-    "Ushi Gozen",
-    "Blue Luluhawa-Flavoured Shaved Ice"
-   ],
-   "en": "Himiko & Ushi Gozen & Blue Luluhawa-Flavoured Shaved Ice"
+   ]
   },
   {
    "name": "インドラの大試練 インドラピックアップ",
@@ -15473,11 +13646,7 @@
     30,
     30,
     32
-   ],
-   "agents": [
-    "Indra"
-   ],
-   "en": "Indra"
+   ]
   },
   {
    "name": "インドラの大試練 ワンジナピックアップ",
@@ -15502,11 +13671,7 @@
     15,
     14,
     17
-   ],
-   "agents": [
-    "Wandjina"
-   ],
-   "en": "Wandjina"
+   ]
   },
   {
    "name": "インドラの大試練 アナスタシアピックアップ",
@@ -15530,11 +13695,7 @@
     17,
     20,
     19
-   ],
-   "agents": [
-    "Anastasia"
-   ],
-   "en": "Anastasia"
+   ]
   },
   {
    "name": "インドラの大試練 キングプロテアピックアップ",
@@ -15557,11 +13718,7 @@
     17,
     20,
     19
-   ],
-   "agents": [
-    "Kingprotea"
-   ],
-   "en": "Kingprotea"
+   ]
   },
   {
    "name": "「Fate/Grand Order Fes. 2025 ～10th Anniversary～」カウントダウンピックアップ",
@@ -15589,11 +13746,7 @@
     63,
     80,
     82
-   ],
-   "agents": [
-    "Leonardo Da Vinci"
-   ],
-   "en": "Leonardo Da Vinci"
+   ]
   },
   {
    "name": "10周年記念福袋",
@@ -15621,11 +13774,7 @@
     1,
     1,
     1
-   ],
-   "agents": [
-    "Mori Nagayoshi"
-   ],
-   "en": "Mori Nagayoshi"
+   ]
   },
   {
    "name": "デスティニーオーダー召喚(エクストラ)",
@@ -15653,11 +13802,7 @@
     1,
     1,
     1
-   ],
-   "agents": [
-    "Grail Front ~White Castle by Day, Black Castle by Night~"
-   ],
-   "en": "Grail Front ~White Castle by Day, Black Castle by Night~"
+   ]
   },
   {
    "name": "デスティニーオーダー召喚(七騎士)",
@@ -15685,11 +13830,7 @@
     1,
     1,
     1
-   ],
-   "agents": [
-    "Grail Front ~White Castle by Day, Black Castle by Night~"
-   ],
-   "en": "Grail Front ~White Castle by Day, Black Castle by Night~"
+   ]
   },
   {
    "name": "カルデア･Ｕ－サマーアイランド テスカトリポカピックアップ",
@@ -15728,11 +13869,7 @@
     5,
     7,
     7
-   ],
-   "agents": [
-    "Tezcatlipoca"
-   ],
-   "en": "Tezcatlipoca"
+   ]
   },
   {
    "name": "カルデア･Ｕ－サマーアイランド パッションリップ(セイバー)ピックアップ",
@@ -15771,11 +13908,7 @@
     5,
     7,
     7
-   ],
-   "agents": [
-    "Applelip Island"
-   ],
-   "en": "Applelip Island"
+   ]
   },
   {
    "name": "カルデア･Ｕ－サマーアイランド 玉兎ピックアップ",
@@ -15812,11 +13945,7 @@
     5,
     7,
     7
-   ],
-   "agents": [
-    "Moon Rabbit"
-   ],
-   "en": "Moon Rabbit"
+   ]
   },
   {
    "name": "カルデア･Ｕ－サマーアイランド ラーヴァ／ティアマト(アーチャー)ピックアップ",
@@ -15851,11 +13980,7 @@
     5,
     7,
     7
-   ],
-   "agents": [
-    "Larva"
-   ],
-   "en": "Larva"
+   ]
   },
   {
    "name": "カルデア･Ｕ－サマーアイランド 救世主トネリコ(雨の魔女トネリコ)ピックアップ",
@@ -15880,11 +14005,7 @@
     15,
     16,
     15
-   ],
-   "agents": [
-    "Tales of Morgania"
-   ],
-   "en": "Tales of Morgania"
+   ]
   },
   {
    "name": "3200万DL記念 モルガンピックアップ",
@@ -15916,11 +14037,7 @@
     10,
     12,
     14
-   ],
-   "agents": [
-    "Morgan"
-   ],
-   "en": "Morgan"
+   ]
   },
   {
    "name": "失われた創世(ヴァニッシュド･ビギニング) 未来からの方舟 ネモ／ノアピックアップ",
@@ -15957,11 +14074,7 @@
     11,
     15,
     11
-   ],
-   "agents": [
-    "Nemo"
-   ],
-   "en": "Nemo"
+   ]
   },
   {
    "name": "失われた創世(ヴァニッシュド･ビギニング) 未来からの方舟ピックアップ2",
@@ -15996,12 +14109,7 @@
     11,
     15,
     11
-   ],
-   "agents": [
-    "Beni-Enma",
-    "Louhi"
-   ],
-   "en": "Beni-Enma & Louhi"
+   ]
   },
   {
    "name": "ぐだぐだ新選組･ジ･エンド 河上彦斎ピックアップ",
@@ -16047,11 +14155,7 @@
     25,
     31,
     30
-   ],
-   "agents": [
-    "Kawakami Gensai"
-   ],
-   "en": "Kawakami Gensai"
+   ]
   },
   {
    "name": "ぐだぐだ新選組･ジ･エンドピックアップ2",
@@ -16088,12 +14192,7 @@
     15,
     15,
     18
-   ],
-   "agents": [
-    "Hijikata Toshizō",
-    "Okita Sōji"
-   ],
-   "en": "Hijikata Toshizō & Okita Sōji"
+   ]
   },
   {
    "name": "ぐだぐだ新選組･ジ･エンド 近藤勇ピックアップ",
@@ -16125,11 +14224,7 @@
     15,
     15,
     18
-   ],
-   "agents": [
-    "Kondō Isami"
-   ],
-   "en": "Kondō Isami"
+   ]
   },
   {
    "name": "ぐだぐだ新選組･ジ･エンドピックアップ4",
@@ -16156,12 +14251,7 @@
     16,
     18,
     17
-   ],
-   "agents": [
-    "Demon King Nobunaga",
-    "White Oath"
-   ],
-   "en": "Demon King Nobunaga & White Oath"
+   ]
   },
   {
    "name": "3300万DL記念 メタトロン･ジャンヌピックアップ",
@@ -16193,11 +14283,7 @@
     25,
     31,
     30
-   ],
-   "agents": [
-    "Metatron Jeanne"
-   ],
-   "en": "Metatron Jeanne"
+   ]
   },
   {
    "name": "ファイナル･ハロウィン2025ピックアップ2",
@@ -16234,11 +14320,7 @@
     9,
     17,
     18
-   ],
-   "agents": [
-    "Jacques de Molay"
-   ],
-   "en": "Jacques de Molay"
+   ]
   },
   {
    "name": "ファイナル･ハロウィン2025ピックアップ3",
@@ -16265,12 +14347,7 @@
     59,
     42,
     26
-   ],
-   "agents": [
-    "Osakabehime",
-    "Vlad III"
-   ],
-   "en": "Osakabehime & Vlad III"
+   ]
   },
   {
    "name": "「巡霊の祝祭 第14弾」ピックアップ",
@@ -16297,12 +14374,7 @@
     14,
     7,
     8
-   ],
-   "agents": [
-    "Van Gogh",
-    "Abigail Williams"
-   ],
-   "en": "Van Gogh & Abigail Williams"
+   ]
   },
   {
    "name": "Fate/Grand Order「Road to 終章」第5回配信記念 モルガンピックアップ",
@@ -16327,11 +14399,7 @@
     7,
     8,
     9
-   ],
-   "agents": [
-    "Morgan"
-   ],
-   "en": "Morgan"
+   ]
   },
   {
    "name": "Fate/Grand Order「Road to 終章」第6回配信記念 テスカトリポカピックアップ",
@@ -16356,11 +14424,7 @@
     29,
     15,
     28
-   ],
-   "agents": [
-    "Tezcatlipoca"
-   ],
-   "en": "Tezcatlipoca"
+   ]
   },
   {
    "name": "Fate/Grand Order「Road to 終章」第7回配信記念 メドゥーサ(セイバー)ピックアップ",
@@ -16385,11 +14449,7 @@
     46,
     31,
     39
-   ],
-   "agents": [
-    "Medusa"
-   ],
-   "en": "Medusa"
+   ]
   },
   {
    "name": "Fate/Grand Order「Road to 終章」第8回配信記念 巌窟王 モンテ･クリストピックアップ",
@@ -16414,12 +14474,7 @@
     32,
     39,
     50
-   ],
-   "agents": [
-    "The Count of Monte Cristo",
-    "Alessandro di Cagliostro"
-   ],
-   "en": "The Count of Monte Cristo & Alessandro di Cagliostro"
+   ]
   },
   {
    "name": "Fate/Grand Order「Road to 終章」第9回配信記念 ＢＢドバイピックアップ",
@@ -16444,11 +14499,7 @@
     20,
     23,
     28
-   ],
-   "agents": [
-    "BB Dubai"
-   ],
-   "en": "BB Dubai"
+   ]
   },
   {
    "name": "Fate/Grand Order「Road to 終章」第10回配信記念 リリスピックアップ",
@@ -16473,11 +14524,7 @@
     11,
     6,
     10
-   ],
-   "agents": [
-    "Lilith"
-   ],
-   "en": "Lilith"
+   ]
   },
   {
    "name": "サーヴァント全騎ピックアップ",
@@ -16516,8 +14563,7 @@
     17,
     23,
     18
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "2026年お正月福袋",
@@ -16548,11 +14594,7 @@
     11,
     11,
     10
-   ],
-   "agents": [
-    "Hassan of the Hundred Faces"
-   ],
-   "en": "Hassan of the Hundred Faces"
+   ]
   },
   {
    "name": "ニューイヤー2026ピックアップ",
@@ -16583,13 +14625,7 @@
     11,
     11,
     10
-   ],
-   "agents": [
-    "Lord Logres",
-    "Phantasmoon",
-    "Account Recovery"
-   ],
-   "en": "Lord Logres & Phantasmoon & Account Recovery"
+   ]
   },
   {
    "name": "TVアニメ「Fate/strange Fake」放送記念 ピックアップ",
@@ -16620,12 +14656,7 @@
     10,
     6,
     21
-   ],
-   "agents": [
-    "Richard I",
-    "Enkidu"
-   ],
-   "en": "Richard I & Enkidu"
+   ]
   },
   {
    "name": "「カルデアン･フロラリア」開幕直前ピックアップ",
@@ -16657,13 +14688,7 @@
     4,
     9,
     16
-   ],
-   "agents": [
-    "Merlin",
-    "Kama",
-    "Sen no Rikyū"
-   ],
-   "en": "Merlin & Kama & Sen no Rikyū"
+   ]
   },
   {
    "name": "カルデアン･フロラリア 花咲翁ピックアップ",
@@ -16702,11 +14727,7 @@
     69,
     58,
     63
-   ],
-   "agents": [
-    "Hanasaka Jiisan's Engawa"
-   ],
-   "en": "Hanasaka Jiisan's Engawa"
+   ]
   },
   {
    "name": "カルデアン･フロラリア エレシュキガル(ランサー)ピックアップ",
@@ -16743,8 +14764,7 @@
     69,
     58,
     63
-   ],
-   "agents": []
+   ]
   },
   {
    "name": "カルデアン･フロラリア 葛飾北斎(フォーリナー)ピックアップ",
@@ -16779,11 +14799,7 @@
     69,
     58,
     63
-   ],
-   "agents": [
-    "Katsushika Hokusai"
-   ],
-   "en": "Katsushika Hokusai"
+   ]
   },
   {
    "name": "カルデアン･フロラリア カズラドロップピックアップ",
@@ -16816,11 +14832,7 @@
     69,
     58,
     63
-   ],
-   "agents": [
-    "Kazuradrop"
-   ],
-   "en": "Kazuradrop"
+   ]
   },
   {
    "name": "カルデアン･フロラリア 項羽ピックアップ",
@@ -16851,11 +14863,7 @@
     69,
     58,
     63
-   ],
-   "agents": [
-    "Xiang Yu's Sword"
-   ],
-   "en": "Xiang Yu's Sword"
+   ]
   },
   {
    "name": "「FGO カルデア･サテライトステーション 2026」開催記念キャンペーン インドラピックアップ",
@@ -16880,11 +14888,7 @@
     60,
     69,
     58
-   ],
-   "agents": [
-    "Indra"
-   ],
-   "en": "Indra"
+   ]
   },
   {
    "name": "バレンタイン2026開幕直前ピックアップ",
@@ -16909,11 +14913,7 @@
     69,
     58,
     63
-   ],
-   "agents": [
-    "Ono no Komachi"
-   ],
-   "en": "Ono no Komachi"
+   ]
   },
   {
    "name": "バレンタイン2026 デメテルピックアップ",
@@ -16952,11 +14952,7 @@
     117,
     121,
     104
-   ],
-   "agents": [
-    "Demeter"
-   ],
-   "en": "Demeter"
+   ]
   },
   {
    "name": "バレンタイン2026ピックアップ2",
@@ -16992,11 +14988,7 @@
     117,
     121,
     104
-   ],
-   "agents": [
-    "Louhi"
-   ],
-   "en": "Louhi"
+   ]
   },
   {
    "name": "CBC2026 マイ･カインド･オブ･アブダクション ジャック･ド･モレー(セイバー)ピックアップ",
@@ -17028,11 +15020,7 @@
     64,
     71,
     68
-   ],
-   "agents": [
-    "Jacques de Molay"
-   ],
-   "en": "Jacques de Molay"
+   ]
   },
   {
    "name": "CBC2026 マイ･カインド･オブ･アブダクション ピックアップ2",
@@ -17062,12 +15050,7 @@
     64,
     71,
     68
-   ],
-   "agents": [
-    "Jacques de Molay",
-    "Napoléon"
-   ],
-   "en": "Jacques de Molay & Napoléon"
+   ]
   },
   {
    "name": "CBC2026 ピックアップ",
@@ -17095,11 +15078,7 @@
     64,
     71,
     68
-   ],
-   "agents": [
-    "Daddy Letters Live"
-   ],
-   "en": "Daddy Letters Live"
+   ]
   },
   {
    "name": "復刻 水怪クライシスピックアップ",
@@ -17138,13 +15117,7 @@
     143,
     144,
     106
-   ],
-   "agents": [
-    "Trung Sisters",
-    "Morgan",
-    "Shi Huang Di"
-   ],
-   "en": "Trung Sisters & Morgan & Shi Huang Di"
+   ]
   }
  ]
 }
