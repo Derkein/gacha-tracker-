@@ -4,13 +4,13 @@
  "jp": "アークナイツ",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E3%82%A2%E3%83%BC%E3%82%AF%E3%83%8A%E3%82%A4%E3%83%84",
- "updated": "2026-08-17T16:00:30Z",
+ "updated": "2026-08-17T16:54:34Z",
  "count": 99,
  "now": {
   "ios": null,
   "android": 54,
   "month": 141,
-  "next_add": 5824707,
+  "next_add": 5898928,
   "ym": "2026/08",
   "ranks": {
    "prev": [
@@ -146,7 +146,11 @@
     37,
     36,
     29
-   ]
+   ],
+   "agents": [
+    "Skadi"
+   ],
+   "en": "Skadi"
   },
   {
    "name": "赤龍乗雲",
@@ -178,7 +182,11 @@
     17,
     23,
     28
-   ]
+   ],
+   "agents": [
+    "Ch'en"
+   ],
+   "en": "Ch'en"
   },
   {
    "name": "果てなき氷原",
@@ -210,7 +218,11 @@
     41,
     49,
     50
-   ]
+   ],
+   "agents": [
+    "Magallan"
+   ],
+   "en": "Magallan"
   },
   {
    "name": "百錬成鋼",
@@ -242,7 +254,11 @@
     91,
     104,
     88
-   ]
+   ],
+   "agents": [
+    "Hellagur"
+   ],
+   "en": "Hellagur"
   },
   {
    "name": "夏暁の守り人",
@@ -274,7 +290,11 @@
     65,
     56,
     54
-   ]
+   ],
+   "agents": [
+    "Schwarz"
+   ],
+   "en": "Schwarz"
   },
   {
    "name": "錠と鍵の守護者",
@@ -306,7 +326,11 @@
     57,
     51,
     60
-   ]
+   ],
+   "agents": [
+    "Mostima"
+   ],
+   "en": "Mostima"
   },
   {
    "name": "熱血！猛烈！大爆発！",
@@ -338,7 +362,11 @@
     54,
     56,
     71
-   ]
+   ],
+   "agents": [
+    "Blaze"
+   ],
+   "en": "Blaze"
   },
   {
    "name": "地生五金",
@@ -370,7 +398,12 @@
     42,
     47,
     48
-   ]
+   ],
+   "agents": [
+    "Nian",
+    "Aak"
+   ],
+   "en": "Nian & Aak"
   },
   {
    "name": "千刃万器",
@@ -402,7 +435,11 @@
     73,
     80,
     79
-   ]
+   ],
+   "agents": [
+    "Ceobe"
+   ],
+   "en": "Ceobe"
   },
   {
    "name": "草原に響く風笛",
@@ -434,7 +471,11 @@
     84,
     76,
     64
-   ]
+   ],
+   "agents": [
+    "Bagpipe"
+   ],
+   "en": "Bagpipe"
   },
   {
    "name": "雪降る暁",
@@ -466,7 +507,11 @@
     124,
     114,
     117
-   ]
+   ],
+   "agents": [
+    "Rosa"
+   ],
+   "en": "Rosa"
   },
   {
    "name": "狭谷に芽吹く君影草",
@@ -498,7 +543,11 @@
     100,
     112,
     93
-   ]
+   ],
+   "agents": [
+    "Suzuran"
+   ],
+   "en": "Suzuran"
   },
   {
    "name": "霧煙る秘境",
@@ -530,7 +579,8 @@
     141,
     143,
     138
-   ]
+   ],
+   "agents": []
   },
   {
    "name": "流砂螺旋",
@@ -562,7 +612,8 @@
     147,
     143,
     123
-   ]
+   ],
+   "agents": []
   },
   {
    "name": "潮汐断ちし剣 (復刻)",
@@ -594,7 +645,11 @@
     147,
     143,
     123
-   ]
+   ],
+   "agents": [
+    "Skadi"
+   ],
+   "en": "Skadi"
   },
   {
    "name": "在りし日の幻影",
@@ -626,7 +681,11 @@
     149,
     158,
     152
-   ]
+   ],
+   "agents": [
+    "Phantom"
+   ],
+   "en": "Phantom"
   },
   {
    "name": "遺志に咲く火の華",
@@ -658,7 +717,11 @@
     30,
     32,
     27
-   ]
+   ],
+   "agents": [
+    "W"
+   ],
+   "en": "W"
   },
   {
    "name": "逆巻く奔流",
@@ -697,7 +760,11 @@
     39,
     55,
     67
-   ]
+   ],
+   "agents": [
+    "Thorns"
+   ],
+   "en": "Thorns"
   },
   {
    "name": "連合作戦",
@@ -729,7 +796,13 @@
     136,
     130,
     120
-   ]
+   ],
+   "agents": [
+    "Blaze",
+    "Saria",
+    "Mostima"
+   ],
+   "en": "Blaze & Saria & Mostima"
   },
   {
    "name": "ハートオブスチール",
@@ -768,7 +841,11 @@
     174,
     160,
     182
-   ]
+   ],
+   "agents": [
+    "Eunectes"
+   ],
+   "en": "Eunectes"
   },
   {
    "name": "枷無き劫火",
@@ -800,7 +877,11 @@
     83,
     93,
     91
-   ]
+   ],
+   "agents": [
+    "Surtr"
+   ],
+   "en": "Surtr"
   },
   {
    "name": "型破りの騎士道",
@@ -832,7 +913,11 @@
     159,
     164,
     137
-   ]
+   ],
+   "agents": [
+    "Blemishine"
+   ],
+   "en": "Blemishine"
   },
   {
    "name": "勿忘草",
@@ -864,7 +949,12 @@
     36,
     37,
     31
-   ]
+   ],
+   "agents": [
+    "Rosmontis",
+    "Mudrock"
+   ],
+   "en": "Rosmontis & Mudrock"
   },
   {
    "name": "錠と鍵の守護者 (復刻)",
@@ -896,7 +986,11 @@
     106,
     99,
     100
-   ]
+   ],
+   "agents": [
+    "Mostima"
+   ],
+   "en": "Mostima"
   },
   {
    "name": "連合作戦",
@@ -928,7 +1022,13 @@
     150,
     178,
     194
-   ]
+   ],
+   "agents": [
+    "Aak",
+    "Hoshiguma",
+    "Ceobe"
+   ],
+   "en": "Aak & Hoshiguma & Ceobe"
   },
   {
    "name": "自由な虜囚",
@@ -960,7 +1060,11 @@
     141,
     139,
     115
-   ]
+   ],
+   "agents": [
+    "Mountain"
+   ],
+   "en": "Mountain"
   },
   {
    "name": "麦穂と讃美歌",
@@ -992,7 +1096,11 @@
     100,
     98,
     110
-   ]
+   ],
+   "agents": [
+    "Archetto"
+   ],
+   "en": "Archetto"
   },
   {
    "name": "月隠晦明",
@@ -1024,7 +1132,13 @@
     61,
     60,
     58
-   ]
+   ],
+   "agents": [
+    "Dusk",
+    "Nian",
+    "Saga"
+   ],
+   "en": "Dusk & Nian & Saga"
   },
   {
    "name": "進攻-防衛-戦術衝突",
@@ -1056,7 +1170,8 @@
     79,
     81,
     87
-   ]
+   ],
+   "agents": []
   },
   {
    "name": "砂海の旅人",
@@ -1088,7 +1203,11 @@
     167,
     175,
     172
-   ]
+   ],
+   "agents": [
+    "Passenger"
+   ],
+   "en": "Passenger"
   },
   {
    "name": "深悼",
@@ -1120,7 +1239,13 @@
     27,
     31,
     26
-   ]
+   ],
+   "agents": [
+    "Skadi the Corrupting Heart",
+    "W",
+    "Kal'tsit"
+   ],
+   "en": "Skadi the Corrupting Heart & W & Kal'tsit"
   },
   {
    "name": "交響曲『革新』",
@@ -1152,7 +1277,11 @@
     135,
     150,
     150
-   ]
+   ],
+   "agents": [
+    "Carnelian"
+   ],
+   "en": "Carnelian"
   },
   {
    "name": "星火より来たる",
@@ -1184,7 +1313,11 @@
     174,
     94,
     109
-   ]
+   ],
+   "agents": [
+    "Pallas"
+   ],
+   "en": "Pallas"
   },
   {
    "name": "ホリデースター",
@@ -1216,7 +1349,12 @@
     38,
     42,
     48
-   ]
+   ],
+   "agents": [
+    "Ch'en the Holungday",
+    "Mizuki"
+   ],
+   "en": "Ch'en the Holungday & Mizuki"
   },
   {
    "name": "小丘に微睡む柳",
@@ -1248,7 +1386,11 @@
     161,
     154,
     152
-   ]
+   ],
+   "agents": [
+    "Saileach"
+   ],
+   "en": "Saileach"
   },
   {
    "name": "風にたゆたう",
@@ -1280,7 +1422,11 @@
     130,
     143,
     133
-   ]
+   ],
+   "agents": [
+    "Fartooth"
+   ],
+   "en": "Fartooth"
   },
   {
    "name": "光耀の騎士道",
@@ -1312,7 +1458,12 @@
     53,
     45,
     39
-   ]
+   ],
+   "agents": [
+    "Nearl the Radiant Knight",
+    "Flametail"
+   ],
+   "en": "Nearl the Radiant Knight & Flametail"
   },
   {
    "name": "雪解けの誓い",
@@ -1344,7 +1495,11 @@
     173,
     182,
     188
-   ]
+   ],
+   "agents": [
+    "Gnosis"
+   ],
+   "en": "Gnosis"
   },
   {
    "name": "濁酒澄心",
@@ -1376,7 +1531,12 @@
     52,
     51,
     47
-   ]
+   ],
+   "agents": [
+    "Ling",
+    "Lee"
+   ],
+   "en": "Ling & Lee"
   },
   {
    "name": "火花繚乱",
@@ -1408,7 +1568,11 @@
     145,
     143,
     152
-   ]
+   ],
+   "agents": [
+    "Goldenglow"
+   ],
+   "en": "Goldenglow"
   },
   {
    "name": "曇りなき紅蓮",
@@ -1440,7 +1604,11 @@
     143,
     150,
     115
-   ]
+   ],
+   "agents": [
+    "Fiammetta"
+   ],
+   "en": "Fiammetta"
   },
   {
    "name": "断崖咆号",
@@ -1472,7 +1640,11 @@
     121,
     138,
     113
-   ]
+   ],
+   "agents": [
+    "Horn"
+   ],
+   "en": "Horn"
   },
   {
    "name": "海蝕",
@@ -1504,7 +1676,13 @@
     40,
     36,
     27
-   ]
+   ],
+   "agents": [
+    "Specter the Unchained",
+    "W",
+    "Rosmontis"
+   ],
+   "en": "Specter the Unchained & W & Rosmontis"
   },
   {
    "name": "不協和音程",
@@ -1536,7 +1714,11 @@
     82,
     77,
     90
-   ]
+   ],
+   "agents": [
+    "Ebenholz"
+   ],
+   "en": "Ebenholz"
   },
   {
    "name": "戦斧と万年筆",
@@ -1568,7 +1750,11 @@
     46,
     46,
     35
-   ]
+   ],
+   "agents": [
+    "Pozëmka"
+   ],
+   "en": "Pozëmka"
   },
   {
    "name": "砂漠の導き手",
@@ -1600,7 +1786,11 @@
     null,
     194,
     155
-   ]
+   ],
+   "agents": [
+    "Dorothy"
+   ],
+   "en": "Dorothy"
   },
   {
    "name": "騎士に非ず",
@@ -1632,7 +1822,11 @@
     103,
     110,
     115
-   ]
+   ],
+   "agents": [
+    "Młynar"
+   ],
+   "en": "Młynar"
   },
   {
    "name": "軸受×火花",
@@ -1664,7 +1858,11 @@
     null,
     null,
     null
-   ]
+   ],
+   "agents": [
+    "Stainless"
+   ],
+   "en": "Stainless"
   },
   {
    "name": "茨道拓く一閃",
@@ -1696,7 +1894,12 @@
     23,
     25,
     15
-   ]
+   ],
+   "agents": [
+    "Texas the Omertosa",
+    "Penance"
+   ],
+   "en": "Texas the Omertosa & Penance"
   },
   {
    "name": "枯火に咲く花",
@@ -1728,7 +1931,11 @@
     141,
     157,
     154
-   ]
+   ],
+   "agents": [
+    "Reed the Flame Shadow"
+   ],
+   "en": "Reed the Flame Shadow"
   },
   {
    "name": "万象伶丁",
@@ -1760,7 +1967,12 @@
     51,
     53,
     46
-   ]
+   ],
+   "agents": [
+    "Chongyue",
+    "Lin"
+   ],
+   "en": "Chongyue & Lin"
   },
   {
    "name": "春江逢雪",
@@ -1792,7 +2004,11 @@
     161,
     185,
     166
-   ]
+   ],
+   "agents": [
+    "Qiubai"
+   ],
+   "en": "Qiubai"
   },
   {
    "name": "炎に研がれし鋭刃",
@@ -1824,7 +2040,11 @@
     74,
     76,
     64
-   ]
+   ],
+   "agents": [
+    "Kirin R Yato"
+   ],
+   "en": "Kirin R Yato"
   },
   {
    "name": "影に潜みて",
@@ -1856,7 +2076,11 @@
     133,
     113,
     118
-   ]
+   ],
+   "agents": [
+    "Ines"
+   ],
+   "en": "Ines"
   },
   {
    "name": "真理の在処",
@@ -1888,7 +2112,12 @@
     49,
     42,
     27
-   ]
+   ],
+   "agents": [
+    "Muelsyse",
+    "Ho'olheyak"
+   ],
+   "en": "Muelsyse & Ho'olheyak"
   },
   {
    "name": "執裁者",
@@ -1920,7 +2149,11 @@
     151,
     142,
     146
-   ]
+   ],
+   "agents": [
+    "Executor the Ex Foedere"
+   ],
+   "en": "Executor the Ex Foedere"
   },
   {
    "name": "不協和音程(復刻)",
@@ -1952,7 +2185,11 @@
     2,
     3,
     8
-   ]
+   ],
+   "agents": [
+    "Ebenholz"
+   ],
+   "en": "Ebenholz"
   },
   {
    "name": "雲間の明晰夢",
@@ -1984,7 +2221,12 @@
     46,
     41,
     30
-   ]
+   ],
+   "agents": [
+    "Eyjafjalla the Hvít Aska",
+    "Swire the Elegant Wit"
+   ],
+   "en": "Eyjafjalla the Hvít Aska & Swire the Elegant Wit"
   },
   {
    "name": "厄災を射落とす颶風",
@@ -2016,7 +2258,11 @@
     99,
     103,
     101
-   ]
+   ],
+   "agents": [
+    "Typhon"
+   ],
+   "en": "Typhon"
   },
   {
    "name": "砂漠の導き手(復刻)",
@@ -2048,7 +2294,11 @@
     134,
     135,
     132
-   ]
+   ],
+   "agents": [
+    "Dorothy"
+   ],
+   "en": "Dorothy"
   },
   {
    "name": "銃声",
@@ -2080,7 +2330,11 @@
     143,
     163,
     142
-   ]
+   ],
+   "agents": [
+    "Jessica the Liberated"
+   ],
+   "en": "Jessica the Liberated"
   },
   {
    "name": "煙塵に瞬く",
@@ -2112,7 +2366,11 @@
     144,
     121,
     107
-   ]
+   ],
+   "agents": [
+    "Hoederer"
+   ],
+   "en": "Hoederer"
   },
   {
    "name": "宿願",
@@ -2145,7 +2403,12 @@
     40,
     36,
     55
-   ]
+   ],
+   "agents": [
+    "Virtuosa",
+    "Viviana"
+   ],
+   "en": "Virtuosa & Viviana"
   },
   {
    "name": "さすらう者",
@@ -2177,7 +2440,11 @@
     80,
     102,
     125
-   ]
+   ],
+   "agents": [
+    "Degenbrecher"
+   ],
+   "en": "Degenbrecher"
   },
   {
    "name": "一筋の曙光",
@@ -2209,7 +2476,11 @@
     171,
     190,
     null
-   ]
+   ],
+   "agents": [
+    "Ray"
+   ],
+   "en": "Ray"
   },
   {
    "name": "千秋一粟",
@@ -2241,7 +2512,12 @@
     53,
     52,
     37
-   ]
+   ],
+   "agents": [
+    "Shu",
+    "Zuo Le"
+   ],
+   "en": "Shu & Zuo Le"
   },
   {
    "name": "枯火に咲く花(復刻)",
@@ -2273,7 +2549,11 @@
     159,
     179,
     197
-   ]
+   ],
+   "agents": [
+    "Reed the Flame Shadow"
+   ],
+   "en": "Reed the Flame Shadow"
   },
   {
    "name": "突破-補強-連続任務",
@@ -2305,7 +2585,11 @@
     93,
     103,
     102
-   ]
+   ],
+   "agents": [
+    "Ela"
+   ],
+   "en": "Ela"
   },
   {
    "name": "進攻-防衛-戦術衝突(復刻)",
@@ -2337,7 +2621,8 @@
     126,
     98,
     94
-   ]
+   ],
+   "agents": []
   },
   {
    "name": "死か/終わりか",
@@ -2369,7 +2654,11 @@
     175,
     159,
     170
-   ]
+   ],
+   "agents": [
+    "Ascalon"
+   ],
+   "en": "Ascalon"
   },
   {
    "name": "我たる所以",
@@ -2401,7 +2690,12 @@
     29,
     32,
     23
-   ]
+   ],
+   "agents": [
+    "Wiš'adel",
+    "Logos"
+   ],
+   "en": "Wiš'adel & Logos"
   },
   {
    "name": "淵に沈む錨",
@@ -2433,7 +2727,11 @@
     172,
     165,
     152
-   ]
+   ],
+   "agents": [
+    "Ulpianus"
+   ],
+   "en": "Ulpianus"
   },
   {
    "name": "執裁者(復刻)",
@@ -2465,7 +2763,11 @@
     171,
     200,
     null
-   ]
+   ],
+   "agents": [
+    "Executor the Ex Foedere"
+   ],
+   "en": "Executor the Ex Foedere"
   },
   {
    "name": "流砂に刻印を",
@@ -2497,7 +2799,12 @@
     75,
     74,
     53
-   ]
+   ],
+   "agents": [
+    "Pepe",
+    "Narantuya"
+   ],
+   "en": "Pepe & Narantuya"
   },
   {
    "name": "心と鏡の残痕",
@@ -2529,7 +2836,11 @@
     88,
     96,
     111
-   ]
+   ],
+   "agents": [
+    "Nymph"
+   ],
+   "en": "Nymph"
   },
   {
    "name": "銃声(復刻)",
@@ -2561,7 +2872,11 @@
     13,
     25,
     53
-   ]
+   ],
+   "agents": [
+    "Jessica the Liberated"
+   ],
+   "en": "Jessica the Liberated"
   },
   {
    "name": "テラ飯、ああ、テラ飯",
@@ -2593,7 +2908,11 @@
     131,
     116,
     103
-   ]
+   ],
+   "agents": [
+    "Marcille"
+   ],
+   "en": "Marcille"
   },
   {
    "name": "褪せざる栄光",
@@ -2625,7 +2944,11 @@
     199,
     174,
     174
-   ]
+   ],
+   "agents": [
+    "Vina Victoria"
+   ],
+   "en": "Vina Victoria"
   },
   {
    "name": "悪華繚乱",
@@ -2657,7 +2980,12 @@
     49,
     44,
     39
-   ]
+   ],
+   "agents": [
+    "Lappland the Decadenza",
+    "Vulpisfoglia"
+   ],
+   "en": "Lappland the Decadenza & Vulpisfoglia"
   },
   {
    "name": "実証、完成、先導",
@@ -2689,7 +3017,8 @@
     192,
     183,
     null
-   ]
+   ],
+   "agents": []
   },
   {
    "name": "さすらう者(復刻)",
@@ -2721,7 +3050,11 @@
     121,
     143,
     163
-   ]
+   ],
+   "agents": [
+    "Degenbrecher"
+   ],
+   "en": "Degenbrecher"
   },
   {
    "name": "熾吾生平",
@@ -2753,7 +3086,12 @@
     58,
     58,
     49
-   ]
+   ],
+   "agents": [
+    "Yu",
+    "Blaze the Igniting Spark"
+   ],
+   "en": "Yu & Blaze the Igniting Spark"
   },
   {
    "name": "河畔の渡し船",
@@ -2785,7 +3123,11 @@
     null,
     null,
     null
-   ]
+   ],
+   "agents": [
+    "Entelechia"
+   ],
+   "en": "Entelechia"
   },
   {
    "name": "死火より出づ",
@@ -2817,7 +3159,11 @@
     156,
     166,
     181
-   ]
+   ],
+   "agents": [
+    "Necrass"
+   ],
+   "en": "Necrass"
   },
   {
    "name": "指令：再構成",
@@ -2849,7 +3195,11 @@
     151,
     146,
     132
-   ]
+   ],
+   "agents": [
+    "Mon3tr"
+   ],
+   "en": "Mon3tr"
   },
   {
    "name": "死か/終わりか(復刻)",
@@ -2881,7 +3231,11 @@
     197,
     181,
     168
-   ]
+   ],
+   "agents": [
+    "Ascalon"
+   ],
+   "en": "Ascalon"
   },
   {
    "name": "自由なる伝道",
@@ -2913,7 +3267,12 @@
     32,
     30,
     24
-   ]
+   ],
+   "agents": [
+    "Exusiai the New Covenant",
+    "Lemuen"
+   ],
+   "en": "Exusiai the New Covenant & Lemuen"
   },
   {
    "name": "訪れぬ幕切れ",
@@ -2945,7 +3304,11 @@
     130,
     138,
     161
-   ]
+   ],
+   "agents": [
+    "Tragodia"
+   ],
+   "en": "Tragodia"
   },
   {
    "name": "海淵に沈む錨(復刻)",
@@ -2977,7 +3340,11 @@
     null,
     null,
     null
-   ]
+   ],
+   "agents": [
+    "Ulpianus"
+   ],
+   "en": "Ulpianus"
   },
   {
    "name": "青霆重明",
@@ -3009,7 +3376,8 @@
     185,
     191,
     82
-   ]
+   ],
+   "agents": []
   },
   {
    "name": "空蝉花火",
@@ -3041,7 +3409,8 @@
     79,
     78,
     69
-   ]
+   ],
+   "agents": []
   },
   {
    "name": "道化たちの歌",
@@ -3073,7 +3442,8 @@
     93,
     89,
     80
-   ]
+   ],
+   "agents": []
   },
   {
    "name": "褪せざる栄光(復刻)",
@@ -3104,7 +3474,11 @@
     43,
     76,
     110
-   ]
+   ],
+   "agents": [
+    "Vina Victoria"
+   ],
+   "en": "Vina Victoria"
   },
   {
    "name": "静寂の波長",
@@ -3136,7 +3510,8 @@
     null,
     null,
     null
-   ]
+   ],
+   "agents": []
   },
   {
    "name": "風雪に誓って",
@@ -3168,7 +3543,8 @@
     48,
     42,
     38
-   ]
+   ],
+   "agents": []
   },
   {
    "name": "ナスティ",
@@ -3200,7 +3576,8 @@
     null,
     null,
     null
-   ]
+   ],
+   "agents": []
   },
   {
    "name": "実証、完成、先導(復刻)",
@@ -3215,7 +3592,8 @@
    "related": "",
    "banner_img": "https://webusstatic.yo-star.com/web-cms-prod/upload/content/2026/05/29/8-vhLDXk.png",
    "rerun": true,
-   "ongoing": false
+   "ongoing": false,
+   "agents": []
   },
   {
    "name": "止まった時の中で",
@@ -3247,7 +3625,8 @@
     72,
     77,
     93
-   ]
+   ],
+   "agents": []
   },
   {
    "name": "宴シリーズ「劫尽古今」",
@@ -3279,7 +3658,8 @@
     65,
     59,
     54
-   ]
+   ],
+   "agents": []
   }
  ]
 }

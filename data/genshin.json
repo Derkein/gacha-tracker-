@@ -4,13 +4,13 @@
  "jp": "原神",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E5%8E%9F%E7%A5%9E",
- "updated": "2026-08-17T15:58:52Z",
+ "updated": "2026-08-17T16:52:25Z",
  "count": 104,
  "now": {
-  "ios": 74,
+  "ios": 68,
   "android": 6,
   "month": 61,
-  "next_add": 15614567,
+  "next_add": 16489990,
   "ym": "2026/08",
   "ranks": {
    "prev": [
@@ -160,6 +160,7 @@
     "Venti"
    ],
    "accent": "#57c69a",
+   "en": "Venti",
    "bar": "#47ae9e"
   },
   {
@@ -207,6 +208,7 @@
     "Klee"
    ],
    "accent": "#f0684a",
+   "en": "Klee",
    "bar": "#da4e3c"
   },
   {
@@ -220,7 +222,7 @@
    "cumtot": 104,
    "year": 2020,
    "related": "ピックアップキャラ:タルタリヤ",
-   "banner_img": null,
+   "banner_img": "https://paimon.moe/images/banners/Farewell%20of%20Snezhnaya%201.png",
    "rerun": false,
    "ongoing": false,
    "rank_series": [
@@ -252,7 +254,9 @@
    "agents": [
     "Tartaglia"
    ],
-   "accent": "#4a90d9"
+   "accent": "#4a90d9",
+   "en": "Tartaglia",
+   "bar": "#75dbf0"
   },
   {
    "name": "鍾離ピックアップ",
@@ -299,6 +303,7 @@
     "Zhongli"
    ],
    "accent": "#e0b23c",
+   "en": "Zhongli",
    "bar": "#e2a857"
   },
   {
@@ -345,6 +350,7 @@
     "Albedo"
    ],
    "accent": "#e0b23c",
+   "en": "Albedo",
    "bar": "#efca76"
   },
   {
@@ -392,6 +398,7 @@
     "Ganyu"
    ],
    "accent": "#7fc8e0",
+   "en": "Ganyu",
    "bar": "#66b3d5"
   },
   {
@@ -431,6 +438,7 @@
     "Xiao"
    ],
    "accent": "#57c69a",
+   "en": "Xiao",
    "bar": "#3e8a98"
   },
   {
@@ -471,6 +479,7 @@
     "Keqing"
    ],
    "accent": "#b57fd4",
+   "en": "Keqing",
    "bar": "#9f91d4"
   },
   {
@@ -511,6 +520,7 @@
     "Hu Tao"
    ],
    "accent": "#f0684a",
+   "en": "Hu Tao",
    "bar": "#dc5a3d"
   },
   {
@@ -557,6 +567,7 @@
     "Venti"
    ],
    "accent": "#57c69a",
+   "en": "Venti",
    "bar": "#86dfcc"
   },
   {
@@ -604,6 +615,7 @@
     "Tartaglia"
    ],
    "accent": "#4a90d9",
+   "en": "Tartaglia",
    "bar": "#78d9ed"
   },
   {
@@ -617,7 +629,7 @@
    "cumtot": 104,
    "year": 2021,
    "related": "",
-   "banner_img": null,
+   "banner_img": "https://paimon.moe/images/banners/Gentry%20of%20Hermitage%202.png",
    "rerun": true,
    "ongoing": false,
    "rank_series": [
@@ -649,7 +661,9 @@
    "agents": [
     "Zhongli"
    ],
-   "accent": "#e0b23c"
+   "accent": "#e0b23c",
+   "en": "Zhongli",
+   "bar": "#f2cf73"
   },
   {
    "name": "エウルアピックアップ",
@@ -696,6 +710,7 @@
     "Eula"
    ],
    "accent": "#7fc8e0",
+   "en": "Eula",
    "bar": "#8ac3db"
   },
   {
@@ -742,6 +757,7 @@
     "Klee"
    ],
    "accent": "#f0684a",
+   "en": "Klee",
    "bar": "#da523a"
   },
   {
@@ -789,6 +805,7 @@
     "Kaedehara Kazuha"
    ],
    "accent": "#57c69a",
+   "en": "Kaedehara Kazuha",
    "bar": "#5da096"
   },
   {
@@ -835,6 +852,7 @@
     "Kamisato Ayaka"
    ],
    "accent": "#7fc8e0",
+   "en": "Kamisato Ayaka",
    "bar": "#66b8d6"
   },
   {
@@ -882,6 +900,7 @@
     "Yoimiya"
    ],
    "accent": "#f0684a",
+   "en": "Yoimiya",
    "bar": "#da533d"
   },
   {
@@ -928,6 +947,7 @@
     "Raiden Shogun"
    ],
    "accent": "#b57fd4",
+   "en": "Raiden Shogun",
    "bar": "#6353a6"
   },
   {
@@ -975,6 +995,7 @@
     "Sangonomiya Kokomi"
    ],
    "accent": "#4a90d9",
+   "en": "Sangonomiya Kokomi",
    "bar": "#52d6ff"
   },
   {
@@ -1021,6 +1042,7 @@
     "Tartaglia"
    ],
    "accent": "#4a90d9",
+   "en": "Tartaglia",
    "bar": "#81d0e4"
   },
   {
@@ -1068,6 +1090,7 @@
     "Hu Tao"
    ],
    "accent": "#f0684a",
+   "en": "Hu Tao",
    "bar": "#df573d"
   },
   {
@@ -1116,6 +1139,7 @@
     "Albedo"
    ],
    "accent": "#7fc8e0",
+   "en": "Eula & Albedo",
    "bar": "#87c4de"
   },
   {
@@ -1163,6 +1187,7 @@
     "Arataki Itto"
    ],
    "accent": "#e0b23c",
+   "en": "Arataki Itto",
    "bar": "#d89a49"
   },
   {
@@ -1211,6 +1236,7 @@
     "Xiao"
    ],
    "accent": "#7fc8e0",
+   "en": "Shenhe & Xiao",
    "bar": "#87c6de"
   },
   {
@@ -1260,6 +1286,7 @@
     "Zhongli"
    ],
    "accent": "#7fc8e0",
+   "en": "Ganyu & Zhongli",
    "bar": "#83c3e2"
   },
   {
@@ -1306,6 +1333,7 @@
     "Yae Miko"
    ],
    "accent": "#b57fd4",
+   "en": "Yae Miko",
    "bar": "#ce89dc"
   },
   {
@@ -1355,6 +1383,7 @@
     "Sangonomiya Kokomi"
    ],
    "accent": "#b57fd4",
+   "en": "Raiden Shogun & Sangonomiya Kokomi",
    "bar": "#a28dd8"
   },
   {
@@ -1403,6 +1432,7 @@
     "Venti"
    ],
    "accent": "#4a90d9",
+   "en": "Kamisato Ayato & Venti",
    "bar": "#548ab8"
   },
   {
@@ -1416,7 +1446,7 @@
    "cumtot": 104,
    "year": 2022,
    "related": "",
-   "banner_img": null,
+   "banner_img": "https://paimon.moe/images/banners/The%20Herons%20Court%202.png",
    "rerun": true,
    "ongoing": false,
    "rank_series": [
@@ -1469,7 +1499,9 @@
    "agents": [
     "Kamisato Ayaka"
    ],
-   "accent": "#7fc8e0"
+   "accent": "#7fc8e0",
+   "en": "Kamisato Ayaka",
+   "bar": "#85c6e0"
   },
   {
    "name": "夜蘭ピックアップ＆魈復刻",
@@ -1518,6 +1550,7 @@
     "Xiao"
    ],
    "accent": "#4a90d9",
+   "en": "Yelan & Xiao",
    "bar": "#519be4"
   },
   {
@@ -1565,6 +1598,7 @@
     "Arataki Itto"
    ],
    "accent": "#e0b23c",
+   "en": "Arataki Itto",
    "bar": "#dcbe89"
   },
   {
@@ -1613,6 +1647,7 @@
     "Klee"
    ],
    "accent": "#57c69a",
+   "en": "Kaedehara Kazuha & Klee",
    "bar": "#9c453a"
   },
   {
@@ -1626,7 +1661,7 @@
    "cumtot": 104,
    "year": 2022,
    "related": "",
-   "banner_img": null,
+   "banner_img": "https://paimon.moe/images/banners/Tapestry%20of%20Golden%20Flames%202.png",
    "rerun": true,
    "ongoing": false,
    "rank_series": [
@@ -1659,7 +1694,9 @@
    "agents": [
     "Yoimiya"
    ],
-   "accent": "#f0684a"
+   "accent": "#f0684a",
+   "en": "Yoimiya",
+   "bar": "#e6997f"
   },
   {
    "name": "ティナリと鍾離復刻",
@@ -1703,6 +1740,7 @@
     "Zhongli"
    ],
    "accent": "#84c23c",
+   "en": "Tighnari & Zhongli",
    "bar": "#e4da81"
   },
   {
@@ -1747,6 +1785,7 @@
     "Ganyu"
    ],
    "accent": "#7fc8e0",
+   "en": "Ganyu",
    "bar": "#84c2e1"
   },
   {
@@ -1791,6 +1830,7 @@
     "Venti"
    ],
    "accent": "#b57fd4",
+   "en": "Cyno & Venti",
    "bar": "#9d8cd9"
   },
   {
@@ -1837,6 +1877,7 @@
     "Albedo"
    ],
    "accent": "#4a90d9",
+   "en": "Nilou & Albedo",
    "bar": "#dec387"
   },
   {
@@ -1881,6 +1922,7 @@
     "Yoimiya"
    ],
    "accent": "#84c23c",
+   "en": "Nahida & Yoimiya",
    "bar": "#a0cd98"
   },
   {
@@ -1927,6 +1969,7 @@
     "Tartaglia"
    ],
    "accent": "#b57fd4",
+   "en": "Yae Miko & Tartaglia",
    "bar": "#ca8bda"
   },
   {
@@ -1975,6 +2018,7 @@
     "Arataki Itto"
    ],
    "accent": "#57c69a",
+   "en": "Wanderer & Arataki Itto",
    "bar": "#49a6e6"
   },
   {
@@ -2024,6 +2068,7 @@
     "Kamisato Ayato"
    ],
    "accent": "#b57fd4",
+   "en": "Raiden Shogun & Kamisato Ayato",
    "bar": "#6555a8"
   },
   {
@@ -2072,6 +2117,7 @@
     "Xiao"
    ],
    "accent": "#84c23c",
+   "en": "Alhaitham & Xiao",
    "bar": "#75a630"
   },
   {
@@ -2121,6 +2167,7 @@
     "Yelan"
    ],
    "accent": "#f0684a",
+   "en": "Hu Tao & Yelan",
    "bar": "#e09f85"
   },
   {
@@ -2264,6 +2311,7 @@
     "Nilou"
    ],
    "accent": "#84c23c",
+   "en": "Nahida & Nilou",
    "bar": "#71a14a"
   },
   {
@@ -2313,6 +2361,7 @@
     "Ganyu"
    ],
    "accent": "#84c23c",
+   "en": "Baizhu & Ganyu",
    "bar": "#428394"
   },
   {
@@ -2361,6 +2410,7 @@
     "Yae Miko"
    ],
    "accent": "#f0684a",
+   "en": "Yoimiya & Yae Miko",
    "bar": "#e49a81"
   },
   {
@@ -2410,6 +2460,7 @@
     "Kaedehara Kazuha"
    ],
    "accent": "#84c23c",
+   "en": "Alhaitham & Kaedehara Kazuha",
    "bar": "#73a246"
   },
   {
@@ -2458,6 +2509,7 @@
     "Klee"
    ],
    "accent": "#7fc8e0",
+   "en": "Eula & Klee",
    "bar": "#8ac2db"
   },
   {
@@ -2507,6 +2559,7 @@
     "Wanderer"
    ],
    "accent": "#4a90d9",
+   "en": "Sangonomiya Kokomi & Wanderer",
    "bar": "#4ea7e4"
   },
   {
@@ -2555,6 +2608,7 @@
     "Yelan"
    ],
    "accent": "#f0684a",
+   "en": "Lyney & Yelan",
    "bar": "#ab2c3c"
   },
   {
@@ -2604,6 +2658,7 @@
     "Tartaglia"
    ],
    "accent": "#e0b23c",
+   "en": "Zhongli & Tartaglia",
    "bar": "#05ced1"
   },
   {
@@ -2652,6 +2707,7 @@
     "Hu Tao"
    ],
    "accent": "#4a90d9",
+   "en": "Neuvillette & Hu Tao",
    "bar": "#e0e580"
   },
   {
@@ -2701,6 +2757,7 @@
     "Venti"
    ],
    "accent": "#7fc8e0",
+   "en": "Wriothesley & Venti",
    "bar": "#d2e085"
   },
   {
@@ -2749,6 +2806,7 @@
     "Baizhu"
    ],
    "accent": "#4a90d9",
+   "en": "Furina & Baizhu",
    "bar": "#8bc1da"
   },
   {
@@ -2798,6 +2856,7 @@
     "Kamisato Ayato"
    ],
    "accent": "#b57fd4",
+   "en": "Cyno & Kamisato Ayato",
    "bar": "#8ac1db"
   },
   {
@@ -2846,6 +2905,7 @@
     "Kamisato Ayaka"
    ],
    "accent": "#e0b23c",
+   "en": "Navia & Kamisato Ayaka",
    "bar": "#985e3e"
   },
   {
@@ -2895,6 +2955,7 @@
     "Yoimiya"
    ],
    "accent": "#b57fd4",
+   "en": "Raiden Shogun & Yoimiya",
    "bar": "#965b41"
   },
   {
@@ -2943,6 +3004,7 @@
     "Nahida"
    ],
    "accent": "#57c69a",
+   "en": "Xianyun & Nahida",
    "bar": "#eeca77"
   },
   {
@@ -2992,6 +3054,7 @@
     "Yae Miko"
    ],
    "accent": "#57c69a",
+   "en": "Xiao & Yae Miko",
    "bar": "#f2c673"
   },
   {
@@ -3038,6 +3101,7 @@
     "Chiori"
    ],
    "accent": "#e0b23c",
+   "en": "Chiori",
    "bar": "#e1c984"
   },
   {
@@ -3087,6 +3151,7 @@
     "Kaedehara Kazuha"
    ],
    "accent": "#4a90d9",
+   "en": "Neuvillette & Kaedehara Kazuha",
    "bar": "#dfc786"
   },
   {
@@ -3135,6 +3200,7 @@
     "Lyney"
    ],
    "accent": "#f0684a",
+   "en": "Arlecchino & Lyney",
    "bar": "#ad2b29"
   },
   {
@@ -3184,6 +3250,7 @@
     "Baizhu"
    ],
    "accent": "#57c69a",
+   "en": "Wanderer & Baizhu",
    "bar": "#408d96"
   },
   {
@@ -3232,6 +3299,7 @@
     "Alhaitham"
    ],
    "accent": "#b57fd4",
+   "en": "Clorinde & Alhaitham",
    "bar": "#9688dd"
   },
   {
@@ -3281,6 +3349,7 @@
     "Furina"
    ],
    "accent": "#4a90d9",
+   "en": "Sigewinne & Furina",
    "bar": "#7eb2e7"
   },
   {
@@ -3329,6 +3398,7 @@
     "Nilou"
    ],
    "accent": "#e0b23c",
+   "en": "Navia & Nilou",
    "bar": "#dda453"
   },
   {
@@ -3378,6 +3448,7 @@
     "Yelan"
    ],
    "accent": "#84c23c",
+   "en": "Emilie & Yelan",
    "bar": "#c9ba9c"
   },
   {
@@ -3426,6 +3497,7 @@
     "Kaedehara Kazuha"
    ],
    "accent": "#4a90d9",
+   "en": "Mualani & Kaedehara Kazuha",
    "bar": "#1737bf"
   },
   {
@@ -3475,6 +3547,7 @@
     "Raiden Shogun"
    ],
    "accent": "#84c23c",
+   "en": "Kinich & Raiden Shogun",
    "bar": "#76efc7"
   },
   {
@@ -3523,6 +3596,7 @@
     "Chiori"
    ],
    "accent": "#e0b23c",
+   "en": "Xilonen & Chiori",
    "bar": "#d99c49"
   },
   {
@@ -3572,6 +3646,7 @@
     "Hu Tao"
    ],
    "accent": "#84c23c",
+   "en": "Nahida & Hu Tao",
    "bar": "#689f50"
   },
   {
@@ -3620,6 +3695,7 @@
     "Lyney"
    ],
    "accent": "#57c69a",
+   "en": "Chasca & Lyney",
    "bar": "#b02648"
   },
   {
@@ -3669,6 +3745,7 @@
     "Zhongli"
    ],
    "accent": "#4a90d9",
+   "en": "Neuvillette & Zhongli",
    "bar": "#6de4f8"
   },
   {
@@ -3717,6 +3794,7 @@
     "Citlali"
    ],
    "accent": "#f0684a",
+   "en": "Mavuika & Citlali",
    "bar": "#f1be74"
   },
   {
@@ -3766,6 +3844,7 @@
     "Clorinde"
    ],
    "accent": "#f0684a",
+   "en": "Arlecchino & Clorinde",
    "bar": "#a7352f"
   },
   {
@@ -3814,6 +3893,7 @@
     "Sigewinne"
    ],
    "accent": "#57c69a",
+   "en": "Yumemizuki Mizuki & Sigewinne",
    "bar": "#86c0df"
   },
   {
@@ -3863,6 +3943,7 @@
     "Furina"
    ],
    "accent": "#7fc8e0",
+   "en": "Wriothesley & Furina",
    "bar": "#3c4f9b"
   },
   {
@@ -3911,6 +3992,7 @@
     "Xianyun"
    ],
    "accent": "#b57fd4",
+   "en": "Varesa & Xianyun",
    "bar": "#9b94d1"
   },
   {
@@ -3960,6 +4042,7 @@
     "Venti"
    ],
    "accent": "#e0b23c",
+   "en": "Xilonen & Venti",
    "bar": "#db9e49"
   },
   {
@@ -4006,6 +4089,7 @@
     "Escoffier"
    ],
    "accent": "#7fc8e0",
+   "en": "Escoffier",
    "bar": "#75caf0"
   },
   {
@@ -4055,6 +4139,7 @@
     "Raiden Shogun"
    ],
    "accent": "#84c23c",
+   "en": "Kinich & Raiden Shogun",
    "bar": "#77eec7"
   },
   {
@@ -4101,6 +4186,7 @@
     "Skirk"
    ],
    "accent": "#7fc8e0",
+   "en": "Skirk",
    "bar": "#2a36ac"
   },
   {
@@ -4150,6 +4236,7 @@
     "Emilie"
    ],
    "accent": "#f0684a",
+   "en": "Mavuika & Emilie",
    "bar": "#f3b972"
   },
   {
@@ -4196,6 +4283,7 @@
     "Ineffa"
    ],
    "accent": "#b57fd4",
+   "en": "Ineffa",
    "bar": "#d088dd"
   },
   {
@@ -4245,6 +4333,7 @@
     "Chasca"
    ],
    "accent": "#4a90d9",
+   "en": "Mualani & Chasca",
    "bar": "#2945ad"
   },
   {
@@ -4291,6 +4380,7 @@
     "Lauma"
    ],
    "accent": "#84c23c",
+   "en": "Lauma",
    "bar": "#91ccd4"
   },
   {
@@ -4338,6 +4428,7 @@
     "Flins"
    ],
    "accent": "#b57fd4",
+   "en": "Flins",
    "bar": "#5b5aa8"
   },
   {
@@ -4384,6 +4475,7 @@
     "Nefer"
    ],
    "accent": "#84c23c",
+   "en": "Nefer",
    "bar": "#619d55"
   },
   {
@@ -4433,6 +4525,7 @@
     "Zhongli"
    ],
    "accent": "#f0684a",
+   "en": "Arlecchino & Zhongli",
    "bar": "#a8332e"
   },
   {
@@ -4479,6 +4572,7 @@
     "Durin"
    ],
    "accent": "#f0684a",
+   "en": "Durin",
    "bar": "#d88d8d"
   },
   {
@@ -4528,6 +4622,7 @@
     "Xilonen"
    ],
    "accent": "#b57fd4",
+   "en": "Varesa & Xilonen",
    "bar": "#9b95d0"
   },
   {
@@ -4574,6 +4669,7 @@
     "Columbina"
    ],
    "accent": "#f0684a",
+   "en": "Columbina",
    "bar": "#6badfa"
   },
   {
@@ -4615,8 +4711,11 @@
     75
    ],
    "icons": [],
-   "agents": [],
+   "agents": [
+    "Zibai"
+   ],
    "accent": null,
+   "en": "Zibai",
    "bar": "#d0c795"
   },
   {
@@ -4657,8 +4756,11 @@
     59
    ],
    "icons": [],
-   "agents": [],
+   "agents": [
+    "Varka"
+   ],
    "accent": null,
+   "en": "Varka",
    "bar": "#39899e"
   },
   {
@@ -4708,6 +4810,7 @@
     "Escoffier"
    ],
    "accent": "#7fc8e0",
+   "en": "Skirk & Escoffier",
    "bar": "#3039a6"
   },
   {
@@ -4748,8 +4851,11 @@
     111
    ],
    "icons": [],
-   "agents": [],
+   "agents": [
+    "Linnea"
+   ],
    "accent": null,
+   "en": "Linnea",
    "bar": "#ecc179"
   },
   {
@@ -4799,6 +4905,7 @@
     "Nefer"
    ],
    "accent": "#84c23c",
+   "en": "Lauma & Nefer",
    "bar": "#90cdd5"
   },
   {
@@ -4839,8 +4946,11 @@
     79
    ],
    "icons": [],
-   "agents": [],
+   "agents": [
+    "Nicole"
+   ],
    "accent": null,
+   "en": "Nicole",
    "bar": "#d89f8d"
   },
   {
@@ -4882,8 +4992,11 @@
     72
    ],
    "icons": [],
-   "agents": [],
+   "agents": [
+    "Lohen"
+   ],
    "accent": null,
+   "en": "Lohen",
    "bar": "#64b7d5"
   },
   {
@@ -4924,8 +5037,11 @@
     72
    ],
    "icons": [],
-   "agents": [],
+   "agents": [
+    "Sandrone"
+   ],
    "accent": null,
+   "en": "Sandrone",
    "bar": "#84c9e1"
   },
   {
@@ -4975,6 +5091,7 @@
     "Raiden Shogun"
    ],
    "accent": "#f0684a",
+   "en": "Columbina & Raiden Shogun",
    "bar": "#6caff9"
   },
   {
@@ -5001,8 +5118,11 @@
     74
    ],
    "icons": [],
-   "agents": [],
+   "agents": [
+    "Odette"
+   ],
    "accent": null,
+   "en": "Odette",
    "bar": "#63afdb"
   }
  ]
