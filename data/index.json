@@ -3,72 +3,72 @@
   {
    "game": "zzz",
    "name": "Zenless Zone Zero",
-   "count": 36,
-   "total_oku": 217.5,
-   "updated": "2026-08-18T16:53:50Z"
+   "count": 37,
+   "total_oku": 218.1,
+   "updated": "2026-08-19T15:40:53Z"
   },
   {
    "game": "hsr",
    "name": "Honkai: Star Rail",
    "count": 60,
-   "total_oku": 786.5,
-   "updated": "2026-08-18T16:54:13Z"
+   "total_oku": 786.6,
+   "updated": "2026-08-19T15:41:18Z"
   },
   {
    "game": "wuwa",
    "name": "Wuthering Waves",
    "count": 39,
-   "total_oku": 148.3,
-   "updated": "2026-08-18T16:54:35Z"
+   "total_oku": 148.4,
+   "updated": "2026-08-19T15:41:40Z"
   },
   {
    "game": "genshin",
    "name": "Genshin Impact",
    "count": 104,
-   "total_oku": 1108.8,
-   "updated": "2026-08-18T16:55:00Z"
+   "total_oku": 1108.9,
+   "updated": "2026-08-19T15:42:08Z"
   },
   {
    "game": "endfield",
    "name": "Arknights: Endfield",
    "count": 11,
    "total_oku": 39.1,
-   "updated": "2026-08-18T16:55:09Z"
+   "updated": "2026-08-19T15:42:17Z"
   },
   {
    "game": "nte",
    "name": "Neverness to Everness",
    "count": 6,
    "total_oku": 23.0,
-   "updated": "2026-08-18T16:55:15Z"
+   "updated": "2026-08-19T15:42:24Z"
   },
   {
    "game": "uma",
    "name": "Umamusume: Pretty Derby",
    "count": 66,
-   "total_oku": 2774.6,
-   "updated": "2026-08-18T16:55:40Z"
+   "total_oku": 2774.9,
+   "updated": "2026-08-19T15:42:50Z"
   },
   {
    "game": "fgo",
    "name": "Fate/Grand Order",
    "count": 486,
    "total_oku": 4896.1,
-   "updated": "2026-08-18T16:56:08Z"
+   "updated": "2026-08-19T15:43:21Z"
   },
   {
    "game": "bluearchive",
    "name": "Blue Archive",
    "count": 199,
    "total_oku": 367.7,
-   "updated": "2026-08-18T16:56:34Z"
+   "updated": "2026-08-19T15:43:52Z"
   },
   {
    "game": "arknights",
    "name": "Arknights",
    "count": 99,
    "total_oku": 337.1,
-   "updated": "2026-08-18T16:57:01Z"
+   "updated": "2026-08-19T15:44:21Z"
   }
  ]
 }
