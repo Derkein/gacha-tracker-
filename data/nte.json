@@ -4,13 +4,13 @@
  "jp": "NTE： Neverness to Everness",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/NTE%EF%BC%9A%20Neverness%20to%20Everness",
- "updated": "2026-08-19T16:53:18Z",
- "count": 6,
+ "updated": "2026-08-20T15:46:21Z",
+ "count": 7,
  "now": {
-  "ios": 8,
-  "android": 83,
-  "month": 140,
-  "next_add": 97131409,
+  "ios": 15,
+  "android": 13,
+  "month": 102,
+  "next_add": 72072916,
   "ym": "2026/08",
   "ranks": {
    "prev": [
@@ -67,7 +67,7 @@
     null,
     181,
     8,
-    null,
+    15,
     null,
     null,
     null,
@@ -82,7 +82,7 @@
   }
  },
  "monthly": {
-  "2026-08": 2.69,
+  "2026-08": 3.37,
   "2026-07": 6.29,
   "2026-06": 8.09,
   "2026-05": 6.82,
@@ -97,7 +97,7 @@
    "yrank": 4,
    "ytot": 7,
    "cum": 4,
-   "cumtot": 6,
+   "cumtot": 7,
    "year": 2026,
    "related": "",
    "banner_img": "https://appmedia.jp/wp-content/uploads/2026/04/163020_3xopn.webp",
@@ -135,7 +135,7 @@
    "yrank": 2,
    "ytot": 7,
    "cum": 2,
-   "cumtot": 6,
+   "cumtot": 7,
    "year": 2026,
    "related": "",
    "banner_img": "https://appmedia.jp/wp-content/uploads/2026/04/100812_yx1l6.webp",
@@ -181,7 +181,7 @@
    "yrank": 1,
    "ytot": 7,
    "cum": 1,
-   "cumtot": 6,
+   "cumtot": 7,
    "year": 2026,
    "related": "",
    "banner_img": "https://appmedia.jp/wp-content/uploads/2026/05/221003_x6ys7.webp",
@@ -227,7 +227,7 @@
    "yrank": 6,
    "ytot": 7,
    "cum": 6,
-   "cumtot": 6,
+   "cumtot": 7,
    "year": 2026,
    "related": "",
    "banner_img": "https://appmedia.jp/wp-content/uploads/2026/05/221403_qtlvo.webp",
@@ -266,7 +266,7 @@
    "yrank": 3,
    "ytot": 7,
    "cum": 3,
-   "cumtot": 6,
+   "cumtot": 7,
    "year": 2026,
    "related": "",
    "banner_img": "https://appmedia.jp/wp-content/uploads/2026/07/101921_q8b4w.webp",
@@ -313,7 +313,7 @@
    "yrank": 5,
    "ytot": 7,
    "cum": 5,
-   "cumtot": 6,
+   "cumtot": 7,
    "year": 2026,
    "related": "",
    "banner_img": "https://appmedia.jp/wp-content/uploads/2026/05/030207_5plcs.webp",
@@ -350,6 +350,29 @@
     "icons/faces/nte/2026-07-29-e9416b.webp"
    ],
    "bar": "#99ada9"
+  },
+  {
+   "name": "残虹",
+   "start": "2026-08-20",
+   "end": "2026-09-09",
+   "rev": 0.6814,
+   "yrank": 7,
+   "ytot": 7,
+   "cum": 7,
+   "cumtot": 7,
+   "year": 2026,
+   "related": "ナナリ",
+   "banner_img": "https://appmedia.jp/wp-content/uploads/2026/05/204720_tfbq2.webp",
+   "rerun": false,
+   "ongoing": true,
+   "rank_series": [
+    8,
+    15
+   ],
+   "icons": [
+    "icons/faces/nte/2026-08-20-937fb6.webp"
+   ],
+   "bar": "#a393cf"
   }
  ]
 }
