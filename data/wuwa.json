@@ -4,13 +4,13 @@
  "jp": "鳴潮",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E9%B3%B4%E6%BD%AE",
- "updated": "2026-08-20T16:57:27Z",
+ "updated": "2026-08-21T15:44:46Z",
  "count": 40,
  "now": {
-  "ios": 12,
-  "android": 36,
-  "month": 60,
-  "next_add": 78124444,
+  "ios": 21,
+  "android": 8,
+  "month": 56,
+  "next_add": 58589999,
   "ym": "2026/08",
   "ranks": {
    "prev": [
@@ -68,7 +68,7 @@
     110,
     102,
     17,
-    null,
+    21,
     null,
     null,
     null,
@@ -82,7 +82,7 @@
   }
  },
  "monthly": {
-  "2026-08": 4.82,
+  "2026-08": 5.42,
   "2026-07": 7.43,
   "2026-06": 6.34,
   "2026-05": 8.48,
@@ -359,7 +359,7 @@
    "rev": 0.8876,
    "yrank": 9,
    "ytot": 10,
-   "cum": 38,
+   "cum": 39,
    "cumtot": 40,
    "year": 2024,
    "related": "",
@@ -457,7 +457,7 @@
    "rev": 0.874,
    "yrank": 10,
    "ytot": 10,
-   "cum": 39,
+   "cum": 40,
    "cumtot": 40,
    "year": 2024,
    "related": "釉瑚",
@@ -1933,10 +1933,10 @@
    "name": "清宵",
    "start": "2026-08-20",
    "end": "2026-09-10",
-   "rev": 0.6595,
+   "rev": 1.26,
    "yrank": 11,
    "ytot": 11,
-   "cum": 40,
+   "cum": 38,
    "cumtot": 40,
    "year": 2026,
    "related": "",
@@ -1945,7 +1945,8 @@
    "ongoing": true,
    "rank_series": [
     102,
-    17
+    17,
+    21
    ],
    "agents": [
     "Qingxiao"
