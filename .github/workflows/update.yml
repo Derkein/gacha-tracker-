@@ -64,6 +64,10 @@ jobs:
         run: python scripts/bar_colors.py
         continue-on-error: true
 
+      - name: Check version buckets (warn if a new major version needs adding)
+        run: python scripts/check_versions.py
+        continue-on-error: true
+
       - name: Commit changes
         run: |
           git config user.name  "Derkein"

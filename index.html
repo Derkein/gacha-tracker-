@@ -12,7 +12,7 @@
 <title>Gacha Revenue Tracker</title>
 <meta name="description" content="Estimated gacha banner revenue over time for Zenless Zone Zero, Honkai: Star Rail, Wuthering Waves, Genshin Impact and Arknights: Endfield. Auto-updated from game-i.daa.jp.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>%F0%9F%8E%B0</text></svg>">
-<link rel="stylesheet" href="style.css?v=32">
+<link rel="stylesheet" href="style.css?v=35">
 </head>
 <body>
 <div class="wrap">
@@ -39,8 +39,9 @@
       <button id="bTime" class="on" role="tab" aria-selected="true">Timeline</button>
       <button id="bGraph" role="tab" aria-selected="false">Graph</button>
       <button id="bRank" role="tab" aria-selected="false">Ranking</button>
-      <button id="bYear" role="tab" aria-selected="false">By year</button>
-      <button id="bMonth" role="tab" aria-selected="false">By month</button>
+      <button id="bYear" role="tab" aria-selected="false">by Year</button>
+      <button id="bMonth" role="tab" aria-selected="false">by Month</button>
+      <button id="bVersion" role="tab" aria-selected="false" hidden>by Version</button>
     </div>
     <button id="bDir" class="ghost" title="Reverse order">Newest first</button>
     <button id="bTable" class="ghost">Table view</button>
@@ -48,7 +49,11 @@
   </div>
 
   <div class="controls gctrls" id="graphControls" hidden>
-    <span class="glabel">Year</span>
+    <span class="glabel">Filter</span>
+    <div class="seg gdim" id="gdim" role="tablist" aria-label="Filter by" hidden>
+      <button data-dim="year" class="on">Year</button>
+      <button data-dim="version">Version</button>
+    </div>
     <div class="seg" id="gyears"></div>
     <label class="chk"><input type="checkbox" id="matchHigh"> Match highest</label>
     <label class="brk">Round top to
@@ -145,6 +150,6 @@
   </div>
 </div>
 
-<script src="app.js?v=32"></script>
+<script src="app.js?v=35"></script>
 </body>
 </html>

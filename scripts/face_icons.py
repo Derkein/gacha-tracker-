@@ -84,21 +84,35 @@ def page_image(dom, title):
     return None
 
 
-def resolve_drip(dom, jp_name):
-    """Search the wiki for a Japanese name; return (image_url, english_name).
+# titles a JP-name search can surface that aren't the character page itself
+_NOTCHAR = re.compile(r"Version|Banner|Event|Update|Patch|Gallery|Storyline|Profile|"
+                      r"Category|List of|Timeline|Calendar|Enemy|Weapon|Walkthrough", re.I)
 
-    The wiki page title is the character's official global (English) name, which
-    we also use to translate the banner label for these otherwise JP-only games."""
+
+def resolve_drip(dom, jp_name):
+    """Search the wiki for a Japanese name; return (image_url_or_None, english_name).
+
+    The wiki page title is the character's official global (English) name, which we
+    also use to translate the banner label for these otherwise JP-only games. The
+    NAME is returned from the top plausible hit even when no clean 'drip' art is
+    found — so a brand-new character (page exists, art not uploaded/named yet) is
+    still translated automatically instead of being stuck with its Japanese name.
+    A matching drip-art image, when present, is preferred and anchors the name."""
     url = (f"https://{dom}/api.php?action=query&list=search&srlimit=6&format=json"
            f"&srsearch={urllib.parse.quote(jp_name)}")
+    fallback = None
     for r in getj(url)["query"]["search"]:
-        img = page_image(dom, r["title"])
-        if not img:
+        title = r["title"].split("/")[0].strip()          # drop subpages (Chaos/Profile -> Chaos)
+        if _NOTCHAR.search(title):
             continue
-        fn = img.split("/revision")[0].split("/")[-1]
-        if ART_RE.search(fn) and not BAD_RE.search(fn):
-            return img, r["title"]
-    return None, None
+        if fallback is None:
+            fallback = title                               # first plausible hit = the character name
+        img = page_image(dom, title)
+        if img:
+            fn = img.split("/revision")[0].split("/")[-1]
+            if ART_RE.search(fn) and not BAD_RE.search(fn):
+                return img, title                          # clean drip art -> name + icon (best case)
+    return None, fallback                                  # no art anywhere -> at least the name resolves
 
 
 def dominant_accent(pim):

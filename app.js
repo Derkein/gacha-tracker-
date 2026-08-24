@@ -4,7 +4,27 @@ const GAME_ACCENT = {          // per-game hue (used for bars/dots without a sam
   uma:"#3fb98f", fgo:"#c8a24a", bluearchive:"#4db6e8",
   arknights:"#e8b923",
 };
-const state = { games:[], tag:null, data:null, mode:"time", table:false, reverse:false, bracket:0, tabsExpanded:false, graphYear:"all", matchHigh:false };
+const state = { games:[], tag:null, data:null, mode:"time", table:false, reverse:false, bracket:0, tabsExpanded:false, graphYear:"all", graphDim:"year", matchHigh:false };
+
+// Major game-version (X.0) launch dates, JST — used to bucket banners into 1.X / 2.X
+// groups. Only version-based games have these; sourced from each game's official
+// version history (see release-date notes in the repo). A banner belongs to the
+// latest major version whose launch date is on or before the banner's start.
+const VERSIONS = {
+  genshin: [["1.X","2020-09-28"],["2.X","2021-07-21"],["3.X","2022-08-24"],["4.X","2023-08-16"],["5.X","2024-08-28"],["6.X","2025-09-10"],["7.X","2026-08-12"]],
+  hsr:     [["1.X","2023-04-26"],["2.X","2024-02-06"],["3.X","2025-01-14"],["4.X","2026-02-13"]],
+  zzz:     [["1.X","2024-07-04"],["2.X","2025-06-06"],["3.X","2026-06-17"]],
+  wuwa:    [["1.X","2024-05-22"],["2.X","2025-01-02"],["3.X","2025-12-25"]],
+  endfield:[["1.X","2026-01-22"]],   // launched at 1.0; still 1.x
+  nte:     [["1.X","2026-04-29"]],
+};
+const hasVersions = tag => !!VERSIONS[tag];
+function versionOf(b){
+  const v=VERSIONS[state.tag]; if(!v) return null;
+  let cur=v[0][0];
+  for(const [label,date] of v){ if(b.start>=date) cur=label; else break; }
+  return cur;
+}
 // character accent wins (it's the true character/element colour); banner-dominant `bar`
 // is the fallback for games with no accent (e.g. Endfield); then the per-game hue.
 const barColor = b => b.accent || b.bar || GAME_ACCENT[state.tag];
@@ -191,7 +211,12 @@ function roundTop(peak, tight){
   if(state.bracket) return Math.ceil(peak/state.bracket - 1e-9)*state.bracket;
   return tight ? niceCeil(peak) : scaleMax(peak);
 }
-function poolBanners(){ const b=state.data.banners; return state.graphYear==="all" ? b : b.filter(x=>String(x.year)===state.graphYear); }
+function poolBanners(){
+  const b=state.data.banners;
+  if(state.graphYear==="all") return b;
+  if(state.graphDim==="version") return b.filter(x=>versionOf(x)===state.graphYear);
+  return b.filter(x=>String(x.year)===state.graphYear);
+}
 
 // ---- avatars ----
 // No inline onerror handlers: image fallbacks are handled by one delegated
@@ -341,7 +366,7 @@ function renderBars(){
   if(state.mode==="rank"){ list.sort((x,y)=> state.reverse ? x.rev-y.rev : y.rev-x.rev); html+=axesHTML(max);
     list.forEach(x=>html+=rowHTML(x,x._rank,max)); }
   else { list.sort((x,y)=>y.start.localeCompare(x.start)); if(state.reverse) list.reverse(); let cy=null;  // newest first by default
-    list.forEach(x=>{ if(x.year!==cy){cy=x.year; html+=`<div class="yhead">${cy}</div>`+axesHTML(max);}
+    list.forEach(x=>{ const gk=groupKey(x); if(gk!==cy){cy=gk; html+=`<div class="yhead">${esc(gk)}</div>`+axesHTML(max);}
       html+=rowHTML(x,x._rank,max); }); }
   $("#chart").innerHTML=html;
   // FLIP: invert to old position, then play to new one (icons slide up/down)
@@ -356,27 +381,52 @@ function renderBars(){
   });
 }
 
-// ---- graph view (one line chart per year) ----
-function yearSVG(year, items, gmax, step){
+// ---- grouping: the timeline/graph group (and its x-axis window) follow the
+// Year/Version filter toggle, so switching to Version regroups by 1.X / 2.X … ----
+function groupKey(b){
+  if(state.graphDim==="version"){ const v=versionOf(b); if(v) return v; }
+  return String(b.year);
+}
+// [x0ms, x1ms] the x-axis should span for a group: a calendar year, or a major
+// version's window (its launch date to the next version's, or the run's end).
+function groupRange(key, items){
+  if(state.graphDim==="version" && VERSIONS[state.tag]){
+    const v=VERSIONS[state.tag], i=v.findIndex(e=>e[0]===key);
+    const x0=Date.parse(v[i][1]);
+    const x1 = i>=0 && i+1<v.length ? Date.parse(v[i+1][1])
+             : Math.max(...items.map(b=>Date.parse(b.end)))+7*864e5;   // open latest version
+    return [x0, x1];
+  }
+  const y=+key; return [Date.parse(y+"-01-01"), Date.parse((y+1)+"-01-01")];
+}
+function xAxisTicks(x0, x1){
+  if(state.graphDim!=="version") return [0,2,4,6,8,10].map(m=>({frac:m/12, t:MONTHS[m]}));
+  const t=[], d=new Date(x0); if(d.getDate()!==1) d.setMonth(d.getMonth()+1,1);
+  let g=0;
+  while(d.getTime()<=x1 && g++<40){ t.push({frac:(d.getTime()-x0)/(x1-x0), t:MONTHS[d.getMonth()]}); d.setMonth(d.getMonth()+1); }
+  const step=Math.max(1,Math.ceil(t.length/7));
+  return t.filter((_,i)=>i%step===0);
+}
+// ---- graph view (one line chart per year OR per version) ----
+function groupSVG(label, items, gmax, step, x0, x1){
   const W=720,H=300,ML=52,MR=14,MT=14,MB=24, pW=W-ML-MR, pH=H-MT-MB, base=MT+pH;
-  const y0=Date.parse(year+"-01-01"), y1=Date.parse((+year+1)+"-01-01");
-  const xOf=d=>ML+((Date.parse(d)-y0)/(y1-y0))*pW;
+  const xOf=d=>ML+((Date.parse(d)-x0)/(x1-x0))*pW;
   const yOf=v=>MT+(1-v/gmax)*pH;
   const pts=[...items].sort((a,b)=>a.start.localeCompare(b.start)).map(b=>({x:xOf(b.start),y:yOf(b.rev),b}));
   const grid=ticks(gmax,step).map(t=>{const y=yOf(t);
     return `<line class="grid" x1="${ML}" y1="${y.toFixed(1)}" x2="${W-MR}" y2="${y.toFixed(1)}"/>`+
            `<text class="axislbl" x="${ML-6}" y="${(y+3).toFixed(1)}" text-anchor="end">${G(t)}</text>`;}).join("");
-  const xt=[0,2,4,6,8,10,12].map(m=>{const x=ML+(m/12)*pW;
-    return `<text class="axislbl" x="${x.toFixed(1)}" y="${H-8}" text-anchor="middle">${MONTHS[m]||""}</text>`;}).join("");
+  const xt=xAxisTicks(x0,x1).map(tk=>{const x=ML+tk.frac*pW;
+    return `<text class="axislbl" x="${x.toFixed(1)}" y="${H-8}" text-anchor="middle">${tk.t||""}</text>`;}).join("");
   const line=pts.map((p,i)=>(i?"L":"M")+p.x.toFixed(1)+" "+p.y.toFixed(1)).join(" ");
   const area=`M${pts[0].x.toFixed(1)} ${base} `+pts.map(p=>"L"+p.x.toFixed(1)+" "+p.y.toFixed(1)).join(" ")+` L${pts[pts.length-1].x.toFixed(1)} ${base} Z`;
-  const R=11;
+  const R=11, gid=String(label).replace(/\W/g,"");
   const marks=pts.map(p=>{
     const acc=barColor(p.b);
     const url=(p.b.icons&&p.b.icons[0])||p.b.banner_img;
     const cx=p.x.toFixed(1), cy=p.y.toFixed(1);
     if(url){
-      const id=`clip_${year}_${p.b._i}`;
+      const id=`clip_${gid}_${p.b._i}`;
       return `<clipPath id="${id}"><circle cx="${cx}" cy="${cy}" r="${R}"/></clipPath>`+
         `<image href="${esc(url)}" x="${(p.x-R).toFixed(1)}" y="${(p.y-R).toFixed(1)}" width="${2*R}" height="${2*R}" `+
         `preserveAspectRatio="xMidYMid slice" clip-path="url(#${id})" data-i="${p.b._i}"/>`+
@@ -391,35 +441,52 @@ function renderGraph(){
   state.data.banners.forEach((x,i)=>x._i=i);
   const pool=poolBanners();
   const sharedMax=roundTop(Math.max(...pool.map(x=>x.rev)), false);
-  const byYear={}; pool.forEach(x=>{(byYear[x.year]=byYear[x.year]||[]).push(x);});
-  let years=Object.keys(byYear).sort();
-  if(!state.reverse) years.reverse();          // newest year first by default
-  $("#chart").innerHTML=years.map(y=>{
-    const items=byYear[y];
+  const groups={}; pool.forEach(x=>{ const k=groupKey(x); (groups[k]=groups[k]||[]).push(x); });
+  let keys=Object.keys(groups).sort();
+  if(!state.reverse) keys.reverse();           // newest group first by default
+  $("#chart").innerHTML=keys.map(k=>{
+    const items=groups[k];
     const gmax=state.matchHigh ? roundTop(Math.max(...items.map(x=>x.rev)), true) : sharedMax;
-    return `<div class="gyear"><div class="yhead">${y}</div>${yearSVG(y,items,gmax,state.bracket||0)}</div>`;
+    const [x0,x1]=groupRange(k, items);
+    return `<div class="gyear"><div class="yhead">${esc(k)}</div>${groupSVG(k,items,gmax,state.bracket||0,x0,x1)}</div>`;
   }).join("");
 }
 function populateGraphYears(){
-  const years=[...new Set(state.data.banners.map(b=>b.year))].sort();
-  if(state.graphYear!=="all" && !years.includes(+state.graphYear)) state.graphYear="all";
+  if(state.graphDim==="version" && !hasVersions(state.tag)) state.graphDim="year";   // game has no versions
+  // the Year/Version filter toggle only appears for version-based games
+  const gd=$("#gdim");
+  gd.hidden=!hasVersions(state.tag);
+  gd.querySelectorAll("button").forEach(b=>b.classList.toggle("on",b.dataset.dim===state.graphDim));
+  // the "by Version" view button is likewise game-specific
+  $("#bVersion").hidden=!hasVersions(state.tag);
+  if(state.mode==="version" && !hasVersions(state.tag)) setMode("time");
+  const vals = state.graphDim==="version"
+    ? [...new Set(state.data.banners.map(versionOf).filter(Boolean))].sort()
+    : [...new Set(state.data.banners.map(b=>b.year))].sort().map(String);
+  if(state.graphYear!=="all" && !vals.includes(state.graphYear)) state.graphYear="all";
   $("#gyears").innerHTML=`<button data-y="all"${state.graphYear==="all"?' class="on"':''}>All</button>`+
-    years.map(y=>`<button data-y="${y}"${state.graphYear==String(y)?' class="on"':''}>${y}</button>`).join("");
+    vals.map(v=>`<button data-y="${esc(v)}"${state.graphYear===v?' class="on"':''}>${esc(v)}</button>`).join("");
   $("#gyears").querySelectorAll("button").forEach(btn=>btn.onclick=()=>{
     state.graphYear=btn.dataset.y;
     $("#gyears").querySelectorAll("button").forEach(x=>x.classList.toggle("on",x===btn));
     if(!state.table) render();
   });
 }
+$("#gdim").querySelectorAll("button").forEach(btn=>btn.onclick=()=>{
+  state.graphDim=btn.dataset.dim; state.graphYear="all";
+  populateGraphYears();
+  if(!state.table) render();
+});
 
 function render(){
   document.body.dataset.view = state.table ? "table" : state.mode;   // lets CSS tailor per view (e.g. mobile graph)
   $("#chartwrap").hidden=state.table; $("#tablewrap").hidden=!state.table;
-  $("#graphControls").hidden=state.table || state.mode==="year" || state.mode==="month";
+  $("#graphControls").hidden=state.table || state.mode==="year" || state.mode==="month" || state.mode==="version";
   if(state.table){ buildTable(); return; }
   if(state.mode==="graph"){ renderGraph(); return; }
   if(state.mode==="year"){ renderYearly(); return; }
   if(state.mode==="month"){ renderMonthly(); return; }
+  if(state.mode==="version"){ renderVersions(); return; }
   renderBars();
 }
 
@@ -514,6 +581,38 @@ function renderYearly(){
         <div class="yr-line"><span class="yr-v">${G(rev)}</span>
           <span class="yr-pct">${pct.toFixed(1)}% of total · ${cnt[y]} banner${cnt[y]>1?"s":""}</span>
           ${yoyHTML}</div>
+        <div class="yr-track"><div class="yr-fill" style="width:${w}%"></div></div>
+      </div></div>`;
+  }).join("");
+  $("#chart").innerHTML=head+rows;
+}
+
+// ---- by-Version breakdown: revenue per major game version (1.X, 2.X, …) ----
+function renderVersions(){
+  const all=state.data.banners;
+  const total=all.reduce((a,b)=>a+b.rev,0);
+  const byV={}, cnt={};
+  all.forEach(b=>{ const v=versionOf(b)||"?"; byV[v]=(byV[v]||0)+b.rev; cnt[v]=(cnt[v]||0)+1; });
+  const vers=Object.keys(byV).sort();          // "1.X".."9.X" sort correctly (single-digit majors)
+  const max=Math.max(...vers.map(v=>byV[v]),0.1);
+  const cur=vers[vers.length-1];               // latest version = in progress
+  const order=[...vers].reverse();
+  if(state.reverse) order.reverse();
+  const head=`<div class="yr-head"><b>${esc(state.data.name)}</b> — ${G(total)} across ${vers.length} version${vers.length>1?"s":""}</div>`
+    + `<div class="yr-note">Grouped by major game version (1.X = all of v1.x, etc.). The first and latest versions may be partial. Version dates from each game's official schedule.</div>`;
+  const rows=order.map(v=>{
+    const i=vers.indexOf(v), rev=byV[v], prev=i>0?byV[vers[i-1]]:null;
+    const chg = prev!=null ? (rev-prev)/prev*100 : null;
+    const pct = total ? rev/total*100 : 0;
+    const w=Math.max(1.5, rev/max*100);
+    const chgHTML = chg==null ? `<span class="yr-yoy flat">first tracked version</span>`
+      : `<span class="yr-yoy ${chg>=0?"up":"down"}">${chg>=0?"▲":"▼"} ${Math.abs(chg).toFixed(0)}% vs ${esc(vers[i-1])}</span>`;
+    return `<div class="yr-row">
+      <div class="yr-y">${esc(v)}${v===cur?`<span class="yr-prog">in progress</span>`:""}</div>
+      <div class="yr-body">
+        <div class="yr-line"><span class="yr-v">${G(rev)}</span>
+          <span class="yr-pct">${pct.toFixed(1)}% of total · ${cnt[v]} banner${cnt[v]>1?"s":""}</span>
+          ${chgHTML}</div>
         <div class="yr-track"><div class="yr-fill" style="width:${w}%"></div></div>
       </div></div>`;
   }).join("");
@@ -797,10 +896,10 @@ function updateDirLabel(){
 }
 function setMode(m){
   state.mode=m;
-  [["bTime","time"],["bGraph","graph"],["bRank","rank"],["bYear","year"],["bMonth","month"]].forEach(([id,mm])=>{
+  [["bTime","time"],["bGraph","graph"],["bRank","rank"],["bYear","year"],["bMonth","month"],["bVersion","version"]].forEach(([id,mm])=>{
     const el=$("#"+id); el.classList.toggle("on",m===mm); el.setAttribute("aria-selected",m===mm);
   });
-  $("#graphControls").hidden = state.table || m==="year" || m==="month";
+  $("#graphControls").hidden = state.table || m==="year" || m==="month" || m==="version";
   updateDirLabel();
   if(!state.table) render();
 }
@@ -809,6 +908,7 @@ $("#bRank").onclick=()=>setMode("rank");
 $("#bGraph").onclick=()=>setMode("graph");
 $("#bYear").onclick=()=>setMode("year");
 $("#bMonth").onclick=()=>setMode("month");
+$("#bVersion").onclick=()=>setMode("version");
 $("#bDir").onclick=()=>{ state.reverse=!state.reverse; updateDirLabel(); if(!state.table) render(); };
 $("#brk").onchange=function(){ state.bracket=+this.value; if(!state.table) render(); };
 $("#matchHigh").onchange=function(){ state.matchHigh=this.checked; if(!state.table) render(); };
