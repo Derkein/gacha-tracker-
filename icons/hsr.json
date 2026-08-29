@@ -419,6 +419,16 @@
   "accent": "#f0503f",
   "en": "Himeko • Nova"
  },
+ "ロビン・夏空の歌": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1512.png",
+  "accent": "#4fc8a0",
+  "en": "Robin • Summeretto"
+ },
+ "アベンチュリン・波と戯れる夏": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1513.png",
+  "accent": "#4a4ad8",
+  "en": "Aventurine • Waveflair"
+ },
  "{NICKNAME}": {
   "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/8010.png",
   "accent": "#c56af0",
