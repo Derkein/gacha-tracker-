@@ -4,13 +4,13 @@
  "jp": "Fate/Grand Order",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/Fate/Grand%20Order",
- "updated": "2026-08-28T01:02:53Z",
+ "updated": "2026-08-29T00:02:09Z",
  "count": 486,
  "now": {
-  "ios": 30,
+  "ios": 31,
   "android": 8,
   "month": 3,
-  "next_add": 38551950,
+  "next_add": 36061410,
   "ym": "2026/08",
   "ranks": {
    "prev": [
@@ -75,14 +75,14 @@
     20,
     26,
     33,
-    null,
+    33,
     null,
     null
    ]
   }
  },
  "monthly": {
-  "2026-08": 55.58,
+  "2026-08": 55.93,
   "2026-07": 7.58,
   "2026-06": 7.8,
   "2026-05": 10.13,
