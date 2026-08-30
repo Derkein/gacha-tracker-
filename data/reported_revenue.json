@@ -1,0 +1,560 @@
+{
+ "source": "Sensor Tower / gacharevenue monthly reports (r/gachagaming), read from report images",
+ "unit": "usd",
+ "note": "Combined global mobile revenue (all regions incl. China iOS + a separate JP server where one exists), in USD, as published in the monthly Sensor Tower / gacharevenue reports. In 2023 the worldwide 🌐 figure already included China; from 2024 China is broken out as a separate CN line but the combined total is the same basis. Read from report images; a few pre-2025 months are region-summed and marked _approx. Not comparable to game-i's JP-iOS 億G figures — shown side by side, never summed. Historical months Oct 2021–Feb 2023 were added from the older Sensor Tower community spreadsheets on r/gachagaming: each game's figure sums its regional server rows (global/US + JP + KR where present). In those spreadsheets Genshin's China row reported iOS only (the Android column was blank), so its combined figure = US/global total + China iOS × 2.75 (China iOS + a 1.75× estimate for the missing China Android, the same convention used for later months). Only games live then are present (Genshin, Uma Musume, FGO, Arknights, Blue Archive); all these months are _approx.",
+ "months": {
+  "2020-10": {
+   "_approx": true,
+   "genshin": 233700000
+  },
+  "2021-09": {
+   "_approx": true,
+   "genshin": 341700000
+  },
+  "2021-10": {
+   "genshin": 60000000,
+   "uma": 47000000,
+   "fgo": 35000000,
+   "arknights": 11000000,
+   "bluearchive": 4000000,
+   "_approx": true,
+   "_usonly": true
+  },
+  "2021-11": {
+   "genshin": 207000000,
+   "uma": 56000000,
+   "fgo": 45000000,
+   "arknights": 6500000,
+   "bluearchive": 3000000,
+   "_approx": true
+  },
+  "2021-12": {
+   "genshin": 134300000,
+   "uma": 56000000,
+   "fgo": 41000000,
+   "bluearchive": 7000000,
+   "arknights": 4200000,
+   "_approx": true
+  },
+  "2022-01": {
+   "genshin": 220250000,
+   "uma": 50000000,
+   "fgo": 41000000,
+   "arknights": 14000000,
+   "bluearchive": 8800000,
+   "_approx": true
+  },
+  "2022-02": {
+   "genshin": 171750000,
+   "uma": 43000000,
+   "fgo": 31000000,
+   "bluearchive": 6800000,
+   "arknights": 3200000,
+   "_approx": true
+  },
+  "2022-03": {
+   "genshin": 238250000,
+   "uma": 63000000,
+   "fgo": 34000000,
+   "arknights": 5400000,
+   "bluearchive": 4700000,
+   "_approx": true
+  },
+  "2022-04": {
+   "genshin": 207250000,
+   "fgo": 39000000,
+   "uma": 36000000,
+   "arknights": 8900000,
+   "bluearchive": 3300000,
+   "_approx": true
+  },
+  "2022-05": {
+   "uma": 43000000,
+   "genshin": 134750000,
+   "fgo": 26000000,
+   "arknights": 9700000,
+   "bluearchive": 4900000,
+   "_approx": true
+  },
+  "2022-06": {
+   "genshin": 187500000,
+   "fgo": 37000000,
+   "uma": 30000000,
+   "bluearchive": 5500000,
+   "arknights": 2700000,
+   "_approx": true
+  },
+  "2022-07": {
+   "genshin": 153250000,
+   "uma": 57000000,
+   "fgo": 48000000,
+   "bluearchive": 11200000,
+   "arknights": 8900000,
+   "_approx": true
+  },
+  "2022-08": {
+   "fgo": 69300000,
+   "genshin": 152500000,
+   "uma": 52000000,
+   "arknights": 15600000,
+   "bluearchive": 8000000,
+   "_approx": true
+  },
+  "2022-09": {
+   "genshin": 156500000,
+   "uma": 40600000,
+   "fgo": 35000000,
+   "bluearchive": 6700000,
+   "arknights": 3300000,
+   "_approx": true
+  },
+  "2022-10": {
+   "genshin": 139750000,
+   "uma": 33400000,
+   "fgo": 20000000,
+   "bluearchive": 10500000,
+   "arknights": 3200000,
+   "_approx": true
+  },
+  "2022-11": {
+   "genshin": 215000000,
+   "fgo": 32000000,
+   "uma": 25300000,
+   "arknights": 10000000,
+   "bluearchive": 6500000,
+   "_approx": true
+  },
+  "2022-12": {
+   "genshin": 230250000,
+   "fgo": 42000000,
+   "uma": 28000000,
+   "bluearchive": 6500000,
+   "arknights": 3400000,
+   "_approx": true
+  },
+  "2023-01": {
+   "genshin": 180250000,
+   "fgo": 44000000,
+   "uma": 41000000,
+   "bluearchive": 20700000,
+   "arknights": 17000000,
+   "_approx": true
+  },
+  "2023-02": {
+   "genshin": 234750000,
+   "fgo": 50000000,
+   "uma": 25000000,
+   "arknights": 3400000,
+   "bluearchive": 23000000,
+   "_approx": true
+  },
+  "2023-03": {
+   "genshin": 168000000,
+   "uma": 76000000,
+   "fgo": 23000000,
+   "arknights": 3400000,
+   "bluearchive": 15000000,
+   "_approx": true
+  },
+  "2023-04": {
+   "genshin": 174500000,
+   "hsr": 75000000,
+   "uma": 23000000,
+   "fgo": 32000000,
+   "arknights": 5500000,
+   "bluearchive": 12000000,
+   "_approx": true
+  },
+  "2023-05": {
+   "genshin": 107000000,
+   "hsr": 235000000,
+   "uma": 26000000,
+   "fgo": 31700000,
+   "arknights": 14000000,
+   "bluearchive": 11800000,
+   "_approx": true
+  },
+  "2023-06": {
+   "genshin": 92500000,
+   "hsr": 156600000,
+   "uma": 21000000,
+   "fgo": 29000000,
+   "arknights": 7600000,
+   "bluearchive": 6700000,
+   "_approx": true
+  },
+  "2023-07": {
+   "genshin": 81500000,
+   "hsr": 109750000,
+   "uma": 23000000,
+   "fgo": 36000000,
+   "arknights": 10900000,
+   "bluearchive": 19000000,
+   "_approx": true
+  },
+  "2023-08": {
+   "genshin": 92500000,
+   "hsr": 137000000,
+   "uma": 27000000,
+   "fgo": 60000000,
+   "arknights": 7600000,
+   "bluearchive": 23000000,
+   "_approx": true
+  },
+  "2023-09": {
+   "genshin": 116000000,
+   "hsr": 117000000,
+   "uma": 37000000,
+   "fgo": 28000000,
+   "arknights": 8600000,
+   "bluearchive": 9800000,
+   "_approx": true
+  },
+  "2023-10": {
+   "genshin": 137000000,
+   "hsr": 132000000,
+   "uma": 19000000,
+   "fgo": 18000000,
+   "arknights": 3000000,
+   "bluearchive": 10700000,
+   "_approx": true
+  },
+  "2023-11": {
+   "genshin": 171250000,
+   "hsr": 49250000,
+   "fgo": 16000000,
+   "uma": 14000000,
+   "arknights": 8000000,
+   "bluearchive": 8900000,
+   "_approx": true
+  },
+  "2023-12": {
+   "genshin": 86000000,
+   "hsr": 86500000,
+   "fgo": 25000000,
+   "uma": 16000000,
+   "arknights": 1900000,
+   "bluearchive": 6600000,
+   "_approx": true
+  },
+  "2024-01": {
+   "genshin": 99300000,
+   "hsr": 47500000,
+   "fgo": 32500000,
+   "uma": 21000000,
+   "arknights": 14250000,
+   "bluearchive": 16100000,
+   "_approx": true
+  },
+  "2024-02": {
+   "genshin": 89800000,
+   "hsr": 85800000,
+   "fgo": 19750000,
+   "uma": 17000000,
+   "arknights": 22100000,
+   "bluearchive": 19650000,
+   "_approx": true
+  },
+  "2024-03": {
+   "genshin": 68000000,
+   "hsr": 144300000,
+   "fgo": 24650000,
+   "uma": 35000000,
+   "arknights": 23300000,
+   "bluearchive": 9700000,
+   "_approx": true
+  },
+  "2024-04": {
+   "genshin": 118500000,
+   "hsr": 109000000,
+   "fgo": 24250000,
+   "uma": 6000000,
+   "arknights": 7100000,
+   "bluearchive": 7700000,
+   "_approx": true
+  },
+  "2024-05": {
+   "genshin": 53300000,
+   "hsr": 87300000,
+   "arknights": 44600000,
+   "wuwa": 24800000,
+   "fgo": 19800000,
+   "uma": 10000000,
+   "bluearchive": 9630000
+  },
+  "2024-06": {
+   "genshin": 66600000,
+   "hsr": 92500000,
+   "wuwa": 45500000,
+   "fgo": 14700000,
+   "uma": 13000000,
+   "arknights": 10900000,
+   "bluearchive": 7800000
+  },
+  "2024-07": {
+   "genshin": 37300000,
+   "hsr": 41300000,
+   "zzz": 99800000,
+   "wuwa": 29500000,
+   "fgo": 27250000,
+   "uma": 13000000,
+   "arknights": 9600000,
+   "bluearchive": 13000000,
+   "_approx": true
+  },
+  "2024-08": {
+   "genshin": 38300000,
+   "hsr": 39300000,
+   "zzz": 31500000,
+   "wuwa": 13500000,
+   "fgo": 38250000,
+   "uma": 15000000,
+   "arknights": 21500000,
+   "bluearchive": 8800000,
+   "_approx": true
+  },
+  "2024-09": {
+   "genshin": 46300000,
+   "hsr": 69000000,
+   "zzz": 35500000,
+   "wuwa": 11500000,
+   "fgo": 18930000,
+   "uma": 24000000,
+   "arknights": 16000000,
+   "bluearchive": 7500000,
+   "_approx": true
+  },
+  "2024-10": {
+   "genshin": 51800000,
+   "hsr": 43300000,
+   "zzz": 15500000,
+   "wuwa": 9750000,
+   "fgo": 19480000,
+   "uma": 7000000,
+   "arknights": 7500000,
+   "bluearchive": 9700000,
+   "_approx": true
+  },
+  "2024-11": {
+   "genshin": 37795000,
+   "hsr": 23595000,
+   "zzz": 20290000,
+   "fgo": 16650000,
+   "arknights": 37350000,
+   "uma": 16000000,
+   "wuwa": 18250000,
+   "bluearchive": 7255000
+  },
+  "2024-12": {
+   "genshin": 42565000,
+   "hsr": 54520000,
+   "zzz": 57930000,
+   "fgo": 30545000,
+   "arknights": 29950000,
+   "uma": 13000000,
+   "wuwa": 6475000,
+   "bluearchive": 5495000
+  },
+  "2025-01": {
+   "genshin": 99440000,
+   "hsr": 50765000,
+   "zzz": 26255000,
+   "fgo": 34900000,
+   "wuwa": 28000000,
+   "arknights": 22050000,
+   "uma": 12000000,
+   "bluearchive": 16345000
+  },
+  "2025-02": {
+   "genshin": 27280000,
+   "hsr": 45785000,
+   "uma": 16000000,
+   "wuwa": 13775000,
+   "fgo": 16015000,
+   "zzz": 17935000,
+   "arknights": 13750000,
+   "bluearchive": 6350000
+  },
+  "2025-03": {
+   "genshin": 38845000,
+   "hsr": 29935000,
+   "uma": 26000000,
+   "wuwa": 20625000,
+   "fgo": 17050000,
+   "zzz": 15915000,
+   "arknights": 12000000,
+   "bluearchive": 4505000
+  },
+  "2025-04": {
+   "genshin": 22690000,
+   "hsr": 102450000,
+   "wuwa": 23375000,
+   "zzz": 21665000,
+   "arknights": 18550000,
+   "fgo": 15865000,
+   "uma": 6000000,
+   "bluearchive": 6505000
+  },
+  "2025-05": {
+   "genshin": 36825000,
+   "hsr": 50330000,
+   "arknights": 39490000,
+   "fgo": 25925000,
+   "wuwa": 25625000,
+   "zzz": 10880000,
+   "uma": 9000000,
+   "bluearchive": 4577000
+  },
+  "2025-06": {
+   "genshin": 65505000,
+   "zzz": 38340000,
+   "wuwa": 39700000,
+   "hsr": 18845000,
+   "fgo": 23575000,
+   "uma": 11800000,
+   "arknights": 8640000,
+   "bluearchive": 4340000
+  },
+  "2025-07": {
+   "hsr": 91450000,
+   "genshin": 38565000,
+   "uma": 33100000,
+   "fgo": 25890000,
+   "zzz": 21960000,
+   "wuwa": 16875000,
+   "arknights": 13800000,
+   "bluearchive": 9245000
+  },
+  "2025-08": {
+   "fgo": 51780000,
+   "uma": 33850000,
+   "hsr": 28450000,
+   "genshin": 26725000,
+   "arknights": 20560000,
+   "zzz": 15925000,
+   "wuwa": 14875000,
+   "bluearchive": 8690000
+  },
+  "2025-09": {
+   "genshin": 41590000,
+   "hsr": 37525000,
+   "fgo": 28935000,
+   "arknights": 26450000,
+   "uma": 22670000,
+   "wuwa": 21900000,
+   "zzz": 10880000,
+   "bluearchive": 2899500
+  },
+  "2025-10": {
+   "genshin": 54725000,
+   "fgo": 25780000,
+   "arknights": 23950000,
+   "hsr": 22450000,
+   "uma": 16650000,
+   "wuwa": 15600000,
+   "zzz": 12915000,
+   "bluearchive": 4984000
+  },
+  "2025-11": {
+   "genshin": 20970000,
+   "zzz": 10890000,
+   "hsr": 81380000,
+   "fgo": 13330000,
+   "wuwa": 18875000,
+   "uma": 28330000,
+   "arknights": 41750000,
+   "bluearchive": 4748500
+  },
+  "2025-12": {
+   "genshin": 40825000,
+   "zzz": 33800000,
+   "hsr": 27895000,
+   "fgo": 25370000,
+   "wuwa": 23175000,
+   "uma": 21250000,
+   "arknights": 10160000,
+   "bluearchive": 4970000
+  },
+  "2026-01": {
+   "genshin": 66040000,
+   "fgo": 33700000,
+   "endfield": 29500000,
+   "zzz": 23245000,
+   "wuwa": 18150000,
+   "arknights": 16950000,
+   "uma": 15925000,
+   "bluearchive": 9295000,
+   "hsr": 8037500
+  },
+  "2026-02": {
+   "genshin": 55245000,
+   "uma": 18025000,
+   "hsr": 21135000,
+   "endfield": 26080000,
+   "zzz": 13350000,
+   "fgo": 13310000,
+   "wuwa": 46000000,
+   "arknights": 24300000,
+   "bluearchive": 7861500
+  },
+  "2026-03": {
+   "genshin": 40110000,
+   "uma": 34055000,
+   "hsr": 31730000,
+   "endfield": 22050000,
+   "zzz": 16550000,
+   "fgo": 12775000,
+   "wuwa": 11400000,
+   "arknights": 9270000,
+   "bluearchive": 2856500
+  },
+  "2026-04": {
+   "genshin": 41855000,
+   "hsr": 58090000,
+   "wuwa": 13700000,
+   "arknights": 21350000,
+   "nte": 6300000,
+   "fgo": 10985000,
+   "uma": 9310000,
+   "zzz": 7167000,
+   "endfield": 17280000,
+   "bluearchive": 2824000
+  },
+  "2026-05": {
+   "genshin": 41665000,
+   "hsr": 37765000,
+   "wuwa": 31750000,
+   "arknights": 30350000,
+   "nte": 22575000,
+   "fgo": 15720000,
+   "uma": 11360000,
+   "zzz": 9370000,
+   "endfield": 4766000,
+   "bluearchive": 3250000
+  },
+  "2026-06": {
+   "wuwa": 34000000,
+   "genshin": 32330000,
+   "hsr": 28455000,
+   "fgo": 14015000,
+   "nte": 13950000,
+   "arknights": 13620000,
+   "zzz": 9655000,
+   "uma": 9575000,
+   "endfield": 9520000,
+   "bluearchive": 6935000
+  },
+  "2026-07": {
+   "genshin": 55990000,
+   "hsr": 43085000,
+   "zzz": 35860000,
+   "wuwa": 26000000,
+   "fgo": 20240000,
+   "uma": 15975000,
+   "arknights": 15800000,
+   "nte": 10825000,
+   "endfield": 9519000,
+   "bluearchive": 2877000
+  }
+ }
+}

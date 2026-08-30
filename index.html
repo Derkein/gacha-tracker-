@@ -12,14 +12,15 @@
 <title>Gacha Revenue Tracker</title>
 <meta name="description" content="Estimated gacha banner revenue over time for Zenless Zone Zero, Honkai: Star Rail, Wuthering Waves, Genshin Impact and Arknights: Endfield. Auto-updated from game-i.daa.jp.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>%F0%9F%8E%B0</text></svg>">
-<link rel="stylesheet" href="style.css?v=35">
+<link rel="stylesheet" href="style.css?v=91">
 </head>
 <body>
 <div class="wrap">
   <header class="site-hd">
     <div>
       <h1>Gacha <span class="accent">Revenue</span> Tracker</h1>
-      <p>Estimated per-banner gacha revenue over time, shown in <b>yen</b>. Third-party estimates (売上予測) from game-i; approximate, not official. <button id="infoBtn" class="infolink">ⓘ How these numbers work</button></p>
+      <p>Per-banner gacha revenue over time — game-i's <b>Japan</b> estimate in <b>yen</b> (売上予測), plus a <b>Sensor Tower</b> combined-worldwide layer in <b>US$</b> (a toggle). Third-party estimates, approximate — not official.</p>
+      <p class="hd-info"><button id="infoBtn" class="infolink">ⓘ How these numbers work</button></p>
       <p class="hd-feedback">Questions or an improvement to suggest? Message <a href="https://www.reddit.com/user/Derkein2" target="_blank" rel="noopener">u/Derkein2</a> on Reddit.</p>
     </div>
     <div class="hd-side">
@@ -43,36 +44,46 @@
       <button id="bMonth" role="tab" aria-selected="false">by Month</button>
       <button id="bVersion" role="tab" aria-selected="false" hidden>by Version</button>
     </div>
-    <button id="bDir" class="ghost" title="Reverse order">Newest first</button>
-    <button id="bTable" class="ghost">Table view</button>
-    <span class="hint">Tap or hover any bar or point for banner details</span>
+    <div class="search" id="search">
+      <svg class="search-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 4a6 6 0 104.47 10.03l4.24 4.25 1.42-1.42-4.25-4.24A6 6 0 0010 4zm0 2a4 4 0 110 8 4 4 0 010-8z"/></svg>
+      <input id="searchInput" type="text" placeholder="Search character…" autocomplete="off" spellcheck="false" aria-label="Search for a character" aria-autocomplete="list" aria-controls="searchAC">
+      <button class="search-clear" id="searchClear" type="button" aria-label="Clear search" hidden>×</button>
+      <div class="search-ac" id="searchAC" role="listbox" hidden></div>
+    </div>
+    <div class="seg src" id="dataSrc" role="tablist" aria-label="Data source" hidden>
+      <button data-src="gamei" class="on" title="game-i's JP revenue estimate">game-i ¥</button>
+      <button data-src="st" title="Estimated combined worldwide revenue from the Sensor Tower monthly reports">Sensor&nbsp;Tower&nbsp;$</button>
+    </div>
   </div>
 
   <div class="controls gctrls" id="graphControls" hidden>
-    <span class="glabel">Filter</span>
-    <div class="seg gdim" id="gdim" role="tablist" aria-label="Filter by" hidden>
-      <button data-dim="year" class="on">Year</button>
-      <button data-dim="version">Version</button>
+    <div class="gfilter" id="gfilter">
+      <span class="glabel">Filter</span>
+      <div class="seg gdim" id="gdim" role="tablist" aria-label="Filter by" hidden>
+        <button data-dim="year" class="on">Year</button>
+        <button data-dim="version">Version</button>
+      </div>
+      <div class="seg" id="gyears"></div>
     </div>
-    <div class="seg" id="gyears"></div>
-    <label class="chk"><input type="checkbox" id="matchHigh"> Match highest</label>
-    <label class="brk">Round top to
-      <select id="brk">
-        <option value="0">Auto</option>
-        <option value="1">¥100M</option>
-        <option value="2">¥200M</option>
-        <option value="5">¥500M</option>
-        <option value="10">¥1B</option>
-        <option value="20">¥2B</option>
-      </select>
-    </label>
+    <label class="sortsel" id="bSortWrap" hidden>Sort <select id="bSort" title="Order the period cards">
+      <option value="timeline">Timeline</option>
+      <option value="ranking">Ranking</option>
+    </select></label>
+    <div class="gfilter" id="bYearsWrap" hidden><span class="glabel">Year</span><div class="seg myears" id="bYears"></div></div>
+    <button id="bDir" class="ghost" title="Reverse order">Newest first</button>
+    <button id="bTable" class="ghost">Table view</button>
   </div>
+  <div class="hintrow" id="hintRow"><span class="hint">Tap or hover any bar or point for banner details</span></div>
 
+  <div class="stnote" id="stnote" hidden>
+    <b>Estimated combined revenue.</b> Sensor Tower reports only a game's <em>monthly</em> worldwide total; each banner's figure here is assumed — its share of that month's game-i revenue applied to the real Sensor Tower total, then summed across the months it ran. <b>The further back you go, the rougher it gets:</b> before ~2024 the monthly reports didn't consistently break out <b>mainland China</b>, so some months are missing it entirely or undercounted. Where only <b>China&nbsp;iOS</b> was reported, China Android is estimated at <b>1.75× iOS</b> (the ratio used to model it today); a month with no China figure at all is tagged <span class="pill">global only</span>. Bars marked <span class="pill">partial</span> ran in months not yet covered, and <span class="pill">no ST data</span> ran entirely before Oct 2021 or were too low to chart.
+  </div>
   <div class="chartwrap" id="chartwrap"><div class="chart" id="chart"><div class="loading">Loading…</div></div></div>
   <div class="tablewrap" id="tablewrap" hidden></div>
 
   <footer class="foot">
-    Data scraped from <a href="https://game-i.daa.jp/" target="_blank" rel="noopener">game-i.daa.jp</a> ·
+    JP per-banner revenue scraped from <a href="https://game-i.daa.jp/" target="_blank" rel="noopener">game-i.daa.jp</a> ·
+    combined worldwide monthly revenue from the <a href="https://www.reddit.com/r/gachagaming/" target="_blank" rel="noopener">r/gachagaming</a> Sensor&nbsp;Tower reports ·
     character portraits © HoYoverse / Kuro Games, via <a href="https://enka.network/" target="_blank" rel="noopener">Enka.Network</a> ·
     banner art © the respective games. This is a fan-made, non-commercial analytics view; revenue figures are estimates and may be inaccurate.
     Refreshed automatically by a scheduled GitHub Action.
@@ -88,13 +99,21 @@
   </div>
 </div>
 
+<!-- period dialog: banners of a chosen year / month / version, ranked -->
+<div class="modal" id="periodModal" hidden>
+  <div class="modal-card bmodal" role="dialog" aria-modal="true" aria-labelledby="pdTitle">
+    <button class="modal-close" id="pdClose" aria-label="Close">×</button>
+    <div id="pdBody"></div>
+  </div>
+</div>
+
 <div class="modal" id="infoModal" hidden>
   <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="infoTitle">
     <button class="modal-close" id="infoClose" aria-label="Close">×</button>
     <h2 id="infoTitle">How these numbers work</h2>
-    <p class="modal-sub">Where game-i's estimates come from — and why they change.</p>
+    <p class="modal-sub">Where the game-i (JP ¥) and Sensor Tower (combined $) figures come from — and why they change.</p>
 
-    <p class="modal-note">This site doesn't measure or estimate anything itself — it simply re-presents the figures <a href="https://game-i.daa.jp/" target="_blank" rel="noopener">game-i.daa.jp</a> already publishes, in a more readable form (per-banner charts, rankings, and translated character names). All numbers and the methodology below are game-i's.</p>
+    <p class="modal-note">This site doesn't measure or estimate anything itself. It re-presents two third-party datasets in a more readable form: <a href="https://game-i.daa.jp/" target="_blank" rel="noopener">game-i.daa.jp</a>'s <b>per-banner Japan revenue</b> (the default, in ¥), and the community <b>Sensor Tower monthly reports</b>' <b>combined worldwide revenue</b> (the “Sensor&nbsp;Tower&nbsp;$” toggle, in $). They measure different things and are shown side by side — <b>never added together</b>.</p>
 
     <h3>What the number is</h3>
     <p>An <b>estimate</b> of how much a banner earned from mobile gacha in <b>Japan</b>, shown here in yen. game-i reports it in <b>“G”</b> — a deliberately vague unit it says just means “<i>about</i>” (〜ぐらい). By common convention <b>1億G ≈ ¥100 million</b> (so 1G ≈ ¥1), which is how the yen figures here are derived.</p>
@@ -146,10 +165,16 @@
     </ul>
     <p style="margin-top:6px">The banner card also shows an <b>estimated revenue build-up</b>. game-i reports only one total per banner, so this splits that total across the run by each day's rank (using game-i's published rank→revenue curve) purely to illustrate <i>how</i> the total accumulated. The per-day yen is a reconstruction — the run's total still equals game-i's own figure — not a separately reported number.</p>
 
-    <p class="modal-src">Source &amp; full methodology: <a href="https://game-i.daa.jp/?セルランとは？" target="_blank" rel="noopener">game-i.daa.jp — セルランとは？</a> · <a href="https://game-i.daa.jp/?サイトについて" target="_blank" rel="noopener">サイトについて</a> · <a href="https://game-i.daa.jp/?ガチャ売上分析について" target="_blank" rel="noopener">ガチャ売上分析について</a> · <a href="https://game-i.daa.jp/?よくある質問" target="_blank" rel="noopener">よくある質問</a></p>
+    <h3>The other layer: Sensor Tower (combined $)</h3>
+    <p>game-i only covers <b>Japan</b>. To show a game's fuller picture, the <b>“Sensor&nbsp;Tower&nbsp;$” toggle</b> (on Timeline and Ranking) switches every figure — the bars, the ranking order, and the header tiles (Total revenue, Highest banner, Highest month) — to <b>estimated worldwide revenue in US dollars</b>, and a disclaimer appears above the chart.</p>
+    <p>These come from the monthly <b>“Gacha Revenue / Sensor Tower” reports</b> posted to <a href="https://www.reddit.com/r/gachagaming/" target="_blank" rel="noopener">r/gachagaming</a>, read straight from the report images. Each figure is a game's <b>combined worldwide mobile revenue for a whole month</b> — its regional servers summed (JP + global/US + KR) <b>plus mainland China</b>. Because Sensor Tower's “global” line historically left China out, older reports gave China separately and often as <b>iOS only</b>; where that's the case, China Android is modelled at <b>1.75× the China-iOS figure</b> and folded into the total (a couple of the earliest months had no China figure at all and are tagged <span class="pill">global only</span>). Coverage runs from <b>October 2021</b> to the latest published month; older, region-summed months are marked with a <b>*</b> and are approximate.</p>
+    <p><b>Per-banner combined is assumed, not reported.</b> Sensor Tower never breaks a month down by banner, so this site estimates it: a banner is credited with the <b>same share of the month's combined total as it earned of game-i's JP revenue that month</b>, then those slices are <b>summed across every month the banner ran</b> (a banner spanning two months adds both). Click any banner to see the full month-by-month math, who else ran each month, and whether its run is only partly covered.</p>
+    <p><b>Why it's rough:</b> it inherits game-i's JP-share estimate <i>and</i> assumes JP spending mirrors worldwide spending for that banner, which isn't exactly true. Treat the $ figures as ballpark context for scale and trend, not precise per-banner sales — and, again, <b>never add them to the ¥ figures</b>, which are a different measurement (JP-only, iOS+Android).</p>
+
+    <p class="modal-src">Source &amp; full methodology: <a href="https://game-i.daa.jp/?セルランとは？" target="_blank" rel="noopener">game-i.daa.jp — セルランとは？</a> · <a href="https://game-i.daa.jp/?サイトについて" target="_blank" rel="noopener">サイトについて</a> · <a href="https://game-i.daa.jp/?ガチャ売上分析について" target="_blank" rel="noopener">ガチャ売上分析について</a> · <a href="https://game-i.daa.jp/?よくある質問" target="_blank" rel="noopener">よくある質問</a> · Sensor Tower figures: the monthly <a href="https://www.reddit.com/r/gachagaming/" target="_blank" rel="noopener">r/gachagaming</a> revenue reports</p>
   </div>
 </div>
 
-<script src="app.js?v=35"></script>
+<script src="app.js?v=91"></script>
 </body>
 </html>

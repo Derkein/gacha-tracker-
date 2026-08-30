@@ -4,7 +4,7 @@
 
 An auto-updating, fan-made site that charts **estimated per-banner gacha revenue over time** for 11 gacha games, in a cleaner and more readable form than the raw source — with rankings, English character names, banner art and per-banner detail.
 
-It doesn't measure or estimate anything itself: every number comes from [**game-i.daa.jp**](https://game-i.daa.jp/)'s published estimates (売上予測). This project just re-presents them.
+It doesn't measure or estimate anything itself. It re-presents two third-party datasets: [**game-i.daa.jp**](https://game-i.daa.jp/)'s per-banner **Japan** revenue (売上予測, the default, in ¥), and the monthly **Sensor Tower** reports posted to [r/gachagaming](https://www.reddit.com/r/gachagaming/) for **global** revenue (a toggle, in $). The two measure different things and are shown side by side — never summed.
 
 Covered: **Zenless Zone Zero · Honkai: Star Rail · Wuthering Waves · Genshin Impact · Arknights: Endfield · Neverness to Everness · Umamusume · Fate/Grand Order · Blue Archive · Arknights.**
 
@@ -13,10 +13,12 @@ Covered: **Zenless Zone Zero · Honkai: Star Rail · Wuthering Waves · Genshin 
 ## What you can do
 
 - **Three chart views + a table** — Timeline, Graph (one line-chart per year), Ranking, and a plain data table. Toggle newest/oldest or highest/lowest first.
-- **Per-year filter, "match highest" scaling, and round-top axis** controls on any chart view.
+- **Per-year / per-version filter** on the chart views, plus **by-Year, by-Month and by-Version** breakdowns with per-period detail cards (a by-Month card opens a calendar of that month's banners).
+- **Character search** with icon autocomplete that filters every view.
 - **Click any banner** → a detail card with the banner art, its stats, and:
   - the **daily iOS store-rank curve** across the whole run (how high it peaked, how fast it faded);
   - an **estimated revenue build-up** — the total split across the run day-by-day, with a table of each day's rank, that day's estimated share, and the running cumulative.
+- **game-i ¥ ⇄ Sensor Tower $ toggle** (Timeline & Ranking) — switch every bar, the ranking order, and the header tiles between game-i's JP revenue and estimated **global** revenue (USD) from the Sensor Tower monthly reports. Per-banner global is *assumed* (a banner's share of game-i's JP month applied to the month's real global total, summed across the months it ran); a banner's card shows the full month-by-month math.
 - **"JP store rank today" tile** — each game's current iOS/Android top-grossing rank straight from game-i, with a two-month sparkline of the daily iOS rank.
 - **ⓘ How these numbers work** — an in-page dialog explaining game-i's methodology and every caveat (below-200 days count as ¥0, midnight-JST snapshots, iOS-regressed model, still-running banners, etc.).
 
@@ -25,6 +27,8 @@ Covered: **Zenless Zone Zero · Honkai: Star Rail · Wuthering Waves · Genshin 
 Revenue is shown in **yen**. game-i reports in **"G"**, a deliberately vague unit it says just means "about" (〜ぐらい); by common convention **1億G ≈ ¥100 million**, which is how the yen figures here are derived.
 
 These are **third-party estimates, not official sales** — game-i records each app's App Store / Google Play top-grossing rank daily and converts rank → revenue with a model calibrated against companies' disclosed earnings. They're directional, Japan-only (iOS + Android), and exclude PC/overseas stores. Use them to *compare* banners, not as exact figures. The full methodology and its limits are in the site's **ⓘ** dialog.
+
+The **Sensor Tower** layer (`data/reported_revenue.json`) is a game's **combined worldwide** monthly revenue in USD, read from the r/gachagaming report images — regional servers summed (JP + global/US + KR), excluding the separately-reported mainland-China figure. Coverage runs from **Oct 2021**; older region-summed months are marked `*` and are approximate. Per-banner global figures are *assumed* (see above), so treat them as ballpark context, not precise sales — and never add them to the ¥ figures.
 
 ## How it works
 

@@ -1,0 +1,581 @@
+{
+ "source": "gacharevenue (reconstructed from eog.gg raw Sensor Tower data)",
+ "source_url": "https://revenue.ennead.cc",
+ "raw_source_url": "https://eog.gg/revenue/",
+ "bundle": "https://eog.gg/assets/revenue-B83LcU1t.js",
+ "fetched": "2026-08-25T03:22:11Z",
+ "unit": "usd",
+ "formula": "gacharevenue = eog_combined + 1.75 * eog_China",
+ "note": "Global mobile revenue estimate (iOS + Android), net of the 30% store cut, combined across all regions, matching gacharevenue (revenue.ennead.cc). Computed from eog.gg's per-region Sensor Tower data by modelling untracked China-Android at 1.75x China-iOS. NOT comparable to game-i's JP-iOS 億G figures; shown side by side, never summed.",
+ "months": [
+  "2025-06",
+  "2025-07",
+  "2025-08",
+  "2025-09",
+  "2025-10",
+  "2025-11",
+  "2025-12",
+  "2026-01",
+  "2026-02",
+  "2026-03",
+  "2026-04",
+  "2026-05",
+  "2026-06",
+  "2026-07"
+ ],
+ "latest_month": "2026-07",
+ "games": {
+  "genshin": {
+   "eog_id": "genshin-impact",
+   "name": "Genshin Impact",
+   "monthly": {
+    "2025-06": {
+     "rev": 65505000,
+     "method": "gr"
+    },
+    "2025-07": {
+     "rev": 42335000,
+     "method": "gr"
+    },
+    "2025-08": {
+     "rev": 27765000,
+     "method": "gr"
+    },
+    "2025-09": {
+     "rev": 43875000,
+     "method": "gr"
+    },
+    "2025-10": {
+     "rev": 56725000,
+     "method": "gr"
+    },
+    "2025-11": {
+     "rev": 20970000,
+     "method": "gr"
+    },
+    "2025-12": {
+     "rev": 40825000,
+     "method": "gr"
+    },
+    "2026-01": {
+     "rev": 66040000,
+     "method": "gr"
+    },
+    "2026-02": {
+     "rev": 55245000,
+     "method": "gr"
+    },
+    "2026-03": {
+     "rev": 40110000,
+     "method": "gr"
+    },
+    "2026-04": {
+     "rev": 40105000,
+     "method": "gr"
+    },
+    "2026-05": {
+     "rev": 41655000,
+     "method": "gr"
+    },
+    "2026-06": {
+     "rev": 32330000,
+     "method": "gr"
+    },
+    "2026-07": {
+     "rev": 55990000,
+     "method": "approx"
+    }
+   }
+  },
+  "hsr": {
+   "eog_id": "star-rail",
+   "name": "Honkai: Star Rail",
+   "monthly": {
+    "2025-06": {
+     "rev": 19120000,
+     "method": "gr"
+    },
+    "2025-07": {
+     "rev": 92450000,
+     "method": "gr"
+    },
+    "2025-08": {
+     "rev": 29925000,
+     "method": "gr"
+    },
+    "2025-09": {
+     "rev": 39535000,
+     "method": "gr"
+    },
+    "2025-10": {
+     "rev": 23450000,
+     "method": "gr"
+    },
+    "2025-11": {
+     "rev": 81380000,
+     "method": "gr"
+    },
+    "2025-12": {
+     "rev": 27895000,
+     "method": "gr"
+    },
+    "2026-01": {
+     "rev": 8037500,
+     "method": "gr"
+    },
+    "2026-02": {
+     "rev": 21135000,
+     "method": "gr"
+    },
+    "2026-03": {
+     "rev": 31730000,
+     "method": "gr"
+    },
+    "2026-04": {
+     "rev": 58100000,
+     "method": "gr"
+    },
+    "2026-05": {
+     "rev": 38765000,
+     "method": "gr"
+    },
+    "2026-06": {
+     "rev": 28455000,
+     "method": "gr"
+    },
+    "2026-07": {
+     "rev": 42075000,
+     "method": "approx"
+    }
+   }
+  },
+  "zzz": {
+   "eog_id": "zenless",
+   "name": "Zenless Zone Zero",
+   "monthly": {
+    "2025-06": {
+     "rev": 38340000,
+     "method": "gr"
+    },
+    "2025-07": {
+     "rev": 22960000,
+     "method": "gr"
+    },
+    "2025-08": {
+     "rev": 15925000,
+     "method": "gr"
+    },
+    "2025-09": {
+     "rev": 10890000,
+     "method": "gr"
+    },
+    "2025-10": {
+     "rev": 12915000,
+     "method": "gr"
+    },
+    "2025-11": {
+     "rev": 10890000,
+     "method": "gr"
+    },
+    "2025-12": {
+     "rev": 27550000,
+     "method": "gr"
+    },
+    "2026-01": {
+     "rev": 23245000,
+     "method": "gr"
+    },
+    "2026-02": {
+     "rev": 13350000,
+     "method": "gr"
+    },
+    "2026-03": {
+     "rev": 16440000,
+     "method": "gr"
+    },
+    "2026-04": {
+     "rev": 7167000,
+     "method": "gr"
+    },
+    "2026-05": {
+     "rev": 9370000,
+     "method": "gr"
+    },
+    "2026-06": {
+     "rev": 9655000,
+     "method": "gr"
+    },
+    "2026-07": {
+     "rev": 36870000,
+     "method": "approx"
+    }
+   }
+  },
+  "wuwa": {
+   "eog_id": "wuthering-waves",
+   "name": "Wuthering Waves",
+   "monthly": {
+    "2025-06": {
+     "rev": 39975000,
+     "method": "gr"
+    },
+    "2025-07": {
+     "rev": 16875000,
+     "method": "gr"
+    },
+    "2025-08": {
+     "rev": 14875000,
+     "method": "gr"
+    },
+    "2025-09": {
+     "rev": 21900000,
+     "method": "gr"
+    },
+    "2025-10": {
+     "rev": 16600000,
+     "method": "gr"
+    },
+    "2025-11": {
+     "rev": 18875000,
+     "method": "gr"
+    },
+    "2025-12": {
+     "rev": 23175000,
+     "method": "gr"
+    },
+    "2026-01": {
+     "rev": 19150000,
+     "method": "gr"
+    },
+    "2026-02": {
+     "rev": 46000000,
+     "method": "gr"
+    },
+    "2026-03": {
+     "rev": 11400000,
+     "method": "gr"
+    },
+    "2026-04": {
+     "rev": 14700000,
+     "method": "gr"
+    },
+    "2026-05": {
+     "rev": 31750000,
+     "method": "gr"
+    },
+    "2026-06": {
+     "rev": 34000000,
+     "method": "gr"
+    },
+    "2026-07": {
+     "rev": 27000000,
+     "method": "approx"
+    }
+   }
+  },
+  "nte": {
+   "eog_id": "neverness-to-everness",
+   "name": "Neverness to Everness",
+   "monthly": {
+    "2026-04": {
+     "rev": 6740000,
+     "method": "gr"
+    },
+    "2026-05": {
+     "rev": 23575000,
+     "method": "gr"
+    },
+    "2026-06": {
+     "rev": 13950000,
+     "method": "gr"
+    },
+    "2026-07": {
+     "rev": 10825000,
+     "method": "approx"
+    }
+   }
+  },
+  "endfield": {
+   "eog_id": "arknights-endfield",
+   "name": "Arknights: Endfield",
+   "monthly": {
+    "2026-01": {
+     "rev": 28550000,
+     "method": "gr"
+    },
+    "2026-02": {
+     "rev": 26080000,
+     "method": "gr"
+    },
+    "2026-03": {
+     "rev": 22050000,
+     "method": "gr"
+    },
+    "2026-04": {
+     "rev": 17280000,
+     "method": "gr"
+    },
+    "2026-05": {
+     "rev": 4766000,
+     "method": "gr"
+    },
+    "2026-06": {
+     "rev": 9520000,
+     "method": "gr"
+    },
+    "2026-07": {
+     "rev": 9794000,
+     "method": "approx"
+    }
+   }
+  },
+  "uma": {
+   "eog_id": "uma-musume",
+   "name": "Uma Musume: Pretty Derby",
+   "monthly": {
+    "2025-06": {
+     "rev": 12400000,
+     "method": "gr"
+    },
+    "2025-07": {
+     "rev": 34200000,
+     "method": "gr"
+    },
+    "2025-08": {
+     "rev": 33550000,
+     "method": "gr"
+    },
+    "2025-09": {
+     "rev": 23955000,
+     "method": "gr"
+    },
+    "2025-10": {
+     "rev": 16750000,
+     "method": "gr"
+    },
+    "2025-11": {
+     "rev": 28330000,
+     "method": "gr"
+    },
+    "2025-12": {
+     "rev": 22350000,
+     "method": "gr"
+    },
+    "2026-01": {
+     "rev": 15925000,
+     "method": "gr"
+    },
+    "2026-02": {
+     "rev": 18025000,
+     "method": "gr"
+    },
+    "2026-03": {
+     "rev": 34155000,
+     "method": "gr"
+    },
+    "2026-04": {
+     "rev": 9320000,
+     "method": "gr"
+    },
+    "2026-05": {
+     "rev": 11085000,
+     "method": "gr"
+    },
+    "2026-06": {
+     "rev": 9575000,
+     "method": "gr"
+    },
+    "2026-07": {
+     "rev": 16047500,
+     "method": "approx"
+    }
+   }
+  },
+  "fgo": {
+   "eog_id": "fate-grand-order",
+   "name": "Fate/Grand Order",
+   "monthly": {
+    "2025-06": {
+     "rev": 24815000,
+     "method": "gr"
+    },
+    "2025-07": {
+     "rev": 26890000,
+     "method": "gr"
+    },
+    "2025-08": {
+     "rev": 55790000,
+     "method": "gr"
+    },
+    "2025-09": {
+     "rev": 30935000,
+     "method": "gr"
+    },
+    "2025-10": {
+     "rev": 24980000,
+     "method": "gr"
+    },
+    "2025-11": {
+     "rev": 13330000,
+     "method": "gr"
+    },
+    "2025-12": {
+     "rev": 28370000,
+     "method": "gr"
+    },
+    "2026-01": {
+     "rev": 32700000,
+     "method": "gr"
+    },
+    "2026-02": {
+     "rev": 13310000,
+     "method": "gr"
+    },
+    "2026-03": {
+     "rev": 12775000,
+     "method": "gr"
+    },
+    "2026-04": {
+     "rev": 10985000,
+     "method": "gr"
+    },
+    "2026-05": {
+     "rev": 15620000,
+     "method": "gr"
+    },
+    "2026-06": {
+     "rev": 14015000,
+     "method": "gr"
+    },
+    "2026-07": {
+     "rev": 20240000,
+     "method": "approx"
+    }
+   }
+  },
+  "bluearchive": {
+   "eog_id": "blue-archive",
+   "name": "Blue Archive",
+   "monthly": {
+    "2025-06": {
+     "rev": 4340000,
+     "method": "gr"
+    },
+    "2025-07": {
+     "rev": 9245000,
+     "method": "gr"
+    },
+    "2025-08": {
+     "rev": 9278000,
+     "method": "gr"
+    },
+    "2025-09": {
+     "rev": 3029000,
+     "method": "gr"
+    },
+    "2025-10": {
+     "rev": 4984000,
+     "method": "gr"
+    },
+    "2025-11": {
+     "rev": 4748500,
+     "method": "gr"
+    },
+    "2025-12": {
+     "rev": 5970000,
+     "method": "gr"
+    },
+    "2026-01": {
+     "rev": 11267500,
+     "method": "gr"
+    },
+    "2026-02": {
+     "rev": 7861500,
+     "method": "gr"
+    },
+    "2026-03": {
+     "rev": 2956500,
+     "method": "gr"
+    },
+    "2026-04": {
+     "rev": 2823000,
+     "method": "gr"
+    },
+    "2026-05": {
+     "rev": 3350000,
+     "method": "gr"
+    },
+    "2026-06": {
+     "rev": 6935000,
+     "method": "gr"
+    },
+    "2026-07": {
+     "rev": 3904500,
+     "method": "approx"
+    }
+   }
+  },
+  "arknights": {
+   "eog_id": "arknights",
+   "name": "Arknights",
+   "monthly": {
+    "2025-06": {
+     "rev": 8740000,
+     "method": "gr"
+    },
+    "2025-07": {
+     "rev": 14900000,
+     "method": "gr"
+    },
+    "2025-08": {
+     "rev": 19760000,
+     "method": "gr"
+    },
+    "2025-09": {
+     "rev": 26450000,
+     "method": "gr"
+    },
+    "2025-10": {
+     "rev": 26800000,
+     "method": "gr"
+    },
+    "2025-11": {
+     "rev": 41750000,
+     "method": "gr"
+    },
+    "2025-12": {
+     "rev": 10160000,
+     "method": "gr"
+    },
+    "2026-01": {
+     "rev": 16950000,
+     "method": "gr"
+    },
+    "2026-02": {
+     "rev": 24300000,
+     "method": "gr"
+    },
+    "2026-03": {
+     "rev": 9470000,
+     "method": "gr"
+    },
+    "2026-04": {
+     "rev": 21350000,
+     "method": "gr"
+    },
+    "2026-05": {
+     "rev": 30350000,
+     "method": "gr"
+    },
+    "2026-06": {
+     "rev": 13620000,
+     "method": "gr"
+    },
+    "2026-07": {
+     "rev": 18550000,
+     "method": "approx"
+    }
+   }
+  }
+ }
+}
