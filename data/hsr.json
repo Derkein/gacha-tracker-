@@ -4,13 +4,13 @@
  "jp": "崩壊：スターレイル",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E5%B4%A9%E5%A3%8A%EF%BC%9A%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%AC%E3%82%A4%E3%83%AB",
- "updated": "2026-08-29T19:27:16Z",
+ "updated": "2026-08-30T18:35:14Z",
  "count": 61,
  "now": {
-  "ios": 18,
+  "ios": 26,
   "android": 4,
   "month": 32,
-  "next_add": 64416971,
+  "next_add": 48101667,
   "ym": "2026/08",
   "ranks": {
    "prev": [
@@ -77,12 +77,12 @@
     7,
     11,
     18,
-    null
+    27
    ]
   }
  },
  "monthly": {
-  "2026-08": 11.48,
+  "2026-08": 11.87,
   "2026-07": 16.85,
   "2026-06": 13.4,
   "2026-05": 14.61,
@@ -2180,7 +2180,7 @@
    "rev": 5.52,
    "yrank": 16,
    "ytot": 18,
-   "cum": 51,
+   "cum": 52,
    "cumtot": 62,
    "year": 2025,
    "related": "アナイクス",
@@ -2963,10 +2963,10 @@
    "name": "ロビン・夏空の歌",
    "start": "2026-08-26",
    "end": "2026-09-12",
-   "rev": 5.45,
+   "rev": 5.84,
    "yrank": 8,
    "ytot": 16,
-   "cum": 52,
+   "cum": 51,
    "cumtot": 62,
    "year": 2026,
    "related": "ヒアンシー",
@@ -2978,7 +2978,8 @@
     2,
     7,
     11,
-    18
+    18,
+    27
    ],
    "icons": [
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1512.png"
