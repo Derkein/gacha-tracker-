@@ -3,7 +3,7 @@
  "source_url": "https://revenue.ennead.cc",
  "raw_source_url": "https://eog.gg/revenue/",
  "bundle": "https://eog.gg/assets/revenue-B83LcU1t.js",
- "fetched": "2026-09-01T17:46:07Z",
+ "fetched": "2026-09-01T18:27:48Z",
  "unit": "usd",
  "formula": "gacharevenue = eog_combined + 1.75 * eog_China",
  "note": "Global mobile revenue estimate (iOS + Android), net of the 30% store cut, combined across all regions, matching gacharevenue (revenue.ennead.cc). Computed from eog.gg's per-region Sensor Tower data by modelling untracked China-Android at 1.75x China-iOS. NOT comparable to game-i's JP-iOS 億G figures; shown side by side, never summed.",
