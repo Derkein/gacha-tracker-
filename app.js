@@ -853,7 +853,7 @@ function renderMonthly(){
     const kGi = g!=null ? `<div class="mck"><span class="mck-k">game-i monthly</span><span class="mck-v">${G(g)}</span><span class="mck-n">月次売上予測</span></div>` : "";
     const kRe = `<div class="mck"><span class="mck-k">from daily ranks</span><span class="mck-v">${G(o)}</span><span class="mck-n">${diff!=null?`${diff>=0?"+":""}${diff.toFixed(0)}% vs game-i`:"reconstruction"}</span></div>`;
     const stApprox = st && (st.method==="approx"||st.method==="reported_approx");
-    const stSub = st ? (st.usonly ? `<span class="usonly-tag" title="Global (US) only — no mainland-China figure available for this month, so it's undercounted">global only</span>` : (st.method==="reported"||st.method==="reported_approx" ? "combined · reported" : "combined · reconstructed")) : "";
+    const stSub = st ? (st.usonly ? `<span class="usonly-tag" title="Global (US) only — no China figure available for this month, so it's undercounted">global only</span>` : (st.method==="reported"||st.method==="reported_approx" ? "combined · reported" : "combined · reconstructed")) : "";
     const kSt = st ? `<div class="mck st${st.usonly?" usonly":""}"><span class="mck-k">Sensor Tower${stApprox?" *":""}</span><span class="mck-v">${fmtUSD(st.rev)}</span><span class="mck-n">${stSub}</span></div>` : "";
     // composition bar: one segment per banner (share of the base) + an "unlisted" remainder
     const segs = bl.filter(x=>x.rev>0.0005).map(x=>({x, share: base>0?x.rev/base:0}));
@@ -1621,9 +1621,21 @@ function resetSearch(){ if(searchInput){ searchInput.value=""; } state.search=""
 
 // ---- methodology modal ----
 const infoModal=$("#infoModal");
-$("#infoBtn").onclick=()=>{ infoModal.hidden=false; };
+function showInfoTab(which){
+  $("#infoToggle").querySelectorAll("[data-info]").forEach(b=>b.classList.toggle("on",b.dataset.info===which));
+  $("#infoGamei").hidden = which!=="gamei";
+  $("#infoST").hidden    = which!=="st";
+  const card=infoModal.querySelector(".modal-card"); if(card) card.scrollTop=0;
+}
+$("#infoToggle").querySelectorAll("[data-info]").forEach(btn=>btn.onclick=()=>showInfoTab(btn.dataset.info));
+$("#infoBtn").onclick=()=>{ showInfoTab(state.dataSource==="st"?"st":"gamei"); infoModal.hidden=false; };
+// click a worked-example source image to enlarge it in a lightbox
+const lightbox=$("#lightbox"), lightboxImg=$("#lightboxImg");
+$("#infoModal").addEventListener("click",e=>{ const im=e.target.closest(".info-ex-img");
+  if(im){ lightboxImg.src=im.dataset.full||im.currentSrc||im.src; lightboxImg.alt=im.alt; lightbox.hidden=false; } });
+lightbox.onclick=()=>{ lightbox.hidden=true; lightboxImg.src=""; };
 $("#infoClose").onclick=()=>{ infoModal.hidden=true; };
 infoModal.onclick=e=>{ if(e.target===infoModal) infoModal.hidden=true; };
-addEventListener("keydown",e=>{ if(e.key==="Escape"){ infoModal.hidden=true; bannerModal.hidden=true; periodModal.hidden=true; } });
+addEventListener("keydown",e=>{ if(e.key==="Escape"){ if(!lightbox.hidden){ lightbox.hidden=true; lightboxImg.src=""; return; } infoModal.hidden=true; bannerModal.hidden=true; periodModal.hidden=true; } });
 
 init().catch(e=>{$("#chart").innerHTML=`<div class="loading">Failed to load data: ${e}</div>`;});

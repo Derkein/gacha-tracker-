@@ -12,7 +12,7 @@
 <title>Gacha Revenue Tracker</title>
 <meta name="description" content="Estimated gacha banner revenue over time for Zenless Zone Zero, Honkai: Star Rail, Wuthering Waves, Genshin Impact and Arknights: Endfield. Auto-updated from game-i.daa.jp.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>%F0%9F%8E%B0</text></svg>">
-<link rel="stylesheet" href="style.css?v=91">
+<link rel="stylesheet" href="style.css?v=93">
 </head>
 <body>
 <div class="wrap">
@@ -76,7 +76,7 @@
   <div class="hintrow" id="hintRow"><span class="hint">Tap or hover any bar or point for banner details</span></div>
 
   <div class="stnote" id="stnote" hidden>
-    <b>Estimated combined revenue.</b> Sensor Tower reports only a game's <em>monthly</em> worldwide total; each banner's figure here is assumed — its share of that month's game-i revenue applied to the real Sensor Tower total, then summed across the months it ran. <b>The further back you go, the rougher it gets:</b> before ~2024 the monthly reports didn't consistently break out <b>mainland China</b>, so some months are missing it entirely or undercounted. Where only <b>China&nbsp;iOS</b> was reported, China Android is estimated at <b>1.75× iOS</b> (the ratio used to model it today); a month with no China figure at all is tagged <span class="pill">global only</span>. Bars marked <span class="pill">partial</span> ran in months not yet covered, and <span class="pill">no ST data</span> ran entirely before Oct 2021 or were too low to chart.
+    <b>Estimated combined revenue.</b> Sensor Tower reports only a game's <em>monthly</em> worldwide total; each banner's figure here is assumed — its share of that month's game-i revenue applied to the real Sensor Tower total, then summed across the months it ran. <b>The further back you go, the rougher it gets:</b> before ~2024 the monthly reports didn't consistently break out <b>China</b>, so some months are missing it entirely or undercounted. Where only <b>China&nbsp;iOS</b> was reported, China Android is estimated at <b>1.75× iOS</b> (the ratio used to model it today); a month with no China figure at all is tagged <span class="pill">global only</span>. Bars marked <span class="pill">partial</span> ran in months not yet covered, and <span class="pill">no ST data</span> ran entirely before Oct 2021 or were too low to chart.
   </div>
   <div class="chartwrap" id="chartwrap"><div class="chart" id="chart"><div class="loading">Loading…</div></div></div>
   <div class="tablewrap" id="tablewrap" hidden></div>
@@ -115,6 +115,12 @@
 
     <p class="modal-note">This site doesn't measure or estimate anything itself. It re-presents two third-party datasets in a more readable form: <a href="https://game-i.daa.jp/" target="_blank" rel="noopener">game-i.daa.jp</a>'s <b>per-banner Japan revenue</b> (the default, in ¥), and the community <b>Sensor Tower monthly reports</b>' <b>combined worldwide revenue</b> (the “Sensor&nbsp;Tower&nbsp;$” toggle, in $). They measure different things and are shown side by side — <b>never added together</b>.</p>
 
+    <div class="seg info-toggle" id="infoToggle" role="tablist" aria-label="Which dataset to explain">
+      <button data-info="gamei" class="on">game-i · JP ¥</button>
+      <button data-info="st">Sensor Tower · combined $</button>
+    </div>
+
+    <div id="infoGamei">
     <h3>What the number is</h3>
     <p>An <b>estimate</b> of how much a banner earned from mobile gacha in <b>Japan</b>, shown here in yen. game-i reports it in <b>“G”</b> — a deliberately vague unit it says just means “<i>about</i>” (〜ぐらい). By common convention <b>1億G ≈ ¥100 million</b> (so 1G ≈ ¥1), which is how the yen figures here are derived.</p>
 
@@ -165,16 +171,62 @@
     </ul>
     <p style="margin-top:6px">The banner card also shows an <b>estimated revenue build-up</b>. game-i reports only one total per banner, so this splits that total across the run by each day's rank (using game-i's published rank→revenue curve) purely to illustrate <i>how</i> the total accumulated. The per-day yen is a reconstruction — the run's total still equals game-i's own figure — not a separately reported number.</p>
 
-    <h3>The other layer: Sensor Tower (combined $)</h3>
-    <p>game-i only covers <b>Japan</b>. To show a game's fuller picture, the <b>“Sensor&nbsp;Tower&nbsp;$” toggle</b> (on Timeline and Ranking) switches every figure — the bars, the ranking order, and the header tiles (Total revenue, Highest banner, Highest month) — to <b>estimated worldwide revenue in US dollars</b>, and a disclaimer appears above the chart.</p>
-    <p>These come from the monthly <b>“Gacha Revenue / Sensor Tower” reports</b> posted to <a href="https://www.reddit.com/r/gachagaming/" target="_blank" rel="noopener">r/gachagaming</a>, read straight from the report images. Each figure is a game's <b>combined worldwide mobile revenue for a whole month</b> — its regional servers summed (JP + global/US + KR) <b>plus mainland China</b>. Because Sensor Tower's “global” line historically left China out, older reports gave China separately and often as <b>iOS only</b>; where that's the case, China Android is modelled at <b>1.75× the China-iOS figure</b> and folded into the total (a couple of the earliest months had no China figure at all and are tagged <span class="pill">global only</span>). Coverage runs from <b>October 2021</b> to the latest published month; older, region-summed months are marked with a <b>*</b> and are approximate.</p>
-    <p><b>Per-banner combined is assumed, not reported.</b> Sensor Tower never breaks a month down by banner, so this site estimates it: a banner is credited with the <b>same share of the month's combined total as it earned of game-i's JP revenue that month</b>, then those slices are <b>summed across every month the banner ran</b> (a banner spanning two months adds both). Click any banner to see the full month-by-month math, who else ran each month, and whether its run is only partly covered.</p>
-    <p><b>Why it's rough:</b> it inherits game-i's JP-share estimate <i>and</i> assumes JP spending mirrors worldwide spending for that banner, which isn't exactly true. Treat the $ figures as ballpark context for scale and trend, not precise per-banner sales — and, again, <b>never add them to the ¥ figures</b>, which are a different measurement (JP-only, iOS+Android).</p>
+    </div><!-- /infoGamei -->
+
+    <div id="infoST" hidden>
+    <h3>What this layer is</h3>
+    <p>game-i only covers <b>Japan</b>. The <b>“Sensor&nbsp;Tower&nbsp;$” toggle</b> switches every figure on the page — the bars, the ranking order, the Graph, and the header tiles (Total revenue, Highest banner, Highest month, Average) — to a game's estimated <b>combined worldwide revenue in US dollars</b>, and a short disclaimer appears above the chart. The two layers measure different things, so the ¥ and $ are shown side by side and are <b>never added together</b>.</p>
+
+    <h3>Where the numbers come from</h3>
+    <p>The monthly <b>“Gacha Revenue / Sensor Tower” reports</b> posted to <a href="https://www.reddit.com/r/gachagaming/" target="_blank" rel="noopener">r/gachagaming</a>, read straight from the report images. Coverage runs from <b>October 2021</b> to the latest published month; older, region-summed months are marked with a <b>*</b> and are approximate.</p>
+
+    <h3>What each figure means</h3>
+    <p>A game's <b>combined worldwide mobile revenue for a whole month</b> — every regional server summed (JP + global/US + KR where they exist) <b>plus China</b>. It is <i>not</i> per-banner and <i>not</i> Japan-only, so it isn't directly comparable to game-i's ¥ figure.</p>
+
+    <h3>The China adjustment — the 1.75× rule</h3>
+    <p>Sensor Tower's “global” line historically <b>left China out</b>, and where China <i>was</i> reported it was often <b>iOS only</b>. In those cases China Android is modelled at <b>1.75× the China-iOS figure</b> — the iOS-to-Android ratio seen in the recent reports that split both — so a month's China total is:</p>
+    <p class="info-formula">China total = China iOS + (China iOS × 1.75) = <b>China iOS × 2.75</b></p>
+    <p>A few of the <b>earliest</b> months had no China figure at all; those are tagged <span class="pill">global only</span> and are undercounted. From <b>2024 onward</b> the reports break China out cleanly, so no reconstruction is needed.</p>
+
+    <h3>Where the China number came from — 2022 vs 2023</h3>
+    <p>The <i>method</i> above is the same throughout; what changed year to year is <b>where the China-iOS number was found</b>.</p>
+
+    <p><b>2022 &amp; early 2023 — from the report's own China row.</b> The community “sensortower stats” spreadsheet listed each region on its own line, including an explicit <b>CN</b> row (iOS only, Android blank). So the month is just the global/US total plus that China row, grossed up for Android:</p>
+    <div class="info-ex">
+      <div class="info-ex-h">Example — Genshin Impact · January 2022</div>
+      <div class="info-ex-math">global (US) <b>$102M</b> &nbsp;·&nbsp; China iOS <b>$43M</b><br>
+      China = $43M × 2.75 = <b>$118.25M</b> <span class="info-ex-note">($43M iOS + $75.25M modelled Android)</span><br>
+      combined = $102M + $118.25M = <b>$220.25M</b></div>
+      <img class="info-ex-img" src="assets/reports/jan2022-genshin.png?v=1" data-full="assets/reports/jan2022-genshin-full.png?v=1" alt="January 2022 Sensor Tower spreadsheet — Genshin US total $102M, China iOS $43M" title="Click for the full report" loading="lazy">
+    </div>
+
+    <p><b>Mid-to-late 2023 — from the post's comments.</b> Those reports shared only the single <b>global</b> figure, not China. The China-iOS number was taken from the post's <b>comments</b> — fairly upvoted, but less reliable. It's kept because, without it, 2023 would read oddly low next to the years on either side:</p>
+    <div class="info-ex">
+      <div class="info-ex-h">Example — Honkai: Star Rail · August 2023</div>
+      <div class="info-ex-math">global <b>$49M</b> &nbsp;·&nbsp; China iOS (from comments) <b>$32M</b><br>
+      China = $32M × 2.75 = <b>$88M</b> <span class="info-ex-note">($32M iOS + $56M modelled Android)</span><br>
+      combined = $49M + $88M = <b>$137M</b></div>
+      <img class="info-ex-img" src="assets/reports/aug2023-hsr.png?v=1" data-full="assets/reports/aug2023-hsr-full.png?v=1" alt="August 2023 Sensor Tower report — Honkai: Star Rail global $49M (China iOS $32M came from the post comments)" title="Click for the full report" loading="lazy">
+    </div>
+
+    <h3>Per-banner is assumed, not reported</h3>
+    <p>Sensor Tower never breaks a month down by banner. This site credits a banner with the <b>same share of the month's combined total as it earned of game-i's JP revenue that month</b>, then <b>sums those slices across every month the banner ran</b> (a banner spanning two months adds both). Click any banner for the full month-by-month math, who else ran each month, and whether its run is only partly covered.</p>
+
+    <h3>Why it's rough</h3>
+    <ul>
+      <li>It inherits game-i's JP-share estimate <i>and</i> assumes JP spending mirrors worldwide spending for that banner.</li>
+      <li>The China <b>×1.75</b> Android figure is a <b>model, not a measurement</b> — and some 2023 China numbers came from comments.</li>
+      <li><b>*</b> = an approximate, region-summed month; <span class="pill">global only</span> = no China figure that month; <span class="pill">partial</span> = the banner also ran in months not yet reported.</li>
+    </ul>
+    <p style="margin-top:6px">Treat the $ figures as <b>ballpark context</b> for scale and trend, not precise sales — and, again, <b>never add them to the ¥ figures</b>.</p>
+    </div><!-- /infoST -->
 
     <p class="modal-src">Source &amp; full methodology: <a href="https://game-i.daa.jp/?セルランとは？" target="_blank" rel="noopener">game-i.daa.jp — セルランとは？</a> · <a href="https://game-i.daa.jp/?サイトについて" target="_blank" rel="noopener">サイトについて</a> · <a href="https://game-i.daa.jp/?ガチャ売上分析について" target="_blank" rel="noopener">ガチャ売上分析について</a> · <a href="https://game-i.daa.jp/?よくある質問" target="_blank" rel="noopener">よくある質問</a> · Sensor Tower figures: the monthly <a href="https://www.reddit.com/r/gachagaming/" target="_blank" rel="noopener">r/gachagaming</a> revenue reports</p>
   </div>
 </div>
 
-<script src="app.js?v=91"></script>
+<div class="lightbox" id="lightbox" hidden><img id="lightboxImg" src="" alt=""></div>
+
+<script src="app.js?v=94"></script>
 </body>
 </html>

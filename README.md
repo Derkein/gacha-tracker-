@@ -28,7 +28,7 @@ Revenue is shown in **yen**. game-i reports in **"G"**, a deliberately vague uni
 
 These are **third-party estimates, not official sales** — game-i records each app's App Store / Google Play top-grossing rank daily and converts rank → revenue with a model calibrated against companies' disclosed earnings. They're directional, Japan-only (iOS + Android), and exclude PC/overseas stores. Use them to *compare* banners, not as exact figures. The full methodology and its limits are in the site's **ⓘ** dialog.
 
-The **Sensor Tower** layer (`data/reported_revenue.json`) is a game's **combined worldwide** monthly revenue in USD, read from the r/gachagaming report images — regional servers summed (JP + global/US + KR), excluding the separately-reported mainland-China figure. Coverage runs from **Oct 2021**; older region-summed months are marked `*` and are approximate. Per-banner global figures are *assumed* (see above), so treat them as ballpark context, not precise sales — and never add them to the ¥ figures.
+The **Sensor Tower** layer (`data/reported_revenue.json`) is a game's **combined worldwide** monthly revenue in USD, read from the r/gachagaming report images — regional servers summed (JP + global/US + KR) plus China (where a report gave China as iOS only, China Android is modelled at 1.75× the China iOS figure). Coverage runs from **Oct 2021**; older region-summed months are marked `*` and are approximate. Per-banner global figures are *assumed* (see above), so treat them as ballpark context, not precise sales — and never add them to the ¥ figures.
 
 ## How it works
 

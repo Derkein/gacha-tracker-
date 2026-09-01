@@ -296,13 +296,26 @@ tr.clk{cursor:pointer} tr.clk:hover td{background:var(--track)}
   font-size:26px; line-height:1; cursor:pointer; padding:2px 6px; border-radius:8px}
 .modal-close:hover{color:var(--ink); background:var(--track)}
 .modal-card h2{margin:0 0 4px; font-size:21px; letter-spacing:-.02em}
-.modal-sub{margin:0 0 14px; color:var(--muted); font-size:13px}
+.modal-sub{margin:0 0 20px; color:var(--muted); font-size:13px}
 .modal-note{margin:0 0 4px !important; font-size:12.5px !important; color:var(--muted) !important;
   background:var(--surface2); border:1px solid var(--border); border-radius:10px; padding:10px 12px}
 .modal-card h3{margin:16px 0 4px; font-size:13.5px; color:var(--accent); letter-spacing:.01em}
 .modal-card p{margin:0; font-size:13.5px; color:var(--ink2); line-height:1.55}
 .modal-card p b{color:var(--ink)}
 .modal-src{margin-top:18px !important; font-size:11.5px !important; color:var(--muted) !important}
+/* How-these-numbers-work: dataset toggle + worked-example boxes */
+.info-toggle{display:inline-flex; margin:4px 0 16px}
+.info-formula{background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:8px 12px; font-variant-numeric:tabular-nums; margin:6px 0}
+.info-ex{background:var(--surface2); border:1px solid var(--border); border-left:3px solid var(--accent); border-radius:8px; padding:10px 14px; margin:9px 0 13px}
+.info-ex-h{font-size:12px; font-weight:750; color:var(--ink); margin-bottom:6px}
+.info-ex-math{font-size:13px; line-height:1.75; color:var(--ink2); font-variant-numeric:tabular-nums}
+.info-ex-note{color:var(--muted); font-size:11.5px}
+.info-ex-img{display:block; margin-top:10px; max-width:100%; max-height:82px; width:auto; height:auto; border:1px solid var(--border); border-radius:6px; cursor:zoom-in}
+.info-ex-img:hover{border-color:var(--accent)}
+.lightbox{position:fixed; inset:0; z-index:200; background:rgba(0,0,0,.82); display:flex; align-items:center; justify-content:center; padding:24px; cursor:zoom-out}
+.lightbox[hidden]{display:none}
+.lightbox img{max-width:100%; max-height:100%; border:1px solid var(--border); border-radius:8px; box-shadow:var(--shadow); cursor:zoom-out}
+.modal-card .pill{display:inline-block; font-size:9.5px; font-weight:700; letter-spacing:.03em; color:var(--muted); border:1px solid var(--border); border-radius:5px; padding:1px 5px; text-transform:uppercase; vertical-align:middle; white-space:nowrap}
 .hd-feedback{margin:7px 0 0; font-size:12px; color:var(--muted)}
 .hd-feedback a{color:var(--accent); font-weight:600}
 
