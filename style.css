@@ -287,7 +287,7 @@ tr.clk{cursor:pointer} tr.clk:hover td{background:var(--track)}
   background:rgba(0,0,0,.55); padding:20px; overflow-y:auto}
 .modal-card{position:relative; background:var(--surface); border:1px solid var(--base); border-radius:16px;
   max-width:620px; width:100%; padding:26px clamp(18px,4vw,32px); box-shadow:var(--shadow); margin:auto;
-  max-height:min(86vh,760px); overflow-y:auto; overscroll-behavior:contain}
+  max-height:min(92vh,940px); overflow-y:auto; overscroll-behavior:contain}
 .modal-card.bmodal{max-width:720px}   /* banner + period dialogs — wider for the ranked lists & calendar */
 .modal-card ul{margin:4px 0 0; padding-left:20px; font-size:13.5px; color:var(--ink2); line-height:1.55}
 .modal-card li{margin:3px 0}
