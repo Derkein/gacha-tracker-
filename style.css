@@ -191,6 +191,12 @@ a{color:inherit}
 .av .mono.syn{background:var(--muted); font-size:19px}
 .synrow .nm b{color:var(--ink2); font-weight:750}
 .synrow .barfill{background-image:repeating-linear-gradient(-45deg,transparent 0 5px,rgba(127,127,127,.32) 5px 10px)}
+/* pending banner (game-i hasn't logged it yet) — real dates/art/names, no revenue */
+.pendrow .track{background:repeating-linear-gradient(-45deg,var(--track) 0 6px,transparent 6px 12px)}
+.val.pendingval{font-weight:700; font-style:italic; font-size:11px; color:var(--accent); opacity:.9}
+.bm-pendtag{font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:var(--accent); border:1px solid var(--accent); border-radius:6px; padding:1px 6px; vertical-align:middle; opacity:.9}
+.bm-picons{display:flex; flex-wrap:wrap; gap:8px; margin:12px 0 2px}
+.bm-pi{width:46px; height:46px; border-radius:50%; object-fit:cover; background:var(--track); border:2px solid var(--av-ring,var(--border))}
 .bm-art.syn{display:flex; align-items:center; justify-content:center; background:var(--track);
   color:var(--muted); font-size:26px; font-weight:700; border-color:var(--base); border-style:dashed}
 .gsvg .syndot{fill:var(--muted)}
@@ -537,6 +543,7 @@ tr.clk{cursor:pointer} tr.clk:hover td{background:var(--track)}
 .mcb-of{color:var(--muted); font-weight:500; font-size:10.5px; font-style:italic; margin-left:4px}
 .mcb-st{font-size:12px; font-weight:700; color:#0f8a9e}
 .mcb-tag{color:var(--muted); font-weight:600; font-size:10px; font-style:italic}
+.mcb-pend{font-size:11px; font-weight:700; font-style:italic; color:var(--accent); opacity:.9}
 @media (prefers-color-scheme:dark){ .mcb-st{color:#4fc6da} }
 :root[data-theme=dark] .mcb-st{color:#4fc6da}
 .mc-empty{font-size:11.5px; color:var(--muted); font-style:italic; margin-top:8px}

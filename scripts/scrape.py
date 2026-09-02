@@ -38,9 +38,6 @@ GAMES = {
     # so we don't hardcode long JP page names full of ：＆！／). Data-only: these
     # use banner-art thumbnails, not character icons.
     "uma":         {"apid": "1325457827", "name": "Umamusume: Pretty Derby"},
-    "fgo":         {"apid": "1015521325", "name": "Fate/Grand Order"},
-    "bluearchive": {"apid": "1515877221", "name": "Blue Archive"},
-    "arknights":   {"apid": "1478990007", "name": "Arknights"},
 }
 
 UA = {"User-Agent": "Mozilla/5.0 (gacha-tracker; +https://github.com/)"}

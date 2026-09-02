@@ -22,9 +22,7 @@ _CTX = ssl.create_default_context(); _CTX.check_hostname = False; _CTX.verify_mo
 
 # Fandom-based games: wiki domain + how to pull JP character names from a banner
 FANDOM = {
-    "bluearchive": {"wiki": "bluearchive.fandom.com", "extract": "ba"},
     "uma":         {"wiki": "umamusume.fandom.com", "extract": "uma"},
-    "fgo":         {"wiki": "fategrandorder.fandom.com", "extract": "fgo"},
 }
 
 
@@ -215,9 +213,7 @@ def translate_endfield():
 
 def main():
     if "--refresh" in sys.argv:
-        refresh_ak_map()
         refresh_genshin_map()
-    translate_arknights()
     translate_endfield()
     translate_genshin()
     for tag, cfg in FANDOM.items():

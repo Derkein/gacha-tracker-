@@ -2,13 +2,13 @@
 
 **Live site → https://derkein.github.io/gacha-tracker-/**
 
-An auto-updating, fan-made site that charts **estimated per-banner gacha revenue over time** for 11 gacha games, in a cleaner and more readable form than the raw source — with rankings, English character names, banner art and per-banner detail.
+An auto-updating, fan-made site that charts **estimated per-banner gacha revenue over time** for 7 gacha games, in a cleaner and more readable form than the raw source — with rankings, English character names, banner art and per-banner detail.
 
 It doesn't measure or estimate anything itself. It re-presents two third-party datasets: [**game-i.daa.jp**](https://game-i.daa.jp/)'s per-banner **Japan** revenue (売上予測, the default, in ¥), and the monthly **Sensor Tower** reports posted to [r/gachagaming](https://www.reddit.com/r/gachagaming/) for **global** revenue (a toggle, in $). The two measure different things and are shown side by side — never summed.
 
-Covered: **Zenless Zone Zero · Honkai: Star Rail · Wuthering Waves · Genshin Impact · Arknights: Endfield · Neverness to Everness · Umamusume · Fate/Grand Order · Blue Archive · Arknights.**
+Covered: **Zenless Zone Zero · Honkai: Star Rail · Wuthering Waves · Genshin Impact · Arknights: Endfield · Neverness to Everness · Umamusume.**
 
-> Coverage runs from each game's **launch** to today (e.g. back to 2020 for Genshin, 2023 for Star Rail). game-i's own data begins in **2018**, so only a game older than that (like FGO) is missing its pre-2018 banners.
+> Coverage runs from each game's **launch** to today (e.g. back to 2020 for Genshin, 2023 for Star Rail). game-i's own per-banner data begins in **2018**.
 
 ## What you can do
 

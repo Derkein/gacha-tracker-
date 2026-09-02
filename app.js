@@ -1,8 +1,7 @@
 // Gacha Revenue Tracker — client logic. Data comes from data/*.json (built by scripts/).
 const GAME_ACCENT = {          // per-game hue (used for bars/dots without a sampled color)
   zzz:"#e0a400", hsr:"#8a7bd8", wuwa:"#2fb6c0", genshin:"#d8a24a", endfield:"#e07b3a", nte:"#d94f8a",
-  uma:"#3fb98f", fgo:"#c8a24a", bluearchive:"#4db6e8",
-  arknights:"#e8b923",
+  uma:"#3fb98f",
 };
 const state = { games:[], tag:null, data:null, ext:null, reported:null, mode:"time", table:false, reverse:false, bracket:0, tabsExpanded:false, graphYear:"all", graphDim:"year", matchHigh:true, monthYear:"all", periodSort:"timeline", dataSource:"gamei", search:"" };
 
@@ -240,6 +239,7 @@ async function init(){
   // reported = canonical monthly report figures; ext = validated eog reconstruction (fallback).
   try { state.ext = await getJSON("data/external_revenue.json"); } catch(e){ state.ext=null; }
   try { state.reported = await getJSON("data/reported_revenue.json"); } catch(e){ state.reported=null; }
+  state.pending = {};   // "pending banners" overlay is disabled (no lagging games tracked)
   state.games = (idx && idx.games) || [];
   if(!state.games.length){                    // empty index (e.g. a failed data refresh) — don't crash
     showError(new Error("no games in the data index (a refresh may have failed)"), init);
@@ -288,9 +288,14 @@ async function selectGame(tag){
   state.data = data;
   // rank by revenue *within our dataset* — game-i's cum is against the game's full
   // history (often far larger than what we scrape), so it isn't 1..N here.
-  state.data.banners = state.data.banners.filter(b=>!b._synthetic);   // defensive on re-entry
+  state.data.banners = state.data.banners.filter(b=>!b._synthetic && !b.pending);   // defensive on re-entry
   computeMonthly();                                        // per-month attribution from real banners
   state.data.banners = state.data.banners.concat(computeUnlisted());  // + synthetic 'unlisted revenue'
+  // recent banners game-i hasn't logged yet (FGO/Arknights JP sources) — placeholders with
+  // no revenue or rank curve, shown until game-i catches up.
+  const pend = (state.pending && state.pending[tag]) || [];
+  if(pend.length) state.data.banners = state.data.banners.concat(
+    pend.map(p=>({...p, rev:0, year:+String(p.start).slice(0,4), pending:true})));
   [...state.data.banners].sort((a,b)=>b.rev-a.rev).forEach((b,i)=>b._rank=i+1);
   state.data.banners.forEach((x,i)=>x._i=i);
   computeSharing();
@@ -332,7 +337,7 @@ function monthTopBanner(ym){ const bl=(state.monthly&&state.monthly[ym]&&state.m
 function renderStats(){
   const st = state.dataSource==="st";
   const fmt = st ? fmtUSD : G;
-  const all = state.data.banners, real = all.filter(x=>!x._synthetic);
+  const all = state.data.banners, real = all.filter(x=>!x._synthetic && !x.pending);
   const val = st ? (x=>bannerST(x).total) : (x=>x.rev);
   const sum = st ? real.reduce((a,x)=>a+val(x),0) : all.reduce((a,x)=>a+x.rev,0);
   const top = real.reduce((a,x)=> val(x)>val(a)?x:a);
@@ -542,13 +547,15 @@ function rowHTML(b,rank,max){
   const shSeg = sh&&sh.on
     ? `<span class="shared" style="width:${Math.min(100,Math.round(sh.revFrac*100))}%" title="~${Math.round(sh.revFrac*100)}% split with a concurrent banner"></span>` : "";
   let val, valStr;
-  if(stMode){ const st=bannerST(b); val=st.total||0;
+  if(b.pending){ val=0;
+    valStr = `<span class="val pendingval" title="This banner isn't in game-i's data yet, so there's no daily revenue estimate — it'll fill in automatically once game-i lists it.">not on game-i yet</span>`;
+  } else if(stMode){ const st=bannerST(b); val=st.total||0;
     valStr = b._synthetic ? `<span class="val muted">—</span>`
       : !st.hasData ? `<span class="val nodata" title="No Sensor Tower report covers this banner's run (before Oct 2021, or too low to chart)">no ST data</span>`
       : `<span class="val">≈${fmtUSD(val)}${st.partial?`<span class="partialbadge" title="Sensor Tower has data for only ${st.covered} of the ${st.covered+st.missing} months this banner ran — total is incomplete">partial</span>`:""}</span>`;
   } else { val=b.rev; valStr=`<span class="val">${G(val)}</span>`; }
   const w=Math.max(val>0?1.2:0,(val/max)*100), m=rank<=3?` m${rank}`:"";
-  return `<div class="row${b._synthetic?" synrow":""}" data-i="${b._i}" style="--bar-l:${bl};--bar-d:${bd};--av-ring:${c}">
+  return `<div class="row${b._synthetic?" synrow":""}${b.pending?" pendrow":""}" data-i="${b._i}" style="--bar-l:${bl};--bar-d:${bd};--av-ring:${c}">
     <div class="rk${m}">${rank}</div>
     <div class="av">${avatarHTML(b)}</div>
     <div class="meta">
@@ -798,6 +805,17 @@ function bannerContribHTML(x, base, st, ym){
       ${detLine}
     </div></div>`;
 }
+// A pending banner's row in a by-Month card: icon + name + "not on game-i yet" (no revenue).
+function pendContribHTML(b){
+  const en=b.agents&&b.agents.length?b.agents.join(" & "):"";
+  return `<div class="mcb pendmcb" data-i="${b._i}" style="--av-ring:${barColor(b)}">
+    <div class="mcb-av">${avatarHTML(b)}</div>
+    <div class="mcb-meta">
+      <div class="mcb-nm"><b>${esc(bLabel(b))}</b>${en&&en!==bLabel(b)?`<span class="mcb-en">${esc(en)}</span>`:""}</div>
+      <div class="mcb-vals"><span class="mcb-pend" title="This banner isn't in game-i's data yet, so there's no daily revenue estimate — it'll fill in once game-i lists it.">not on game-i yet</span></div>
+      <div class="mcb-det"><span class="mcb-dates">${fmtDayMs(Date.parse(b.start))}–${fmtDayMs(Date.parse(b.end))}</span></div>
+    </div></div>`;
+}
 // Compact month-concurrency summary for the card (only when banners actually overlap).
 function overlapCardHTML(bans, Y, Mo){
   const real=bans.filter(b=>b&&b.rank_series&&b.rank_series.length);
@@ -812,9 +830,20 @@ function overlapCardHTML(bans, Y, Mo){
   const more=chips.length>6?`<span class="mc-ovc more">+${chips.length-6}</span>`:"";
   return `<div class="mc-ov"><span class="mc-ov-h">▨ How the banners overlapped</span><div class="mc-ovc-row">${shown}${more}</div></div>`;
 }
+// pending banners (not on game-i) grouped by each calendar month they touch, so the
+// by-Month view lists them even where game-i has no data for the month yet.
+function pendingByMonth(){
+  const by={};
+  for(const b of state.data.banners){
+    if(!b.pending) continue;
+    for(const ym of new Set([String(b.start).slice(0,7), String(b.end).slice(0,7)]))
+      (by[ym]=by[ym]||[]).push(b);
+  }
+  return by;
+}
 function renderMonthly(){
-  const gi=state.data.monthly||{}, bm=state.monthly||{};
-  const months=[...new Set([...Object.keys(gi),...Object.keys(bm)])].sort();
+  const gi=state.data.monthly||{}, bm=state.monthly||{}, pend=pendingByMonth();
+  const months=[...new Set([...Object.keys(gi),...Object.keys(bm),...Object.keys(pend)])].sort();
   if(!months.length){ $("#chart").innerHTML=`<div class="loading">No monthly data for this game.</div>`; return; }
   const allYears=[...new Set(months.map(m=>m.slice(0,4)))].sort().reverse();
   if(state.monthYear!=="all" && !allYears.includes(state.monthYear)) state.monthYear="all";  // reset on game switch
@@ -871,7 +900,9 @@ function renderMonthly(){
       return `<div class="mcs" style="width:${(s.share*scale*100).toFixed(2)}%;background:${barColor(b)}" title="${esc(s.x.name)} · ${(s.share*100).toFixed(0)}%${shrFrac>0?` · shared ${dd.shared}/${dd.days}d this month`:""}">${hatch}</div>`;
     }).join("") + (unlisted>0.01?`<div class="mcs unlisted" style="width:${(unlisted*100).toFixed(2)}%" title="Unlisted revenue (${Math.round(unlisted*100)}%) — game-i's monthly total is higher than its listed banners cover (an event/rate-up game-i hasn't logged, or off-banner sales)"></div>`:"");
     const bar = base>0 ? `<div class="mc-stack">${barSegs}</div>` : "";
-    const contribs = bl.length ? `<div class="mc-banners">${bl.map(x=>bannerContribHTML(x, base, st, ym)).join("")}</div>`
+    const pendHTML = (pend[ym]||[]).map(pendContribHTML).join("");
+    const contribs = (bl.length || pendHTML)
+      ? `<div class="mc-banners">${bl.map(x=>bannerContribHTML(x, base, st, ym)).join("")}${pendHTML}</div>`
       : `<div class="mc-empty">game-i lists no banner for this month.</div>`;
     const overlap = overlapCardHTML(bl.map(x=>state.data.banners[x.i]), +y, mo);
     // header + composition bar stay pinned to the top (bar spans the full card width);
@@ -1435,6 +1466,22 @@ function openBanner(b){
         <div class="bm-stat"><span class="l">Unlisted revenue</span><span class="v">${G(b.rev)}</span></div>
         <div class="bm-stat"><span class="l">Month</span><span class="v" style="font-size:13px">${mo}</span></div></div>
       <p class="bm-note">This is <b>not a game-i banner</b>. game-i's monthly total for ${mo} is <b>${G(b.rev)}</b> higher than the banners it has listed — most likely a rate-up/event game-i hasn't logged yet (its banner list lags), or off-banner sales. We show it so the game's timeline and totals aren't left looking idle. The figure comes straight from game-i's monthly table (月次売上予測); there's no per-day rank detail because it isn't tied to a listed banner.</p>`;
+    bannerModal.querySelector(".modal-card").scrollTop=0; tip.hidden=true; bannerModal.hidden=false; return;
+  }
+  if(b.pending){
+    const en2=b.agents&&b.agents.length?b.agents.join(" & "):"";
+    const scheduled=Math.round((Date.parse(b.end)-Date.parse(b.start))/864e5)+1;
+    const icons=(b.icons||[]).slice(0,10).map(u=>`<img class="bm-pi" src="${esc(u)}" alt="" referrerpolicy="no-referrer" data-fb="remove">`).join("");
+    const title=`<h2 id="bmTitle">${esc(bLabel(b))} <span class="bm-pendtag">pending</span></h2>
+      ${en2&&en2!==bLabel(b)?`<div class="bm-sub">${esc(en2)}</div>`:""}
+      <div class="bm-period">${per(b.start)} – ${per(b.end)}</div>`;
+    const head=b.banner_img
+      ? `<div class="bm-hero" style="--av-ring:${barColor(b)}"><img src="${esc(b.banner_img)}" alt="" referrerpolicy="no-referrer" data-fb="art" data-alt="${esc((b.icons&&b.icons[0])||"")}"><div class="bm-herobar">${title}</div></div>`
+      : `<div class="bm-head" style="--av-ring:${barColor(b)}">${(b.icons&&b.icons[0])?`<img class="bm-art sq" src="${esc(b.icons[0])}" alt="" referrerpolicy="no-referrer" data-fb="remove">`:""}<div class="bm-htext">${title}</div></div>`;
+    $("#bmBody").innerHTML = head
+      + `<div class="bm-stats"><div class="bm-stat"><span class="l">Run length</span><span class="v">${scheduled} days</span></div><div class="bm-stat"><span class="l">Source</span><span class="v" style="font-size:13px">JP game data</span></div></div>`
+      + (icons?`<div class="bm-picons">${icons}</div>`:"")
+      + `<p class="bm-note"><b>Not on game-i yet.</b> This is a real ${esc(gameName())} banner from the game's own <b>JP</b> data — game-i hasn't logged it, so there's <b>no daily revenue estimate</b> for it. It'll pick up its ¥ figure and rank curve automatically once game-i adds it. (A brand-new character may show its Japanese name until an official English one exists.)</p>`;
     bannerModal.querySelector(".modal-card").scrollTop=0; tip.hidden=true; bannerModal.hidden=false; return;
   }
   dayLabel.start=b.start+"T00:00:00";
