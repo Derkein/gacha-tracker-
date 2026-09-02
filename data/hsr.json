@@ -4,13 +4,13 @@
  "jp": "崩壊：スターレイル",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E5%B4%A9%E5%A3%8A%EF%BC%9A%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%AC%E3%82%A4%E3%83%AB",
- "updated": "2026-09-02T03:01:12Z",
+ "updated": "2026-09-02T18:36:59Z",
  "count": 61,
  "now": {
-  "ios": 22,
+  "ios": 31,
   "android": 8,
   "month": 27,
-  "next_add": 57033333,
+  "next_add": 36729213,
   "ym": "2026/09",
   "ranks": {
    "prev": [
@@ -49,7 +49,7 @@
    "cur": [
     37,
     25,
-    null,
+    27,
     null,
     null,
     null,
@@ -82,7 +82,7 @@
   }
  },
  "monthly": {
-  "2026-09": 1.32,
+  "2026-09": 1.76,
   "2026-08": 11.87,
   "2026-07": 16.85,
   "2026-06": 13.4,
@@ -1777,7 +1777,7 @@
    "rev": 7.49,
    "yrank": 14,
    "ytot": 18,
-   "cum": 48,
+   "cum": 49,
    "cumtot": 62,
    "year": 2025,
    "related": "Dr.レイシオ復刻",
@@ -2964,10 +2964,10 @@
    "name": "ロビン・夏空の歌",
    "start": "2026-08-26",
    "end": "2026-09-12",
-   "rev": 7.17,
+   "rev": 7.61,
    "yrank": 8,
    "ytot": 16,
-   "cum": 49,
+   "cum": 48,
    "cumtot": 62,
    "year": 2026,
    "related": "ヒアンシー",
@@ -2982,7 +2982,8 @@
     18,
     27,
     37,
-    25
+    25,
+    27
    ],
    "icons": [
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1512.png"

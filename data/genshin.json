@@ -4,13 +4,13 @@
  "jp": "原神",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E5%8E%9F%E7%A5%9E",
- "updated": "2026-09-02T03:02:02Z",
+ "updated": "2026-09-02T18:37:42Z",
  "count": 105,
  "now": {
-  "ios": 31,
+  "ios": 44,
   "android": 24,
-  "month": 64,
-  "next_add": 38732625,
+  "month": 55,
+  "next_add": 27673903,
   "ym": "2026/09",
   "ranks": {
    "prev": [
@@ -49,7 +49,7 @@
    "cur": [
     99,
     51,
-    null,
+    42,
     null,
     null,
     null,
@@ -82,7 +82,7 @@
   }
  },
  "monthly": {
-  "2026-09": 0.6469,
+  "2026-09": 0.9579,
   "2026-08": 6.04,
   "2026-07": 13.49,
   "2026-06": 5.08,
@@ -5144,7 +5144,7 @@
    "name": "フリンズ復刻&イネファ復刻",
    "start": "2026-09-01",
    "end": "2026-09-22",
-   "rev": 0.4267,
+   "rev": 0.7378,
    "yrank": 12,
    "ytot": 12,
    "cum": 105,
@@ -5156,7 +5156,8 @@
    "ongoing": true,
    "rank_series": [
     99,
-    51
+    51,
+    42
    ],
    "icons": [
     "https://enka.network/ui/UI_AvatarIcon_Flins.png",

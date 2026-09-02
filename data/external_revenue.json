@@ -2,8 +2,8 @@
  "source": "gacharevenue (reconstructed from eog.gg raw Sensor Tower data)",
  "source_url": "https://revenue.ennead.cc",
  "raw_source_url": "https://eog.gg/revenue/",
- "bundle": "https://eog.gg/assets/revenue-B83LcU1t.js",
- "fetched": "2026-09-02T03:02:48Z",
+ "bundle": "https://eog.gg/assets/revenue-CipzOHXT.js",
+ "fetched": "2026-09-02T18:38:23Z",
  "unit": "usd",
  "formula": "gacharevenue = eog_combined + 1.75 * eog_China",
  "note": "Global mobile revenue estimate (iOS + Android), net of the 30% store cut, combined across all regions, matching gacharevenue (revenue.ennead.cc). Computed from eog.gg's per-region Sensor Tower data by modelling untracked China-Android at 1.75x China-iOS. NOT comparable to game-i's JP-iOS 億G figures; shown side by side, never summed.",
@@ -21,9 +21,10 @@
   "2026-04",
   "2026-05",
   "2026-06",
-  "2026-07"
+  "2026-07",
+  "2026-08"
  ],
- "latest_month": "2026-07",
+ "latest_month": "2026-08",
  "games": {
   "genshin": {
    "eog_id": "genshin-impact",
@@ -83,6 +84,10 @@
     },
     "2026-07": {
      "rev": 55990000,
+     "method": "approx"
+    },
+    "2026-08": {
+     "rev": 38390000,
      "method": "approx"
     }
    }
@@ -146,6 +151,10 @@
     "2026-07": {
      "rev": 42075000,
      "method": "approx"
+    },
+    "2026-08": {
+     "rev": 29720000,
+     "method": "approx"
     }
    }
   },
@@ -206,7 +215,11 @@
      "method": "gr"
     },
     "2026-07": {
-     "rev": 36870000,
+     "rev": 37870000,
+     "method": "approx"
+    },
+    "2026-08": {
+     "rev": 25320000,
      "method": "approx"
     }
    }
@@ -270,6 +283,10 @@
     "2026-07": {
      "rev": 27000000,
      "method": "approx"
+    },
+    "2026-08": {
+     "rev": 24000000,
+     "method": "approx"
     }
    }
   },
@@ -291,6 +308,10 @@
     },
     "2026-07": {
      "rev": 10825000,
+     "method": "approx"
+    },
+    "2026-08": {
+     "rev": 10725000,
      "method": "approx"
     }
    }
@@ -325,6 +346,10 @@
     },
     "2026-07": {
      "rev": 9794000,
+     "method": "approx"
+    },
+    "2026-08": {
+     "rev": 6039000,
      "method": "approx"
     }
    }
@@ -386,7 +411,11 @@
      "method": "gr"
     },
     "2026-07": {
-     "rev": 16047500,
+     "rev": 16020000,
+     "method": "approx"
+    },
+    "2026-08": {
+     "rev": 14835000,
      "method": "approx"
     }
    }
@@ -448,7 +477,11 @@
      "method": "gr"
     },
     "2026-07": {
-     "rev": 20240000,
+     "rev": 21240000,
+     "method": "approx"
+    },
+    "2026-08": {
+     "rev": 41170000,
      "method": "approx"
     }
    }
@@ -510,7 +543,11 @@
      "method": "gr"
     },
     "2026-07": {
-     "rev": 3904500,
+     "rev": 4904500,
+     "method": "approx"
+    },
+    "2026-08": {
+     "rev": 6882000,
      "method": "approx"
     }
    }
@@ -573,6 +610,10 @@
     },
     "2026-07": {
      "rev": 18550000,
+     "method": "approx"
+    },
+    "2026-08": {
+     "rev": 23230000,
      "method": "approx"
     }
    }
