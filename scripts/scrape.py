@@ -184,8 +184,14 @@ def merge_split_runs(banners):
             gap = (date.fromisoformat(b["start"]) - date.fromisoformat(clusters[-1][-1]["end"])).days
             (clusters[-1].append(b) if gap <= 35 else clusters.append([b]))
         for cl in clusters:
-            if len(cl) == 1:
-                out.append(cl[0])
+            # A genuine pause-and-resume is ONE banner shown 2-3 times inside a single
+            # patch. Games with a GENERIC gacha name (Uma/FGO — every pickup shares the
+            # same "…ガチャ" title) would otherwise chain dozens of unrelated pickups into
+            # one multi-year "banner", so only merge a short, few-part cluster.
+            span = (date.fromisoformat(max(x["end"] for x in cl))
+                    - date.fromisoformat(min(x["start"] for x in cl))).days
+            if len(cl) == 1 or len(cl) > 3 or span > 49:
+                out.extend(cl)
                 continue
             m = dict(max(cl, key=lambda x: x["rev"]))     # keep ranks/img from the biggest slice
             m["start"] = min(x["start"] for x in cl)

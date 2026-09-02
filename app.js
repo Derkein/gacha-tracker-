@@ -528,6 +528,11 @@ function computeSharing(){
 // ---- bar rows (timeline / ranking) with FLIP reordering ----
 // value shown/ranked for a banner under the current data source (game-i yen vs Sensor Tower USD)
 function srcVal(b){ return state.dataSource==="st" ? bannerST(b).total : b.rev; }
+// Uma's gacha is generically named — every pickup shares the same "…プリティーダービーガチャ…"
+// title — so when we know the actual character(s), show those as the banner's label instead
+// of the useless gacha name. Games with a real per-banner name (HoYo etc.) are untouched.
+const GENERIC_GACHA = /プリティーダービーガチャ|サポートカードガチャ/;
+function bLabel(b){ return (GENERIC_GACHA.test(b.name||"") && b.agents && b.agents.length) ? b.agents.join(" & ") : (b.name||""); }
 function rowHTML(b,rank,max){
   const stMode=state.dataSource==="st";
   const c=barColor(b), [bl,bd]=barShades(c);
@@ -547,7 +552,7 @@ function rowHTML(b,rank,max){
     <div class="rk${m}">${rank}</div>
     <div class="av">${avatarHTML(b)}</div>
     <div class="meta">
-      <div class="nm"><b>${esc(b.name)}</b>${en?`<span class="en">${esc(en)}</span>`:""}${rr}</div>
+      <div class="nm"><b>${esc(bLabel(b))}</b>${en&&en!==bLabel(b)?`<span class="en">${esc(en)}</span>`:""}${rr}</div>
       <div class="barline"><div class="track"><div class="barfill" style="width:${w}%">${shSeg}</div></div>
         ${valStr}</div>
     </div></div>`;
@@ -788,7 +793,7 @@ function bannerContribHTML(x, base, st, ym){
   return `<div class="mcb" data-i="${x.i}" style="--av-ring:${c}">
     <div class="mcb-av">${avatarHTML(b)}</div>
     <div class="mcb-meta">
-      <div class="mcb-nm"><b>${esc(x.name)}</b>${en?`<span class="mcb-en">${esc(en)}</span>`:""}${b&&b.rerun?`<span class="rr">↻</span>`:""}</div>
+      <div class="mcb-nm"><b>${esc(bLabel(b))}</b>${en&&en!==bLabel(b)?`<span class="mcb-en">${esc(en)}</span>`:""}${b&&b.rerun?`<span class="rr">↻</span>`:""}</div>
       <div class="mcb-vals">${giVal}${stVal}</div>
       ${detLine}
     </div></div>`;
@@ -1156,7 +1161,7 @@ function openPeriod(kind, key){
           <div class="pd-rk${i<3&&!zero?` m${i+1}`:""}">${i+1}</div>
           <div class="pd-av">${avatarHTML(b)}</div>
           <div class="pd-meta">
-            <div class="pd-nm"><b>${esc(b.name)}</b>${en?`<span class="pd-en">${esc(en)}</span>`:""}${rr}</div>
+            <div class="pd-nm"><b>${esc(bLabel(b))}</b>${en&&en!==bLabel(b)?`<span class="pd-en">${esc(en)}</span>`:""}${rr}</div>
             <div class="pd-bar"><div class="pd-track"><div class="pd-fill" style="width:${w}%"></div></div>${val}</div>
             <div class="pd-sub">${Math.round(it.share*100)}% of the month</div>
           </div></div>`;
@@ -1195,7 +1200,7 @@ function openPeriod(kind, key){
       <div class="pd-rk${i<3&&!zero?` m${i+1}`:""}">${i+1}</div>
       <div class="pd-av">${avatarHTML(b)}</div>
       <div class="pd-meta">
-        <div class="pd-nm"><b>${esc(b.name)}</b>${en?`<span class="pd-en">${esc(en)}</span>`:""}${rr}</div>
+        <div class="pd-nm"><b>${esc(bLabel(b))}</b>${en&&en!==bLabel(b)?`<span class="pd-en">${esc(en)}</span>`:""}${rr}</div>
         <div class="pd-bar"><div class="pd-track"><div class="pd-fill" style="width:${w}%">${shSeg}</div></div>${valHTML}</div>
         <div class="pd-sub">${meta.join(" · ")}</div>
       </div></div>`;
@@ -1446,8 +1451,8 @@ function openBanner(b){
   ].map(([l,v])=>`<div class="bm-stat"><span class="l">${l}</span><span class="v">${v}</span></div>`).join("");
 
   // header: full-width hero art when we have banner art, else icon-left compact row
-  const title=`<h2 id="bmTitle">${esc(b.name)} ${rr}${live}</h2>
-    ${en?`<div class="bm-sub">${esc(en)}</div>`:""}
+  const title=`<h2 id="bmTitle">${esc(bLabel(b))} ${rr}${live}</h2>
+    ${en&&en!==bLabel(b)?`<div class="bm-sub">${esc(en)}</div>`:""}
     <div class="bm-period">${per(b.start)} – ${per(b.end)}</div>`;
   const head=b.banner_img
     ? `<div class="bm-hero" style="--av-ring:${barColor(b)}">

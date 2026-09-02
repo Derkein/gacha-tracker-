@@ -486,7 +486,7 @@ tr.clk{cursor:pointer} tr.clk:hover td{background:var(--track)}
    Rows stretch so paired cards match height; the lighter card centers its body. */
 .mc-body{display:flex; flex-direction:column}
 @media (min-width:721px){
-  body[data-view="month"] .chart{display:grid; grid-template-columns:1fr 1fr; gap:12px 14px; align-items:stretch; min-width:0}
+  body[data-view="month"] .chart{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:12px 14px; align-items:stretch; min-width:0}
   body[data-view="month"] .chart>.mfilter,
   body[data-view="month"] .chart>.yr-note,
   body[data-view="month"] .chart>.mo-hint,
@@ -552,7 +552,7 @@ tr.clk{cursor:pointer} tr.clk:hover td{background:var(--track)}
 .mc-ov{margin-top:11px; padding-top:11px; border-top:1px dashed var(--grid)}
 .mc-ov-h{display:block; font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); margin-bottom:7px}
 .mc-ovc-row{display:flex; flex-wrap:wrap; gap:6px}
-.mc-ovc{font-size:11px; color:var(--ink2); background:var(--surface2); border:1px solid var(--border); border-radius:999px; padding:2px 9px; white-space:nowrap}
+.mc-ovc{font-size:11px; color:var(--ink2); background:var(--surface2); border:1px solid var(--border); border-radius:14px; padding:2px 9px; max-width:100%}   /* wraps: FGO/Uma months can list many concurrent banners in one chip */
 .mc-ovc b{font-weight:750; font-variant-numeric:tabular-nums}
 .mc-ovc.shr{border-color:rgba(120,120,120,.45); background:repeating-linear-gradient(45deg,var(--surface2) 0 5px,var(--track) 5px 10px)}
 .mc-ovc.more{color:var(--muted); font-style:italic}

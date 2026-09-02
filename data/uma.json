@@ -4,13 +4,13 @@
  "jp": "ウマ娘 プリティーダービー",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E3%82%A6%E3%83%9E%E5%A8%98%20%E3%83%97%E3%83%AA%E3%83%86%E3%82%A3%E3%83%BC%E3%83%80%E3%83%BC%E3%83%93%E3%83%BC",
- "updated": "2026-09-01T19:28:41Z",
- "count": 68,
+ "updated": "2026-09-01T20:12:30Z",
+ "count": 213,
  "now": {
-  "ios": 13,
+  "ios": 12,
   "android": 2,
   "month": 15,
-  "next_add": 39878222,
+  "next_add": 41192889,
   "ym": "2026/09",
   "ranks": {
    "prev": [
@@ -122,372 +122,87 @@
   {
    "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
    "start": "2021-03-02",
-   "end": "2023-10-30",
-   "rev": 1769.51,
-   "yrank": 1,
-   "ytot": 37,
-   "cum": 3,
+   "end": "2021-03-09",
+   "rev": 33.46,
+   "yrank": 16,
+   "ytot": 30,
+   "cum": 25,
    "cumtot": 221,
-   "year": 2022,
-   "related": "キャラ: ★3 [錦上・大判御輿]キタサンブラック, ★2 [ぱんぱかティルトット]マチカネタンホイザ / カード: SSR [桃色のバックショット]ナリタトップロード, SR [鼓動が速まるクールダウン]メジロライアン 他 SRカード 2種",
-   "banner_img": "https://pbs.twimg.com/media/FMVHutFVgAIWC_R.jpg",
-   "periods": [
-    [
-     "2021-03-02",
-     "2021-03-09"
-    ],
-    [
-     "2021-03-09",
-     "2021-03-18"
-    ],
-    [
-     "2021-03-18",
-     "2021-03-30"
-    ],
-    [
-     "2021-04-15",
-     "2021-04-26"
-    ],
-    [
-     "2021-04-26",
-     "2021-05-06"
-    ],
-    [
-     "2021-05-06",
-     "2021-05-17"
-    ],
-    [
-     "2021-05-17",
-     "2021-05-28"
-    ],
-    [
-     "2021-05-28",
-     "2021-06-10"
-    ],
-    [
-     "2021-06-10",
-     "2021-06-21"
-    ],
-    [
-     "2021-06-29",
-     "2021-07-12"
-    ],
-    [
-     "2021-07-12",
-     "2021-07-20"
-    ],
-    [
-     "2021-07-20",
-     "2021-07-29"
-    ],
-    [
-     "2021-07-29",
-     "2021-08-11"
-    ],
-    [
-     "2021-08-11",
-     "2021-08-20"
-    ],
-    [
-     "2021-08-20",
-     "2021-08-30"
-    ],
-    [
-     "2021-08-30",
-     "2021-09-10"
-    ],
-    [
-     "2021-09-10",
-     "2021-09-20"
-    ],
-    [
-     "2021-09-20",
-     "2021-09-29"
-    ],
-    [
-     "2021-09-29",
-     "2021-10-11"
-    ],
-    [
-     "2021-10-11",
-     "2021-10-20"
-    ],
-    [
-     "2021-10-20",
-     "2021-10-28"
-    ],
-    [
-     "2021-10-28",
-     "2021-11-08"
-    ],
-    [
-     "2021-11-08",
-     "2021-11-19"
-    ],
-    [
-     "2021-11-19",
-     "2021-11-29"
-    ],
-    [
-     "2021-11-29",
-     "2021-12-14"
-    ],
-    [
-     "2021-12-14",
-     "2021-12-22"
-    ],
-    [
-     "2021-12-22",
-     "2021-12-31"
-    ],
-    [
-     "2021-12-31",
-     "2022-01-11"
-    ],
-    [
-     "2022-01-11",
-     "2022-01-20"
-    ],
-    [
-     "2022-01-20",
-     "2022-01-28"
-    ],
-    [
-     "2022-01-28",
-     "2022-02-08"
-    ],
-    [
-     "2022-02-08",
-     "2022-02-16"
-    ],
-    [
-     "2022-02-16",
-     "2022-02-24"
-    ],
-    [
-     "2022-02-24",
-     "2022-03-07"
-    ],
-    [
-     "2022-03-07",
-     "2022-03-18"
-    ],
-    [
-     "2022-03-18",
-     "2022-03-29"
-    ],
-    [
-     "2022-03-29",
-     "2022-04-11"
-    ],
-    [
-     "2022-04-11",
-     "2022-04-19"
-    ],
-    [
-     "2022-04-19",
-     "2022-04-28"
-    ],
-    [
-     "2022-04-28",
-     "2022-05-10"
-    ],
-    [
-     "2022-05-10",
-     "2022-05-20"
-    ],
-    [
-     "2022-05-20",
-     "2022-05-30"
-    ],
-    [
-     "2022-05-30",
-     "2022-06-10"
-    ],
-    [
-     "2022-06-10",
-     "2022-06-20"
-    ],
-    [
-     "2022-06-20",
-     "2022-06-30"
-    ],
-    [
-     "2022-06-30",
-     "2022-07-11"
-    ],
-    [
-     "2022-07-11",
-     "2022-07-20"
-    ],
-    [
-     "2022-07-20",
-     "2022-07-29"
-    ],
-    [
-     "2022-07-29",
-     "2022-08-10"
-    ],
-    [
-     "2022-08-10",
-     "2022-08-19"
-    ],
-    [
-     "2022-08-19",
-     "2022-08-29"
-    ],
-    [
-     "2022-08-29",
-     "2022-09-12"
-    ],
-    [
-     "2022-09-12",
-     "2022-09-20"
-    ],
-    [
-     "2022-09-20",
-     "2022-09-29"
-    ],
-    [
-     "2022-09-29",
-     "2022-10-11"
-    ],
-    [
-     "2022-10-11",
-     "2022-10-19"
-    ],
-    [
-     "2022-10-19",
-     "2022-10-28"
-    ],
-    [
-     "2022-10-28",
-     "2022-11-09"
-    ],
-    [
-     "2022-11-09",
-     "2022-11-17"
-    ],
-    [
-     "2022-11-17",
-     "2022-11-28"
-    ],
-    [
-     "2022-11-28",
-     "2022-12-12"
-    ],
-    [
-     "2022-12-12",
-     "2022-12-20"
-    ],
-    [
-     "2022-12-20",
-     "2022-12-29"
-    ],
-    [
-     "2022-12-29",
-     "2023-01-10"
-    ],
-    [
-     "2023-01-10",
-     "2023-01-20"
-    ],
-    [
-     "2023-01-20",
-     "2023-01-30"
-    ],
-    [
-     "2023-01-30",
-     "2023-02-13"
-    ],
-    [
-     "2023-02-13",
-     "2023-02-24"
-    ],
-    [
-     "2023-03-10",
-     "2023-03-20"
-    ],
-    [
-     "2023-03-20",
-     "2023-03-29"
-    ],
-    [
-     "2023-03-29",
-     "2023-04-10"
-    ],
-    [
-     "2023-04-10",
-     "2023-04-19"
-    ],
-    [
-     "2023-04-19",
-     "2023-04-28"
-    ],
-    [
-     "2023-04-28",
-     "2023-05-10"
-    ],
-    [
-     "2023-05-10",
-     "2023-05-19"
-    ],
-    [
-     "2023-05-19",
-     "2023-05-29"
-    ],
-    [
-     "2023-05-29",
-     "2023-06-09"
-    ],
-    [
-     "2023-06-09",
-     "2023-06-19"
-    ],
-    [
-     "2023-06-19",
-     "2023-06-29"
-    ],
-    [
-     "2023-06-29",
-     "2023-07-10"
-    ],
-    [
-     "2023-07-10",
-     "2023-07-21"
-    ],
-    [
-     "2023-07-21",
-     "2023-07-31"
-    ],
-    [
-     "2023-07-31",
-     "2023-08-14"
-    ],
-    [
-     "2023-08-14",
-     "2023-08-24"
-    ],
-    [
-     "2023-08-31",
-     "2023-09-11"
-    ],
-    [
-     "2023-09-29",
-     "2023-10-10"
-    ],
-    [
-     "2023-10-19",
-     "2023-10-30"
-    ]
-   ],
+   "year": 2021,
+   "related": "キャラ:星3テイエムオペラオー(初登場) カード:SSRオグリキャップ SR:スイープトウショウ",
+   "banner_img": "https://pbs.twimg.com/media/EvcWGpeUcAIp83F.jpg",
    "rerun": false,
    "ongoing": false,
-   "agents": [
-    "Kitasan Black",
-    "Narita Top Road"
+   "rank_series": [
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    2,
+    1
    ],
-   "en": "Kitasan Black & Narita Top Road"
+   "agents": []
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2021-03-09",
+   "end": "2021-03-18",
+   "rev": 40.93,
+   "yrank": 10,
+   "ytot": 30,
+   "cum": 17,
+   "cumtot": 221,
+   "year": 2021,
+   "related": "キャラ:星3ミホノブルボン(初登場) カード:SSRツインターボ SR:ダイタクヘリオス",
+   "banner_img": "https://pbs.twimg.com/media/EwAZddRUcAQien6.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    1,
+    1,
+    1,
+    1,
+    2,
+    1,
+    2,
+    1,
+    1,
+    1
+   ],
+   "agents": []
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2021-03-18",
+   "end": "2021-03-30",
+   "rev": 42.48,
+   "yrank": 8,
+   "ytot": 30,
+   "cum": 14,
+   "cumtot": 221,
+   "year": 2021,
+   "related": "キャラ:星3ビワハヤヒデ(初登場) カード:SSRメジロパーマー SR:イクノディクタス",
+   "banner_img": "https://pbs.twimg.com/media/EwuvitXVcAIa6O_.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    1,
+    1,
+    2,
+    1,
+    1,
+    1,
+    2,
+    3,
+    3,
+    2,
+    1,
+    2,
+    3
+   ],
+   "agents": []
   },
   {
    "name": "TVアニメコラボ プリティーダービーガチャ・サポートカードガチャ",
@@ -525,6 +240,187 @@
    "agents": []
   },
   {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2021-04-15",
+   "end": "2021-04-26",
+   "rev": 50.93,
+   "yrank": 4,
+   "ytot": 30,
+   "cum": 7,
+   "cumtot": 221,
+   "year": 2021,
+   "related": "キャラ:星3カレンチャン(初登場) カード:SSRユキノビジン SR:ニシノフラワー",
+   "banner_img": "https://pbs.twimg.com/media/Ey-66-xVEAQCP1D.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    2,
+    1,
+    2,
+    1,
+    1
+   ],
+   "agents": []
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2021-04-26",
+   "end": "2021-05-06",
+   "rev": 41.85,
+   "yrank": 9,
+   "ytot": 30,
+   "cum": 15,
+   "cumtot": 221,
+   "year": 2021,
+   "related": "キャラ:星3ナリタタイシン(初登場) カード:SSRヤエノムテキ SR:ゼンノロブルイ",
+   "banner_img": "https://pbs.twimg.com/media/Ez3kaRvVEAEh82H.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2
+   ],
+   "agents": []
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2021-05-06",
+   "end": "2021-05-17",
+   "rev": 55.0,
+   "yrank": 2,
+   "ytot": 30,
+   "cum": 5,
+   "cumtot": 221,
+   "year": 2021,
+   "related": "キャラ:星3スマートファルコン(初登場) カード:SSRスーパークリーク SSR:駿川たづな",
+   "banner_img": "https://pbs.twimg.com/media/E0rET_yVgAMwjip.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "agents": []
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2021-05-17",
+   "end": "2021-05-28",
+   "rev": 47.8,
+   "yrank": 6,
+   "ytot": 30,
+   "cum": 10,
+   "cumtot": 221,
+   "year": 2021,
+   "related": "キャラ:星3ナリタブライアン(初登場) カード:SSRサクラチヨノオー SRシーキングザパール",
+   "banner_img": "https://pbs.twimg.com/media/E1jtzapVIAQv2Rc.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    3
+   ],
+   "agents": []
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2021-05-28",
+   "end": "2021-06-10",
+   "rev": 52.64,
+   "yrank": 3,
+   "ytot": 30,
+   "cum": 6,
+   "cumtot": 221,
+   "year": 2021,
+   "related": "キャラ:星3エアグルーヴ・マヤノトップガン(ウェディング) カード:SSRカワカミプリンセス SSR:ヒシアケボノ",
+   "banner_img": "https://pbs.twimg.com/media/E2cXSqcVgAEiCdQ.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    3,
+    1,
+    1,
+    2,
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    2,
+    1,
+    3,
+    3
+   ],
+   "agents": []
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2021-06-10",
+   "end": "2021-06-21",
+   "rev": 38.25,
+   "yrank": 12,
+   "ytot": 30,
+   "cum": 20,
+   "cumtot": 221,
+   "year": 2021,
+   "related": "キャラ:星3セイウンスカイ(初登場)カード:SSRサイレンススズカ SSRタマモクロス",
+   "banner_img": "https://pbs.twimg.com/media/E3fT9ylVgAEQm8O.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    3,
+    1,
+    1,
+    2,
+    2,
+    2,
+    1,
+    2,
+    2,
+    4,
+    3,
+    1
+   ],
+   "agents": []
+  },
+  {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
    "start": "2021-06-21",
    "end": "2021-06-29",
@@ -550,6 +446,1347 @@
     4
    ],
    "agents": []
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2021-06-29",
+   "end": "2021-07-12",
+   "rev": 35.64,
+   "yrank": 15,
+   "ytot": 30,
+   "cum": 24,
+   "cumtot": 221,
+   "year": 2021,
+   "related": "キャラ: 星3 [ククルカン・モンク]エルコンドルパサー、星3 [セイントジェード・ヒーラー]グラスワンダー  カード:SSRセイウンスカイ、SSRキングヘイロー",
+   "banner_img": "https://pbs.twimg.com/media/E5BKLQuVoBsovJu.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    4,
+    1,
+    1,
+    1,
+    2,
+    1,
+    2,
+    3,
+    3,
+    3,
+    7,
+    6,
+    5,
+    3
+   ],
+   "agents": [
+    "El Condor Pasa",
+    "Seiun Sky"
+   ],
+   "en": "El Condor Pasa & Seiun Sky"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2021-07-12",
+   "end": "2021-07-20",
+   "rev": 18.86,
+   "yrank": 26,
+   "ytot": 30,
+   "cum": 50,
+   "cumtot": 221,
+   "year": 2021,
+   "related": "キャラ: 星3 [シューティンスタァ・ルヴュ]フジキセキ カード:SSRメジロライアン、SRメジロアルダン",
+   "banner_img": "https://pbs.twimg.com/media/E6EG1ZBUUAELOCI.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    3,
+    1,
+    1,
+    1,
+    4,
+    7,
+    7,
+    6,
+    8
+   ],
+   "agents": [
+    "Mejiro Ryan"
+   ],
+   "en": "Mejiro Ryan"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2021-07-20",
+   "end": "2021-07-29",
+   "rev": 36.71,
+   "yrank": 14,
+   "ytot": 30,
+   "cum": 22,
+   "cumtot": 221,
+   "year": 2021,
+   "related": "キャラ: 星3ゴールドシチー(初登場) カード:SSRニシノフラワー、SSRウオッカ",
+   "banner_img": "https://pbs.twimg.com/media/E6tTjLuUcA4Vbd1.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    8,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    3,
+    3,
+    2
+   ],
+   "agents": []
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2021-07-29",
+   "end": "2021-08-11",
+   "rev": 27.59,
+   "yrank": 19,
+   "ytot": 30,
+   "cum": 31,
+   "cumtot": 221,
+   "year": 2021,
+   "related": "キャラ: 星3スペシャルウィーク（サマー）、星3マルゼンスキー（サマー）　カード:SSRスイープトウショウ、SSRウイニングチケット",
+   "banner_img": "https://pbs.twimg.com/media/E7bp26mUcAQThzW.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    2,
+    1,
+    1,
+    1,
+    2,
+    3,
+    3,
+    3,
+    4,
+    7,
+    7,
+    7,
+    8,
+    8
+   ],
+   "agents": []
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2021-08-11",
+   "end": "2021-08-20",
+   "rev": 12.14,
+   "yrank": 28,
+   "ytot": 30,
+   "cum": 72,
+   "cumtot": 221,
+   "year": 2021,
+   "related": "キャラ: 星3メイショウドトウ  カード:SSRスペシャルウィーク、SSRトウカイテイオー",
+   "banner_img": "https://pbs.twimg.com/media/E8emhw-VUAMsnyz.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    8,
+    2,
+    2,
+    3,
+    7,
+    8,
+    7,
+    8,
+    8,
+    4
+   ],
+   "agents": []
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2021-08-20",
+   "end": "2021-08-30",
+   "rev": 45.93,
+   "yrank": 7,
+   "ytot": 30,
+   "cum": 11,
+   "cumtot": 221,
+   "year": 2021,
+   "related": "キャラ: 星3 エイシンフラッシュが SSRナイスネイチャ・SRトーセンジョーダンが",
+   "banner_img": "https://pbs.twimg.com/media/E9HzQFnVIAcakZX.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    4,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    2,
+    2
+   ],
+   "agents": []
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2021-08-30",
+   "end": "2021-09-10",
+   "rev": 48.89,
+   "yrank": 5,
+   "ytot": 30,
+   "cum": 9,
+   "cumtot": 221,
+   "year": 2021,
+   "related": "キャラ: 星3 マチカネフクキタル カード:SSRライスシャワー、SSR樫本理子",
+   "banner_img": "https://pbs.twimg.com/media/E-Ac81bVUAQ3dj1.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    2,
+    1,
+    1,
+    2,
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    2
+   ],
+   "agents": []
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2021-09-10",
+   "end": "2021-09-20",
+   "rev": 19.83,
+   "yrank": 25,
+   "ytot": 30,
+   "cum": 47,
+   "cumtot": 221,
+   "year": 2021,
+   "related": "キャラ:星3ヒシアケボノ カード:SSRサクラバクシンオー、SSRビコーペガサス",
+   "banner_img": "https://pbs.twimg.com/media/E-5GOkwVEAEHbaa.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    2,
+    1,
+    1,
+    2,
+    3,
+    5,
+    5,
+    7,
+    8,
+    8,
+    4
+   ],
+   "agents": []
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2021-09-20",
+   "end": "2021-09-29",
+   "rev": 25.75,
+   "yrank": 20,
+   "ytot": 30,
+   "cum": 32,
+   "cumtot": 221,
+   "year": 2021,
+   "related": "キャラ:星3アグネスデジタル カード:SSRイクノディクタス、SRファインモーション",
+   "banner_img": "https://pbs.twimg.com/media/E_smH8hVgAE3J1f.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    4,
+    1,
+    1,
+    2,
+    2,
+    2,
+    4,
+    3,
+    4,
+    3
+   ],
+   "agents": []
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2021-09-29",
+   "end": "2021-10-11",
+   "rev": 21.23,
+   "yrank": 23,
+   "ytot": 30,
+   "cum": 42,
+   "cumtot": 221,
+   "year": 2021,
+   "related": "キャラ:★3ライスシャワー、★3スーパークリーク カード:SSRタマモクロス、SSRゼンノロブロイ",
+   "banner_img": "https://pbs.twimg.com/media/FAa8brkUcAM4vSe.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    3,
+    1,
+    1,
+    2,
+    3,
+    3,
+    8,
+    9,
+    8,
+    8,
+    7,
+    9,
+    4
+   ],
+   "agents": []
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2021-10-11",
+   "end": "2021-10-20",
+   "rev": 8.26,
+   "yrank": 30,
+   "ytot": 30,
+   "cum": 91,
+   "cumtot": 221,
+   "year": 2021,
+   "related": "キャラ:★3 カワカミプリンセス カード:SSRヤエノムテキ、SSRセイウンスカイ",
+   "banner_img": "https://pbs.twimg.com/media/FBYvgiuVgAIEVr_.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    4,
+    1,
+    5,
+    9,
+    18,
+    18,
+    15,
+    17,
+    17,
+    19
+   ],
+   "agents": []
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2021-10-20",
+   "end": "2021-10-28",
+   "rev": 22.1,
+   "yrank": 22,
+   "ytot": 30,
+   "cum": 40,
+   "cumtot": 221,
+   "year": 2021,
+   "related": "キャラ:★3マンハッタンカフェ カード:SSRナカヤマフェスタ、SRシリウスシンボリ",
+   "banner_img": "https://pbs.twimg.com/media/FCHF1GuVkAoOhNj.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    19,
+    1,
+    1,
+    2,
+    2,
+    2,
+    5,
+    6,
+    4
+   ],
+   "agents": []
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2021-10-28",
+   "end": "2021-11-08",
+   "rev": 20.73,
+   "yrank": 24,
+   "ytot": 30,
+   "cum": 44,
+   "cumtot": 221,
+   "year": 2021,
+   "related": "キャラ:★3シンボリルドルフ、★3ゴールドシチー カード:SSRカレンチャン、SSRナリタブライアン",
+   "banner_img": "https://pbs.twimg.com/media/FCwSiQrUcAgcwBK.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    4,
+    1,
+    2,
+    2,
+    6,
+    2,
+    4,
+    4,
+    7,
+    9,
+    10,
+    4
+   ],
+   "agents": []
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2021-11-08",
+   "end": "2021-11-19",
+   "rev": 38.62,
+   "yrank": 11,
+   "ytot": 30,
+   "cum": 19,
+   "cumtot": 221,
+   "year": 2021,
+   "related": "キャラ:★3トーセンジョーダン カード:SSRキタサンブラック、SSRエルコンドルパサー",
+   "banner_img": "https://pbs.twimg.com/media/FDo8Bp9aQAAwHQz.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    4,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    2,
+    3,
+    5,
+    5,
+    3
+   ],
+   "agents": []
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2021-11-19",
+   "end": "2021-11-29",
+   "rev": 16.42,
+   "yrank": 27,
+   "ytot": 30,
+   "cum": 57,
+   "cumtot": 221,
+   "year": 2021,
+   "related": "キャラ:★3メジロドーベル カード:SSRダイタクヘリオス、SRウオッカ",
+   "banner_img": "https://pbs.twimg.com/media/FEhlg6aaAAQMxqy.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    3,
+    1,
+    1,
+    2,
+    5,
+    7,
+    11,
+    13,
+    16,
+    15,
+    10
+   ],
+   "agents": []
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2021-11-29",
+   "end": "2021-12-14",
+   "rev": 36.74,
+   "yrank": 13,
+   "ytot": 30,
+   "cum": 21,
+   "cumtot": 221,
+   "year": 2021,
+   "related": "キャラ:★3オグリキャップ、★3ビワハヤヒデ カード:SSRマヤノトップガン、SSRナリタタイシン",
+   "banner_img": "https://pbs.twimg.com/media/FFVFavQaIAMZ5zC.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    10,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    3,
+    4,
+    5,
+    8,
+    5,
+    4,
+    5,
+    4
+   ],
+   "agents": []
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2021-12-14",
+   "end": "2021-12-22",
+   "rev": 11.78,
+   "yrank": 29,
+   "ytot": 30,
+   "cum": 74,
+   "cumtot": 221,
+   "year": 2021,
+   "related": "キャラ: ★3 [Noble Seamair]ファインモーション / カード: SSR [独奏・螺旋追走曲]マンハッタンカフェ, SR [泥濘一笑、真っつぐに]イナリワン",
+   "banner_img": "https://pbs.twimg.com/media/FGiVQ6tUYAoKkq4.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    4,
+    1,
+    2,
+    4,
+    10,
+    9,
+    8,
+    14,
+    8
+   ],
+   "agents": [
+    "Manhattan Cafe",
+    "Inari One"
+   ],
+   "en": "Manhattan Cafe & Inari One"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2021-12-22",
+   "end": "2021-12-31",
+   "rev": 28.0,
+   "yrank": 18,
+   "ytot": 30,
+   "cum": 30,
+   "cumtot": 221,
+   "year": 2021,
+   "related": "キャラ: ★3 [疾風迅雷]タマモクロス / カード: SSR [願いまでは拭わない]ナイスネイチャ, SSR [『愛してもらうんだぞ』]オグリキャップ",
+   "banner_img": "https://pbs.twimg.com/media/FHLh-sRaMAUt3KH.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    8,
+    1,
+    1,
+    1,
+    1,
+    1,
+    4,
+    10,
+    11,
+    7
+   ],
+   "agents": [
+    "Nice Nature",
+    "Oguri Cap"
+   ],
+   "en": "Nice Nature & Oguri Cap"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2021-12-31",
+   "end": "2022-01-11",
+   "rev": 28.71,
+   "yrank": 17,
+   "ytot": 30,
+   "cum": 29,
+   "cumtot": 221,
+   "year": 2021,
+   "related": "キャラ: ★3 [初うらら♪さくさくら]ハルウララ, ★3 [初晴・青き絢爛]テイエムオペラオー / カード: SSR [夜に暁、空に瑞星]アドマイヤベガ, SSR [袖振り合えば福となる♪]マチカネフクキタル",
+   "banner_img": "https://pbs.twimg.com/media/FH54SRCaUAYd_MC.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    7,
+    3,
+    5,
+    6,
+    6,
+    5,
+    4,
+    4,
+    5,
+    4,
+    4,
+    3
+   ],
+   "agents": [
+    "Haru Urara",
+    "Admire Vega",
+    "Matikanefukukitaru"
+   ],
+   "en": "Haru Urara & Admire Vega & Matikanefukukitaru"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2022-01-11",
+   "end": "2022-01-20",
+   "rev": 20.28,
+   "yrank": 13,
+   "ytot": 37,
+   "cum": 46,
+   "cumtot": 221,
+   "year": 2022,
+   "related": "キャラ: ★3 ウマ娘 / カード: SSR [ブスッといっとく？]安心沢刺々美, SR [これがウチらのいか焼きや！]タマモクロス",
+   "banner_img": "https://pbs.twimg.com/media/FIyhyo9agAAhBPd.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    3,
+    1,
+    1,
+    1,
+    3,
+    3,
+    4,
+    6,
+    6,
+    6
+   ],
+   "agents": [
+    "Tamamo Cross"
+   ],
+   "en": "Tamamo Cross"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2022-01-20",
+   "end": "2022-01-28",
+   "rev": 17.88,
+   "yrank": 17,
+   "ytot": 37,
+   "cum": 55,
+   "cumtot": 221,
+   "year": 2022,
+   "related": "キャラ: ★3 [日下開山・花あかり]サクラチヨノオー / カード: SSR [徹底管理主義]樫本理子, SSR [ようこそ、トレセン学園へ！]駿川たづな",
+   "banner_img": "https://pbs.twimg.com/media/FJg4FO3aUAAnH0_.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    6,
+    1,
+    1,
+    2,
+    3,
+    5,
+    6,
+    5,
+    8
+   ],
+   "agents": [
+    "Riko Kashimoto",
+    "Tazuna Hayakawa"
+   ],
+   "en": "Riko Kashimoto & Tazuna Hayakawa"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2022-01-28",
+   "end": "2022-02-08",
+   "rev": 23.49,
+   "yrank": 9,
+   "ytot": 37,
+   "cum": 37,
+   "cumtot": 221,
+   "year": 2022,
+   "related": "キャラ: ★3 [CODE：グラサージュ]ミホノブルボン, ★3 [コレクト・ショコラティエ]エイシンフラッシュ / カード: SSR [小さなカップに想いをこめて]ニシノフラワー, SSR [爆速！最速！花あらし！]サクラバクシンオー",
+   "banner_img": "https://pbs.twimg.com/media/FKKEzkbUcAEfNTR.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    8,
+    1,
+    1,
+    3,
+    4,
+    5,
+    8,
+    6,
+    8,
+    7,
+    7,
+    5
+   ],
+   "agents": [
+    "Mihono Bourbon",
+    "Nishino Flower",
+    "Sakura Bakushin O"
+   ],
+   "en": "Mihono Bourbon & Nishino Flower & Sakura Bakushin O"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2022-02-08",
+   "end": "2022-02-16",
+   "rev": 7.69,
+   "yrank": 32,
+   "ytot": 37,
+   "cum": 93,
+   "cumtot": 221,
+   "year": 2022,
+   "related": "キャラ: ★3 [クリノクロア・ライン]メジロアルダン / カード: SSR [そこに“いる”幸せ] アグネスデジタル, SR [頑張るキミに！]アイネスフウジン",
+   "banner_img": "https://pbs.twimg.com/media/FLCuSedacAAmDFg.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    5,
+    1,
+    3,
+    7,
+    10,
+    13,
+    16,
+    17,
+    16
+   ],
+   "agents": [
+    "Agnes Digital",
+    "Ines Fujin"
+   ],
+   "en": "Agnes Digital & Ines Fujin"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2022-02-16",
+   "end": "2022-02-24",
+   "rev": 11.23,
+   "yrank": 25,
+   "ytot": 37,
+   "cum": 79,
+   "cumtot": 221,
+   "year": 2022,
+   "related": "キャラ: ★3 [Starry Nocturne]アドマイヤベガ / カード: SSR [感謝は指先まで込めて]ファインモーション, SSR [花嫁たるもの！！]カワカミプリンセス",
+   "banner_img": "https://pbs.twimg.com/media/FLr7BBGVUAEMXa2.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    16,
+    2,
+    2,
+    3,
+    5,
+    5,
+    6,
+    6,
+    3
+   ],
+   "agents": [
+    "Fine Motion",
+    "Kawakami Princess"
+   ],
+   "en": "Fine Motion & Kawakami Princess"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2022-02-24",
+   "end": "2022-03-07",
+   "rev": 59.65,
+   "yrank": 1,
+   "ytot": 37,
+   "cum": 3,
+   "cumtot": 221,
+   "year": 2022,
+   "related": "キャラ: ★3 [錦上・大判御輿]キタサンブラック, ★2 [ぱんぱかティルトット]マチカネタンホイザ / カード: SSR [桃色のバックショット]ナリタトップロード, SR [鼓動が速まるクールダウン]メジロライアン 他 SRカード 2種",
+   "banner_img": "https://pbs.twimg.com/media/FMVHutFVgAIWC_R.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    3,
+    1,
+    1,
+    2,
+    1,
+    2,
+    1,
+    2,
+    2,
+    2,
+    2,
+    1
+   ],
+   "agents": [
+    "Kitasan Black",
+    "Narita Top Road"
+   ],
+   "en": "Kitasan Black & Narita Top Road"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2022-03-07",
+   "end": "2022-03-18",
+   "rev": 43.3,
+   "yrank": 3,
+   "ytot": 37,
+   "cum": 13,
+   "cumtot": 221,
+   "year": 2022,
+   "related": "★3 [Natural Brilliance]サトノダイヤモンド / SSR [世界にもっと☆マーベラス]マーベラスサンデー, SR [ほっと♪きゅーとメモリー]カレンチャン",
+   "banner_img": "https://pbs.twimg.com/media/FNNxNpYVEAEcHrl.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    3,
+    2,
+    2
+   ],
+   "agents": [
+    "Marvelous Sunday Time☆★",
+    "Curren Chan"
+   ],
+   "en": "Marvelous Sunday Time☆★ & Curren Chan"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2022-03-18",
+   "end": "2022-03-29",
+   "rev": 21.04,
+   "yrank": 12,
+   "ytot": 37,
+   "cum": 43,
+   "cumtot": 221,
+   "year": 2022,
+   "related": "★3 [ブリュニサージュ・ライン]メジロブライト / SSR [魔力授かりし英雄]ゼンノロブロイ, SSR [かなし君、うつくし君]カレンチャン",
+   "banner_img": "https://pbs.twimg.com/media/FOGatNwVQAELTFc.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    2,
+    2,
+    3,
+    3,
+    3,
+    5,
+    5,
+    6,
+    4,
+    2,
+    1,
+    3
+   ],
+   "agents": [
+    "Zenno Rob Roy",
+    "Curren Chan"
+   ],
+   "en": "Zenno Rob Roy & Curren Chan"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2022-03-29",
+   "end": "2022-04-11",
+   "rev": 15.48,
+   "yrank": 20,
+   "ytot": 37,
+   "cum": 59,
+   "cumtot": 221,
+   "year": 2022,
+   "related": "★3 [ソワレ・ド・シャトン]セイウンスカイ, ★3 [シュクセ・エトワーレ]フジキセキ / SSR [Enchaînement]シンボリルドルフ, SSR [Escorte étoile]シリウスシンボリ",
+   "banner_img": "https://pbs.twimg.com/media/FO_EM8vVgAQwVOr.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    3,
+    1,
+    2,
+    6,
+    8,
+    9,
+    9,
+    14,
+    11,
+    13,
+    16,
+    18,
+    16,
+    13
+   ],
+   "agents": [
+    "Seiun Sky",
+    "Symboli Rudolf",
+    "Sirius Symboli"
+   ],
+   "en": "Seiun Sky & Symboli Rudolf & Sirius Symboli"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2022-04-11",
+   "end": "2022-04-19",
+   "rev": 12.76,
+   "yrank": 23,
+   "ytot": 37,
+   "cum": 70,
+   "cumtot": 221,
+   "year": 2022,
+   "related": "★3 [ティアード・ペタル]ニシノフラワー / SSR [Outfit as No.1]ダイワスカーレット, SR [おてんば魔女、修行中。]スイープトウショウ",
+   "banner_img": "https://pbs.twimg.com/media/FQCA3HnaIAAMAAo.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    13,
+    1,
+    1,
+    3,
+    7,
+    14,
+    14,
+    18,
+    11
+   ],
+   "agents": [
+    "Daiwa Scarlet",
+    "Sweep Tosho"
+   ],
+   "en": "Daiwa Scarlet & Sweep Tosho"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2022-04-19",
+   "end": "2022-04-28",
+   "rev": 10.21,
+   "yrank": 28,
+   "ytot": 37,
+   "cum": 84,
+   "cumtot": 221,
+   "year": 2022,
+   "related": "★3 [四白流星の襲]ヤエノムテキ / SSR [ターボエンジン全開宣言！]ツインターボ, SSR [飛び出せ、キラメケ]アイネスフウジン",
+   "banner_img": "https://pbs.twimg.com/media/FQrNlNwaUAI5WxE.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    11,
+    2,
+    2,
+    5,
+    7,
+    9,
+    10,
+    16,
+    15,
+    12
+   ],
+   "agents": [
+    "Twin Turbo",
+    "Ines Fujin"
+   ],
+   "en": "Twin Turbo & Ines Fujin"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2022-04-28",
+   "end": "2022-05-10",
+   "rev": 28.82,
+   "yrank": 6,
+   "ytot": 37,
+   "cum": 28,
+   "cumtot": 221,
+   "year": 2022,
+   "related": "★3 [RUN＆WIN]ナイスネイチャ, ★3 [白く気高き激励の装]キングヘイロー / SSR [届け、このオモイ！]バンブーメモリー, SSR [そのエールは世界を変えた]シーキングザパール",
+   "banner_img": "https://pbs.twimg.com/media/FRZj4xkUcAEJ0di.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    12,
+    1,
+    1,
+    3,
+    4,
+    8,
+    8,
+    8,
+    11,
+    9,
+    9,
+    9,
+    8
+   ],
+   "agents": [
+    "Nice Nature",
+    "Bamboo Memory",
+    "Seeking the Pearl"
+   ],
+   "en": "Nice Nature & Bamboo Memory & Seeking the Pearl"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2022-05-10",
+   "end": "2022-05-20",
+   "rev": 24.56,
+   "yrank": 7,
+   "ytot": 37,
+   "cum": 34,
+   "cumtot": 221,
+   "year": 2022,
+   "related": "★3 [オールタイム・フィーバー]アイネスフウジン / SSR [Dear Mr. C.B.]ミスターシービー, SR [Step! Smile! Wink!]トウカイテイオー, R [トレセン学園]ミスターシービー",
+   "banner_img": "https://pbs.twimg.com/media/FSXW9pXaAAAiqHk.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    8,
+    1,
+    1,
+    1,
+    1,
+    3,
+    4,
+    3,
+    4,
+    6,
+    2
+   ],
+   "agents": [
+    "Mr. C.B.",
+    "Tokai Teio"
+   ],
+   "en": "Mr. C.B. & Tokai Teio"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2022-05-20",
+   "end": "2022-05-30",
+   "rev": 19.35,
+   "yrank": 14,
+   "ytot": 37,
+   "cum": 48,
+   "cumtot": 221,
+   "year": 2022,
+   "related": "★3 [Line Breakthrough]メジロパーマー / SSR [袖振り合えば福となる♪]マチカネフクキタル, SSR [幸せは曲がり角の向こう]ライスシャワー",
+   "banner_img": "https://pbs.twimg.com/media/FTK23kzUAAARqD0.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    2,
+    1,
+    1,
+    1,
+    5,
+    6,
+    8,
+    10,
+    12,
+    12,
+    8
+   ],
+   "agents": [
+    "Matikanefukukitaru",
+    "Rice Shower"
+   ],
+   "en": "Matikanefukukitaru & Rice Shower"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2022-05-30",
+   "end": "2022-06-10",
+   "rev": 18.22,
+   "yrank": 15,
+   "ytot": 37,
+   "cum": 52,
+   "cumtot": 221,
+   "year": 2022,
+   "related": "★3 [朔月のマ・シェリ]カレンチャン, ★3 [Titania]ファインモーション / SSR [うららか・ぱっしょん♪]ハルウララ, SSR [愛すべき金蘭のつどい]イクノディクタス",
+   "banner_img": "https://pbs.twimg.com/media/FT-Wwv6akAAHXCf.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    8,
+    1,
+    3,
+    4,
+    8,
+    9,
+    10,
+    9,
+    12,
+    14,
+    15,
+    12
+   ],
+   "agents": [
+    "Curren Chan",
+    "Haru Urara",
+    "Ikuno Dictus"
+   ],
+   "en": "Curren Chan & Haru Urara & Ikuno Dictus"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2022-06-10",
+   "end": "2022-06-20",
+   "rev": 9.92,
+   "yrank": 29,
+   "ytot": 37,
+   "cum": 86,
+   "cumtot": 221,
+   "year": 2022,
+   "related": "★3 [稲荷所縁江戸紫]イナリワン / SSR [夜に暁、空に瑞星]アドマイヤベガ, SSR [今ぞ盛りのさくら花]サクラチヨノオー",
+   "banner_img": "https://pbs.twimg.com/media/FU3AQFSakAAhQVW.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    12,
+    2,
+    2,
+    5,
+    8,
+    17,
+    21,
+    21,
+    24,
+    23,
+    14
+   ],
+   "agents": [
+    "Admire Vega",
+    "Sakura Chiyono O"
+   ],
+   "en": "Admire Vega & Sakura Chiyono O"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2022-06-20",
+   "end": "2022-06-30",
+   "rev": 13.35,
+   "yrank": 22,
+   "ytot": 37,
+   "cum": 66,
+   "cumtot": 221,
+   "year": 2022,
+   "related": "★3 [プラタナス・ウィッチ]スイープトウショウ / SSR [Hands up, crook!]タイキシャトル, SR [好きなんだ、ご飯が]オグリキャップ",
+   "banner_img": "https://pbs.twimg.com/media/FVqgJPbUsAAT0nI.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    14,
+    2,
+    1,
+    2,
+    6,
+    9,
+    10,
+    11,
+    13,
+    16,
+    18
+   ],
+   "agents": [
+    "Taiki Shuttle",
+    "Oguri Cap"
+   ],
+   "en": "Taiki Shuttle & Oguri Cap"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2022-06-30",
+   "end": "2022-07-11",
+   "rev": 13.5,
+   "yrank": 21,
+   "ytot": 37,
+   "cum": 65,
+   "cumtot": 221,
+   "year": 2022,
+   "related": "★3 [Bubblegum☆Memories]タイキシャトル, ★3 [バカンス・サフィール]メジロドーベル / SSR [キラキラカケル∞]エルコンドルパサー, SSR [マチタン☆アドベンチャー]マチカネタンホイザ",
+   "banner_img": "https://pbs.twimg.com/media/FWeADQqUUAIZdQZ.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    18,
+    2,
+    3,
+    7,
+    10,
+    14,
+    16,
+    21,
+    23,
+    24,
+    22,
+    19
+   ],
+   "agents": [
+    "Taiki Shuttle",
+    "El Condor Pasa",
+    "Matikanetannhauser"
+   ],
+   "en": "Taiki Shuttle & El Condor Pasa & Matikanetannhauser"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2022-07-11",
+   "end": "2022-07-20",
+   "rev": 6.33,
+   "yrank": 34,
+   "ytot": 37,
+   "cum": 111,
+   "cumtot": 221,
+   "year": 2022,
+   "related": "★3 [unsigned]エアシャカール / SSR [理想へ向かう青嵐]エアグルーヴ, SR [金色を目指して]ゴールドシチー",
+   "banner_img": "https://pbs.twimg.com/media/FXWph51aMAAay3y.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    19,
+    1,
+    5,
+    10,
+    17,
+    32,
+    36,
+    29,
+    34,
+    27
+   ],
+   "agents": [
+    "Air Groove",
+    "Gold City"
+   ],
+   "en": "Air Groove & Gold City"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2022-07-20",
+   "end": "2022-07-29",
+   "rev": 29.97,
+   "yrank": 5,
+   "ytot": 37,
+   "cum": 27,
+   "cumtot": 221,
+   "year": 2022,
+   "related": "★3 [あおぐもサミング]セイウンスカイ, ★3 [Maverick]ナリタブライアン / SSR [尊尚親愛]玉座に集いし者たち, SR [泥まみれのコンパネーロ]エルコンドルパサー, R [トレセン学園]ツルマルツヨシ",
+   "banner_img": "https://pbs.twimg.com/media/FYE_11waIAEoY9R.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    27,
+    26,
+    1,
+    1,
+    1,
+    1,
+    2,
+    3,
+    3,
+    1
+   ],
+   "agents": [
+    "Seiun Sky",
+    "El Condor Pasa"
+   ],
+   "en": "Seiun Sky & El Condor Pasa"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2022-07-29",
+   "end": "2022-08-10",
+   "rev": 23.4,
+   "yrank": 10,
+   "ytot": 37,
+   "cum": 38,
+   "cumtot": 221,
+   "year": 2022,
+   "related": "★3 [さざ波フェアレディ]メジロマックイーン, ★3 [RUN！乱！ランチャー！！]ゴールドシップ / SSR [おセンチ注意報♪]マルゼンスキー, SSR [一天地六に身を任せ]ナカヤマフェスタ",
+   "banner_img": "https://pbs.twimg.com/media/FYzWJ6KakAAVZuf.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    1,
+    1,
+    1,
+    3,
+    4,
+    6,
+    7,
+    11,
+    10,
+    11,
+    12,
+    13,
+    12
+   ],
+   "agents": [
+    "Mejiro McQueen",
+    "Maruzensky",
+    "Nakayama Festa"
+   ],
+   "en": "Mejiro McQueen & Maruzensky & Nakayama Festa"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2022-08-10",
+   "end": "2022-08-19",
+   "rev": 5.84,
+   "yrank": 36,
+   "ytot": 37,
+   "cum": 117,
+   "cumtot": 221,
+   "year": 2022,
+   "related": "★3 [黒鉄の大志]バンブーメモリー / SSR [心と足元は温かく]イクノディクタス, SSR [ふるさと直送エール！]ユキノビジン",
+   "banner_img": "https://pbs.twimg.com/media/FZxJOrgagAEytDo.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    12,
+    3,
+    5,
+    18,
+    27,
+    32,
+    37,
+    39,
+    43,
+    34
+   ],
+   "agents": [
+    "Ikuno Dictus",
+    "Yukino Bijin"
+   ],
+   "en": "Ikuno Dictus & Yukino Bijin"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2022-08-19",
+   "end": "2022-08-29",
+   "rev": 16.33,
+   "yrank": 19,
+   "ytot": 37,
+   "cum": 58,
+   "cumtot": 221,
+   "year": 2022,
+   "related": "★3 [陰陽八卦☆開運衣]コパノリッキー / SSR [It's on the house.]マンハッタンカフェ, SR [ゆるっと、まにまに]セイウンスカイ",
+   "banner_img": "https://pbs.twimg.com/media/Faffil8aUAA1PYZ.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    34,
+    2,
+    3,
+    5,
+    9,
+    13,
+    1,
+    1,
+    1,
+    3,
+    2
+   ],
+   "agents": [
+    "Manhattan Cafe",
+    "Seiun Sky"
+   ],
+   "en": "Manhattan Cafe & Seiun Sky"
   },
   {
    "name": "新育成シナリオ記念 プリティーダービーガチャ・サポートカードガチャ",
@@ -594,6 +1831,477 @@
    "en": "Light Hello & Agnes Tachyon"
   },
   {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2022-08-29",
+   "end": "2022-09-12",
+   "rev": 24.34,
+   "yrank": 8,
+   "ytot": 37,
+   "cum": 35,
+   "cumtot": 221,
+   "year": 2022,
+   "related": "★3 [Dream Deliverer]ウイニングチケット, ★3 [ディファレンス・エンジニア]ナリタタイシン / SSR [テイオー・オー・オー！！！]トウカイテイオー, SSR [TT Ignition!]ツインターボ",
+   "banner_img": "https://pbs.twimg.com/media/FbS_b-1aQAAKPFe.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    2,
+    1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    3,
+    2,
+    3,
+    4,
+    4,
+    2
+   ],
+   "agents": [
+    "Winning Ticket",
+    "Tokai Teio",
+    "Twin Turbo"
+   ],
+   "en": "Winning Ticket & Tokai Teio & Twin Turbo"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2022-09-12",
+   "end": "2022-09-20",
+   "rev": 3.96,
+   "yrank": 37,
+   "ytot": 37,
+   "cum": 139,
+   "cumtot": 221,
+   "year": 2022,
+   "related": "★3 [めんこいめんこいむつのはな]ユキノビジン / SSR [これが私のウマドル道☆]スマートファルコン, SSR [輝く景色の、その先に]サイレンススズカ",
+   "banner_img": "https://pbs.twimg.com/media/FcbFsU2aMAEPix0.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    2,
+    3,
+    4,
+    11,
+    11,
+    20,
+    18,
+    19,
+    19
+   ],
+   "agents": [
+    "Smart Falcon",
+    "Silence Suzuka"
+   ],
+   "en": "Smart Falcon & Silence Suzuka"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2022-09-20",
+   "end": "2022-09-29",
+   "rev": 6.08,
+   "yrank": 35,
+   "ytot": 37,
+   "cum": 115,
+   "cumtot": 221,
+   "year": 2022,
+   "related": "★3 [Rocket☆Star]シーキングザパール / SSR [嗚呼華麗ナル一族]ダイイチルビー, SR [The 3rd MIRACLE]ケイエスミラクル, R [トレセン学園]ダイイチルビー, R [トレセン学園]ケイエスミラクル",
+   "banner_img": "https://pbs.twimg.com/media/FdESafPaEAEkw_b.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    19,
+    6,
+    7,
+    10,
+    7,
+    8,
+    10,
+    9,
+    14,
+    9
+   ],
+   "agents": [
+    "Daiichi Ruby",
+    "K.S.Miracle"
+   ],
+   "en": "Daiichi Ruby & K.S.Miracle"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2022-09-29",
+   "end": "2022-10-11",
+   "rev": 10.52,
+   "yrank": 27,
+   "ytot": 37,
+   "cum": 81,
+   "cumtot": 221,
+   "year": 2022,
+   "related": "★3 [愛麗♡キョンシー]アグネスデジタル, ★3 [Dot-o'-Lantern]メイショウドトウ / SSR [月下の悪魔ちゃん♪]メジロパーマー, SSR [お日さま天使ちゃん♪]ダイタクヘリオス",
+   "banner_img": "https://pbs.twimg.com/media/FdyouSiakAA-ApR.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    9,
+    3,
+    5,
+    8,
+    11,
+    15,
+    19,
+    16,
+    19,
+    27,
+    28,
+    28,
+    21
+   ],
+   "agents": [
+    "Agnes Digital",
+    "Mejiro Palmer",
+    "Daitaku Helios"
+   ],
+   "en": "Agnes Digital & Mejiro Palmer & Daitaku Helios"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2022-10-11",
+   "end": "2022-10-19",
+   "rev": 17.26,
+   "yrank": 18,
+   "ytot": 37,
+   "cum": 56,
+   "cumtot": 221,
+   "year": 2022,
+   "related": "★3 [Flare]アストンマーチャン / SSR [おセンチ注意報♪]マルゼンスキー, SSR [感謝は指先まで込めて]ファインモーション",
+   "banner_img": "https://pbs.twimg.com/media/FewbzCUaYAAt6CA.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    21,
+    1,
+    1,
+    3,
+    6,
+    8,
+    5,
+    6,
+    3
+   ],
+   "agents": [
+    "Maruzensky",
+    "Fine Motion"
+   ],
+   "en": "Maruzensky & Fine Motion"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2022-10-19",
+   "end": "2022-10-28",
+   "rev": 10.72,
+   "yrank": 26,
+   "ytot": 37,
+   "cum": 80,
+   "cumtot": 221,
+   "year": 2022,
+   "related": "★3 [Fluttertail Spirit]ヤマニンゼファー / SSR [A Win Foreshadowed]シンボリクリスエス, SR [『フレフレ、ツヨシ！』]ツルマルツヨシ, R [トレセン学園]シンボリクリスエス, R [トレセン学園]タニノギムレット",
+   "banner_img": "https://pbs.twimg.com/media/FfZohV1VEAEc2FE.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    3,
+    1,
+    1,
+    8,
+    10,
+    14,
+    19,
+    23,
+    24,
+    26
+   ],
+   "agents": [
+    "Symboli Kris S",
+    "Tsurumaru Tsuyoshi"
+   ],
+   "en": "Symboli Kris S & Tsurumaru Tsuyoshi"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2022-10-28",
+   "end": "2022-11-09",
+   "rev": 21.63,
+   "yrank": 11,
+   "ytot": 37,
+   "cum": 41,
+   "cumtot": 221,
+   "year": 2022,
+   "related": "★3 [猛ル鳴神]タマモクロス, ★3 [夢ノ金原]イナリワン / SSR [駆けよ、駆けよ、駆けよ！！]オグリキャップ, SSR [天まで焦がせ祈りの火]ヤエノムテキ",
+   "banner_img": "https://pbs.twimg.com/media/FgH-08DaYAAQLV9.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    26,
+    1,
+    1,
+    2,
+    3,
+    6,
+    10,
+    14,
+    16,
+    17,
+    19,
+    17,
+    10
+   ],
+   "agents": [
+    "Tamamo Cross",
+    "Oguri Cap",
+    "Yaeno Muteki"
+   ],
+   "en": "Tamamo Cross & Oguri Cap & Yaeno Muteki"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2022-11-09",
+   "end": "2022-11-17",
+   "rev": 8.97,
+   "yrank": 30,
+   "ytot": 37,
+   "cum": 89,
+   "cumtot": 221,
+   "year": 2022,
+   "related": "★3 [死中求活]ナカヤマフェスタ / SSR [Dear Mr. C.B.]ミスターシービー, SSR [一粒の安らぎ]スーパークリーク",
+   "banner_img": "https://pbs.twimg.com/media/FhFx6JzUAAEXOGM.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    10,
+    1,
+    3,
+    8,
+    13,
+    13,
+    19,
+    17,
+    9
+   ],
+   "agents": [
+    "Mr. C.B.",
+    "Super Creek"
+   ],
+   "en": "Mr. C.B. & Super Creek"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2022-11-17",
+   "end": "2022-11-28",
+   "rev": 11.43,
+   "yrank": 24,
+   "ytot": 37,
+   "cum": 78,
+   "cumtot": 221,
+   "year": 2022,
+   "related": "★3 [Butterfly Sting]ワンダーアキュート / SSR [Danke schön]エイシンフラッシュ, SR [ストップ、委員長！]ナリタトップロード",
+   "banner_img": "https://pbs.twimg.com/media/Fhu-n_cVQAAb6MS.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    9,
+    1,
+    3,
+    8,
+    10,
+    17,
+    27,
+    27,
+    36,
+    33,
+    37,
+    18
+   ],
+   "agents": [
+    "Eishin Flash",
+    "Narita Top Road"
+   ],
+   "en": "Eishin Flash & Narita Top Road"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2022-11-28",
+   "end": "2022-12-12",
+   "rev": 17.88,
+   "yrank": 16,
+   "ytot": 37,
+   "cum": 54,
+   "cumtot": 221,
+   "year": 2022,
+   "related": "★3 [不凍のアクア・ウィタエ]ウオッカ, ★3 [緋色のニュイ・エトワレ]ダイワスカーレット / SSR [GLAD TIDINGS]ナリタブライアン, SSR [Are you merry?]エアグルーヴ, R [トレセン学園]サクラローレル",
+   "banner_img": "https://pbs.twimg.com/media/FinoHNJVEAE7xgc.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    18,
+    1,
+    1,
+    3,
+    9,
+    12,
+    12,
+    13,
+    10,
+    17,
+    19,
+    26,
+    19,
+    21,
+    16
+   ],
+   "agents": [
+    "Vodka",
+    "Narita Brian",
+    "Air Groove"
+   ],
+   "en": "Vodka & Narita Brian & Air Groove"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2022-12-12",
+   "end": "2022-12-20",
+   "rev": 7.9,
+   "yrank": 31,
+   "ytot": 37,
+   "cum": 92,
+   "cumtot": 221,
+   "year": 2022,
+   "related": "★3 [Heroic Author]ゼンノロブロイ / SSR [from the GROUND UP]ライトハロー, SSR [フォーメーション：PARTY]マヤノトップガン",
+   "banner_img": "https://pbs.twimg.com/media/FjvuXqXaMAAeaqk.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    16,
+    1,
+    4,
+    10,
+    17,
+    22,
+    24,
+    25,
+    22
+   ],
+   "agents": [
+    "Light Hello",
+    "Mayano Top Gun"
+   ],
+   "en": "Light Hello & Mayano Top Gun"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2022-12-20",
+   "end": "2022-12-29",
+   "rev": 6.49,
+   "yrank": 33,
+   "ytot": 37,
+   "cum": 106,
+   "cumtot": 221,
+   "year": 2022,
+   "related": "★3 [餓狼]ナリタブライアン / SSR [誰も知らない風へ]ヤマニンゼファー, SR [偉大なるフォトグラフィーア]テイエムオペラオー, R [トレセン学園]ヤマニンゼファー",
+   "banner_img": "https://pbs.twimg.com/media/FkY7FlhUcAAyjzQ.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    22,
+    1,
+    5,
+    17,
+    25,
+    24,
+    29,
+    30,
+    40,
+    35
+   ],
+   "agents": [
+    "Yamanin Zephyr",
+    "T.M. Opera O"
+   ],
+   "en": "Yamanin Zephyr & T.M. Opera O"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2022-12-29",
+   "end": "2023-01-10",
+   "rev": 49.04,
+   "yrank": 2,
+   "ytot": 37,
+   "cum": 8,
+   "cumtot": 221,
+   "year": 2022,
+   "related": "★3 [真打・慶鶴之志]キタサンブラック, ★3 [花形・弥栄之翠]サトノダイヤモンド / SSR [ハネ退け魔を退け願い込め]スペシャルウィーク, SSR [気まぐれ絶佳]スイープトウショウ",
+   "banner_img": "https://pbs.twimg.com/media/FlHRZY_agAA9cIk.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    35,
+    3,
+    5,
+    14,
+    2,
+    2,
+    5,
+    6,
+    8,
+    9,
+    7,
+    4,
+    5
+   ],
+   "agents": [
+    "Kitasan Black",
+    "Special Week",
+    "Sweep Tosho"
+   ],
+   "en": "Kitasan Black & Special Week & Sweep Tosho"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2023-01-10",
+   "end": "2023-01-20",
+   "rev": 13.15,
+   "yrank": 11,
+   "ytot": 42,
+   "cum": 67,
+   "cumtot": 221,
+   "year": 2023,
+   "related": "★3 [スター・ライト・シップ]ホッコータルマエ / SSR [Q≠0]アグネスタキオン, SSR [テイオー・オー・オー！！！]トウカイテイオー\n2022年へ",
+   "banner_img": "https://pbs.twimg.com/media/FmFEeYKaUAMT_HZ.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    5,
+    1,
+    1,
+    3,
+    9,
+    9,
+    9,
+    9,
+    15,
+    19,
+    13
+   ],
+   "agents": [
+    "Agnes Tachyon",
+    "Everlasting BEATS"
+   ],
+   "en": "Agnes Tachyon & Everlasting BEATS"
+  },
+  {
    "name": "アオハル杯アップデート記念ピックアップ",
    "start": "2023-01-20",
    "end": "2023-01-30",
@@ -626,6 +2334,111 @@
     "Matikanefukukitaru"
    ],
    "en": "Rice Shower & Taiki Shuttle & Matikanefukukitaru"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2023-01-20",
+   "end": "2023-01-30",
+   "rev": 7.4,
+   "yrank": 18,
+   "ytot": 42,
+   "cum": 97,
+   "cumtot": 221,
+   "year": 2023,
+   "related": "★3 [Fun☆Fun☆ぱりない]ダイタクヘリオス / SSR [To you]ケイエスミラクル, SR [添付ファイル、温めますか？]アストンマーチャン, R [トレセン学園]アストンマーチャン",
+   "banner_img": "https://pbs.twimg.com/media/Fm4kX5OakAEEtk2.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    13,
+    1,
+    1,
+    4,
+    6,
+    11,
+    13,
+    17,
+    17,
+    18,
+    15
+   ],
+   "agents": [
+    "K.S.Miracle",
+    "Aston Machan"
+   ],
+   "en": "K.S.Miracle & Aston Machan"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2023-01-30",
+   "end": "2023-02-13",
+   "rev": 4.18,
+   "yrank": 29,
+   "ytot": 42,
+   "cum": 136,
+   "cumtot": 221,
+   "year": 2023,
+   "related": "★3 [MELTY GIFT]アイネスフウジン, ★3 [マーガレット・ラッテ]メジロライアン / SSR [マーベラス☆ショコラSHOW]マーベラスサンデー, SSR [変身！ギャルソンフォーム！]ビコーペガサス",
+   "banner_img": "https://pbs.twimg.com/media/FnsERjcaUAEknY2.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    15,
+    5,
+    12,
+    18,
+    22,
+    28,
+    29,
+    32,
+    36,
+    40,
+    41,
+    45,
+    50,
+    45,
+    38
+   ],
+   "agents": [
+    "Ines Fujin",
+    "Marvelous Sunday Time☆★",
+    "Biko Pegasus"
+   ],
+   "en": "Ines Fujin & Marvelous Sunday Time☆★ & Biko Pegasus"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2023-02-13",
+   "end": "2023-02-24",
+   "rev": 3.75,
+   "yrank": 30,
+   "ytot": 42,
+   "cum": 146,
+   "cumtot": 221,
+   "year": 2023,
+   "related": "★3 [Wicked Punk]シンコウウインディ / SSR [おセンチ注意報♪]マルゼンスキー, SSR [小さなカップに想いをこめて]ニシノフラワー",
+   "banner_img": "https://pbs.twimg.com/media/Fo0Kh4zaIAIcP-l.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    38,
+    5,
+    10,
+    20,
+    30,
+    34,
+    41,
+    38,
+    41,
+    40,
+    33,
+    22
+   ],
+   "agents": [
+    "Maruzensky",
+    "Nishino Flower"
+   ],
+   "en": "Maruzensky & Nishino Flower"
   },
   {
    "name": "2nd Anniversary プリティーダービーガチャ・サポートカードガチャ",
@@ -676,6 +2489,170 @@
    "en": "Mr. C.B. & Mejiro Ramonu & Jungle Pocket"
   },
   {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2023-03-10",
+   "end": "2023-03-20",
+   "rev": 18.79,
+   "yrank": 7,
+   "ytot": 42,
+   "cum": 51,
+   "cumtot": 221,
+   "year": 2023,
+   "related": "★3 [華麗なる紅玉]ダイイチルビー / SSR [駆けよ、駆けよ、駆けよ！！]オグリキャップ, SSR [Escorte étoile]シリウスシンボリ",
+   "banner_img": "https://pbs.twimg.com/media/Fq06R8uacAAFdph.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    4,
+    5,
+    3
+   ],
+   "agents": [
+    "Oguri Cap",
+    "Sirius Symboli"
+   ],
+   "en": "Oguri Cap & Sirius Symboli"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2023-03-20",
+   "end": "2023-03-29",
+   "rev": 24.24,
+   "yrank": 3,
+   "ytot": 42,
+   "cum": 36,
+   "cumtot": 221,
+   "year": 2023,
+   "related": "★3 [Onyx Soldier]シンボリクリスエス / SSR [永劫続く栄光へ]祖にして導く者, SR [甘～い浮き輪を召し上がれ]ヒシアケボノ",
+   "banner_img": "https://pbs.twimg.com/media/FroaLJWaAAAqyWd.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    3,
+    1,
+    1,
+    2,
+    2,
+    2,
+    3,
+    3,
+    2,
+    3
+   ],
+   "agents": [
+    "Hishi Akebono"
+   ],
+   "en": "Hishi Akebono"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2023-03-29",
+   "end": "2023-04-10",
+   "rev": 10.36,
+   "yrank": 14,
+   "ytot": 42,
+   "cum": 83,
+   "cumtot": 221,
+   "year": 2023,
+   "related": "★3 [Neige Émeraude]メジロアルダン, ★3 [Fleur Enneigée]サクラチヨノオー / SSR [今は瞳を閉じないで]ナイスネイチャ, SSR [心、夜風にさらわれて]メジロマックイーン",
+   "banner_img": "https://pbs.twimg.com/media/FsWwe8yakAE8eOl.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    3,
+    1,
+    3,
+    10,
+    17,
+    17,
+    26,
+    30,
+    30,
+    30,
+    39,
+    32,
+    28
+   ],
+   "agents": [
+    "Mejiro Ardan",
+    "Nice Nature",
+    "Mejiro McQueen"
+   ],
+   "en": "Mejiro Ardan & Nice Nature & Mejiro McQueen"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2023-04-10",
+   "end": "2023-04-19",
+   "rev": 7.59,
+   "yrank": 16,
+   "ytot": 42,
+   "cum": 94,
+   "cumtot": 221,
+   "year": 2023,
+   "related": "★3 [Saisir le rêve]サクラローレル / SSR [Are you merry?]エアグルーヴ, SSR [Danke schön]エイシンフラッシュ",
+   "banner_img": "https://pbs.twimg.com/media/FtUjj79akAEq9MC.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    28,
+    2,
+    2,
+    7,
+    11,
+    17,
+    21,
+    25,
+    31,
+    17
+   ],
+   "agents": [
+    "Air Groove",
+    "Eishin Flash"
+   ],
+   "en": "Air Groove & Eishin Flash"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2023-04-19",
+   "end": "2023-04-28",
+   "rev": 7.53,
+   "yrank": 17,
+   "ytot": 42,
+   "cum": 95,
+   "cumtot": 221,
+   "year": 2023,
+   "related": "★3 [Universe-Naut]ネオユニヴァース / SSR [絶対皇帝]シンボリルドルフ, SR [ゴルシ印のスペシャリテ]ゴールドシップ",
+   "banner_img": "https://pbs.twimg.com/media/FuC53tIaQAAIR9H.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    17,
+    2,
+    3,
+    7,
+    9,
+    13,
+    20,
+    19,
+    23,
+    24
+   ],
+   "agents": [
+    "Symboli Rudolf",
+    "Gold Ship"
+   ],
+   "en": "Symboli Rudolf & Gold Ship"
+  },
+  {
    "name": "ギャルウィーク プリティーダービーガチャ",
    "start": "2023-04-28",
    "end": "2023-05-10",
@@ -710,6 +2687,383 @@
     "Mejiro Palmer"
    ],
    "en": "Gold City & Tosen Jordan & Mejiro Palmer"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2023-04-28",
+   "end": "2023-05-10",
+   "rev": 3.23,
+   "yrank": 34,
+   "ytot": 42,
+   "cum": 161,
+   "cumtot": 221,
+   "year": 2023,
+   "related": "★3 [ブルー・タービュランス]マチカネタンホイザ, ★3 [レッドホット☆リーダー]サクラバクシンオー / SSR [ミッション『心の栄養補給』]ミホノブルボン, SSR [刻下、桜花爛漫]サクラローレル",
+   "banner_img": "https://pbs.twimg.com/media/FuJYbZVacAAMTUb.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    24,
+    5,
+    11,
+    17,
+    20,
+    22,
+    30,
+    29,
+    14,
+    15,
+    18,
+    22,
+    13
+   ],
+   "agents": [
+    "Matikanetannhauser",
+    "Mihono Bourbon",
+    "Sakura Laurel"
+   ],
+   "en": "Matikanetannhauser & Mihono Bourbon & Sakura Laurel"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2023-05-10",
+   "end": "2023-05-19",
+   "rev": 6.37,
+   "yrank": 24,
+   "ytot": 42,
+   "cum": 110,
+   "cumtot": 221,
+   "year": 2023,
+   "related": "★3 [みらくるめーくあっぷ！]ヒシミラクル / SSR [To you]ケイエスミラクル, SSR [誰も知らない風へ]ヤマニンゼファー",
+   "banner_img": "https://pbs.twimg.com/media/FvHP7KDaUAAnFod.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    13,
+    1,
+    5,
+    11,
+    17,
+    24,
+    35,
+    31,
+    32,
+    27
+   ],
+   "agents": [
+    "K.S.Miracle",
+    "Yamanin Zephyr"
+   ],
+   "en": "K.S.Miracle & Yamanin Zephyr"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2023-05-19",
+   "end": "2023-05-29",
+   "rev": 13.72,
+   "yrank": 10,
+   "ytot": 42,
+   "cum": 64,
+   "cumtot": 221,
+   "year": 2023,
+   "related": "★3 [身に纏うケラヴノス ]タニノギムレット / SSR [The frontier]ジャングルポケット, SR [激マブ！ドライブ♪]マルゼンスキー",
+   "banner_img": "https://pbs.twimg.com/media/Fv1gcIWaQAAolFl.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    27,
+    1,
+    2,
+    4,
+    6,
+    7,
+    9,
+    19,
+    21,
+    24,
+    8
+   ],
+   "agents": [
+    "Jungle Pocket",
+    "Maruzensky"
+   ],
+   "en": "Jungle Pocket & Maruzensky"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2023-05-29",
+   "end": "2023-06-09",
+   "rev": 5.56,
+   "yrank": 27,
+   "ytot": 42,
+   "cum": 127,
+   "cumtot": 221,
+   "year": 2023,
+   "related": "★3 [Sweet Juneberry]ニシノフラワー, ★3 [Hungry Veil]ヒシアマゾン / SSR [Something Blue]ダイワスカーレット, SSR [オートクチュール・メモリー]アストンマーチャン",
+   "banner_img": "https://pbs.twimg.com/media/FwZjWWSaEAErk1z.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    8,
+    2,
+    6,
+    16,
+    30,
+    34,
+    39,
+    44,
+    48,
+    50,
+    54,
+    39
+   ],
+   "agents": [
+    "Nishino Flower",
+    "Daiwa Scarlet",
+    "Aston Machan"
+   ],
+   "en": "Nishino Flower & Daiwa Scarlet & Aston Machan"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2023-06-09",
+   "end": "2023-06-19",
+   "rev": 2.15,
+   "yrank": 39,
+   "ytot": 42,
+   "cum": 188,
+   "cumtot": 221,
+   "year": 2023,
+   "related": "★3 [Bubblegum☆Memories]タイキシャトル, ★3 [Fluttertail Spirit]ヤマニンゼファー / SSR [All'alba vincerò!]テイエムオペラオー, SR [夕立の向こうからのぞく]サイレンススズカ",
+   "banner_img": "https://pbs.twimg.com/media/Fx7auzBaQAAN_bd.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    39,
+    9,
+    17,
+    27,
+    43,
+    52,
+    66,
+    72,
+    82,
+    76,
+    55
+   ],
+   "agents": [
+    "Taiki Shuttle",
+    "T.M. Opera O",
+    "Silence Suzuka"
+   ],
+   "en": "Taiki Shuttle & T.M. Opera O & Silence Suzuka"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2023-06-19",
+   "end": "2023-06-29",
+   "rev": 13.11,
+   "yrank": 12,
+   "ytot": 42,
+   "cum": 68,
+   "cumtot": 221,
+   "year": 2023,
+   "related": "★3 [☆キラ★ドキ☆ワク∞マベ∞]マーベラスサンデー / SSR [Chill chill night*]マヤノトップガン, SR [ラッキーの神様は早起き！]コパノリッキー, R [トレセン学園]コパノリッキー",
+   "banner_img": "https://pbs.twimg.com/media/Fy9DWFCaYAEUsBf.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    55,
+    1,
+    1,
+    2,
+    7,
+    7,
+    10,
+    13,
+    17,
+    19,
+    22
+   ],
+   "agents": [
+    "Mayano Top Gun",
+    "Copano Rickey"
+   ],
+   "en": "Mayano Top Gun & Copano Rickey"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2023-06-29",
+   "end": "2023-07-10",
+   "rev": 5.75,
+   "yrank": 26,
+   "ytot": 42,
+   "cum": 120,
+   "cumtot": 221,
+   "year": 2023,
+   "related": "★3 [Ultra☆Marine]バンブーメモリー, ★3 [Aurore☆Vacances]トーセンジョーダン / SSR [優しい月]ゴールドシチー, SSR [カモメのように]メジロパーマー",
+   "banner_img": "https://pbs.twimg.com/media/FzwjFs4acAIwSGN.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    22,
+    3,
+    12,
+    15,
+    16,
+    20,
+    25,
+    26,
+    31,
+    32,
+    29,
+    20
+   ],
+   "agents": [
+    "Bamboo Memory",
+    "Gold City",
+    "Mejiro Palmer"
+   ],
+   "en": "Bamboo Memory & Gold City & Mejiro Palmer"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2023-07-10",
+   "end": "2023-07-21",
+   "rev": 9.17,
+   "yrank": 15,
+   "ytot": 42,
+   "cum": 87,
+   "cumtot": 221,
+   "year": 2023,
+   "related": "★3 [登竜之頂]カツラギエース / SSR [嗚呼華麗ナル一族]ダイイチルビー, SSR [TT Ignition!]ツインターボ",
+   "banner_img": "https://pbs.twimg.com/media/F0pM84-aEAARysf.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    20,
+    4,
+    8,
+    15,
+    29,
+    51,
+    51,
+    5,
+    5,
+    7,
+    10,
+    14
+   ],
+   "agents": [
+    "Daiichi Ruby",
+    "Twin Turbo"
+   ],
+   "en": "Daiichi Ruby & Twin Turbo"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2023-07-21",
+   "end": "2023-07-31",
+   "rev": 6.98,
+   "yrank": 21,
+   "ytot": 42,
+   "cum": 101,
+   "cumtot": 221,
+   "year": 2023,
+   "related": "★3 [Féroce]シリウスシンボリ / SSR [ライフロング・ワンダー]ワンダーアキュート, SR [よい茶の飲み置き]グラスワンダー, R [トレセン学園]ワンダーアキュート",
+   "banner_img": "https://pbs.twimg.com/media/F1h2BhSacAAzN9_.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    14,
+    2,
+    6,
+    11,
+    26,
+    36,
+    52,
+    57,
+    63,
+    59,
+    55
+   ],
+   "agents": [
+    "Wonder Acute",
+    "Grass Wonder"
+   ],
+   "en": "Wonder Acute & Grass Wonder"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2023-07-31",
+   "end": "2023-08-14",
+   "rev": 14.13,
+   "yrank": 9,
+   "ytot": 42,
+   "cum": 63,
+   "cumtot": 221,
+   "year": 2023,
+   "related": "★3 [Lunatic Lab]アグネスタキオン, ★3 [波間のエメラルド]サイレンススズカ / SSR [君と見る泡沫]マンハッタンカフェ, SSR [トばすぜホットサマー！]ジャングルポケット",
+   "banner_img": "https://pbs.twimg.com/media/F2VWFnqbgAMiDjy.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    55,
+    2,
+    3,
+    9,
+    15,
+    22,
+    29,
+    30,
+    37,
+    42,
+    38,
+    49,
+    46,
+    45,
+    28
+   ],
+   "agents": [
+    "Agnes Tachyon",
+    "Manhattan Cafe",
+    "Jungle Pocket"
+   ],
+   "en": "Agnes Tachyon & Manhattan Cafe & Jungle Pocket"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2023-08-14",
+   "end": "2023-08-24",
+   "rev": 3.03,
+   "yrank": 35,
+   "ytot": 42,
+   "cum": 163,
+   "cumtot": 221,
+   "year": 2023,
+   "related": "★3 [陰陽八卦☆開運衣]コパノリッキー, ★3 [スター・ライト・シップ]ホッコータルマエ / SSR [燦爛]メジロラモーヌ, SSR [おセンチ注意報♪]マルゼンスキー",
+   "banner_img": "https://pbs.twimg.com/media/F3dcJCUbkAEuN7y.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    28,
+    7,
+    13,
+    29,
+    45,
+    62,
+    50,
+    51,
+    52,
+    58,
+    43
+   ],
+   "agents": [
+    "Copano Rickey",
+    "Mejiro Ramonu",
+    "Maruzensky"
+   ],
+   "en": "Copano Rickey & Mejiro Ramonu & Maruzensky"
   },
   {
    "name": "2.5th Anniversary プリティーダービーガチャ・サポートカードガチャ",
@@ -753,83 +3107,83 @@
    "en": "Mei Satake & El Condor Pasa"
   },
   {
-   "name": "トゥインクルコレクション プリティーダービーガチャ",
-   "start": "2023-09-11",
-   "end": "2025-01-06",
-   "rev": 142.13,
-   "yrank": 5,
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2023-08-31",
+   "end": "2023-09-11",
+   "rev": 19.21,
+   "yrank": 6,
    "ytot": 42,
-   "cum": 45,
+   "cum": 49,
    "cumtot": 221,
    "year": 2023,
-   "related": "★3[RUN！乱！ランチャー！！]ゴールドシップ,★3[緋色のニュイ・エトワレ]ダイワスカーレット,★3[初晴・青き絢爛]テイエムオペラオー,★3[疾風迅雷]タマモクロス,★3[CODE：グラサージュ]ミホノブルボン,★3[夢ノ金原]イナリワン,★3[Dot-o'-Lantern]メイショウドトウ,★3[Onyx Soldier]シンボリクリスエス",
-   "banner_img": "https://pbs.twimg.com/media/GAOyjpDbUAAWr3r.jpg",
-   "periods": [
-    [
-     "2023-09-11",
-     "2023-10-02"
-    ],
-    [
-     "2023-10-02",
-     "2023-11-01"
-    ],
-    [
-     "2023-11-01",
-     "2023-12-01"
-    ],
-    [
-     "2023-12-01",
-     "2024-01-04"
-    ],
-    [
-     "2024-01-04",
-     "2024-02-01"
-    ],
-    [
-     "2024-02-01",
-     "2024-03-01"
-    ],
-    [
-     "2024-04-01",
-     "2024-05-01"
-    ],
-    [
-     "2024-05-01",
-     "2024-06-03"
-    ],
-    [
-     "2024-06-03",
-     "2024-07-01"
-    ],
-    [
-     "2024-07-01",
-     "2024-08-02"
-    ],
-    [
-     "2024-09-02",
-     "2024-10-01"
-    ],
-    [
-     "2024-10-01",
-     "2024-11-01"
-    ],
-    [
-     "2024-11-01",
-     "2024-12-02"
-    ],
-    [
-     "2024-12-02",
-     "2025-01-06"
-    ]
-   ],
+   "related": "★3 [La mode 564]ゴールドシップ / SSR [鉄火場に咲く菫]ナカヤマフェスタ, SR [お助け大将と小さな魔女]キタサンブラック",
+   "banner_img": "https://pbs.twimg.com/media/F40_C1qbkAEJQVu.jpg",
    "rerun": false,
    "ongoing": false,
-   "agents": [
-    "Gold Ship",
-    "Daiwa Scarlet",
-    "T.M. Opera O"
+   "rank_series": [
+    3,
+    1,
+    2,
+    1,
+    1,
+    2,
+    3,
+    4,
+    3,
+    5,
+    6,
+    3
    ],
-   "en": "Gold Ship & Daiwa Scarlet & T.M. Opera O"
+   "agents": [
+    "Nakayama Festa",
+    "Kitasan Black"
+   ],
+   "en": "Nakayama Festa & Kitasan Black"
+  },
+  {
+   "name": "トゥインクルコレクション プリティーダービーガチャ",
+   "start": "2023-09-11",
+   "end": "2023-10-02",
+   "rev": 10.51,
+   "yrank": 13,
+   "ytot": 42,
+   "cum": 82,
+   "cumtot": 221,
+   "year": 2023,
+   "related": "★3 [花形・弥栄之翠]サトノダイヤモンド, [さざ波フェアレディ]メジロマックイーン, [餓狼]ナリタブライアン, [錦上・大判御輿]キタサンブラック, [ソワレ・ド・シャトン]セイウンスカイ, [Creeping Black]マンハッタンカフェ, [Make up Vampire!]ライスシャワー, [吉兆・初あらし]マチカネフクキタル",
+   "banner_img": "https://pbs.twimg.com/media/F5to4bYagAAyPKB.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    3,
+    1,
+    2,
+    6,
+    10,
+    15,
+    13,
+    6,
+    6,
+    8,
+    3,
+    4,
+    10,
+    15,
+    21,
+    19,
+    18,
+    22,
+    16,
+    3,
+    12,
+    34
+   ],
+   "agents": [
+    "Satono Diamond",
+    "Mejiro McQueen",
+    "Narita Brian"
+   ],
+   "en": "Satono Diamond & Mejiro McQueen & Narita Brian"
   },
   {
    "name": "ピックアッププリティーダービーガチャ・ピックアップサポートカードガチャ",
@@ -883,6 +3237,95 @@
    "en": "Mejiro McQueen & Special Week"
   },
   {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2023-09-29",
+   "end": "2023-10-10",
+   "rev": 7.25,
+   "yrank": 20,
+   "ytot": 42,
+   "cum": 100,
+   "cumtot": 221,
+   "year": 2023,
+   "related": "★3 [Belphegor's Prime]エアシャカール,★3 [Jetblack Automaton]シンボリクリスエス/SSR [フォルトゥーナの喝采]タニノギムレット,SSR [高らかにYO-HO!]タップダンスシチー,R [トレセン学園]タップダンスシチー",
+   "banner_img": "https://pbs.twimg.com/media/F7KVgqbasAAliko.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    16,
+    3,
+    12,
+    34,
+    23,
+    33,
+    50,
+    1,
+    3,
+    7,
+    9,
+    17
+   ],
+   "agents": [
+    "Air Shakur",
+    "Symboli Kris S",
+    "Tanino Gimlet"
+   ],
+   "en": "Air Shakur & Symboli Kris S & Tanino Gimlet"
+  },
+  {
+   "name": "トゥインクルコレクション プリティーダービーガチャ",
+   "start": "2023-10-02",
+   "end": "2023-11-01",
+   "rev": 15.21,
+   "yrank": 8,
+   "ytot": 42,
+   "cum": 60,
+   "cumtot": 221,
+   "year": 2023,
+   "related": "[キセキの白星]オグリキャップ,[猛ル鳴神]タマモクロス,[バカンス・サフィール]メジロドーベル,[ポップス☆ジョーカー]トーセンジョーダン,[Heroic Author]ゼンノロブロイ,[プラタナス・ウィッチ]スイープトウショウ,[コレクト・ショコラティエ]エイシンフラッシュ,[あおぐもサミング]セイウンスカイ",
+   "banner_img": "https://pbs.twimg.com/media/F7ZyN2BaEAAIvH9.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    34,
+    23,
+    33,
+    50,
+    1,
+    3,
+    7,
+    9,
+    17,
+    2,
+    3,
+    8,
+    9,
+    11,
+    14,
+    15,
+    17,
+    10,
+    1,
+    2,
+    5,
+    9,
+    19,
+    22,
+    23,
+    29,
+    34,
+    31,
+    25,
+    6,
+    8
+   ],
+   "agents": [
+    "Oguri Cap",
+    "Tamamo Cross",
+    "Mejiro Dober"
+   ],
+   "en": "Oguri Cap & Tamamo Cross & Mejiro Dober"
+  },
+  {
    "name": "セレクトピックアップ サポートカードガチャ",
    "start": "2023-10-10",
    "end": "2023-10-19",
@@ -909,6 +3352,41 @@
     10
    ],
    "agents": []
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+   "start": "2023-10-19",
+   "end": "2023-10-30",
+   "rev": 6.77,
+   "yrank": 23,
+   "ytot": 42,
+   "cum": 104,
+   "cumtot": 221,
+   "year": 2023,
+   "related": "★3[オニキス・ライン]メジロラモーヌ/SSR [波をかきわけ夢がゆく]ゴールドシップ,SR [とびっきりの金メダル]ナイスネイチャ",
+   "banner_img": "https://pbs.twimg.com/media/F8xU8LqaIAANFNb.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    10,
+    1,
+    2,
+    5,
+    9,
+    19,
+    22,
+    23,
+    29,
+    34,
+    31,
+    25
+   ],
+   "agents": [
+    "Mejiro Ramonu",
+    "Gold Ship",
+    "Nice Nature"
+   ],
+   "en": "Mejiro Ramonu & Gold Ship & Nice Nature"
   },
   {
    "name": "ピックアップ プリティーダービーガチャ,ピックアップ サポートカードガチャ",
@@ -943,6 +3421,60 @@
     "Tsurumaru Tsuyoshi"
    ],
    "en": "Kawakami Princess & Tokai Teio & Tsurumaru Tsuyoshi"
+  },
+  {
+   "name": "トゥインクルコレクション プリティーダービーガチャ",
+   "start": "2023-11-01",
+   "end": "2023-12-01",
+   "rev": 6.92,
+   "yrank": 22,
+   "ytot": 42,
+   "cum": 102,
+   "cumtot": 221,
+   "year": 2023,
+   "related": "★3[スターライトビート]オグリキャップ,[稲荷所縁江戸紫]イナリワン,[あぶそりゅーと☆LOVE]スマートファルコン,[Natural Brilliance]サトノダイヤモンド,[錦上・大判御輿]キタサンブラック,[陰陽八卦☆開運衣]コパノリッキー,[スター･ライト･シップ]ホッコータルマエ,[Butterfly Sting]ワンダーアキュート",
+   "banner_img": "https://pbs.twimg.com/media/F90SK9ybwAAvjEY.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    8,
+    10,
+    20,
+    25,
+    36,
+    44,
+    54,
+    57,
+    51,
+    3,
+    6,
+    10,
+    11,
+    19,
+    24,
+    31,
+    29,
+    34,
+    36,
+    25,
+    3,
+    5,
+    10,
+    20,
+    25,
+    27,
+    23,
+    26,
+    25,
+    22,
+    8
+   ],
+   "agents": [
+    "Oguri Cap",
+    "Inari One",
+    "Smart Falcon"
+   ],
+   "en": "Oguri Cap & Inari One & Smart Falcon"
   },
   {
    "name": "ピックアップ サポートカードガチャ",
@@ -980,37 +3512,15 @@
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
    "start": "2023-11-20",
-   "end": "2024-02-14",
-   "rev": 35.13,
-   "yrank": 4,
+   "end": "2023-11-30",
+   "rev": 3.0,
+   "yrank": 36,
    "ytot": 42,
-   "cum": 39,
+   "cum": 165,
    "cumtot": 221,
    "year": 2023,
-   "related": "★3[結願のしまい華]キタサンブラック/SSR [血脈の胎動]ドゥラメンテ,SSR [百花の願いをこの胸に]サトノダイヤモンド,R [トレセン学園]ドゥラメンテ",
-   "banner_img": "https://pbs.twimg.com/media/GCZ05sWagAAbfe9.jpg",
-   "periods": [
-    [
-     "2023-11-20",
-     "2023-11-30"
-    ],
-    [
-     "2023-12-20",
-     "2023-12-28"
-    ],
-    [
-     "2023-12-28",
-     "2024-01-09"
-    ],
-    [
-     "2024-01-19",
-     "2024-01-31"
-    ],
-    [
-     "2024-01-31",
-     "2024-02-14"
-    ]
-   ],
+   "related": "★3[GLITTER!]タップダンスシチー/SSR [大地と我らのアンサンブル]サウンズオブアース ・SR [長姉は大変？]ヴィルシーナ ・R [トレセン学園]サウンズオブアース ・R [トレセン学園]ヴィルシーナ",
+   "banner_img": "https://pbs.twimg.com/media/F_WIgWHbYAAc7sQ.jpg",
    "rerun": false,
    "ongoing": false,
    "rank_series": [
@@ -1024,90 +3534,13 @@
     23,
     26,
     25,
-    22,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    23,
-    3,
-    6,
-    12,
-    22,
-    31,
-    39,
-    47,
-    50,
-    2,
-    4,
-    5,
-    14,
-    4,
-    4,
-    5,
-    5,
-    7,
-    2,
-    2,
-    3,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    21,
-    2,
-    4,
-    9,
-    16,
-    22,
-    31,
-    32,
-    38,
-    37,
-    33,
-    44,
-    33,
-    11,
-    16,
-    20,
-    28,
-    8,
-    10,
-    18,
-    30,
-    39,
-    46,
-    65,
-    61,
-    61,
-    58
+    22
    ],
    "agents": [
-    "Kitasan Black",
-    "Duramente",
-    "Satono Diamond"
+    "Tap Dance City",
+    "Verxina"
    ],
-   "en": "Kitasan Black & Duramente & Satono Diamond"
+   "en": "Tap Dance City & Verxina"
   },
   {
    "name": "ピックアップ プリティーダービーガチャ/ピックアップ サポートカードガチャ",
@@ -1142,6 +3575,64 @@
     "Mejiro Ramonu"
    ],
    "en": "Mejiro Bright & Mejiro Ramonu"
+  },
+  {
+   "name": "トゥインクルコレクション プリティーダービーガチャ",
+   "start": "2023-12-01",
+   "end": "2024-01-04",
+   "rev": 20.56,
+   "yrank": 5,
+   "ytot": 42,
+   "cum": 45,
+   "cumtot": 221,
+   "year": 2023,
+   "related": "★3[RUN！乱！ランチャー！！]ゴールドシップ,★3[緋色のニュイ・エトワレ]ダイワスカーレット,★3[初晴・青き絢爛]テイエムオペラオー,★3[疾風迅雷]タマモクロス,★3[CODE：グラサージュ]ミホノブルボン,★3[夢ノ金原]イナリワン,★3[Dot-o'-Lantern]メイショウドトウ,★3[Onyx Soldier]シンボリクリスエス",
+   "banner_img": "https://pbs.twimg.com/media/GAOyjpDbUAAWr3r.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    8,
+    13,
+    17,
+    25,
+    41,
+    48,
+    55,
+    64,
+    62,
+    59,
+    46,
+    3,
+    5,
+    9,
+    21,
+    30,
+    34,
+    35,
+    43,
+    23,
+    3,
+    6,
+    12,
+    22,
+    31,
+    39,
+    47,
+    50,
+    2,
+    4,
+    5,
+    14,
+    4,
+    4,
+    5
+   ],
+   "agents": [
+    "Gold Ship",
+    "Daiwa Scarlet",
+    "T.M. Opera O"
+   ],
+   "en": "Gold Ship & Daiwa Scarlet & T.M. Opera O"
   },
   {
    "name": "セレクトピックアップ サポートカードガチャ",
@@ -1203,6 +3694,125 @@
    "en": "Satono Crown"
   },
   {
+   "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
+   "start": "2023-12-20",
+   "end": "2023-12-28",
+   "rev": 2.87,
+   "yrank": 37,
+   "ytot": 42,
+   "cum": 170,
+   "cumtot": 221,
+   "year": 2023,
+   "related": "★3[Grand itinéraire]シュヴァルグラン/SSR [会心のウイニングスマイル]ヴィブロス ・SR [『最強』は作れる！]ロイスアンドロイス・R [トレセン学園]ヴィブロス・R [トレセン学園]ロイスアンドロイス",
+   "banner_img": "https://pbs.twimg.com/media/GBwoGt-bcAAK1oR.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    23,
+    3,
+    6,
+    12,
+    22,
+    31,
+    39,
+    47,
+    50
+   ],
+   "agents": [
+    "Cheval Grand",
+    "Royce and Royce"
+   ],
+   "en": "Cheval Grand & Royce and Royce"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
+   "start": "2023-12-28",
+   "end": "2024-01-09",
+   "rev": 22.5,
+   "yrank": 4,
+   "ytot": 42,
+   "cum": 39,
+   "cumtot": 221,
+   "year": 2023,
+   "related": "★3[結願のしまい華]キタサンブラック/SSR [血脈の胎動]ドゥラメンテ,SSR [百花の願いをこの胸に]サトノダイヤモンド,R [トレセン学園]ドゥラメンテ",
+   "banner_img": "https://pbs.twimg.com/media/GCZ05sWagAAbfe9.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    50,
+    2,
+    4,
+    5,
+    14,
+    4,
+    4,
+    5,
+    5,
+    7,
+    2,
+    2,
+    3
+   ],
+   "agents": [
+    "Kitasan Black",
+    "Duramente",
+    "Satono Diamond"
+   ],
+   "en": "Kitasan Black & Duramente & Satono Diamond"
+  },
+  {
+   "name": "トゥインクルコレクション プリティーダービーガチャ",
+   "start": "2024-01-04",
+   "end": "2024-02-01",
+   "rev": 11.84,
+   "yrank": 6,
+   "ytot": 45,
+   "cum": 73,
+   "cumtot": 221,
+   "year": 2024,
+   "related": "★3[キセキの白星]オグリキャップ,[アマゾネス・ラピス]ヒシアマゾン,[超特急！フルカラー特殊PP]アグネスデジタル,[MELTY GIFT]アイネスフウジン,[Wicked Punk]シンコウウインディ,[黄昏トライアンフ]スマートファルコン,[クリノクロア・ライン]メジロアルダン,[四白流星の襲]ヤエノムテキ",
+   "banner_img": "https://pbs.twimg.com/media/GC93mNUa4AAyF3c.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    5,
+    5,
+    7,
+    2,
+    2,
+    3,
+    1,
+    3,
+    9,
+    13,
+    14,
+    21,
+    22,
+    22,
+    21,
+    21,
+    2,
+    4,
+    9,
+    16,
+    22,
+    31,
+    32,
+    38,
+    37,
+    33,
+    44,
+    33,
+    11
+   ],
+   "agents": [
+    "Oguri Cap",
+    "Hishi Amazon",
+    "Agnes Digital"
+   ],
+   "en": "Oguri Cap & Hishi Amazon & Agnes Digital"
+  },
+  {
    "name": "ピックアップ プリティーダービーガチャ・セレクトピックアップ サポートカードガチャ",
    "start": "2024-01-09",
    "end": "2024-01-19",
@@ -1233,6 +3843,133 @@
     "Nice Nature"
    ],
    "en": "Nice Nature"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
+   "start": "2024-01-19",
+   "end": "2024-01-31",
+   "rev": 4.52,
+   "yrank": 21,
+   "ytot": 45,
+   "cum": 134,
+   "cumtot": 221,
+   "year": 2024,
+   "related": "★3[Voyage étincelant]ヴィブロス/SSR [白い翼は舞い戻りて]ホッコータルマエ,SR [ギャラルホルンを磨き上げよ]タニノギムレット,R [トレセン学園]ホッコータルマエ",
+   "banner_img": "https://pbs.twimg.com/media/GELIGzpbYAAyYMb.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    21,
+    2,
+    4,
+    9,
+    16,
+    22,
+    31,
+    32,
+    38,
+    37,
+    33,
+    44,
+    33
+   ],
+   "agents": [
+    "Vivlos",
+    "Hokko Tarumae",
+    "Tanino Gimlet"
+   ],
+   "en": "Vivlos & Hokko Tarumae & Tanino Gimlet"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
+   "start": "2024-01-31",
+   "end": "2024-02-14",
+   "rev": 2.24,
+   "yrank": 31,
+   "ytot": 45,
+   "cum": 186,
+   "cumtot": 221,
+   "year": 2024,
+   "related": "★3[茶の子雪ん子]ユキノビジン,★3[柳緑小夜]マンハッタンカフェ/SSR[小さな笑顔、2つ]ウイニングチケット,SSR [感謝感謝！サクラ吹雪！！]サクラバクシンオー,R[トレセン学園]ノースフライト",
+   "banner_img": "https://pbs.twimg.com/media/GFI6jOeaEAAxK6-.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    33,
+    11,
+    16,
+    20,
+    28,
+    8,
+    10,
+    18,
+    30,
+    39,
+    46,
+    65,
+    61,
+    61,
+    58
+   ],
+   "agents": [
+    "Yukino Bijin",
+    "Manhattan Cafe",
+    "Winning Ticket"
+   ],
+   "en": "Yukino Bijin & Manhattan Cafe & Winning Ticket"
+  },
+  {
+   "name": "トゥインクルコレクション プリティーダービーガチャ",
+   "start": "2024-02-01",
+   "end": "2024-03-01",
+   "rev": 18.08,
+   "yrank": 3,
+   "ytot": 45,
+   "cum": 53,
+   "cumtot": 221,
+   "year": 2024,
+   "related": "★3[シュクセ・エトワーレ]フジキセキ,★3[ワイルド・フロンティア]タイキシャトル,★3[朔月のマ・シェリ]カレンチャン,★3[Rocket☆Star]シーキングザパール,★3[ティアード・ペタル]ニシノフラワー,★3[黒鉄の大志]バンブーメモリー,★3[Fluttertail Spirit]ヤマニンゼファー,★3[Flare]アストンマーチャン",
+   "banner_img": "https://pbs.twimg.com/media/GFOENj4bQAAHJrN.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    11,
+    16,
+    20,
+    28,
+    8,
+    10,
+    18,
+    30,
+    39,
+    46,
+    65,
+    61,
+    61,
+    58,
+    6,
+    8,
+    15,
+    20,
+    25,
+    27,
+    29,
+    28,
+    35,
+    16,
+    1,
+    1,
+    1,
+    1,
+    1,
+    3
+   ],
+   "agents": [
+    "Fuji Kiseki",
+    "Taiki Shuttle",
+    "Curren Chan"
+   ],
+   "en": "Fuji Kiseki & Taiki Shuttle & Curren Chan"
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・3rd Anniv.セレクトピックアップ サポートカードガチャ",
@@ -1355,8 +4092,8 @@
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
    "start": "2024-03-21",
-   "end": "2024-06-13",
-   "rev": 22.9903,
+   "end": "2024-03-29",
+   "rev": 11.64,
    "yrank": 8,
    "ytot": 45,
    "cum": 76,
@@ -1364,32 +4101,6 @@
    "year": 2024,
    "related": "★3[Dream Successor]ラインクラト/SSR[Over the Ocean]シュヴァルグラン,SR [Cheers!]タップダンスシチー,R [トレセン学園]シュヴァルグラン,R [トレセン学園]ラインクラフト",
    "banner_img": "https://pbs.twimg.com/media/GJKZ-6-awAAQz80.jpg",
-   "periods": [
-    [
-     "2024-03-21",
-     "2024-03-29"
-    ],
-    [
-     "2024-03-29",
-     "2024-04-09"
-    ],
-    [
-     "2024-04-09",
-     "2024-04-19"
-    ],
-    [
-     "2024-04-30",
-     "2024-05-10"
-    ],
-    [
-     "2024-05-10",
-     "2024-05-20"
-    ],
-    [
-     "2024-05-30",
-     "2024-06-13"
-    ]
-   ],
    "rerun": false,
    "ongoing": false,
    "rank_series": [
@@ -1401,9 +4112,65 @@
     4,
     7,
     9,
+    8
+   ],
+   "agents": [
+    "Rhein Kraft",
+    "Cheval Grand",
+    "Tap Dance City"
+   ],
+   "en": "Rhein Kraft & Cheval Grand & Tap Dance City"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
+   "start": "2024-03-29",
+   "end": "2024-04-09",
+   "rev": 4.22,
+   "yrank": 22,
+   "ytot": 45,
+   "cum": 135,
+   "cumtot": 221,
+   "year": 2024,
+   "related": "★3[Flowing Blue]ダイイチルビー,★3[Joyful Jamboree!]ダイタクヘリオス/SSR [白い鳥のアラベスク]ケイエスミラクル,SSR [浚いの風]ヤマニンゼファー",
+   "banner_img": "https://pbs.twimg.com/media/GJzm04ObAAAQ6vm.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
     8,
     3,
     11,
+    19,
+    19,
+    22,
+    32,
+    41,
+    48,
+    43,
+    43,
+    35
+   ],
+   "agents": [
+    "Daiichi Ruby",
+    "Daitaku Helios",
+    "K.S.Miracle"
+   ],
+   "en": "Daiichi Ruby & Daitaku Helios & K.S.Miracle"
+  },
+  {
+   "name": "トゥインクルコレクション プリティーダービーガチャ",
+   "start": "2024-04-01",
+   "end": "2024-05-01",
+   "rev": 3.02,
+   "yrank": 28,
+   "ytot": 45,
+   "cum": 164,
+   "cumtot": 221,
+   "year": 2024,
+   "related": "★3マルゼンスキー,★3タイキシャトル,★3エルコンドルパサー,★3エアグルーヴ,★3ファインモーション,★3ユキノビジン,★3ゴールドシチー,★3メジロドーベル",
+   "banner_img": "https://pbs.twimg.com/media/GKDDrDZaAAADM4y.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
     19,
     19,
     22,
@@ -1423,68 +4190,54 @@
     96,
     95,
     77,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    46,
-    11,
-    20,
-    24,
-    34,
-    42,
-    41,
-    41,
-    28,
-    23,
-    27,
-    11,
-    21,
-    36,
-    55,
-    68,
-    74,
-    80,
-    94,
-    88,
-    69,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    23,
-    3,
-    8,
-    11,
+    9,
     14,
-    11,
-    13,
-    16,
-    26,
-    32,
-    32,
+    20,
+    39,
+    46,
+    14,
     27,
+    44,
+    54,
+    57,
+    46,
+    11
+   ],
+   "agents": []
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
+   "start": "2024-04-09",
+   "end": "2024-04-19",
+   "rev": 0.6911,
+   "yrank": 45,
+   "ytot": 45,
+   "cum": 221,
+   "cumtot": 221,
+   "year": 2024,
+   "related": "★3[Glorious Coat]ウイニングチケット/SSR [V.E.R.2285のあなたへ]ネオユニヴァース,SR [道端フィードバック]エアシャカール,R [トレセン学園]ネオユニヴァース",
+   "banner_img": "https://pbs.twimg.com/media/GKsQWzWbgAEH1az.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    35,
+    13,
     31,
-    29,
-    18
+    52,
+    76,
+    77,
+    83,
+    90,
+    96,
+    95,
+    77
    ],
    "agents": [
-    "Rhein Kraft",
-    "Cheval Grand",
-    "Tap Dance City"
+    "Winning Ticket",
+    "Neo Universe",
+    "Air Shakur"
    ],
-   "en": "Rhein Kraft & Cheval Grand & Tap Dance City"
+   "en": "Winning Ticket & Neo Universe & Air Shakur"
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・セレクトピックアップ サポートカードガチャ",
@@ -1558,6 +4311,211 @@
     "North Flight"
    ],
    "en": "North Flight"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
+   "start": "2024-04-30",
+   "end": "2024-05-10",
+   "rev": 1.45,
+   "yrank": 35,
+   "ytot": 45,
+   "cum": 203,
+   "cumtot": 221,
+   "year": 2024,
+   "related": "★3[慈雨華影]スーパークリーク,★3[黒将Zen]ヤエノムテキ/SSR [わーく・あ・みらくる！]ヒシミラクル,SSR [Take Them Down!]ナリタタイシン,R [トレセン学園]ヒシミラクル,R [トレセン学園]ノーリーズン",
+   "banner_img": "https://pbs.twimg.com/media/GMYZdhbakAAL7Kn.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    46,
+    11,
+    20,
+    24,
+    34,
+    42,
+    41,
+    41,
+    28,
+    23,
+    27
+   ],
+   "agents": [
+    "Super Creek",
+    "Yaeno Muteki",
+    "Hishi Miracle"
+   ],
+   "en": "Super Creek & Yaeno Muteki & Hishi Miracle"
+  },
+  {
+   "name": "トゥインクルコレクション プリティーダービーガチャ",
+   "start": "2024-05-01",
+   "end": "2024-06-03",
+   "rev": 6.87,
+   "yrank": 13,
+   "ytot": 45,
+   "cum": 103,
+   "cumtot": 221,
+   "year": 2024,
+   "related": "★3メジロマックイーン,★3ナリタブライアン,★3セイウンスカイ,★3ミスターシービー,★3メジロパーマー,★3サトノダイヤモンド,★3サクラローレル,★3ヒシミラクル",
+   "banner_img": "https://pbs.twimg.com/media/GMdjMCAb0AAZIdm.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    11,
+    20,
+    24,
+    34,
+    42,
+    41,
+    41,
+    28,
+    23,
+    27,
+    11,
+    21,
+    36,
+    55,
+    68,
+    74,
+    80,
+    94,
+    88,
+    69,
+    4,
+    9,
+    15,
+    35,
+    5,
+    8,
+    11,
+    17,
+    26,
+    23,
+    3,
+    8,
+    11,
+    14
+   ],
+   "agents": []
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
+   "start": "2024-05-10",
+   "end": "2024-05-20",
+   "rev": 0.9392,
+   "yrank": 43,
+   "ytot": 45,
+   "cum": 218,
+   "cumtot": 221,
+   "year": 2024,
+   "related": "★3[Σ Experiment]アグネスタキオン/SSR [明日のライド・オン]ウオッカ,SR[ぬりぬりシェイプアップ！]ダンツフレーム,R [トレセン学園]ダンツフレーム",
+   "banner_img": "https://pbs.twimg.com/media/GNL5axNbAAAugcJ.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    27,
+    11,
+    21,
+    36,
+    55,
+    68,
+    74,
+    80,
+    94,
+    88,
+    69
+   ],
+   "agents": [
+    "Agnes Tachyon",
+    "Vodka",
+    "Dantsu Flame"
+   ],
+   "en": "Agnes Tachyon & Vodka & Dantsu Flame"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
+   "start": "2024-05-30",
+   "end": "2024-06-13",
+   "rev": 4.05,
+   "yrank": 23,
+   "ytot": 45,
+   "cum": 138,
+   "cumtot": 221,
+   "year": 2024,
+   "related": "★3[Evergreen Identity]キングヘイロー,★3[リアライズ・ルーン]スイープトウショウ/SSR [アルストロメリアの夢]ヴィブロス,SSR [幸福の匂いにまどろむ]セイウンスカイ",
+   "banner_img": "https://pbs.twimg.com/media/GOy5QkhacAAqPol.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    23,
+    3,
+    8,
+    11,
+    14,
+    11,
+    13,
+    16,
+    26,
+    32,
+    32,
+    27,
+    31,
+    29,
+    18
+   ],
+   "agents": [
+    "King Halo",
+    "Sweep Tosho",
+    "Vivlos"
+   ],
+   "en": "King Halo & Sweep Tosho & Vivlos"
+  },
+  {
+   "name": "トゥインクルコレクション プリティーダービーガチャ",
+   "start": "2024-06-03",
+   "end": "2024-07-01",
+   "rev": 11.49,
+   "yrank": 9,
+   "ytot": 45,
+   "cum": 77,
+   "cumtot": 221,
+   "year": 2024,
+   "related": "★3ウオッカ,★3アイネスフウジン,★3マチカネタンホイザ,★3キタサンブラック,★3サクラチヨノオー,★3シリウスシンボリ,★3タニノギムレット,★3ネオユニヴァース",
+   "banner_img": "https://pbs.twimg.com/media/GPHfsSyakAAcA_j.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    14,
+    11,
+    13,
+    16,
+    26,
+    32,
+    32,
+    27,
+    31,
+    29,
+    18,
+    1,
+    2,
+    8,
+    12,
+    20,
+    23,
+    26,
+    34,
+    38,
+    35,
+    31,
+    40,
+    23,
+    1,
+    1,
+    2,
+    6,
+    7
+   ],
+   "agents": []
   },
   {
    "name": "劇場版『ウマ娘』公開記念 プリティーダービーガチャ/セレクトピックアップ サポートカードガチャ",
@@ -1642,6 +4600,57 @@
    "en": "Dream Journey & Yayoi Akikawa & Nishino Flower"
   },
   {
+   "name": "トゥインクルコレクション プリティーダービーガチャ",
+   "start": "2024-07-01",
+   "end": "2024-08-02",
+   "rev": 6.51,
+   "yrank": 14,
+   "ytot": 45,
+   "cum": 105,
+   "cumtot": 221,
+   "year": 2024,
+   "related": "★3マルゼンスキー,★3オグリキャップ,★3エルコンドルパサー,★3アグネスデジタル,★3イナリワン,★3スマートファルコン,★3コパノリッキー,★3ワンダーアキュート",
+   "banner_img": "https://pbs.twimg.com/media/GT3VJdIbwAAZtTy.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    7,
+    6,
+    8,
+    6,
+    8,
+    9,
+    9,
+    11,
+    18,
+    10,
+    15,
+    19,
+    23,
+    25,
+    31,
+    33,
+    33,
+    32,
+    24,
+    3,
+    7,
+    9,
+    23,
+    26,
+    17,
+    26,
+    34,
+    37,
+    28,
+    3,
+    8,
+    15,
+    16
+   ],
+   "agents": []
+  },
+  {
    "name": "ピックアップ プリティーダービーガチャ/ピックアップ サポートカードガチャ",
    "start": "2024-07-09",
    "end": "2024-07-19",
@@ -1710,165 +4719,42 @@
   {
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
    "start": "2024-07-29",
-   "end": "2026-09-11",
-   "rev": 107.1648,
-   "yrank": 4,
+   "end": "2024-08-14",
+   "rev": 3.85,
+   "yrank": 24,
    "ytot": 45,
-   "cum": 69,
+   "cum": 141,
    "cumtot": 221,
    "year": 2024,
-   "related": "★3[Like “ZEER”]ネオユニヴァース,★3[Inlaid Stories]ゼンノロブロイ/SSR[月下のSunshine]タイキシャトル,SSR[悩み事かい？ポニーちゃん]フジキセキ",
-   "banner_img": "https://pbs.twimg.com/media/GWMrgKkaAAAh5M2.jpg",
-   "periods": [
-    [
-     "2024-07-29",
-     "2024-08-14"
-    ],
-    [
-     "2024-08-30",
-     "2024-09-10"
-    ],
-    [
-     "2024-09-30",
-     "2024-10-11"
-    ],
-    [
-     "2024-11-08",
-     "2024-11-18"
-    ],
-    [
-     "2024-11-28",
-     "2024-12-10"
-    ],
-    [
-     "2024-12-10",
-     "2024-12-19"
-    ],
-    [
-     "2024-12-27",
-     "2025-01-10"
-    ],
-    [
-     "2025-01-10",
-     "2025-01-20"
-    ],
-    [
-     "2025-01-31",
-     "2025-02-14"
-    ],
-    [
-     "2025-03-11",
-     "2025-03-21"
-    ],
-    [
-     "2025-03-31",
-     "2025-04-10"
-    ],
-    [
-     "2025-04-10",
-     "2025-04-21"
-    ],
-    [
-     "2025-04-30",
-     "2025-05-12"
-    ],
-    [
-     "2025-05-12",
-     "2025-05-21"
-    ],
-    [
-     "2025-05-30",
-     "2025-06-13"
-    ],
-    [
-     "2025-07-11",
-     "2025-07-22"
-    ],
-    [
-     "2025-07-31",
-     "2025-08-14"
-    ],
-    [
-     "2025-08-29",
-     "2025-09-09"
-    ],
-    [
-     "2025-09-09",
-     "2025-09-19"
-    ],
-    [
-     "2025-09-29",
-     "2025-10-10"
-    ],
-    [
-     "2025-10-10",
-     "2025-10-20"
-    ],
-    [
-     "2025-11-10",
-     "2025-11-19"
-    ],
-    [
-     "2025-11-28",
-     "2025-12-11"
-    ],
-    [
-     "2025-12-26",
-     "2026-01-08"
-    ],
-    [
-     "2026-01-08",
-     "2026-01-19"
-    ],
-    [
-     "2026-01-30",
-     "2026-02-14"
-    ],
-    [
-     "2026-03-12",
-     "2026-03-19"
-    ],
-    [
-     "2026-03-30",
-     "2026-04-10"
-    ],
-    [
-     "2026-04-10",
-     "2026-04-20"
-    ],
-    [
-     "2026-04-30",
-     "2026-05-11"
-    ],
-    [
-     "2026-05-11",
-     "2026-05-20"
-    ],
-    [
-     "2026-05-29",
-     "2026-06-15"
-    ],
-    [
-     "2026-07-10",
-     "2026-07-21"
-    ],
-    [
-     "2026-07-30",
-     "2026-08-14"
-    ],
-    [
-     "2026-08-31",
-     "2026-09-11"
-    ]
-   ],
+   "related": "★3[Reines Plätschern]エイシンフラッシュ,★3[パステルマリン・ロコドル]ホッコータルマエ/SSR [波間のオフショット]スマートファルコン,SSR [Lucky☆Summertime]コパノリッキー",
+   "banner_img": "https://pbs.twimg.com/media/GTn4bY5bwAAA4I9.jpg",
    "rerun": false,
-   "ongoing": true,
-   "agents": [
-    "Neo Universe",
-    "Zenno Rob Roy",
-    "Taiki Shuttle"
+   "ongoing": false,
+   "rank_series": [
+    28,
+    3,
+    8,
+    15,
+    16,
+    23,
+    28,
+    36,
+    44,
+    46,
+    55,
+    67,
+    65,
+    67,
+    59,
+    50,
+    43
    ],
-   "en": "Neo Universe & Zenno Rob Roy & Taiki Shuttle"
+   "agents": [
+    "Eishin Flash",
+    "Hokko Tarumae",
+    "Smart Falcon"
+   ],
+   "en": "Eishin Flash & Hokko Tarumae & Smart Falcon"
   },
   {
    "name": "3.5th Anniv.セレクトピックアップ サポートカードガチャ",
@@ -1972,6 +4858,89 @@
    "en": "Gentildonna & Still in Love & Marvelous Sunday Time☆★"
   },
   {
+   "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
+   "start": "2024-08-30",
+   "end": "2024-09-10",
+   "rev": 13.08,
+   "yrank": 4,
+   "ytot": 45,
+   "cum": 69,
+   "cumtot": 221,
+   "year": 2024,
+   "related": "★3[Like “ZEER”]ネオユニヴァース,★3[Inlaid Stories]ゼンノロブロイ/SSR[月下のSunshine]タイキシャトル,SSR[悩み事かい？ポニーちゃん]フジキセキ",
+   "banner_img": "https://pbs.twimg.com/media/GWMrgKkaAAAh5M2.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    6,
+    4,
+    7,
+    1,
+    1,
+    1,
+    5,
+    8,
+    9,
+    7,
+    7,
+    8
+   ],
+   "agents": [
+    "Neo Universe",
+    "Zenno Rob Roy",
+    "Taiki Shuttle"
+   ],
+   "en": "Neo Universe & Zenno Rob Roy & Taiki Shuttle"
+  },
+  {
+   "name": "トゥインクルコレクション プリティーダービーガチャ",
+   "start": "2024-09-02",
+   "end": "2024-10-01",
+   "rev": 11.71,
+   "yrank": 7,
+   "ytot": 45,
+   "cum": 75,
+   "cumtot": 221,
+   "year": 2024,
+   "related": "★3フジキセキ,★3タイキシャトル,★3ファインモーション,★3アイネスフウジン,★3ゴールドシチー,★3ニシノフラワー,★3バンブーメモリー,★3ダイタクヘリオス",
+   "banner_img": "https://pbs.twimg.com/media/GWcILjDXEAAbnny.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    1,
+    1,
+    1,
+    5,
+    8,
+    9,
+    7,
+    7,
+    8,
+    2,
+    6,
+    12,
+    18,
+    23,
+    26,
+    25,
+    29,
+    34,
+    28,
+    2,
+    7,
+    8,
+    11,
+    9,
+    10,
+    18,
+    16,
+    9,
+    8,
+    7
+   ],
+   "agents": []
+  },
+  {
    "name": "メインストーリー第2部中編公開プリティーダービーガチャ・ピックアップ サポートカードガチャ",
    "start": "2024-09-10",
    "end": "2024-09-30",
@@ -2048,6 +5017,94 @@
     "Cesario"
    ],
    "en": "Durandal & El Condor Pasa & Cesario"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
+   "start": "2024-09-30",
+   "end": "2024-10-11",
+   "rev": 1.66,
+   "yrank": 33,
+   "ytot": 45,
+   "cum": 197,
+   "cumtot": 221,
+   "year": 2024,
+   "related": "★3[Be♪Witched]シーキングザパール,★3[ろっきん☆MewMeow]マヤノトップガン/SSR [牙を立て、リフレイン]ヒシアマゾン,SSR [咆哮のアポヤンド]ナリタブライアン",
+   "banner_img": "https://pbs.twimg.com/media/GYsVageaIAAbnfo.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    8,
+    7,
+    15,
+    25,
+    36,
+    50,
+    51,
+    68,
+    81,
+    84,
+    84,
+    77
+   ],
+   "agents": [
+    "Seeking the Pearl",
+    "Mayano Top Gun",
+    "Hishi Amazon"
+   ],
+   "en": "Seeking the Pearl & Mayano Top Gun & Hishi Amazon"
+  },
+  {
+   "name": "トゥインクルコレクション プリティーダービーガチャ",
+   "start": "2024-10-01",
+   "end": "2024-11-01",
+   "rev": 4.81,
+   "yrank": 20,
+   "ytot": 45,
+   "cum": 133,
+   "cumtot": 221,
+   "year": 2024,
+   "related": "★ [ほっぴん♪ビタミンハート]スペシャルウィーク,★3タマモクロス,★3トーセンジョーダン,★3サクラチヨノオー,★3メジロアルダン,★3ヤエノムテキ,★3カツラギエース,★3ネオユニヴァース",
+   "banner_img": "https://pbs.twimg.com/media/GYxeeNoboAA_Lta.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    7,
+    15,
+    25,
+    36,
+    50,
+    51,
+    68,
+    81,
+    84,
+    84,
+    77,
+    17,
+    26,
+    45,
+    67,
+    75,
+    96,
+    104,
+    119,
+    115,
+    92,
+    28,
+    45,
+    65,
+    87,
+    87,
+    78,
+    99,
+    98,
+    2,
+    4,
+    10
+   ],
+   "agents": [
+    "Special Week"
+   ],
+   "en": "Special Week"
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・セレクトピックアップ サポートカードガチャ",
@@ -2174,6 +5231,213 @@
    "en": "Biwa Hayahide & Air Shakur & Daiwa Scarlet"
   },
   {
+   "name": "トゥインクルコレクション プリティーダービーガチャ",
+   "start": "2024-11-01",
+   "end": "2024-12-02",
+   "rev": 5.62,
+   "yrank": 18,
+   "ytot": 45,
+   "cum": 123,
+   "cumtot": 221,
+   "year": 2024,
+   "related": "★3サイレンススズカ,★3ヒシアマゾン,★3メジロライアン,★3カワカミプリンセス,★3マーベラスサンデー,★3メジロドーベル,★3キタサンブラック,★3メジロラモーヌ",
+   "banner_img": "https://pbs.twimg.com/media/GbRIuthbQAAKEXt.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    10,
+    8,
+    9,
+    8,
+    10,
+    10,
+    8,
+    13,
+    11,
+    14,
+    17,
+    21,
+    27,
+    25,
+    34,
+    33,
+    27,
+    10,
+    9,
+    13,
+    22,
+    33,
+    42,
+    35,
+    44,
+    21,
+    18,
+    24,
+    7,
+    14,
+    30,
+    37
+   ],
+   "agents": []
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
+   "start": "2024-11-08",
+   "end": "2024-11-18",
+   "rev": 1.04,
+   "yrank": 42,
+   "ytot": 45,
+   "cum": 214,
+   "cumtot": 221,
+   "year": 2024,
+   "related": "★3[迷光オーヴァライド]ナリタタイシン/SSR [COOL⇔CRAZY/Buddy]シンボリクリスエス,SR [お任せ！オートクチュール]ノースフライト",
+   "banner_img": "https://pbs.twimg.com/media/Gb1LTpWbwAA83x6.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    13,
+    11,
+    14,
+    17,
+    21,
+    27,
+    25,
+    34,
+    33,
+    27,
+    10
+   ],
+   "agents": [
+    "Narita Taishin",
+    "Symboli Kris S",
+    "North Flight"
+   ],
+   "en": "Narita Taishin & Symboli Kris S & North Flight"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
+   "start": "2024-11-28",
+   "end": "2024-12-10",
+   "rev": 1.67,
+   "yrank": 32,
+   "ytot": 45,
+   "cum": 196,
+   "cumtot": 221,
+   "year": 2024,
+   "related": "★3[Celestial Road]ナリタトップロード,★3[Glacialis Vega]アドマイヤベガ/SSR [【告知】新刊あります！]アグネスデジタル,SSR [不屈の遠吠え]メイショウドトウ",
+   "banner_img": "https://pbs.twimg.com/media/GdcK3r-akAAflWh.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    24,
+    7,
+    14,
+    30,
+    37,
+    23,
+    28,
+    41,
+    55,
+    64,
+    64,
+    62,
+    49
+   ],
+   "agents": [
+    "Narita Top Road",
+    "Admire Vega",
+    "Agnes Digital"
+   ],
+   "en": "Narita Top Road & Admire Vega & Agnes Digital"
+  },
+  {
+   "name": "トゥインクルコレクション プリティーダービーガチャ",
+   "start": "2024-12-02",
+   "end": "2025-01-06",
+   "rev": 8.98,
+   "yrank": 11,
+   "ytot": 45,
+   "cum": 88,
+   "cumtot": 221,
+   "year": 2024,
+   "related": "★3トウカイテイオー,★3テイエムオペラオー,★3マンハッタンカフェ,★3エアシャカール,★3メジロパーマー,★3キタサンブラック,★3メジロブライト,★3シンボリクリスエス",
+   "banner_img": "https://pbs.twimg.com/media/GdwwrL-bUAAmXP2.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    37,
+    23,
+    28,
+    41,
+    55,
+    64,
+    64,
+    62,
+    49,
+    7,
+    12,
+    29,
+    46,
+    53,
+    49,
+    23,
+    31,
+    39,
+    7,
+    10,
+    21,
+    29,
+    46,
+    29,
+    40,
+    46,
+    5,
+    6,
+    11,
+    18,
+    25,
+    8,
+    12,
+    18,
+    18,
+    11
+   ],
+   "agents": []
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
+   "start": "2024-12-10",
+   "end": "2024-12-19",
+   "rev": 1.34,
+   "yrank": 39,
+   "ytot": 45,
+   "cum": 209,
+   "cumtot": 221,
+   "year": 2024,
+   "related": "★3[ドラマティック・チュチュ]ウインバリアシオン/SSR[Blast Off!]ブラストワンピース,SR[先陣スプラッシュ！]バブルガムフェロー,R[トレセン学園]ブラストワンピース,R[トレセン学園]バブルガムフェロー",
+   "banner_img": "https://pbs.twimg.com/media/GeZ-CigbwAAZKrs.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    49,
+    7,
+    12,
+    29,
+    46,
+    53,
+    49,
+    23,
+    31,
+    39
+   ],
+   "agents": [
+    "Win Variation",
+    "Blast Onepiece",
+    "Bubble Gum Fellow"
+   ],
+   "en": "Win Variation & Blast Onepiece & Bubble Gum Fellow"
+  },
+  {
    "name": "ピックアップ プリティーダービーガチャ・クリスマス特別セレクトピックアップ サポートカードガチャ",
    "start": "2024-12-19",
    "end": "2024-12-27",
@@ -2202,6 +5466,44 @@
     "Grass Wonder"
    ],
    "en": "Grass Wonder"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
+   "start": "2024-12-27",
+   "end": "2025-01-10",
+   "rev": 7.27,
+   "yrank": 12,
+   "ytot": 45,
+   "cum": 99,
+   "cumtot": 221,
+   "year": 2024,
+   "related": "★3[雅号・墨龍]カツラギエース,★3[絢爛花道歌舞く君]ミスターシービー/SSR [雲煙飛動]シンボリルドルフ,SSR [深窓の少女へ]メジロアルダン",
+   "banner_img": "https://pbs.twimg.com/media/Gfxh8gTaQAE0B5l.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    46,
+    5,
+    6,
+    11,
+    18,
+    25,
+    8,
+    12,
+    18,
+    18,
+    11,
+    9,
+    12,
+    16,
+    13
+   ],
+   "agents": [
+    "Katsuragi Ace",
+    "Mr. C.B.",
+    "Symboli Rudolf"
+   ],
+   "en": "Katsuragi Ace & Mr. C.B. & Symboli Rudolf"
   },
   {
    "name": "トゥインクルコレクション プリティーダービーガチャ・SSR確定スピードガチャ",
@@ -2251,6 +5553,40 @@
    "agents": []
   },
   {
+   "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
+   "start": "2025-01-10",
+   "end": "2025-01-20",
+   "rev": 1.01,
+   "yrank": 40,
+   "ytot": 41,
+   "cum": 215,
+   "cumtot": 221,
+   "year": 2025,
+   "related": "★3[祝ひ寿ぐ神速天女]マルゼンスキー/SSR [飛び立つヴィーナス]シーキングザパール,SR [月下麗人]メジロラモーヌ",
+   "banner_img": "https://pbs.twimg.com/media/Gg5nldOaYAAW2jr.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    13,
+    10,
+    19,
+    28,
+    39,
+    62,
+    68,
+    80,
+    62,
+    61,
+    25
+   ],
+   "agents": [
+    "Maruzensky",
+    "Seeking the Pearl",
+    "Mejiro Ramonu"
+   ],
+   "en": "Maruzensky & Seeking the Pearl & Mejiro Ramonu"
+  },
+  {
    "name": "ピックアップ プリティーダービーガチャ・セレクトピックアップ サポートカードガチャ",
    "start": "2025-01-20",
    "end": "2025-01-31",
@@ -2282,6 +5618,44 @@
     "Furioso"
    ],
    "en": "Furioso"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
+   "start": "2025-01-31",
+   "end": "2025-02-14",
+   "rev": 2.33,
+   "yrank": 26,
+   "ytot": 41,
+   "cum": 182,
+   "cumtot": 221,
+   "year": 2025,
+   "related": "★3[溶けない砂糖菓子]アストンマーチャン,★3[Sugary Wind]ヤマニンゼファー/SSR[Cutest in Ur ♡]カレンチャン,SSR[鉄の乙女も微笑んで]イクノディクタス",
+   "banner_img": "https://pbs.twimg.com/media/GilxCp-bYAE0eA1.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    51,
+    10,
+    19,
+    26,
+    21,
+    29,
+    40,
+    59,
+    73,
+    69,
+    73,
+    79,
+    76,
+    88,
+    83
+   ],
+   "agents": [
+    "Aston Machan",
+    "Yamanin Zephyr",
+    "Curren Chan"
+   ],
+   "en": "Aston Machan & Yamanin Zephyr & Curren Chan"
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・4th Anniv.セレクトピックアップ サポートカードガチャ",
@@ -2410,6 +5784,109 @@
    "en": "Orfevre & Shake The World!! & Almond Eye"
   },
   {
+   "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
+   "start": "2025-03-11",
+   "end": "2025-03-21",
+   "rev": 8.58,
+   "yrank": 4,
+   "ytot": 41,
+   "cum": 90,
+   "cumtot": 221,
+   "year": 2025,
+   "related": "★ [すまいる・まい・うぇい！]グランアレグリア/SSR[春、来たれり]メジロブライト,SR[『しあわせの青いバラ』]ライスシャワー",
+   "banner_img": "https://pbs.twimg.com/media/GlumJMVasAAG4ce.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    10,
+    1,
+    2,
+    4,
+    7,
+    8,
+    8,
+    10,
+    12,
+    7,
+    7
+   ],
+   "agents": [
+    "Gran Alegria",
+    "Mejiro Bright",
+    "Rice Shower"
+   ],
+   "en": "Gran Alegria & Mejiro Bright & Rice Shower"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
+   "start": "2025-03-31",
+   "end": "2025-04-10",
+   "rev": 2.99,
+   "yrank": 20,
+   "ytot": 41,
+   "cum": 166,
+   "cumtot": 221,
+   "year": 2025,
+   "related": "★3[Tap! Tap! Tap!]タップダンスシチー,★3[With a Twist]タニノギムレット/SSR [Ballroom Tempest]ウオッカ,SSR [誘うは夢心地]ドリームジャーニー,R [トレセン学園]ドリームジャーニー",
+   "banner_img": "https://pbs.twimg.com/media/GnVmb5pbcAAyWCo.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    15,
+    7,
+    18,
+    24,
+    37,
+    55,
+    57,
+    65,
+    28,
+    34,
+    40
+   ],
+   "agents": [
+    "Tap Dance City",
+    "Tanino Gimlet",
+    "Vodka"
+   ],
+   "en": "Tap Dance City & Tanino Gimlet & Vodka"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
+   "start": "2025-04-10",
+   "end": "2025-04-21",
+   "rev": 2.06,
+   "yrank": 31,
+   "ytot": 41,
+   "cum": 190,
+   "cumtot": 221,
+   "year": 2025,
+   "related": "★3[Louve stellaire]シリウスシンボリ/SSR [無垢の白妙]デアリングタクト,SR [Daring Music]デアリングハート,R [トレセン学園]デアリングタクト,R [トレセン学園]デアリングハート",
+   "banner_img": "https://pbs.twimg.com/media/GoJGmu7bQAA9gtN.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    40,
+    11,
+    18,
+    24,
+    28,
+    32,
+    35,
+    36,
+    45,
+    59,
+    26,
+    35
+   ],
+   "agents": [
+    "Sirius Symboli",
+    "Daring Tact",
+    "Daring Heart"
+   ],
+   "en": "Sirius Symboli & Daring Tact & Daring Heart"
+  },
+  {
    "name": "ピックアップ プリティーダービーガチャ・セレクトピックアップ サポートカードガチャ",
    "start": "2025-04-21",
    "end": "2025-05-30",
@@ -2479,6 +5956,113 @@
     "Loves Only You"
    ],
    "en": "Loves Only You"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
+   "start": "2025-04-30",
+   "end": "2025-05-12",
+   "rev": 3.81,
+   "yrank": 13,
+   "ytot": 41,
+   "cum": 142,
+   "cumtot": 221,
+   "year": 2025,
+   "related": "★3[光彩陸離☆招福衣]コパノリッキー,★3[ルミナス☆トワラー]スマートファルコン/SSR[繋がれパレード・ノーツ♪]トランセンド,SSR [Luz de ensueño]ブエナビスタ,R [トレセン学園]トランセンド",
+   "banner_img": "https://pbs.twimg.com/media/GpwGhNaaYAERare.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    59,
+    9,
+    15,
+    22,
+    25,
+    30,
+    32,
+    31,
+    34,
+    34,
+    37,
+    37,
+    33
+   ],
+   "agents": [
+    "Copano Rickey",
+    "Smart Falcon",
+    "Transcend"
+   ],
+   "en": "Copano Rickey & Smart Falcon & Transcend"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
+   "start": "2025-05-12",
+   "end": "2025-05-21",
+   "rev": 2.71,
+   "yrank": 23,
+   "ytot": 41,
+   "cum": 173,
+   "cumtot": 221,
+   "year": 2025,
+   "related": "★3[Le beau sommet]ヴィルシーナ/SSR [My Beloved Scenery]サイレンススズカ,SR [一輪ずつ、喜びを束ねて]カレンブーケドール,R [トレセン学園]カレンブーケドール",
+   "banner_img": "https://pbs.twimg.com/media/Gqt473VaIAA9gza.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    33,
+    6,
+    12,
+    21,
+    28,
+    38,
+    38,
+    39,
+    21,
+    22
+   ],
+   "agents": [
+    "Verxina",
+    "Silence Suzuka",
+    "Curren Bouquetd'or"
+   ],
+   "en": "Verxina & Silence Suzuka & Curren Bouquetd'or"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
+   "start": "2025-05-30",
+   "end": "2025-06-13",
+   "rev": 2.22,
+   "yrank": 29,
+   "ytot": 41,
+   "cum": 187,
+   "cumtot": 221,
+   "year": 2025,
+   "related": "★3[Untouchable Eden]メジロラモーヌ,★3[Twinbell Queen]シーザリオ/SSR[Unveiled Dream]ラインクラフト,SSR [Blooming Buds]デアリングハート,R[トレセン学園]エアメサイア",
+   "banner_img": "https://pbs.twimg.com/media/GsKlqBiaUAQgC4b.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    28,
+    13,
+    25,
+    36,
+    29,
+    33,
+    48,
+    64,
+    73,
+    69,
+    71,
+    82,
+    86,
+    87,
+    80
+   ],
+   "agents": [
+    "Mejiro Ramonu",
+    "Cesario",
+    "Rhein Kraft"
+   ],
+   "en": "Mejiro Ramonu & Cesario & Rhein Kraft"
   },
   {
    "name": "セレクトピックアップ サポートカードガチャ",
@@ -2613,6 +6197,41 @@
    "en": "Gold City & Tucker Bryne & Tamamo Cross"
   },
   {
+   "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
+   "start": "2025-07-11",
+   "end": "2025-07-22",
+   "rev": 1.23,
+   "yrank": 39,
+   "ytot": 41,
+   "cum": 211,
+   "cumtot": 221,
+   "year": 2025,
+   "related": "★3[Hello Hello Island]アイネスフウジン/SSR [瞳に闘志を胸に勝利の渇望を]メジロライアン,SR [私たちのプリンセス流儀]カワカミプリンセス",
+   "banner_img": "https://pbs.twimg.com/media/Gvi4oQ6a4AAa7tM.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    26,
+    20,
+    27,
+    30,
+    35,
+    38,
+    44,
+    47,
+    60,
+    30,
+    35,
+    32
+   ],
+   "agents": [
+    "Ines Fujin",
+    "Mejiro Ryan",
+    "Kawakami Princess"
+   ],
+   "en": "Ines Fujin & Mejiro Ryan & Kawakami Princess"
+  },
+  {
    "name": "ピックアップ プリティーダービーガチャ・セレクトピックアップ サポートカードガチャ",
    "start": "2025-07-22",
    "end": "2025-07-31",
@@ -2642,6 +6261,44 @@
     "Fusaichi Pandora"
    ],
    "en": "Fusaichi Pandora"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
+   "start": "2025-07-31",
+   "end": "2025-08-14",
+   "rev": 3.67,
+   "yrank": 16,
+   "ytot": 41,
+   "cum": 148,
+   "cumtot": 221,
+   "year": 2025,
+   "related": "★3[晴島花麗]サトノクラウン ★3[夏凪ネイビードロップ]シュヴァルグラン/SSR[水面のプリンシパル]ウインバリアシオン,SSR [Tranquillo]ドゥラメンテ,R [トレセン学園]ウインバリアシオン",
+   "banner_img": "https://pbs.twimg.com/media/GxJ4PwpaoAA6XNL.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    31,
+    9,
+    16,
+    21,
+    29,
+    39,
+    49,
+    57,
+    75,
+    80,
+    79,
+    75,
+    71,
+    71,
+    64
+   ],
+   "agents": [
+    "Cheval Grand",
+    "Win Variation",
+    "Duramente"
+   ],
+   "en": "Cheval Grand & Win Variation & Duramente"
   },
   {
    "name": "ピックアップ プリティーダービーガチャ・4.5th Anniv.セレクトピックアップ サポートカードガチャ",
@@ -2819,6 +6476,144 @@
    "en": "Still in Love"
   },
   {
+   "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
+   "start": "2025-08-29",
+   "end": "2025-09-09",
+   "rev": 3.52,
+   "yrank": 17,
+   "ytot": 41,
+   "cum": 151,
+   "cumtot": 221,
+   "year": 2025,
+   "related": "★3[秋日色アンダンテ]ケイエスミラクル,★3[ハッピー・リトル・ノーツ]ヒシミラクル/SSR [カルストンライトオ、猫です]カルストンライトオ,SSR [今宵、我が君のために]デュランダル,R [トレセン学園]カルストンライトオ,R [トレセン学園]デュランダル",
+   "banner_img": "https://pbs.twimg.com/media/GzfPX5vaQAAq71C.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    8,
+    9,
+    9,
+    8,
+    6,
+    5,
+    6,
+    8,
+    12,
+    14,
+    13,
+    20
+   ],
+   "agents": [
+    "K.S.Miracle",
+    "Hishi Miracle",
+    "Calstone Light O"
+   ],
+   "en": "K.S.Miracle & Hishi Miracle & Calstone Light O"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
+   "start": "2025-09-09",
+   "end": "2025-09-19",
+   "rev": 1.44,
+   "yrank": 37,
+   "ytot": 41,
+   "cum": 204,
+   "cumtot": 221,
+   "year": 2025,
+   "related": "★3[Red Devil Gear]エスポワールシチー/SSR [Inseparable]ダイイチルビー,SR [ニャンともイカすヒーローさ]ビコーペガサス",
+   "banner_img": "https://pbs.twimg.com/media/G0X4QEQaQAApLhP.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    20,
+    7,
+    9,
+    13,
+    14,
+    17,
+    19,
+    21,
+    19,
+    21,
+    26
+   ],
+   "agents": [
+    "Espoir City",
+    "Daiichi Ruby",
+    "Biko Pegasus"
+   ],
+   "en": "Espoir City & Daiichi Ruby & Biko Pegasus"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
+   "start": "2025-09-29",
+   "end": "2025-10-10",
+   "rev": 2.01,
+   "yrank": 32,
+   "ytot": 41,
+   "cum": 191,
+   "cumtot": 221,
+   "year": 2025,
+   "related": "★3 [マジックナイトガーランド]ヒシアケボノ ,★3 [トリック☆リボネッタ]マーベラスサンデー/SSR [壇上より魔法を込めて]フジキセキ,SSR [Zirkus der Träume]エイシンフラッシュ",
+   "banner_img": "https://pbs.twimg.com/media/G1-3yuoasAEFjxo.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    23,
+    18,
+    27,
+    32,
+    45,
+    64,
+    67,
+    77,
+    37,
+    39,
+    48,
+    66
+   ],
+   "agents": [
+    "Marvelous Sunday Time☆★",
+    "Fuji Kiseki",
+    "Eishin Flash"
+   ],
+   "en": "Marvelous Sunday Time☆★ & Fuji Kiseki & Eishin Flash"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
+   "start": "2025-10-10",
+   "end": "2025-10-20",
+   "rev": 1.34,
+   "yrank": 38,
+   "ytot": 41,
+   "cum": 208,
+   "cumtot": 221,
+   "year": 2025,
+   "related": "★3[Highkey☆Hallowed]トーセンジョーダン/SSR [決意のフローラ]カレンブーケドール,SR [静寂を煎じ]サクラチトセオー,R [トレセン学園]サクラチトセオー",
+   "banner_img": "https://pbs.twimg.com/media/G23g69Ea4AAT6b-.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    66,
+    35,
+    65,
+    80,
+    95,
+    111,
+    126,
+    149,
+    161,
+    147,
+    5
+   ],
+   "agents": [
+    "Tosen Jordan",
+    "Curren Bouquetd'or",
+    "Sakura Chitose O"
+   ],
+   "en": "Tosen Jordan & Curren Bouquetd'or & Sakura Chitose O"
+  },
+  {
    "name": "ジャングルポケット リバイバルピックアップ プリティーダービーガチャ",
    "start": "2025-10-18",
    "end": "2025-10-29",
@@ -2971,6 +6766,39 @@
    "en": "Transcend"
   },
   {
+   "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
+   "start": "2025-11-10",
+   "end": "2025-11-19",
+   "rev": 2.71,
+   "yrank": 22,
+   "ytot": 41,
+   "cum": 172,
+   "cumtot": 221,
+   "year": 2025,
+   "related": "★3[柔灯・湯の香の装い]ワンダーアキュート/SSR [無機の闘志]ミホノブルボン,SR [続け故郷へ、けっぱり道！]ホッコータルマエ",
+   "banner_img": "https://pbs.twimg.com/media/G5XJ9yfakAA54JZ.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    27,
+    2,
+    6,
+    13,
+    21,
+    25,
+    26,
+    27,
+    27,
+    23
+   ],
+   "agents": [
+    "Wonder Acute",
+    "Mihono Bourbon",
+    "Hokko Tarumae"
+   ],
+   "en": "Wonder Acute & Mihono Bourbon & Hokko Tarumae"
+  },
+  {
    "name": "ピックアップ プリティーダービーガチャ・セレクトピックアップ サポートカードガチャ",
    "start": "2025-11-19",
    "end": "2025-11-28",
@@ -3000,6 +6828,43 @@
     "Buena Vista"
    ],
    "en": "Buena Vista"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
+   "start": "2025-11-28",
+   "end": "2025-12-11",
+   "rev": 2.54,
+   "yrank": 24,
+   "ytot": 41,
+   "cum": 176,
+   "cumtot": 221,
+   "year": 2025,
+   "related": "★3[祝祭遊戯]ナカヤマフェスタ,★3 [雪白の夢路]ドリームジャーニー/SSR [激録！爆走トナカイ事件]ゴールドシップ,SSR [ぬくもりのノエル]フェノーメノ,R [トレセン学園]フェノーメノ",
+   "banner_img": "https://pbs.twimg.com/media/G6z3An5aAAEO4Es.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    28,
+    15,
+    20,
+    33,
+    26,
+    31,
+    45,
+    57,
+    59,
+    55,
+    64,
+    70,
+    65,
+    59
+   ],
+   "agents": [
+    "Nakayama Festa",
+    "Dream Journey",
+    "Gold Ship"
+   ],
+   "en": "Nakayama Festa & Dream Journey & Gold Ship"
   },
   {
    "name": "イナリワン登場! ピックアップサポートカードガチャ",
@@ -3202,6 +7067,43 @@
    "en": "Stay Gold"
   },
   {
+   "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
+   "start": "2025-12-26",
+   "end": "2026-01-08",
+   "rev": 2.35,
+   "yrank": 25,
+   "ytot": 41,
+   "cum": 180,
+   "cumtot": 221,
+   "year": 2025,
+   "related": "★3[逍遥、整然たる路を]イクノディクタス,★3[Nouvelle pousse]サクラローレル/SSR[心覚えし、京の華]エアグルーヴ,SSR[ゆかし、きらめきの旅路]ファインモーション",
+   "banner_img": "https://pbs.twimg.com/media/G9EEoh6b0AAzeVF.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    23,
+    9,
+    10,
+    12,
+    21,
+    23,
+    30,
+    9,
+    10,
+    16,
+    17,
+    16,
+    15,
+    14
+   ],
+   "agents": [
+    "Ikuno Dictus",
+    "Sakura Laurel",
+    "Air Groove"
+   ],
+   "en": "Ikuno Dictus & Sakura Laurel & Air Groove"
+  },
+  {
    "name": "ジェンティルドンナ リバイバルピックアップ プリティーダービーガチャ/オルフェーヴル リバイバルピックアップ プリティーダービーガチャ",
    "start": "2026-01-01",
    "end": "2026-01-19",
@@ -3243,6 +7145,41 @@
    "en": "Gentildonna & Orfevre"
   },
   {
+   "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
+   "start": "2026-01-08",
+   "end": "2026-01-19",
+   "rev": 0.973,
+   "yrank": 25,
+   "ytot": 26,
+   "cum": 217,
+   "cumtot": 221,
+   "year": 2026,
+   "related": "★3[暁光]バブルガムフェロー/SSR [私のためのショッピング]キングヘイロー,SR [私たちのアイディアノート]サトノダイヤモンド",
+   "banner_img": "https://pbs.twimg.com/media/G-HAf3XaEAA1ao_.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    14,
+    14,
+    19,
+    25,
+    27,
+    28,
+    35,
+    47,
+    45,
+    47,
+    44,
+    36
+   ],
+   "agents": [
+    "Bubble Gum Fellow",
+    "King Halo",
+    "Satono Diamond"
+   ],
+   "en": "Bubble Gum Fellow & King Halo & Satono Diamond"
+  },
+  {
    "name": "ピックアップ プリティーダービーガチャ・セレクトピックアップ サポートカードガチャ",
    "start": "2026-01-19",
    "end": "2026-01-30",
@@ -3274,6 +7211,45 @@
     "Kiseki"
    ],
    "en": "Kiseki"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
+   "start": "2026-01-30",
+   "end": "2026-02-14",
+   "rev": 2.9,
+   "yrank": 17,
+   "ytot": 26,
+   "cum": 168,
+   "cumtot": 221,
+   "year": 2026,
+   "related": "★3 [Baa Baa Patisserie]タイキシャトル ,★3 [ソナタ・アッラ・メンタ]サウンズオブアース/SSR [吉兆招福チョコ来たる]マチカネフクキタル,SSR [星跨ぐメッセージ]ネオユニヴァース",
+   "banner_img": "https://pbs.twimg.com/media/G_zTkizbYAAFAt0.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    58,
+    31,
+    46,
+    54,
+    41,
+    49,
+    68,
+    82,
+    99,
+    102,
+    103,
+    114,
+    125,
+    118,
+    133,
+    143
+   ],
+   "agents": [
+    "Sounds of Earth",
+    "Matikanefukukitaru",
+    "Neo Universe"
+   ],
+   "en": "Sounds of Earth & Matikanefukukitaru & Neo Universe"
   },
   {
    "name": "5th Anniv.セレクトピックアップ サポートカードガチャ",
@@ -3389,6 +7365,37 @@
    "en": "Almond Eye"
   },
   {
+   "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
+   "start": "2026-03-12",
+   "end": "2026-03-19",
+   "rev": 3.63,
+   "yrank": 10,
+   "ytot": 26,
+   "cum": 149,
+   "cumtot": 221,
+   "year": 2026,
+   "related": "★3[Love-Linked Aster]ラヴズオンリーユー/SSR [響け、二人の凱歌]マルシュロレーヌ,SR [温もりの一皿、召し上がれ♪]スーパークリーク,R [トレセン学園]マルシュロレーヌ",
+   "banner_img": "https://pbs.twimg.com/media/HDGStzpaMAAeRCY.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    1,
+    4,
+    9,
+    10,
+    11,
+    15,
+    19,
+    19
+   ],
+   "agents": [
+    "Loves Only You",
+    "Marche Lorraine",
+    "Super Creek"
+   ],
+   "en": "Loves Only You & Marche Lorraine & Super Creek"
+  },
+  {
    "name": "ピックアップ プリティーダービーガチャ・5th Anniv.セレクトピックアップ サポートカードガチャ",
    "start": "2026-03-19",
    "end": "2026-03-30",
@@ -3422,35 +7429,86 @@
    "en": "Victoire Pisa"
   },
   {
-   "name": "ピックアップ プリティーダービーガチャ・セレクトピックアップ サポートカードガチャ",
-   "start": "2026-04-20",
-   "end": "2026-07-30",
-   "rev": 13.12,
-   "yrank": 9,
+   "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
+   "start": "2026-03-30",
+   "end": "2026-04-10",
+   "rev": 3.35,
+   "yrank": 13,
    "ytot": 26,
-   "cum": 140,
+   "cum": 158,
    "cumtot": 221,
    "year": 2026,
-   "related": "★3 [花宿しのクチュール]カレンブーケドール/SSRエアグルーヴ,SSRトウカイテイオー,SSRマチカネフクキタル,SSRエイシンフラッシュ,SSRアドマイヤグルーヴ,SSRフェノーメノ,SSRイナリワン,SSRネオユニヴァース,SSRファインモーション,SSRステイゴールド",
-   "banner_img": "https://pbs.twimg.com/media/HK0rNC1bMAAoUZk.jpg",
-   "periods": [
-    [
-     "2026-04-20",
-     "2026-04-30"
-    ],
-    [
-     "2026-05-20",
-     "2026-05-29"
-    ],
-    [
-     "2026-06-15",
-     "2026-06-29"
-    ],
-    [
-     "2026-07-21",
-     "2026-07-30"
-    ]
+   "related": "★3[春雷の韋駄天]サクラバクシンオー,★3[水縹の一閃]ノースフライト/SSR[白に至る純真]デアリングタクト,SSR[白に至る覚悟]デアリングハート",
+   "banner_img": "https://pbs.twimg.com/media/HEoI1S_aIAAXORt.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    13,
+    10,
+    17,
+    31,
+    48,
+    68,
+    73,
+    77,
+    95,
+    109,
+    109,
+    92
    ],
+   "agents": [
+    "Sakura Bakushin O",
+    "North Flight",
+    "Daring Tact"
+   ],
+   "en": "Sakura Bakushin O & North Flight & Daring Tact"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
+   "start": "2026-04-10",
+   "end": "2026-04-20",
+   "rev": 2.7,
+   "yrank": 19,
+   "ytot": 26,
+   "cum": 174,
+   "cumtot": 221,
+   "year": 2026,
+   "related": "★3[万折不撓の纏]ラッキーライラック/SSR [単焦点でつかまえて]アストンマーチャン,SR [そびえ立つ背中]ヒシアマゾン",
+   "banner_img": "https://pbs.twimg.com/media/HFgyu0_bYAAGX9B.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    92,
+    12,
+    16,
+    26,
+    48,
+    70,
+    77,
+    80,
+    80,
+    91,
+    29
+   ],
+   "agents": [
+    "Lucky Lilac",
+    "Aston Machan",
+    "Hishi Amazon"
+   ],
+   "en": "Lucky Lilac & Aston Machan & Hishi Amazon"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・セレクトピックアップ サポートカードガチャ",
+   "start": "2026-04-20",
+   "end": "2026-04-30",
+   "rev": 3.37,
+   "yrank": 12,
+   "ytot": 26,
+   "cum": 156,
+   "cumtot": 221,
+   "year": 2026,
+   "related": "★3[Glacial Queen]アドマイヤグルーヴ/SSRトウカイテイオー,SSRアーモンドアイ,SSRエイシンフラッシュ,SSRドリームジャーニー,SSRカルストンライトオ,SSRカレンブーケドール,SSRミホノブルボン,SSRタマモクロス,SSRステイゴールド,SSRダイイチルビー",
+   "banner_img": "https://pbs.twimg.com/media/HGUSZusbkAAv-iw.jpg",
    "rerun": false,
    "ongoing": false,
    "rank_series": [
@@ -3464,26 +7522,96 @@
     50,
     66,
     65,
+    60
+   ],
+   "agents": [
+    "Admire Groove"
+   ],
+   "en": "Admire Groove"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
+   "start": "2026-04-30",
+   "end": "2026-05-11",
+   "rev": 5.46,
+   "yrank": 7,
+   "ytot": 26,
+   "cum": 131,
+   "cumtot": 221,
+   "year": 2026,
+   "related": "★3[ヴァーミリオン・ヘッド]ジャングルポケット,★3[ブランシュ・エトワール]フジキセキ/SSR [全てに挑む勇ましき者]アグネスデジタル,SSR [刀光散らしてClash！]タップダンスシチー",
+   "banner_img": "https://pbs.twimg.com/media/HHHx_Lua0AAegcu.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
     60,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
+    12,
+    20,
+    24,
+    27,
+    33,
+    39,
+    34,
+    31,
+    32,
+    36,
+    35
+   ],
+   "agents": [
+    "Jungle Pocket",
+    "Fuji Kiseki",
+    "Agnes Digital"
+   ],
+   "en": "Jungle Pocket & Fuji Kiseki & Agnes Digital"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
+   "start": "2026-05-11",
+   "end": "2026-05-20",
+   "rev": 1.9,
+   "yrank": 23,
+   "ytot": 26,
+   "cum": 194,
+   "cumtot": 221,
+   "year": 2026,
+   "related": "★3[Daring Darling!]デアリングハート/SSR [賑やかな未来を乗せて走れ！]サクラチヨノオー,SR [夕映えに身をゆだねて]メジロアルダン",
+   "banner_img": "https://pbs.twimg.com/media/HIAbYjvbQAAr2Ql.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    35,
+    19,
+    30,
+    57,
+    72,
+    95,
+    85,
+    90,
+    95,
+    28
+   ],
+   "agents": [
+    "Daring Heart",
+    "Sakura Chiyono O",
+    "Mejiro Ardan"
+   ],
+   "en": "Daring Heart & Sakura Chiyono O & Mejiro Ardan"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・セレクトピックアップ サポートカードガチャ",
+   "start": "2026-05-20",
+   "end": "2026-05-29",
+   "rev": 2.55,
+   "yrank": 20,
+   "ytot": 26,
+   "cum": 175,
+   "cumtot": 221,
+   "year": 2026,
+   "related": "★3[Divine Raiment]レッドディザイア/SSRトウカイテイオー,SSRエイシンフラッシュ,SSRアドマイヤグルーヴ.SSRカルストンライトオ,SSRフェノーメノ,SSRドゥラメンテ,SSRネオユニヴァース,SSRミホノブルボン,SSRタマモクロス,SSRステイゴールド",
+   "banner_img": "https://pbs.twimg.com/media/HIuxx3JbYAE64Vv.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
     28,
     11,
     20,
@@ -3493,23 +7621,69 @@
     39,
     46,
     61,
+    62
+   ],
+   "agents": [
+    "Red Desire"
+   ],
+   "en": "Red Desire"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
+   "start": "2026-05-29",
+   "end": "2026-06-15",
+   "rev": 4.16,
+   "yrank": 8,
+   "ytot": 26,
+   "cum": 137,
+   "cumtot": 221,
+   "year": 2026,
+   "related": "★3[幽玄薔薇]マンハッタンカフェ,★3 [La dama perfetta]ジェンティルドンナ/SSR [スマイル・エバーアフター]グランアレグリア,SSR [永久の誓い、永久の輝き]サトノダイヤモンド",
+   "banner_img": "https://pbs.twimg.com/media/HJdIOApaAAAw_Y4.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
     62,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
+    10,
+    13,
+    31,
+    31,
+    43,
+    58,
+    74,
+    86,
+    96,
+    93,
+    93,
+    108,
+    103,
+    111,
+    108,
+    96,
+    85
+   ],
+   "agents": [
+    "Manhattan Cafe",
+    "Gentildonna",
+    "Gran Alegria"
+   ],
+   "en": "Manhattan Cafe & Gentildonna & Gran Alegria"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・セレクトピックアップ サポートカードガチャ",
+   "start": "2026-06-15",
+   "end": "2026-06-29",
+   "rev": 3.9,
+   "yrank": 9,
+   "ytot": 26,
+   "cum": 140,
+   "cumtot": 221,
+   "year": 2026,
+   "related": "★3 [花宿しのクチュール]カレンブーケドール/SSRエアグルーヴ,SSRトウカイテイオー,SSRマチカネフクキタル,SSRエイシンフラッシュ,SSRアドマイヤグルーヴ,SSRフェノーメノ,SSRイナリワン,SSRネオユニヴァース,SSRファインモーション,SSRステイゴールド",
+   "banner_img": "https://pbs.twimg.com/media/HK0rNC1bMAAoUZk.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
     85,
     15,
     19,
@@ -3524,38 +7698,7 @@
     49,
     61,
     82,
-    83,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    36,
-    9,
-    13,
-    31,
-    39,
-    47,
-    57,
-    34,
-    36,
-    48
+    83
    ],
    "agents": [
     "Curren Bouquetd'or"
@@ -3652,6 +7795,110 @@
    "en": "Narita Top Road"
   },
   {
+   "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
+   "start": "2026-07-10",
+   "end": "2026-07-21",
+   "rev": 1.31,
+   "yrank": 24,
+   "ytot": 26,
+   "cum": 210,
+   "cumtot": 221,
+   "year": 2026,
+   "related": "★3 [麺華煌彩伝・極]ファインモーション/SSR [両手いっぱい、小倉愛]ナイスネイチャ,SR [瞬光]カルストンライトオ",
+   "banner_img": "https://pbs.twimg.com/media/HM1bDbFbcAAy5YR.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    30,
+    19,
+    25,
+    32,
+    47,
+    55,
+    56,
+    62,
+    70,
+    64,
+    27,
+    36
+   ],
+   "agents": [
+    "Fine Motion",
+    "Nice Nature",
+    "Calstone Light O"
+   ],
+   "en": "Fine Motion & Nice Nature & Calstone Light O"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・セレクトピックアップ サポートカードガチャ",
+   "start": "2026-07-21",
+   "end": "2026-07-30",
+   "rev": 3.3,
+   "yrank": 14,
+   "ytot": 26,
+   "cum": 159,
+   "cumtot": 221,
+   "year": 2026,
+   "related": "★3[Monochrome GM]ルーラーシップ/SSRエアグルーヴ,SSRトウカイテイオー,SSRアドマイヤグルーヴ,SSRラインクラフト,SSRフェノーメノ,SSRイナリワン,SSRネオユニヴァース,SSRファインモーション,SSRデアリングハート,SSRステイゴールド",
+   "banner_img": "https://pbs.twimg.com/media/HNuEa37aEAAYWDg.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    36,
+    9,
+    13,
+    31,
+    39,
+    47,
+    57,
+    34,
+    36,
+    48
+   ],
+   "agents": [
+    "Rulership"
+   ],
+   "en": "Rulership"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
+   "start": "2026-07-30",
+   "end": "2026-08-14",
+   "rev": 3.43,
+   "yrank": 11,
+   "ytot": 26,
+   "cum": 154,
+   "cumtot": 221,
+   "year": 2026,
+   "related": "★3[渚のきまぐれオランジュ]セイウンスカイ ,★3 [海辺のエレガンスシフォン]メジロブライト/SSR [巻頭カラーの夏]キセキ,SSR [夏空チルタイム]アーモンドアイ.R [トレセン学園]キセキ",
+   "banner_img": "https://pbs.twimg.com/media/HOca5m4bMAA0CfT.jpg",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    48,
+    20,
+    32,
+    54,
+    70,
+    58,
+    74,
+    92,
+    119,
+    127,
+    126,
+    127,
+    129,
+    104,
+    111,
+    117
+   ],
+   "agents": [
+    "Mejiro Bright",
+    "Kiseki"
+   ],
+   "en": "Mejiro Bright & Kiseki"
+  },
+  {
    "name": "ピックアップ プリティーダービーガチャ・5.5th Anniv.セレクトピックアップ サポートカードガチャ",
    "start": "2026-08-14",
    "end": "2026-08-24",
@@ -3745,6 +7992,32 @@
     "Epiphaneia"
    ],
    "en": "Epiphaneia"
+  },
+  {
+   "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
+   "start": "2026-08-31",
+   "end": "2026-09-11",
+   "rev": 0.9218,
+   "yrank": 26,
+   "ytot": 26,
+   "cum": 219,
+   "cumtot": 221,
+   "year": 2026,
+   "related": "★3[ガブガブ☆スキャンプ]シンコウウインディ,★3 [剛毅なる紫焔]フェノーメノ/SSR [わたしときみの交換こ♪]ハルウララ,SSR [ちょいワルヒーロー、見参！]ビコーペガサス,R [トレセン学園]サムソンビッグ",
+   "banner_img": "https://pbs.twimg.com/media/HRBNjCtaAAAdDTB.jpg",
+   "rerun": false,
+   "ongoing": true,
+   "rank_series": [
+    12,
+    13,
+    13
+   ],
+   "agents": [
+    "Shinko Windy",
+    "Fenomeno",
+    "Haru Urara"
+   ],
+   "en": "Shinko Windy & Fenomeno & Haru Urara"
   }
  ]
 }
