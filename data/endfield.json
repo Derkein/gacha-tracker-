@@ -622,11 +622,14 @@
     17,
     27
    ],
-   "agents": [],
+   "agents": [
+    "Typhoeus"
+   ],
    "icons": [
     "icons/faces/endfield/2026-09-02-479df0.webp"
    ],
-   "bar": "#8491e1"
+   "bar": "#8491e1",
+   "en": "Typhoeus"
   }
  ]
 }
