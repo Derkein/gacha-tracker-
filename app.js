@@ -526,7 +526,7 @@ function computeSharing(){
     b._share = { days:sharedDays, totalDays:runDays, maxN, revFrac, sharedRev, soloRev,
       on: sharedDays>=SHARE_MIN_DAYS,
       with:[...withMap.entries()].sort((a,c)=>c[1]-a[1])
-              .map(([o,d])=>({name:(o.agents&&o.agents.length?o.agents.join(" & "):o.name), days:d})) };
+              .map(([o,d])=>({o, name:(o.agents&&o.agents.length?o.agents.join(" & "):o.name), days:d})) };
   }
 }
 
@@ -1461,6 +1461,28 @@ function stRankInfo(b){
   };
 }
 
+// ST-valued "shared with concurrent banners" split. The per-banner combined total
+// is game-i's daily shape scaled to Sensor Tower's monthly totals, so it inherits the
+// same solo/shared proportion (_share.revFrac) that game-i's daily rank split produces.
+// "Ran alongside" line as avatar chips (same chip style as the month "Shared with")
+function alongsideChips(sh){
+  const chips=sh.with.map(x=>`<span class="bm-cochip" style="--av-ring:${barColor(x.o)}"><span class="bm-coav">${avatarHTML(x.o)}</span>${esc(x.name)} <span class="muted">${x.days}d</span></span>`).join("");
+  return `<div class="bm-note bm-recon bm-along"><span class="bm-co-l">Ran alongside</span>${chips}</div>`;
+}
+function bannerSTShareBlock(b){
+  const sh=b._share, st=bannerST(b);
+  if(!sh || !sh.on || !st.hasData) return "";
+  const sharedRev=st.total*sh.revFrac, soloRev=st.total-sharedRev;
+  return `<h3>Shared with concurrent banners</h3>
+    <p class="bm-note">The combined figure inherits game-i's daily split — revenue on days two or more banners ran is divided equally between them. This one overlapped <b>${sh.with.length}</b> other banner${sh.with.length>1?"s":""} on <b>${sh.days}</b> of its ${sh.totalDays} days (up to a <b>${sh.maxN}-way</b> split), so the same <b>${Math.round(sh.revFrac*100)}%</b> of its combined total falls in shared days.</p>
+    <div class="bm-stats bm-share3">
+      <div class="bm-stat"><span class="l">On its own</span><span class="v">≈${fmtUSD(soloRev)}</span></div>
+      <div class="bm-stat"><span class="l">While shared</span><span class="v">≈${fmtUSD(sharedRev)}</span></div>
+      <div class="bm-stat sum"><span class="l">Total${st.partial?" so far":""}</span><span class="v">≈${fmtUSD(st.total)}</span></div>
+    </div>
+    ${alongsideChips(sh)}`;
+}
+
 // Sensor Tower view for the banner modal: ST-valued stat tiles + the detailed month breakdown
 function bannerSTView(b){
   const st=bannerST(b);
@@ -1472,7 +1494,7 @@ function bannerSTView(b){
     [`${b.year} rank ($)`, `#${r.yrank} / ${r.ytot}`],
     ["Covered months", `${st.covered}${st.missing?` <span class="muted" style="font-size:12px">/ ${st.covered+st.missing}</span>`:""}`],
   ].map(([l,v])=>`<div class="bm-stat"><span class="l">${l}</span><span class="v">${v}</span></div>`).join("");
-  return `<div class="bm-stats">${tiles}</div>${bannerSTBlock(b)}`;
+  return `<div class="bm-stats">${tiles}</div>${bannerSTBlock(b)}${bannerSTShareBlock(b)}`;
 }
 
 function openBanner(b){
@@ -1549,7 +1571,6 @@ function openBanner(b){
   const sh=b._share;
   let shareBlock="";
   if(sh&&sh.on){
-    const names=sh.with.map(x=>`${esc(x.name)} <span class="muted">(${x.days}d)</span>`).join(", ");
     shareBlock=`<h3>Shared with concurrent banners</h3>
       <p class="bm-note">game-i splits each day's revenue equally among every banner running that day. This one overlapped <b>${sh.with.length}</b> other banner${sh.with.length>1?"s":""} on <b>${sh.days}</b> of its ${sh.totalDays} days — up to a <b>${sh.maxN}-way</b> split. The hatched part of its bar (and the hatched days below) mark that portion.</p>
       <div class="bm-stats bm-share3">
@@ -1557,7 +1578,7 @@ function openBanner(b){
         <div class="bm-stat"><span class="l">While shared</span><span class="v">${G(sh.sharedRev)}</span></div>
         <div class="bm-stat sum"><span class="l">Total</span><span class="v">${G(b.rev)}</span></div>
       </div>
-      <p class="bm-note bm-recon">Ran alongside: ${names}</p>`;
+      ${alongsideChips(sh)}`;
   }
 
   const bd=dailyBreakdown(b);

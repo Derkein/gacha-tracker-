@@ -362,6 +362,8 @@ tr.clk{cursor:pointer} tr.clk:hover td{background:var(--track)}
 .bm-share3 .bm-stat.sum{border-color:var(--accent)}
 .bm-share3 .bm-stat.sum .v{color:var(--accent)}
 .bm-recon{border-left:2px solid var(--accent); padding-left:9px !important}
+.bm-along{display:flex; flex-wrap:wrap; align-items:center; gap:6px}
+.bm-along .bm-co-l{margin-right:1px}
 /* Sensor Tower per-month breakdown in the banner modal */
 .bm-stmlist{display:flex; flex-direction:column; gap:6px; margin:4px 0 8px}
 .bm-stm{background:var(--surface2); border:1px solid var(--border); border-radius:10px; padding:8px 11px}
