@@ -4,13 +4,13 @@
  "jp": "崩壊：スターレイル",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E5%B4%A9%E5%A3%8A%EF%BC%9A%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%AC%E3%82%A4%E3%83%AB",
- "updated": "2026-09-06T04:58:21Z",
+ "updated": "2026-09-06T17:36:26Z",
  "count": 61,
  "now": {
   "ios": 41,
   "android": 17,
-  "month": 33,
-  "next_add": 23316989,
+  "month": 35,
+  "next_add": 22474206,
   "ym": "2026/09",
   "ranks": {
    "prev": [
@@ -53,7 +53,7 @@
     44,
     50,
     46,
-    null,
+    43,
     null,
     null,
     null,
@@ -82,7 +82,7 @@
   }
  },
  "monthly": {
-  "2026-09": 2.48,
+  "2026-09": 2.7,
   "2026-08": 11.87,
   "2026-07": 16.85,
   "2026-06": 13.4,
@@ -1403,7 +1403,7 @@
    "rev": 8.46,
    "yrank": 15,
    "ytot": 17,
-   "cum": 46,
+   "cum": 47,
    "cumtot": 62,
    "year": 2024,
    "related": "黄泉、アベンチュリン、三月なのか、ペラ、サンポ",
@@ -2828,9 +2828,9 @@
    "start": "2026-07-15",
    "end": "2026-08-25",
    "rev": 10.5,
-   "yrank": 7,
+   "yrank": 8,
    "ytot": 16,
-   "cum": 45,
+   "cum": 46,
    "cumtot": 62,
    "year": 2026,
    "related": "火花、丹恒・騰荒、長夜月",
@@ -2964,10 +2964,10 @@
    "name": "ロビン・夏空の歌",
    "start": "2026-08-26",
    "end": "2026-09-12",
-   "rev": 8.33,
-   "yrank": 8,
+   "rev": 8.54,
+   "yrank": 7,
    "ytot": 16,
-   "cum": 47,
+   "cum": 45,
    "cumtot": 62,
    "year": 2026,
    "related": "ヒアンシー",
@@ -2986,7 +2986,8 @@
     27,
     44,
     50,
-    46
+    46,
+    43
    ],
    "icons": [
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1512.png"
