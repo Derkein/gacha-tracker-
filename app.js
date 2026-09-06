@@ -1444,16 +1444,37 @@ function bannerSTBlock(b){
       <div class="bm-stm-co"><span class="bm-co-l">Shared the month with</span> ${coStr}</div></div>`;
   }).join("");
   const partial = st.partial
-    ? `<p class="bm-note"><b>Partial run.</b> Sensor Tower covers <b>${st.covered}</b> of the <b>${st.covered+st.missing}</b> months this banner ran — the total below counts only the covered months and will grow as later reports land.</p>`
+    ? `<p class="bm-note"><b>Partial run.</b> Sensor Tower covers <b>${st.covered}</b> of the <b>${st.covered+st.missing}</b> months this banner ran — the total above counts only the covered months and will grow as later reports land.</p>`
     : "";
-  const span = `${per(b.start)} – ${per(b.end)}`;   // the banner's actual run, with day
-  const summary=`<div class="bm-stats bm-stsum">
-    <div class="bm-stat"><span class="l">Covered months</span><span class="v">${st.covered}${st.missing?` <span class="muted" style="font-size:12px">/ ${st.covered+st.missing}</span>`:""}</span></div>
-    <div class="bm-stat"><span class="l">Run span</span><span class="v" style="font-size:12.5px">${span}</span></div>
-    <div class="bm-stat sum"><span class="l">Assumed combined${st.partial?" (so far)":""}</span><span class="v">≈${fmtUSD(st.total)}</span></div></div>`;
-  return head+how+partial+summary+`<div class="bm-stmlist">${rows}</div>`;
+  return head+how+partial+`<div class="bm-stmlist">${rows}</div>`;
 }
 function gameName(){ const g=(state.games||[]).find(x=>x.game===state.tag); return g?g.name:state.tag; }
+
+// rank a banner among all (and its year's) banners by assumed combined ST total
+function stRankInfo(b){
+  const all=(state.data.banners||[]).filter(x=>!x._synthetic && bannerST(x).hasData);
+  const t=bannerST(b).total;
+  const yr=all.filter(x=>x.year===b.year);
+  return {
+    cum: all.filter(x=>bannerST(x).total>t).length+1, cumtot: all.length,
+    yrank: yr.filter(x=>bannerST(x).total>t).length+1, ytot: yr.length,
+  };
+}
+
+// Sensor Tower view for the banner modal: ST-valued stat tiles + the detailed month breakdown
+function bannerSTView(b){
+  const st=bannerST(b);
+  if(!st.hasData) return bannerSTBlock(b);          // no data → just the explanatory block
+  const r=stRankInfo(b);
+  const tiles=[
+    [`Est. revenue${b.ongoing?" so far":st.partial?" (so far)":""}`, `≈${fmtUSD(st.total)}`],
+    ["All-time rank ($)", `#${r.cum} / ${r.cumtot}`],
+    [`${b.year} rank ($)`, `#${r.yrank} / ${r.ytot}`],
+    ["Covered months", `${st.covered}${st.missing?` <span class="muted" style="font-size:12px">/ ${st.covered+st.missing}</span>`:""}`],
+  ].map(([l,v])=>`<div class="bm-stat"><span class="l">${l}</span><span class="v">${v}</span></div>`).join("");
+  return `<div class="bm-stats">${tiles}</div>${bannerSTBlock(b)}`;
+}
+
 function openBanner(b){
   if(b._synthetic){
     const mo=`${MONTHS[+b.start.slice(5,7)-1]} ${b.year}`;
@@ -1550,7 +1571,14 @@ function openBanner(b){
       ${dailyTable(bd)}`;
   }
 
-  $("#bmBody").innerHTML=head+`<div class="bm-stats">${stats}</div>${bannerSTBlock(b)}${curve}${shareBlock}${build}`;
+  const gameiHTML=`<div class="bm-stats">${stats}</div>${curve}${shareBlock}${build}`;
+  const active=state.dataSource==="st"?"st":"gamei";
+  const toggle=`<div class="seg bm-seg" id="bmSrc" role="tablist" aria-label="Data source for this banner">
+    <button data-bmsrc="gamei" class="${active==="gamei"?"on":""}" aria-selected="${active==="gamei"}" title="game-i's JP per-banner revenue estimate">game-i · JP ¥</button>
+    <button data-bmsrc="st" class="${active==="st"?"on":""}" aria-selected="${active==="st"}" title="Assumed combined worldwide revenue from the Sensor Tower monthly reports">Sensor Tower · combined $</button></div>`;
+  $("#bmBody").innerHTML=head+toggle
+    +`<div id="bmGamei"${active==="st"?" hidden":""}>${gameiHTML}</div>`
+    +`<div id="bmST"${active==="gamei"?" hidden":""}>${bannerSTView(b)}</div>`;
   bannerModal.querySelector(".modal-card").scrollTop=0;
   tip.hidden=true;
   bannerModal.hidden=false;
@@ -1584,6 +1612,15 @@ $("#bmBody").addEventListener("pointermove",e=>{
   showBmTip(+el.dataset.day,e);
 });
 $("#bmBody").addEventListener("pointerleave",()=>bmTip.hidden=true);
+$("#bmBody").addEventListener("click",e=>{
+  const btn=e.target.closest("[data-bmsrc]"); if(!btn) return;
+  const which=btn.dataset.bmsrc;
+  $("#bmSrc").querySelectorAll("[data-bmsrc]").forEach(x=>{ const on=x===btn; x.classList.toggle("on",on); x.setAttribute("aria-selected",on); });
+  const g=$("#bmGamei"), s=$("#bmST");
+  if(g) g.hidden=which!=="gamei";
+  if(s) s.hidden=which!=="st";
+  bmTip.hidden=true;
+});
 
 // ---- controls ----
 const isPeriodMode = m => m==="year"||m==="month"||m==="version";
