@@ -4,13 +4,13 @@
  "jp": "NTE： Neverness to Everness",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/NTE%EF%BC%9A%20Neverness%20to%20Everness",
- "updated": "2026-09-07T20:03:15Z",
+ "updated": "2026-09-08T18:36:12Z",
  "count": 7,
  "now": {
-  "ios": 128,
-  "android": 48,
-  "month": 131,
-  "next_add": 10786753,
+  "ios": 131,
+  "android": 59,
+  "month": 127,
+  "next_add": 11154582,
   "ym": "2026/09",
   "ranks": {
    "prev": [
@@ -55,7 +55,7 @@
     161,
     146,
     147,
-    null,
+    132,
     null,
     null,
     null,
@@ -82,7 +82,7 @@
   }
  },
  "monthly": {
-  "2026-09": 1.22,
+  "2026-09": 1.33,
   "2026-08": 5.23,
   "2026-07": 6.29,
   "2026-06": 8.09,
@@ -356,7 +356,7 @@
    "name": "残虹",
    "start": "2026-08-20",
    "end": "2026-09-09",
-   "rev": 3.76,
+   "rev": 3.87,
    "yrank": 4,
    "ytot": 7,
    "cum": 4,
@@ -365,7 +365,7 @@
    "related": "ナナリ",
    "banner_img": "https://appmedia.jp/wp-content/uploads/2026/05/204720_tfbq2.webp",
    "rerun": false,
-   "ongoing": true,
+   "ongoing": false,
    "rank_series": [
     8,
     15,
@@ -386,7 +386,8 @@
     162,
     161,
     146,
-    147
+    147,
+    132
    ],
    "agents": [
     "Zankou"
