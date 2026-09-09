@@ -4,13 +4,13 @@
  "jp": "鳴潮",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E9%B3%B4%E6%BD%AE",
- "updated": "2026-09-08T19:29:27Z",
+ "updated": "2026-09-09T18:31:45Z",
  "count": 40,
  "now": {
-  "ios": 150,
-  "android": 41,
-  "month": 150,
-  "next_add": 10923225,
+  "ios": 143,
+  "android": 48,
+  "month": 152,
+  "next_add": 12069311,
   "ym": "2026/09",
   "ranks": {
    "prev": [
@@ -56,7 +56,7 @@
     153,
     165,
     152,
-    null,
+    157,
     null,
     null,
     null,
@@ -82,7 +82,7 @@
   }
  },
  "monthly": {
-  "2026-09": 1.11,
+  "2026-09": 1.21,
   "2026-08": 6.65,
   "2026-07": 7.43,
   "2026-06": 6.34,
@@ -504,7 +504,7 @@
    "rev": 3.69,
    "yrank": 5,
    "ytot": 10,
-   "cum": 19,
+   "cum": 20,
    "cumtot": 40,
    "year": 2024,
    "related": "",
@@ -1934,16 +1934,16 @@
    "name": "清宵",
    "start": "2026-08-20",
    "end": "2026-09-10",
-   "rev": 3.6,
+   "rev": 3.7,
    "yrank": 9,
    "ytot": 11,
-   "cum": 20,
+   "cum": 19,
    "cumtot": 40,
    "year": 2026,
    "related": "",
    "banner_img": "https://i.mopix.cc/weNdVz.jpg",
    "rerun": false,
-   "ongoing": true,
+   "ongoing": false,
    "rank_series": [
     102,
     17,
@@ -1965,7 +1965,8 @@
     178,
     153,
     165,
-    152
+    152,
+    157
    ],
    "agents": [
     "Qingxiao"

@@ -286,7 +286,17 @@
  },
  "シグリッド": {
   "icon": "https://enka.network/ui/zzz/IconRoleCircle66.png",
-  "accent": "#e8e7ea",
+  "accent": "#888",
   "en": "Sigrid"
+ },
+ "クラレッタ": {
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle1611.png",
+  "accent": "#e8e7ea",
+  "en": "Claret"
+ },
+ "ロクシー": {
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle68.png",
+  "accent": "#e8e7ea",
+  "en": "Roxy"
  }
 }
