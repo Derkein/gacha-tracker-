@@ -4,13 +4,13 @@
  "jp": "崩壊：スターレイル",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E5%B4%A9%E5%A3%8A%EF%BC%9A%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%AC%E3%82%A4%E3%83%AB",
- "updated": "2026-09-10T19:10:24Z",
+ "updated": "2026-09-11T18:24:56Z",
  "count": 61,
  "now": {
-  "ios": 48,
-  "android": 20,
+  "ios": 36,
+  "android": 23,
   "month": 40,
-  "next_add": 22160945,
+  "next_add": 30303664,
   "ym": "2026/09",
   "ranks": {
    "prev": [
@@ -58,7 +58,7 @@
     55,
     61,
     57,
-    null,
+    39,
     null,
     null,
     null,
@@ -82,7 +82,7 @@
   }
  },
  "monthly": {
-  "2026-09": 3.36,
+  "2026-09": 3.65,
   "2026-08": 11.87,
   "2026-07": 16.85,
   "2026-06": 13.4,
@@ -2964,7 +2964,7 @@
    "name": "ロビン・夏空の歌",
    "start": "2026-08-26",
    "end": "2026-09-12",
-   "rev": 9.21,
+   "rev": 9.5,
    "yrank": 6,
    "ytot": 16,
    "cum": 40,
@@ -2973,7 +2973,7 @@
    "related": "ヒアンシー",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/community/2026/08/25/8e66e6e1dfa735fc70fdd4a6c2eb8c6f_7362219746973488405.png",
    "rerun": false,
-   "ongoing": true,
+   "ongoing": false,
    "rank_series": [
     39,
     2,
@@ -2991,7 +2991,8 @@
     51,
     55,
     61,
-    57
+    57,
+    39
    ],
    "icons": [
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1512.png"
