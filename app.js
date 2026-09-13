@@ -2334,6 +2334,33 @@ function cnAnalysisBlock(b){
     <h3>Banners that opened around #${st.open}</h3>
     <div class="bm-peerlist">${rows}</div>${verdict}`;
 }
+// Day-by-day rank as a table. The chart can only draw days the game was INSIDE the top
+// 200 -- once it falls off, the line just stops and those days vanish. Here they stay
+// visible as rows, so falling off the chart reads as an event rather than a gap. Three
+// states: a rank, "200+" (the chart is known, the game wasn't in it) and "no data" (no
+// source holds that day at all). No revenue columns -- China publishes a monthly total,
+// never a daily one, so there is no per-day build-up to show the way game-i's tab does.
+function cnRankTable(run){
+  if(!run||!run.length) return "";
+  const md=iso=>`${+iso.slice(5,7)}/${+iso.slice(8,10)}`;
+  const cell=x=>`<tr>
+    <td class="l">${md(x.iso)}</td>
+    <td>${x.rank!=null ? "#"+x.rank
+        : x.depth!=null ? `<span class="muted">${x.depth}+</span>`
+        : `<span class="muted">no data</span>`}</td></tr>`;
+  // Only two narrow columns, so one full-width table leaves a canyon between the date
+  // and the rank. Deal the run into a few side-by-side tables instead: each stays
+  // compact, the width is used, and a long run stops being a tall scroller. Each
+  // column keeps its own header, so it reads correctly wherever the eye lands.
+  const cols=Math.min(3, Math.max(1, Math.ceil(run.length/8)));
+  const per=Math.ceil(run.length/cols);
+  const tables=[];
+  for(let i=0;i<run.length;i+=per)
+    tables.push(`<table class="bm-table">
+      <thead><tr><th class="l">Date</th><th>Rank</th></tr></thead>
+      <tbody>${run.slice(i,i+per).map(cell).join("")}</tbody></table>`);
+  return `<div class="bm-tablewrap bm-rtcols">${tables.join("")}</div>`;
+}
 function cnRankBlock(b){
   const head=`<h3>Daily China iOS rank during the run</h3>`;
   const run=cnRunSeries(b);
@@ -2345,10 +2372,10 @@ function cnRankBlock(b){
     +(depths.length?`, ${Math.min(...depths)===Math.max(...depths)?`<b>${depths[0]}</b> deep`:`<b>${Math.min(...depths)}–${Math.max(...depths)}</b> deep`}`:"")
     +` (${srcs.join(", ")}).`;
   if(!known.length)
-    return head+`<p class="bm-note">${cover} The game sat <b>below</b> the chart's depth on every one of them — on China's all-apps chart it never entered the top ${Math.max(...depths)} during this run.</p>`;
+    return head+`<p class="bm-note">${cover} The game sat <b>below</b> the chart's depth on every one of them — on China's all-apps chart it never entered the top ${Math.max(...depths)} during this run.</p>${cnRankTable(run)}`;
   const first=known[0].rank, last=known[known.length-1].rank, best=Math.min(...known.map(x=>x.rank));
   const cap=`Opened at <b>#${first}</b>, peaked at <b>#${best}</b>, last seen at <b>#${last}</b>.`;
-  return head+`<div class="bm-cap">${cap}</div>${cnRankSVG(run,b)}
+  return head+`<div class="bm-cap">${cap}</div>${cnRankSVG(run,b)}${cnRankTable(run)}
     <p class="bm-note">#1 is the top of China's App Store <b>all-apps</b> top-grossing chart — games compete with Douyin, WeChat and the video apps, so climbing it means out-earning them. ${cover} Ticks along the bottom are days the chart is known but the game wasn't in it, meaning it ranked below that depth; blank stretches are days no source has. This is the <b>real store chart</b>, not an estimate.</p>`;
 }
 function cnShareBlock(b){
@@ -2538,7 +2565,9 @@ function openBanner(b){
     <div class="bm-headline">
       <span><span class="l">Est. revenue${b.ongoing?" so far":""}</span><div class="v">${G(b.rev)}</div></span>
       <span class="sub">Japan · mobile only · game-i's own estimate</span></div>`;
-  const gameiHTML=`<div class="bm-stats">${stats}</div>${gameiHead}${curve}${jpAnalysisBlock(b)}${shareBlock}${build}`;
+  // Build-up sits directly under the rank curve: it is the same run, day by day, read
+  // off that very curve -- so the two belong together, before the peer comparison.
+  const gameiHTML=`<div class="bm-stats">${stats}</div>${gameiHead}${curve}${build}${jpAnalysisBlock(b)}${shareBlock}`;
   const active = state.dataSource==="st" ? "st" : state.dataSource==="cn" ? "cn" : "gamei";
   // the CN tab carries two different things: China's real store chart (daily) and the
   // monthly CN¥ estimate. Either one alone is worth the tab.

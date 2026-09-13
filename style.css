@@ -416,6 +416,12 @@ tr.clk{cursor:pointer} tr.clk:hover td{background:var(--track)}
 .bm-table th{position:sticky; top:0; background:var(--surface); z-index:1}
 .bm-table td,.bm-table th{padding:5px 12px}
 .bm-table .muted{color:var(--muted)}
+/* China's rank table is only Date + rank -- at full width those two sit a screen
+   apart. Deal the run across a few side-by-side tables so each one stays narrow and
+   the block gets shorter; auto-fit collapses them back to one column on a phone. */
+.bm-rtcols{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+           gap:0 18px; max-height:376px; align-items:start}
+.bm-rtcols .bm-table{width:100%}
 .foot{margin-top:26px; font-size:11px; color:var(--muted); line-height:1.6}
 .loading{padding:40px 0; text-align:center; color:var(--muted)}
 .loading.err{line-height:1.7}
