@@ -4,13 +4,13 @@
  "jp": "原神",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E5%8E%9F%E7%A5%9E",
- "updated": "2026-09-13T20:55:37Z",
+ "updated": "2026-09-13T23:39:55Z",
  "count": 105,
  "now": {
-  "ios": 139,
-  "android": 83,
+  "ios": 144,
+  "android": 82,
   "month": 97,
-  "next_add": 12255921,
+  "next_add": 12188458,
   "ym": "2026/09",
   "ranks": {
    "prev": [
@@ -4711,11 +4711,13 @@
     81,
     75
    ],
-   "icons": [],
+   "icons": [
+    "https://enka.network/ui/UI_AvatarIcon_Zibai.png"
+   ],
    "agents": [
     "Zibai"
    ],
-   "accent": null,
+   "accent": "#e0b23c",
    "en": "Zibai",
    "bar": "#d0c795"
   },
@@ -4756,11 +4758,13 @@
     75,
     59
    ],
-   "icons": [],
+   "icons": [
+    "https://enka.network/ui/UI_AvatarIcon_Varka.png"
+   ],
    "agents": [
     "Varka"
    ],
-   "accent": null,
+   "accent": "#57c69a",
    "en": "Varka",
    "bar": "#39899e"
   },
@@ -4851,11 +4855,13 @@
     113,
     111
    ],
-   "icons": [],
+   "icons": [
+    "https://enka.network/ui/UI_AvatarIcon_Linnea.png"
+   ],
    "agents": [
     "Linnea"
    ],
-   "accent": null,
+   "accent": "#e0b23c",
    "en": "Linnea",
    "bar": "#ecc179"
   },
@@ -4946,11 +4952,13 @@
     85,
     79
    ],
-   "icons": [],
+   "icons": [
+    "https://enka.network/ui/UI_AvatarIcon_Nicole.png"
+   ],
    "agents": [
     "Nicole"
    ],
-   "accent": null,
+   "accent": "#f0684a",
    "en": "Nicole",
    "bar": "#d89f8d"
   },
@@ -4992,11 +5000,13 @@
     84,
     72
    ],
-   "icons": [],
+   "icons": [
+    "https://enka.network/ui/UI_AvatarIcon_Lohen.png"
+   ],
    "agents": [
     "Lohen"
    ],
-   "accent": null,
+   "accent": "#7fc8e0",
    "en": "Lohen",
    "bar": "#64b7d5"
   },
@@ -5037,11 +5047,13 @@
     72,
     72
    ],
-   "icons": [],
+   "icons": [
+    "https://enka.network/ui/UI_AvatarIcon_MarionetteNew.png"
+   ],
    "agents": [
     "Sandrone"
    ],
-   "accent": null,
+   "accent": "#7fc8e0",
    "en": "Sandrone",
    "bar": "#84c9e1"
   },
@@ -5132,11 +5144,13 @@
     106,
     99
    ],
-   "icons": [],
+   "icons": [
+    "https://enka.network/ui/UI_AvatarIcon_Odette.png"
+   ],
    "agents": [
     "Odette"
    ],
-   "accent": null,
+   "accent": "#7fc8e0",
    "en": "Odette",
    "bar": "#63afdb"
   },
