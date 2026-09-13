@@ -2059,8 +2059,10 @@ function cnRunStats(b){
   if(!known.length) return (b._cnStats={run, charted:charted.length, days:run.length, none:true,
                                         depth:charted.length?Math.max(...charted.map(x=>x.depth)):null});
   const ranks=known.map(x=>x.rank).sort((a,c)=>a-c);
+  let peakIdx=-1, peakRank=Infinity;
+  run.forEach((x,i)=>{ if(x.rank!=null && x.rank<peakRank){ peakRank=x.rank; peakIdx=i; } });
   return (b._cnStats={run, charted:charted.length, days:run.length, none:false,
-    open:known[0].rank, peak:ranks[0], last:known[known.length-1].rank,
+    open:known[0].rank, peak:ranks[0], peakDay:peakIdx+1, last:known[known.length-1].rank,
     median:ranks[Math.floor(ranks.length/2)], top10:known.filter(x=>x.rank<=10).length});
 }
 function cnPeers(){
@@ -2087,6 +2089,21 @@ function peerName(x){
 // makes it the stronger comparison of the two -- same source, same measure.
 const ordinal = n => { const t=n%100;
   return n + (t>=11&&t<=13 ? "th" : ({1:"st",2:"nd",3:"rd"}[n%10] || "th")); };
+// Running total through each day of a run, cached per banner. Same arithmetic
+// dailyBreakdown does (cum at i = rev x sum(raw[0..i]) / sum(raw)) without its per-day
+// overlap scan, which is O(banners) a day and would run for every peer on a game with
+// 200+ of them. For a run still going, game-i's published figure IS the total so far,
+// so the last point of this curve is exactly that.
+function cumCurve(b){
+  if(b._cumCurve!==undefined) return b._cumCurve;
+  const s=b.rank_series||[];
+  const raw=s.map(rankValue), sum=raw.reduce((a,c)=>a+c,0);
+  if(!s.length||sum<=0) return (b._cumCurve=null);
+  let run=0;
+  return (b._cumCurve=raw.map(v=>{ run+=v; return b.rev*run/sum; }));
+}
+const cumAtDay=(b,d)=>{ const c=cumCurve(b); return c&&c.length>=d&&d>=1 ? c[d-1] : null; };
+
 function jpRunStats(b){
   if(b._jpStats!==undefined) return b._jpStats;
   const s=b.rank_series||[];
@@ -2094,6 +2111,9 @@ function jpRunStats(b){
   if(!known.length) return (b._jpStats=null);
   const ranks=known.map(([,v])=>v), sorted=[...ranks].sort((a,c)=>a-c);
   const peakDay=known.reduce((a,c)=>c[1]<a[1]?c:a)[0];
+  // What the run had banked by its peak. A rank is one day's snapshot; the running total
+  // absorbs the rank->yen wobble, so it separates runs that share a peak but not a size.
+  const cumPeak=cumAtDay(b, peakDay+1)||0;
   // the day it dropped off game-i's trackable ~top 200 and never came back
   let fellOff=null;
   for(let i=peakDay;i<s.length;i++){
@@ -2103,7 +2123,7 @@ function jpRunStats(b){
     open:known[0][1], peak:Math.min(...ranks), last:known[known.length-1][1],
     median:sorted[Math.floor(sorted.length/2)], days:s.length, charted:known.length,
     top10:ranks.filter(v=>v<=10).length, top50:ranks.filter(v=>v<=50).length,
-    peakDay:peakDay+1, fellOffDay:fellOff==null?null:fellOff+1,
+    peakDay:peakDay+1, fellOffDay:fellOff==null?null:fellOff+1, cumPeak,
   });
 }
 function jpPeers(){
@@ -2136,6 +2156,27 @@ function peerMoney(near){
 }
 // CN prints its two ends through the shared range formatter so the currency isn't
 // repeated three times in one sentence ("CN¥ 226.55 – 370.54M", not "CN¥ x to CN¥ y").
+// Pick the runs worth comparing against. Nearest on `keyOf` first, ties broken towards
+// the nearest date so a like-for-like era wins. Then drop revenue outliers measured
+// against the pool's OWN median: a game's launch banner can peak exactly where an
+// ordinary one does and still earn several times as much -- HSR's Seele peaked #3 like
+// four later banners and out-earned them about 4x -- and one of those inside a five-run
+// median drags the whole read. Falls back to the unfiltered pool when filtering would
+// leave too few runs to say anything with.
+const PEER_OUTLIER = 3;        // x or / the pool's own median = not the same kind of run
+function pickPeers(peers, b, k0, keyOf, n){
+  n = n || 5;
+  const t0 = Date.parse(b.start);
+  const pool = [...peers].sort((p,q) =>
+      (Math.abs(keyOf(p)-k0) - Math.abs(keyOf(q)-k0))
+   || (Math.abs(Date.parse(p.b.start)-t0) - Math.abs(Date.parse(q.b.start)-t0)))
+    .slice(0, n*3);
+  const med = _med(pool.map(p=>p.b.rev).filter(v=>v>0));
+  const kept = med
+    ? pool.filter(p => p.b.rev>0 && p.b.rev <= med*PEER_OUTLIER && p.b.rev >= med/PEER_OUTLIER)
+    : pool;
+  return (kept.length>=3 ? kept : pool).slice(0, n);
+}
 const moneySpread = m => (m.range ? `${m.approx}<b>${m.range(m.lo,m.hi)}</b>`
   : `${m.approx}<b>${m.f(m.lo)}</b> to <b>${m.f(m.hi)}</b>`) + `, median <b>${m.f(m.md)}</b>`;
 // Both verdicts close the same way, so the wording lives in one place -- otherwise the
@@ -2151,19 +2192,22 @@ function jpAnalysisBlock(b){
   if(!st) return "";
   const peers=jpPeers().filter(p=>p.b._i!==b._i);
   if(peers.length<3) return "";
+  // Ranked on the PEAK, not the opening. game-i snapshots rank at midnight JST, so a
+  // banner that went live after the snapshot reads far too low on day 1 -- the peak
+  // (usually day 2) is the first honest reading of the same run.
   const ver=hasVersions(state.tag)?versionOf(b):null;
   const scopes=[];
-  if(ver){ const g=peers.filter(p=>versionOf(p.b)===ver).map(p=>p.st.open);
-           if(g.length>=2) scopes.push([ver, _place([...g, st.open], st.open)]); }
-  const yr=peers.filter(p=>p.b.year===b.year).map(p=>p.st.open);
-  if(yr.length>=2) scopes.push([String(b.year), _place([...yr, st.open], st.open)]);
-  scopes.push(["all-time", _place([...peers.map(p=>p.st.open), st.open], st.open)]);
+  if(ver){ const g=peers.filter(p=>versionOf(p.b)===ver).map(p=>p.st.peak);
+           if(g.length>=2) scopes.push([ver, _place([...g, st.peak], st.peak)]); }
+  const yr=peers.filter(p=>p.b.year===b.year).map(p=>p.st.peak);
+  if(yr.length>=2) scopes.push([String(b.year), _place([...yr, st.peak], st.peak)]);
+  scopes.push(["all-time", _place([...peers.map(p=>p.st.peak), st.peak], st.peak)]);
   const scopeLine=scopes.map(([lab,r])=>`<b>${ordinal(r.place)} of ${r.of}</b> in ${lab}`).join(" \u00b7 ");
 
   const sameYear=peers.filter(p=>p.b.year===b.year);
   const base=sameYear.length>=3?sameYear:peers;
   const baseLab=sameYear.length>=3?`in ${b.year}`:"across this game's history";
-  const medOpen=_med(base.map(p=>p.st.open)), medPeak=_med(base.map(p=>p.st.peak));
+  const medPeak=_med(base.map(p=>p.st.peak)), medMed=_med(base.map(p=>p.st.median));
   const medTop50=_med(base.map(p=>p.st.top50));
   const fellPeers=base.map(p=>p.st.fellOffDay).filter(v=>v!=null);
 
@@ -2179,22 +2223,54 @@ function jpAnalysisBlock(b){
   } else if(!b.ongoing){
     fade+=` It never fell off the chart during the run.`;
   }
+  // Banked-by-peak only compares like with like when the peaks fall at a similar point:
+  // a run that re-spiked to #1 on day 16 has most of its total behind it by then, which
+  // says nothing about strength next to a day-2 peak. Say so rather than compare anyway.
+  const medCum=_med(base.map(p=>p.st.cumPeak).filter(v=>v>0));
+  const medPeakDay=_med(base.map(p=>p.st.peakDay));
+  const lateBy = medPeakDay ? st.peakDay-medPeakDay : 0;
+  const comparable = medPeakDay ? lateBy<=Math.max(2, medPeakDay) : false;
+  const cumLine = !(st.cumPeak>0 && medCum) ? ""
+    : comparable
+      ? ` By that day it had banked <span class="fig">${G(st.cumPeak)}</span>, against <b>${G(medCum)}</b>
+          for the usual banner ${baseLab} \u2014 a steadier measure than the rank itself, since what
+          game-i pays a given rank moves around.`
+      : ` By that day it had banked <span class="fig">${G(st.cumPeak)}</span>, but its peak came on
+          <b>day ${st.peakDay}</b> against the usual <b>day ${medPeakDay}</b> ${baseLab} \u2014 late enough
+          that the figure counts most of the run, so it isn't comparable to the <b>${G(medCum)}</b> the
+          usual banner had banked at its own peak.`;
   const place=`<div class="bm-verdict call"><span class="head">Where this run sits on game-i's chart</span>
-    Opened at <span class="fig">#${st.open}</span> \u2014 ${scopeLine}, among this game's finished banners.
-    It peaked at <span class="fig">#${st.peak}</span> on day ${st.peakDay} and ran at a median of
-    <span class="fig">#${st.median}</span>${b.ongoing?" so far":""}. The usual banner ${baseLab} opens
-    at <b>#${medOpen}</b> and peaks at <b>#${medPeak}</b>. ${fade}</div>`;
+    Peaked at <span class="fig">#${st.peak}</span> on day ${st.peakDay} \u2014 ${scopeLine}, among this
+    game's finished banners.${cumLine} It ran at a median of <span class="fig">#${st.median}</span>${b.ongoing?" so far":""};
+    the usual banner ${baseLab} peaks at <b>#${medPeak}</b> and runs at a median of <b>#${medMed}</b>.
+    ${st.peakDay>1?`It opened at <b>#${st.open}</b>, though game-i snapshots rank at midnight JST,
+    so a banner that went live after the snapshot reads low on day 1 \u2014 which is why this
+    compares on the peak.`:``} ${fade}</div>`;
 
-  const near=[...peers].sort((p,q)=>Math.abs(p.st.open-st.open)-Math.abs(q.st.open-st.open)).slice(0,5);
+  // While a run is still going, the sharpest comparison is at the SAME elapsed day: what
+  // had each peer banked by day D, and what did it finish at? Two banners can share a
+  // peak rank and be nowhere near each other in money -- Aventurine peaked #3 with \u00a5231M
+  // banked, Robin peaked #2 with \u00a5350M -- so once there is a running total to compare,
+  // that total is the better basis. Peak stays the basis for finished runs, where the
+  // whole curve is known and the final figure is the thing being compared anyway.
+  const D=st.days;
+  const sameDay=peers.filter(p=>cumAtDay(p.b,D)!=null && p.b.rev>0);
+  const onCum = b.ongoing && D>=2 && b.rev>0 && sameDay.length>=5;
+  const near = onCum ? pickPeers(sameDay, b, b.rev, p=>cumAtDay(p.b,D))
+                     : pickPeers(peers, b, st.peak, p=>p.st.peak);
   const rows=near.map(p=>{
     const stv=bannerST(p.b), cnv=bannerCN(p.b);
     const figs=[`<span class="main">${G(p.b.rev)}</span>`];
     if(stv.hasData) figs.push(`<span>ST \u2248${fmtUSD(stv.total)}</span>`);
     if(cnv.hasData) figs.push(`<span>CN \u2248${fmtCNYRange(cnv.lo,cnv.hi)}</span>`);
+    const atD=onCum?cumAtDay(p.b,D):null;
+    const sub = onCum
+      ? `${G(atD)} by day ${D} \u00b7 finished ${G(p.b.rev)} \u00b7 peak #${p.st.peak} \u00b7 ${per(p.b.start)}${p.b.rerun?" \u00b7 rerun":""}`
+      : `peak #${p.st.peak} on day ${p.st.peakDay}${p.st.cumPeak>0?` \u00b7 ${G(p.st.cumPeak)} by then`:""} \u00b7 opened #${p.st.open} \u00b7 ${per(p.b.start)}${p.b.rerun?" \u00b7 rerun":""}`;
     return `<div class="bm-peer" style="--av-ring:${barColor(p.b)}">
       <span class="av">${avatarHTML(p.b)}</span>
       <span class="who"><span class="nm">${esc(peerName(p.b))}</span>
-        <span class="sub">opened #${p.st.open} \u00b7 peak #${p.st.peak} \u00b7 top 50 for ${p.st.top50}d \u00b7 ${per(p.b.start)}${p.b.rerun?" \u00b7 rerun":""}</span></span>
+        <span class="sub">${sub}</span></span>
       <span class="figs">${figs.join("")}</span></div>`;
   }).join("");
 
@@ -2206,22 +2282,36 @@ function jpAnalysisBlock(b){
   if(!b.ongoing){
     const diff=b.rev/md, word=diff>=1.25?"well above":diff>=1.05?"above":diff<=0.75?"well below":diff<=0.95?"below":"in line with";
     head="How it turned out";
-    body=`game-i puts this run at <span class="fig">${G(b.rev)}</span>${ownST}. The five banners that opened nearest <b>#${st.open}</b> earned ${moneySpread(J)} \u2014 it landed <b>${word}</b> the openings it resembles.${stAside(money)}`;
+    body=`game-i puts this run at <span class="fig">${G(b.rev)}</span>${ownST}. The ${near.length} banners that peaked nearest <b>#${st.peak}</b> earned ${moneySpread(J)} \u2014 it landed <b>${word}</b> the peaks it resembles.${stAside(money)}`;
   } else if(daysLeft<3){
     head="Almost done";
     body=`This run ends in <b>${daysLeft}</b> day${daysLeft===1?"":"s"}, so game-i's figure \u2014 <span class="fig">${G(b.rev)}</span> so far \u2014 is all but final${ownST}. No estimate needed now.`;
-  } else if(st.charted>=5){
+  } else if(st.charted>=5 || (onCum && st.charted>=2)){
     head="Tracking towards";
-    body=`<b>${st.charted}</b> charted day${st.charted===1?"":"s"} in, <b>${daysLeft}</b> left, at <span class="fig">${G(b.rev)}</span> so far${ownST}. Banners that opened nearest <b>#${st.open}</b> finished at ${moneySpread(J)} \u2014 if this one follows them it ends around that middle.${stAside(money)}`;
+    // Each peer's final divided by what it had banked by this same day is the multiple
+    // still to come. Applying the median of those to this run's own total so far gives a
+    // landing figure that moves every day as the total does -- the rank-peer median
+    // never did, it only ever said "banners like this one ended around here".
+    const mult=onCum ? near.map(p=>p.b.rev/cumAtDay(p.b,D)).filter(v=>v>0&&isFinite(v)) : [];
+    if(mult.length>=3){
+      const lo=b.rev*Math.min(...mult), hi=b.rev*Math.max(...mult), mid=b.rev*_med(mult);
+      const atD=near.map(p=>cumAtDay(p.b,D));
+      body=`<b>${st.charted}</b> charted day${st.charted===1?"":"s"} in, <b>${daysLeft}</b> left, at <span class="fig">${G(b.rev)}</span> so far${ownST}.
+        The ${near.length} runs closest to it at this same point had banked <b>${G(Math.min(...atD))}</b> to <b>${G(Math.max(...atD))}</b>
+        by day ${D}, and went on to multiply that by a median <b>${_med(mult).toFixed(2)}\u00d7</b> \u2014 which puts this one near
+        <span class="fig">${G(mid)}</span>, somewhere between <b>${G(lo)}</b> and <b>${G(hi)}</b>.${stAside(money)}`;
+    } else {
+      body=`<b>${st.charted}</b> charted day${st.charted===1?"":"s"} in, <b>${daysLeft}</b> left, at <span class="fig">${G(b.rev)}</span> so far${ownST}. Banners that peaked nearest <b>#${st.peak}</b> finished at ${moneySpread(J)} \u2014 if this one follows them it ends around that middle.${stAside(money)}`;
+    }
   } else {
     head="Too early to call";
-    body=`Only <b>${st.charted}</b> charted day${st.charted===1?"":"s"} so far. Comparable openings ended anywhere in ${moneySpread(J)} \u2014 too wide to read yet.${stAside(money)}`;
+    body=`Only <b>${st.charted}</b> charted day${st.charted===1?"":"s"} so far. ${onCum?"Runs at a similar total":"Comparable peaks"} ended anywhere in ${moneySpread(J)} \u2014 too wide to read yet.${stAside(money)}`;
   }
   const verdict=`<div class="bm-verdict"><span class="head">${head}</span>${body}
     <span class="after">Rank and revenue here come from the <b>same source and the same market</b> \u2014 game-i's rank beside game-i's yen, over ${near.length} comparable runs \u2014 which makes this the tighter of the two reads.${stScaleNote(money)} ${ASSOC_NOTE}</span></div>`;
 
   return `<h3>How this run compares</h3>${place}
-    <h3>Banners that opened around #${st.open}</h3>
+    <h3>${onCum?`Banners at a similar total by day ${D}`:`Banners that peaked around #${st.peak}`}</h3>
     <div class="bm-peerlist">${rows}</div>${verdict}`;
 }
 
@@ -2248,29 +2338,30 @@ function cnAnalysisBlock(b){
   if(peers.length<3) return "";        // nothing to compare against yet
   const ver=hasVersions(state.tag)?versionOf(b):null;
   const scopes=[];
-  if(ver){ const g=peers.filter(p=>versionOf(p.b)===ver).map(p=>p.st.open);
-           if(g.length>=2) scopes.push([`${ver}`, _place([...g, st.open], st.open)]); }
-  const yr=peers.filter(p=>p.b.year===b.year).map(p=>p.st.open);
-  if(yr.length>=2) scopes.push([`${b.year}`, _place([...yr, st.open], st.open)]);
-  const all=peers.map(p=>p.st.open);
-  scopes.push(["all-time", _place([...all, st.open], st.open)]);
+  if(ver){ const g=peers.filter(p=>versionOf(p.b)===ver).map(p=>p.st.peak);
+           if(g.length>=2) scopes.push([`${ver}`, _place([...g, st.peak], st.peak)]); }
+  const yr=peers.filter(p=>p.b.year===b.year).map(p=>p.st.peak);
+  if(yr.length>=2) scopes.push([`${b.year}`, _place([...yr, st.peak], st.peak)]);
+  const all=peers.map(p=>p.st.peak);
+  scopes.push(["all-time", _place([...all, st.peak], st.peak)]);
   const scopeLine=scopes.map(([lab,r])=>`<b>${ordinal(r.place)} of ${r.of}</b> in ${lab}`).join(" · ");
 
   // "the usual banner" must mean a CONTEMPORARY one: a 2026 run measured against this
   // game's 2020 peak years would look feeble for reasons that have nothing to do with it.
   const sameYear=peers.filter(p=>p.b.year===b.year);
   const base=sameYear.length>=3?sameYear:peers, baseLab=sameYear.length>=3?`in ${b.year}`:"across this game's history";
-  const medOpen=_med(base.map(p=>p.st.open)), medMed=_med(base.map(p=>p.st.median));
+  const medPeak=_med(base.map(p=>p.st.peak)), medMed=_med(base.map(p=>p.st.median));
   const ran=st.median<medMed?"higher":"lower";
 
   const place=`<div class="bm-verdict call"><span class="head">Where this run sits on China's chart</span>
-    Opened at <span class="fig">#${st.open}</span> — ${scopeLine}, among the banners with China data.
-    It peaked at <span class="fig">#${st.peak}</span> and ran at a median of <span class="fig">#${st.median}</span>${b.ongoing?" so far":""},
-    against <b>#${medOpen}</b> and <b>#${medMed}</b> for this game's other charted banners ${baseLab} —
-    so it is running <b>${ran}</b> than the usual one.</div>`;
+    Peaked at <span class="fig">#${st.peak}</span> on day ${st.peakDay} — ${scopeLine}, among the banners with China data.
+    It ran at a median of <span class="fig">#${st.median}</span>${b.ongoing?" so far":""}; the usual banner ${baseLab}
+    peaks at <b>#${medPeak}</b> and runs at a median of <b>#${medMed}</b> — so it is running <b>${ran}</b> than that.
+    ${st.peakDay>1?`It opened at <b>#${st.open}</b>, but an opening day is the least reliable reading
+    of a run, so the comparison keys on the peak.`:``}</div>`;
 
-  // the closest openings this game has had, with every revenue figure that exists for them
-  const near=[...peers].sort((p,q)=>Math.abs(p.st.open-st.open)-Math.abs(q.st.open-st.open)).slice(0,5);
+  // the closest peaks this game has had, with every revenue figure that exists for them
+  const near=pickPeers(peers, b, st.peak, p=>p.st.peak);
   // A China rank has to be read against CHINA's revenue -- setting it beside game-i's yen
   // is an association across two markets, which is exactly what this block should avoid.
   // Yen is only the fallback when too few comparable runs carry a CN figure to median.
@@ -2287,7 +2378,7 @@ function cnAnalysisBlock(b){
     return `<div class="bm-peer" style="--av-ring:${barColor(p.b)}">
       <span class="av">${avatarHTML(p.b)}</span>
       <span class="who"><span class="nm">${esc(peerName(p.b))}</span>
-        <span class="sub">opened #${p.st.open} · peak #${p.st.peak} · ${per(p.b.start)}${p.b.rerun?" · rerun":""}</span></span>
+        <span class="sub">peak #${p.st.peak} on day ${p.st.peakDay} · opened #${p.st.open} · ${per(p.b.start)}${p.b.rerun?" · rerun":""}</span></span>
       <span class="figs">${figs.join("")}</span></div>`;
   }).join("");
 
@@ -2310,16 +2401,16 @@ function cnAnalysisBlock(b){
     const word=diff>=1.25?"well above":diff>=1.05?"above":diff<=0.75?"well below":diff<=0.95?"below":"in line with";
     head="How it turned out";
     body=`This run is finished: ${ownName} puts it at <span class="fig">${ownFig}</span>${ownST}${ownJP}`
-      + `. The five banners that opened nearest <b>#${st.open}</b> earned ${moneySpread(PV)}, so it landed <b>${word}</b> the openings it resembles.${stAside(money)}`;
+      + `. The ${near.length} banners that peaked nearest <b>#${st.peak}</b> earned ${moneySpread(PV)}, so it landed <b>${word}</b> the peaks it resembles.${stAside(money)}`;
   } else if(!read || !read.estimable){
     head="Almost done";
     body=`This run ends in <b>${daysLeft}</b> day${daysLeft===1?"":"s"}, so ${ownName}'s own figure — <span class="fig">${ownFig}</span> so far — is all but final${ownST}. No estimate here: the comparison above is the useful part, and the finished number arrives on its own.`;
   } else if(st.charted>=7){
     head="What it is tracking towards";
-    body=`Still running, <b>${st.charted}</b> charted day${st.charted>1?"s":""} in, with ${ownName} at <span class="fig">${ownFig}</span> so far${ownST}. Banners that opened nearest <b>#${st.open}</b> finished at ${moneySpread(PV)} — if this one follows them it ends around that middle.${stAside(money)}`;
+    body=`Still running, <b>${st.charted}</b> charted day${st.charted>1?"s":""} in, with ${ownName} at <span class="fig">${ownFig}</span> so far${ownST}. Banners that peaked nearest <b>#${st.peak}</b> finished at ${moneySpread(PV)} — if this one follows them it ends around that middle.${stAside(money)}`;
   } else {
     head="Too early to call";
-    body=`Only <b>${st.charted}</b> charted day${st.charted>1?"s":""} so far. Banners that opened nearest <b>#${st.open}</b> ended anywhere in ${moneySpread(PV)} — a spread too wide to read anything into yet. It firms up as the run goes.${stAside(money)}`;
+    body=`Only <b>${st.charted}</b> charted day${st.charted>1?"s":""} so far. Banners that peaked nearest <b>#${st.peak}</b> ended anywhere in ${moneySpread(PV)} — a spread too wide to read anything into yet. It firms up as the run goes.${stAside(money)}`;
   }
   const why=!money.cn ? "Too few comparable runs carry a China figure"
     : !mineCN.hasData ? "This run has no China figure of its own"
@@ -2331,7 +2422,7 @@ function cnAnalysisBlock(b){
     <span class="after">${frame}${stScaleNote(money)} ${ASSOC_NOTE}</span></div>`;
 
   return `<h3>How this run compares</h3>${place}
-    <h3>Banners that opened around #${st.open}</h3>
+    <h3>Banners that peaked around #${st.peak}</h3>
     <div class="bm-peerlist">${rows}</div>${verdict}`;
 }
 // Day-by-day rank as a table. The chart can only draw days the game was INSIDE the top
