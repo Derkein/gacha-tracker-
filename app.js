@@ -798,6 +798,14 @@ function xAxisTicks(x0, x1){
   const step=Math.max(1,Math.ceil(t.length/7));
   return t.filter((_,i)=>i%step===0);
 }
+// Rerun mark for graph avatars. The ↻ CHARACTER sits high and to the right inside its
+// own line box and its optical centre shifts with the system font, so it can't be
+// centred reliably in a small badge -- the mark is drawn instead. Unit circle at (0,0):
+// a 290° arc with the gap at the top-right, plus a tangential arrowhead at the arc's
+// end. Centred by construction, then scaled into the badge. Same meaning as the ↻ chips.
+const RR_ARC  = "M 0.985 -0.174 A 1 1 0 1 1 0.174 -0.985";
+const RR_HEAD = "M 0.568 -0.915 L 0.122 -0.689 L 0.226 -1.280 Z";
+
 // ---- graph view (one line chart per year OR per version) ----
 function graphVal(b){ return srcVal(b); }
 function groupSVG(label, items, gmax, step, x0, x1){
@@ -819,14 +827,24 @@ function groupSVG(label, items, gmax, step, x0, x1){
     const acc=barColor(p.b);
     const url=(p.b.icons&&p.b.icons[0])||p.b.banner_img;
     const cx=p.x.toFixed(1), cy=p.y.toFixed(1);
+    // rerun badge, top-right of the avatar: the same ↻ the row/card/peer chips use,
+    // on the 45° diagonal so it clears the ring without covering the face. Carries
+    // data-i like the image and ring, so clicking it opens the banner too.
+    const bx=(p.x+R*0.72).toFixed(1), by=(p.y-R*0.72).toFixed(1);
+    const br=R*0.38;
+    const rr=p.b.rerun
+      ? `<g class="g-rr" data-i="${p.b._i}"><title>Rerun banner</title>`
+        + `<circle cx="${bx}" cy="${by}" r="${br.toFixed(2)}"/>`
+        + `<g transform="translate(${bx} ${by}) scale(${(br*0.60).toFixed(3)})">`
+        + `<path class="rr-arc" d="${RR_ARC}"/><path class="rr-head" d="${RR_HEAD}"/></g></g>` : "";
     if(url){
       const id=`clip_${gid}_${p.b._i}`;
       return `<clipPath id="${id}"><circle cx="${cx}" cy="${cy}" r="${R}"/></clipPath>`+
         `<image href="${esc(url)}" x="${(p.x-R).toFixed(1)}" y="${(p.y-R).toFixed(1)}" width="${2*R}" height="${2*R}" `+
         `preserveAspectRatio="xMidYMid slice" clip-path="url(#${id})" data-i="${p.b._i}"/>`+
-        `<circle class="gring" cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="${acc}" data-i="${p.b._i}"/>`;
+        `<circle class="gring" cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="${acc}" data-i="${p.b._i}"/>`+rr;
     }
-    return `<circle class="dot${p.b._synthetic?" syndot":""}" data-i="${p.b._i}" cx="${cx}" cy="${cy}" r="6" fill="${acc}"/>`;
+    return `<circle class="dot${p.b._synthetic?" syndot":""}" data-i="${p.b._i}" cx="${cx}" cy="${cy}" r="6" fill="${acc}"/>`+rr;
   }).join("");
   return `<svg class="gsvg" viewBox="0 0 ${W} ${H}" role="img">
     ${grid}<path class="area" d="${area}"/><path class="line" d="${line}"/>${marks}${xt}</svg>`;
