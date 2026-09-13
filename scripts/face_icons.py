@@ -93,6 +93,16 @@ _NOTCHAR = re.compile(r"Version|Banner|Event|Update|Patch|Gallery|Storyline|Prof
                       r"Category|List of|Timeline|Calendar|Enemy|Weapon|Walkthrough", re.I)
 
 
+def drip_from_title(dom, title):
+    """Clean character art for a KNOWN wiki page title, or None. Deterministic --
+    no search involved, so it cannot wander to a different character."""
+    img = page_image(dom, title)
+    if not img:
+        return None
+    fn = img.split("/revision")[0].split("/")[-1]
+    return img if (ART_RE.search(fn) and not BAD_RE.search(fn)) else None
+
+
 def resolve_drip(dom, jp_name):
     """Search the wiki for a Japanese name; return (image_url_or_None, english_name).
 
@@ -111,11 +121,9 @@ def resolve_drip(dom, jp_name):
             continue
         if fallback is None:
             fallback = title                               # first plausible hit = the character name
-        img = page_image(dom, title)
+        img = drip_from_title(dom, title)
         if img:
-            fn = img.split("/revision")[0].split("/")[-1]
-            if ART_RE.search(fn) and not BAD_RE.search(fn):
-                return img, title                          # clean drip art -> name + icon (best case)
+            return img, title                              # clean drip art -> name + icon (best case)
     return None, fallback                                  # no art anywhere -> at least the name resolves
 
 
@@ -223,7 +231,15 @@ def process(tag, cascade, force=False):
         drip_img, en = None, names.get(primary)
         if dom and (en is None or not cached):
             try:
-                drip_img, title = resolve_drip(dom, primary)
+                if en:
+                    # Character already identified: fetch ITS page's art directly. The
+                    # JP search is a fuzzy full-text match whose top hit is not stable
+                    # -- re-running it has returned Sanhua's page for 今汐 and Lynae's
+                    # for シグリカ, which produced a crop of the wrong character even
+                    # though the name was right. Search is for DISCOVERY only.
+                    drip_img, title = drip_from_title(dom, en), en
+                else:
+                    drip_img, title = resolve_drip(dom, primary)
                 # Take the NAME only the first time. The wiki search is a fuzzy
                 # full-text match whose top hit is not stable -- re-running it over
                 # already-named banners has returned Sanhua for 今汐 and Lynae for
