@@ -841,6 +841,9 @@ tr.clk{cursor:pointer} tr.clk:hover td{background:var(--track)}
 /* one comparable banner: icon, names, its ranks, and every revenue figure that exists */
 .bm-peer{display:flex; align-items:center; gap:9px; background:var(--surface2); border:1px solid var(--border);
   border-radius:10px; padding:8px 11px}
+/* a comparable opens that banner in place, so it needs to read as clickable */
+.bm-peer[data-i]{cursor:pointer; transition:background .12s, border-color .12s}
+.bm-peer[data-i]:hover{background:var(--track); border-color:var(--av-ring,var(--border))}
 .bm-peer .av{position:relative; width:30px; height:30px; flex:none}
 .bm-peer .av img{width:30px; height:30px; border-radius:50%; object-fit:cover;
   box-shadow:0 0 0 1.5px var(--av-ring,var(--muted))}
@@ -854,6 +857,12 @@ tr.clk{cursor:pointer} tr.clk:hover td{background:var(--track)}
 .bm-peer .figs span{font-size:11.5px; color:var(--ink2); white-space:nowrap}
 .bm-peer .figs .main{font-size:13.5px; font-weight:800; color:var(--ink)}
 .bm-peerlist{display:flex; flex-direction:column; gap:6px; margin:4px 0 8px}
+/* step back to the banner this one was opened from (see the modal back-stack) */
+.bm-back{display:inline-flex; align-items:center; gap:6px; margin:0 0 10px; padding:5px 11px;
+  font:inherit; font-size:11.5px; font-weight:650; color:var(--ink2); cursor:pointer;
+  background:var(--surface2); border:1px solid var(--border); border-radius:999px;
+  max-width:100%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.bm-back:hover{background:var(--track); color:var(--ink)}
 
 /* A CN range ("CN¥ 782.37 – 931.40M") is much longer than a yen or dollar figure: let the
    tile grow a little, keep every figure on one line, and shrink the long ones instead of

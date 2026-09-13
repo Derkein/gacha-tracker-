@@ -2267,7 +2267,7 @@ function jpAnalysisBlock(b){
     const sub = onCum
       ? `${G(atD)} by day ${D} \u00b7 finished ${G(p.b.rev)} \u00b7 peak #${p.st.peak} \u00b7 ${per(p.b.start)}${p.b.rerun?" \u00b7 rerun":""}`
       : `peak #${p.st.peak} on day ${p.st.peakDay}${p.st.cumPeak>0?` \u00b7 ${G(p.st.cumPeak)} by then`:""} \u00b7 opened #${p.st.open} \u00b7 ${per(p.b.start)}${p.b.rerun?" \u00b7 rerun":""}`;
-    return `<div class="bm-peer" style="--av-ring:${barColor(p.b)}">
+    return `<div class="bm-peer" data-i="${p.b._i}" title="Open ${esc(peerName(p.b))}" style="--av-ring:${barColor(p.b)}">
       <span class="av">${avatarHTML(p.b)}</span>
       <span class="who"><span class="nm">${esc(peerName(p.b))}</span>
         <span class="sub">${sub}</span></span>
@@ -2375,7 +2375,7 @@ function cnAnalysisBlock(b){
     if(stv.hasData) figs.push(`<span>ST ≈${fmtUSD(stv.total)}</span>`);
     if(cnPrimary&&cnv.hasData) figs.push(`<span>game-i ${G(p.b.rev)}</span>`);
     else if(cnv.hasData) figs.push(`<span>CN ≈${fmtCNYRange(cnv.lo,cnv.hi)}</span>`);
-    return `<div class="bm-peer" style="--av-ring:${barColor(p.b)}">
+    return `<div class="bm-peer" data-i="${p.b._i}" title="Open ${esc(peerName(p.b))}" style="--av-ring:${barColor(p.b)}">
       <span class="av">${avatarHTML(p.b)}</span>
       <span class="who"><span class="nm">${esc(peerName(p.b))}</span>
         <span class="sub">peak #${p.st.peak} on day ${p.st.peakDay} · opened #${p.st.open} · ${per(p.b.start)}${p.b.rerun?" · rerun":""}</span></span>
@@ -2555,10 +2555,25 @@ function bannerSTView(b){
   return `<div class="bm-stats">${tiles}</div>${bannerSTBlock(b)}${bannerSTShareBlock(b)}`;
 }
 
-function openBanner(b){
+// Opening a comparable stacks it ON TOP of the banner you were reading rather than
+// replacing it, so closing steps back to where you were instead of dumping you out.
+// A back-stack rather than a second overlay on purpose: the modal's charts share one
+// hover-tooltip context (_bmCtx, dayLabel.start), and two live modals would fight
+// over it. `keepStack` is what a peer click passes; every other entry point starts fresh.
+let _bmStack=[], _bmCur=null;
+function closeBanner(){
+  if(_bmStack.length){ openBanner(_bmStack.pop(), true); return; }
+  bannerModal.hidden=true; bmTip.hidden=true;
+}
+function openBanner(b, keepStack){
+  if(!keepStack) _bmStack=[];
+  _bmCur=b;
+  const under=_bmStack.length?_bmStack[_bmStack.length-1]:null;
+  const backBar=under
+    ? `<button type="button" class="bm-back" id="bmBack">← Back to ${esc(peerName(under))}</button>` : "";
   if(b._synthetic){
     const mo=`${MONTHS[+b.start.slice(5,7)-1]} ${b.year}`;
-    $("#bmBody").innerHTML=`
+    $("#bmBody").innerHTML=backBar+`
       <div class="bm-head" style="--av-ring:var(--muted)">
         <span class="bm-art sq mono syn">≈</span>
         <div class="bm-htext"><h2 id="bmTitle">${esc(b.name)}</h2>
@@ -2579,7 +2594,7 @@ function openBanner(b){
     const head=b.banner_img
       ? `<div class="bm-hero" style="--av-ring:${barColor(b)}"><img src="${esc(b.banner_img)}" alt="" referrerpolicy="no-referrer" data-fb="art" data-alt="${esc((b.icons&&b.icons[0])||"")}"><div class="bm-herobar">${title}</div></div>`
       : `<div class="bm-head" style="--av-ring:${barColor(b)}">${(b.icons&&b.icons[0])?`<img class="bm-art sq" src="${esc(b.icons[0])}" alt="" referrerpolicy="no-referrer" data-fb="remove">`:""}<div class="bm-htext">${title}</div></div>`;
-    $("#bmBody").innerHTML = head
+    $("#bmBody").innerHTML = backBar + head
       + `<div class="bm-stats"><div class="bm-stat"><span class="l">Run length</span><span class="v">${scheduled} days</span></div><div class="bm-stat"><span class="l">Source</span><span class="v" style="font-size:13px">JP game data</span></div></div>`
       + (icons?`<div class="bm-picons">${icons}</div>`:"")
       + `<p class="bm-note"><b>Not on game-i yet.</b> This is a real ${esc(gameName())} banner from the game's own <b>JP</b> data — game-i hasn't logged it, so there's <b>no daily revenue estimate</b> for it. It'll pick up its ¥ figure and rank curve automatically once game-i adds it. (A brand-new character may show its Japanese name until an official English one exists.)</p>`;
@@ -2669,16 +2684,16 @@ function openBanner(b){
     <button data-bmsrc="st" class="${active==="st"?"on":""}" aria-selected="${active==="st"}" title="Assumed combined worldwide revenue from the Sensor Tower monthly reports">Sensor Tower · combined $</button>`
     + (hasCN?`<button data-bmsrc="cn" class="${active==="cn"?"on":""}" aria-selected="${active==="cn"}" title="China's own store chart day by day, plus the assumed global all-platform revenue from the CN monthly ranking">CN chart · CN¥</button>`:"")
     + `</div>`;
-  $("#bmBody").innerHTML=head+toggle
-    +`<div id="bmGamei"${active==="st"?" hidden":""}>${gameiHTML}</div>`
+  $("#bmBody").innerHTML=backBar+head+toggle
+    +`<div id="bmGamei"${active!=="gamei"?" hidden":""}>${gameiHTML}</div>`
     +`<div id="bmST"${active!=="st"?" hidden":""}>${bannerSTView(b)}</div>`
     +(hasCN?`<div id="bmCN"${active!=="cn"?" hidden":""}>${bannerCNView(b)}</div>`:"");
   bannerModal.querySelector(".modal-card").scrollTop=0;
   tip.hidden=true;
   bannerModal.hidden=false;
 }
-$("#bmClose").onclick=()=>{ bannerModal.hidden=true; bmTip.hidden=true; };
-bannerModal.onclick=e=>{ if(e.target===bannerModal){ bannerModal.hidden=true; bmTip.hidden=true; } };
+$("#bmClose").onclick=()=>closeBanner();
+bannerModal.onclick=e=>{ if(e.target===bannerModal) closeBanner(); };
 
 // shared hover tooltip for both in-modal charts (rank curve + revenue build-up)
 let _bmCtx=null, _cnCtx=null;
@@ -2725,6 +2740,10 @@ $("#bmBody").addEventListener("pointermove",e=>{
 });
 $("#bmBody").addEventListener("pointerleave",()=>bmTip.hidden=true);
 $("#bmBody").addEventListener("click",e=>{
+  // a comparable in "How this run compares" opens that banner in place
+  if(e.target.closest("#bmBack")){ closeBanner(); return; }
+  const peer=e.target.closest(".bm-peer[data-i]");
+  if(peer){ if(_bmCur) _bmStack.push(_bmCur); openBanner(state.data.banners[+peer.dataset.i], true); return; }
   const btn=e.target.closest("[data-bmsrc]"); if(!btn) return;
   const which=btn.dataset.bmsrc;
   $("#bmSrc").querySelectorAll("[data-bmsrc]").forEach(x=>{ const on=x===btn; x.classList.toggle("on",on); x.setAttribute("aria-selected",on); });
@@ -2841,6 +2860,9 @@ $("#infoModal").addEventListener("click",e=>{ const im=e.target.closest(".info-e
 lightbox.onclick=()=>{ lightbox.hidden=true; lightboxImg.src=""; };
 $("#infoClose").onclick=()=>{ infoModal.hidden=true; };
 infoModal.onclick=e=>{ if(e.target===infoModal) infoModal.hidden=true; };
-addEventListener("keydown",e=>{ if(e.key==="Escape"){ if(!lightbox.hidden){ lightbox.hidden=true; lightboxImg.src=""; return; } infoModal.hidden=true; bannerModal.hidden=true; periodModal.hidden=true; } });
+addEventListener("keydown",e=>{ if(e.key==="Escape"){
+  if(!lightbox.hidden){ lightbox.hidden=true; lightboxImg.src=""; return; }
+  if(!bannerModal.hidden){ closeBanner(); return; }   // step back down the stack first
+  infoModal.hidden=true; periodModal.hidden=true; } });
 
 init().catch(e=>{$("#chart").innerHTML=`<div class="loading">Failed to load data: ${e}</div>`;});
