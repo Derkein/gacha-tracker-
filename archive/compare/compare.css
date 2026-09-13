@@ -1,0 +1,136 @@
+/* ---- Compare: the seven games side by side ------------------------------------
+   Every game keeps its own accent (GAME_ACCENT in app.js) everywhere in this view, so
+   a colour means the same game in the podium, the stacked months, the race and the
+   market board. The selected game is marked with an inset ring (the same idea as
+   .tab.on) rather than recoloured, so switching games never changes what a colour
+   means. The stacked month bar reuses the .mc-stack / .mcs pattern exactly, white
+   segment divider included. */
+.cmp-h{font-size:14px; font-weight:800; letter-spacing:-.01em; margin:26px 0 8px;
+  padding-bottom:6px; border-bottom:1px solid var(--grid)}
+.cmp-hs{font-size:11px; font-weight:600; color:var(--muted); letter-spacing:0; margin-left:8px}
+.cmp-note{font-size:11.5px; color:var(--muted); margin:0 0 12px; line-height:1.55}
+.cmp-sub2{font-size:11.5px; color:var(--muted); margin:16px 0 8px}
+.cmp-dot{display:inline-block; width:8px; height:8px; border-radius:50%; flex:none; margin-right:5px}
+.cmp-gname{display:inline-flex; align-items:center; white-space:nowrap; font-weight:700}
+.cmp-gname.me{text-decoration:underline; text-underline-offset:3px; text-decoration-thickness:2px;
+  text-decoration-color:var(--accent)}
+.cmp-clk{cursor:pointer}
+.cmp-clk:hover{opacity:.72}
+
+/* who led, per source */
+.cmp-pods{display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:10px; margin:0 0 14px}
+.cmp-pod{background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:11px 14px}
+.cmp-pod.on{border-color:var(--accent); box-shadow:inset 0 0 0 1px var(--accent)}
+.cmp-podhd{font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:.03em; color:var(--muted)}
+.cmp-podu{display:block; font-size:9.5px; font-weight:600; text-transform:none; letter-spacing:0; opacity:.85}
+.cmp-podwin{display:flex; align-items:baseline; gap:7px; flex-wrap:wrap; margin-top:7px}
+.cmp-podwin b{font-size:22px; font-weight:800; letter-spacing:-.02em; font-variant-numeric:tabular-nums}
+.cmp-podn{font-size:10.5px; color:var(--muted)}
+.cmp-podrest{display:flex; gap:9px; flex-wrap:wrap; margin-top:7px; padding-top:7px; border-top:1px solid var(--grid)}
+.cmp-podr{display:inline-flex; align-items:center; font-size:11px; font-weight:700;
+  font-variant-numeric:tabular-nums; color:var(--ink2); cursor:help}
+
+/* month by month, all seven stacked */
+.cmp-head{display:grid; grid-template-columns:104px 1fr 150px; gap:16px; align-items:end;
+  padding:0 12px 7px; font-size:10px; font-weight:700; text-transform:uppercase;
+  letter-spacing:.04em; color:var(--muted); border-bottom:1px solid var(--grid)}
+.cmp-list{display:flex; flex-direction:column}
+.cmp-row{display:grid; grid-template-columns:104px 1fr 150px; gap:16px; align-items:center;
+  padding:9px 12px; border-bottom:1px solid var(--grid); border-radius:8px}
+.cmp-row:hover{background:var(--surface2)}
+.cmp-mo{font-size:12.5px; font-weight:700; white-space:nowrap; display:flex; align-items:center; gap:6px}
+.cmp-part{font-size:9px; font-weight:700; color:var(--muted); border:1px dashed var(--border);
+  border-radius:999px; padding:0 5px; cursor:help}
+.cmp-bar{display:flex; height:12px; border-radius:7px; overflow:hidden; background:var(--track); min-width:0}
+.cmp-seg{position:relative; height:100%; min-width:3px; cursor:help;
+  animation:barGrow .6s cubic-bezier(.2,.7,.2,1) both}
+.cmp-seg + .cmp-seg{box-shadow:inset 1.5px 0 0 rgba(255,255,255,.6)}   /* same divider as .mcs */
+/* the selected game's slice is ringed, the same way .tab.on rings the selected tab.
+   The ring is drawn in --ink rather than the accent: the slice is already filled with
+   that game's accent, so an accent ring would be invisible on the one slice it marks. */
+.cmp-seg.me{box-shadow:inset 0 0 0 1.5px var(--ink)}
+.cmp-seg + .cmp-seg.me{box-shadow:inset 0 0 0 1.5px var(--ink)}
+.cmp-tot{display:flex; align-items:baseline; justify-content:flex-end; gap:8px;
+  font-size:12.5px; font-variant-numeric:tabular-nums; white-space:nowrap}
+.cmp-win{display:inline-flex; align-items:center; font-size:10.5px; font-weight:700;
+  color:var(--muted); cursor:help}
+
+/* launch race */
+.cmp-racewrap{background:var(--surface); border:1px solid var(--border); border-radius:12px;
+  padding:10px 12px 4px; margin:0 0 14px; overflow-x:auto}
+.cmp-race{display:block; width:100%; min-width:520px; height:auto}
+.cmp-grid line{stroke:var(--grid); stroke-width:1}
+.cmp-grid text{fill:var(--muted); font-size:9px; text-anchor:end; font-weight:600}
+.cmp-xt{fill:var(--muted); font-size:9px; text-anchor:middle; font-weight:600}
+.cmp-xl{fill:var(--muted); font-size:9px; text-anchor:middle; font-weight:600; letter-spacing:.03em}
+.cmp-line path{fill:none; stroke:var(--c); stroke-width:2; stroke-linejoin:round; stroke-linecap:round;
+  opacity:.85}
+.cmp-line circle{fill:var(--c)}
+.cmp-line.me path{stroke-width:3.2; opacity:1}
+.cmp-line:hover path{stroke-width:3.4; opacity:1}
+
+/* shared small table (race milestones, CN market position) */
+.cmp-tw{overflow-x:auto; margin:0 0 4px}
+.cmp-t{width:100%; border-collapse:collapse; font-size:12px}
+.cmp-t th{font-size:9.5px; font-weight:700; text-transform:uppercase; letter-spacing:.04em;
+  color:var(--muted); text-align:left; padding:0 10px 7px; border-bottom:1px solid var(--grid);
+  white-space:nowrap}
+/* the global `th,td` rule right-aligns every cell (the main data table is all
+   numbers); these tables lead with a name, so put text back to the left and let
+   .cmp-num opt individual columns into right-aligned figures. */
+.cmp-t td{padding:8px 10px; border-bottom:1px solid var(--grid); white-space:nowrap; text-align:left}
+.cmp-t tr:hover td{background:var(--surface2)}
+.cmp-t tr.me td{background:var(--surface2)}
+.cmp-num{text-align:right; font-variant-numeric:tabular-nums}
+.cmp-sub{display:block; font-size:9.5px; font-weight:600; color:var(--muted)}
+.cmp-sparkc{width:100px}
+.cmp-spark{display:block; width:90px; height:22px}
+.cmp-spark path{fill:none; stroke:var(--c,var(--accent)); stroke-width:1.4; stroke-linejoin:round}
+
+/* the wider CN chart */
+.cmp-market{display:flex; flex-direction:column}
+.cmp-mrow{display:grid; grid-template-columns:26px minmax(140px,270px) 1fr 96px; gap:12px;
+  align-items:center; padding:5px 12px; border-bottom:1px solid var(--grid); border-radius:6px}
+.cmp-mrow:hover{background:var(--surface2)}
+.cmp-mrow.tracked{background:var(--surface)}
+.cmp-mrow.me{box-shadow:inset 2px 0 0 var(--accent)}
+.cmp-mrank{font-size:11px; font-weight:700; color:var(--muted); font-variant-numeric:tabular-nums}
+.cmp-mname{display:flex; align-items:center; gap:6px; font-size:12px; min-width:0;
+  overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.cmp-mrow.tracked .cmp-mname{font-weight:700}
+.cmp-mtag{font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:.03em;
+  color:var(--accent); border:1px solid var(--border); border-radius:999px; padding:0 6px; flex:none}
+.cmp-mcn{font-size:10px; color:var(--muted); font-weight:600}
+.cmp-mbar{height:8px; background:var(--track); border-radius:4px; overflow:hidden; min-width:0}
+.cmp-mbar span{display:block; height:100%; border-radius:4px; background:var(--base)}
+.cmp-mrow.tracked .cmp-mbar span{background:var(--c,var(--accent))}
+.cmp-mval{font-size:11.5px; font-weight:700; font-variant-numeric:tabular-nums; text-align:right;
+  color:var(--ink2)}
+.cmp-mrow.tracked .cmp-mval{color:var(--ink)}
+
+@media (max-width:720px){
+  .cmp-head{display:none}
+  .cmp-row{grid-template-columns:1fr; gap:6px}
+  .cmp-tot{justify-content:flex-start}
+  .cmp-mrow{grid-template-columns:22px 1fr 84px; gap:8px}
+  .cmp-mbar{display:none}
+}
+.cmp-verdict{font-size:12.5px; line-height:1.6; color:var(--ink2); background:var(--surface);
+  border:1px solid var(--border); border-left:3px solid var(--accent); border-radius:0 10px 10px 0;
+  padding:10px 14px; margin:0 0 14px}
+
+/* "Do reruns hold up?" -- one small table per game, because the games are not
+   comparable to each other here and a single merged league table would imply
+   they are. */
+.cmp-rrgame{margin:0 0 16px}
+.cmp-rrhd{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; margin:0 0 6px}
+.cmp-rrsum{font-size:11.5px; color:var(--ink2)}
+.cmp-rrown{color:var(--muted)}
+.cmp-rrcov{font-size:9.5px; font-weight:700; text-transform:uppercase; letter-spacing:.03em;
+  color:var(--muted); border:1px solid var(--border); border-radius:999px; padding:1px 8px;
+  cursor:help; margin-left:auto}
+.cmp-rrcov.warn{color:#a2650a; border-color:rgba(162,101,10,.42)}
+:root[data-theme=dark] .cmp-rrcov.warn{color:#e0a94a}
+@media (prefers-color-scheme:dark){ .cmp-rrcov.warn{color:#e0a94a} }
+.cmp-rrc{white-space:normal; min-width:170px}
+.cmp-na{color:var(--muted); font-style:italic; cursor:help}

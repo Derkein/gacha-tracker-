@@ -1,0 +1,32 @@
+{
+ "what": "Cross-check of our saved China iPhone top-grossing snapshots against Diandian (app.diandian.com, the real App Store chart, read in a logged-in free account). Top 20 compared position by position.",
+ "checked_on": "2026-09-11",
+ "method": "For each of our snapshots, Diandian's chart for that day was opened and its recorded chart updates (the starred snapshot times) at or before our timestamp were tried, latest first, plus the first one after; the best match is kept. Names compared on their first four characters after stripping punctuation.",
+ "finding": "Apple's China grossing chart changes only at a handful of irregular times a day (Diandian's starred snapshots). A feed copy shows whichever update was live when it was fetched, so our copies stamped 09:30 China time matched Diandian updates anywhere from the early morning up to a few minutes after 09:30 (Diandian logs each update shortly after Apple publishes it). No day showed our data disagreeing with the chart; the three near-misses fell on fast-moving days where no logged update coincided with our moment.",
+ "stopped_because": "Diandian's free account has a daily cap on chart views ('View List data has been limited, please try it tomorrow'). The remaining days were not checked.",
+ "all_apps": {
+  "2026-09-11": {"ours_cst": "11:30", "diandian_snapshot": "11:13", "same_position": 20, "same_set": 20}
+ },
+ "games": {
+  "2026-06-08": {"ours_cst": "17:54", "diandian_snapshot": "16:57", "same_position": 20, "same_set": 20},
+  "2026-07-17": {"ours_cst": "13:39", "diandian_snapshot": "13:11", "same_position": 20, "same_set": 20},
+  "2026-07-18": {"ours_cst": "09:30", "diandian_snapshot": "07:18", "same_position": 20, "same_set": 20},
+  "2026-07-19": {"ours_cst": "09:30", "diandian_snapshot": "00:57", "same_position": 20, "same_set": 20},
+  "2026-07-20": {"ours_cst": "09:30", "diandian_snapshot": "06:42", "same_position": 20, "same_set": 20},
+  "2026-07-21": {"ours_cst": "09:30", "diandian_snapshot": "10:03", "same_position": 16, "same_set": 20, "tried": "07:23=11 04:02=10 01:05=8 10:03=16"},
+  "2026-07-22": {"ours_cst": "09:30", "diandian_snapshot": "06:57", "same_position": 12, "same_set": 18, "tried": "06:57=12 05:43=7 03:40=7 09:44=7"},
+  "2026-07-23": {"ours_cst": "09:30", "diandian_snapshot": "09:01", "same_position": 19, "same_set": 19, "tried": "09:01=19 07:16=19 07:04=4 10:02=17"},
+  "2026-07-24": {"ours_cst": "09:30", "diandian_snapshot": "07:05", "same_position": 20, "same_set": 20},
+  "2026-07-25": {"ours_cst": "09:30", "diandian_snapshot": "09:36", "same_position": 20, "same_set": 20},
+  "2026-07-26": {"ours_cst": "09:30", "diandian_snapshot": "09:27", "same_position": 20, "same_set": 20},
+  "2026-07-27": {"ours_cst": "09:30", "diandian_snapshot": "06:24", "same_position": 20, "same_set": 20},
+  "2026-07-28": {"ours_cst": "09:30", "diandian_snapshot": "06:43", "same_position": 20, "same_set": 20},
+  "2026-07-29": {"ours_cst": "09:30", "diandian_snapshot": "06:57", "same_position": 20, "same_set": 20},
+  "2026-07-30": {"ours_cst": "09:30", "diandian_snapshot": "06:38", "same_position": 20, "same_set": 20},
+  "2026-07-31": {"ours_cst": "09:50", "diandian_snapshot": "09:35", "same_position": 20, "same_set": 20},
+  "2026-08-01": {"ours_cst": "09:30", "diandian_snapshot": "09:34", "same_position": 20, "same_set": 20},
+  "2026-09-09": {"ours_cst": "09:30", "diandian_snapshot": "06:32", "same_position": 20, "same_set": 20}
+ },
+ "not_checked": ["2026-08-02","2026-08-03","2026-08-04","2026-08-05","2026-08-06","2026-08-07","2026-08-08","2026-08-10","2026-08-11","2026-08-12","2026-08-13","2026-08-14","2026-08-15","2026-08-16","2026-08-18","2026-08-19","2026-08-20","2026-08-27","2026-08-28","2026-08-29","2026-08-31","2026-09-02","2026-09-04","2026-09-05","2026-09-06","2026-09-07","2026-09-08","2026-09-11"],
+ "summary": {"checked": 19, "exact_20_of_20": 16, "near": 3, "disagreeing": 0}
+}

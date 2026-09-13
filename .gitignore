@@ -4,3 +4,10 @@ __pycache__/
 .DS_Store
 *.log
 .venv/
+
+# scraped video cache for scripts/scrape_bilibili_cn.py
+.bilicache/
+
+# CN scrape working files (the merged data/cn_revenue.json + cn_monthly.json are committed)
+data/cn_shards/
+data/cn_verify/

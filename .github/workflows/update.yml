@@ -45,6 +45,11 @@ jobs:
       - name: Scrape banner revenue (game-i)
         run: python scripts/scrape.py
 
+      - name: Snapshot store charts (China iOS top-grossing, Steam top sellers)
+        run: python scripts/scrape_ranks.py
+        continue-on-error: true    # history grows one day at a time; a miss is one gap,
+                                   # never a failed refresh
+
       - name: Scrape external monthly revenue (eog.gg / Sensor Tower)
         run: python scripts/scrape_external.py
         continue-on-error: true    # comparison layer; never block a game-i refresh

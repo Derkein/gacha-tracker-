@@ -1,0 +1,7 @@
+# Goes back into .github/workflows/update.yml, before the "Check version buckets" step:
+
+      - name: Build the cross-game Compare layer
+        run: python scripts/build_compare.py
+        # NOT continue-on-error: it fails only if the reconstructed game-i monthly
+        # totals stop matching index.json, which would mean the Compare view is
+        # showing numbers that disagree with every other view on the site.

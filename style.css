@@ -34,7 +34,11 @@ html.scrolling *{scrollbar-color:color-mix(in srgb, var(--muted) 65%, transparen
 body{ background:var(--page); color:var(--ink);
   font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; line-height:1.45;
   -webkit-font-smoothing:antialiased; }
-.wrap{max-width:1120px; margin:0 auto; padding:26px clamp(14px,3vw,34px) 60px}
+/* Sized so the by-Month cards fit their four KPI tiles exactly. The widest tile row is
+   ~557px (a CN range at full precision, e.g. "CN¥524.55–624.47M"); a card adds 34px of
+   padding and border, two of them plus the 14px grid gap and 68px of page padding lands
+   here. Wider and the tiles float in dead space; narrower and the CN tile spills out. */
+.wrap{max-width:1270px; margin:0 auto; padding:26px clamp(14px,3vw,34px) 60px}
 a{color:inherit}
 /* the hidden attribute must win over class display rules (.modal/.controls set display) */
 [hidden]{display:none !important}
@@ -178,10 +182,10 @@ a{color:inherit}
 .partialbadge{display:block; width:max-content; margin:2px 0 0 auto; font-size:8.5px; font-weight:700; letter-spacing:.03em;
   color:var(--muted); border:1px solid var(--border); border-radius:5px; padding:0 4px; text-transform:uppercase}
 /* Sensor Tower "assumed data" disclaimer above the chart */
-.stnote{margin:2px 2px 12px; padding:9px 12px; font-size:12px; line-height:1.5; color:var(--ink2);
+.stnote,.cnnote{margin:2px 2px 12px; padding:9px 12px; font-size:12px; line-height:1.5; color:var(--ink2);
   background:var(--track); border:1px solid var(--border); border-radius:9px}
-.stnote b{color:var(--ink)}
-.stnote .pill{font-size:9px; font-weight:700; letter-spacing:.03em; color:var(--muted); border:1px solid var(--border);
+.stnote b,.cnnote b{color:var(--ink)}
+.stnote .pill,.cnnote .pill{font-size:9px; font-weight:700; letter-spacing:.03em; color:var(--muted); border:1px solid var(--border);
   border-radius:5px; padding:1px 4px; text-transform:uppercase; white-space:nowrap}
 /* portion of a bar earned while sharing the day's revenue with another banner */
 .barfill .shared{position:absolute; right:0; top:0; bottom:0; z-index:1;
@@ -284,6 +288,24 @@ tr.clk{cursor:pointer} tr.clk:hover td{background:var(--track)}
 @media (prefers-color-scheme:dark){ .st-chip{color:#4fc6da} }
 :root[data-theme=dark] .st-chip{color:#4fc6da}
 .st-note{display:block; margin-top:6px; font-size:11.5px; color:var(--muted); line-height:1.5}
+/* CN monthly layer (global, all platforms, yuan) — crimson against ST's teal */
+.cn-chip{font-size:11px; font-weight:750; font-variant-numeric:tabular-nums; white-space:nowrap;
+  color:#b0384a; background:var(--surface2); border:1px solid var(--border); border-radius:999px;
+  padding:1px 8px; cursor:help}
+.cn-chip.est{color:var(--muted); font-weight:650}
+@media (prefers-color-scheme:dark){ .cn-chip{color:#f08a99} }
+:root[data-theme=dark] .cn-chip{color:#f08a99}
+/* "mixed basis" — a run spanning the Nov 2023 总收入 -> 总流水 change */
+.partialbadge.mixbadge{color:#b0384a; border-color:rgba(176,56,74,.4)}
+@media (prefers-color-scheme:dark){ .partialbadge.mixbadge{color:#f08a99; border-color:rgba(240,138,153,.4)} }
+:root[data-theme=dark] .partialbadge.mixbadge{color:#f08a99; border-color:rgba(240,138,153,.4)}
+.bm-stm-tag{font-size:9.5px; font-weight:700; letter-spacing:.03em; color:var(--muted);
+  border:1px solid var(--border); border-radius:5px; padding:0 4px; margin-left:5px; white-space:nowrap}
+.bm-stm-note{font-size:10.5px; color:var(--muted)}
+.bm-note.bm-warn{color:var(--ink2) !important}
+.bm-note.bm-warn b{color:#b0384a}
+@media (prefers-color-scheme:dark){ .bm-note.bm-warn b{color:#f08a99} }
+:root[data-theme=dark] .bm-note.bm-warn b{color:#f08a99}
 .st-note b{color:var(--ink)}
 
 /* info button + methodology modal */
@@ -358,6 +380,8 @@ tr.clk{cursor:pointer} tr.clk:hover td{background:var(--track)}
 .rcsvg .bu-line{fill:none; stroke:var(--acc); stroke-width:2.4; stroke-linejoin:round; stroke-linecap:round}
 .rcsvg .rc-hit{fill:transparent; cursor:pointer}
 .rcsvg .rc-hit:hover{fill:var(--acc); fill-opacity:.18}
+/* the generic three-across stat row in the banner modal (banner sharing, and the
+   first-week / half-life figures under the revenue build-up) */
 .bm-share3{grid-template-columns:1fr 1fr 1fr; margin-top:2px}
 .bm-share3 .bm-stat.sum{border-color:var(--accent)}
 .bm-share3 .bm-stat.sum .v{color:var(--accent)}
@@ -492,10 +516,12 @@ tr.clk{cursor:pointer} tr.clk:hover td{background:var(--track)}
 
 /* by-month: rich month cards — game-i vs daily-rank vs Sensor Tower, plus per-banner split */
 .mc{background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:13px 16px; margin:0 0 12px}
-/* by-Month: two cards per row on desktop (the cards leave plenty of horizontal room).
-   Rows stretch so paired cards match height; the lighter card centers its body. */
+/* by-Month: two cards per row on desktop. Rows stretch so paired cards match height;
+   the lighter card centers its body. A pair only has room for four KPI tiles once the
+   page is wide enough to reach the .wrap cap above, so below that fall back to one card
+   per row rather than letting a tile overflow. */
 .mc-body{display:flex; flex-direction:column}
-@media (min-width:721px){
+@media (min-width:1290px){
   body[data-view="month"] .chart{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:12px 14px; align-items:stretch; min-width:0}
   body[data-view="month"] .chart>.mfilter,
   body[data-view="month"] .chart>.yr-note,
@@ -512,12 +538,23 @@ tr.clk{cursor:pointer} tr.clk:hover td{background:var(--track)}
 .mc-month{font-size:18px; font-weight:800; letter-spacing:-.02em; white-space:nowrap}
 .mc-yr{font-size:13px; font-weight:600; color:var(--muted); margin-left:2px}
 .mc-kpis{display:flex; flex-wrap:wrap; gap:8px}
+/* Four tiles read as one row. They size to their CONTENT rather than splitting the
+   width evenly -- equal thirds left the short tiles half empty while the CN one, whose
+   label and range are the longest, truncated. They may still shrink if the row is tight. */
+.mc-kpis{flex:1 1 100%; flex-wrap:nowrap; gap:6px}
+.mc-kpis .mck{flex:0 1 auto; min-width:0; padding:5px 9px}
+.mc-kpis .mck-k,.mc-kpis .mck-n{white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.mc-kpis .mck-v{white-space:nowrap}
+@media (max-width:720px){ .mc-kpis{flex-wrap:wrap} .mc-kpis .mck{flex:0 1 auto} }
 .mck{display:flex; flex-direction:column; gap:1px; padding:6px 12px; background:var(--surface2);
   border:1px solid var(--border); border-radius:10px; min-width:100px}
 .mck-k{font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.03em; color:var(--muted)}
 .mck-v{font-size:17px; font-weight:800; font-variant-numeric:tabular-nums; letter-spacing:-.01em}
 .mck-n{font-size:10.5px; color:var(--muted)}
 .mck.st{border-color:rgba(15,138,158,.42)} .mck.st .mck-v{color:#0f8a9e}
+.mck.cn{border-color:rgba(176,56,74,.42)} .mck.cn .mck-v{color:#b0384a}
+@media (prefers-color-scheme:dark){ .mck.cn{border-color:rgba(240,138,153,.4)} .mck.cn .mck-v{color:#f08a99} }
+:root[data-theme=dark] .mck.cn{border-color:rgba(240,138,153,.4)} :root[data-theme=dark] .mck.cn .mck-v{color:#f08a99}
 @media (prefers-color-scheme:dark){ .mck.st{border-color:rgba(79,198,218,.4)} .mck.st .mck-v{color:#4fc6da} }
 :root[data-theme=dark] .mck.st{border-color:rgba(79,198,218,.4)} :root[data-theme=dark] .mck.st .mck-v{color:#4fc6da}
 .mc-stack{display:flex; height:12px; border-radius:7px; overflow:hidden; margin:13px 0 4px; background:var(--track)}
@@ -546,6 +583,14 @@ tr.clk{cursor:pointer} tr.clk:hover td{background:var(--track)}
 .mcb-pct{color:var(--muted); font-weight:600; font-size:11px}
 .mcb-of{color:var(--muted); font-weight:500; font-size:10.5px; font-style:italic; margin-left:4px}
 .mcb-st{font-size:12px; font-weight:700; color:#0f8a9e}
+.mcb-cn{font-size:12px; font-weight:700; color:#b0384a}
+.pd-h-cn,.pd-tot-cn .pd-tot-v{color:#b0384a}
+.pd-hd-cn{border-color:rgba(176,56,74,.42)}
+@media (prefers-color-scheme:dark){ .pd-h-cn,.pd-tot-cn .pd-tot-v{color:#f08a99} .pd-hd-cn{border-color:rgba(240,138,153,.4)} }
+:root[data-theme=dark] .pd-h-cn,:root[data-theme=dark] .pd-tot-cn .pd-tot-v{color:#f08a99}
+:root[data-theme=dark] .pd-hd-cn{border-color:rgba(240,138,153,.4)}
+@media (prefers-color-scheme:dark){ .mcb-cn{color:#f08a99} }
+:root[data-theme=dark] .mcb-cn{color:#f08a99}
 .mcb-tag{color:var(--muted); font-weight:600; font-size:10px; font-style:italic}
 .mcb-pend{font-size:11px; font-weight:700; font-style:italic; color:var(--accent); opacity:.9}
 @media (prefers-color-scheme:dark){ .mcb-st{color:#4fc6da} }
@@ -679,3 +724,135 @@ tr.clk{cursor:pointer} tr.clk:hover td{background:var(--track)}
 .mfilter{display:flex; align-items:center; gap:10px; margin:0 0 12px; flex-wrap:wrap}
 .mfilter-l{font-size:11px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.04em}
 .myears{flex-wrap:wrap}
+
+/* ---- Sources view: how the three layers rank the same months ----------------
+   Values across sources aren't comparable, so every month is drawn as a percentile
+   within its OWN source. Colours match the layers used elsewhere: game-i = the game's
+   accent, Sensor Tower = teal, CN = crimson. */
+.ag-corr{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:10px; margin:0 0 14px}
+.ag-corrcard{background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:10px 13px; cursor:help}
+.ag-corrk{display:block; font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:.03em; color:var(--muted)}
+.ag-corrv{display:block; font-size:22px; font-weight:800; letter-spacing:-.02em; font-variant-numeric:tabular-nums; margin-top:1px}
+.ag-corrbar{height:5px; background:var(--track); border-radius:3px; overflow:hidden; margin:6px 0 5px}
+.ag-corrbar span{display:block; height:100%; border-radius:3px; background:var(--accent)}
+/* each card's fill blends the two layers it correlates: game-i = the game's accent,
+   Sensor Tower = teal, CN = crimson -- the same colours the bars below use. */
+.ag-pair-gi-st .ag-corrbar span{background:linear-gradient(90deg,var(--accent),#0f8a9e)}
+.ag-pair-gi-cn .ag-corrbar span{background:linear-gradient(90deg,var(--accent),#b0384a)}
+.ag-pair-st-cn .ag-corrbar span{background:linear-gradient(90deg,#0f8a9e,#b0384a)}
+@media (prefers-color-scheme:dark){
+  .ag-pair-gi-st .ag-corrbar span{background:linear-gradient(90deg,var(--accent),#4fc6da)}
+  .ag-pair-gi-cn .ag-corrbar span{background:linear-gradient(90deg,var(--accent),#f08a99)}
+  .ag-pair-st-cn .ag-corrbar span{background:linear-gradient(90deg,#4fc6da,#f08a99)}
+}
+:root[data-theme=dark] .ag-pair-gi-st .ag-corrbar span{background:linear-gradient(90deg,var(--accent),#4fc6da)}
+:root[data-theme=dark] .ag-pair-gi-cn .ag-corrbar span{background:linear-gradient(90deg,var(--accent),#f08a99)}
+:root[data-theme=dark] .ag-pair-st-cn .ag-corrbar span{background:linear-gradient(90deg,#4fc6da,#f08a99)}
+.ag-corrn{font-size:10.5px; color:var(--muted)}
+
+.ag-head{display:grid; grid-template-columns:104px 1fr 196px; gap:16px; align-items:end;
+  padding:0 12px 7px; font-size:10px; font-weight:700; text-transform:uppercase;
+  letter-spacing:.04em; color:var(--muted); border-bottom:1px solid var(--grid)}
+.ag-list{display:flex; flex-direction:column}
+.ag-row{display:grid; grid-template-columns:104px 1fr 196px; gap:16px; align-items:center;
+  padding:14px 12px; border-bottom:1px solid var(--grid); cursor:pointer; border-radius:8px}
+.ag-row:hover{background:var(--surface2)}
+.ag-mo{font-size:13.5px; font-weight:750; white-space:nowrap; display:flex; flex-direction:column; gap:2px}
+.ag-era{font-size:9.5px; font-weight:600; color:var(--muted); letter-spacing:.02em}
+.ag-bars{display:flex; flex-direction:column; gap:7px; min-width:0}
+/* Cap the track rather than letting it fill: a full-width bar pushed the percentile and
+   the figure so far right they stopped reading as part of the same bar. */
+.ag-src{display:grid; grid-template-columns:26px minmax(90px,440px) 32px 104px; gap:10px;
+  align-items:center; justify-content:start}
+.ag-lab{font-size:9px; font-weight:800; letter-spacing:.04em; color:var(--muted)}
+.ag-val{font-size:11.5px; font-weight:700; font-variant-numeric:tabular-nums; white-space:nowrap;
+  text-align:right; color:var(--ink2)}
+.ag-gi .ag-val{color:var(--ink)}
+.ag-st .ag-val{color:#0f8a9e}
+.ag-cn .ag-val{color:#b0384a}
+.ag-na .ag-val{color:var(--muted); font-weight:600; font-style:italic}
+@media (prefers-color-scheme:dark){ .ag-st .ag-val{color:#4fc6da} .ag-cn .ag-val{color:#f08a99} }
+:root[data-theme=dark] .ag-st .ag-val{color:#4fc6da}
+:root[data-theme=dark] .ag-cn .ag-val{color:#f08a99}
+.ag-track{height:9px; background:var(--track); border-radius:5px; overflow:hidden}
+.ag-track span{display:block; height:100%; border-radius:5px; animation:barGrow .45s cubic-bezier(.2,.7,.2,1) both}
+.ag-pct{font-size:11px; font-weight:700; font-variant-numeric:tabular-nums; text-align:right; color:var(--ink2)}
+.ag-gi .ag-track span{background:var(--accent)}
+.ag-st .ag-track span{background:#0f8a9e}
+.ag-cn .ag-track span{background:#b0384a}
+.ag-na .ag-track{opacity:.45}
+.ag-na .ag-pct{color:var(--muted)}
+@media (prefers-color-scheme:dark){ .ag-st .ag-track span{background:#4fc6da} .ag-cn .ag-track span{background:#f08a99} }
+:root[data-theme=dark] .ag-st .ag-track span{background:#4fc6da}
+:root[data-theme=dark] .ag-cn .ag-track span{background:#f08a99}
+
+.ag-verdict{display:flex; align-items:center; justify-content:flex-end; min-width:0}
+.ag-chip{font-size:10px; font-weight:750; letter-spacing:.02em; border-radius:999px;
+  padding:2px 9px; border:1px solid var(--border); color:var(--ink2); background:var(--surface2);
+  white-space:nowrap; cursor:help}
+.ag-chip.agree.hi{color:#1f9d57; border-color:rgba(31,157,87,.4)}
+.ag-chip.agree.mid{color:var(--ink2); border-color:var(--border)}
+.ag-chip.agree.lo{color:var(--muted); border-color:var(--border)}
+/* "close" rather than "agree": same level colour, dashed edge marks the looser fit */
+.ag-chip.agree.loose{border-style:dashed}
+/* two groups: the sources cluster but one reads differently */
+.ag-chip.split{color:#a2650a; border-color:rgba(162,101,10,.42)}
+/* no clean grouping at all -- the extremes are named instead */
+.ag-chip.nocon{color:#c0553f; border-color:rgba(192,85,63,.45); border-style:dashed}
+.ag-chip.solo{color:var(--muted); font-style:italic}
+@media (prefers-color-scheme:dark){ .ag-chip.agree.hi{color:#46c684} .ag-chip.split{color:#e0a94a} .ag-chip.nocon{color:#f0857a} }
+:root[data-theme=dark] .ag-chip.agree.hi{color:#46c684}
+:root[data-theme=dark] .ag-chip.split{color:#e0a94a}
+:root[data-theme=dark] .ag-chip.nocon{color:#f0857a}
+:root[data-theme=dark] .ag-chip.agree.mid{color:var(--ink2)}
+:root[data-theme=dark] .ag-chip.agree.lo{color:var(--muted)}
+@media (max-width:720px){
+  .ag-head{display:none}
+  .ag-row{grid-template-columns:1fr; gap:7px}
+  .ag-verdict{justify-content:flex-start}
+  .ag-src{grid-template-columns:26px 1fr 30px 86px; gap:7px}
+}
+
+/* ---- China chart: the verdict callouts, peer cards and headline totals -------------
+   The comparison is the point of the tab, so it must not read like the footnotes around
+   it: accent rule down the side, ink-coloured text at body size, figures in accent. */
+.bm-verdict{background:var(--surface2); border:1px solid var(--border); border-left:3px solid var(--accent);
+  border-radius:10px; padding:10px 13px; margin:6px 0 4px; font-size:13px; line-height:1.6; color:var(--ink2)}
+.bm-verdict b{color:var(--ink); font-weight:750}
+.bm-verdict .fig{color:var(--accent); font-weight:800; font-variant-numeric:tabular-nums}
+.bm-verdict .head{display:block; font-size:11px; text-transform:uppercase; letter-spacing:.05em;
+  color:var(--muted); margin-bottom:4px}
+.bm-verdict.call{font-size:13.5px}
+.bm-verdict .after{display:block; margin-top:6px; font-size:11.5px; color:var(--muted); line-height:1.5}
+
+/* the run's headline number, where a tab has one worth leading with */
+.bm-headline{display:flex; align-items:baseline; justify-content:space-between; gap:12px; flex-wrap:wrap;
+  background:var(--surface2); border:1px solid var(--border); border-radius:10px; padding:10px 13px; margin:6px 0}
+.bm-headline .l{font-size:11px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted)}
+.bm-headline .v{font-size:22px; font-weight:800; color:var(--accent); font-variant-numeric:tabular-nums; line-height:1.1}
+.bm-headline .sub{font-size:11.5px; color:var(--muted)}
+
+/* one comparable banner: icon, names, its ranks, and every revenue figure that exists */
+.bm-peer{display:flex; align-items:center; gap:9px; background:var(--surface2); border:1px solid var(--border);
+  border-radius:10px; padding:8px 11px}
+.bm-peer .av{position:relative; width:30px; height:30px; flex:none}
+.bm-peer .av img{width:30px; height:30px; border-radius:50%; object-fit:cover;
+  box-shadow:0 0 0 1.5px var(--av-ring,var(--muted))}
+.bm-peer .av img.extra,.bm-peer .av .mono{display:none}
+.bm-peer .av .mono{display:flex; width:30px; height:30px; align-items:center; justify-content:center;
+  border-radius:50%; background:var(--track); font-size:11px}
+.bm-peer .who{min-width:0; flex:1}
+.bm-peer .nm{font-size:12.5px; font-weight:750; color:var(--ink); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.bm-peer .sub{font-size:11px; color:var(--muted); font-variant-numeric:tabular-nums}
+.bm-peer .figs{display:flex; flex-direction:column; align-items:flex-end; gap:1px; font-variant-numeric:tabular-nums}
+.bm-peer .figs span{font-size:11.5px; color:var(--ink2); white-space:nowrap}
+.bm-peer .figs .main{font-size:13.5px; font-weight:800; color:var(--ink)}
+.bm-peerlist{display:flex; flex-direction:column; gap:6px; margin:4px 0 8px}
+
+/* A CN range ("CN¥ 782.37 – 931.40M") is much longer than a yen or dollar figure: let the
+   tile grow a little, keep every figure on one line, and shrink the long ones instead of
+   breaking a number across two lines. */
+.bm-stats{grid-template-columns:repeat(auto-fit,minmax(128px,1fr))}
+.bm-stat .v{white-space:nowrap}
+.bm-stat .v.long{font-size:12.5px; letter-spacing:-.15px}
+.bm-headline .v{white-space:nowrap}

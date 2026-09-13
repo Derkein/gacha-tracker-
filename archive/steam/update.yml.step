@@ -1,0 +1,5 @@
+# Goes back into .github/workflows/update.yml, before "Check version buckets":
+
+      - name: Sample Steam concurrent players
+        run: python scripts/scrape_steam.py
+        continue-on-error: true    # a measured extra; never block a revenue refresh

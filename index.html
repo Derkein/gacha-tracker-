@@ -12,14 +12,14 @@
 <title>Gacha Revenue Tracker</title>
 <meta name="description" content="Estimated gacha banner revenue over time for Zenless Zone Zero, Honkai: Star Rail, Wuthering Waves, Genshin Impact and Arknights: Endfield. Auto-updated from game-i.daa.jp.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>%F0%9F%8E%B0</text></svg>">
-<link rel="stylesheet" href="style.css?v=106">
+<link rel="stylesheet" href="style.css?v=149">
 </head>
 <body>
 <div class="wrap">
   <header class="site-hd">
     <div>
       <h1>Gacha <span class="accent">Revenue</span> Tracker</h1>
-      <p>Per-banner gacha revenue over time — game-i's <b>Japan</b> estimate in <b>yen</b> (売上予測), plus a <b>Sensor Tower</b> combined-worldwide layer in <b>US$</b> (a toggle). Third-party estimates, approximate — not official.</p>
+      <p>Per-banner gacha revenue over time — game-i's <b>Japan</b> estimate in <b>yen</b> (売上予測), plus two toggles: a <b>Sensor Tower</b> combined-worldwide layer in <b>US$</b>, and a <b>CN ranking</b> layer covering <b>all platforms</b> in <b>CN¥</b>. Third-party estimates, approximate — not official.</p>
       <p class="hd-info"><button id="infoBtn" class="infolink">ⓘ How these numbers work</button></p>
       <p class="hd-feedback">Questions or an improvement to suggest? Message <a href="https://www.reddit.com/user/Derkein2" target="_blank" rel="noopener">u/Derkein2</a> on Reddit.</p>
     </div>
@@ -40,9 +40,10 @@
       <button id="bTime" class="on" role="tab" aria-selected="true">Timeline</button>
       <button id="bGraph" role="tab" aria-selected="false">Graph</button>
       <button id="bRank" role="tab" aria-selected="false">Ranking</button>
-      <button id="bYear" role="tab" aria-selected="false">by Year</button>
       <button id="bMonth" role="tab" aria-selected="false">by Month</button>
+      <button id="bYear" role="tab" aria-selected="false">by Year</button>
       <button id="bVersion" role="tab" aria-selected="false" hidden>by Version</button>
+      <button id="bAgree" role="tab" aria-selected="false" title="Compare how the three sources rank each month against their own history">Sources</button>
     </div>
     <div class="search" id="search">
       <svg class="search-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 4a6 6 0 104.47 10.03l4.24 4.25 1.42-1.42-4.25-4.24A6 6 0 0010 4zm0 2a4 4 0 110 8 4 4 0 010-8z"/></svg>
@@ -53,6 +54,7 @@
     <div class="seg src" id="dataSrc" role="tablist" aria-label="Data source" hidden>
       <button data-src="gamei" class="on" title="game-i's JP revenue estimate">game-i ¥</button>
       <button data-src="st" title="Estimated combined worldwide revenue from the Sensor Tower monthly reports">Sensor&nbsp;Tower&nbsp;$</button>
+      <button data-src="cn" title="Estimated global all-platform revenue (mobile + PC + PlayStation) from the monthly CN ranking, in yuan" hidden>CN&nbsp;ranking&nbsp;CN¥</button>
     </div>
   </div>
 
@@ -78,12 +80,16 @@
   <div class="stnote" id="stnote" hidden>
     <b>Estimated combined revenue.</b> Sensor Tower reports only a game's <em>monthly</em> worldwide total; each banner's figure here is assumed — its share of that month's game-i revenue applied to the real Sensor Tower total, then summed across the months it ran. <b>The further back you go, the rougher it gets:</b> before ~2024 the monthly reports didn't consistently break out <b>China</b>, so some months are missing it entirely or undercounted. Where only <b>China&nbsp;iOS</b> was reported, China Android is estimated at <b>1.75× iOS</b> (the ratio used to model it today); a month with no China figure at all is tagged <span class="pill">global only</span>. Bars marked <span class="pill">partial</span> ran in months not yet covered, and <span class="pill">no ST data</span> ran entirely before Oct 2021 or were too low to chart.
   </div>
+  <div class="cnnote" id="cnnote" hidden>
+    <b>Estimated global revenue, all platforms.</b> From <a href="https://space.bilibili.com/20313793" target="_blank" rel="noopener">天天背锅崩坏娘</a>'s monthly 二次元手游全球总流水 ranking — the longest continuous CN-side record there is (Nov&nbsp;2021 →&nbsp;present). It reports only a <em>monthly</em> total per game; each banner's figure here is assumed — its share of that month's game-i revenue applied to the CN total, summed across the months it ran. Unlike the other two layers this counts <b>PC and PlayStation as well as mobile</b>, so it is not comparable to either. miHoYo titles are a <b>range</b> because the author excludes miHoYo's undisclosed <b>支付中心</b> direct top-up channel — those figures are understated. The metric also changes basis at <b>Nov&nbsp;2023</b>, from <span class="pill">总收入</span> (normally net of the store cut) to <span class="pill">总流水</span> (gross billings); bars spanning it are tagged <span class="pill">mixed basis</span>.
+  </div>
   <div class="chartwrap" id="chartwrap"><div class="chart" id="chart"><div class="loading">Loading…</div></div></div>
   <div class="tablewrap" id="tablewrap" hidden></div>
 
   <footer class="foot">
     JP per-banner revenue scraped from <a href="https://game-i.daa.jp/" target="_blank" rel="noopener">game-i.daa.jp</a> ·
     combined worldwide monthly revenue from the <a href="https://www.reddit.com/r/gachagaming/" target="_blank" rel="noopener">r/gachagaming</a> Sensor&nbsp;Tower reports ·
+    global all-platform monthly revenue from <a href="https://space.bilibili.com/20313793" target="_blank" rel="noopener">天天背锅崩坏娘</a>'s CN ranking ·
     character portraits © HoYoverse / Kuro Games, via <a href="https://enka.network/" target="_blank" rel="noopener">Enka.Network</a> ·
     banner art © the respective games. This is a fan-made, non-commercial analytics view; revenue figures are estimates and may be inaccurate.
     Refreshed automatically by a scheduled GitHub Action.
@@ -118,6 +124,8 @@
     <div class="seg info-toggle" id="infoToggle" role="tablist" aria-label="Which dataset to explain">
       <button data-info="gamei" class="on">game-i · JP ¥</button>
       <button data-info="st">Sensor Tower · combined $</button>
+      <button data-info="cn">CN ranking · CN¥</button>
+      <button data-info="cnchart">China iOS chart</button>
     </div>
 
     <div id="infoGamei">
@@ -133,14 +141,15 @@
     <p>In short: <b>rank sets the shape, the calendar scales it.</b> That's why the cumulative total can rank a lower-peaking banner higher, and why the daily <b>ranks</b> are the more dependable part of game-i's data than the exact yen.</p>
 
     <h3>How a day's revenue is split between banners</h3>
-    <p>The model assumes <b>all</b> of the app's estimated revenue that day is gacha revenue, and assigns it to whatever banners are running:</p>
+    <p>These are game-i's own stated rules, from its <a href="https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%A3%B2%E4%B8%8A%E5%88%86%E6%9E%90%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6" target="_blank" rel="noopener">ガチャ売上分析について</a> page. The model assumes <b>all</b> of the app's estimated revenue that day is gacha revenue (<i>推定売上が全てガチャによるものと仮定</i>), and assigns it to whatever banners are running:</p>
     <ul>
-      <li>Banners running <b>at the same time split the day equally</b>.</li>
-      <li>A banner's <b>first day is weighted up 80%</b>, its <b>last day down 80%</b> (launch rush vs. wind-down).</li>
+      <li>Banners running <b>at the same time split the day equally</b> — <i>同時に複数のガチャが開催されていた場合は売上を等分します</i>.</li>
+      <li>A banner's <b>first day is weighted up 80%</b>, its <b>last day down 80%</b> (launch rush vs. wind-down) — <i>ガチャ期間初日は分配率を80%アップ／最終日は80%ダウン</i>.</li>
       <li>Busy periods (New Year, Golden Week) run many banners at once, so <b>each individual banner can look lower</b> than it really earned.</li>
       <li>Rank history only exists from <b>2018</b>, so nothing older can be counted.</li>
     </ul>
-    <p style="margin-top:6px">On the charts, a <b>hatched section of a bar</b> (and a <b>“⇄ shared” tag</b>) marks the portion of a run that overlapped another banner — i.e. revenue that was split. This shows up mostly on games that run several banners at once (like Umamusume); HoYo titles usually merge simultaneous characters into one “A&amp;B” banner, so they rarely split.</p>
+    <p style="margin-top:6px">The published figures bear this out: adding up every banner in a year comes to <b>88–98% of game-i's own monthly totals, never more</b> (the gap is days no banner was listed), and two banners on <b>exactly</b> the same dates carry <b>exactly equal</b> figures — which is what an equal split produces. game-i's own summary of its precision: <i>どこまでいってもどんぶり勘定です</i> — “it's rough accounting however you slice it.”</p>
+    <p style="margin-top:6px">On the charts, a <b>hatched section of a bar</b> (and a <b>“▨ shared” tag</b>) marks the portion of a run that <b>overlapped another listed banner</b> — i.e. revenue that was split rather than earned alone. This shows up mostly on games that run several banners at once (like Umamusume); HoYo titles usually merge simultaneous characters into one “A&amp;B” banner, so the split happens inside a single entry and the bar stays solid.</p>
 
     <h3>Does it change after day 1?</h3>
     <p><b>Yes — but mostly in the first few days.</b> Each day the banner is live adds that day's estimate from the game's current top-grossing rank. Because a banner spikes to its highest rank at launch and then steadily falls, <b>most of the increase lands in the opening days</b>; after that the daily additions get small and the total barely moves. It stops changing once the game drops out of the tracked ranking (below ~rank 200) or the banner ends.</p>
@@ -223,12 +232,93 @@
     <p style="margin-top:6px">Treat the $ figures as <b>ballpark context</b> for scale and trend, not precise sales — and, again, <b>never add them to the ¥ figures</b>.</p>
     </div><!-- /infoST -->
 
+    <div id="infoCN" hidden>
+    <h3>What this layer is</h3>
+    <p>A third, independent estimate: <a href="https://space.bilibili.com/20313793" target="_blank" rel="noopener">天天背锅崩坏娘</a>'s monthly <b>二次元手游全球总流水</b> ranking on Bilibili — <b>57 consecutive months</b> from <b>November 2021</b> to today, the longest continuous CN-side gacha revenue record that exists. Roughly 118k followers and 22.7M views across the series.</p>
+    <p>It is <b>global revenue across every platform</b> — mobile <i>plus PC, PlayStation and overseas Xbox</i> — reported in <b>yuan</b>. That makes it a different measurement again from game-i (Japan, mobile) and Sensor Tower (worldwide, mobile). All three are shown side by side and <b>never added together</b>.</p>
+
+    <h3>How the author calculates it</h3>
+    <p>Stated on-screen in every episode, under the heading 「流水计算方法」:</p>
+    <ul>
+      <li>Base data inferred from <b>Sensor Tower / App Store / Google Play rankings</b> — a rank→revenue estimate, not measured sales.</li>
+      <li><b>China Android ≈ 2× China iOS</b> (otome titles 1.5–2×).</li>
+      <li><b>Overseas mobile</b> = Google Play + iOS summed.</li>
+      <li><b>PC / PlayStation / Xbox</b> estimated per game from official disclosures, genre and platform launch dates, with per-platform coefficients between <b>0.3 and 1.8</b>.</li>
+    </ul>
+    <p>The per-game coefficients themselves are <b>never published</b>, so no individual figure here is independently reproducible.</p>
+
+    <h3>Why miHoYo titles are a range</h3>
+    <p>miHoYo sells top-ups through its own <b>支付中心</b> portal, bypassing the stores. Those takings have never been disclosed, so the author <b>excludes them entirely</b> and exempts miHoYo from the platform coefficients above. Every miHoYo card carries the on-screen note 注：暂无支付中心数据.</p>
+    <p class="info-formula">Genshin · Star Rail · Zenless Zone Zero are <b>understated</b> by an unknown amount, and published as a band rather than a point.</p>
+    <div class="info-ex">
+      <div class="info-ex-h">Example — Zenless Zone Zero · July 2026</div>
+      <div class="info-ex-math">on-screen caption: 正片：绝区零（国产，米游），7月总流水：<b>130248万~155058万</b><br>
+      = <b>CN¥1.30B – CN¥1.55B</b> <span class="info-ex-note">(1万 = 10,000 yuan)</span></div>
+    </div>
+
+    <h3>The metric changes basis at Nov 2023</h3>
+    <p>Captions up to <b>October 2023</b> read <b>总收入</b>; from <b>November 2023</b> they read <b>总流水</b>. In Chinese industry usage 收入 is normally revenue <i>net of the store's cut</i> and 流水 is <i>gross billings</i> — roughly a 30% difference. Whether the underlying basis changed or the author only tightened his wording is unverified, so the two halves are <b>labelled per month</b> and a banner or period spanning the change is tagged <span class="pill">mixed basis</span>. Don't read across it as one line.</p>
+
+    <h3>How the figures are read</h3>
+    <p>The author publishes no table — his own note says 这不是表格视频 — so the numbers exist only as burned-in captions in the video. They're extracted by OCR (<code>scripts/scrape_bilibili_cn.py</code>), with each entry's figure decided by a vote across every frame it appears in, a rank-ordering check (the chart counts down, so revenue must not decrease), and a spot-check of sampled months read by eye against the video. Rows where the reading was shakier carry a lower confidence in the data file.</p>
+
+    <h3>When a month appears — and why the newest one is missing</h3>
+    <p>This layer isn't a live feed. Each month exists only once the author has edited and uploaded that month's video, and he posts on roughly the <b>12th to 18th of the following month</b>. So there is always a gap of two to three weeks at the end: through the first half of any month, the previous month simply has no figure yet, and the site shows nothing rather than guessing.</p>
+    <p>A missing newest month therefore means <b>“not published yet”</b>, not “zero” and not “an error”. It fills itself in automatically the next time the data is refreshed after his upload.</p>
+    <p>The same waiting period applies to the Sensor Tower layer for its own reasons, so it's normal for the last month on the page to be complete in yen (game-i updates daily) while both comparison layers are still blank.</p>
+
+    <h3>Per-banner is assumed, not reported</h3>
+    <p>As with Sensor Tower, only a <b>monthly total per game</b> is published. A banner is credited with the same share of the CN month as it earned of game-i's Japan month, summed across the months it ran. <b>This is a weaker assumption here than on the ST tab</b>: game-i measures Japan mobile, while this total spans the whole world and includes PC and console, so a banner's Japanese share is a rougher proxy. Click any banner and open its <b>CN ranking</b> tab for the month-by-month math.</p>
+
+    <h3>Why it's rough</h3>
+    <ul>
+      <li>Rank-derived estimates layered on further estimates — a Tencent News survey of these community charts put it as 在数据网站预估的基础上再次预估.</li>
+      <li>Per-game coefficients are unpublished; iOS is visible, Android and PC are not.</li>
+      <li>miHoYo figures exclude 支付中心 and are understated.</li>
+      <li>Figures are OCR'd from video frames, not read from a table.</li>
+    </ul>
+    <p style="margin-top:6px">Use it for <b>scale and trend</b>, and as a second opinion against the Sensor Tower layer — not as sales.</p>
+    </div><!-- /infoCN -->
+
+    <div id="infoCNChart" hidden>
+    <h3>What this is</h3>
+    <p>Not an estimate — the <b>actual ranking</b> Apple publishes for the <b>China iPhone App Store, top grossing, all apps</b>. A position, not a revenue figure. It appears on a banner's <b>CN chart</b> tab as the daily line for that run.</p>
+    <p><b>All apps</b> is the point. Games sit in one list with Douyin, WeChat, Alipay and the video apps, so a banner launch that climbs past them is a far stronger signal than moving inside a games-only chart.</p>
+
+    <h3>One source, every day</h3>
+    <p>Every day comes from <b>AppFollow</b>'s record of the chart, read from a signed-in account: <b>200 places deep</b>, for <b>every day since Genshin's launch</b> on 28 September 2020 — <b>2,159 days</b> in all.</p>
+    <p>It deliberately isn't mixed with anything else. Apple's own feed stops at 100, Appfigures' archived pages at 50, and each source reads the chart at its own hour — so a game "missing" from a day would mean below #10, below #50 or below #200 depending on who recorded it, and two days would not be comparable. Those other sources are still collected and cross-checked against this one; they just don't go into the line you see.</p>
+    <p>Sixteen days are absent because AppFollow never recorded a grossing chart for them: <b>28 Nov 2020</b>, <b>22 Apr – 4 May 2023</b> and <b>8–9 Dec 2023</b>. On those dates it holds the free and paid charts only. They show as blanks rather than being filled from a different source.</p>
+
+    <h3>How to read the line</h3>
+    <ul>
+      <li>A <b>point</b> is the game's position that day.</li>
+      <li>A <b>tick along the bottom</b> is a day the game wasn't in the top 200 — a real reading, not missing data.</li>
+      <li>A <b>blank stretch</b> is one of those sixteen days.</li>
+    </ul>
+    <p>Hover any day on the line for its date, rank, how deep that day's chart is known, and which source it came from.</p>
+
+    <h3>Why a day can disagree with another source</h3>
+    <p>Apple's China chart changes a handful of times a day at irregular hours, and every recorder reads it at its own moment. A day here can therefore differ by a few places from Apple's own feed or from diandian without either being wrong. Checked against diandian's record, our snapshots matched <b>16 of 19 days exactly</b> across the top 20, the rest differing only in the hour they were read.</p>
+
+    <h3>The comparison under each banner</h3>
+    <p>When a banner has China days, its <b>CN chart</b> tab places the run against this game's other banners: where its opening rank sits within the version, the year and all-time, and how its peak and median compare with a <b>contemporary</b> banner — the same year, not the game's launch era, so a 2026 run isn't measured against 2020 form.</p>
+    <p>Below that sit the banners whose openings were closest to this one, with every revenue figure that exists for them. The headline figure there is <b>game-i's Japanese estimate</b> — the only per-banner revenue anyone publishes — so the closing line ("those five earned X to Y") is an <b>association across two markets</b>, not a forecast: a China rank placed next to Japanese revenue, over a handful of runs. A banner can open high on a rerun and earn little, or hold a modest rank for weeks and out-earn a spike.</p>
+    <p>The wording changes with how much is actually known: a finished run states what it earned against what similar openings earned, a run a week in says what it is tracking towards, and a run a few days old says plainly that it's too early to call. Everything in it is measured except that last step.</p>
+    <p>The forward-looking part — <b>what a run is tracking towards</b> — also appears on the <b>game-i</b> tab, since that is where the yen figure it is guessing at lives. It shows up <b>only while a banner is still running with at least three days left</b>: once a run is over, or within a day or two of over, game-i's own figure is all but final and an estimate of it would add nothing. The comparison itself (where the run sat, and what similar openings earned) stays on finished banners, because that is measurement rather than prediction.</p>
+
+    <h3>What it is not</h3>
+    <p>A rank is not revenue. It says a game out-earned everything below it that day, not by how much — and nothing about Android, which China's App Store has no equivalent of. For money, use the three revenue layers; for “did this banner break through”, use this.</p>
+    </div><!-- /infoCNChart -->
+
+
+
     <p class="modal-src">Source &amp; full methodology: <a href="https://game-i.daa.jp/?セルランとは？" target="_blank" rel="noopener">game-i.daa.jp — セルランとは？</a> · <a href="https://game-i.daa.jp/?サイトについて" target="_blank" rel="noopener">サイトについて</a> · <a href="https://game-i.daa.jp/?ガチャ売上分析について" target="_blank" rel="noopener">ガチャ売上分析について</a> · <a href="https://game-i.daa.jp/?よくある質問" target="_blank" rel="noopener">よくある質問</a> · Sensor Tower figures: the monthly <a href="https://www.reddit.com/r/gachagaming/" target="_blank" rel="noopener">r/gachagaming</a> revenue reports</p>
   </div>
 </div>
 
 <div class="lightbox" id="lightbox" hidden><img id="lightboxImg" src="" alt=""></div>
 
-<script src="app.js?v=106"></script>
+<script src="app.js?v=149"></script>
 </body>
 </html>

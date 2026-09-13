@@ -3,7 +3,7 @@ const GAME_ACCENT = {          // per-game hue (used for bars/dots without a sam
   zzz:"#e0a400", hsr:"#8a7bd8", wuwa:"#2fb6c0", genshin:"#d8a24a", endfield:"#e07b3a", nte:"#d94f8a",
   uma:"#3fb98f",
 };
-const state = { games:[], tag:null, data:null, ext:null, reported:null, mode:"time", table:false, reverse:false, bracket:0, tabsExpanded:false, graphYear:"all", graphDim:"year", matchHigh:true, monthYear:"all", periodSort:"timeline", dataSource:"gamei", search:"" };
+const state = { games:[], tag:null, data:null, ext:null, reported:null, cn:null, mode:"time", table:false, reverse:false, bracket:0, tabsExpanded:false, graphYear:"all", graphDim:"year", matchHigh:true, monthYear:"all", periodSort:"timeline", dataSource:"gamei", search:"" };
 
 // Major game-version (X.0) launch dates, JST — used to bucket banners into 1.X / 2.X
 // groups. Only version-based games have these; sourced from each game's official
@@ -192,6 +192,117 @@ function stChip(rev, method, extra){
   return `<span class="st-chip${approx?" est":""}" title="${esc(tip)}">ST ${fmtUSD(rev)}${approx?"*":""}</span>`;
 }
 
+// ---- CN monthly revenue layer, in CNY (a third comparison layer) ----------------
+// Source: 天天背锅崩坏娘's monthly 二次元手游全球总流水 ranking on Bilibili, the longest
+// continuous CN-side gacha record there is (Nov 2021 -> present, no gaps). The author
+// publishes it only as burned-in captions in a video, so scripts/scrape_bilibili_cn.py
+// reads the figures off the frames with OCR; data/cn_monthly.json is the result.
+//
+// It measures something different again from BOTH other layers: GLOBAL revenue across
+// ALL platforms (mobile + PC + PlayStation + overseas Xbox), in yuan. Never summed with
+// either of them. Two quirks the UI has to carry:
+//   * miHoYo titles are a RANGE, because the author excludes miHoYo's undisclosed
+//     支付中心 (direct top-up) channel — so those figures are understated.
+//   * The metric changes basis at Nov 2023, from 总收入 (normally net of the store cut)
+//     to 总流水 (gross billings). Rows carry their own label and the UI marks the break.
+// Written CN¥, never a bare ¥, so it can't be mistaken for game-i's Japanese yen.
+// The source publishes whole 万 (10,000 yuan), so a figure divided by 1e6 always lands
+// on exactly two decimals -- keep them. Rounding to whole millions made genuinely
+// different months read identically: ZZZ was 34478万 in May and 34502万 in June, and
+// both displayed as "CN¥345M". Billions keep three decimals for the same reason.
+function fmtCNY(v){
+  if(v==null||v<=0) return "CN¥ 0";
+  if(v>=1e9) return "CN¥ "+(v/1e9).toFixed(3)+"B";
+  if(v>=1e6) return "CN¥ "+(v/1e6).toFixed(2)+"M";
+  if(v>=1e3) return "CN¥ "+(v/1e3).toFixed(1)+"K";
+  return "CN¥ "+Math.round(v);
+}
+// A range renders as one figure when both ends match; otherwise the two ends share the
+// currency prefix, and the magnitude suffix too when both fall in the same band. A range
+// crossing M into B keeps both suffixes but still prints "CN¥" once -- repeating it gave
+// "CN¥869.32M–CN¥1.019B", wide enough to push the KPI tile out of its card.
+function fmtCNYRange(lo, hi){
+  if(hi==null||hi===lo) return fmtCNY(lo);
+  const a=fmtCNY(lo), b=fmtCNY(hi);
+  const ua=a.replace(/[\d.\s]+/g,""), ub=b.replace(/[\d.\s]+/g,"");
+  if(ua===ub) return a.replace(/([\d.]+)/,"$1 – "+b.match(/[\d.]+/)[0]);
+  return a+" – "+b.replace("CN¥ ","");
+}
+// One scalar per row for bar length, sorting and sums. A range's midpoint is the
+// least-wrong single number; the range itself is always shown in the text beside it.
+const cnMid = r => r ? (r.lo + (r.hi==null?r.lo:r.hi))/2 : 0;
+// {ym -> {lo, hi, metric, inferred, mihoyo, conf}} for one game.
+function cnGameMonths(tag){
+  tag = tag || state.tag; const out={};
+  const g = state.cn && state.cn.games && state.cn.games[tag];
+  if(g) for(const ym in g.monthly){ const r=g.monthly[ym];
+    out[ym]={lo:r.rev_min_cny, hi:r.rev_max_cny, metric:r.metric_cn,
+             inferred:!!r.metric_inferred, mihoyo:!!r.excludes_mihoyo_payment_center,
+             conf:r.confidence}; }
+  return out;
+}
+function cnMonth(ym, tag){ return cnGameMonths(tag)[ym]||null; }
+// Sum CN monthly revenue over months matching pred(ym) -> {lo,hi,months,mixed} or null.
+function cnSum(pred, tag){
+  const mm=cnGameMonths(tag); let lo=0, hi=0, months=0; const labels=new Set();
+  for(const ym in mm){ if(!pred(ym)) continue;
+    lo+=mm[ym].lo; hi+=(mm[ym].hi==null?mm[ym].lo:mm[ym].hi); months++;
+    if(mm[ym].metric) labels.add(mm[ym].metric); }
+  return months?{lo,hi,months,mixed:labels.size>1}:null;
+}
+// The data month at which the caption's metric switches 总收入 -> 总流水. Read from the
+// data rather than hard-coded, so it stays right if the scrape is re-run.
+function cnMetricBreak(tag){
+  const mm=cnGameMonths(tag), ks=Object.keys(mm).sort();
+  for(let i=1;i<ks.length;i++) if(mm[ks[i]].metric!==mm[ks[i-1]].metric) return ks[i];
+  return null;
+}
+// Does a set of months straddle the 收入/流水 change? Summing across it compares net
+// against gross, so anywhere we do sum we say so.
+function cnMixedMetric(pred, tag){
+  const mm=cnGameMonths(tag), seen=new Set();
+  for(const ym in mm) if(pred(ym) && mm[ym].metric) seen.add(mm[ym].metric);
+  return seen.size>1;
+}
+// A banner's ESTIMATED CN revenue. Same construction as bannerST: the source publishes
+// only a monthly total, so a banner takes its share of that month's game-i revenue and
+// applies it to the CN month, summed across the months it ran. Inherits every caveat of
+// the ST version PLUS a weaker one — game-i is Japan mobile, this total is worldwide and
+// includes PC and console, so the share is a rougher proxy still.
+function bannerCN(b){
+  if(!b || b._synthetic) return {lo:0, hi:0, months:[], covered:0, missing:0, hasData:false, partial:false, mixed:false};
+  if(b._cn) return b._cn;
+  const bm=state.monthly||{}, gi=state.data.monthly||{};
+  const months=[]; let lo=0, hi=0, covered=0, missing=0; const labels=new Set();
+  for(const ym of Object.keys(bm).sort()){
+    const entry=bm[ym].banners.find(x=>x.i===b._i); if(!entry) continue;
+    const o=bm[ym].ours||0, g=gi[ym];
+    const base=(g!=null && o>0 && (g-o)/g>=0.08) ? g : o;                   // same denominator as ST
+    const share=base>0 ? entry.rev/base : 0;
+    const cn=cnMonth(ym);
+    if(cn){ lo+=share*cn.lo; hi+=share*(cn.hi==null?cn.lo:cn.hi); covered++;
+            if(cn.metric) labels.add(cn.metric);
+            months.push({ym, share, jp:entry.rev, cnLo:cn.lo, cnHi:cn.hi, metric:cn.metric,
+                         contribLo:share*cn.lo, contribHi:share*(cn.hi==null?cn.lo:cn.hi), mihoyo:cn.mihoyo}); }
+    else  { missing++; months.push({ym, share, jp:entry.rev, cnLo:null, cnHi:null}); }
+  }
+  return (b._cn={lo, hi, months, covered, missing, hasData:covered>0,
+                 partial:missing>0&&covered>0, mixed:labels.size>1});
+}
+// A small "CN ¥X" chip, mirroring stChip. Marks miHoYo rows, whose 支付中心 revenue the
+// source excludes outright, and rows whose metric label had to be read from the episode.
+function cnChip(row, extra){
+  if(!row) return "";
+  const est = row.mihoyo || row.hi>row.lo;
+  const tip = "天天背锅崩坏娘's monthly CN ranking — GLOBAL revenue, all platforms "
+    + "(mobile + PC + PlayStation), in yuan. Rank-derived estimate, not reported sales"
+    + (row.metric?`. Metric on screen: ${row.metric}`:"")
+    + (row.mihoyo?". miHoYo's 支付中心 direct top-up channel is excluded, so this is understated — hence the range":"")
+    + (row.inferred?". Metric label unreadable on this month's caption; taken from the rest of that episode":"")
+    + (extra?". "+extra:"");
+  return `<span class="cn-chip${est?" est":""}" title="${esc(tip)}">CN ${fmtCNYRange(row.lo,row.hi)}</span>`;
+}
+
 // self-hiding scrollbars: flag <html> while anything is scrolling (capture catches the
 // non-bubbling scroll events from inner scrollers) and clear it after a short idle, so
 // the styled thumb (style.css) only fades in during a scroll.
@@ -239,6 +350,10 @@ async function init(){
   // reported = canonical monthly report figures; ext = validated eog reconstruction (fallback).
   try { state.ext = await getJSON("data/external_revenue.json"); } catch(e){ state.ext=null; }
   try { state.reported = await getJSON("data/reported_revenue.json"); } catch(e){ state.reported=null; }
+  // CN monthly layer. Best-effort like the others: a miss just hides the CN figures.
+  try { state.cn = await getJSON("data/cn_monthly.json"); } catch(e){ state.cn=null; }
+  // China's own store chart, day by day (the real ranking, not an estimate).
+  try { state.cnrank = await getJSON("data/ranks/cn_ios_series.json"); } catch(e){ state.cnrank=null; }
   state.pending = {};   // "pending banners" overlay is disabled (no lagging games tracked)
   state.games = (idx && idx.games) || [];
   if(!state.games.length){                    // empty index (e.g. a failed data refresh) — don't crash
@@ -299,6 +414,9 @@ async function selectGame(tag){
   [...state.data.banners].sort((a,b)=>b.rev-a.rev).forEach((b,i)=>b._rank=i+1);
   state.data.banners.forEach((x,i)=>x._i=i);
   computeSharing();
+  state._gameBurn = undefined;
+  state._cnPeers = undefined;              // peer sets are per game
+  state._jpPeers = undefined;             // typical first-week share is per game
   populateGraphYears();
   resetSearch();                         // characters differ per game — clear any active search
   renderStats(); setMode(state.mode);   // setMode wires all mode-dependent control visibility, then renders
@@ -310,6 +428,9 @@ function sparkline(now){
   if(!now.ranks) return "";
   const vals=[...now.ranks.prev, ...now.ranks.cur];
   while(vals.length && vals[vals.length-1]==null) vals.pop();   // future days
+  return sparkSVG(vals);
+}
+function sparkSVG(vals){
   const known=vals.filter(v=>v!=null);
   if(known.length<2) return "";
   const W=120,H=26,max=Math.max(...known),n=vals.length;
@@ -320,6 +441,35 @@ function sparkline(now){
     d+=`${pen?"L":"M"}${x.toFixed(1)} ${y.toFixed(1)}`; pen=true;
   });
   return `<svg class="spark" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none"><path d="${d}"/></svg>`;
+}
+
+// The China counterpart of the JP tile. state.cnrank holds the chart itself, so this is
+// the game's own place on it: today's rank, the best in the window, and how many of the
+// last two months it was in the top 200 at all.
+function cnNowTile(){
+  const R=state.cnrank;
+  if(!R || !R.days || !R.tracked || !R.tracked[state.tag]) return "";
+  const days=Object.keys(R.days).sort();
+  if(!days.length) return "";
+  const mine=(R.games && R.games[state.tag]) || {};
+  const last=days[days.length-1], depth=R.days[last][0];
+  const win=days.slice(-60), vals=win.map(d=>mine[d]!=null?mine[d]:null);
+  const known=vals.filter(v=>v!=null);
+  const rank=mine[last]!=null?"#"+mine[last]:depth+"+";
+  const best=known.length?Math.min(...known):null;
+  const d=new Date(last+"T00:00:00");
+  const today=new Date(); today.setHours(0,0,0,0);
+  const when=(today-d)/864e5>=1
+    ? `as of ${d.toLocaleDateString("en",{month:"short",day:"numeric"})}`
+    : `charted ${known.length}/${win.length}d`;
+  const note=best!=null ? `Best #${best} · ${when}` : `below #${depth} for ${win.length}d`;
+  const tip=`Daily place on China's App Store top-grossing chart, ALL apps (games compete `
+    + `with Douyin, WeChat and the video apps), ${depth} deep, last ${win.length} chart days. `
+    + `"${depth}+" means it sat below the chart's depth that day.`;
+  return `<div class="tile" title="${esc(tip)}"><span class="l">CN store rank today</span>`
+       + `<span class="v">iOS ${rank}</span>`
+       + `<span class="n">${esc(note)}</span>`
+       + sparkSVG(vals)+`</div>`;
 }
 
 function nowTile(now){
@@ -335,16 +485,17 @@ function nowTile(now){
 
 function monthTopBanner(ym){ const bl=(state.monthly&&state.monthly[ym]&&state.monthly[ym].banners)||[]; return bl.length?state.data.banners[bl[0].i]:null; }
 function renderStats(){
-  const st = state.dataSource==="st";
-  const fmt = st ? fmtUSD : G;
+  const st = state.dataSource==="st", cn = state.dataSource==="cn";
+  const fmt = st ? fmtUSD : cn ? fmtCNY : G;
   const all = state.data.banners, real = all.filter(x=>!x._synthetic && !x.pending);
-  const val = st ? (x=>bannerST(x).total) : (x=>x.rev);
-  const sum = st ? real.reduce((a,x)=>a+val(x),0) : all.reduce((a,x)=>a+x.rev,0);
+  const val = (st||cn) ? srcVal : (x=>x.rev);
+  const sum = (st||cn) ? real.reduce((a,x)=>a+val(x),0) : all.reduce((a,x)=>a+x.rev,0);
   const top = real.reduce((a,x)=> val(x)>val(a)?x:a);
   const topName = (top.agents&&top.agents.length) ? top.agents.join(" & ") : top.name;
   // highest single month, on the active data source
   let hmYm=null, hmVal=-1;
-  if(st){ const mm=extGameMonths(state.tag); for(const ym in mm){ if(mm[ym].rev>hmVal){hmVal=mm[ym].rev; hmYm=ym;} } }
+  if(cn){ const mm=cnGameMonths(state.tag); for(const ym in mm){ const v=cnMid(mm[ym]); if(v>hmVal){hmVal=v; hmYm=ym;} } }
+  else if(st){ const mm=extGameMonths(state.tag); for(const ym in mm){ if(mm[ym].rev>hmVal){hmVal=mm[ym].rev; hmYm=ym;} } }
   else  { // mirror the by-Month total: game-i's published monthly where it exists, else the reconstructed banner sum
           const gi=state.data.monthly||{}, bm=state.monthly||{};
           for(const ym of new Set([...Object.keys(gi),...Object.keys(bm)])){
@@ -364,9 +515,12 @@ function renderStats(){
       tile("Total revenue", fmt(sum), `across ${real.length} banners`)
     + tile("Highest banner", fmt(val(top)), topName, icRow([top]), `data-i="${top._i}" title="Open ${esc(topName)}"`)
     + tile("Highest month", hmVal>=0?fmt(hmVal):"—", hmName, icRow(hmBanners), hmYm?`data-period="month" data-key="${hmYm}" title="Open ${esc(hmName)}"`:"")
-    + tile("Average / banner", fmt(sum/real.length), st?"mean estimate · combined":"mean estimate")
-    + nowTile(state.data.now);
-  $("#updated").textContent=`sources: game-i.daa.jp + Sensor Tower reports · updated ${new Date(state.data.updated).toISOString().slice(0,10)}`;
+    + tile("Average / banner", fmt(sum/real.length),
+           st?"mean estimate · combined" : cn?"mean estimate · global, all platforms" : "mean estimate")
+    + nowTile(state.data.now)
+    + cnNowTile();
+    const srcs = "game-i.daa.jp + Sensor Tower reports" + (state.cn?" + CN monthly ranking":"");
+  $("#updated").textContent=`sources: ${srcs} · updated ${new Date(state.data.updated).toISOString().slice(0,10)}`;
 }
 
 function esc(s){return (s||"").replace(/[&<>"'`]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;","`":"&#96;"}[c]));}
@@ -445,10 +599,13 @@ document.addEventListener("error", e=>{
 }, true);
 
 // ---- concurrent-banner "shared revenue" detection ----
-// game-i splits each day's revenue equally among every banner running that day
-// (see the methodology dialog). For each banner we find which days overlapped
-// another banner and what share of its reconstructed revenue that represents, so
-// the chart can flag the split. HoYo games merge simultaneous characters into one
+// game-i splits each day's revenue equally among every banner running that day, and
+// weights a run's first day +80% / last day -80% — its own stated rules, from
+// game-i.daa.jp/?ガチャ売上分析について ("同時に複数のガチャが開催されていた場合は売上を等分します").
+// Confirmed against the published figures: yearly banner sums come to 88-98% of its
+// own monthly totals (never over), and same-date banners carry equal figures.
+// For each banner we find which days overlapped another banner and what share of its
+// reconstructed revenue that represents, so the chart can flag the split. HoYo games merge simultaneous characters into one
 // "A&B" entry, so this mostly lights up on event games (FGO, Arknights, …) where
 // separate banners genuinely run at once. Computed once per game load.
 const SHARE_MIN_DAYS = 3;                         // ignore trivial 1-day changeovers
@@ -532,7 +689,11 @@ function computeSharing(){
 
 // ---- bar rows (timeline / ranking) with FLIP reordering ----
 // value shown/ranked for a banner under the current data source (game-i yen vs Sensor Tower USD)
-function srcVal(b){ return state.dataSource==="st" ? bannerST(b).total : b.rev; }
+function srcVal(b){
+  if(state.dataSource==="st") return bannerST(b).total;
+  if(state.dataSource==="cn"){ const c=bannerCN(b); return cnMid({lo:c.lo,hi:c.hi}); }
+  return b.rev;
+}
 // Uma's gacha is generically named — every pickup shares the same "…プリティーダービーガチャ…"
 // title — so when we know the actual character(s), show those as the banner's label instead
 // of the useless gacha name. Games with a real per-banner name (HoYo etc.) are untouched.
@@ -545,10 +706,17 @@ function rowHTML(b,rank,max){
   const rr=b.rerun?`<span class="rr" title="Rerun banner">↻ rerun</span>`:"";
   const sh=b._share;
   const shSeg = sh&&sh.on
-    ? `<span class="shared" style="width:${Math.min(100,Math.round(sh.revFrac*100))}%" title="~${Math.round(sh.revFrac*100)}% split with a concurrent banner"></span>` : "";
+    ? `<span class="shared" style="width:${Math.min(100,Math.round(sh.revFrac*100))}%" title="~${Math.round(sh.revFrac*100)}% of this run's revenue was split equally with a concurrent banner"></span>` : "";
   let val, valStr;
   if(b.pending){ val=0;
     valStr = `<span class="val pendingval" title="This banner isn't in game-i's data yet, so there's no daily revenue estimate — it'll fill in automatically once game-i lists it.">not on game-i yet</span>`;
+  } else if(state.dataSource==="cn"){ const cn=bannerCN(b); val=cnMid({lo:cn.lo,hi:cn.hi});
+    valStr = b._synthetic ? `<span class="val muted">—</span>`
+      : !cn.hasData ? `<span class="val nodata" title="This banner ran before the CN ranking series starts (Nov 2021), or in months it doesn't cover">no CN data</span>`
+      : `<span class="val">≈${fmtCNYRange(cn.lo,cn.hi)}`
+        + (cn.partial?`<span class="partialbadge" title="The CN series covers only ${cn.covered} of the ${cn.covered+cn.missing} months this banner ran — total is incomplete">partial</span>`:"")
+        + (cn.mixed?`<span class="partialbadge mixbadge" title="This banner spans the Nov 2023 change from 总收入 (net of the store cut) to 总流水 (gross billings) — the two halves are not the same measure">mixed basis</span>`:"")
+        + `</span>`;
   } else if(stMode){ const st=bannerST(b); val=st.total||0;
     valStr = b._synthetic ? `<span class="val muted">—</span>`
       : !st.hasData ? `<span class="val nodata" title="No Sensor Tower report covers this banner's run (before Oct 2021, or too low to chart)">no ST data</span>`
@@ -565,21 +733,23 @@ function rowHTML(b,rank,max){
     </div></div>`;
 }
 function axesHTML(max){
-  const stMode=state.dataSource==="st";
-  const tk=stMode?usdTicks(max):ticks(max,state.bracket), fmt=stMode?fmtUSD:G;
+  const src=state.dataSource;
+  // CN reuses the USD tick maths -- both are plain linear money axes, unlike game-i's 億
+  const tk = (src==="st"||src==="cn") ? usdTicks(max) : ticks(max,state.bracket);
+  const fmt = src==="st" ? fmtUSD : src==="cn" ? fmtCNY : G;
   return tk.map(t=>`<div class="axis" style="left:calc(87px + (100% - 87px - 74px) * ${t/max})"><span>${fmt(t)}</span></div>`).join("");}
 
 function renderBars(){
   const stMode=state.dataSource==="st";
-  const V = stMode ? srcVal : (b=>b.rev);
+  const V = state.dataSource==="gamei" ? (b=>b.rev) : srcVal;
   const all=state.data.banners; all.forEach((x,i)=>x._i=i);
   const pool=poolBanners().filter(searchMatch);               // Year filter + character search
-  if(!pool.length){ $("#stnote").hidden=true; $("#chart").innerHTML=noResultsHTML(); return; }
+  if(!pool.length){ $("#stnote").hidden=true; $("#cnnote").hidden=true; $("#chart").innerHTML=noResultsHTML(); return; }
   [...pool].sort((a,c)=>V(c)-V(a)).forEach((x,i)=>x._rank=i+1);   // rank within the shown set
   // one axis (timeline gridlines are full-height, so they can't vary per year): match-highest
   // fits the axis tightly to the shown set's peak; otherwise leaves roomy headroom.
   const peak=Math.max(0,...pool.map(V));
-  const max = stMode ? (usdTop(peak)||1) : roundTop(peak, state.matchHigh);
+  const max = (stMode||state.dataSource==="cn") ? (usdTop(peak)||1) : roundTop(peak, state.matchHigh);
   // FLIP: capture current row positions before we replace the DOM
   const old={};
   document.querySelectorAll("#chart .row").forEach(r=>{ old[r.dataset.i]=r.getBoundingClientRect().top; });
@@ -589,7 +759,6 @@ function renderBars(){
   else { list.sort((x,y)=>y.start.localeCompare(x.start)); if(state.reverse) list.reverse(); let cy=null;  // newest first by default
     list.forEach(x=>{ const gk=groupKey(x); if(gk!==cy){cy=gk; html+=`<div class="yhead">${esc(gk)}</div>`+axesHTML(max);}
       html+=rowHTML(x,x._rank,max); }); }
-  $("#stnote").hidden=!stMode;
   $("#chart").innerHTML=html;
   // FLIP: invert to old position, then play to new one (icons slide up/down)
   document.querySelectorAll("#chart .row").forEach(r=>{
@@ -630,7 +799,7 @@ function xAxisTicks(x0, x1){
   return t.filter((_,i)=>i%step===0);
 }
 // ---- graph view (one line chart per year OR per version) ----
-function graphVal(b){ return state.dataSource==="st" ? bannerST(b).total : b.rev; }
+function graphVal(b){ return srcVal(b); }
 function groupSVG(label, items, gmax, step, x0, x1){
   const st = state.dataSource==="st";
   const fmt = st ? fmtUSD : G;
@@ -722,23 +891,247 @@ function updateControlVis(){
   const m=state.mode, period=isPeriodMode(m);
   $("#graphControls").hidden = false;
   $("#gfilter").hidden   = state.table || period;          // Year/Version graph filter: timeline/graph/ranking only
-  $("#bSortWrap").hidden  = state.table || !period;        // period-card sort dropdown: by-Year/Month/Version only
+  $("#bSortWrap").hidden  = state.table || !(period || state.mode==="agree");        // period-card sort dropdown: by-Year/Month/Version only
   $("#bYearsWrap").hidden = state.table || state.mode!=="month";   // month year-filter: by-Month only
-  $("#hintRow").hidden    = state.table || isPeriodMode(state.mode);   // hover hint: Timeline/Graph/Ranking only, under the right-side buttons
+  $("#hintRow").hidden    = state.table || isPeriodMode(state.mode) || state.mode==="agree";   // hover hint: Timeline/Graph/Ranking only, under the right-side buttons
   $("#bDir").hidden       = state.table;                   // direction is meaningless in the table view
-  $("#dataSrc").hidden    = state.table;                   // game-i/ST toggle in every chart view (incl. Graph) except Table
+  $("#dataSrc").hidden    = state.table || m==="agree";   // this view shows all sources at once
+  const cnBtn=$("#dataSrc").querySelector('[data-src="cn"]');
+  if(cnBtn){ const has=!!(state.cn&&state.cn.games&&state.cn.games[state.tag]);
+    cnBtn.hidden=!has;
+    // a game with no CN rows must not be left stuck on an empty CN view
+    if(!has && state.dataSource==="cn"){ state.dataSource="gamei";
+      $("#dataSrc").querySelectorAll("[data-src]").forEach(b=>b.classList.toggle("on",b.dataset.src==="gamei")); } }                   // game-i/ST toggle in every chart view (incl. Graph) except Table
   $("#search").hidden     = m==="graph";                   // Graph has no per-character search — it charts every banner
 }
 function render(){
   document.body.dataset.view = state.table ? "table" : state.mode;   // lets CSS tailor per view (e.g. mobile graph)
   $("#chartwrap").hidden=state.table; $("#tablewrap").hidden=!state.table;
   updateControlVis();
+  // The source disclaimers belong to the ACTIVE SOURCE, not to one view. Setting them
+  // only inside renderBars left a note stranded on screen after switching source in a
+  // period view, since those never call it. The caveats apply everywhere, so show the
+  // note whenever its source is selected and there's a chart under it.
+  const showNote = !state.table;
+  $("#stnote").hidden = !(showNote && state.dataSource==="st");
+  $("#cnnote").hidden = !(showNote && state.dataSource==="cn");
   if(state.table){ buildTable(); return; }
   if(state.mode==="graph"){ renderGraph(); return; }
   if(state.mode==="year"){ renderYearly(); return; }
   if(state.mode==="month"){ renderMonthly(); return; }
   if(state.mode==="version"){ renderVersions(); return; }
+  if(state.mode==="agree"){ renderAgreement(); return; }
   renderBars();
+}
+
+// ---- source agreement: how the three layers rank the same months ----------------
+// The three datasets CANNOT be compared by value -- game-i is Japan mobile in yen, ST is
+// worldwide mobile in dollars, CN is worldwide all-platform in yuan. What IS comparable
+// is each month's standing WITHIN its own source: if a month is a source's 3rd-best out
+// of 40, that means the same thing whatever the units. So every month is scored as a
+// percentile of its own source's history, and the sources are compared on that.
+//
+// CN gets scored inside its own metric regime. Its captions switch from 总收入 to 总流水
+// at Nov 2023 and gross runs materially above net, so pooling the two would make every
+// later month look stronger than it was purely from the relabelling.
+function pctRank(value, pool){
+  if(!pool.length) return null;
+  const below = pool.filter(v=>v<value).length, equal = pool.filter(v=>v===value).length;
+  return Math.round(((below + equal/2) / pool.length) * 100);
+}
+// {ym -> {gi, st, cn}} percentiles (0-100), plus the raw values for the tooltip.
+//
+// Every source is ranked inside the SAME era, not inside its own full history. Ranking
+// each source over whatever span it happens to cover produced a systematic illusion:
+// game-i and ST reach back to a game's launch peak while the CN 流水 pool starts Nov
+// 2023, so recent months looked strong in CN and weak in the other two on every single
+// row. Splitting all three at the CN metric boundary makes each era a like-for-like
+// window -- and it is the comparison you actually want anyway, since "was this a good
+// month" is a question about neighbouring months, not about 2020.
+function sourceAgreement(tag){
+  tag = tag || state.tag;
+  const gi = state.data.monthly || {}, bm = state.monthly || {};
+  const giM = {};
+  for(const ym of new Set([...Object.keys(gi), ...Object.keys(bm)])){
+    const v = gi[ym]!=null ? gi[ym] : ((bm[ym] && bm[ym].ours) || 0);
+    if(v>0) giM[ym]=v;
+  }
+  const stM = {}; const st = extGameMonths(tag);
+  for(const ym in st) if(st[ym].rev>0) stM[ym]=st[ym].rev;
+  const cnRaw = cnGameMonths(tag), cnM = {}, cnMetric = {};
+  for(const ym in cnRaw){ const r=cnRaw[ym], mid=cnMid(r);
+    if(mid>0){ cnM[ym]=mid; cnMetric[ym]=r.metric||"?"; } }
+
+  // Era = the CN metric label for that month, carried across all three sources. With no
+  // CN coverage there is a single era and this collapses to a plain whole-history rank.
+  const cnMonths = Object.keys(cnM).sort();
+  const boundaries = [];
+  for(let i=1;i<cnMonths.length;i++)
+    if(cnMetric[cnMonths[i]]!==cnMetric[cnMonths[i-1]]) boundaries.push(cnMonths[i]);
+  const eraOf = ym => {
+    if(!cnMonths.length) return "all";
+    let e = cnMetric[cnMonths[0]];
+    for(const b of boundaries) if(ym>=b) e = cnMetric[b];
+    return e;
+  };
+
+  const months = [...new Set([...Object.keys(giM), ...Object.keys(stM), ...Object.keys(cnM)])].sort();
+  const pools = {};   // era -> {gi:[], st:[], cn:[]}
+  for(const ym of months){
+    const e = eraOf(ym), P = pools[e] || (pools[e]={gi:[],st:[],cn:[]});
+    if(giM[ym]!=null) P.gi.push(giM[ym]);
+    if(stM[ym]!=null) P.st.push(stM[ym]);
+    if(cnM[ym]!=null) P.cn.push(cnM[ym]);
+  }
+
+  const rows = months.map(ym=>{
+    const e = eraOf(ym), P = pools[e];
+    const g = giM[ym]!=null ? pctRank(giM[ym], P.gi) : null;
+    const t = stM[ym]!=null ? pctRank(stM[ym], P.st) : null;
+    const c = cnM[ym]!=null ? pctRank(cnM[ym], P.cn) : null;
+    const have = [g,t,c].filter(v=>v!=null);
+    const spread = have.length>1 ? Math.max(...have)-Math.min(...have) : null;
+    return {ym, gi:g, st:t, cn:c, spread, era:e,
+            giRaw:giM[ym], stRaw:stM[ym], cnRaw:cnRaw[ym], cnMetric:cnMetric[ym],
+            n:have.length};
+  });
+  const eraInfo = Object.entries(pools).map(([e,P])=>({era:e, months:Math.max(P.gi.length,P.st.length,P.cn.length)}));
+  return {rows, eras:eraInfo};
+}
+// Spearman: correlate two sources on their percentile ranks over the months both cover.
+function spearman(rows, a, b){
+  const pairs = rows.filter(r=>r[a]!=null && r[b]!=null);
+  if(pairs.length<4) return null;
+  const rank = key => { const sorted=[...pairs].sort((x,y)=>x[key]-y[key]);
+    const m=new Map(); sorted.forEach((r,i)=>m.set(r.ym,i+1)); return m; };
+  const ra=rank(a), rb=rank(b), n=pairs.length;
+  let d2=0; for(const r of pairs){ const d=ra.get(r.ym)-rb.get(r.ym); d2+=d*d; }
+  return {rho: 1 - (6*d2)/(n*(n*n-1)), n};
+}
+// Plain-language verdict for one month.
+//
+// Averaging the sources and reporting one spread was too blunt. Oct 2024 (game-i 73,
+// ST 57, CN 44) came back as "middling · all 3 close" -- but 73 against 44 is a 29-point
+// gap, and the mean buried the fact that one source called it high while another called
+// it average. What the reader actually wants is WHICH sources cluster and what each
+// cluster says, so that is what this computes: sort the sources, look for a real break
+// between them, and describe the groups either side of it.
+const AGREE_BAND = 15;   // within this, the sources genuinely track each other
+const CLOSE_BAND = 24;   // beyond this they are not "close" by any useful definition
+const SPLIT_GAP  = 18;   // a break at least this wide can define two groups
+const SPLIT_RATIO= 1.5;  // ...and it must dominate the next-largest break
+
+// Five bands, not three: with only strong/middling/weak, 33 and 65 both read "middling"
+// and naming the extremes told the reader nothing.
+function levelWord(p){
+  return p>=80 ? "very high" : p>=65 ? "high" : p>=36 ? "average" : p>=21 ? "low" : "very low";
+}
+const SHORT={gi:"GI", st:"ST", cn:"CN"};
+const FULL={gi:"game-i", st:"Sensor Tower", cn:"CN ranking"};
+
+function agreementVerdict(r){
+  const have=["gi","st","cn"].filter(k=>r[k]!=null);
+  if(have.length<2) return {cls:"solo", label:"only "+SHORT[have[0]],
+    why:`Only ${FULL[have[0]]} covers this month, so there is nothing to cross-check against.`};
+
+  const sorted=[...have].sort((a,b)=>r[a]-r[b]);
+  const detail=have.map(k=>`${FULL[k]} ${r[k]}`).join(" · ");
+  const spread=r[sorted[sorted.length-1]]-r[sorted[0]];
+
+  // everyone within the tight band: one group, report its level
+  if(spread<=AGREE_BAND){
+    const mean=have.reduce((a,k)=>a+r[k],0)/have.length;
+    const lvl=levelWord(mean);
+    return {cls:`agree ${mean>=65?"hi":mean<=35?"lo":"mid"}`,
+      label:`${lvl} · ${have.length===3?"all 3":"both"} agree`,
+      why:`${detail}. All within ${spread} points — the sources tell the same story, and at ${Math.round(mean)} that story is "${lvl}".`};
+  }
+
+  // look for a single dominant break that splits the sources into two groups
+  const gaps=[]; for(let i=1;i<sorted.length;i++) gaps.push({at:i, g:r[sorted[i]]-r[sorted[i-1]]});
+  gaps.sort((x,y)=>y.g-x.g);
+  const top=gaps[0], next=gaps[1];
+  const canSplit = top.g>=SPLIT_GAP && (!next || top.g >= next.g*SPLIT_RATIO);
+
+  if(canSplit){
+    const lowKeys=sorted.slice(0,top.at), hiKeys=sorted.slice(top.at);
+    const mean=ks=>ks.reduce((a,k)=>a+r[k],0)/ks.length;
+    const big = lowKeys.length>=hiKeys.length ? lowKeys : hiKeys;
+    const small = big===lowKeys ? hiKeys : lowKeys;
+    const bigLvl=levelWord(mean(big)), smallLvl=levelWord(mean(small));
+    const smallHigher = mean(small)>mean(big);
+    return {cls:"split "+(smallHigher?"hi":"lo"),
+      label:`${big.map(k=>SHORT[k]).join("+")} ${bigLvl} · ${small.map(k=>SHORT[k]).join("+")} ${smallLvl}`,
+      why:`${detail}. ${big.map(k=>FULL[k]).join(" and ")} agree at "${bigLvl}", while ${small.map(k=>FULL[k]).join(" and ")} sits ${Math.round(top.g)} points ${smallHigher?"above":"below"} them at "${smallLvl}" — a ${smallHigher?"higher":"lower"} reading only that source gives.`};
+  }
+
+  // no clean grouping: spread out with no single outlier, or merely loose
+  if(spread<=CLOSE_BAND){
+    const mean=have.reduce((a,k)=>a+r[k],0)/have.length;
+    const lvl=levelWord(mean);
+    return {cls:`agree ${mean>=65?"hi":mean<=35?"lo":"mid"} loose`,
+      label:`${lvl} · ${have.length===3?"all 3":"both"} close`,
+      why:`${detail}. They span ${spread} points — past the ${AGREE_BAND}-point agreement band but still under ${CLOSE_BAND}, so they broadly track without matching.`};
+  }
+  const lo=sorted[0], hi=sorted[sorted.length-1];
+  return {cls:"nocon",
+    label:`${SHORT[hi]} ${levelWord(r[hi])} · ${SHORT[lo]} ${levelWord(r[lo])}`,
+    why:`${detail}. They span ${spread} points with no clean grouping — ${FULL[hi]} reads "${levelWord(r[hi])}" and ${FULL[lo]} reads "${levelWord(r[lo])}", so this month's success depends entirely on which source you ask.`};
+}
+
+function renderAgreement(){
+  const A=sourceAgreement(state.tag);
+  let rows=A.rows.filter(r=>r.n>=1);
+  if(!rows.length){ $("#chart").innerHTML=`<div class="loading">No monthly data to compare for this game.</div>`; return; }
+  if(state.periodSort==="ranking") rows=[...rows].sort((a,b)=>(b.spread==null?-1:b.spread)-(a.spread==null?-1:a.spread));
+  else rows=[...rows].reverse();                     // newest first by default
+  if(state.reverse) rows.reverse();
+
+  const pairs=[["gi","st","game-i ↔ Sensor Tower"],["gi","cn","game-i ↔ CN"],["st","cn","Sensor Tower ↔ CN"]]
+    .map(([a,b,lab])=>({lab, key:a+"-"+b, r:spearman(A.rows,a,b)})).filter(x=>x.r);
+  const rhoWord=v=>v>=.8?"very close":v>=.6?"broadly similar":v>=.35?"loosely related":v>=0?"barely related":"opposed";
+  const corr=pairs.length?`<div class="ag-corr">${pairs.map(p=>{
+      const v=p.r.rho, pc=Math.max(0,Math.min(100,(v+1)/2*100));
+      return `<div class="ag-corrcard ag-pair-${p.key}" title="Spearman rank correlation over the ${p.r.n} months both cover. +1 = they order the months identically, 0 = unrelated, -1 = reversed.">
+        <span class="ag-corrk">${p.lab}</span>
+        <span class="ag-corrv">${v>=0?"+":""}${v.toFixed(2)}</span>
+        <div class="ag-corrbar"><span style="width:${pc}%"></span></div>
+        <span class="ag-corrn">${rhoWord(v)} · ${p.r.n} shared months</span></div>`;}).join("")}</div>`:"";
+
+  const NAME={gi:"game-i", st:"Sensor Tower", cn:"CN ranking"};
+  const bar=(k,v,val,tip)=>v==null
+    ? `<div class="ag-src ag-${k} ag-na" title="No ${NAME[k]} figure for this month"><span class="ag-lab">${k.toUpperCase()}</span><div class="ag-track"></div><span class="ag-pct">—</span><span class="ag-val">no data</span></div>`
+    : `<div class="ag-src ag-${k}" title="${esc(tip||"")}"><span class="ag-lab">${k.toUpperCase()}</span><div class="ag-track"><span style="width:${v}%"></span></div><span class="ag-pct">${v}</span><span class="ag-val">${val}</span></div>`;
+
+  const list=rows.map(r=>{
+    const v=agreementVerdict(r);
+    const lab=`${MONTHS[+r.ym.slice(5,7)-1]} ${r.ym.slice(0,4)}`;
+    const pct=n=>n==null?"":` — ${n}th percentile of its era`;
+    return `<div class="ag-row" data-period="month" data-key="${r.ym}" title="Open ${esc(lab)}">
+      <div class="ag-mo">${lab}${r.cnMetric&&r.cnMetric!=="?"?`<span class="ag-era">${esc(r.cnMetric)}</span>`:""}</div>
+      <div class="ag-bars">
+        ${bar("gi",r.gi, r.giRaw!=null?G(r.giRaw):"—", `game-i · Japan mobile${pct(r.gi)}`)}
+        ${bar("st",r.st, r.stRaw!=null?fmtUSD(r.stRaw):"—", `Sensor Tower · worldwide mobile${pct(r.st)}`)}
+        ${bar("cn",r.cn, r.cnRaw?fmtCNYRange(r.cnRaw.lo,r.cnRaw.hi):"—", `CN ranking · worldwide, all platforms${pct(r.cn)}`)}
+      </div>
+      <div class="ag-verdict"><span class="ag-chip ${v.cls}" title="${esc(v.why)}">${esc(v.label)}</span></div>
+    </div>`;}).join("");
+
+  const eraTxt=A.eras.map(e=>`${e.era==="all"?"whole history":e.era} (${e.months} months)`).join(", ");
+  $("#chart").innerHTML=`<div class="yr-note"><b>These three sources measure different things</b> — game-i is <b>Japan mobile</b> in yen, Sensor Tower is <b>worldwide mobile</b> in dollars, the CN ranking is <b>worldwide all-platform</b> in yuan. Their totals are not comparable and are never added. What <i>is</i> comparable is where each month sits <b>inside its own source's history</b>: the bars show each month's percentile against that source's other months, so 90 means "one of this source's best months" whatever the units.
+    <br><br>A month where the bars line up is one all the covering sources agree about. A month where one bar stands apart is more interesting — often a <b>region-specific</b> event (a Japan-heavy banner lifts game-i alone) or a <b>platform-specific</b> one (a PC or console push lifts only the CN figure).
+    <br><br><b>How each month is labelled.</b> The chip names <b>which sources cluster</b> and what each cluster says, rather than averaging them into one word. Levels run <b>very low</b> (0–20), <b>low</b> (21–35), <b>average</b> (36–64), <b>high</b> (65–79), <b>very high</b> (80+).
+    <ul style="margin:6px 0 0 18px">
+      <li><b>“high · all 3 agree”</b> — every source within 15 points of the others, telling one story.</li>
+      <li><b>“average · all 3 close”</b> — within 24 points: broadly tracking, not matching.</li>
+      <li><b>“GI+ST average · CN high”</b> — a real break splits them, so each group is reported with its own level. This is the interesting case: a <b>region-specific</b> month lifts game-i alone, a <b>platform-specific</b> one lifts only CN.</li>
+      <li><b>“GI high · CN average”</b> — spread out with no clean grouping, so the two extremes are named. The month's success depends on which source you ask.</li>
+    </ul>
+    Hover any chip for that month's exact percentiles and the arithmetic behind the label.
+    <br><br><b>All three sources are ranked inside the same era</b>${eraTxt?` — ${esc(eraTxt)}`:""}. The CN captions switch from 总收入 to 总流水 at Nov 2023 and the two aren't the same measure, so that boundary splits every source, not just CN. Ranking each source over its own full span instead made every recent month read as strong in CN and weak in the others, purely because game-i and Sensor Tower reach back to the launch peak while the CN 流水 pool starts in 2023.</div>
+    ${corr}
+    <div class="ag-head"><div class="ag-mo">Month</div><div class="ag-bars">Percentile within each source</div><div class="ag-verdict">Agreement</div></div>
+    <div class="ag-list">${list}</div>`;
 }
 
 // ---- by-month view: game-i's published monthly revenue (月次売上予測) reconciled
@@ -772,7 +1165,7 @@ function computeMonthly(){
 }
 // One banner's contribution inside a month: revenue + extrapolated global, plus a
 // detail line (dates · days · below-#200 · shared) and a hatched share indicator.
-function bannerContribHTML(x, base, st, ym){
+function bannerContribHTML(x, base, st, ym, cnR){
   const b=state.data.banners[x.i]; if(!b) return "";
   const c=barColor(b), en=b.agents&&b.agents.length?b.agents.join(" & "):"";
   const zero = x.rev < 0.001;
@@ -788,6 +1181,17 @@ function bannerContribHTML(x, base, st, ym){
       : `Extrapolated: this banner is ${(share*100).toFixed(0)}% of the month's JP revenue, so ~${(share*100).toFixed(0)}% of the $${(st.rev/1e6).toFixed(1)}M Sensor Tower combined monthly. No per-banner breakdown exists, so this assumes the combined total follows JP — an estimate.`;
     stVal=`<span class="mcb-st" title="${esc(tip)}">≈ ${fmtUSD(est)} <span class="mcb-tag">est. combined</span></span>`;
   }
+  // the same extrapolation against the CN month, keeping the range intact
+  let cnVal="";
+  if(cnR){
+    const lo = zero ? 0 : share*cnR.lo, hi = zero ? 0 : share*(cnR.hi==null?cnR.lo:cnR.hi);
+    const tip = zero ? "Below game-i's top 200 in JP — assumed ~0 globally"
+      : `Extrapolated: this banner is ${(share*100).toFixed(0)}% of the month's JP revenue, so ~${(share*100).toFixed(0)}% of the month's ${fmtCNYRange(cnR.lo,cnR.hi)} CN total`
+        + (cnR.metric?` (${cnR.metric})`:"")
+        + `. That total is global and all-platform while game-i is Japan mobile, so this is a rough estimate`
+        + (cnR.mihoyo?", and miHoYo's 支付中心 channel is excluded from it":"") + ".";
+    cnVal=`<span class="mcb-cn" title="${esc(tip)}">≈ ${fmtCNYRange(lo,hi)} <span class="mcb-tag">est. global</span></span>`;
+  }
   // detail line: run dates (in this month) · days · below-#200 · shared THIS month
   const [Y,Mo]=(ym||"").split("-").map(Number);
   const dd = Y ? bannerDays(b, Y, Mo) : null;
@@ -801,7 +1205,7 @@ function bannerContribHTML(x, base, st, ym){
     <div class="mcb-av">${avatarHTML(b)}</div>
     <div class="mcb-meta">
       <div class="mcb-nm"><b>${esc(bLabel(b))}</b>${en&&en!==bLabel(b)?`<span class="mcb-en">${esc(en)}</span>`:""}${b&&b.rerun?`<span class="rr">↻</span>`:""}</div>
-      <div class="mcb-vals">${giVal}${stVal}</div>
+      <div class="mcb-vals">${giVal}${stVal}${cnVal}</div>
       ${detLine}
     </div></div>`;
 }
@@ -853,7 +1257,8 @@ function renderMonthly(){
   if($("#bYears")) $("#bYears").innerHTML=yBtns;
   const mval=ym=>{ const v=gi[ym]; return v!=null?v:((bm[ym]&&bm[ym].ours)||0); };
   const stM=ym=>(extMonth(ym)||{}).rev||0;
-  const val = state.dataSource==="st" ? stM : mval;   // Ranking sorts by the toggled data source
+  const cnM=ym=>cnMid(cnMonth(ym));
+  const val = state.dataSource==="st" ? stM : state.dataSource==="cn" ? cnM : mval;   // Ranking sorts by the toggled data source
   let order = state.periodSort==="ranking" ? [...months].sort((a,b)=>val(b)-val(a)) : [...months].reverse();
   if(state.reverse) order.reverse();
   if(state.monthYear!=="all") order=order.filter(ym=>ym.slice(0,4)===state.monthYear);
@@ -889,6 +1294,12 @@ function renderMonthly(){
     const stApprox = st && (st.method==="approx"||st.method==="reported_approx");
     const stSub = st ? (st.usonly ? `<span class="usonly-tag" title="Global (US) only — no China figure available for this month, so it's undercounted">global only</span>` : (st.method==="reported"||st.method==="reported_approx" ? "combined · reported" : "combined · reconstructed")) : "";
     const kSt = st ? `<div class="mck st${st.usonly?" usonly":""}"><span class="mck-k">Sensor Tower${stApprox?" *":""}</span><span class="mck-v">${fmtUSD(st.rev)}</span><span class="mck-n">${stSub}</span></div>` : "";
+    // CN scorecard: the published monthly figure, its on-screen metric, and a note when
+    // the value is a range because miHoYo's 支付中心 channel is excluded.
+    const cnR = cnMonth(ym);
+    const cnSubTxt = cnR ? (cnR.mihoyo ? "global · 支付中心 excluded" : "global · all platforms") : "";
+    const kCn = cnR ? `<div class="mck cn"><span class="mck-k">CN ranking${cnR.metric?` · ${esc(cnR.metric)}`:""}${cnR.inferred?" *":""}</span>`
+      + `<span class="mck-v">${fmtCNYRange(cnR.lo,cnR.hi)}</span><span class="mck-n">${cnSubTxt}</span></div>` : "";
     // composition bar: one segment per banner (share of the base) + an "unlisted" remainder
     const segs = bl.filter(x=>x.rev>0.0005).map(x=>({x, share: base>0?x.rev/base:0}));
     let sumShare = segs.reduce((a,s)=>a+s.share,0);
@@ -902,7 +1313,7 @@ function renderMonthly(){
     const bar = base>0 ? `<div class="mc-stack">${barSegs}</div>` : "";
     const pendHTML = (pend[ym]||[]).map(pendContribHTML).join("");
     const contribs = (bl.length || pendHTML)
-      ? `<div class="mc-banners">${bl.map(x=>bannerContribHTML(x, base, st, ym)).join("")}${pendHTML}</div>`
+      ? `<div class="mc-banners">${bl.map(x=>bannerContribHTML(x, base, st, ym, cnR)).join("")}${pendHTML}</div>`
       : `<div class="mc-empty">game-i lists no banner for this month.</div>`;
     const overlap = overlapCardHTML(bl.map(x=>state.data.banners[x.i]), +y, mo);
     // header + composition bar stay pinned to the top (bar spans the full card width);
@@ -910,7 +1321,7 @@ function renderMonthly(){
     // match a taller row-mate.
     html+=`<div class="mc" data-period="month" data-key="${ym}">
       <div class="mc-hd"><div class="mc-month">${MONTHS[mo-1]||ym} <span class="mc-yr">${y}</span></div>
-        <div class="mc-kpis">${kGi}${kRe}${kSt}</div></div>
+        <div class="mc-kpis">${kGi}${kRe}${kSt}${kCn}</div></div>
       ${bar}<div class="mc-body">${contribs}${overlap}</div></div>`;
   });
   $("#chart").innerHTML=html;
@@ -964,7 +1375,8 @@ function renderYearly(){
   const max=Math.max(...years.map(y=>byYear[y]));
   const nowYear=new Date(state.data.updated).getUTCFullYear();
   const stY=y=>(extSum(ym=>ym.slice(0,4)===String(y))||{}).rev||0;
-  const vy = state.dataSource==="st" ? stY : (y=>byYear[y]);
+  const cnY=y=>cnMid(cnSum(ym=>ym.slice(0,4)===String(y))||null);
+  const vy = state.dataSource==="st" ? stY : state.dataSource==="cn" ? cnY : (y=>byYear[y]);
   let order = state.periodSort==="ranking" ? [...years].sort((a,b)=>vy(b)-vy(a)) : [...years].sort((a,b)=>b-a);
   if(state.reverse) order.reverse();
   if(searching()){ order=order.filter(y=>(bansBy[y]||[]).some(searchMatch));
@@ -995,7 +1407,8 @@ function renderVersions(){
   const max=Math.max(...vers.map(v=>byV[v]),0.1);
   const cur=vers[vers.length-1];               // latest version = in progress
   const stV=v=>(extSum(ym=>versionOfYm(ym)===v)||{}).rev||0;
-  const vv = state.dataSource==="st" ? stV : (v=>byV[v]);
+  const cnV=v=>cnMid(cnSum(ym=>versionOfYm(ym)===v)||null);
+  const vv = state.dataSource==="st" ? stV : state.dataSource==="cn" ? cnV : (v=>byV[v]);
   let order = state.periodSort==="ranking" ? [...vers].sort((a,b)=>vv(b)-vv(a)) : [...vers].reverse();
   if(state.reverse) order.reverse();
   if(searching()){ order=order.filter(v=>(bansBy[v]||[]).some(searchMatch));
@@ -1135,7 +1548,7 @@ function monthOverlap(bans, Y, Mo){
 function openPeriod(kind, key){
   state.data.banners.forEach((x,i)=>x._i=i);
   const gname=esc(state.data.name), real=state.data.banners.filter(b=>!b._synthetic);
-  let items=[], title="", sub="", extra="", stSection="", giHead="", Y=null, Mo=null;
+  let items=[], title="", sub="", extra="", stSection="", cnSection="", giHead="", Y=null, Mo=null;
   if(kind==="year"){
     const bs=real.filter(b=>String(b.year)===key).sort((a,b)=>b.rev-a.rev);
     items=bs.map(b=>({b, rev:b.rev}));
@@ -1206,6 +1619,40 @@ function openPeriod(kind, key){
       </div>
       <div class="pd-list">${stRows}</div>`;
     }
+    // CN section for the month: the same split against the CN monthly total. The range
+    // is carried through per banner instead of being flattened to one number.
+    const cnR=cnMonth(key);
+    if(cnR){
+      const base=(gi!=null && o>0 && (gi-o)/gi>=0.08) ? gi : o;   // same denominator as bannerCN
+      const cnHi = cnR.hi==null?cnR.lo:cnR.hi;
+      const cnItems=items.map(it=>{ const share=base>0?it.rev/base:0;
+        return {b:it.b, share, lo:share*cnR.lo, hi:share*cnHi}; }).sort((a,b)=>b.hi-a.hi);
+      const cnMax=Math.max(...cnItems.map(x=>(x.lo+x.hi)/2), 1);
+      const cnRows=cnItems.map((it,i)=>{
+        const b=it.b, c=barColor(b), [bl,bd]=barShades(c), zero=it.hi<1e4;
+        const w=zero?0:Math.max(2, ((it.lo+it.hi)/2)/cnMax*100);
+        const en=b.agents&&b.agents.length?b.agents.join(" & "):"";
+        const rr=b.rerun?`<span class="rr">↻</span>`:"";
+        const val=zero ? `<span class="pd-val pd-below" title="Below game-i's top 200 this month, so no attributed share">CN¥0</span>`
+                       : `<span class="pd-val">≈${fmtCNYRange(it.lo,it.hi)}</span>`;
+        return `<div class="pd-row" data-i="${b._i}" style="--bar-l:${bl};--bar-d:${bd};--av-ring:${c}">
+          <div class="pd-rk${i<3&&!zero?` m${i+1}`:""}">${i+1}</div>
+          <div class="pd-av">${avatarHTML(b)}</div>
+          <div class="pd-meta">
+            <div class="pd-nm"><b>${esc(bLabel(b))}</b>${en&&en!==bLabel(b)?`<span class="pd-en">${esc(en)}</span>`:""}${rr}</div>
+            <div class="pd-bar"><div class="pd-track"><div class="pd-fill" style="width:${w}%"></div></div>${val}</div>
+            <div class="pd-sub">${Math.round(it.share*100)}% of the month</div>
+          </div></div>`;
+      }).join("");
+      cnSection=`<div class="pd-hd pd-hd-cn">
+        <div class="pd-hd-main">
+          <h3 class="pd-h pd-h-cn">CN ranking${cnR.metric?` · ${esc(cnR.metric)}`:""} — assumed global (this month)</h3>
+          <div class="pd-subtitle">${esc(state.data.name)}'s global all-platform total (mobile + PC + PlayStation) for ${MONTHS[Mo-1]} ${Y}, split by each banner's share of the month.${cnR.mihoyo?" miHoYo's 支付中心 channel is excluded from it, so the figure is understated — hence the range.":""}</div>
+        </div>
+        <div class="pd-tot pd-tot-cn"><span class="pd-tot-v">${fmtCNYRange(cnR.lo,cnR.hi)}</span><span class="pd-tot-l">global total</span></div>
+      </div>
+      <div class="pd-list">${cnRows}</div>`;
+    }
     extra=monthCalendarHTML(items, Y, Mo)+overlapHTML(items.map(it=>it.b), Y, Mo);
   }
   const max=Math.max(...items.map(x=>x.rev), 0.1);
@@ -1239,6 +1686,7 @@ function openPeriod(kind, key){
   $("#pdBody").innerHTML=`<h2 id="pdTitle" class="pd-title">${title}</h2>${sub?`<div class="pd-subtitle">${sub}</div>`:""}${giHead}`
     + (items.length?`<div class="pd-list">${rows}</div>`:`<p class="pd-empty">No banners in this period.</p>`)
     + stSection
+    + cnSection
     + extra;
   periodModal.querySelector(".modal-card").scrollTop=0;
   periodModal.hidden=false;
@@ -1368,6 +1816,57 @@ function rankValue(r){
       return Math.exp(Math.log(v0)+t*(Math.log(v1)-Math.log(v0))); } }
   return 0;
 }
+// ---- how front-loaded a run was -------------------------------------------------
+// game-i publishes one total per banner, but its daily rank curve says WHEN that total
+// arrived, and the shape differs a lot between games: a Star Rail banner earns most of
+// its money in the opening days, an Umamusume one keeps earning for weeks. Same weights
+// dailyBreakdown() uses, computed straight off the rank series so this is cheap enough
+// to run over every banner in the game for the comparison line.
+const BURN_MIN_DAYS = 14;    // shorter runs can't have a meaningful "first week" share
+function burnout(b){
+  if(b._burn !== undefined) return b._burn;
+  const s=b.rank_series||[], w=s.map(rankValue), tot=w.reduce((a,c)=>a+c,0);
+  if(!s.length || tot<=0) return (b._burn=null);
+  const at=n=>w.slice(0,n).reduce((a,c)=>a+c,0)/tot;
+  let run=0, half=null;
+  for(let i=0;i<w.length;i++){ run+=w[i]; if(half==null && run>=tot/2) half=i+1; }
+  return (b._burn={days:w.length, d3:at(3), d7:at(7), half});
+}
+// This game's typical first-week share, for context. Finished runs only: an ongoing
+// banner's shares are taken over the days elapsed so far, not its eventual total, so
+// including them would drag the median upward.
+function gameBurn(){
+  if(state._gameBurn !== undefined) return state._gameBurn;
+  const v=[];
+  for(const b of (state.data?state.data.banners:[])){
+    if(b._synthetic || b.pending || b.ongoing) continue;
+    const bo=burnout(b);
+    if(bo && bo.days>=BURN_MIN_DAYS) v.push(bo.d7);
+  }
+  v.sort((a,c)=>a-c);
+  return (state._gameBurn = v.length>=5 ? {med:v[Math.floor(v.length/2)], n:v.length} : null);
+}
+function burnBlock(b){
+  const bo=burnout(b); if(!bo || bo.days<8) return "";
+  const pc=x=>Math.round(x*100)+"%";
+  const stats=`<div class="bm-stats bm-share3 bm-burn">
+    <div class="bm-stat"><span class="l">First 3 days</span><span class="v">${pc(bo.d3)}</span></div>
+    <div class="bm-stat"><span class="l">First week</span><span class="v">${pc(bo.d7)}</span></div>
+    <div class="bm-stat"><span class="l">Half earned by</span><span class="v">Day ${bo.half}</span></div>
+  </div>`;
+  if(b.ongoing) return stats+`<div class="bm-cap">This run <b>isn't finished</b>, so these are shares of what it has earned <i>so far</i> — they'll fall as it keeps running.</div>`;
+  const g=gameBurn();
+  if(!g) return stats;
+  // A short run's first week is structurally a bigger slice of it than a three-week
+  // run's, so comparing the two would be meaningless. Say so rather than going quiet.
+  if(bo.days<BURN_MIN_DAYS) return stats+`<div class="bm-cap">At <b>${bo.days} days</b> this run is too short to line up against ${esc(gameName())}'s longer banners — a shorter run packs more of itself into its first week by definition.</div>`;
+  const d=(bo.d7-g.med)*100, typ=Math.round(g.med*100);
+  const verdict = Math.abs(d)<5 ? `right about typical for ${esc(gameName())}`
+    : d>0 ? `<b>more front-loaded</b> than a typical ${esc(gameName())} banner`
+          : `<b>a longer tail</b> than a typical ${esc(gameName())} banner`;
+  return stats+`<div class="bm-cap">${verdict} — its usual first week is <b>${typ}%</b> of the run, across ${g.n} finished banners.</div>`;
+}
+
 function dailyBreakdown(b){
   const s=b.rank_series||[]; if(!s.length) return null;
   const raw=s.map(rankValue), sum=raw.reduce((a,c)=>a+c,0);
@@ -1423,6 +1922,10 @@ function bannerSTBlock(b){
     return head+how+`<p class="bm-note"><b>No Sensor Tower data yet.</b> This run is either before the reports began (Oct 2021) or entirely within months not yet published. A figure will appear here once a monthly report covers its run.</p>`;
   }
   const c=barColor(b);
+  const stMonths=st.covered+st.missing;
+  const headline=`<div class="bm-headline">
+    <span><span class="l">Assumed combined revenue${st.partial?" so far":""}</span><div class="v">≈${fmtUSD(st.total)}</div></span>
+    <span class="sub">${st.covered} of ${stMonths} month${stMonths>1?"s":""} covered · US$, worldwide, mobile</span></div>`;
   const rows=st.months.map(m=>{
     const ym=m.ym, lab=`${MONTHS[+ym.slice(5,7)-1]} ${ym.slice(0,4)}`;
     const co=((bm[ym]&&bm[ym].banners)||[]).filter(x=>x.i!==b._i && x.rev>0.001)
@@ -1446,7 +1949,7 @@ function bannerSTBlock(b){
   const partial = st.partial
     ? `<p class="bm-note"><b>Partial run.</b> Sensor Tower covers <b>${st.covered}</b> of the <b>${st.covered+st.missing}</b> months this banner ran — the total above counts only the covered months and will grow as later reports land.</p>`
     : "";
-  return head+how+partial+`<div class="bm-stmlist">${rows}</div>`;
+  return head+how+headline+partial+`<div class="bm-stmlist">${rows}</div>`;
 }
 function gameName(){ const g=(state.games||[]).find(x=>x.game===state.tag); return g?g.name:state.tag; }
 
@@ -1459,6 +1962,14 @@ function stRankInfo(b){
     cum: all.filter(x=>bannerST(x).total>t).length+1, cumtot: all.length,
     yrank: yr.filter(x=>bannerST(x).total>t).length+1, ytot: yr.length,
   };
+}
+
+function cnRankInfo(b){
+  const mid=x=>{ const c=bannerCN(x); return (c.lo+c.hi)/2; };
+  const all=(state.data.banners||[]).filter(x=>!x._synthetic && bannerCN(x).hasData);
+  const t=mid(b), yr=all.filter(x=>x.year===b.year);
+  return {cum: all.filter(x=>mid(x)>t).length+1, cumtot: all.length,
+          yrank: yr.filter(x=>mid(x)>t).length+1, ytot: yr.length};
 }
 
 // ST-valued "shared with concurrent banners" split. The per-banner combined total
@@ -1484,16 +1995,445 @@ function bannerSTShareBlock(b){
 }
 
 // Sensor Tower view for the banner modal: ST-valued stat tiles + the detailed month breakdown
-function bannerSTView(b){
-  const st=bannerST(b);
-  if(!st.hasData) return bannerSTBlock(b);          // no data → just the explanatory block
-  const r=stRankInfo(b);
+// The CN tab of a banner card: the same month-by-month arithmetic the ST tab shows,
+// with the range kept intact and the metric label printed per month so a run that
+// straddles the Nov 2023 basis change is obvious rather than silently averaged.
+// ---- China iOS chart, day by day -------------------------------------------------
+// data/ranks/cn_ios_series.json: days[date]=[depth,source], games[tag][date]=rank.
+// A day present in `days` with no rank for the game is a real reading -- the game sat
+// BELOW that day's depth -- while a date absent from `days` is simply a day nobody has.
+function cnRunSeries(b){
+  const R=state.cnrank; if(!R||!R.games||!R.days) return null;
+  const g=R.games[state.tag]; if(!g) return null;
+  const iso=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+  const out=[]; let any=false;
+  const d=new Date(b.start+"T00:00:00"), end=new Date(b.end+"T00:00:00"), today=new Date();
+  while(d<=end&&d<=today){
+    const k=iso(d), day=R.days[k];
+    if(day) any=true;
+    out.push({iso:k, rank:g[k]!=null?g[k]:null, depth:day?day[0]:null, src:day?day[1]:null});
+    d.setDate(d.getDate()+1);
+  }
+  return any?out:null;
+}
+function cnRankSVG(run,b){
+  const known=run.map((x,i)=>[i,x.rank]).filter(([,r])=>r!=null);
+  if(!known.length) return "";
+  const n=run.length, worst=Math.max(...known.map(([,r])=>r));
+  const ymax = worst<=10?10 : worst<=20?20 : worst<=30?30 : worst<=50?50 : worst<=100?100 : 200;
+  const W=680,H=230,ML=38,MR=14,MT=16,MB=26,pW=W-ML-MR,pH=H-MT-MB;
+  const xOf=i=> n>1 ? ML+(i/(n-1))*pW : ML+pW/2;
+  const yOf=r=> MT+((r-1)/(ymax-1))*pH;
+  const grid=[...new Set([1,Math.round(ymax/4),Math.round(ymax/2),Math.round(3*ymax/4),ymax])]
+    .map(r=>{const y=yOf(r);
+      return `<line class="grid" x1="${ML}" y1="${y.toFixed(1)}" x2="${W-MR}" y2="${y.toFixed(1)}"/>`
+        +`<text class="axislbl" x="${ML-6}" y="${(y+3).toFixed(1)}" text-anchor="end">#${r}</text>`;}).join("");
+  const xt=[...new Set([0,Math.round((n-1)/3),Math.round(2*(n-1)/3),n-1])]
+    .map(i=>`<text class="axislbl" x="${xOf(i).toFixed(1)}" y="${H-8}" text-anchor="middle">${dayLabel(i)}</text>`).join("");
+  let d="",pen=false;
+  run.forEach((x,i)=>{ if(x.rank==null){pen=false;return;} const px=xOf(i),py=yOf(x.rank);
+    d+=`${pen?"L":"M"}${px.toFixed(1)} ${py.toFixed(1)}`; pen=true; });
+  const dots=known.map(([i,r])=>`<circle class="rc-dot" cx="${xOf(i).toFixed(1)}" cy="${yOf(r).toFixed(1)}" r="3"/>`).join("");
+  // days the chart is known but the game wasn't on it: a tick along the bottom
+  const below=run.map((x,i)=>x.depth!=null&&x.rank==null
+    ? `<line class="grid" x1="${xOf(i).toFixed(1)}" y1="${(H-MB-3).toFixed(1)}" x2="${xOf(i).toFixed(1)}" y2="${(H-MB).toFixed(1)}"/>`:"").join("");
+  const [pi,pv]=known.reduce((a,c)=>c[1]<a[1]?c:a);
+  const peak=`<circle class="rc-peak" cx="${xOf(pi).toFixed(1)}" cy="${yOf(pv).toFixed(1)}" r="5"/>`
+    +`<text class="rc-peaklbl" x="${xOf(pi).toFixed(1)}" y="${(yOf(pv)-9).toFixed(1)}" text-anchor="middle">peak #${pv}</text>`;
+  // hover targets on every charted day, including the ones the game sat below
+  _cnCtx={days:run.map((x,i)=>({...x, i}))};
+  const hits=run.map((x,i)=>x.depth==null?"":
+    `<circle class="rc-hit" data-cnday="${i}" cx="${xOf(i).toFixed(1)}" cy="${(x.rank!=null?yOf(x.rank):H-MB-6).toFixed(1)}" r="9"/>`).join("");
+  return `<svg class="rcsvg" viewBox="0 0 ${W} ${H}" role="img" style="--acc:${barColor(b)}">
+    ${grid}${below}<path class="rc-line" d="${d}"/>${dots}${peak}${hits}${xt}</svg>`;
+}
+// ---- what the China chart says about a run, next to the game's other banners --------
+// Everything here is measured, not modelled: the run's own ranks, and the ranks and
+// revenue of banners that came before. The one inference is the closing line, and it is
+// labelled for what it is -- what similar openings went on to earn, not a forecast.
+function cnRunStats(b){
+  if(b._cnStats!==undefined) return b._cnStats;
+  const run=cnRunSeries(b);
+  if(!run) return (b._cnStats=null);
+  const known=run.filter(x=>x.rank!=null), charted=run.filter(x=>x.depth!=null);
+  if(!known.length) return (b._cnStats={run, charted:charted.length, days:run.length, none:true,
+                                        depth:charted.length?Math.max(...charted.map(x=>x.depth)):null});
+  const ranks=known.map(x=>x.rank).sort((a,c)=>a-c);
+  return (b._cnStats={run, charted:charted.length, days:run.length, none:false,
+    open:known[0].rank, peak:ranks[0], last:known[known.length-1].rank,
+    median:ranks[Math.floor(ranks.length/2)], top10:known.filter(x=>x.rank<=10).length});
+}
+function cnPeers(){
+  if(state._cnPeers) return state._cnPeers;
+  const out=[];
+  for(const p of (state.data.banners||[])){
+    if(p._synthetic||p.pending) continue;
+    const st=cnRunStats(p);
+    if(st&&!st.none) out.push({b:p, st});
+  }
+  return (state._cnPeers=out);
+}
+const _med=a=>{ const x=[...a].sort((p,q)=>p-q); return x.length?x[Math.floor(x.length/2)]:null; };
+function _place(list, val){            // 1 = best (lowest rank); ties share the better place
+  const better=list.filter(v=>v<val).length;
+  return {place:better+1, of:list.length};
+}
+function peerName(x){
+  return (x.agents&&x.agents.length) ? x.agents.join(" & ") : (x.en || x.related || bLabel(x));
+}
+// ---- what game-i's own rank curve says about a run ---------------------------------
+// The China block reasons from China's chart; this one reasons from the curve game-i
+// publishes for this very banner, in the same market as the yen figure beside it. That
+// makes it the stronger comparison of the two -- same source, same measure.
+const ordinal = n => { const t=n%100;
+  return n + (t>=11&&t<=13 ? "th" : ({1:"st",2:"nd",3:"rd"}[n%10] || "th")); };
+function jpRunStats(b){
+  if(b._jpStats!==undefined) return b._jpStats;
+  const s=b.rank_series||[];
+  const known=s.map((v,i)=>[i,v]).filter(([,v])=>v!=null);
+  if(!known.length) return (b._jpStats=null);
+  const ranks=known.map(([,v])=>v), sorted=[...ranks].sort((a,c)=>a-c);
+  const peakDay=known.reduce((a,c)=>c[1]<a[1]?c:a)[0];
+  // the day it dropped off game-i's trackable ~top 200 and never came back
+  let fellOff=null;
+  for(let i=peakDay;i<s.length;i++){
+    if(s[i]==null && s.slice(i).every(v=>v==null)){ fellOff=i; break; }
+  }
+  return (b._jpStats={
+    open:known[0][1], peak:Math.min(...ranks), last:known[known.length-1][1],
+    median:sorted[Math.floor(sorted.length/2)], days:s.length, charted:known.length,
+    top10:ranks.filter(v=>v<=10).length, top50:ranks.filter(v=>v<=50).length,
+    peakDay:peakDay+1, fellOffDay:fellOff==null?null:fellOff+1,
+  });
+}
+function jpPeers(){
+  if(state._jpPeers) return state._jpPeers;
+  const out=[];
+  for(const p of (state.data.banners||[])){
+    if(p._synthetic||p.pending||p.ongoing) continue;   // peers must be finished runs
+    const st=jpRunStats(p);
+    if(st) out.push({b:p, st});
+  }
+  return (state._jpPeers=out);
+}
+// ---- money summaries for a set of comparable runs -----------------------------------
+// A currency is only summarised when at least 3 of the peers carry it, so the median
+// means something. Sensor Tower has NO rank of its own, so it can never be the thing a
+// rank comparison is read against -- but it is the only worldwide figure here, so it
+// rides along on both the game-i and the China read as a secondary number.
+function peerMoney(near){
+  const out={};
+  const jp=near.map(p=>p.b.rev).filter(v=>v>0);
+  if(jp.length) out.jp={lo:Math.min(...jp), hi:Math.max(...jp), md:_med(jp), n:jp.length, f:G, approx:""};
+  const stv=near.map(p=>bannerST(p.b)).filter(x=>x.hasData).map(x=>x.total);
+  if(stv.length>=3) out.st={lo:Math.min(...stv), hi:Math.max(...stv), md:_med(stv),
+                            n:stv.length, f:fmtUSD, approx:"≈"};
+  const cnv=near.map(p=>bannerCN(p.b)).filter(x=>x.hasData);
+  if(cnv.length>=3){ const mids=cnv.map(cnMid);
+    out.cn={lo:Math.min(...mids), hi:Math.max(...mids), md:_med(mids),
+            n:cnv.length, f:fmtCNY, approx:"≈", range:fmtCNYRange}; }
+  return out;
+}
+// CN prints its two ends through the shared range formatter so the currency isn't
+// repeated three times in one sentence ("CN¥ 226.55 – 370.54M", not "CN¥ x to CN¥ y").
+const moneySpread = m => (m.range ? `${m.approx}<b>${m.range(m.lo,m.hi)}</b>`
+  : `${m.approx}<b>${m.f(m.lo)}</b> to <b>${m.f(m.hi)}</b>`) + `, median <b>${m.f(m.md)}</b>`;
+// Both verdicts close the same way, so the wording lives in one place -- otherwise the
+// two tabs drift apart as one gets edited. The ST line only appears when ST data exists.
+const stScaleNote = m => m.st
+  ? ` Sensor Tower's dollars are here for scale only: it publishes <b>no rank</b>, so it can't drive the comparison.` : "";
+const ASSOC_NOTE = `Treat it as an association, not a forecast — a rerun can open high and earn little, and a banner that holds a modest rank for weeks can out-earn a spike.`;
+const stAside = m => m.st
+  ? ` Sensor Tower has ${m.st.n} of them at ≈<b>${fmtUSD(m.st.lo)}</b> to <b>${fmtUSD(m.st.hi)}</b> worldwide, median <b>${fmtUSD(m.st.md)}</b>.` : "";
+
+function jpAnalysisBlock(b){
+  const st=jpRunStats(b);
+  if(!st) return "";
+  const peers=jpPeers().filter(p=>p.b._i!==b._i);
+  if(peers.length<3) return "";
+  const ver=hasVersions(state.tag)?versionOf(b):null;
+  const scopes=[];
+  if(ver){ const g=peers.filter(p=>versionOf(p.b)===ver).map(p=>p.st.open);
+           if(g.length>=2) scopes.push([ver, _place([...g, st.open], st.open)]); }
+  const yr=peers.filter(p=>p.b.year===b.year).map(p=>p.st.open);
+  if(yr.length>=2) scopes.push([String(b.year), _place([...yr, st.open], st.open)]);
+  scopes.push(["all-time", _place([...peers.map(p=>p.st.open), st.open], st.open)]);
+  const scopeLine=scopes.map(([lab,r])=>`<b>${ordinal(r.place)} of ${r.of}</b> in ${lab}`).join(" \u00b7 ");
+
+  const sameYear=peers.filter(p=>p.b.year===b.year);
+  const base=sameYear.length>=3?sameYear:peers;
+  const baseLab=sameYear.length>=3?`in ${b.year}`:"across this game's history";
+  const medOpen=_med(base.map(p=>p.st.open)), medPeak=_med(base.map(p=>p.st.peak));
+  const medTop50=_med(base.map(p=>p.st.top50));
+  const fellPeers=base.map(p=>p.st.fellOffDay).filter(v=>v!=null);
+
+  // the fade: how long it held the top 50, and whether it left the chart early
+  let fade=`It held the <b>top 50</b> for <b>${st.top50}</b> of its ${st.days} days, against <b>${medTop50}</b> for the usual banner ${baseLab}.`;
+  if(st.fellOffDay!=null){
+    const medFell=fellPeers.length>=3?_med(fellPeers):null;
+    const how=medFell==null ? "." :
+      st.fellOffDay<medFell*0.7 ? ` \u2014 the usual one lasts to day <b>${medFell}</b>, so this faded <b>much faster</b> than normal.`
+      : st.fellOffDay<medFell ? ` \u2014 the usual one lasts to day <b>${medFell}</b>, so this faded <b>faster</b> than normal.`
+      : ` \u2014 the usual one lasts to day <b>${medFell}</b>, so that is <b>no faster</b> than normal.`;
+    fade+=` It dropped off game-i's trackable top 200 on <b>day ${st.fellOffDay}</b> of ${st.days}${how}`;
+  } else if(!b.ongoing){
+    fade+=` It never fell off the chart during the run.`;
+  }
+  const place=`<div class="bm-verdict call"><span class="head">Where this run sits on game-i's chart</span>
+    Opened at <span class="fig">#${st.open}</span> \u2014 ${scopeLine}, among this game's finished banners.
+    It peaked at <span class="fig">#${st.peak}</span> on day ${st.peakDay} and ran at a median of
+    <span class="fig">#${st.median}</span>${b.ongoing?" so far":""}. The usual banner ${baseLab} opens
+    at <b>#${medOpen}</b> and peaks at <b>#${medPeak}</b>. ${fade}</div>`;
+
+  const near=[...peers].sort((p,q)=>Math.abs(p.st.open-st.open)-Math.abs(q.st.open-st.open)).slice(0,5);
+  const rows=near.map(p=>{
+    const stv=bannerST(p.b), cnv=bannerCN(p.b);
+    const figs=[`<span class="main">${G(p.b.rev)}</span>`];
+    if(stv.hasData) figs.push(`<span>ST \u2248${fmtUSD(stv.total)}</span>`);
+    if(cnv.hasData) figs.push(`<span>CN \u2248${fmtCNYRange(cnv.lo,cnv.hi)}</span>`);
+    return `<div class="bm-peer" style="--av-ring:${barColor(p.b)}">
+      <span class="av">${avatarHTML(p.b)}</span>
+      <span class="who"><span class="nm">${esc(peerName(p.b))}</span>
+        <span class="sub">opened #${p.st.open} \u00b7 peak #${p.st.peak} \u00b7 top 50 for ${p.st.top50}d \u00b7 ${per(p.b.start)}${p.b.rerun?" \u00b7 rerun":""}</span></span>
+      <span class="figs">${figs.join("")}</span></div>`;
+  }).join("");
+
+  const money=peerMoney(near), J=money.jp, md=J.md, mineST=bannerST(b);
+  const ownST=mineST.hasData?`, Sensor Tower's share of those months at <span class="fig">\u2248${fmtUSD(mineST.total)}</span>`:"";
+  const daysLeft=b.ongoing
+    ? Math.max(0, Math.ceil((Date.parse(b.end+"T23:59:59")-Date.now())/864e5)) : 0;
+  let head, body;
+  if(!b.ongoing){
+    const diff=b.rev/md, word=diff>=1.25?"well above":diff>=1.05?"above":diff<=0.75?"well below":diff<=0.95?"below":"in line with";
+    head="How it turned out";
+    body=`game-i puts this run at <span class="fig">${G(b.rev)}</span>${ownST}. The five banners that opened nearest <b>#${st.open}</b> earned ${moneySpread(J)} \u2014 it landed <b>${word}</b> the openings it resembles.${stAside(money)}`;
+  } else if(daysLeft<3){
+    head="Almost done";
+    body=`This run ends in <b>${daysLeft}</b> day${daysLeft===1?"":"s"}, so game-i's figure \u2014 <span class="fig">${G(b.rev)}</span> so far \u2014 is all but final${ownST}. No estimate needed now.`;
+  } else if(st.charted>=5){
+    head="Tracking towards";
+    body=`<b>${st.charted}</b> charted day${st.charted===1?"":"s"} in, <b>${daysLeft}</b> left, at <span class="fig">${G(b.rev)}</span> so far${ownST}. Banners that opened nearest <b>#${st.open}</b> finished at ${moneySpread(J)} \u2014 if this one follows them it ends around that middle.${stAside(money)}`;
+  } else {
+    head="Too early to call";
+    body=`Only <b>${st.charted}</b> charted day${st.charted===1?"":"s"} so far. Comparable openings ended anywhere in ${moneySpread(J)} \u2014 too wide to read yet.${stAside(money)}`;
+  }
+  const verdict=`<div class="bm-verdict"><span class="head">${head}</span>${body}
+    <span class="after">Rank and revenue here come from the <b>same source and the same market</b> \u2014 game-i's rank beside game-i's yen, over ${near.length} comparable runs \u2014 which makes this the tighter of the two reads.${stScaleNote(money)} ${ASSOC_NOTE}</span></div>`;
+
+  return `<h3>How this run compares</h3>${place}
+    <h3>Banners that opened around #${st.open}</h3>
+    <div class="bm-peerlist">${rows}</div>${verdict}`;
+}
+
+// The comparables and the one judgement call: is a projection still worth making? Once a
+// run is over -- or within a couple of days of over -- game-i's own figure is all but
+// final, so guessing at it from China's chart adds nothing.
+function cnRead(b){
+  const st=cnRunStats(b);
+  if(!st || st.none) return null;
+  const peers=cnPeers().filter(p=>p.b._i!==b._i);
+  if(peers.length<3) return null;
+  const near=[...peers].sort((p,q)=>Math.abs(p.st.open-st.open)-Math.abs(q.st.open-st.open)).slice(0,5);
+  const revs=near.map(p=>p.b.rev).filter(v=>v>0);
+  // a run includes its end day, so "days left" counts today through b.end
+  const daysLeft=b.ongoing
+    ? Math.max(0, Math.ceil((Date.parse(b.end+"T23:59:59")-Date.now())/864e5)) : 0;
+  return {st, peers, near, lo:Math.min(...revs), hi:Math.max(...revs), md:_med(revs),
+          daysLeft, estimable:b.ongoing && daysLeft>=3};
+}
+function cnAnalysisBlock(b){
+  const st=cnRunStats(b);
+  if(!st||st.none) return "";
+  const peers=cnPeers().filter(p=>p.b._i!==b._i);
+  if(peers.length<3) return "";        // nothing to compare against yet
+  const ver=hasVersions(state.tag)?versionOf(b):null;
+  const scopes=[];
+  if(ver){ const g=peers.filter(p=>versionOf(p.b)===ver).map(p=>p.st.open);
+           if(g.length>=2) scopes.push([`${ver}`, _place([...g, st.open], st.open)]); }
+  const yr=peers.filter(p=>p.b.year===b.year).map(p=>p.st.open);
+  if(yr.length>=2) scopes.push([`${b.year}`, _place([...yr, st.open], st.open)]);
+  const all=peers.map(p=>p.st.open);
+  scopes.push(["all-time", _place([...all, st.open], st.open)]);
+  const scopeLine=scopes.map(([lab,r])=>`<b>${ordinal(r.place)} of ${r.of}</b> in ${lab}`).join(" · ");
+
+  // "the usual banner" must mean a CONTEMPORARY one: a 2026 run measured against this
+  // game's 2020 peak years would look feeble for reasons that have nothing to do with it.
+  const sameYear=peers.filter(p=>p.b.year===b.year);
+  const base=sameYear.length>=3?sameYear:peers, baseLab=sameYear.length>=3?`in ${b.year}`:"across this game's history";
+  const medOpen=_med(base.map(p=>p.st.open)), medMed=_med(base.map(p=>p.st.median));
+  const ran=st.median<medMed?"higher":"lower";
+
+  const place=`<div class="bm-verdict call"><span class="head">Where this run sits on China's chart</span>
+    Opened at <span class="fig">#${st.open}</span> — ${scopeLine}, among the banners with China data.
+    It peaked at <span class="fig">#${st.peak}</span> and ran at a median of <span class="fig">#${st.median}</span>${b.ongoing?" so far":""},
+    against <b>#${medOpen}</b> and <b>#${medMed}</b> for this game's other charted banners ${baseLab} —
+    so it is running <b>${ran}</b> than the usual one.</div>`;
+
+  // the closest openings this game has had, with every revenue figure that exists for them
+  const near=[...peers].sort((p,q)=>Math.abs(p.st.open-st.open)-Math.abs(q.st.open-st.open)).slice(0,5);
+  // A China rank has to be read against CHINA's revenue -- setting it beside game-i's yen
+  // is an association across two markets, which is exactly what this block should avoid.
+  // Yen is only the fallback when too few comparable runs carry a CN figure to median.
+  const money=peerMoney(near), cnPrimary=!!money.cn, P=money.cn||money.jp;
+  const rows=near.map(p=>{
+    const stv=bannerST(p.b), cnv=bannerCN(p.b);
+    const figs=[];
+    figs.push(cnPrimary&&cnv.hasData
+      ? `<span class="main">≈${fmtCNYRange(cnv.lo,cnv.hi)}</span>`
+      : `<span class="main">${G(p.b.rev)}</span>`);
+    if(stv.hasData) figs.push(`<span>ST ≈${fmtUSD(stv.total)}</span>`);
+    if(cnPrimary&&cnv.hasData) figs.push(`<span>game-i ${G(p.b.rev)}</span>`);
+    else if(cnv.hasData) figs.push(`<span>CN ≈${fmtCNYRange(cnv.lo,cnv.hi)}</span>`);
+    return `<div class="bm-peer" style="--av-ring:${barColor(p.b)}">
+      <span class="av">${avatarHTML(p.b)}</span>
+      <span class="who"><span class="nm">${esc(peerName(p.b))}</span>
+        <span class="sub">opened #${p.st.open} · peak #${p.st.peak} · ${per(p.b.start)}${p.b.rerun?" · rerun":""}</span></span>
+      <span class="figs">${figs.join("")}</span></div>`;
+  }).join("");
+
+  // the read, decided by how much of this run is actually known
+  const mine=bannerST(b), mineCN=bannerCN(b);
+  // Only read this run's CN total against CN peers when its OWN months are all in --
+  // a partial total (the newest months aren't published yet) would land "well below"
+  // peers for a reason that has nothing to do with how the banner did.
+  const ownCN=cnPrimary && mineCN.hasData && !mineCN.partial;
+  const PV=ownCN?P:(money.jp||P), md=PV.md;
+  const ownName=ownCN?"the CN ranking":"game-i";
+  const ownFig=ownCN?`≈${fmtCNYRange(mineCN.lo,mineCN.hi)}`:G(b.rev);
+  const ownST=mine.hasData?`, Sensor Tower's share of those months at <span class="fig">≈${fmtUSD(mine.total)}</span>`:"";
+  const ownJP=ownCN?`, game-i at <span class="fig">${G(b.rev)}</span>`
+    : (mineCN.hasData?`, the CN ranking at <span class="fig">≈${fmtCNYRange(mineCN.lo,mineCN.hi)}</span> across the ${mineCN.covered} of its ${mineCN.covered+mineCN.missing} months China has published`:"");
+  const read=cnRead(b), daysLeft=read?read.daysLeft:0;
+  let head, body;
+  if(!b.ongoing){
+    const diff=(ownCN?cnMid(mineCN):b.rev)/md;
+    const word=diff>=1.25?"well above":diff>=1.05?"above":diff<=0.75?"well below":diff<=0.95?"below":"in line with";
+    head="How it turned out";
+    body=`This run is finished: ${ownName} puts it at <span class="fig">${ownFig}</span>${ownST}${ownJP}`
+      + `. The five banners that opened nearest <b>#${st.open}</b> earned ${moneySpread(PV)}, so it landed <b>${word}</b> the openings it resembles.${stAside(money)}`;
+  } else if(!read || !read.estimable){
+    head="Almost done";
+    body=`This run ends in <b>${daysLeft}</b> day${daysLeft===1?"":"s"}, so ${ownName}'s own figure — <span class="fig">${ownFig}</span> so far — is all but final${ownST}. No estimate here: the comparison above is the useful part, and the finished number arrives on its own.`;
+  } else if(st.charted>=7){
+    head="What it is tracking towards";
+    body=`Still running, <b>${st.charted}</b> charted day${st.charted>1?"s":""} in, with ${ownName} at <span class="fig">${ownFig}</span> so far${ownST}. Banners that opened nearest <b>#${st.open}</b> finished at ${moneySpread(PV)} — if this one follows them it ends around that middle.${stAside(money)}`;
+  } else {
+    head="Too early to call";
+    body=`Only <b>${st.charted}</b> charted day${st.charted>1?"s":""} so far. Banners that opened nearest <b>#${st.open}</b> ended anywhere in ${moneySpread(PV)} — a spread too wide to read anything into yet. It firms up as the run goes.${stAside(money)}`;
+  }
+  const why=!money.cn ? "Too few comparable runs carry a China figure"
+    : !mineCN.hasData ? "This run has no China figure of its own"
+    : "This run's China total covers only part of its months";
+  const frame=ownCN
+    ? `Rank and revenue here both come from China — its chart set beside its own revenue, over ${near.length} comparable runs — so this read stays in <b>one market</b>.`
+    : `${why}, so this read falls back to Japanese revenue: a China rank set against yen, <b>across two markets</b>, over ${near.length} runs — looser than the game-i tab's own comparison.`;
+  const verdict=`<div class="bm-verdict"><span class="head">${head}</span>${body}
+    <span class="after">${frame}${stScaleNote(money)} ${ASSOC_NOTE}</span></div>`;
+
+  return `<h3>How this run compares</h3>${place}
+    <h3>Banners that opened around #${st.open}</h3>
+    <div class="bm-peerlist">${rows}</div>${verdict}`;
+}
+function cnRankBlock(b){
+  const head=`<h3>Daily China iOS rank during the run</h3>`;
+  const run=cnRunSeries(b);
+  if(!run) return head+`<p class="bm-note">No source holds a single day of this run. China's chart is captured daily from <b>Aug 2026</b> on; earlier days exist only where an archive kept them, and the rest are still being collected a few at a time. See <b>How these numbers work → China iOS chart</b>.</p>`;
+  const known=run.filter(x=>x.rank!=null), charted=run.filter(x=>x.depth!=null);
+  const srcs=[...new Set(charted.map(x=>x.src))].map(s=>(state.cnrank.sources||{})[s]?s:s);
+  const depths=charted.map(x=>x.depth);
+  const cover=`Held for <b>${charted.length}</b> of the run's ${run.length} day${run.length>1?"s":""}`
+    +(depths.length?`, ${Math.min(...depths)===Math.max(...depths)?`<b>${depths[0]}</b> deep`:`<b>${Math.min(...depths)}–${Math.max(...depths)}</b> deep`}`:"")
+    +` (${srcs.join(", ")}).`;
+  if(!known.length)
+    return head+`<p class="bm-note">${cover} The game sat <b>below</b> the chart's depth on every one of them — on China's all-apps chart it never entered the top ${Math.max(...depths)} during this run.</p>`;
+  const first=known[0].rank, last=known[known.length-1].rank, best=Math.min(...known.map(x=>x.rank));
+  const cap=`Opened at <b>#${first}</b>, peaked at <b>#${best}</b>, last seen at <b>#${last}</b>.`;
+  return head+`<div class="bm-cap">${cap}</div>${cnRankSVG(run,b)}
+    <p class="bm-note">#1 is the top of China's App Store <b>all-apps</b> top-grossing chart — games compete with Douyin, WeChat and the video apps, so climbing it means out-earning them. ${cover} Ticks along the bottom are days the chart is known but the game wasn't in it, meaning it ranked below that depth; blank stretches are days no source has. This is the <b>real store chart</b>, not an estimate.</p>`;
+}
+function cnShareBlock(b){
+  const sh=b._share, cn=bannerCN(b);
+  if(!sh || !sh.on || !cn.hasData) return "";
+  const shLo=cn.lo*sh.revFrac, shHi=cn.hi*sh.revFrac;
+  return `<h3>Shared with concurrent banners</h3>
+    <p class="bm-note">The CN figure inherits game-i's daily split — revenue on days two or more banners ran is divided equally between them. This one overlapped <b>${sh.with.length}</b> other banner${sh.with.length>1?"s":""} on <b>${sh.days}</b> of its ${sh.totalDays} days (up to a <b>${sh.maxN}-way</b> split), so the same <b>${Math.round(sh.revFrac*100)}%</b> of its CN total falls in shared days.</p>
+    <div class="bm-stats bm-share3">
+      <div class="bm-stat"><span class="l">On its own</span><span class="v">≈${fmtCNYRange(cn.lo-shLo,cn.hi-shHi)}</span></div>
+      <div class="bm-stat"><span class="l">While shared</span><span class="v">≈${fmtCNYRange(shLo,shHi)}</span></div>
+      <div class="bm-stat sum"><span class="l">Total${cn.partial?" so far":""}</span><span class="v">≈${fmtCNYRange(cn.lo,cn.hi)}</span></div>
+    </div>
+    ${alongsideChips(sh)}`;
+}
+// The CN tab: China's real store chart first, then the same month-by-month arithmetic
+// the Sensor Tower tab lays out -- same cards, same bar, same "shared the month with"
+// chips -- with the range kept intact and the metric labelled per month, so a run that
+// straddles the Nov 2023 basis change is obvious rather than silently averaged.
+function bannerCNView(b){
+  const cn=bannerCN(b), bm=state.monthly||{}, c=barColor(b);
+  const head=`<h3>CN ranking — assumed global all-platform revenue</h3>`;
+  const how=`<p class="bm-note bm-recon">The CN series publishes only <b>${esc(gameName())}</b>'s <b>monthly total</b>, not per-banner. We assume this banner took the same slice of that month as it did of game-i's JP revenue, then add those slices across every month it ran. That total is <b>global and all-platform</b> (mobile + PC + PlayStation) while game-i is <b>Japan mobile</b>, so the slice is a rougher proxy here than on the Sensor Tower tab — read it as scale and trend, never as sales.</p>`;
+  const na=`<span class="muted">n/a</span>`;
+  if(!cn.hasData){
+    const blank=[[`Est. revenue`, na], ["All-time rank (CN¥)", na], [`${b.year} rank (CN¥)`, na],
+                 ["Covered months", `0${cn.missing?` <span class="muted" style="font-size:12px">/ ${cn.missing}</span>`:""}`]]
+      .map(([l,v])=>tileHTML(l,v)).join("");
+    return `<div class="bm-stats">${blank}</div>`+head+how
+      + `<p class="bm-note"><b>No CN month covers this run.</b> The monthly series starts <b>Nov 2021</b>, and the newest month only appears once that month's video is up.</p>`
+      + cnRankBlock(b)+cnAnalysisBlock(b);
+  }
+  const months=cn.covered+cn.missing;
+  const headline=`<div class="bm-headline">
+    <span><span class="l">Est. revenue${cn.partial?" so far":""}</span><div class="v">≈${fmtCNYRange(cn.lo,cn.hi)}</div></span>
+    <span class="sub">${cn.covered} of ${months} month${months>1?"s":""} covered · yuan, global, all platforms</span></div>`;
+  const r=cnRankInfo(b);
   const tiles=[
-    [`Est. revenue${b.ongoing?" so far":st.partial?" (so far)":""}`, `≈${fmtUSD(st.total)}`],
-    ["All-time rank ($)", `#${r.cum} / ${r.cumtot}`],
-    [`${b.year} rank ($)`, `#${r.yrank} / ${r.ytot}`],
-    ["Covered months", `${st.covered}${st.missing?` <span class="muted" style="font-size:12px">/ ${st.covered+st.missing}</span>`:""}`],
-  ].map(([l,v])=>`<div class="bm-stat"><span class="l">${l}</span><span class="v">${v}</span></div>`).join("");
+    [`Est. revenue${b.ongoing?" so far":cn.partial?" (so far)":""}`, `≈${fmtCNYRange(cn.lo,cn.hi)}`],
+    ["All-time rank (CN¥)", `#${r.cum} / ${r.cumtot}`],
+    [`${b.year} rank (CN¥)`, `#${r.yrank} / ${r.ytot}`],
+    ["Covered months", `${cn.covered}${cn.missing?` <span class="muted" style="font-size:12px">/ ${months}</span>`:""}`],
+  ].map(([l,v])=>tileHTML(l,v)).join("");
+  const rows=cn.months.map(m=>{
+    const lab=`${MONTHS[+m.ym.slice(5,7)-1]} ${m.ym.slice(0,4)}`;
+    const co=((bm[m.ym]&&bm[m.ym].banners)||[]).filter(x=>x.i!==b._i && x.rev>0.001)
+      .sort((a,d)=>d.rev-a.rev).map(x=>{ const ob=state.data.banners[x.i];
+        return `<span class="bm-cochip" style="--av-ring:${barColor(ob)}"><span class="bm-coav">${avatarHTML(ob)}</span>${esc(x.name)}</span>`; });
+    const coStr = co.length ? co.join("") : `<span class="muted">ran solo this month</span>`;
+    const pct=Math.round(m.share*100);
+    const tag=m.metric?` <span class="bm-stm-tag">${esc(m.metric)}</span>`:"";
+    if(m.cnLo==null){
+      return `<div class="bm-stm">
+        <div class="bm-stm-top"><span class="mo">${lab}</span><span class="v muted" title="This month isn't in the CN series yet">no CN figure</span></div>
+        <div class="bm-stm-math">Held <b>${pct}%</b> of game-i (${G(m.jp)} JP) — the CN figure lands once that month's video is up.</div>
+        <div class="bm-stm-co"><span class="bm-co-l">Shared the month with</span> ${coStr}</div></div>`;
+    }
+    return `<div class="bm-stm">
+      <div class="bm-stm-top"><span class="mo">${lab}${tag}</span><span class="v">≈${fmtCNYRange(m.contribLo,m.contribHi)}</span></div>
+      <div class="bm-stm-mbar"><span class="bm-stm-mfill" style="width:${Math.max(2,m.share*100).toFixed(1)}%;background:${c}"></span></div>
+      <div class="bm-stm-math"><b>${G(m.jp)}</b> JP = <b>${pct}%</b> of the month × <b>${fmtCNYRange(m.cnLo,m.cnHi)}</b> ⟶ <b>≈${fmtCNYRange(m.contribLo,m.contribHi)}</b>${m.mihoyo?` <span class="bm-stm-note">支付中心 excluded</span>`:""}</div>
+      <div class="bm-stm-co"><span class="bm-co-l">Shared the month with</span> ${coStr}</div></div>`;
+  }).join("");
+  const mixWarn = cn.mixed ? `<p class="bm-note bm-warn">This run spans the <b>Nov 2023</b> change from <b>总收入</b> (normally net of the store cut) to <b>总流水</b> (gross billings). The months below are on two different bases and the total mixes them — read the per-month rows, not the sum.</p>` : "";
+  const partWarn = cn.partial ? `<p class="bm-note"><b>Partial run.</b> The series covers <b>${cn.covered}</b> of the <b>${cn.covered+cn.missing}</b> months this banner ran, so the total counts only those and grows as later months are published.</p>` : "";
+  return `<div class="bm-stats">${tiles}</div>`
+    + head+how+headline+mixWarn+partWarn+`<div class="bm-stmlist">${rows}</div>`+cnShareBlock(b)
+    + cnRankBlock(b)+cnAnalysisBlock(b);
+}
+// A KPI tile. A CN range is half again as long as a yen figure, so anything long enough
+// to wrap gets a smaller size rather than breaking across lines mid-number.
+function tileHTML(label, value){
+  const plain=String(value).replace(/<[^>]*>/g,"");
+  return `<div class="bm-stat"><span class="l">${label}</span>`
+       + `<span class="v${plain.length>14?" long":""}">${value}</span></div>`;
+}
+function bannerSTView(b){
+  const st=bannerST(b), na=`<span class="muted">n/a</span>`;
+  const r=st.hasData?stRankInfo(b):null;
+  const tiles=[
+    [`Est. revenue${b.ongoing?" so far":st.partial?" (so far)":""}`, st.hasData?`≈${fmtUSD(st.total)}`:na],
+    ["All-time rank ($)", r?`#${r.cum} / ${r.cumtot}`:na],
+    [`${b.year} rank ($)`, r?`#${r.yrank} / ${r.ytot}`:na],
+    ["Covered months", st.hasData?`${st.covered}${st.missing?` <span class="muted" style="font-size:12px">/ ${st.covered+st.missing}</span>`:""}`:na],
+  ].map(([l,v])=>tileHTML(l,v)).join("");
   return `<div class="bm-stats">${tiles}</div>${bannerSTBlock(b)}${bannerSTShareBlock(b)}`;
 }
 
@@ -1538,7 +2478,7 @@ function openBanner(b){
     ["All-time rank", `#${b.cum} / ${b.cumtot}`],
     [`${b.year} rank`, `#${b.yrank} / ${b.ytot}`],
     ["Run length", b.ongoing?`Day ${elapsed} of ${scheduled}`:`${scheduled} days`],
-  ].map(([l,v])=>`<div class="bm-stat"><span class="l">${l}</span><span class="v">${v}</span></div>`).join("");
+  ].map(([l,v])=>tileHTML(l,v)).join("");
 
   // header: full-width hero art when we have banner art, else icon-left compact row
   const title=`<h2 id="bmTitle">${esc(bLabel(b))} ${rr}${live}</h2>
@@ -1588,18 +2528,31 @@ function openBanner(b){
   if(bd){
     build=`<h3>Estimated revenue build-up${b.ongoing?" so far":""}</h3>
       <p class="bm-note bm-recon">game-i publishes only one total per banner. This splits that ${G(b.rev)} across the run by each day's rank (bars = that day's share, line = running total), using game-i's published rank→revenue curve. It's an illustration of how the total accumulated — not a separately reported daily figure.</p>
+      ${burnBlock(b)}
       ${buildupSVG(bd,b)}
       ${dailyTable(bd)}`;
   }
 
-  const gameiHTML=`<div class="bm-stats">${stats}</div>${curve}${shareBlock}${build}`;
-  const active=state.dataSource==="st"?"st":"gamei";
+  const gameiHead=`<h3>game-i — estimated Japan revenue</h3>
+    <p class="bm-note bm-recon">game-i publishes one figure per banner: its estimate of what the banner earned from mobile gacha <b>in Japan</b>, in its own "G" unit (1億G ≈ ¥100 million). It is the only per-banner revenue anyone publishes, which is why the other two tabs lean on its shape.</p>
+    <div class="bm-headline">
+      <span><span class="l">Est. revenue${b.ongoing?" so far":""}</span><div class="v">${G(b.rev)}</div></span>
+      <span class="sub">Japan · mobile only · game-i's own estimate</span></div>`;
+  const gameiHTML=`<div class="bm-stats">${stats}</div>${gameiHead}${curve}${jpAnalysisBlock(b)}${shareBlock}${build}`;
+  const active = state.dataSource==="st" ? "st" : state.dataSource==="cn" ? "cn" : "gamei";
+  // the CN tab carries two different things: China's real store chart (daily) and the
+  // monthly CN¥ estimate. Either one alone is worth the tab.
+  const hasCN = !!(state.cn && state.cn.games && state.cn.games[state.tag])
+             || !!(state.cnrank && state.cnrank.games && state.cnrank.games[state.tag]);
   const toggle=`<div class="seg bm-seg" id="bmSrc" role="tablist" aria-label="Data source for this banner">
     <button data-bmsrc="gamei" class="${active==="gamei"?"on":""}" aria-selected="${active==="gamei"}" title="game-i's JP per-banner revenue estimate">game-i · JP ¥</button>
-    <button data-bmsrc="st" class="${active==="st"?"on":""}" aria-selected="${active==="st"}" title="Assumed combined worldwide revenue from the Sensor Tower monthly reports">Sensor Tower · combined $</button></div>`;
+    <button data-bmsrc="st" class="${active==="st"?"on":""}" aria-selected="${active==="st"}" title="Assumed combined worldwide revenue from the Sensor Tower monthly reports">Sensor Tower · combined $</button>`
+    + (hasCN?`<button data-bmsrc="cn" class="${active==="cn"?"on":""}" aria-selected="${active==="cn"}" title="China's own store chart day by day, plus the assumed global all-platform revenue from the CN monthly ranking">CN chart · CN¥</button>`:"")
+    + `</div>`;
   $("#bmBody").innerHTML=head+toggle
     +`<div id="bmGamei"${active==="st"?" hidden":""}>${gameiHTML}</div>`
-    +`<div id="bmST"${active==="gamei"?" hidden":""}>${bannerSTView(b)}</div>`;
+    +`<div id="bmST"${active!=="st"?" hidden":""}>${bannerSTView(b)}</div>`
+    +(hasCN?`<div id="bmCN"${active!=="cn"?" hidden":""}>${bannerCNView(b)}</div>`:"");
   bannerModal.querySelector(".modal-card").scrollTop=0;
   tip.hidden=true;
   bannerModal.hidden=false;
@@ -1608,7 +2561,23 @@ $("#bmClose").onclick=()=>{ bannerModal.hidden=true; bmTip.hidden=true; };
 bannerModal.onclick=e=>{ if(e.target===bannerModal){ bannerModal.hidden=true; bmTip.hidden=true; } };
 
 // shared hover tooltip for both in-modal charts (rank curve + revenue build-up)
-let _bmCtx=null;
+let _bmCtx=null, _cnCtx=null;
+function showCnTip(i,e){
+  const day=_cnCtx&&_cnCtx.days[i]; if(!day){ bmTip.hidden=true; return; }
+  const dt=new Date(day.iso+"T00:00:00");
+  const where = day.rank!=null ? `#${day.rank}` : `<span style="color:var(--muted)">below #${day.depth}</span>`;
+  bmTip.innerHTML=`<div class="body">
+    <h4>${dt.toLocaleDateString("en",{month:"short",day:"numeric",year:"numeric"})}</h4>
+    <div style="color:var(--muted);font-size:11.5px">Day ${i+1} · China, all apps</div>
+    <dl><dt>Rank</dt><dd><b>${where}</b></dd>
+    <dt>Chart known</dt><dd>${day.depth} deep</dd>
+    <dt>Read from</dt><dd>${esc(String(day.src||"-"))}</dd></dl></div>`;
+  bmTip.hidden=false;
+  const pad=14,w=bmTip.offsetWidth,h=bmTip.offsetHeight;
+  let x=e.clientX+pad,y=e.clientY+pad;
+  if(x+w>innerWidth)x=e.clientX-w-pad; if(y+h>innerHeight)y=e.clientY-h-pad;
+  bmTip.style.left=Math.max(6,x)+"px"; bmTip.style.top=Math.max(6,y)+"px";
+}
 const bmTip=$("#bmTip");
 function showBmTip(dayIdx,e){
   const day=_bmCtx&&_bmCtx.days[dayIdx]; if(!day){ bmTip.hidden=true; return; }
@@ -1629,6 +2598,8 @@ function showBmTip(dayIdx,e){
   bmTip.style.left=Math.max(6,x)+"px"; bmTip.style.top=Math.max(6,y)+"px";
 }
 $("#bmBody").addEventListener("pointermove",e=>{
+  const cn=e.target.closest("[data-cnday]");
+  if(cn){ showCnTip(+cn.dataset.cnday,e); return; }
   const el=e.target.closest("[data-day]"); if(!el){ bmTip.hidden=true; return; }
   showBmTip(+el.dataset.day,e);
 });
@@ -1637,9 +2608,10 @@ $("#bmBody").addEventListener("click",e=>{
   const btn=e.target.closest("[data-bmsrc]"); if(!btn) return;
   const which=btn.dataset.bmsrc;
   $("#bmSrc").querySelectorAll("[data-bmsrc]").forEach(x=>{ const on=x===btn; x.classList.toggle("on",on); x.setAttribute("aria-selected",on); });
-  const g=$("#bmGamei"), s=$("#bmST");
+  const g=$("#bmGamei"), s=$("#bmST"), c=$("#bmCN");
   if(g) g.hidden=which!=="gamei";
   if(s) s.hidden=which!=="st";
+  if(c) c.hidden=which!=="cn";
   bmTip.hidden=true;
 });
 
@@ -1654,7 +2626,7 @@ function updateDirLabel(){
 }
 function setMode(m){
   state.mode=m;
-  [["bTime","time"],["bGraph","graph"],["bRank","rank"],["bYear","year"],["bMonth","month"],["bVersion","version"]].forEach(([id,mm])=>{
+  [["bTime","time"],["bGraph","graph"],["bRank","rank"],["bYear","year"],["bMonth","month"],["bVersion","version"],["bAgree","agree"]].forEach(([id,mm])=>{
     const el=$("#"+id); el.classList.toggle("on",m===mm); el.setAttribute("aria-selected",m===mm);
   });
   updateControlVis();
@@ -1674,6 +2646,7 @@ $("#bGraph").onclick=()=>setMode("graph");
 $("#bYear").onclick=()=>setMode("year");
 $("#bMonth").onclick=()=>setMode("month");
 $("#bVersion").onclick=()=>setMode("version");
+$("#bAgree").onclick=()=>setMode("agree");
 $("#bDir").onclick=()=>{ state.reverse=!state.reverse; updateDirLabel(); if(!state.table) render(); };
 $("#bTable").onclick=function(){state.table=!state.table;
   this.classList.toggle("on",state.table); this.textContent=state.table?"Chart view":"Table view";
@@ -1735,10 +2708,12 @@ function showInfoTab(which){
   $("#infoToggle").querySelectorAll("[data-info]").forEach(b=>b.classList.toggle("on",b.dataset.info===which));
   $("#infoGamei").hidden = which!=="gamei";
   $("#infoST").hidden    = which!=="st";
+  if($("#infoCN")) $("#infoCN").hidden = which!=="cn";
+  if($("#infoCNChart")) $("#infoCNChart").hidden = which!=="cnchart";
   const card=infoModal.querySelector(".modal-card"); if(card) card.scrollTop=0;
 }
 $("#infoToggle").querySelectorAll("[data-info]").forEach(btn=>btn.onclick=()=>showInfoTab(btn.dataset.info));
-$("#infoBtn").onclick=()=>{ showInfoTab(state.dataSource==="st"?"st":"gamei"); infoModal.hidden=false; };
+$("#infoBtn").onclick=()=>{ showInfoTab(state.dataSource==="st"?"st":state.dataSource==="cn"?"cn":"gamei"); infoModal.hidden=false; };
 // click a worked-example source image to enlarge it in a lightbox
 const lightbox=$("#lightbox"), lightboxImg=$("#lightboxImg");
 $("#infoModal").addEventListener("click",e=>{ const im=e.target.closest(".info-ex-img");

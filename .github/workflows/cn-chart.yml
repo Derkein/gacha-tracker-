@@ -1,0 +1,57 @@
+name: China chart (daily)
+
+# One AppFollow call a day, kept apart from the data refresh on purpose: that workflow
+# also runs on every push, and each China day costs 10 of the account's 500 monthly API
+# credits. This one runs on a schedule only.
+#
+# Timing: the China chart day rolls over at 00:00 China time (16:00 UTC) and game-i rolls
+# at 00:00 JST (15:00 UTC), so 16:30 UTC is half an hour into the new Chinese day and an
+# hour and a half into the new Japanese one -- the first moment both sides have closed
+# the day this job asks for. On a UTC runner "today" is exactly that finished China day.
+on:
+  schedule:
+    - cron: "30 16 * * *"     # 00:30 China / 01:30 JST
+  workflow_dispatch:          # manual run from the Actions tab
+
+concurrency:
+  group: cn-chart             # never two of these at once
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  chart:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5   # v4
+
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065   # v5
+        with:
+          python-version: "3.11"
+
+      - name: Fetch the day's China chart
+        env:
+          APPFOLLOW_TOKEN: ${{ secrets.APPFOLLOW_TOKEN }}   # official API, 10 credits a day
+          AF_COOKIE: ${{ secrets.AF_COOKIE }}               # fallback: the browser session
+        run: python scripts/fetch_cn_today.py
+        continue-on-error: true    # one refused request is one missing day, not a failure;
+                                   # the freshness check below is what goes red
+
+      - name: Commit the day
+        run: |
+          git config user.name  "Derkein"
+          git config user.email "55472705+Derkein@users.noreply.github.com"
+          git add data/ranks
+          if git diff --cached --quiet; then
+            echo "No new day."
+          else
+            git commit -m "chore: China chart for $(date -u +%Y-%m-%d)"
+            # the data-refresh workflow commits to the same branch, so land on top of
+            # whatever it pushed while we were fetching rather than failing the push
+            git pull --rebase origin main
+            git push
+          fi
+
+      - name: Fail if the China chart has gone stale
+        run: python scripts/fetch_cn_today.py --check-only --max-age 3

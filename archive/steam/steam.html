@@ -1,0 +1,19 @@
+<!-- info-dialog tab (goes in #infoToggle, after the CN button) -->
+<button data-info="steam">Steam · players</button>
+
+<!-- info-dialog section (goes after the /infoCN section) -->
+    <div id="infoSteam" hidden>
+    <h3>What the number is</h3>
+    <p>How many people are <b>in the game on Steam right now</b> — Valve's own live count, read straight from the public Steam Web API. Everything else on this site is a third-party <i>estimate of money</i>; this is the one figure that is <b>actually measured</b>, and published by the platform itself. It is not revenue and doesn't imply any.</p>
+
+    <h3>What it isn't</h3>
+    <ul>
+      <li><b>Not the whole player base.</b> Steam counts only players who launched <i>through Steam</i>. The same game's mobile, PlayStation and standalone-launcher players are invisible to it, so the figure is a <b>floor</b> — and the gap between two games reflects how PC-heavy each one is at least as much as how big it is.</li>
+      <li><b>Not a daily peak.</b> One reading is kept per day, taken at roughly the same wall-clock time each day (~00:30&nbsp;JST). That's a fixed-time slice — comparable day to day, which is what a trend needs, but lower than the day's high.</li>
+      <li><b>Not backfilled.</b> Valve publishes the current count and nothing else, so the history starts the day this scrape started and grows one point a day. There's no archive to import.</li>
+    </ul>
+
+    <h3>Which games have it</h3>
+    <p>On Steam and tracked here: <b>Zenless Zone Zero</b>, <b>Wuthering Waves</b>, <b>Umamusume: Pretty Derby</b> and <b>Neverness to Everness</b>. <b>Arknights: Endfield</b> has a Steam page but its build is still listed as coming soon, so it will start reporting on its own the day it launches there.</p>
+    <p><b>Genshin Impact and Honkai: Star Rail are not on Steam and won't be</b> — HoYoverse ships them through its own launcher and the Epic Games Store. Their tile is simply absent rather than empty; there is nothing to show.</p>
+    </div><!-- /infoSteam -->

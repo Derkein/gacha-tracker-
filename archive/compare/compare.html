@@ -1,0 +1,53 @@
+<!-- view tab (goes in .controls .seg[role=tablist], after #bAgree) -->
+<button id="bCompare" role="tab" aria-selected="false" title="All seven games against each other, and against the wider CN chart">Compare</button>
+
+<!-- info-dialog tab (goes in #infoToggle, after the CN button) -->
+<button data-info="cmp">Compare · cross-game</button>
+
+<!-- info-dialog section (goes after the /infoCN section) -->
+    <div id="infoCmp" hidden>
+    <h3>What the Compare view is</h3>
+    <p>Every other view answers <i>how did this game do</i>. Compare answers the questions that need all seven at once — who was actually biggest, how each launch stacks up against the others, and how large these seven are inside their own genre. It reuses the same three layers; nothing new is estimated.</p>
+
+    <h3>“Who led each month” — why a ranking is fair when the totals aren't</h3>
+    <p>The three layers measure different territories and different platforms in three currencies, so their totals are <b>never added or compared</b>. But <i>which game was biggest in a given month</i> is a <b>ranking inside one source</b>, and a ranking survives the change of units. That is the only cross-source claim the cards make.</p>
+    <p>They disagree constantly, and the reason is structural, not an error: game-i sees <b>Japan mobile only</b>, so a Japan-first title tops it while a globally spread one does not. Sensor Tower and the CN ranking both see the world, and they broadly agree with each other. <b>A game leading on one source and not another is usually a fact about where its players are</b>, not about which source is right.</p>
+
+    <h3>“Month by month”</h3>
+    <p>Each bar splits one month between the seven games <b>tracked here</b> — it is a share of those seven, <b>not a share of the market</b>. Six of the seven are miHoYo/Kuro-style titles, so this is not a picture of the genre; the CN chart lower down is. The month in progress is counted only up to today and is tagged <span class="pill">partial</span>.</p>
+
+    <h3>“The launch race”</h3>
+    <p>Cumulative revenue from each game's own launch month, so a 2020 debut and a 2026 one start from the same origin. Two rules keep it honest:</p>
+    <ul>
+      <li>The <b>calendar month in progress is left off every curve</b> — a half-counted month bends the end of a line downward and reads as a slowdown that isn't there.</li>
+      <li>A game whose launch predates the selected source's coverage is <b>excluded and named</b>, not drawn from wherever the source happens to begin. Sensor Tower starts Oct 2021 and the CN ranking Nov 2021, so on those two Genshin and Umamusume are out; their opening months simply don't exist in those datasets.</li>
+    </ul>
+    <p>On game-i the curves are ¥ in Japan, where Umamusume's opening is in a different league from everything else. That is a statement about Japan, not about worldwide revenue — switch to Sensor Tower and the ordering changes.</p>
+
+    <h3>“Do reruns hold up?” — the shakiest thing on this page</h3>
+    <p>It is shown with two ratios because <b>the obvious one is misleading</b>. “vs its own debut” compares a rerun to what those same characters earned the first time — but across a two- or five-year gap that mostly measures <i>the game's</i> rise or decline. A 2026 Genshin rerun making 16% of a 2021 debut says Genshin is a fraction of its 2021 size, not that the rerun flopped. “<b>vs a new banner then</b>” divides by the median banner introducing only new characters within <b>180 days either side</b>, which isolates the actual question — and it reverses the answer for Genshin.</p>
+    <p>A character counts as <b>returning</b> the second time they appear in the banner list. That is deliberately <i>not</i> the <b>↻ rerun</b> tag shown elsewhere on the site: that tag is derived three different ways depending on the game (a 復刻 in the title, the headliner having led before, or a re-derivation from the resolved English name that only runs for the games with a portrait source), so it doesn't mean the same thing in each — and it is empty for the games whose banners are named after an event rather than a character.</p>
+    <p>Coverage is thin and very uneven, which is why every game shows an <b>“n of m usable”</b> chip. Rows are dropped when:</p>
+    <ul>
+      <li>the row <b>also introduces someone new</b>, so its revenue is part debut and part rerun;</li>
+      <li>a returning character's <b>own debut banner was shared</b> with others, leaving no figure that belongs to them alone.</li>
+    </ul>
+    <p>game-i <b>bundles</b> reruns — one row can replay three characters at once. Those rows are kept whole and compared against the <b>sum</b> of those characters' debuts; no per-character split is invented, because there is no basis for one. Umamusume ends up at 2 usable rows out of 132 for exactly this reason: nearly every one of its banners carries two or three characters, so almost nothing can be attributed. Neverness to Everness and Arknights: Endfield have never re-run anything.</p>
+    <p>Read these <b>per game, not as a league table</b>. The games rerun at different rates, bundle different numbers of characters per banner, and differ hugely in how much of their history can be matched at all. Each game's median is also given with its full range, because the range is usually wide enough that the median alone would flatter it.</p>
+
+    <h3>“Inside the CN chart”</h3>
+    <p>The CN source ranks the <b>whole genre</b>, not just the games tracked here, and the full archive of every game it ever charted is kept in <code>data/cn_revenue.json</code>. This section is the one place a tracked game can be sized against everything else.</p>
+    <ul>
+      <li><b>Share is measured against the chart's top 15</b>, not against everything charted. The chart was 15 rows deep in Nov 2021 and is ~45 today, so a share of “everything listed” would drift upward year after year purely because the chart got longer. Every month has a top 15, so that basis is constant.</li>
+      <li><b>Rank</b> is against every game charted that month, so “#3 of 45” and “#3 of 15” are different achievements — the row states which.</li>
+      <li>miHoYo rows are <b>ranges</b> (the 支付中心 channel is excluded from them); their <b>midpoint</b> is used for ranking and share, and it is an understatement.</li>
+      <li>Chinese titles are OCR'd from the video. English names are a <b>hand-checked</b> list — a game we couldn't confirm an official English title for keeps its Chinese one rather than getting a guessed translation.</li>
+    </ul>
+
+    <h3>What it can't tell you</h3>
+    <ul>
+      <li><b>Nothing here is a market share of the games industry.</b> The CN chart lists the gacha titles one person tracks, not every game in China or anywhere else.</li>
+      <li>Two games' figures on the <i>same</i> source are comparable; the same game's figures across <i>different</i> sources are not.</li>
+      <li>All three layers are third-party estimates. A gap between two games that is smaller than the sources' own error bars means nothing.</li>
+    </ul>
+    </div><!-- /infoCmp -->
