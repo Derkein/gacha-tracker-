@@ -4,13 +4,13 @@
  "jp": "崩壊：スターレイル",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E5%B4%A9%E5%A3%8A%EF%BC%9A%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%AC%E3%82%A4%E3%83%AB",
- "updated": "2026-09-12T18:30:29Z",
+ "updated": "2026-09-13T17:56:04Z",
  "count": 62,
  "now": {
-  "ios": 2,
-  "android": 21,
-  "month": 23,
-  "next_add": 258425733,
+  "ios": 10,
+  "android": 7,
+  "month": 22,
+  "next_add": 70436952,
   "ym": "2026/09",
   "ranks": {
    "prev": [
@@ -60,7 +60,7 @@
     57,
     39,
     3,
-    null,
+    10,
     null,
     null,
     null,
@@ -82,7 +82,7 @@
   }
  },
  "monthly": {
-  "2026-09": 6.16,
+  "2026-09": 6.84,
   "2026-08": 11.87,
   "2026-07": 16.85,
   "2026-06": 13.4,
@@ -3007,7 +3007,7 @@
    "name": "アベンチュリン・波と戯れる夏",
    "start": "2026-09-12",
    "end": "2026-09-29",
-   "rev": 2.26,
+   "rev": 2.93,
    "yrank": 11,
    "ytot": 16,
    "cum": 59,
@@ -3019,7 +3019,8 @@
    "ongoing": true,
    "rank_series": [
     39,
-    3
+    3,
+    10
    ],
    "icons": [
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1513.png"
