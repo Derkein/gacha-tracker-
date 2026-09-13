@@ -2,5 +2,35 @@
  "姫子・旅立ち": {
   "en": "Himeko • Nova",
   "art": "https://static.wikia.nocookie.net/houkai-star-rail/images/b/b9/Character_Himeko_%E2%80%A2_Nova_Splash_Art.png"
+ },
+ "ルーシー&レベッカ&ルシラー": {
+  "en": "Lucy",
+  "art": "https://static.wikia.nocookie.net/wutheringwaves/images/7/71/Lucy_Splash_Art.png",
+  "box": [
+   0.52,
+   0.455,
+   0.1
+  ],
+  "why": "Cyberpunk collab splash is a full city scene; the frontal cascade finds no face and the fallback crops background."
+ },
+ "リンネー復刻&ザンニー復刻&フィービー復刻": {
+  "en": "Lynae",
+  "art": "https://static.wikia.nocookie.net/wutheringwaves/images/0/02/Lynae_Splash_Art.png",
+  "box": [
+   0.44,
+   0.262,
+   0.105
+  ],
+  "why": "Full-scene splash with the character small and in three-quarter view; cascade detects nothing."
+ },
+ "リンネー&カルテジア&シャコンヌ": {
+  "en": "Lynae",
+  "art": "https://static.wikia.nocookie.net/wutheringwaves/images/0/02/Lynae_Splash_Art.png",
+  "box": [
+   0.44,
+   0.262,
+   0.105
+  ],
+  "why": "Same splash as her rerun banner; cascade detects nothing on it."
  }
 }

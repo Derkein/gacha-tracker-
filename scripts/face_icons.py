@@ -27,6 +27,10 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 ICONS = ROOT / "icons"
 CASCADE = str(Path(__file__).resolve().parent / "lbpcascade_animeface.xml")
+# Crops are shown up to 96x60 CSS, so a 2x display wants ~192px; 256 also matches the
+# Genshin (enka) and HSR (StarRailRes) icons, which ship at 256. Source art is 1-2k wide,
+# so the larger crop costs nothing in quality -- only a few KB per file.
+ICON_PX = 256
 UA = {"User-Agent": "Mozilla/5.0 (gacha-tracker)"}
 
 # only these games get face-crop icons (others are data-only, banner-art thumbnails)
@@ -133,7 +137,7 @@ def dominant_accent(pim):
 
 
 def crop_face(raw, cascade, drip):
-    """Return a 96px circular RGBA face crop, or None. `drip` art is a clean
+    """Return an ICON_PX circular RGBA face crop, or None. `drip` art is a clean
     portrait (detect anywhere, fallback top-centre); banner art is wide (detect
     the top 80% to skip rate-up thumbnails, fallback centre-top)."""
     img = cv2.imdecode(np.frombuffer(raw, np.uint8), cv2.IMREAD_COLOR)
@@ -160,12 +164,36 @@ def crop_face(raw, cascade, drip):
     side = int(min(s, W - x, H - y))
     if side < 8:
         return None
-    crop = cv2.cvtColor(img[y:y + side, x:x + side], cv2.COLOR_BGR2RGB)
-    pim = Image.fromarray(crop).resize((96, 96), Image.LANCZOS).convert("RGBA")
-    mask = Image.new("L", (96, 96), 0)
-    ImageDraw.Draw(mask).ellipse((0, 0, 95, 95), fill=255)
+    return _circle(img[y:y + side, x:x + side])
+
+
+def _circle(bgr_square, px=ICON_PX):
+    pim = Image.fromarray(cv2.cvtColor(bgr_square, cv2.COLOR_BGR2RGB))
+    pim = pim.resize((px, px), Image.LANCZOS).convert("RGBA")
+    mask = Image.new("L", (px, px), 0)
+    ImageDraw.Draw(mask).ellipse((0, 0, px - 1, px - 1), fill=255)
     pim.putalpha(mask)
     return pim
+
+
+def crop_box(raw, box):
+    """Curated square crop: [cx, cy, side] as fractions -- cx/cy the centre of the
+    face across the image's width/height, side the square's width as a fraction of
+    the image width. Needed because the anime-face cascade is FRONTAL-only: on a
+    three-quarter or profile pose (or a busy full-scene splash where the character
+    is small) it detects nothing at any minSize, and crop_face's fallback then
+    lands on background. A hand-picked box is the only reliable answer there."""
+    img = cv2.imdecode(np.frombuffer(raw, np.uint8), cv2.IMREAD_UNCHANGED)
+    if img is None:
+        return None
+    if img.ndim == 3 and img.shape[2] == 4:
+        img = cv2.cvtColor(img, cv2.COLOR_BGRA2BGR)
+    H, W = img.shape[:2]
+    cx, cy, side = box
+    s = max(8, min(int(side * W), W, H))
+    x = max(0, min(int(cx * W - s / 2), W - s))
+    y = max(0, min(int(cy * H - s / 2), H - s))
+    return _circle(img[y:y + s, x:x + s])
 
 
 def process(tag, cascade, force=False):
@@ -185,12 +213,24 @@ def process(tag, cascade, force=False):
         rel = f"icons/faces/{tag}/{slug}.webp"
         fpath = ROOT / rel
         cached = fpath.exists() and not force
+        if cached:                      # an older, smaller crop is worth redoing
+            try:
+                with Image.open(fpath) as _im:
+                    cached = _im.width >= ICON_PX
+            except Exception:
+                cached = False
         # resolve drip art once: gives both the image and the English name
         drip_img, en = None, names.get(primary)
         if dom and (en is None or not cached):
             try:
                 drip_img, title = resolve_drip(dom, primary)
-                if title:
+                # Take the NAME only the first time. The wiki search is a fuzzy
+                # full-text match whose top hit is not stable -- re-running it over
+                # already-named banners has returned Sanhua for 今汐 and Lynae for
+                # シグリカ. Once a name is cached it stays; overrides.json is the
+                # way to correct one. The image lookup above still re-runs, which
+                # is the only reason to come back here at all.
+                if title and en is None:
                     en = title; names[primary] = title
             except Exception as e:
                 print(f"  [{tag}] drip lookup failed for {b['name']}: {e}")
@@ -236,25 +276,46 @@ def apply_overrides(cascade):
         if dfile.stem == "index":
             continue
         data = json.loads(dfile.read_text(encoding="utf-8"))
+        # data/ also holds revenue tables with no banner list (cn_monthly, cn_revenue,
+        # external_revenue, reported_revenue). Skipping by name would break again the
+        # next time one is added, so test for the shape instead.
+        if not isinstance(data, dict) or "banners" not in data:
+            continue
         touched = False
         for b in data["banners"]:
             o = ov.get(b["name"])
-            if not o or b.get("agents"):     # skip once the real source names the character
+            if not o:
                 continue
-            if o.get("en"):
+            # The NAME only fills a gap -- once a real source names the character it wins.
+            # The ICON is a separate question: an entry carrying an explicit `box` exists
+            # precisely because the detector picked the wrong region, so it applies even
+            # when the character is named. Without a box we still only fill a gap, so
+            # existing art-only overrides keep their old behaviour exactly.
+            if o.get("en") and not b.get("agents"):
                 b["agents"] = [o["en"]]; b["en"] = o["en"]
-            if o.get("art"):
+            if o.get("art") and (o.get("box") or not b.get("icons")):
                 rel = f"icons/faces/overrides/{hashlib.md5(b['name'].encode()).hexdigest()[:8]}.webp"
                 fpath = ROOT / rel
-                if not fpath.exists():
+                stale = True
+                if fpath.exists():
                     try:
-                        pim = crop_face(fetch(o["art"]), cascade, True)
+                        with Image.open(fpath) as _im:
+                            stale = _im.width < ICON_PX
+                    except Exception:
+                        stale = True
+                if stale:
+                    try:
+                        raw = fetch(o["art"])
+                        pim = crop_box(raw, o["box"]) if o.get("box") else crop_face(raw, cascade, True)
                         if pim:
                             pim.save(fpath, "WEBP", quality=85, method=6)
                     except Exception as e:
                         print(f"  override {b['name']}: {e}")
                 if fpath.exists():
                     b["icons"] = [rel]
+                    acc = dominant_accent(Image.open(fpath))
+                    if acc:
+                        b["accent"] = acc
             n += 1; touched = True
         if touched:
             dfile.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")

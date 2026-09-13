@@ -58,6 +58,38 @@ GENSHIN_ELEMENT = {
 }
 
 
+# Enka's character store lags new releases badly -- as of Sep 2026 it is missing every
+# 2026 Genshin character (Zibai, Varka, Linnea, Nicole, Lohen, Sandrone, Odette), so
+# those banners end up with no icon at all. Project Amber tracks them from launch and
+# uses the SAME asset names, and enka.network serves the IMAGES even for characters its
+# metadata hasn't caught up on -- so borrow only the name->asset mapping and keep
+# hotlinking a single host. Amber's element vocabulary matches Enka's exactly.
+AMBER = "https://gi.yatta.moe/api/v2"
+
+
+def amber_genshin():
+    """{JP name -> record} from Project Amber. Best-effort: a failure here just leaves
+    Enka's coverage as-is rather than breaking the build."""
+    try:
+        jp = getj(AMBER + "/jp/avatar")["data"]["items"]
+    except Exception as e:
+        print(f"  [genshin] Amber unavailable ({e}); using Enka only")
+        return {}
+    try:
+        en = {v["id"]: v["name"] for v in getj(AMBER + "/en/avatar")["data"]["items"].values()}
+    except Exception:
+        en = {}
+    out = {}
+    for v in jp.values():
+        name, icon = v.get("name"), v.get("icon")
+        if not (name and icon):
+            continue
+        out[name] = {"icon": f"https://enka.network/ui/{icon}.png",
+                     "accent": GENSHIN_ELEMENT.get(v.get("element"), "#c9a86a"),
+                     "en": en.get(v.get("id"), name)}
+    return out
+
+
 def build_genshin():
     ch = getj(RAW + "characters.json")
     loc = getj(RAW + "loc.json")
@@ -76,6 +108,13 @@ def build_genshin():
         out[name_ja] = {"icon": f"https://enka.network/ui/{front}.png",
                         "accent": GENSHIN_ELEMENT.get(v.get("Element"), "#c9a86a"),
                         "en": en.get(str(h), name_ja)}
+    # fill only the gaps -- Enka stays authoritative for everything it does know
+    added = 0
+    for ja_name, rec in amber_genshin().items():
+        if ja_name not in out:
+            out[ja_name] = rec; added += 1
+    if added:
+        print(f"  [genshin] +{added} character(s) from Amber that Enka's store lacks")
     return out
 
 

@@ -558,5 +558,65 @@
   "icon": "https://enka.network/ui/UI_AvatarIcon_Qin.png",
   "accent": "#7fc8e0",
   "en": "Pyro Archon (Test)"
+ },
+ "ドール（男）": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_MannequinBoy.png",
+  "accent": "#c9a86a",
+  "en": "Manekin"
+ },
+ "ドール（女）": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_MannequinGirl.png",
+  "accent": "#c9a86a",
+  "en": "Manekina"
+ },
+ "兹白": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Zibai.png",
+  "accent": "#e0b23c",
+  "en": "Zibai"
+ },
+ "イルーガ": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Illuga.png",
+  "accent": "#e0b23c",
+  "en": "Illuga"
+ },
+ "ファルカ": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Varka.png",
+  "accent": "#57c69a",
+  "en": "Varka"
+ },
+ "ローエン": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Lohen.png",
+  "accent": "#7fc8e0",
+  "en": "Lohen"
+ },
+ "リンネア": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Linnea.png",
+  "accent": "#e0b23c",
+  "en": "Linnea"
+ },
+ "ニコ": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Nicole.png",
+  "accent": "#f0684a",
+  "en": "Nicole"
+ },
+ "プルーネ": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Prune.png",
+  "accent": "#57c69a",
+  "en": "Prune"
+ },
+ "サンドローネ": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_MarionetteNew.png",
+  "accent": "#7fc8e0",
+  "en": "Sandrone"
+ },
+ "アリョーシャ": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Alyosha.png",
+  "accent": "#b57fd4",
+  "en": "Alyosha"
+ },
+ "オデット": {
+  "icon": "https://enka.network/ui/UI_AvatarIcon_Odette.png",
+  "accent": "#7fc8e0",
+  "en": "Odette"
  }
 }
