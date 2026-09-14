@@ -49,8 +49,13 @@ jobs:
             git commit -m "chore: China chart for $(date -u +%Y-%m-%d)"
             # the data-refresh workflow commits to the same branch, so land on top of
             # whatever it pushed while we were fetching rather than failing the push
-            git pull --rebase origin main
-            git push
+            for attempt in 1 2 3; do
+              git pull --rebase origin main && git push && exit 0
+              echo "push attempt $attempt lost a race; retrying"
+              sleep 5
+            done
+            echo "could not push after 3 attempts" >&2
+            exit 1
           fi
 
       - name: Fail if the China chart has gone stale

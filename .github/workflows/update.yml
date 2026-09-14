@@ -4,11 +4,13 @@ name: Refresh gacha data
 # changes back to main. GitHub Pages (deploy-from-branch) then redeploys.
 on:
   schedule:
-    # game-i rolls its daily tally at 00:00 JST (15:00 UTC). GitHub's scheduled
-    # runs are often delayed 10-40 min and are sometimes dropped entirely under
-    # load, so we fire a few times across the first hour after midnight JST. The
-    # "no changes" guard + the refresh-data concurrency group make the extra runs
-    # cheap no-ops once the day's data is already committed.
+    # game-i rolls its daily tally at 00:00 JST (15:00 UTC). GitHub delays these
+    # heavily: measured over the last 20 scheduled runs on this repo, they fired
+    # 84-221 min late (median 144), so all three slots land ~17:45-19:15 UTC and
+    # the staggering below buys less than it looks. It still works -- the data is
+    # long since rolled by then -- and the "no changes" guard plus the refresh-data
+    # concurrency group make the extra runs cheap no-ops. Don't read the times
+    # below as when the job actually runs.
     - cron: "10 15 * * *"    # 00:10 JST — target (10 min after the rollover)
     - cron: "40 15 * * *"    # 00:40 JST — fallback if the first is delayed/dropped
     - cron: "20 16 * * *"    # 01:20 JST — last-chance fallback
@@ -86,5 +88,15 @@ jobs:
             echo "No changes."
           else
             git commit -m "chore: refresh gacha data ($(date -u +%Y-%m-%d))"
-            git push
+            # The China chart workflow commits to this same branch, so a plain push
+            # loses the race whenever the two overlap (they share a 16:20/16:30 UTC
+            # window and GitHub fires both late). Land on top of whatever arrived
+            # while we were scraping, and retry once if it moves again mid-push.
+            for attempt in 1 2 3; do
+              git pull --rebase origin main && git push && exit 0
+              echo "push attempt $attempt lost a race; retrying"
+              sleep 5
+            done
+            echo "could not push after 3 attempts" >&2
+            exit 1
           fi
