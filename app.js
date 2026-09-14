@@ -2088,7 +2088,11 @@ function cnRunStats(b){
   run.forEach((x,i)=>{ if(x.rank!=null && x.rank<peakRank){ peakRank=x.rank; peakIdx=i; } });
   return (b._cnStats={run, charted:charted.length, days:run.length, none:false,
     open:known[0].rank, peak:ranks[0], peakDay:peakIdx+1, last:known[known.length-1].rank,
-    median:ranks[Math.floor(ranks.length/2)], top10:known.filter(x=>x.rank<=10).length});
+    median:ranks[Math.floor(ranks.length/2)], top10:known.filter(x=>x.rank<=10).length,
+    // staying power: days spent inside each tier. Correlates with revenue about as
+    // strongly as the peak does (+0.55..+0.86 across games) and is NOT the same thing --
+    // it separates "spiked to #8 then died" from "never beat #25 but held three weeks".
+    top20:known.filter(x=>x.rank<=20).length, top50:known.filter(x=>x.rank<=50).length});
 }
 function cnPeers(){
   if(state._cnPeers) return state._cnPeers;
@@ -2362,28 +2366,67 @@ function cnAnalysisBlock(b){
   const peers=cnPeers().filter(p=>p.b._i!==b._i);
   if(peers.length<3) return "";        // nothing to compare against yet
   const ver=hasVersions(state.tag)?versionOf(b):null;
-  const scopes=[];
-  if(ver){ const g=peers.filter(p=>versionOf(p.b)===ver).map(p=>p.st.peak);
-           if(g.length>=2) scopes.push([`${ver}`, _place([...g, st.peak], st.peak)]); }
-  const yr=peers.filter(p=>p.b.year===b.year).map(p=>p.st.peak);
-  if(yr.length>=2) scopes.push([`${b.year}`, _place([...yr, st.peak], st.peak)]);
-  const all=peers.map(p=>p.st.peak);
-  scopes.push(["all-time", _place([...all, st.peak], st.peak)]);
-  const scopeLine=scopes.map(([lab,r])=>`<b>${ordinal(r.place)} of ${r.of}</b> in ${lab}`).join(" · ");
+  // What the rank MEANS, not just where it lands. Norms are wildly game-specific --
+  // a #20 debut peak is the bottom 11% for HSR (median #6) and better than anything
+  // Umamusume has ever charted (median #114) -- so every comparison here is against
+  // THIS game's own runs, and only against runs of the same kind: a rerun peaks lower
+  // by nature, so pooling the two flatters a weak debut. Finished runs only, since an
+  // ongoing one's peak can still improve.
+  const kind = b.rerun ? "rerun" : "debut";
+  const cohort = peers.filter(p=>!!p.b.rerun===!!b.rerun && !p.b.ongoing);
+  const pk = st.peak;
 
-  // "the usual banner" must mean a CONTEMPORARY one: a 2026 run measured against this
-  // game's 2020 peak years would look feeble for reasons that have nothing to do with it.
-  const sameYear=peers.filter(p=>p.b.year===b.year);
-  const base=sameYear.length>=3?sameYear:peers, baseLab=sameYear.length>=3?`in ${b.year}`:"across this game's history";
-  const medPeak=_med(base.map(p=>p.st.peak)), medMed=_med(base.map(p=>p.st.median));
-  const ran=st.median<medMed?"higher":"lower";
+  let rankLine = "";
+  if(cohort.length>=5){
+    const r=_place([...cohort.map(p=>p.st.peak), pk], pk);
+    const half = r.place<=r.of/2;
+    const band = half ? `top <b>${Math.max(1,Math.round(100*r.place/r.of))}%</b>`
+                      : `bottom <b>${Math.max(1,Math.round(100*(r.of-r.place+1)/r.of))}%</b>`;
+    rankLine = ` Among this game's <b>${r.of}</b> charted ${kind}s that is <b>${ordinal(r.place)}</b> — its ${band}.`;
+    const yr=cohort.filter(p=>p.b.year===b.year);
+    if(yr.length>=2){
+      // yr excludes this banner, so the year's total is yr.length + 1
+      const hi=yr.filter(p=>p.st.peak<pk).length, lo=yr.length-hi;
+      const n=v=>v===0?"none":`<b>${v}</b>`;
+      rankLine += ` In ${b.year} this game has run <b>${yr.length+1}</b> ${kind}s: ${n(hi)} peaked
+        higher than this one, ${n(lo)} the same or lower.`;
+    }
+  }
+
+  // second axis: how long it held, not just how high it got
+  let holdLine = "";
+  if(cohort.length>=5){
+    const m20=_med(cohort.map(p=>p.st.top20)), m50=_med(cohort.map(p=>p.st.top50));
+    const hiPeak = pk <= _med(cohort.map(p=>p.st.peak));
+    const held  = st.top50 >= m50;
+    const read = hiPeak && held ? "it both peaked better and held longer than the usual one"
+      : hiPeak && !held ? "it peaked better than most but faded earlier — a short, sharp run"
+      : !hiPeak && held ? "it never peaked as high, but it held on longer than most"
+      : "it neither climbed as high nor lasted as long as the usual one";
+    holdLine = ` It held the <b>top 20</b> for <b>${st.top20}</b> of its ${st.days} days and the
+      <b>top 50</b> for <b>${st.top50}</b>, against <b>${m20}</b> and <b>${m50}</b> for the usual
+      ${kind} — ${read}.`;
+  }
+
+  // what a peak like this has historically been worth, same game, same kind
+  let anchorLine = "";
+  const anchor = cohort.filter(p=>p.b.rev>0)
+    .sort((x,y)=>Math.abs(x.st.peak-pk)-Math.abs(y.st.peak-pk)).slice(0,7);
+  if(anchor.length>=5){
+    const revs=anchor.map(p=>p.b.rev);
+    anchorLine = ` ${kind[0].toUpperCase()+kind.slice(1)}s peaking near <b>#${pk}</b> have finished around
+      <span class="fig">${G(_med(revs))}</span> (${G(Math.min(...revs))} to ${G(Math.max(...revs))}).`;
+  }
 
   const place=`<div class="bm-verdict call"><span class="head">Where this run sits on China's chart</span>
-    Peaked at <span class="fig">#${st.peak}</span> on day ${st.peakDay} — ${scopeLine}, among the banners with China data.
-    It ran at a median of <span class="fig">#${st.median}</span>${b.ongoing?" so far":""}; the usual banner ${baseLab}
-    peaks at <b>#${medPeak}</b> and runs at a median of <b>#${medMed}</b> — so it is running <b>${ran}</b> than that.
+    Peaked at <span class="fig">#${pk}</span> on day ${st.peakDay}.${rankLine}${holdLine}${anchorLine}
     ${st.peakDay>1?`It opened at <b>#${st.open}</b>, but an opening day is the least reliable reading
-    of a run, so the comparison keys on the peak.`:``}</div>`;
+    of a run, so the comparison keys on the peak.`:``}
+    <span class="after">#1 here is the whole Chinese App Store, not just games, so these ranks sit
+    against Douyin and WeChat as well. Across every game we hold, where a run peaks tracks what it
+    earns — which is why the chart position is worth reading and not just the money. Norms are
+    per-game though: a #20 peak is near the bottom for this game's ${kind}s in some years and near
+    the top in others, so the comparison above is always against this game alone.</span></div>`;
 
   // the closest peaks this game has had, with every revenue figure that exists for them
   const near=pickPeers(peers, b, st.peak, p=>p.st.peak);
