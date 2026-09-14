@@ -441,6 +441,14 @@ tr.clk{cursor:pointer} tr.clk:hover td{background:var(--track)}
 /* the game-i build-up carries four fields a column, so it gets two columns, not
    the three the China rank table (two fields) can afford */
 .bm-rtcols.cols2{grid-template-columns:repeat(2,minmax(0,1fr))}
+/* Columns auto-size to their widest content, so right-aligned values sit hard
+   against one edge and read as adrift from their header. Centre the value columns
+   so each number sits under its own label; the date stays left as the row label.
+   Scoped to these split tables -- the site's other tables keep right alignment. */
+.bm-rtcols .bm-table th,
+.bm-rtcols .bm-table td{text-align:center}
+.bm-rtcols .bm-table th.l,
+.bm-rtcols .bm-table td.l{text-align:left}
 .foot{margin-top:26px; font-size:11px; color:var(--muted); line-height:1.6}
 .loading{padding:40px 0; text-align:center; color:var(--muted)}
 .loading.err{line-height:1.7}
