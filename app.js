@@ -1918,14 +1918,21 @@ function buildupSVG(bd,b){
     ${grid}${bars}<path class="bu-line" d="${line}"/>${cdots}${hits}${xt}</svg>`;
 }
 function dailyTable(bd){
-  const rows=bd.days.map(d=>`<tr>
+  const cell=d=>`<tr>
     <td class="l">${dayLabel(d.i)}</td>
     <td>${d.rank==null?'<span class="muted">200+</span>':'#'+d.rank}</td>
     <td>${d.add>=0.005?G(d.add):'<span class="muted">—</span>'}</td>
-    <td>${G(d.cum)}</td></tr>`).join("");
-  return `<div class="bm-tablewrap"><table class="bm-table">
-    <thead><tr><th class="l">Date</th><th>iOS&nbsp;rank</th><th>+Est.</th><th>Cumulative</th></tr></thead>
-    <tbody>${rows}</tbody></table></div>`;
+    <td>${G(d.cum)}</td></tr>`;
+  // Dealt across two columns like the China rank table. A run is 20-30 days, which
+  // is a tall scroller in one column and fits without scrolling in two. Two rather
+  // than three because each column carries four fields, not two.
+  const per=Math.ceil(bd.days.length/2);
+  const cols=[];
+  for(let i=0;i<bd.days.length;i+=per)
+    cols.push(`<div class="bm-rtcol"><table class="bm-table">
+      <thead><tr><th class="l">Date</th><th>iOS&nbsp;rank</th><th>+Est.</th><th>Cumulative</th></tr></thead>
+      <tbody>${bd.days.slice(i,i+per).map(cell).join("")}</tbody></table></div>`);
+  return `<div class="bm-tablewrap bm-rtcols cols2">${cols.join("")}</div>`;
 }
 
 // Sensor Tower detail for the banner modal: the assumption, every month the run

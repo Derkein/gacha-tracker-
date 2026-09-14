@@ -438,6 +438,9 @@ tr.clk{cursor:pointer} tr.clk:hover td{background:var(--track)}
 .bm-rtcols .bm-table{width:100%}
 .bm-rtcol{padding:0 9px}
 .bm-rtcol + .bm-rtcol{border-left:1px solid var(--border)}
+/* the game-i build-up carries four fields a column, so it gets two columns, not
+   the three the China rank table (two fields) can afford */
+.bm-rtcols.cols2{grid-template-columns:repeat(2,minmax(0,1fr))}
 .foot{margin-top:26px; font-size:11px; color:var(--muted); line-height:1.6}
 .loading{padding:40px 0; text-align:center; color:var(--muted)}
 .loading.err{line-height:1.7}
@@ -452,6 +455,7 @@ tr.clk{cursor:pointer} tr.clk:hover td{background:var(--track)}
   .wrap{padding:16px 12px 48px}
 
   .bm-rtcol + .bm-rtcol{border-left:none}
+  .bm-rtcols.cols2{grid-template-columns:1fr}
 
   /* header */
   .site-hd{gap:6px 16px; margin-bottom:14px}
