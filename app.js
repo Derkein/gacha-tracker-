@@ -2206,6 +2206,21 @@ function pickPeers(peers, b, k0, keyOf, n){
     : pool;
   return (kept.length>=3 ? kept : pool).slice(0, n);
 }
+// A year's runs as a row of faces, best first, with this one ringed in its own colour.
+// This replaces a sentence that was doing the same job in prose -- the point is to SEE
+// how many sit ahead of it, not to parse two numbers out of a paragraph. Each face is
+// clickable like any other comparable. Items arrive pre-sorted; `label` is what goes
+// under each face (a China rank, or what a run had banked by its peak).
+function cohortStrip(items, self, label, caption){
+  if(!items || items.length<3) return "";
+  const chip=x=>{
+    const me = x.b._i===self._i;
+    return `<span class="bm-cav${me?" me":""}" data-i="${x.b._i}" style="--av-ring:${barColor(x.b)}"
+      title="${esc(peerName(x.b))} — ${label(x)}">${avatarHTML(x.b)}<span class="lb">${label(x)}</span></span>`;
+  };
+  return `<div class="bm-cohort"><div class="bm-cavs">${items.map(chip).join("")}</div>
+    <div class="bm-cohort-cap">${caption}</div></div>`;
+}
 const moneySpread = m => (m.range ? `${m.approx}<b>${m.range(m.lo,m.hi)}</b>`
   : `${m.approx}<b>${m.f(m.lo)}</b> to <b>${m.f(m.hi)}</b>`) + `, median <b>${m.f(m.md)}</b>`;
 // Both verdicts close the same way, so the wording lives in one place -- otherwise the
@@ -2268,13 +2283,31 @@ function jpAnalysisBlock(b){
           <b>day ${st.peakDay}</b> against the usual <b>day ${medPeakDay}</b> ${baseLab} \u2014 late enough
           that the figure counts most of the run, so it isn't comparable to the <b>${G(medCum)}</b> the
           usual banner had banked at its own peak.`;
+  // The year's banners as faces, ordered by what each had BANKED at its own peak rather
+  // than by rank: on this tab the money is the published figure and the rank only the
+  // shape of it, so banked-by-peak is the better spine. Runs whose peak came far later
+  // than usual are left out -- their figure counts most of the run (see cumLine).
+  let yearStrip = "";
+  const yrJP = peers.filter(p=>p.b.year===b.year && p.st.cumPeak>0
+                 && (!medPeakDay || p.st.peakDay-medPeakDay<=Math.max(2, medPeakDay)));
+  if(yrJP.length>=2 && st.cumPeak>0 && comparable){
+    const hi=yrJP.filter(p=>p.st.cumPeak>st.cumPeak).length, lo=yrJP.length-hi;
+    const n=v=>v===0?"none":`<b>${v}</b>`;
+    yearStrip = cohortStrip(
+      [...yrJP, {b, st}].sort((x,y)=>y.st.cumPeak-x.st.cumPeak), b,
+      x=>G(x.st.cumPeak),
+      `This game's <b>${yrJP.length+1}</b> banners in ${b.year} by what each had banked at its own
+       peak \u2014 ${n(hi)} had more than this one by then, ${n(lo)} the same or less.`);
+  }
+
   const place=`<div class="bm-verdict call"><span class="head">Where this run sits on game-i's chart</span>
     Peaked at <span class="fig">#${st.peak}</span> on day ${st.peakDay} \u2014 ${scopeLine}, among this
     game's finished banners.${cumLine} It ran at a median of <span class="fig">#${st.median}</span>${b.ongoing?" so far":""};
     the usual banner ${baseLab} peaks at <b>#${medPeak}</b> and runs at a median of <b>#${medMed}</b>.
     ${st.peakDay>1?`It opened at <b>#${st.open}</b>, though game-i snapshots rank at midnight JST,
     so a banner that went live after the snapshot reads low on day 1 \u2014 which is why this
-    compares on the peak.`:``} ${fade}</div>`;
+    compares on the peak.`:``} ${fade}
+    ${yearStrip}</div>`;
 
   // While a run is still going, the sharpest comparison is at the SAME elapsed day: what
   // had each peer banked by day D, and what did it finish at? Two banners can share a
@@ -2376,7 +2409,7 @@ function cnAnalysisBlock(b){
   const cohort = peers.filter(p=>!!p.b.rerun===!!b.rerun && !p.b.ongoing);
   const pk = st.peak;
 
-  let rankLine = "";
+  let rankLine = "", yearStrip = "";
   if(cohort.length>=5){
     const r=_place([...cohort.map(p=>p.st.peak), pk], pk);
     const half = r.place<=r.of/2;
@@ -2388,8 +2421,11 @@ function cnAnalysisBlock(b){
       // yr excludes this banner, so the year's total is yr.length + 1
       const hi=yr.filter(p=>p.st.peak<pk).length, lo=yr.length-hi;
       const n=v=>v===0?"none":`<b>${v}</b>`;
-      rankLine += ` In ${b.year} this game has run <b>${yr.length+1}</b> ${kind}s: ${n(hi)} peaked
-        higher than this one, ${n(lo)} the same or lower.`;
+      yearStrip = cohortStrip(
+        [...yr, {b, st}].sort((x,y)=>x.st.peak-y.st.peak), b,
+        x=>`#${x.st.peak}`,
+        `This game's <b>${yr.length+1}</b> ${kind}s in ${b.year}, best peak first —
+         ${n(hi)} peaked higher than this one, ${n(lo)} the same or lower.`);
     }
   }
 
@@ -2422,6 +2458,7 @@ function cnAnalysisBlock(b){
     Peaked at <span class="fig">#${pk}</span> on day ${st.peakDay}.${rankLine}${holdLine}${anchorLine}
     ${st.peakDay>1?`It opened at <b>#${st.open}</b>, but an opening day is the least reliable reading
     of a run, so the comparison keys on the peak.`:``}
+    ${yearStrip}
     <span class="after">#1 here is the whole Chinese App Store, not just games, so these ranks sit
     against Douyin and WeChat as well. Across every game we hold, where a run peaks tracks what it
     earns — which is why the chart position is worth reading and not just the money. Norms are
@@ -2812,7 +2849,7 @@ $("#bmBody").addEventListener("pointerleave",()=>bmTip.hidden=true);
 $("#bmBody").addEventListener("click",e=>{
   // a comparable in "How this run compares" opens that banner in place
   if(e.target.closest("#bmBack")){ closeBanner(); return; }
-  const peer=e.target.closest(".bm-peer[data-i]");
+  const peer=e.target.closest(".bm-peer[data-i], .bm-cav[data-i]");
   if(peer){ if(_bmCur) _bmStack.push(_bmCur); openBanner(state.data.banners[+peer.dataset.i], true); return; }
   const btn=e.target.closest("[data-bmsrc]"); if(!btn) return;
   const which=btn.dataset.bmsrc;
