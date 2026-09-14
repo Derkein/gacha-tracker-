@@ -2464,10 +2464,12 @@ function cnRankTable(run){
   const cols=Math.min(3, Math.max(1, Math.ceil(run.length/8)));
   const per=Math.ceil(run.length/cols);
   const tables=[];
+  // each column is wrapped: a table with border-collapse:collapse IGNORES its own
+  // padding, so the divider has to sit on a wrapper or the row rules run into it
   for(let i=0;i<run.length;i+=per)
-    tables.push(`<table class="bm-table">
+    tables.push(`<div class="bm-rtcol"><table class="bm-table">
       <thead><tr><th class="l">Date</th><th>Rank</th></tr></thead>
-      <tbody>${run.slice(i,i+per).map(cell).join("")}</tbody></table>`);
+      <tbody>${run.slice(i,i+per).map(cell).join("")}</tbody></table></div>`);
   return `<div class="bm-tablewrap bm-rtcols">${tables.join("")}</div>`;
 }
 function cnRankBlock(b){

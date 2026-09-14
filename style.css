@@ -430,8 +430,14 @@ tr.clk{cursor:pointer} tr.clk:hover td{background:var(--track)}
    apart. Deal the run across a few side-by-side tables so each one stays narrow and
    the block gets shorter; auto-fit collapses them back to one column on a phone. */
 .bm-rtcols{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-           gap:0 18px; max-height:376px; align-items:start}
+           gap:0; max-height:376px; align-items:start}
+/* The 18px that used to be column-gap sits as 9px padding either side of each
+   column, so the divider lands centred between two of them AND the horizontal row
+   rules stop short of it instead of running into it. The padding has to live on the
+   wrapper: a table with border-collapse:collapse ignores its own padding. */
 .bm-rtcols .bm-table{width:100%}
+.bm-rtcol{padding:0 9px}
+.bm-rtcol + .bm-rtcol{border-left:1px solid var(--border)}
 .foot{margin-top:26px; font-size:11px; color:var(--muted); line-height:1.6}
 .loading{padding:40px 0; text-align:center; color:var(--muted)}
 .loading.err{line-height:1.7}
@@ -444,6 +450,8 @@ tr.clk{cursor:pointer} tr.clk:hover td{background:var(--track)}
    ============================================================ */
 @media (max-width:640px){
   .wrap{padding:16px 12px 48px}
+
+  .bm-rtcol + .bm-rtcol{border-left:none}
 
   /* header */
   .site-hd{gap:6px 16px; margin-bottom:14px}
