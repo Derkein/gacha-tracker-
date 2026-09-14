@@ -888,20 +888,27 @@ tr.clk{cursor:pointer} tr.clk:hover td{background:var(--track)}
 .bm-peer .figs .main{font-size:13.5px; font-weight:800; color:var(--ink)}
 .bm-peerlist{display:flex; flex-direction:column; gap:6px; margin:4px 0 8px}
 /* a year's runs as faces, best first, this one ringed in its own colour */
-.bm-cohort{margin:11px 0 2px}
-.bm-cavs{display:flex; flex-wrap:wrap; gap:8px 6px; align-items:flex-start}
-.bm-cav{display:flex; flex-direction:column; align-items:center; gap:3px; width:40px; cursor:pointer}
-.bm-cav img,.bm-cav .mono{width:32px; height:32px; border-radius:50%; object-fit:cover; flex:none;
+.bm-cohort{margin:12px 0 2px}
+.bm-cavs{display:flex; flex-wrap:wrap; gap:10px 8px; align-items:flex-start}
+.bm-cav{display:flex; flex-direction:column; align-items:center; gap:4px; width:44px; cursor:pointer}
+.bm-cav .pic{position:relative; width:44px; height:44px; display:block}
+.bm-cav img,.bm-cav .mono{width:44px; height:44px; border-radius:50%; object-fit:cover; flex:none;
   box-shadow:0 0 0 1.5px var(--surface),0 0 0 3px var(--border); background:var(--track)}
-.bm-cav .mono{display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:800; color:var(--muted)}
+.bm-cav .mono{display:flex; align-items:center; justify-content:center; font-size:17px; font-weight:800; color:var(--muted)}
 /* avatarHTML emits up to three images for a multi-character banner; only the
    headliner belongs in a strip this small (same as .bm-peer does) */
 .bm-cav img.extra{display:none}
-.bm-cav .lb{font-size:9.5px; color:var(--muted); font-variant-numeric:tabular-nums; white-space:nowrap}
+.bm-cav .lb{font-size:11px; color:var(--muted); font-variant-numeric:tabular-nums; white-space:nowrap}
 .bm-cav.me img,.bm-cav.me .mono{box-shadow:0 0 0 2px var(--surface),0 0 0 4px var(--av-ring)}
 .bm-cav.me .lb{color:var(--ink); font-weight:800}
 .bm-cav:hover img,.bm-cav:hover .mono{box-shadow:0 0 0 1.5px var(--surface),0 0 0 3px var(--ink2)}
-.bm-cohort-cap{font-size:11px; color:var(--muted); margin-top:8px}
+/* rerun mark, same drawn arrow the graph avatars use */
+.bm-cav .bm-rr{position:absolute; top:-3px; right:-3px; width:18px; height:18px; overflow:visible}
+.bm-cav .bm-rr circle{fill:var(--surface); stroke:var(--border); stroke-width:.14}
+.bm-cav .bm-rr .rr-arc{fill:none; stroke:var(--ink2); stroke-width:.36; stroke-linecap:round}
+.bm-cav .bm-rr .rr-head{fill:var(--ink2); stroke:none}
+/* the caption reads as part of the paragraph above it, not as a footnote */
+.bm-cohort-cap{margin-top:9px}
 /* step back to the banner this one was opened from (see the modal back-stack) */
 .bm-back{display:inline-flex; align-items:center; gap:6px; margin:0 0 10px; padding:5px 11px;
   font:inherit; font-size:11.5px; font-weight:650; color:var(--ink2); cursor:pointer;

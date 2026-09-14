@@ -2213,10 +2213,15 @@ function pickPeers(peers, b, k0, keyOf, n){
 // under each face (a China rank, or what a run had banked by its peak).
 function cohortStrip(items, self, label, caption){
   if(!items || items.length<3) return "";
+  // the rerun badge is the same mark the graph avatars carry -- drawn rather than the
+  // glyph, so it is centred identically (see RR_ARC)
+  const rr = `<svg class="bm-rr" viewBox="-1.6 -1.6 3.2 3.2" aria-hidden="true"><circle r="1.5"/>`
+    + `<path class="rr-arc" d="${RR_ARC}"/><path class="rr-head" d="${RR_HEAD}"/></svg>`;
   const chip=x=>{
     const me = x.b._i===self._i;
     return `<span class="bm-cav${me?" me":""}" data-i="${x.b._i}" style="--av-ring:${barColor(x.b)}"
-      title="${esc(peerName(x.b))} — ${label(x)}">${avatarHTML(x.b)}<span class="lb">${label(x)}</span></span>`;
+      title="${esc(peerName(x.b))} — ${label(x)}${x.b.rerun?" · rerun":""}"
+      ><span class="pic">${avatarHTML(x.b)}${x.b.rerun?rr:""}</span><span class="lb">${label(x)}</span></span>`;
   };
   return `<div class="bm-cohort"><div class="bm-cavs">${items.map(chip).join("")}</div>
     <div class="bm-cohort-cap">${caption}</div></div>`;
@@ -2416,17 +2421,20 @@ function cnAnalysisBlock(b){
     const band = half ? `top <b>${Math.max(1,Math.round(100*r.place/r.of))}%</b>`
                       : `bottom <b>${Math.max(1,Math.round(100*(r.of-r.place+1)/r.of))}%</b>`;
     rankLine = ` Among this game's <b>${r.of}</b> charted ${kind}s that is <b>${ordinal(r.place)}</b> — its ${band}.`;
-    const yr=cohort.filter(p=>p.b.year===b.year);
-    if(yr.length>=2){
-      // yr excludes this banner, so the year's total is yr.length + 1
-      const hi=yr.filter(p=>p.st.peak<pk).length, lo=yr.length-hi;
-      const n=v=>v===0?"none":`<b>${v}</b>`;
-      yearStrip = cohortStrip(
-        [...yr, {b, st}].sort((x,y)=>x.st.peak-y.st.peak), b,
-        x=>`#${x.st.peak}`,
-        `This game's <b>${yr.length+1}</b> ${kind}s in ${b.year}, best peak first —
-         ${n(hi)} peaked higher than this one, ${n(lo)} the same or lower.`);
-    }
+  }
+
+  // The strip shows the year's WHOLE slate, debuts and reruns together, with reruns
+  // badged: the prose above is scored same-kind, but the row is meant to be the year
+  // at a glance, and hiding half of it made it a worse picture of the year.
+  const yrAll = peers.filter(p=>p.b.year===b.year && !p.b.ongoing);
+  if(yrAll.length>=2){
+    const hi=yrAll.filter(p=>p.st.peak<pk).length, lo=yrAll.length-hi;
+    const n=v=>v===0?"none":`<b>${v}</b>`;
+    yearStrip = cohortStrip(
+      [...yrAll, {b, st}].sort((x,y)=>x.st.peak-y.st.peak), b,
+      x=>`#${x.st.peak}`,
+      `This game's <b>${yrAll.length+1}</b> banners in ${b.year}, best peak first —
+       ${n(hi)} peaked higher than this one, ${n(lo)} the same or lower.`);
   }
 
   // second axis: how long it held, not just how high it got
