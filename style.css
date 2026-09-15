@@ -889,6 +889,9 @@ tr.clk{cursor:pointer} tr.clk:hover td{background:var(--track)}
 .bm-peerlist{display:flex; flex-direction:column; gap:6px; margin:4px 0 8px}
 /* a year's runs as faces, best first, this one ringed in its own colour */
 .bm-cohort{margin:12px 0 2px}
+/* row title, same weight as the block's own heading */
+.bm-cohort-hd{display:block; font-size:11px; text-transform:uppercase; letter-spacing:.05em;
+  color:var(--muted); margin-bottom:7px}
 .bm-cavs{display:flex; flex-wrap:wrap; gap:10px 8px; align-items:flex-start}
 .bm-cav{display:flex; flex-direction:column; align-items:center; gap:4px; width:44px; cursor:pointer}
 .bm-cav .pic{position:relative; width:44px; height:44px; display:block}

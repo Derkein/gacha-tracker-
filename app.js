@@ -415,6 +415,7 @@ async function selectGame(tag){
   state.data.banners.forEach((x,i)=>x._i=i);
   computeSharing();
   state._gameBurn = undefined;
+  state._shareCurve = undefined;
   state._cnPeers = undefined;              // peer sets are per game
   state._jpPeers = undefined;             // typical first-week share is per game
   populateGraphYears();
@@ -1855,34 +1856,84 @@ function burnout(b){
 // including them would drag the median upward.
 function gameBurn(){
   if(state._gameBurn !== undefined) return state._gameBurn;
-  const v=[];
+  const v=[], v3=[], vh=[];
   for(const b of (state.data?state.data.banners:[])){
     if(b._synthetic || b.pending || b.ongoing) continue;
     const bo=burnout(b);
-    if(bo && bo.days>=BURN_MIN_DAYS) v.push(bo.d7);
+    if(bo && bo.days>=BURN_MIN_DAYS){ v.push(bo.d7); v3.push(bo.d3); vh.push(bo.half); }
   }
-  v.sort((a,c)=>a-c);
-  return (state._gameBurn = v.length>=5 ? {med:v[Math.floor(v.length/2)], n:v.length} : null);
+  if(v.length<5) return (state._gameBurn = null);
+  return (state._gameBurn = {med:_med(v), med3:_med(v3), medHalf:_med(vh), n:v.length});
 }
+// What share of its FINAL total a banner of this game has typically earned by day d,
+// taken over finished runs. This is the piece that lets a run still in progress be
+// read: `so far / share[d]` turns "day 6, banked X" into where it is heading. Only
+// days backed by at least 5 finished runs are kept, so the tail doesn't rest on one.
+function gameShareCurve(){
+  if(state._shareCurve !== undefined) return state._shareCurve;
+  const cols=[];
+  for(const b of (state.data?state.data.banners:[])){
+    if(b._synthetic || b.pending || b.ongoing || !(b.rev>0)) continue;
+    const c=cumCurve(b);
+    if(!c || c.length<BURN_MIN_DAYS) continue;
+    c.forEach((v,i)=>{ (cols[i]=cols[i]||[]).push(v/b.rev); });
+  }
+  const q=(a,f)=>{const x=[...a].sort((p,r)=>p-r); return x[Math.min(x.length-1,Math.floor(x.length*f))];};
+  const keep=cols.filter(a=>a.length>=5);
+  if(keep.length<3) return (state._shareCurve = null);
+  return (state._shareCurve={ n:keep[0].length, days:keep.length,
+    share:keep.map(a=>_med(a)), lo:keep.map(a=>q(a,0.25)), hi:keep.map(a=>q(a,0.75)) });
+}
+
 function burnBlock(b){
-  const bo=burnout(b); if(!bo || bo.days<8) return "";
+  const bo=burnout(b);
+  // A finished run needs enough days for its shares to mean anything; a run still
+  // going is the case this block is most useful for, so it gets in from day 2 and
+  // the projection carries its own (wide, early) range.
+  if(!bo || (!b.ongoing && bo.days<8)) return "";
   const pc=x=>Math.round(x*100)+"%";
   const stats=`<div class="bm-stats bm-share3 bm-burn">
     <div class="bm-stat"><span class="l">First 3 days</span><span class="v">${pc(bo.d3)}</span></div>
     <div class="bm-stat"><span class="l">First week</span><span class="v">${pc(bo.d7)}</span></div>
     <div class="bm-stat"><span class="l">Half earned by</span><span class="v">Day ${bo.half}</span></div>
   </div>`;
-  if(b.ongoing) return stats+`<div class="bm-cap">This run <b>isn't finished</b>, so these are shares of what it has earned <i>so far</i> — they'll fall as it keeps running.</div>`;
+  if(b.ongoing){
+    // Shares of a total that doesn't exist yet are meaningless, so the tiles change:
+    // where the run is, what this game has usually banked by now, and where that puts it.
+    const sc=gameShareCurve(), D=bo.days;
+    const sh = sc && D>=2 && D<=sc.days ? sc.share[D-1] : null;
+    const scheduled=Math.round((Date.parse(b.end)-Date.parse(b.start))/864e5)+1;
+    if(!sh || !(b.rev>0) || sh<=0.02)
+      return `<div class="bm-cap">This run is <b>still going</b> — day <b>${D}</b> of
+        ${scheduled}. There isn't enough finished history for ${esc(gameName())} to say where it lands yet.</div>`;
+    const proj=b.rev/sh, pLo=b.rev/sc.hi[D-1], pHi=b.rev/sc.lo[D-1];
+    const pc=v=>Math.round(v*100)+"%";
+    return `<div class="bm-stats bm-share3 bm-burn">
+      <div class="bm-stat"><span class="l">Day</span><span class="v">${D} of ${scheduled}</span></div>
+      <div class="bm-stat"><span class="l">Usually banked by now</span><span class="v">${pc(sh)}</span></div>
+      <div class="bm-stat sum"><span class="l">Tracking towards</span><span class="v">${G(proj)}</span></div>
+    </div>
+    <div class="bm-cap">Across ${sc.n} finished ${esc(gameName())} banners the usual one has
+      <b>${pc(sh)}</b> of its final total by day <b>${D}</b>. This one has <b>${G(b.rev)}</b>, which puts
+      it near <b>${G(proj)}</b> — between <b>${G(pLo)}</b> and <b>${G(pHi)}</b>, depending on whether it
+      holds up better or worse than the middle of the pack from here.</div>`;
+  }
   const g=gameBurn();
   if(!g) return stats;
   // A short run's first week is structurally a bigger slice of it than a three-week
   // run's, so comparing the two would be meaningless. Say so rather than going quiet.
   if(bo.days<BURN_MIN_DAYS) return stats+`<div class="bm-cap">At <b>${bo.days} days</b> this run is too short to line up against ${esc(gameName())}'s longer banners — a shorter run packs more of itself into its first week by definition.</div>`;
-  const d=(bo.d7-g.med)*100, typ=Math.round(g.med*100);
+  const d=(bo.d7-g.med)*100;
   const verdict = Math.abs(d)<5 ? `right about typical for ${esc(gameName())}`
     : d>0 ? `<b>more front-loaded</b> than a typical ${esc(gameName())} banner`
           : `<b>a longer tail</b> than a typical ${esc(gameName())} banner`;
-  return stats+`<div class="bm-cap">${verdict} — its usual first week is <b>${typ}%</b> of the run, across ${g.n} finished banners.</div>`;
+  // all three shares, so the reader can see WHICH part of the curve is unusual
+  const gap=(mine,norm)=>{const k=Math.round((mine-norm)*100);
+    return Math.abs(k)<4 ? "about the same" : `<b>${Math.abs(k)} points ${k>0?"more":"less"}</b>`;};
+  return stats+`<div class="bm-cap">${verdict}. Across ${g.n} finished ${esc(gameName())} banners the
+    usual one takes <b>${Math.round(g.med3*100)}%</b> in its first 3 days (this one ${gap(bo.d3,g.med3)}),
+    <b>${Math.round(g.med*100)}%</b> in its first week (${gap(bo.d7,g.med)}), and is half done by
+    day <b>${g.medHalf}</b> against this one's day <b>${bo.half}</b>.</div>`;
 }
 
 function dailyBreakdown(b){
@@ -2151,7 +2202,8 @@ function jpRunStats(b){
   return (b._jpStats={
     open:known[0][1], peak:Math.min(...ranks), last:known[known.length-1][1],
     median:sorted[Math.floor(sorted.length/2)], days:s.length, charted:known.length,
-    top10:ranks.filter(v=>v<=10).length, top50:ranks.filter(v=>v<=50).length,
+    top10:ranks.filter(v=>v<=10).length, top20:ranks.filter(v=>v<=20).length,
+    top50:ranks.filter(v=>v<=50).length,
     peakDay:peakDay+1, fellOffDay:fellOff==null?null:fellOff+1, cumPeak,
   });
 }
@@ -2211,7 +2263,16 @@ function pickPeers(peers, b, k0, keyOf, n){
 // how many sit ahead of it, not to parse two numbers out of a paragraph. Each face is
 // clickable like any other comparable. Items arrive pre-sorted; `label` is what goes
 // under each face (a China rank, or what a run had banked by its peak).
-function cohortStrip(items, self, label, caption){
+// How fast a run is sliding off the chart. Peak alone says how high it got and the
+// running total says how big it was; neither says whether it is still holding. Slip is
+// places lost per day between the peak and a fixed early checkpoint, which is
+// comparable across runs of different lengths -- and readable while a run is live.
+const slipOf = (peak, peakDay, rankNow, day) =>
+  (rankNow==null || day<=peakDay) ? null : (rankNow-peak)/(day-peakDay);
+// a rank of null means it was below the chart that day, which is worse than any number
+const OFF_CHART = 200;
+
+function cohortStrip(items, self, label, caption, title){
   if(!items || items.length<3) return "";
   // the rerun badge is the same mark the graph avatars carry -- drawn rather than the
   // glyph, so it is centred identically (see RR_ARC)
@@ -2223,7 +2284,8 @@ function cohortStrip(items, self, label, caption){
       title="${esc(peerName(x.b))} — ${label(x)}${x.b.rerun?" · rerun":""}"
       ><span class="pic">${avatarHTML(x.b)}${x.b.rerun?rr:""}</span><span class="lb">${label(x)}</span></span>`;
   };
-  return `<div class="bm-cohort"><div class="bm-cavs">${items.map(chip).join("")}</div>
+  return `<div class="bm-cohort">${title?`<span class="bm-cohort-hd">${title}</span>`:""}
+    <div class="bm-cavs">${items.map(chip).join("")}</div>
     <div class="bm-cohort-cap">${caption}</div></div>`;
 }
 const moneySpread = m => (m.range ? `${m.approx}<b>${m.range(m.lo,m.hi)}</b>`
@@ -2245,23 +2307,55 @@ function jpAnalysisBlock(b){
   // banner that went live after the snapshot reads far too low on day 1 -- the peak
   // (usually day 2) is the first honest reading of the same run.
   const ver=hasVersions(state.tag)?versionOf(b):null;
+  // Version and year only. All-time lives in cohortLine, which states it WITH a
+  // percentile -- having both was the same fact twice under two denominators.
+  const kindJP = b.rerun ? "rerun" : "debut";
+  const kin = peers.filter(p=>!!p.b.rerun===!!b.rerun);
   const scopes=[];
-  if(ver){ const g=peers.filter(p=>versionOf(p.b)===ver).map(p=>p.st.peak);
+  if(ver){ const g=kin.filter(p=>versionOf(p.b)===ver).map(p=>p.st.peak);
            if(g.length>=2) scopes.push([ver, _place([...g, st.peak], st.peak)]); }
-  const yr=peers.filter(p=>p.b.year===b.year).map(p=>p.st.peak);
+  const yr=kin.filter(p=>p.b.year===b.year).map(p=>p.st.peak);
   if(yr.length>=2) scopes.push([String(b.year), _place([...yr, st.peak], st.peak)]);
-  scopes.push(["all-time", _place([...peers.map(p=>p.st.peak), st.peak], st.peak)]);
-  const scopeLine=scopes.map(([lab,r])=>`<b>${ordinal(r.place)} of ${r.of}</b> in ${lab}`).join(" \u00b7 ");
+  const scopeLine = scopes.length
+    ? ` \u2014 ` + scopes.map(([lab,r])=>`<b>${ordinal(r.place)} of ${r.of}</b> in ${lab}`).join(" \u00b7 ")
+      + `, among this game's charted ${kindJP}s`
+    : "";
 
-  const sameYear=peers.filter(p=>p.b.year===b.year);
-  const base=sameYear.length>=3?sameYear:peers;
+  // same-kind, so "the usual debut" really is a median over debuts
+  const sameYear=kin.filter(p=>p.b.year===b.year);
+  const base=sameYear.length>=3?sameYear:kin;
   const baseLab=sameYear.length>=3?`in ${b.year}`:"across this game's history";
   const medPeak=_med(base.map(p=>p.st.peak)), medMed=_med(base.map(p=>p.st.median));
-  const medTop50=_med(base.map(p=>p.st.top50));
+  const medTop20=_med(base.map(p=>p.st.top20)), medTop50=_med(base.map(p=>p.st.top50));
   const fellPeers=base.map(p=>p.st.fellOffDay).filter(v=>v!=null);
 
+  // Both tabs now carry the same set of readings; only the units differ. Same-kind
+  // cohort (a rerun peaks lower by nature), placement as a rank and a percentile,
+  // and what a peak like this has historically been worth.
+  const kind = kindJP, cohort = kin;
+  let cohortLine = "";
+  if(cohort.length>=5){
+    const r=_place([...cohort.map(p=>p.st.peak), st.peak], st.peak);
+    const band = r.place<=r.of/2
+      ? `top <b>${Math.max(1,Math.round(100*r.place/r.of))}%</b>`
+      : `bottom <b>${Math.max(1,Math.round(100*(r.of-r.place+1)/r.of))}%</b>`;
+    cohortLine = ` Among this game's <b>${r.of}</b> charted ${kind}s that is
+      <b>${ordinal(r.place)}</b> \u2014 its ${band}.`;
+  }
+  let anchorLine = "";
+  const anchor = cohort.filter(p=>p.b.rev>0)
+    .sort((x,y)=>Math.abs(x.st.peak-st.peak)-Math.abs(y.st.peak-st.peak)).slice(0,7);
+  if(anchor.length>=5){
+    const revs=anchor.map(p=>p.b.rev);
+    anchorLine = ` ${kind[0].toUpperCase()+kind.slice(1)}s peaking near <b>#${st.peak}</b> have
+      finished around <span class="fig">${G(_med(revs))}</span>
+      (${G(Math.min(...revs))} to ${G(Math.max(...revs))}).`;
+  }
+
   // the fade: how long it held the top 50, and whether it left the chart early
-  let fade=`It held the <b>top 50</b> for <b>${st.top50}</b> of its ${st.days} days, against <b>${medTop50}</b> for the usual banner ${baseLab}.`;
+  let fade=`It held the <b>top 20</b> for <b>${st.top20}</b> of its ${st.days} days and the
+    <b>top 50</b> for <b>${st.top50}</b>, against <b>${medTop20}</b> and <b>${medTop50}</b>
+    for the usual ${kind} ${baseLab}.`;
   if(st.fellOffDay!=null){
     const medFell=fellPeers.length>=3?_med(fellPeers):null;
     const how=medFell==null ? "." :
@@ -2282,10 +2376,9 @@ function jpAnalysisBlock(b){
   const cumLine = !(st.cumPeak>0 && medCum) ? ""
     : comparable
       ? ` By that day it had banked <span class="fig">${G(st.cumPeak)}</span>, against <b>${G(medCum)}</b>
-          for the usual banner ${baseLab} \u2014 a steadier measure than the rank itself, since what
-          game-i pays a given rank moves around.`
+          for the usual ${kind} ${baseLab}.`
       : ` By that day it had banked <span class="fig">${G(st.cumPeak)}</span>, but its peak came on
-          <b>day ${st.peakDay}</b> against the usual <b>day ${medPeakDay}</b> ${baseLab} \u2014 late enough
+          <b>day ${st.peakDay}</b> against the usual <b>day ${medPeakDay}</b> for a ${kind} ${baseLab} \u2014 late enough
           that the figure counts most of the run, so it isn't comparable to the <b>${G(medCum)}</b> the
           usual banner had banked at its own peak.`;
   // The year's banners as faces, ordered by what each had BANKED at its own peak rather
@@ -2295,24 +2388,62 @@ function jpAnalysisBlock(b){
   let yearStrip = "";
   const yrJP = peers.filter(p=>p.b.year===b.year && p.st.cumPeak>0
                  && (!medPeakDay || p.st.peakDay-medPeakDay<=Math.max(2, medPeakDay)));
+  const n=v=>v===0?"none":`<b>${v}</b>`;
   if(yrJP.length>=2 && st.cumPeak>0 && comparable){
     const hi=yrJP.filter(p=>p.st.cumPeak>st.cumPeak).length, lo=yrJP.length-hi;
-    const n=v=>v===0?"none":`<b>${v}</b>`;
     yearStrip = cohortStrip(
       [...yrJP, {b, st}].sort((x,y)=>y.st.cumPeak-x.st.cumPeak), b,
       x=>G(x.st.cumPeak),
       `This game's <b>${yrJP.length+1}</b> banners in ${b.year} by what each had banked at its own
-       peak \u2014 ${n(hi)} had more than this one by then, ${n(lo)} the same or less.`);
+       peak \u2014 ${n(hi)} had more than this one by then, ${n(lo)} the same or less.`,
+      "By estimate at its peak");
   }
 
+  // ...and the same year by PEAK RANK. The two answer different questions: the money
+  // says how big the run was by its peak, the rank says how high it actually climbed,
+  // and a banner can sit high on one and low on the other. No peak-day filter here --
+  // a rank is comparable whenever it happened, unlike a running total.
+  let rankStrip = "";
+  const yrRank = peers.filter(p=>p.b.year===b.year && p.st.peak!=null);
+  if(yrRank.length>=2){
+    const hi=yrRank.filter(p=>p.st.peak<st.peak).length, lo=yrRank.length-hi;
+    rankStrip = cohortStrip(
+      [...yrRank, {b, st}].sort((x,y)=>x.st.peak-y.st.peak), b,
+      x=>`#${x.st.peak}`,
+      `The same <b>${yrRank.length+1}</b> banners by peak rank, best first \u2014 ${n(hi)} peaked
+       higher than this one, ${n(lo)} the same or lower.`,
+      "By peak rank");
+  }
+
+  // where it sat at a fixed early checkpoint, and how fast it got there from its peak
+  const chkD = Math.min(7, st.days);
+  const rkJP = x => { const r=(x.b.rank_series||[])[chkD-1]; return r==null?OFF_CHART:r; };
+  let slipLine = "", mineRank = null;
+  if(chkD>=3 && st.days>=3){
+    mineRank = rkJP({b, st});
+    const mineSlip = slipOf(st.peak, st.peakDay, mineRank, chkD);
+    const peerSlips = kin.filter(q=>q.st.days>=chkD)
+      .map(q=>slipOf(q.st.peak, q.st.peakDay, rkJP(q), chkD)).filter(v=>v!=null);
+    if(mineSlip!=null && peerSlips.length>=5){
+      const medSlip=_med(peerSlips);
+      const word = mineSlip > medSlip*1.3 ? "<b>falling faster</b> than most"
+        : mineSlip < medSlip*0.7 ? "<b>holding better</b> than most"
+        : "sliding at about the usual rate";
+      slipLine = ` By day ${chkD} it sat at <b>${mineRank>=OFF_CHART?`${OFF_CHART}+`:`#${mineRank}`}</b>,
+        about <b>${mineSlip.toFixed(1)}</b> places a day off its peak against <b>${medSlip.toFixed(1)}</b>
+        for the usual ${kind} \u2014 ${word}.`;
+    }
+  }
+
+  const ranLineJP = ` It ran at a median of <span class="fig">#${st.median}</span>${b.ongoing?" so far":""};
+    the usual ${kind} ${baseLab} peaks at <b>#${medPeak}</b> and runs at a median of <b>#${medMed}</b>.`;
+  // Same order of readings as the China block, so the two tabs read alike.
   const place=`<div class="bm-verdict call"><span class="head">Where this run sits on game-i's chart</span>
-    Peaked at <span class="fig">#${st.peak}</span> on day ${st.peakDay} \u2014 ${scopeLine}, among this
-    game's finished banners.${cumLine} It ran at a median of <span class="fig">#${st.median}</span>${b.ongoing?" so far":""};
-    the usual banner ${baseLab} peaks at <b>#${medPeak}</b> and runs at a median of <b>#${medMed}</b>.
+    Peaked at <span class="fig">#${st.peak}</span> on day ${st.peakDay}${scopeLine}.${cohortLine}${cumLine}${ranLineJP} ${fade}${slipLine}${anchorLine}
     ${st.peakDay>1?`It opened at <b>#${st.open}</b>, though game-i snapshots rank at midnight JST,
     so a banner that went live after the snapshot reads low on day 1 \u2014 which is why this
-    compares on the peak.`:``} ${fade}
-    ${yearStrip}</div>`;
+    compares on the peak.`:``}
+    ${yearStrip}${rankStrip}</div>`;
 
   // While a run is still going, the sharpest comparison is at the SAME elapsed day: what
   // had each peer banked by day D, and what did it finish at? Two banners can share a
@@ -2325,21 +2456,39 @@ function jpAnalysisBlock(b){
   const onCum = b.ongoing && D>=2 && b.rev>0 && sameDay.length>=5;
   const near = onCum ? pickPeers(sameDay, b, b.rev, p=>cumAtDay(p.b,D))
                      : pickPeers(peers, b, st.peak, p=>p.st.peak);
-  const rows=near.map(p=>{
+  // one row, shared by the two peer lists below so their look can't drift apart
+  const peerRow=(p, sub)=>{
     const stv=bannerST(p.b), cnv=bannerCN(p.b);
     const figs=[`<span class="main">${G(p.b.rev)}</span>`];
     if(stv.hasData) figs.push(`<span>ST \u2248${fmtUSD(stv.total)}</span>`);
     if(cnv.hasData) figs.push(`<span>CN \u2248${fmtCNYRange(cnv.lo,cnv.hi)}</span>`);
-    const atD=onCum?cumAtDay(p.b,D):null;
-    const sub = onCum
-      ? `${G(atD)} by day ${D} \u00b7 finished ${G(p.b.rev)} \u00b7 peak #${p.st.peak} \u00b7 ${per(p.b.start)}${p.b.rerun?" \u00b7 rerun":""}`
-      : `peak #${p.st.peak} on day ${p.st.peakDay}${p.st.cumPeak>0?` \u00b7 ${G(p.st.cumPeak)} by then`:""} \u00b7 opened #${p.st.open} \u00b7 ${per(p.b.start)}${p.b.rerun?" \u00b7 rerun":""}`;
     return `<div class="bm-peer" data-i="${p.b._i}" title="Open ${esc(peerName(p.b))}" style="--av-ring:${barColor(p.b)}">
       <span class="av">${avatarHTML(p.b)}</span>
       <span class="who"><span class="nm">${esc(peerName(p.b))}</span>
         <span class="sub">${sub}</span></span>
       <span class="figs">${figs.join("")}</span></div>`;
+  };
+  const rows=near.map(p=>{
+    const atD=onCum?cumAtDay(p.b,D):null;
+    const sub = onCum
+      ? `${G(atD)} by day ${D} \u00b7 finished ${G(p.b.rev)} \u00b7 peak #${p.st.peak} \u00b7 ${per(p.b.start)}${p.b.rerun?" \u00b7 rerun":""}`
+      : `peak #${p.st.peak} on day ${p.st.peakDay}${p.st.cumPeak>0?` \u00b7 ${G(p.st.cumPeak)} by then`:""} \u00b7 opened #${p.st.open} \u00b7 ${per(p.b.start)}${p.b.rerun?" \u00b7 rerun":""}`;
+    return peerRow(p, sub);
   }).join("");
+
+  // The same list again, keyed on the chart instead of the money: who else was sitting
+  // where this run sits at the same point in its own run, and what did they go on to
+  // earn? Picked the same way as the list above, so the two read as a pair.
+  const rkLab=v=>v>=OFF_CHART?`${OFF_CHART}+`:`#${v}`;
+  let dayList="";
+  if(mineRank!=null){
+    const dNear=pickPeers(peers.filter(p=>p.st.days>=chkD && p.b.rev>0), b, mineRank, rkJP);
+    if(dNear.length>=3) dayList=`<h3>Banners at a similar rank by day ${chkD}</h3>
+      <div class="bm-peerlist">${dNear.map(p=>{
+        return peerRow(p, `${rkLab(rkJP(p))} by day ${chkD} \u00b7 peak #${p.st.peak}
+          \u00b7 finished ${G(p.b.rev)} \u00b7 ${per(p.b.start)}${p.b.rerun?" \u00b7 rerun":""}`);
+      }).join("")}</div>`;
+  }
 
   const money=peerMoney(near), J=money.jp, md=J.md, mineST=bannerST(b);
   const ownST=mineST.hasData?`, Sensor Tower's share of those months at <span class="fig">\u2248${fmtUSD(mineST.total)}</span>`:"";
@@ -2379,7 +2528,7 @@ function jpAnalysisBlock(b){
 
   return `<h3>How this run compares</h3>${place}
     <h3>${onCum?`Banners at a similar total by day ${D}`:`Banners that peaked around #${st.peak}`}</h3>
-    <div class="bm-peerlist">${rows}</div>${verdict}`;
+    <div class="bm-peerlist">${rows}</div>${dayList}${verdict}`;
 }
 
 // The comparables and the one judgement call: is a projection still worth making? Once a
@@ -2414,6 +2563,27 @@ function cnAnalysisBlock(b){
   const cohort = peers.filter(p=>!!p.b.rerun===!!b.rerun && !p.b.ongoing);
   const pk = st.peak;
 
+  // the same placement scopes the game-i tab shows: version, year, all-time
+  const scopes=[];
+  if(ver){ const g=cohort.filter(p=>versionOf(p.b)===ver).map(p=>p.st.peak);
+           if(g.length>=2) scopes.push([`${ver}`, _place([...g, st.peak], st.peak)]); }
+  const yrS=cohort.filter(p=>p.b.year===b.year).map(p=>p.st.peak);
+  if(yrS.length>=2) scopes.push([`${b.year}`, _place([...yrS, st.peak], st.peak)]);
+  const scopeLine = scopes.length
+    ? ` — ` + scopes.map(([lab,r])=>`<b>${ordinal(r.place)} of ${r.of}</b> in ${lab}`).join(" \u00b7 ")
+      + `, among this game's charted ${kind}s`
+    : "";
+
+  // and the same "how it ran" line: its median against the usual peak and median
+  const sameYearCN = cohort.filter(p=>p.b.year===b.year);
+  const baseCN = sameYearCN.length>=3?sameYearCN:cohort;
+  const baseLabCN = sameYearCN.length>=3?`in ${b.year}`:"across this game's history";
+  const medPeakCN=_med(baseCN.map(p=>p.st.peak)), medMedCN=_med(baseCN.map(p=>p.st.median));
+  const ranLine = baseCN.length>=3
+    ? ` It ran at a median of <span class="fig">#${st.median}</span>${b.ongoing?" so far":""};
+       the usual ${kind} ${baseLabCN} peaks at <b>#${medPeakCN}</b> and runs at a median of
+       <b>#${medMedCN}</b>.` : "";
+
   let rankLine = "", yearStrip = "";
   if(cohort.length>=5){
     const r=_place([...cohort.map(p=>p.st.peak), pk], pk);
@@ -2434,7 +2604,8 @@ function cnAnalysisBlock(b){
       [...yrAll, {b, st}].sort((x,y)=>x.st.peak-y.st.peak), b,
       x=>`#${x.st.peak}`,
       `This game's <b>${yrAll.length+1}</b> banners in ${b.year}, best peak first —
-       ${n(hi)} peaked higher than this one, ${n(lo)} the same or lower.`);
+       ${n(hi)} peaked higher than this one, ${n(lo)} the same or lower.`,
+      "By peak rank");
   }
 
   // second axis: how long it held, not just how high it got
@@ -2452,6 +2623,26 @@ function cnAnalysisBlock(b){
       ${kind} — ${read}.`;
   }
 
+  // where it sat at a fixed early checkpoint, and how fast it got there from its peak
+  const chkD = Math.min(7, st.days);
+  const rkCN = x => { const r=(x.st.run||[])[chkD-1]; const v=r?r.rank:null; return v==null?OFF_CHART:v; };
+  let slipLine = "", mineRank = null;
+  if(chkD>=3 && st.days>=3){
+    mineRank = rkCN({b, st});
+    const mineSlip = slipOf(pk, st.peakDay, mineRank, chkD);
+    const peerSlips = cohort.filter(q=>q.st.days>=chkD)
+      .map(q=>slipOf(q.st.peak, q.st.peakDay, rkCN(q), chkD)).filter(v=>v!=null);
+    if(mineSlip!=null && peerSlips.length>=5){
+      const medSlip=_med(peerSlips);
+      const word = mineSlip > medSlip*1.3 ? "<b>falling faster</b> than most"
+        : mineSlip < medSlip*0.7 ? "<b>holding better</b> than most"
+        : "sliding at about the usual rate";
+      slipLine = ` By day ${chkD} it sat at <b>${mineRank>=OFF_CHART?`${OFF_CHART}+`:`#${mineRank}`}</b>,
+        about <b>${mineSlip.toFixed(1)}</b> places a day off its peak against <b>${medSlip.toFixed(1)}</b>
+        for the usual ${kind} — ${word}.`;
+    }
+  }
+
   // what a peak like this has historically been worth, same game, same kind
   let anchorLine = "";
   const anchor = cohort.filter(p=>p.b.rev>0)
@@ -2463,7 +2654,7 @@ function cnAnalysisBlock(b){
   }
 
   const place=`<div class="bm-verdict call"><span class="head">Where this run sits on China's chart</span>
-    Peaked at <span class="fig">#${pk}</span> on day ${st.peakDay}.${rankLine}${holdLine}${anchorLine}
+    Peaked at <span class="fig">#${pk}</span> on day ${st.peakDay}${scopeLine}.${rankLine}${ranLine}${holdLine}${slipLine}${anchorLine}
     ${st.peakDay>1?`It opened at <b>#${st.open}</b>, but an opening day is the least reliable reading
     of a run, so the comparison keys on the peak.`:``}
     ${yearStrip}
@@ -2479,7 +2670,8 @@ function cnAnalysisBlock(b){
   // is an association across two markets, which is exactly what this block should avoid.
   // Yen is only the fallback when too few comparable runs carry a CN figure to median.
   const money=peerMoney(near), cnPrimary=!!money.cn, P=money.cn||money.jp;
-  const rows=near.map(p=>{
+  // one row, shared by the two peer lists below so their look can't drift apart
+  const peerRow=(p, sub)=>{
     const stv=bannerST(p.b), cnv=bannerCN(p.b);
     const figs=[];
     figs.push(cnPrimary&&cnv.hasData
@@ -2491,9 +2683,24 @@ function cnAnalysisBlock(b){
     return `<div class="bm-peer" data-i="${p.b._i}" title="Open ${esc(peerName(p.b))}" style="--av-ring:${barColor(p.b)}">
       <span class="av">${avatarHTML(p.b)}</span>
       <span class="who"><span class="nm">${esc(peerName(p.b))}</span>
-        <span class="sub">peak #${p.st.peak} on day ${p.st.peakDay} · opened #${p.st.open} · ${per(p.b.start)}${p.b.rerun?" · rerun":""}</span></span>
+        <span class="sub">${sub}</span></span>
       <span class="figs">${figs.join("")}</span></div>`;
-  }).join("");
+  };
+  const rows=near.map(p=>peerRow(p,
+    `peak #${p.st.peak} on day ${p.st.peakDay} · opened #${p.st.open} · ${per(p.b.start)}${p.b.rerun?" · rerun":""}`)).join("");
+
+  // The same list again, keyed on where each run sat at a fixed early day rather than on
+  // its peak -- who else was where this one is at the same point, and what did they earn?
+  const rkLabCN=v=>v>=OFF_CHART?`${OFF_CHART}+`:`#${v}`;
+  let dayList="";
+  if(mineRank!=null){
+    const dNear=pickPeers(peers.filter(q=>q.st.days>=chkD && q.b.rev>0), b, mineRank, rkCN);
+    if(dNear.length>=3) dayList=`<h3>Banners at a similar rank by day ${chkD}</h3>
+      <div class="bm-peerlist">${dNear.map(q=>{
+        return peerRow(q, `${rkLabCN(rkCN(q))} by day ${chkD} · peak #${q.st.peak} on day ${q.st.peakDay}
+          · opened #${q.st.open} · ${per(q.b.start)}${q.b.rerun?" · rerun":""}`);
+      }).join("")}</div>`;
+  }
 
   // the read, decided by how much of this run is actually known
   const mine=bannerST(b), mineCN=bannerCN(b);
@@ -2536,7 +2743,7 @@ function cnAnalysisBlock(b){
 
   return `<h3>How this run compares</h3>${place}
     <h3>Banners that peaked around #${st.peak}</h3>
-    <div class="bm-peerlist">${rows}</div>${verdict}`;
+    <div class="bm-peerlist">${rows}</div>${dayList}${verdict}`;
 }
 // Day-by-day rank as a table. The chart can only draw days the game was INSIDE the top
 // 200 -- once it falls off, the line just stops and those days vanish. Here they stay
