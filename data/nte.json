@@ -4,13 +4,13 @@
  "jp": "NTE： Neverness to Everness",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/NTE%EF%BC%9A%20Neverness%20to%20Everness",
- "updated": "2026-09-15T04:22:03Z",
+ "updated": "2026-09-15T17:03:08Z",
  "count": 8,
  "now": {
   "ios": null,
-  "android": 29,
-  "month": 88,
-  "next_add": 5383545,
+  "android": 28,
+  "month": 94,
+  "next_add": 5461644,
   "ym": "2026/09",
   "ranks": {
    "prev": [
@@ -82,7 +82,7 @@
   }
  },
  "monthly": {
-  "2026-09": 2.33,
+  "2026-09": 2.38,
   "2026-08": 5.23,
   "2026-07": 6.29,
   "2026-06": 8.09,
@@ -402,7 +402,7 @@
    "name": "リンコ",
    "start": "2026-09-09",
    "end": "2026-09-30",
-   "rev": 0.9593,
+   "rev": 1.01,
    "yrank": 8,
    "ytot": 8,
    "cum": 8,
@@ -419,6 +419,7 @@
     88,
     132,
     175,
+    null,
     null
    ],
    "agents": [
