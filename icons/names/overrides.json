@@ -4,14 +4,18 @@
   "art": "https://static.wikia.nocookie.net/houkai-star-rail/images/b/b9/Character_Himeko_%E2%80%A2_Nova_Splash_Art.png"
  },
  "ルーシー&レベッカ&ルシラー": {
-  "en": "Lucy",
+  "en": [
+   "Lucy",
+   "Rebecca",
+   "Lucilla"
+  ],
   "art": "https://static.wikia.nocookie.net/wutheringwaves/images/7/71/Lucy_Splash_Art.png",
   "box": [
    0.52,
    0.455,
    0.1
   ],
-  "why": "Cyberpunk collab splash is a full city scene; the frontal cascade finds no face and the fallback crops background."
+  "why": "game-i merged three Cyberpunk collab characters into one banner; primary_name() only ever resolves the first token, so the other two have to be named here. Splash art is a full city scene, so the frontal cascade finds no face and the fallback crops background -- hence the box."
  },
  "リンネー復刻&ザンニー復刻&フィービー復刻": {
   "en": "Lynae",

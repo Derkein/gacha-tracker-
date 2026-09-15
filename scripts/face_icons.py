@@ -307,8 +307,17 @@ def apply_overrides(cascade):
             # precisely because the detector picked the wrong region, so it applies even
             # when the character is named. Without a box we still only fill a gap, so
             # existing art-only overrides keep their old behaviour exactly.
-            if o.get("en") and not b.get("agents"):
-                b["agents"] = [o["en"]]; b["en"] = o["en"]
+            #
+            # A LIST always wins, even over a resolved name. primary_name() takes the
+            # first token of the banner title and nothing else, so a banner game-i built
+            # from several characters (WuWa's Cyberpunk collab is Lucy & Rebecca &
+            # Lucilla) can only ever resolve to the first of them. A list is information
+            # the pipeline structurally cannot derive, so it is never "filling a gap".
+            en_ov = o.get("en")
+            if isinstance(en_ov, list) and en_ov:
+                b["agents"] = list(en_ov); b["en"] = " & ".join(en_ov)
+            elif en_ov and not b.get("agents"):
+                b["agents"] = [en_ov]; b["en"] = en_ov
             if o.get("art") and (o.get("box") or not b.get("icons")):
                 rel = f"icons/faces/overrides/{hashlib.md5(b['name'].encode()).hexdigest()[:8]}.webp"
                 fpath = ROOT / rel
