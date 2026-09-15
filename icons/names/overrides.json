@@ -9,11 +9,27 @@
    "Rebecca",
    "Lucilla"
   ],
-  "art": "https://static.wikia.nocookie.net/wutheringwaves/images/7/71/Lucy_Splash_Art.png",
+  "art": [
+   "https://static.wikia.nocookie.net/wutheringwaves/images/7/71/Lucy_Splash_Art.png",
+   "https://static.wikia.nocookie.net/wutheringwaves/images/3/36/Rebecca_Splash_Art.png",
+   "https://static.wikia.nocookie.net/wutheringwaves/images/6/6b/Lucilla_Splash_Art.png"
+  ],
   "box": [
-   0.52,
-   0.455,
-   0.1
+   [
+    0.52,
+    0.455,
+    0.1
+   ],
+   [
+    0.5,
+    0.533,
+    0.105
+   ],
+   [
+    0.453,
+    0.389,
+    0.1
+   ]
   ],
   "why": "game-i merged three Cyberpunk collab characters into one banner; primary_name() only ever resolves the first token, so the other two have to be named here. Splash art is a full city scene, so the frontal cascade finds no face and the fallback crops background -- hence the box."
  },

@@ -318,27 +318,46 @@ def apply_overrides(cascade):
                 b["agents"] = list(en_ov); b["en"] = " & ".join(en_ov)
             elif en_ov and not b.get("agents"):
                 b["agents"] = [en_ov]; b["en"] = en_ov
-            if o.get("art") and (o.get("box") or not b.get("icons")):
-                rel = f"icons/faces/overrides/{hashlib.md5(b['name'].encode()).hexdigest()[:8]}.webp"
-                fpath = ROOT / rel
-                stale = True
-                if fpath.exists():
-                    try:
-                        with Image.open(fpath) as _im:
-                            stale = _im.width < ICON_PX
-                    except Exception:
-                        stale = True
-                if stale:
-                    try:
-                        raw = fetch(o["art"])
-                        pim = crop_box(raw, o["box"]) if o.get("box") else crop_face(raw, cascade, True)
-                        if pim:
-                            pim.save(fpath, "WEBP", quality=85, method=6)
-                    except Exception as e:
-                        print(f"  override {b['name']}: {e}")
-                if fpath.exists():
-                    b["icons"] = [rel]
-                    acc = dominant_accent(Image.open(fpath))
+            # `art`/`box` may be lists, index-aligned with a list `en`: a banner game-i
+            # built from several characters gets one crop each, which is what lets the
+            # site show all of them (avatarHTML renders up to three). A bare string
+            # keeps the old single-icon behaviour and the old filename, so crops already
+            # committed are reused rather than orphaned.
+            arts = o.get("art")
+            if isinstance(arts, str):
+                arts, boxes = [arts], [o.get("box")]
+            elif isinstance(arts, list):
+                bx = o.get("box")
+                boxes = bx if isinstance(bx, list) else [bx] * len(arts)
+            else:
+                arts, boxes = [], []
+            if arts and (o.get("box") or not b.get("icons")):
+                h = hashlib.md5(b["name"].encode()).hexdigest()[:8]
+                rels = []
+                for i, art in enumerate(arts):
+                    rel = f"icons/faces/overrides/{h}{'' if i == 0 else f'-{i}'}.webp"
+                    fpath = ROOT / rel
+                    stale = True
+                    if fpath.exists():
+                        try:
+                            with Image.open(fpath) as _im:
+                                stale = _im.width < ICON_PX
+                        except Exception:
+                            stale = True
+                    if stale:
+                        try:
+                            raw = fetch(art)
+                            box = boxes[i] if i < len(boxes) else None
+                            pim = crop_box(raw, box) if box else crop_face(raw, cascade, True)
+                            if pim:
+                                pim.save(fpath, "WEBP", quality=85, method=6)
+                        except Exception as e:
+                            print(f"  override {b['name']} [{i}]: {e}")
+                    if fpath.exists():
+                        rels.append(rel)
+                if rels:
+                    b["icons"] = rels
+                    acc = dominant_accent(Image.open(ROOT / rels[0]))
                     if acc:
                         b["accent"] = acc
             n += 1; touched = True
