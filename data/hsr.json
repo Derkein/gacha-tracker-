@@ -4,13 +4,13 @@
  "jp": "崩壊：スターレイル",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E5%B4%A9%E5%A3%8A%EF%BC%9A%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%AC%E3%82%A4%E3%83%AB",
- "updated": "2026-09-16T19:37:07Z",
+ "updated": "2026-09-17T16:56:06Z",
  "count": 62,
  "now": {
-  "ios": 32,
-  "android": 6,
-  "month": 21,
-  "next_add": 32931199,
+  "ios": 57,
+  "android": 7,
+  "month": 24,
+  "next_add": 20462979,
   "ym": "2026/09",
   "ranks": {
    "prev": [
@@ -64,7 +64,7 @@
     13,
     23,
     29,
-    null,
+    56,
     null,
     null,
     null,
@@ -82,7 +82,7 @@
   }
  },
  "monthly": {
-  "2026-09": 8.26,
+  "2026-09": 8.46,
   "2026-08": 11.87,
   "2026-07": 16.85,
   "2026-06": 13.4,
@@ -2274,7 +2274,7 @@
    "rev": 4.49,
    "yrank": 17,
    "ytot": 18,
-   "cum": 56,
+   "cum": 57,
    "cumtot": 63,
    "year": 2025,
    "related": "サフェル復刻, モーディス復刻",
@@ -3007,10 +3007,10 @@
    "name": "アベンチュリン・波と戯れる夏",
    "start": "2026-09-12",
    "end": "2026-09-29",
-   "rev": 4.36,
+   "rev": 4.56,
    "yrank": 10,
    "ytot": 16,
-   "cum": 57,
+   "cum": 56,
    "cumtot": 63,
    "year": 2026,
    "related": "不死途",
@@ -3023,7 +3023,8 @@
     10,
     13,
     23,
-    29
+    29,
+    56
    ],
    "icons": [
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1513.png"
