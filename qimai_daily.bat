@@ -1,42 +1,20 @@
 @echo off
 REM ============================================================================
-REM  Qimai daily top-up — double-click this once a day.
-REM  Fetches the day's rotating 3 games (China-iPhone revenue) from Qimai,
-REM  rebuilds data\qimai.json, and pushes ONLY if there are new days.
+REM  Qimai daily fetch — double-click this once a day.
+REM  Opens a window with two cookie fields (one per Qimai account):
+REM    Cookie 1  ->  genshin / hsr / zzz   (HoYo)
+REM    Cookie 2  ->  wuwa / endfield / nte
+REM  Runs both, rebuilds data\qimai.json, and pushes any new days. The fields
+REM  pre-fill with the last cookies you used; if one has expired the log says
+REM  which, so you can paste a fresh string and hit Run again.
 REM
-REM  Cookie: reads scripts\.qimai_cookie (gitignored). Refresh it ~monthly by
-REM  pasting a fresh Qimai Cookie header into that file. If it goes stale the
-REM  fetch just prints "NOT LOGGED IN" and nothing is committed.
-REM
-REM  Must run from your own machine/network — Qimai binds the session to the
+REM  Must run from your own machine/network — Qimai binds each session to the
 REM  login IP, so this cannot run on GitHub's servers.
 REM ============================================================================
 cd /d "%~dp0"
-
-echo(
-echo === Fetching Qimai revenue ===
-python scripts\fetch_qimai_today.py
-
-echo(
-echo === Rebuilding data\qimai.json ===
-python scripts\build_qimai.py
-
-git add data/qimai_daily data/qimai.json
-git diff --cached --quiet
-if %errorlevel%==0 (
+python scripts\qimai_gui.py
+if errorlevel 1 (
     echo(
-    echo No new Qimai days -- nothing to push.
-    goto :done
+    echo The fetch window failed to start -- see the error above.
+    pause
 )
-
-for /f %%d in ('python -c "import datetime;print(datetime.date.today())"') do set "TODAY=%%d"
-echo(
-echo === New days found -- committing and pushing ===
-git commit -m "chore: Qimai revenue for %TODAY%"
-git pull --rebase origin main
-git push
-
-:done
-echo(
-echo Done.
-pause
