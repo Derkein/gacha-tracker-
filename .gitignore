@@ -9,9 +9,15 @@ __pycache__/
 # scraped video cache for scripts/scrape_bilibili_cn.py
 .bilicache/
 
-# local Qimai session cookies for the daily fetch (cookie 1 = HoYo, cookie 2 = the rest)
-# — NEVER commit these
+# local Qimai fetch tooling + cookies — stays on the owner's PC only, never in the repo.
+# (Qimai binds sessions to the login IP, so the fetch has to run locally; only the resulting
+#  data/qimai.json + data/qimai_daily are committed. build_qimai.py — a pure, cookie-free
+#  rebuild of that data — stays tracked for provenance.)
 scripts/.qimai_cookie*
+scripts/qimai_gui.py
+scripts/fetch_qimai_today.py
+scripts/qimai_daily.ps1
+qimai_daily.bat
 
 # CN scrape working files (the merged data/cn_revenue.json + cn_monthly.json are committed)
 data/cn_shards/
