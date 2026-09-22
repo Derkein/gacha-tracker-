@@ -24,19 +24,27 @@ APPID = {"genshin":"1467190251","hsr":"1523037824","zzz":"1606359076",
          "wuwa":"6450693428","endfield":"6753859465","nte":"6514281568"}
 GROUPS = [["genshin","hsr","zzz"], ["wuwa","endfield","nte"]]   # 3/day free cap → rotate
 
-# Runs in the page: wait for the Vue app, bail if the 3/app cap or a login wall is up,
-# click the "近一个月" (last month) preset, then read the daily series the page loaded.
+# Runs in the page: wait for the Vue app's income component, tell apart the three failure
+# modes (not logged in / member-cap / page changed) so the log says which, then click the
+# "近一个月" (last month) preset and read the daily series the page loaded. Qimai is Vue 2, so
+# the data lives on a component's $data.downloadData; only a logged-in session mounts it.
 EXTRACT = r"""
 async () => {
   const sleep = ms => new Promise(r => setTimeout(r, ms));
   const comp = () => [...document.querySelectorAll('*')].map(el => el.__vue__)
       .find(v => v && v.$data && ('downloadData' in v.$data));
-  for (let k = 0; k < 60 && !comp(); k++) await sleep(200);
-  const locked = [...document.querySelectorAll('*')].some(e =>
-      e.children.length === 0 && /每日仅支持查看|开通会员|尚未登录/.test(e.textContent));
-  if (locked) return { locked: true };
+  for (let k = 0; k < 90 && !comp(); k++) await sleep(200);
   const t0 = comp();
-  if (!t0) return { error: 'no component' };
+  if (!t0) {
+    // No data component. Say WHY: a logged-out page still shows the 登录/注册 buttons and
+    // never mounts the income component; the member cap shows a 开通会员/会员专享 notice.
+    const txt = (document.body && document.body.innerText) || '';
+    const loginBtn = [...document.querySelectorAll('a,span,button,li')].some(
+        e => e.children.length === 0 && /^登\s*录$/.test(e.textContent.trim()));
+    if (/每日仅支持查看|开通会员|会员专享|尚未开通/.test(txt)) return { error: 'capped' };
+    if (loginBtn || /尚未登录|请先?登录|立即登录/.test(txt))   return { error: 'loggedout' };
+    return { error: 'no-data-component' };            // page structure changed
+  }
   const btn = [...document.querySelectorAll('a,span,li,div')]
       .find(e => e.children.length === 0 && e.textContent.trim() === '近一个月');
   if (btn) btn.click();
@@ -97,10 +105,16 @@ def main():
         cookies.append({"name": k, "value": v, "domain": ".qimai.cn", "path": "/"})
 
     with sync_playwright() as pw:
-        browser = pw.chromium.launch()
-        ctx = browser.new_context(user_agent=(
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
-            "(KHTML, like Gecko) Chrome/124.0 Safari/537.36"))
+        # Qimai serves a logged-out page to an obvious bot, so soften the headless
+        # fingerprint: hide navigator.webdriver and present a plausible zh-CN desktop. This
+        # only makes our own logged-in session look like a normal browser — it does not touch
+        # or forge Qimai's request signature (its own JS still computes that).
+        browser = pw.chromium.launch(args=["--disable-blink-features=AutomationControlled"])
+        ctx = browser.new_context(
+            user_agent=("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                        "(KHTML, like Gecko) Chrome/124.0 Safari/537.36"),
+            locale="zh-CN", timezone_id="Asia/Shanghai", viewport={"width": 1366, "height": 900})
+        ctx.add_init_script("Object.defineProperty(navigator,'webdriver',{get:()=>undefined});")
         ctx.add_cookies(cookies)
         page = ctx.new_page()
         total_added = 0
@@ -111,10 +125,20 @@ def main():
                 res = page.evaluate(EXTRACT)
             except Exception as e:
                 print(f"{tag}: page error — {e}", file=sys.stderr); continue
-            if res.get("locked"):
-                print(f"{tag}: locked (3-app/day cap or logged out) — skipping", file=sys.stderr); continue
-            if res.get("error") or not res.get("rows"):
-                print(f"{tag}: {res.get('error', 'no rows returned')}", file=sys.stderr); continue
+            err = res.get("error")
+            if err == "loggedout":
+                # Every game will be the same this run, so stop and say so loudly.
+                print(f"{tag}: NOT LOGGED IN — Qimai rejected the cookie. It usually means the "
+                      f"session is bound to the machine/IP where you logged in (a home cookie "
+                      f"won't work from GitHub's servers) or the login simply expired. Re-copy a "
+                      f"fresh Cookie into the QIMAI_COOKIE secret; if it still fails here but "
+                      f"works when you run this script on your own PC, the session is IP-bound — "
+                      f"run it locally (Task Scheduler) instead of in Actions.", file=sys.stderr)
+                break
+            if err == "capped":
+                print(f"{tag}: member/3-app daily cap reached — skipping", file=sys.stderr); continue
+            if err or not res.get("rows"):
+                print(f"{tag}: {err or 'no rows returned'}", file=sys.stderr); continue
             added, note = merge(tag, res["rows"])
             total_added += added
             print(f"{tag}: +{added} new day(s)" + (f" — {note}" if note else ""))
