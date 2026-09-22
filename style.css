@@ -182,10 +182,10 @@ a{color:inherit}
 .partialbadge{display:block; width:max-content; margin:2px 0 0 auto; font-size:8.5px; font-weight:700; letter-spacing:.03em;
   color:var(--muted); border:1px solid var(--border); border-radius:5px; padding:0 4px; text-transform:uppercase}
 /* Sensor Tower "assumed data" disclaimer above the chart */
-.stnote,.cnnote{margin:2px 2px 12px; padding:9px 12px; font-size:12px; line-height:1.5; color:var(--ink2);
+.stnote,.cnnote,.qmnote{margin:2px 2px 12px; padding:9px 12px; font-size:12px; line-height:1.5; color:var(--ink2);
   background:var(--track); border:1px solid var(--border); border-radius:9px}
-.stnote b,.cnnote b{color:var(--ink)}
-.stnote .pill,.cnnote .pill{font-size:9px; font-weight:700; letter-spacing:.03em; color:var(--muted); border:1px solid var(--border);
+.stnote b,.cnnote b,.qmnote b{color:var(--ink)}
+.stnote .pill,.cnnote .pill,.qmnote .pill{font-size:9px; font-weight:700; letter-spacing:.03em; color:var(--muted); border:1px solid var(--border);
   border-radius:5px; padding:1px 4px; text-transform:uppercase; white-space:nowrap}
 /* portion of a bar earned while sharing the day's revenue with another banner */
 .barfill .shared{position:absolute; right:0; top:0; bottom:0; z-index:1;
@@ -305,6 +305,11 @@ tr.clk{cursor:pointer} tr.clk:hover td{background:var(--track)}
 .cn-chip.est{color:var(--muted); font-weight:650}
 @media (prefers-color-scheme:dark){ .cn-chip{color:#f08a99} }
 :root[data-theme=dark] .cn-chip{color:#f08a99}
+.qm-chip{font-size:11px; font-weight:750; font-variant-numeric:tabular-nums; white-space:nowrap;
+  color:#1f9e57; background:var(--surface2); border:1px solid var(--border); border-radius:999px;
+  padding:1px 8px; cursor:help}
+@media (prefers-color-scheme:dark){ .qm-chip{color:#4fd08a} }
+:root[data-theme=dark] .qm-chip{color:#4fd08a}
 /* "mixed basis" — a run spanning the Nov 2023 总收入 -> 总流水 change */
 .partialbadge.mixbadge{color:#b0384a; border-color:rgba(176,56,74,.4)}
 @media (prefers-color-scheme:dark){ .partialbadge.mixbadge{color:#f08a99; border-color:rgba(240,138,153,.4)} }
@@ -551,37 +556,56 @@ tr.clk{cursor:pointer} tr.clk:hover td{background:var(--track)}
 .pd-sub{font-size:11.5px; color:var(--muted); margin-top:3px; font-variant-numeric:tabular-nums}
 
 /* by-month: rich month cards — game-i vs daily-rank vs Sensor Tower, plus per-banner split */
-.mc{background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:13px 16px; margin:0 0 12px}
-/* by-Month: two cards per row on desktop. Rows stretch so paired cards match height;
-   the lighter card centers its body. A pair only has room for four KPI tiles once the
-   page is wide enough to reach the .wrap cap above, so below that fall back to one card
-   per row rather than letting a tile overflow. */
+.mc{background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:14px 17px 15px; margin:0 0 12px; box-shadow:0 1px 3px rgba(0,0,0,.06); container:mc / inline-size}
+/* by-Month: two cards per row on desktop. Paired cards STRETCH to the same height so their
+   bottoms line up; a lighter month's spare room sits at the BOTTOM of its own card (its
+   banners stay top-aligned, level with the neighbour's top row) rather than centred or
+   leaving a ragged gap next to a heavier neighbour. Uniform 14px gaps.
+   A pair only has room for four KPI tiles once the page is wide enough to reach the .wrap cap
+   above, so below that fall back to one card per row rather than letting a tile overflow. */
 .mc-body{display:flex; flex-direction:column}
-@media (min-width:1290px){
-  body[data-view="month"] .chart{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:12px 14px; align-items:stretch; min-width:0}
+/* by-Month layout (2026-09): a fixed TWO-column grid at the NORMAL reading width — by-Month
+   no longer breaks out to full screen, so it's not the only view that does. Cards are
+   TOP-aligned (natural height, tops level, no equal-height stretch); each is wide enough to
+   sit its banners two-up, and each banner lays its four sources as a 2×2 square. */
+@media (min-width:820px){
+  body[data-view="month"] .chart{display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:14px; align-items:start; min-width:0}
   body[data-view="month"] .chart>.mfilter,
   body[data-view="month"] .chart>.yr-note,
   body[data-view="month"] .chart>.mo-hint,
   body[data-view="month"] .chart>.mo-warn,
   body[data-view="month"] .chart>.yhead{grid-column:1 / -1}
-  body[data-view="month"] .mc{margin:0; display:flex; flex-direction:column}
-  body[data-view="month"] .mc .mc-body{flex:1; justify-content:center}
+  body[data-view="month"] .mc{margin:0}
 }
 /* by-Year / by-Version: with the "vs" tile gone, let the two remaining KPI tiles fill the width */
 .yc-kpis{flex:1 1 auto; justify-content:flex-end}
 .yc-kpis .mck{flex:1 1 0; min-width:150px; max-width:270px}
 .mc-hd{display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:10px 16px}
-.mc-month{font-size:18px; font-weight:800; letter-spacing:-.02em; white-space:nowrap}
+.mc-month{font-size:19px; font-weight:800; letter-spacing:-.02em; white-space:nowrap; display:inline-flex; align-items:center; gap:9px}
+.mc-month::before{content:""; width:4px; height:17px; border-radius:2px; background:var(--accent); flex:none}
 .mc-yr{font-size:13px; font-weight:600; color:var(--muted); margin-left:2px}
 .mc-kpis{display:flex; flex-wrap:wrap; gap:8px}
-/* Four tiles read as one row. They size to their CONTENT rather than splitting the
-   width evenly -- equal thirds left the short tiles half empty while the CN one, whose
-   label and range are the longest, truncated. They may still shrink if the row is tight. */
-.mc-kpis{flex:1 1 100%; flex-wrap:nowrap; gap:6px}
-.mc-kpis .mck{flex:0 1 auto; min-width:0; padding:5px 9px}
+/* The KPI tiles read as one row and GROW to fill the card width (flex-grow), so no dead
+   space is left on the right. flex-basis stays auto (content size) so they only ever grow
+   from their natural width -- the CN tile, whose label + range are longest, stays widest
+   and never truncates; equal thirds would have. They still shrink if the row gets tight. */
+.mc-kpis{flex:1 1 100%; flex-wrap:wrap; gap:6px}
+.mc-kpis .mck{flex:1 1 auto; min-width:0; padding:6px 10px 6px 12px; box-shadow:inset 3px 0 0 var(--kpi-a, var(--base))}
 .mc-kpis .mck-k,.mc-kpis .mck-n{white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
 .mc-kpis .mck-v{white-space:nowrap}
-@media (max-width:720px){ .mc-kpis{flex-wrap:wrap} .mc-kpis .mck{flex:0 1 auto} }
+/* each KPI tile carries a left accent bar in its source's colour — the same language as the
+   banner source chips. game-i (the headline) takes the game's own accent; the reconstruction
+   a neutral; Qimai/Sensor Tower/CN their signatures. */
+.mc-kpis .mck.gi{--kpi-a:var(--accent)}
+.mc-kpis .mck.re{--kpi-a:var(--ink2)}
+.mc-kpis .mck.qm{--kpi-a:#1f9e57}
+.mc-kpis .mck.st{--kpi-a:#0f8a9e}
+.mc-kpis .mck.cn{--kpi-a:#b0384a}
+@media (prefers-color-scheme:dark){ .mc-kpis .mck.qm{--kpi-a:#4fd08a} .mc-kpis .mck.st{--kpi-a:#4fc6da} .mc-kpis .mck.cn{--kpi-a:#f08a99} }
+:root[data-theme=dark] .mc-kpis .mck.qm{--kpi-a:#4fd08a}
+:root[data-theme=dark] .mc-kpis .mck.st{--kpi-a:#4fc6da}
+:root[data-theme=dark] .mc-kpis .mck.cn{--kpi-a:#f08a99}
+@media (max-width:720px){ .mc-kpis{flex-wrap:wrap} .mc-kpis .mck{flex:1 1 auto} }
 .mck{display:flex; flex-direction:column; gap:1px; padding:6px 12px; background:var(--surface2);
   border:1px solid var(--border); border-radius:10px; min-width:100px}
 .mck-k{font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.03em; color:var(--muted)}
@@ -593,6 +617,9 @@ tr.clk{cursor:pointer} tr.clk:hover td{background:var(--track)}
 :root[data-theme=dark] .mck.cn{border-color:rgba(240,138,153,.4)} :root[data-theme=dark] .mck.cn .mck-v{color:#f08a99}
 @media (prefers-color-scheme:dark){ .mck.st{border-color:rgba(79,198,218,.4)} .mck.st .mck-v{color:#4fc6da} }
 :root[data-theme=dark] .mck.st{border-color:rgba(79,198,218,.4)} :root[data-theme=dark] .mck.st .mck-v{color:#4fc6da}
+.mck.qm{border-color:rgba(31,158,87,.42)} .mck.qm .mck-v{color:#1f9e57}
+@media (prefers-color-scheme:dark){ .mck.qm{border-color:rgba(79,208,138,.4)} .mck.qm .mck-v{color:#4fd08a} }
+:root[data-theme=dark] .mck.qm{border-color:rgba(79,208,138,.4)} :root[data-theme=dark] .mck.qm .mck-v{color:#4fd08a}
 .mc-stack{display:flex; height:12px; border-radius:7px; overflow:hidden; margin:13px 0 4px; background:var(--track)}
 .mcs{position:relative; height:100%; min-width:3px; animation:barGrow .6s cubic-bezier(.2,.7,.2,1) both}
 .mcs + .mcs{box-shadow:inset 1.5px 0 0 rgba(255,255,255,.6)}   /* white divider between banners (matches .barfill .shared) */
@@ -600,37 +627,55 @@ tr.clk{cursor:pointer} tr.clk:hover td{background:var(--track)}
   box-shadow:inset 1px 0 0 rgba(255,255,255,.65);
   background-image:repeating-linear-gradient(-45deg, rgba(0,0,0,.30) 0 2px, rgba(255,255,255,.16) 2px 6px)}
 .mcs.unlisted{background:repeating-linear-gradient(45deg,var(--track),var(--track) 4px,var(--border) 4px,var(--border) 8px)}
-.mc-banners{display:flex; flex-direction:column; gap:2px; margin-top:8px}
-.mcb{display:grid; grid-template-columns:34px 1fr; align-items:start; gap:11px; padding:7px 6px; border-radius:9px; cursor:pointer; transition:background .12s}
-.mcb:hover{background:var(--surface2)}
-.mcb-av{position:relative; width:34px; height:34px}
-.mcb-av img{width:34px; height:34px; border-radius:50%; object-fit:cover; background:var(--track);
-  box-shadow:0 0 0 2px var(--surface),0 0 0 3px var(--av-ring,var(--accent))}
+/* Banners sit two-per-line in a uniform grid — every banner the same square size, each laying
+   its sources as a 2×2 (see .mcb-vals). An odd banner keeps its square and leaves a clean gap;
+   a month with a single banner spans the full width (:only-child). */
+.mc-banners{display:grid; grid-template-columns:repeat(auto-fill, minmax(230px,1fr)); gap:12px; margin-top:14px}
+.mcb{display:grid; grid-template-columns:40px 1fr; align-items:start; gap:12px; padding:11px 13px; border-radius:13px;
+  background:var(--surface2); border:1px solid var(--border); cursor:pointer;
+  transition:border-color .14s, box-shadow .14s, transform .1s}
+.mc-banners>.mcb:only-child{grid-column:1 / -1}
+.mcb:hover{border-color:var(--av-ring,var(--accent)); box-shadow:0 3px 14px rgba(0,0,0,.16); transform:translateY(-1px)}
+.mcb-av{position:relative; width:40px; height:40px}
+.mcb-av img{width:40px; height:40px; border-radius:50%; object-fit:cover; background:var(--track);
+  box-shadow:0 0 0 2px var(--surface2),0 0 0 3.5px var(--av-ring,var(--accent))}
 .mcb-av img.extra{display:none}
-.mcb-av .mono{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;
-  font-weight:800;font-size:13px;color:#fff;background:var(--av-ring,var(--accent))}
-.mcb-meta{min-width:0}
-.mcb-nm{display:flex; align-items:baseline; gap:7px; flex-wrap:wrap; line-height:1.2}
-.mcb-nm b{font-size:13.5px; letter-spacing:-.01em}
-.mcb-en{font-size:11px; color:var(--muted)}
-.mcb-vals{display:flex; flex-wrap:wrap; gap:3px 14px; margin-top:3px; font-variant-numeric:tabular-nums}
-.mcb-gi{font-size:12.5px; font-weight:750}
-.mcb-gi.below{color:var(--muted); font-style:italic; font-weight:600}
-.mcb-pct{color:var(--muted); font-weight:600; font-size:11px}
-.mcb-of{color:var(--muted); font-weight:500; font-size:10.5px; font-style:italic; margin-left:4px}
-.mcb-st{font-size:12px; font-weight:700; color:#0f8a9e}
-.mcb-cn{font-size:12px; font-weight:700; color:#b0384a}
+.mcb-av .mono{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-weight:800;font-size:14px;color:#fff;background:var(--av-ring,var(--accent))}
+.mcb-meta{min-width:0; container:mcb / inline-size}
+/* base font sits on the row so JS (fitBannerNames) can shrink the whole name+EN with one
+   font-size when a long name would wrap to a second line; the parts scale in em. */
+.mcb-nm{display:flex; align-items:baseline; gap:7px; flex-wrap:wrap; line-height:1.2; font-size:13.5px}
+.mcb-nm b{font-size:1em; letter-spacing:-.01em}
+.mcb-en{font-size:.82em; color:var(--muted)}
+/* Per-banner source figures. The two MEASURED sources (game-i, Qimai — both short) sit two-up
+   on the top row; the two ESTIMATED sources (Sensor Tower, CN) each span the full card width
+   below. In a compact two-up card the columns are only ~110px, which clipped CN's long range
+   ("≈CN¥922M–1.10B") — giving CN (and ST) the whole width fixes that while keeping the square,
+   gridded look. Each cell = uppercase label · figure · muted qualifier, left accent bar in the
+   source's colour. */
+.mcb-vals{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:6px 8px; margin-top:6px; font-variant-numeric:tabular-nums}
+.mcv{display:flex; flex-direction:column; gap:1px; min-width:0; padding:4px 8px; border-radius:7px; background:var(--surface); box-shadow:inset 2.5px 0 0 var(--mcv-a, var(--border))}
+.mcv.st,.mcv.cn{grid-column:1 / -1}
+.mcv-k{font-size:9px; font-weight:800; text-transform:uppercase; letter-spacing:.03em; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.mcv-v{font-size:12.5px; font-weight:750; letter-spacing:-.01em; color:var(--ink); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.mcv-x{font-size:9.5px; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.mcv.gi{--mcv-a:var(--ink2)}
+.mcv.gi.below .mcv-v{color:var(--muted); font-style:italic; font-weight:600}
+.mcv.qm{--mcv-a:#1f9e57} .mcv.qm .mcv-v{color:#1f9e57}
+.mcv.st{--mcv-a:#0f8a9e} .mcv.st .mcv-v{color:#0f8a9e}
+.mcv.cn{--mcv-a:#b0384a} .mcv.cn .mcv-v{color:#b0384a}
+.mcv.na .mcv-v{color:var(--muted); font-weight:600}
 .pd-h-cn,.pd-tot-cn .pd-tot-v{color:#b0384a}
 .pd-hd-cn{border-color:rgba(176,56,74,.42)}
 @media (prefers-color-scheme:dark){ .pd-h-cn,.pd-tot-cn .pd-tot-v{color:#f08a99} .pd-hd-cn{border-color:rgba(240,138,153,.4)} }
 :root[data-theme=dark] .pd-h-cn,:root[data-theme=dark] .pd-tot-cn .pd-tot-v{color:#f08a99}
 :root[data-theme=dark] .pd-hd-cn{border-color:rgba(240,138,153,.4)}
-@media (prefers-color-scheme:dark){ .mcb-cn{color:#f08a99} }
-:root[data-theme=dark] .mcb-cn{color:#f08a99}
-.mcb-tag{color:var(--muted); font-weight:600; font-size:10px; font-style:italic}
 .mcb-pend{font-size:11px; font-weight:700; font-style:italic; color:var(--accent); opacity:.9}
-@media (prefers-color-scheme:dark){ .mcb-st{color:#4fc6da} }
-:root[data-theme=dark] .mcb-st{color:#4fc6da}
+@media (prefers-color-scheme:dark){ .mcv.qm{--mcv-a:#4fd08a} .mcv.qm .mcv-v{color:#4fd08a} .mcv.st{--mcv-a:#4fc6da} .mcv.st .mcv-v{color:#4fc6da} .mcv.cn{--mcv-a:#f08a99} .mcv.cn .mcv-v{color:#f08a99} }
+:root[data-theme=dark] .mcv.qm{--mcv-a:#4fd08a} :root[data-theme=dark] .mcv.qm .mcv-v{color:#4fd08a}
+:root[data-theme=dark] .mcv.st{--mcv-a:#4fc6da} :root[data-theme=dark] .mcv.st .mcv-v{color:#4fc6da}
+:root[data-theme=dark] .mcv.cn{--mcv-a:#f08a99} :root[data-theme=dark] .mcv.cn .mcv-v{color:#f08a99}
 .mc-empty{font-size:11.5px; color:var(--muted); font-style:italic; margin-top:8px}
 /* per-banner detail line on the card */
 .mcb-det{display:flex; flex-wrap:wrap; gap:2px 10px; margin-top:3px; font-size:11px; color:var(--muted); font-variant-numeric:tabular-nums}
@@ -696,8 +741,9 @@ tr.clk{cursor:pointer} tr.clk:hover td{background:var(--track)}
 .pd-h{font-size:11.5px; font-weight:800; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); margin:18px 0 9px; padding-top:14px; border-top:1px solid var(--grid)}
 .pd-h-gi{color:#d99b1f; border-top:0; padding-top:0; margin-top:6px}   /* game-i (JP ¥) section — first, so no divider */
 .pd-h-st{color:#2f9fb5}                                                 /* Sensor Tower ($) section */
-@media (prefers-color-scheme:dark){ .pd-h-gi{color:#eec24a} .pd-h-st{color:#4fc6da} }
-:root[data-theme=dark] .pd-h-gi{color:#eec24a} :root[data-theme=dark] .pd-h-st{color:#4fc6da}
+.pd-h-qm{color:#1f9e57}                                                 /* Qimai (China iOS $) section */
+@media (prefers-color-scheme:dark){ .pd-h-gi{color:#eec24a} .pd-h-st{color:#4fc6da} .pd-h-qm{color:#4fd08a} }
+:root[data-theme=dark] .pd-h-gi{color:#eec24a} :root[data-theme=dark] .pd-h-st{color:#4fc6da} :root[data-theme=dark] .pd-h-qm{color:#4fd08a}
 :root[data-theme=light] .pd-h-gi{color:#d99b1f} :root[data-theme=light] .pd-h-st{color:#2f9fb5}
 /* section header with a prominent month total on the right (game-i / Sensor Tower) */
 .pd-hd{display:flex; align-items:flex-start; justify-content:space-between; gap:18px; margin:18px 0 9px; padding-top:14px; border-top:1px solid var(--grid)}
@@ -710,7 +756,8 @@ tr.clk{cursor:pointer} tr.clk:hover td{background:var(--track)}
 .pd-tot-l{font-size:10px; color:var(--muted); margin-top:5px; text-transform:uppercase; letter-spacing:.05em; font-weight:600}
 .pd-tot-gi{color:#d99b1f}
 .pd-tot-st{color:#2f9fb5}
-@media (prefers-color-scheme:dark){ .pd-tot-gi{color:#eec24a} .pd-tot-st{color:#4fc6da} }
+.pd-tot-qm{color:#1f9e57}
+@media (prefers-color-scheme:dark){ .pd-tot-gi{color:#eec24a} .pd-tot-st{color:#4fc6da} .pd-tot-qm{color:#4fd08a} }
 :root[data-theme=dark] .pd-tot-gi{color:#eec24a} :root[data-theme=dark] .pd-tot-st{color:#4fc6da}
 :root[data-theme=light] .pd-tot-gi{color:#d99b1f} :root[data-theme=light] .pd-tot-st{color:#2f9fb5}
 @media (max-width:560px){ .pd-tot-v{font-size:22px} }
@@ -806,21 +853,30 @@ tr.clk{cursor:pointer} tr.clk:hover td{background:var(--track)}
 .ag-gi .ag-val{color:var(--ink)}
 .ag-st .ag-val{color:#0f8a9e}
 .ag-cn .ag-val{color:#b0384a}
+.ag-qm .ag-val{color:#1f9e57}
+.ag-jr .ag-val{color:#5b6ee1} .ag-cr .ag-val{color:#9a4bc9}   /* JP rank = indigo, CN rank = violet */
 .ag-na .ag-val{color:var(--muted); font-weight:600; font-style:italic}
-@media (prefers-color-scheme:dark){ .ag-st .ag-val{color:#4fc6da} .ag-cn .ag-val{color:#f08a99} }
+@media (prefers-color-scheme:dark){ .ag-st .ag-val{color:#4fc6da} .ag-cn .ag-val{color:#f08a99} .ag-qm .ag-val{color:#4fd08a} .ag-jr .ag-val{color:#8592f0} .ag-cr .ag-val{color:#c48ae8} }
 :root[data-theme=dark] .ag-st .ag-val{color:#4fc6da}
 :root[data-theme=dark] .ag-cn .ag-val{color:#f08a99}
+:root[data-theme=dark] .ag-qm .ag-val{color:#4fd08a}
+:root[data-theme=dark] .ag-jr .ag-val{color:#8592f0}
+:root[data-theme=dark] .ag-cr .ag-val{color:#c48ae8}
 .ag-track{height:9px; background:var(--track); border-radius:5px; overflow:hidden}
 .ag-track span{display:block; height:100%; border-radius:5px; animation:barGrow .45s cubic-bezier(.2,.7,.2,1) both}
 .ag-pct{font-size:11px; font-weight:700; font-variant-numeric:tabular-nums; text-align:right; color:var(--ink2)}
 .ag-gi .ag-track span{background:var(--accent)}
 .ag-st .ag-track span{background:#0f8a9e}
 .ag-cn .ag-track span{background:#b0384a}
+.ag-qm .ag-track span{background:#1f9e57}
+.ag-jr .ag-track span{background:#5b6ee1} .ag-cr .ag-track span{background:#9a4bc9}
 .ag-na .ag-track{opacity:.45}
 .ag-na .ag-pct{color:var(--muted)}
-@media (prefers-color-scheme:dark){ .ag-st .ag-track span{background:#4fc6da} .ag-cn .ag-track span{background:#f08a99} }
+@media (prefers-color-scheme:dark){ .ag-st .ag-track span{background:#4fc6da} .ag-cn .ag-track span{background:#f08a99} .ag-jr .ag-track span{background:#8592f0} .ag-cr .ag-track span{background:#c48ae8} }
 :root[data-theme=dark] .ag-st .ag-track span{background:#4fc6da}
 :root[data-theme=dark] .ag-cn .ag-track span{background:#f08a99}
+:root[data-theme=dark] .ag-jr .ag-track span{background:#8592f0}
+:root[data-theme=dark] .ag-cr .ag-track span{background:#c48ae8}
 
 .ag-verdict{display:flex; align-items:center; justify-content:flex-end; min-width:0}
 .ag-chip{font-size:10px; font-weight:750; letter-spacing:.02em; border-radius:999px;
@@ -842,9 +898,28 @@ tr.clk{cursor:pointer} tr.clk:hover td{background:var(--track)}
 :root[data-theme=dark] .ag-chip.nocon{color:#f0857a}
 :root[data-theme=dark] .ag-chip.agree.mid{color:var(--ink2)}
 :root[data-theme=dark] .ag-chip.agree.lo{color:var(--muted)}
+/* ---- Sources view: month/banner modes ----
+   Banner mode needs a wider first column for the avatar + banner name. */
+body[data-agmode="banner"] .ag-head,
+body[data-agmode="banner"] .ag-row{grid-template-columns:206px 1fr 196px}
+/* month rows: a small avatar strip of the banners that ran that month */
+.ag-mobans{display:flex; flex-wrap:wrap; gap:3px; margin-top:4px}
+.ag-bic{width:19px; height:19px; border-radius:50%; overflow:hidden; background:var(--track);
+  box-shadow:0 0 0 1px var(--border); flex:0 0 19px; cursor:pointer}
+.ag-bic img{width:100%; height:100%; object-fit:cover; display:block}
+.ag-bic .mono{display:flex; align-items:center; justify-content:center; width:100%; height:100%;
+  font-size:9px; font-weight:800; color:#fff; background:var(--muted)}
+.ag-bicmore{font-size:9.5px; font-weight:700; color:var(--muted); align-self:center; margin-left:1px}
+/* banner rows: avatar + name in the first column (reuses .mcb-av for the avatar) */
+.ag-bmo{flex-direction:row; align-items:center; gap:10px; white-space:normal}
+.ag-bmo .mcb-av{flex:0 0 40px}
+.ag-bnm{display:flex; flex-direction:column; gap:1px; min-width:0}
+.ag-bnm b{font-size:12.5px; font-weight:750; line-height:1.15; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.ag-bsub{font-size:9.5px; font-weight:600; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
 @media (max-width:720px){
   .ag-head{display:none}
-  .ag-row{grid-template-columns:1fr; gap:7px}
+  .ag-row,
+  body[data-agmode="banner"] .ag-row{grid-template-columns:1fr; gap:7px}
   .ag-verdict{justify-content:flex-start}
   .ag-src{grid-template-columns:26px 1fr 30px 86px; gap:7px}
 }
