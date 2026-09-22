@@ -97,19 +97,31 @@ def get_cookie():
     return ""
 
 def main():
+    # The logs use → and — ; force UTF-8 so they don't blow up on a cp1252 cmd.exe console.
+    for stream in (sys.stdout, sys.stderr):
+        try: stream.reconfigure(encoding="utf-8", errors="replace")
+        except Exception: pass
     cookie = get_cookie()
     if not cookie:
         print("No cookie — set QIMAI_COOKIE or create scripts/.qimai_cookie", file=sys.stderr)
         sys.exit(2)
     from playwright.sync_api import sync_playwright
 
-    yday = datetime.datetime.utcnow().timetuple().tm_yday
-    group = GROUPS[yday % 2]
-    games = [g for g in group if load(g) is not None]   # only games already backfilled
-    if not games:
-        print(f"rotation group {yday % 2} ({group}) has no gathered games yet — skipping")
-        return
-    print(f"rotation group {yday % 2} → {games}")
+    # Normally the day-of-year picks the 3-game rotation group. Passing tags on the command
+    # line overrides that (e.g. `fetch_qimai_today.py genshin hsr zzz` to test/backfill a
+    # specific set) — mind Qimai's 3-app/day cap when you do.
+    override = [a for a in sys.argv[1:] if a in APPID]
+    if override:
+        games = [g for g in override if load(g) is not None]
+        print(f"manual games → {games}")
+    else:
+        yday = datetime.datetime.utcnow().timetuple().tm_yday
+        group = GROUPS[yday % 2]
+        games = [g for g in group if load(g) is not None]   # only games already backfilled
+        if not games:
+            print(f"rotation group {yday % 2} ({group}) has no gathered games yet — skipping")
+            return
+        print(f"rotation group {yday % 2} → {games}")
 
     cookies = []
     for kv in cookie.split(";"):
