@@ -83,10 +83,24 @@ def merge(tag, rows):
                   ensure_ascii=False, separators=(",", ":"))
     return added, None
 
+def get_cookie():
+    """The Qimai session Cookie header. Prefer the QIMAI_COOKIE env var (CI / ad-hoc runs);
+    fall back to a gitignored scripts/.qimai_cookie file, which is how the scheduled LOCAL
+    run gets it without exporting an env var. (Qimai binds the session to the login IP, so
+    the daily run has to happen from the owner's own machine, not a datacenter.)"""
+    c = os.environ.get("QIMAI_COOKIE", "").strip()
+    if c:
+        return c
+    p = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".qimai_cookie")
+    if os.path.exists(p):
+        return io.open(p, encoding="utf-8").read().strip()
+    return ""
+
 def main():
-    cookie = os.environ.get("QIMAI_COOKIE", "").strip()
+    cookie = get_cookie()
     if not cookie:
-        print("QIMAI_COOKIE not set — nothing to do", file=sys.stderr); sys.exit(2)
+        print("No cookie — set QIMAI_COOKIE or create scripts/.qimai_cookie", file=sys.stderr)
+        sys.exit(2)
     from playwright.sync_api import sync_playwright
 
     yday = datetime.datetime.utcnow().timetuple().tm_yday

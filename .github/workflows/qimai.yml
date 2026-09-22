@@ -1,18 +1,17 @@
 name: Qimai revenue (daily)
 
-# Qimai's China-iPhone per-banner revenue layer. Kept apart from the data-refresh workflow
-# on purpose — that one also runs on every push, and this must NOT: it drives a logged-in
-# headless browser against Qimai's free 3-app/day account, so it may run at most once a day.
-# The six games rotate (group A / group B by day-of-year parity) to stay inside that cap.
+# Qimai's China-iPhone per-banner revenue layer. Drives a logged-in headless browser against
+# Qimai's free 3-app/day account; the six games rotate (group A / group B by day-of-year
+# parity) to stay inside that cap.
 #
-# Timing: 16:45 UTC — just after the China chart job (16:30), so the finished China day is
-# the one Qimai has closed. Auth is a session cookie in the QIMAI_COOKIE secret; refresh it
-# ~monthly (Qimai logins use a CAPTCHA, so it can't be automated). Nothing here forges
-# Qimai's request signature — a real browser runs Qimai's own JS.
+# ⚠ MANUAL ONLY — no daily schedule. Qimai binds the login session to the IP it was created
+# on, so a cookie captured at home is REJECTED from GitHub's datacenter (the run logs
+# "NOT LOGGED IN"). The real daily run therefore happens LOCALLY on the owner's machine via
+# scripts/qimai_daily.ps1 (Windows Task Scheduler). This workflow is kept only for a manual
+# test from the Actions tab; set the QIMAI_COOKIE secret first. Nothing here forges Qimai's
+# request signature — a real browser runs Qimai's own JS.
 on:
-  schedule:
-    - cron: "45 16 * * *"     # 00:45 China / 01:45 JST, daily
-  workflow_dispatch:          # manual run from the Actions tab
+  workflow_dispatch:          # manual run from the Actions tab (see note above — CI can't auth)
 
 concurrency:
   group: qimai                # never two of these at once

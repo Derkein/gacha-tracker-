@@ -9,6 +9,9 @@ __pycache__/
 # scraped video cache for scripts/scrape_bilibili_cn.py
 .bilicache/
 
+# local Qimai session cookie for the scheduled daily fetch — NEVER commit this
+scripts/.qimai_cookie
+
 # CN scrape working files (the merged data/cn_revenue.json + cn_monthly.json are committed)
 data/cn_shards/
 data/cn_verify/
