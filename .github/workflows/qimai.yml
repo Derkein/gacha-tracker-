@@ -1,0 +1,67 @@
+name: Qimai revenue (daily)
+
+# Qimai's China-iPhone per-banner revenue layer. Kept apart from the data-refresh workflow
+# on purpose — that one also runs on every push, and this must NOT: it drives a logged-in
+# headless browser against Qimai's free 3-app/day account, so it may run at most once a day.
+# The six games rotate (group A / group B by day-of-year parity) to stay inside that cap.
+#
+# Timing: 16:45 UTC — just after the China chart job (16:30), so the finished China day is
+# the one Qimai has closed. Auth is a session cookie in the QIMAI_COOKIE secret; refresh it
+# ~monthly (Qimai logins use a CAPTCHA, so it can't be automated). Nothing here forges
+# Qimai's request signature — a real browser runs Qimai's own JS.
+on:
+  schedule:
+    - cron: "45 16 * * *"     # 00:45 China / 01:45 JST, daily
+  workflow_dispatch:          # manual run from the Actions tab
+
+concurrency:
+  group: qimai                # never two of these at once
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  qimai:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5   # v4
+
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065   # v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Playwright + Chromium
+        run: |
+          pip install playwright
+          python -m playwright install --with-deps chromium
+
+      - name: Fetch today's Qimai revenue (rotating 3 games)
+        env:
+          QIMAI_COOKIE: ${{ secrets.QIMAI_COOKIE }}   # account session cookie; refresh ~monthly
+        run: python scripts/fetch_qimai_today.py
+        continue-on-error: true    # a stale cookie or a capped day is a missed day, not a
+                                   # build failure — the commit step just finds nothing new
+
+      - name: Rebuild data/qimai.json from the raw daily
+        run: python scripts/build_qimai.py
+
+      - name: Commit the day
+        run: |
+          git config user.name  "Derkein"
+          git config user.email "55472705+Derkein@users.noreply.github.com"
+          git add data/qimai_daily data/qimai.json
+          if git diff --cached --quiet; then
+            echo "No new Qimai days."
+          else
+            git commit -m "chore: Qimai revenue for $(date -u +%Y-%m-%d)"
+            # other workflows commit to the same branch; land on top of them rather than
+            # failing the push
+            for attempt in 1 2 3; do
+              git pull --rebase origin main && git push && exit 0
+              echo "push attempt $attempt lost a race; retrying"
+              sleep 5
+            done
+            echo "could not push after 3 attempts" >&2
+            exit 1
+          fi
