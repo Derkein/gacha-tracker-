@@ -48,8 +48,17 @@ async () => {
   const btn = [...document.querySelectorAll('a,span,li,div')]
       .find(e => e.children.length === 0 && e.textContent.trim() === '近一个月');
   if (btn) btn.click();
-  await sleep(2400);
-  const t = comp();
+  // Clicking the range re-fetches, so downloadData can briefly be undefined/empty and the
+  // component can remount. Poll for a populated series, then fall back to the pre-click ref
+  // rather than throwing (which happened when a re-fetch of a capped app returned nothing).
+  let t = null;
+  for (let k = 0; k < 20; k++) {
+    t = comp();
+    if (t && Array.isArray(t.downloadData) && t.downloadData.length) break;
+    await sleep(300);
+  }
+  if (!t || !Array.isArray(t.downloadData) || !t.downloadData.length) t = t0;
+  if (!t || !Array.isArray(t.downloadData) || !t.downloadData.length) return { error: 'no-data-after-click' };
   const rows = [...t.downloadData].sort((a, b) => a.time - b.time).map(x => [x.date, x.income]);
   return { rows, device: t.filterParamObj && t.filterParamObj.platform };
 }
