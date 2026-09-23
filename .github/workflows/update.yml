@@ -15,9 +15,13 @@ on:
     - cron: "40 15 * * *"    # 00:40 JST — fallback if the first is delayed/dropped
     - cron: "20 16 * * *"    # 01:20 JST — last-chance fallback
   push:
-    branches: [main]          # refresh data right after every code push
-                              # (no loop: the bot's own GITHUB_TOKEN commit
-                              #  never triggers workflows)
+    branches: [main]          # refresh data right after every CODE push
+    paths-ignore:             # ...but NOT after data-only pushes (the daily Qimai/CN
+      - 'data/**'             # commits, or this workflow's own): re-scraping game-i and
+      - 'icons/**'            # re-verifying ~100 banner-art links on every data commit is
+                              # wasteful. Scheduled runs + code pushes keep data fresh.
+                              # (no loop either way: the bot's GITHUB_TOKEN commit never
+                              #  triggers workflows.)
   workflow_dispatch:          # allow manual runs from the Actions tab
 
 concurrency:

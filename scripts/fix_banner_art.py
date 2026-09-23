@@ -18,9 +18,14 @@ import json, re, ssl, urllib.request, urllib.error
 from datetime import date
 from urllib.parse import quote, urlparse
 from pathlib import Path
+from concurrent.futures import ThreadPoolExecutor
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
+# paimon image URLs verified 200 on a previous run. They are stably hosted and never move,
+# so once good they stay good — caching them means we don't re-request ~100 links every run
+# (the step used to make them all sequentially, which could hang for many minutes).
+CACHE = DATA / "banner_art_ok.json"
 _CTX = ssl.create_default_context(); _CTX.check_hostname = False; _CTX.verify_mode = ssl.CERT_NONE
 
 PAIMON = {
@@ -42,15 +47,26 @@ def _open(url, timeout=25):
         raise
 
 
-def http_status(url):
+def http_status(url, timeout=6):
     """200/4xx from the server, or None if the request itself couldn't complete
-    (timeout / DNS): unknown, not proof of breakage — leave such links alone."""
+    (timeout / DNS): unknown, not proof of breakage — leave such links alone.
+    Short timeout so a hung host costs seconds, not the old 25s × ~100 links."""
     try:
-        return _open(url).status
+        return _open(url, timeout).status
     except urllib.error.HTTPError as e:
         return e.code
     except Exception:
         return None
+
+
+def verify_many(urls, timeout=6, workers=16):
+    """{url: status} for many URLs at once — checked in parallel so the whole step
+    finishes in seconds instead of one-at-a-time over a 25s timeout."""
+    urls = list(urls)
+    if not urls:
+        return {}
+    with ThreadPoolExecutor(max_workers=workers) as ex:
+        return dict(zip(urls, ex.map(lambda u: http_status(u, timeout), urls)))
 
 
 def _norm(s):
@@ -115,27 +131,53 @@ def main():
     if not entries:
         print("[banner-art] no paimon data; leaving art untouched")
         return
-    fixed = checked = 0
-    for b in data["banners"]:
-        if b.get("_synthetic"):
-            continue
-        cur = b.get("banner_img")
-        host = urlparse(cur).netloc if cur else ""
-        # broken = missing, a known-expiring Discord link, or a definitive 4xx
+    try:
+        cache = set(json.loads(CACHE.read_text(encoding="utf-8")))
+    except Exception:
+        cache = set()
+
+    bans = [b for b in data["banners"] if not b.get("_synthetic")]
+    # Round 1 — verify only the "live-looking" current links (present, not a known-expiring
+    # Discord attachment). paimon-hosted links we already trust via the cache aren't re-checked.
+    cur_to_check = {b["banner_img"] for b in bans
+                    if b.get("banner_img") and urlparse(b["banner_img"]).netloc not in DISCORD_HOSTS
+                    and b["banner_img"] not in cache}
+    cur_status = verify_many(cur_to_check)
+
+    # Decide which banners are broken, resolve their paimon replacement, and gather the paimon
+    # URLs still needing a one-time check (everything else is a cache hit → no request).
+    resolved, paimon_to_check = {}, set()
+    for b in bans:
+        cur = b.get("banner_img"); host = urlparse(cur).netloc if cur else ""
         broken = (not cur) or (host in DISCORD_HOSTS)
-        if not broken:
-            checked += 1
-            st = http_status(cur)
+        if not broken and cur not in cache:
+            st = cur_status.get(cur)
             broken = st is not None and st >= 400
         if not broken:
             continue
         url = resolve(b, entries)
-        if url and http_status(url) == 200:
+        if not url:
+            continue
+        resolved[id(b)] = url
+        if url not in cache:
+            paimon_to_check.add(url)
+
+    # Round 2 — verify the not-yet-cached paimon replacements, in parallel.
+    pstatus = verify_many(paimon_to_check)
+
+    fixed = 0
+    for b in bans:
+        url = resolved.get(id(b))
+        if url and (url in cache or pstatus.get(url) == 200):
             b["banner_img"] = url
+            cache.add(url)                          # stable host — remember it for next time
             fixed += 1
     if fixed:
         dfile.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
-    print(f"[banner-art] repaired {fixed} dead banner-art links ({checked} live links verified)")
+    CACHE.write_text(json.dumps(sorted(cache), ensure_ascii=False), encoding="utf-8")
+    print(f"[banner-art] repaired {fixed} links "
+          f"({len(cur_to_check)} live + {len(paimon_to_check)} paimon checked, "
+          f"{len(cache)} known-good cached)")
 
 
 if __name__ == "__main__":
