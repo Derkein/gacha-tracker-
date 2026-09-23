@@ -115,7 +115,14 @@ for tag in GAMES:
         cn_start = bi["start"] - datetime.timedelta(days=lead)
         bans[str(idx)] = {"total":round(btotal[idx]), "start":cn_start.isoformat(),
                           "monthly":mo, "daily":daily}
-    out["games"][tag] = {"cn_lead": lead, "monthly": dict(sorted(monthly.items())), "banners": bans}
+    # first/last China date Qimai actually has data for, so the site can label a banner day
+    # that game-i's (global) calendar reaches but Qimai hasn't posted yet as "no data yet"
+    # rather than a real ¥0 / below-#200 day.
+    cov = sorted(q)
+    out["games"][tag] = {"cn_lead": lead,
+                         "first": cov[0].isoformat() if cov else None,
+                         "last":  cov[-1].isoformat() if cov else None,
+                         "monthly": dict(sorted(monthly.items())), "banners": bans}
     life = round(sum(q.values())); attr = round(sum(btotal.values()))
     print(f"{tag}: lifetime ${life:,} | {len(bans)} banners ${attr:,} ({100*attr/life:.1f}%) | "
           f"daily points {sum(len(v['daily']) for v in bans.values())}")

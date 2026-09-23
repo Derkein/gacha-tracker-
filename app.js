@@ -365,12 +365,18 @@ function qimaiRankInfo(b){
 function qimaiBD(b){
   const qm=bannerQimai(b); if(!qm.daily.length) return null;
   const run=cnRunSeries(b)||[];   // China rank, now aligned to the same China window as the revenue
+  const g=state.qimai&&state.qimai.games&&state.qimai.games[state.tag];
+  const qFirst=(g&&g.first)||null, qLast=(g&&g.last)||null;   // the China dates Qimai has posted
   const s0=new Date((qm.start||b.start)+"T00:00:00");   // China run start (offset from game-i's)
   let cum=0;
-  const days=qm.daily.map((add,i)=>{ cum+=add;
+  const days=qm.daily.map((add,i)=>{
     const dt=new Date(s0); dt.setDate(dt.getDate()+i);
     const iso=`${dt.getFullYear()}-${String(dt.getMonth()+1).padStart(2,"0")}-${String(dt.getDate()).padStart(2,"0")}`;
-    return {i, iso, rank:(run[i]&&run[i].rank!=null)?run[i].rank:null, add, cum}; });
+    // game-i tracks the GLOBAL calendar, which can run a day past Qimai's latest posted day
+    // (or start before Qimai's history) — those days have no estimate yet, not a real ¥0.
+    const noData = (qLast!=null && iso>qLast) || (qFirst!=null && iso<qFirst);
+    if(!noData) cum+=add;                        // a pending day doesn't advance the running total
+    return {i, iso, rank:(run[i]&&run[i].rank!=null)?run[i].rank:null, add, cum, noData}; });
   return {days};
 }
 // Front-loading of the REAL daily curve: what share of the run's total landed by day 3,
@@ -2499,7 +2505,11 @@ function dailyBreakdown(b){
   return {days};
 }
 function buildupSVG(bd,b,fmt=G,hitAttr="day"){
-  const days=bd.days, n=days.length, total=days.length?days[days.length-1].cum:(b.rev||1);
+  const days=bd.days, n=days.length;
+  // pending (no-Qimai-data-yet) days are drawn as nothing — the line/dots stop at the last
+  // day Qimai has posted, and the total is that last real cumulative, not a padded 0-day.
+  const drawn=days.filter(d=>!d.noData);
+  const total=drawn.length?drawn[drawn.length-1].cum:(b.rev||1);
   const W=680,H=180,ML=52,MR=14,MT=12,MB=26, pW=W-ML-MR, pH=H-MT-MB;
   const xOf=i=> n>1 ? ML+(i/(n-1))*pW : ML+pW/2;
   const yOf=v=> MT+(1-v/total)*pH;
@@ -2507,12 +2517,12 @@ function buildupSVG(bd,b,fmt=G,hitAttr="day"){
     return `<line class="grid" x1="${ML}" y1="${y.toFixed(1)}" x2="${W-MR}" y2="${y.toFixed(1)}"/>`+
       `<text class="axislbl" x="${ML-6}" y="${(y+3).toFixed(1)}" text-anchor="end">${fmt(v)}</text>`;}).join("");
   const bw=Math.min(16, pW/n*0.7);
-  const bars=days.map(d=>{ if(d.add<=0) return ""; const x=xOf(d.i);
+  const bars=days.map(d=>{ if(d.add<=0||d.noData) return ""; const x=xOf(d.i);
     const top=MT+(1-d.add/total)*pH, h=MT+pH-top;
     return `<rect class="bu-bar${d.shared?' shr':''}" x="${(x-bw/2).toFixed(1)}" y="${top.toFixed(1)}" width="${bw.toFixed(1)}" height="${Math.max(0,h).toFixed(1)}" rx="2"/>`;}).join("");
-  const line=days.map((d,i)=>(i?"L":"M")+xOf(i).toFixed(1)+" "+yOf(d.cum).toFixed(1)).join(" ");
-  const cdots=days.map((d,i)=>`<circle class="rc-dot" cx="${xOf(i).toFixed(1)}" cy="${yOf(d.cum).toFixed(1)}" r="3"/>`).join("");
-  const hits=days.map((d,i)=>`<circle class="rc-hit" data-${hitAttr}="${i}" cx="${xOf(i).toFixed(1)}" cy="${yOf(d.cum).toFixed(1)}" r="9"/>`).join("");
+  const line=drawn.map((d,k)=>(k?"L":"M")+xOf(d.i).toFixed(1)+" "+yOf(d.cum).toFixed(1)).join(" ");
+  const cdots=drawn.map(d=>`<circle class="rc-dot" cx="${xOf(d.i).toFixed(1)}" cy="${yOf(d.cum).toFixed(1)}" r="3"/>`).join("");
+  const hits=drawn.map(d=>`<circle class="rc-hit" data-${hitAttr}="${d.i}" cx="${xOf(d.i).toFixed(1)}" cy="${yOf(d.cum).toFixed(1)}" r="9"/>`).join("");
   const xIdx=[...new Set([0,Math.round((n-1)/2),n-1])];
   const lbl=i=>days[i]&&days[i].iso?isoMD(days[i].iso):dayLabel(i);   // chart's own dates when it carries them
   const xt=xIdx.map(i=>`<text class="axislbl" x="${xOf(i).toFixed(1)}" y="${H-8}" text-anchor="middle">${lbl(i)}</text>`).join("");
@@ -2521,10 +2531,13 @@ function buildupSVG(bd,b,fmt=G,hitAttr="day"){
 }
 function dailyTable(bd,fmt=G,rankHdr="iOS&nbsp;rank"){
   const cell=d=>`<tr>
-    <td class="l">${d.iso?isoMD(d.iso):dayLabel(d.i)}</td>
-    <td>${d.rank==null?'<span class="muted">200+</span>':'#'+d.rank}</td>
-    <td>${d.add>=0.005?fmt(d.add):'<span class="muted">—</span>'}</td>
-    <td>${fmt(d.cum)}</td></tr>`;
+    <td class="l">${d.iso?isoMD(d.iso):dayLabel(d.i)}</td>`
+    + (d.noData
+      ? `<td colspan="3" class="muted qbu-nodata">no data yet</td>`
+      : `<td>${d.rank==null?'<span class="muted">200+</span>':'#'+d.rank}</td>`
+        + `<td>${d.add>=0.005?fmt(d.add):'<span class="muted">—</span>'}</td>`
+        + `<td>${fmt(d.cum)}</td>`)
+    + `</tr>`;
   // Dealt across two columns like the China rank table. A run is 20-30 days, which
   // is a tall scroller in one column and fits without scrolling in two. Two rather
   // than three because each column carries four fields, not two.

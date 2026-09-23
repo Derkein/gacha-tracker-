@@ -431,6 +431,7 @@ tr.clk{cursor:pointer} tr.clk:hover td{background:var(--track)}
 .bm-table th{position:sticky; top:0; background:var(--surface); z-index:1}
 .bm-table td,.bm-table th{padding:5px 12px}
 .bm-table .muted{color:var(--muted)}
+.bm-table td.qbu-nodata{text-align:center; font-style:italic}
 /* China's rank table is only Date + rank -- at full width those two sit a screen
    apart. Deal the run across a few side-by-side tables so each one stays narrow and
    the block gets shorter; auto-fit collapses them back to one column on a phone. */
