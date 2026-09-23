@@ -4,11 +4,11 @@
  "jp": "原神",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E5%8E%9F%E7%A5%9E",
- "updated": "2026-09-23T19:01:15Z",
+ "updated": "2026-09-23T19:15:15Z",
  "count": 106,
  "now": {
   "ios": 8,
-  "android": 37,
+  "android": 36,
   "month": 75,
   "next_add": 85923939,
   "ym": "2026/09",
@@ -5222,12 +5222,15 @@
     93,
     7
    ],
-   "icons": [],
+   "icons": [
+    "https://enka.network/ui/UI_AvatarIcon_Vesna.png",
+    "https://enka.network/ui/UI_AvatarIcon_Vodyanitsa.png"
+   ],
    "agents": [
     "Vesna",
     "Vodyanitsa"
    ],
-   "accent": null,
+   "accent": "#57c69a",
    "en": "Vesna & Vodyanitsa",
    "bar": "#93cfd2"
   }
