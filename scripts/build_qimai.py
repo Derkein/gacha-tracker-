@@ -100,6 +100,40 @@ for tag in GAMES:
             bmonthly[idx][gmo] += a; btotal[idx] += a
             bdaily[idx][j] = bdaily[idx].get(j,0.0) + a
         gm[gmo]["attr"] += inc
+
+    # ---- handoff-day reattribution -------------------------------------------------------
+    # A new banner's China launch spikes revenue on the day BEFORE game-i lists its start
+    # (game-i logs the first FULL day), so that launch money lands on the OUTGOING banner's
+    # last day — e.g. ZZZ Norma's last day read $319K (16x her ~$27K trend, 41% of her whole
+    # total) but it was Remielle's launch. Keep the outgoing banner at its own end-of-run
+    # TREND (a rising end-of-banner bump is normal) and move only the excess to the incoming
+    # banner. Fires only on a clean handoff (next banner starts the very next day) with a
+    # genuine spike, so an ordinary end boost is left untouched.
+    def handoff_baseline(tail):                    # tail = up to 4 real days before the spike
+        pos = [t for t in tail if t > 1000][-4:]
+        if len(pos) < 3: return None               # not enough history to trust a trend
+        med = sorted(pos)[len(pos)//2]
+        n = len(pos); mx = (n-1)/2.0; my = sum(pos)/n
+        den = sum((i-mx)**2 for i in range(n)) or 1
+        slope = sum((i-mx)*(pos[i]-my) for i in range(n))/den
+        pred = my + slope*(n-mx)                    # extrapolate one day (captures the end boost)
+        return min(max(pred, pos[-1]), 2*med)      # allow a rising end, never below it, cap 2x median
+    for bi in binfo:
+        idx = bi["idx"]; nxt = idx+1
+        if nxt >= len(banners) or idx not in btotal or nxt not in btotal: continue
+        end    = datetime.date.fromisoformat(banners[idx]["end"][:10])
+        nstart = datetime.date.fromisoformat(banners[nxt]["start"][:10])
+        if (nstart - end).days != 1: continue                  # not a clean 1-day handoff
+        L = bi["len"]; spike = bdaily[idx].get(L-1, 0.0)
+        base = handoff_baseline([bdaily[idx].get(L-1-k, 0.0) for k in range(4,0,-1)])
+        if not base or spike < 3*base: continue                # gate: real launch-sized spike only
+        excess = spike - base
+        if excess < 25000: continue                            # skip noise
+        gmo = ym(bi["start"] + datetime.timedelta(days=L-1))   # global month of the spike day
+        bdaily[idx][L-1] -= excess; btotal[idx] -= excess; bmonthly[idx][gmo] -= excess
+        bdaily[nxt][0] = bdaily[nxt].get(0,0.0) + excess       # lump into the incoming's day 1
+        btotal[nxt] += excess; bmonthly[nxt][gmo] += excess    # keep it in the same (real) month
+
     monthly = {}
     for m,v in gm.items():
         qt,at = round(v["qtot"]), round(v["attr"])
