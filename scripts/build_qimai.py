@@ -47,10 +47,27 @@ def rankValue(r):
     return 0.0
 def ym(d): return d.strftime("%Y-%m")
 
+HOLE_FLOOR = 2000   # a real day for these games is never this low mid-run; below it + a 10x
+                    # drop from both neighbours means Qimai failed to model that day
+def fill_holes(daily):
+    """Qimai sometimes returns a near-zero estimate for a day it failed to model (e.g. $5
+    sitting between $17K and $11K). Replace an INTERIOR day with its two neighbours' average
+    only when it is BOTH under 10% of that average AND absolutely tiny (< HOLE_FLOOR) — so a
+    genuine low day that just happens to sit between two launch spikes (tens of thousands, not
+    a hole) is left alone. Applied at BUILD time only: the raw daily files keep Qimai's original
+    values, and a later rebuild picks up the real figure if Qimai fixes it."""
+    out = daily[:]
+    for i in range(1, len(daily)-1):
+        a, b = daily[i-1], daily[i+1]
+        if a > 0 and b > 0 and daily[i] < HOLE_FLOOR and daily[i] < 0.10*(a+b)/2:
+            out[i] = round((a+b)/2)
+    return out
+
 def load_qimai(tag):
     r = json.load(io.open(os.path.join(DAILY, f"{tag}.json"), encoding="utf-8"))
     d0 = datetime.date.fromisoformat(r["first"])
-    return {d0+datetime.timedelta(days=i): (v or 0) for i,v in enumerate(r["daily"])}
+    daily = fill_holes([(v or 0) for v in r["daily"]])
+    return {d0+datetime.timedelta(days=i): v for i,v in enumerate(daily)}
 
 out = {"meta": {"source":"qimai pred/revenue","currency":"USD","country":"cn","device":"iphone",
        "note":"Per-banner China-iPhone revenue. Each day's Qimai game total is split among that "
