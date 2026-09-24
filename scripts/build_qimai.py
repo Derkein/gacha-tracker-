@@ -71,7 +71,14 @@ for tag in GAMES:
         raw = [rankValue(x) for x in s]; tot = sum(raw) or 0
         rev = b.get("rev") or 0
         gid = [(rev*rw/tot) if tot>0 else 0.0 for rw in raw]   # game-i reconstructed daily
-        binfo.append({"idx":idx, "start":start, "len":len(s), "gid":gid})
+        # China-ahead games (lead>0): an ONGOING banner's China run is already `lead` days
+        # further along than game-i's global rank_series reaches (game-i only has up to today's
+        # global date). Let the ongoing banner claim those extra China days too, or its build-up
+        # stalls `lead` days behind the calendar. Extra days get no game-i weight (they split
+        # equally, i.e. 100% to a solo ongoing banner). Past banners have a complete series.
+        run_days = (datetime.date.fromisoformat(b["end"][:10]) - start).days + 1
+        ext = min(lead, max(0, run_days - len(s))) if b.get("ongoing") else 0
+        binfo.append({"idx":idx, "start":start, "len":len(s), "gid":gid, "ext":ext})
     bmonthly = collections.defaultdict(lambda: collections.defaultdict(float))
     btotal   = collections.defaultdict(float)
     bdaily   = collections.defaultdict(dict)   # idx -> {j: value}
@@ -92,7 +99,9 @@ for tag in GAMES:
             # `lead` days before its global start. gid (game-i's daily shape) is indexed by
             # run-day, not calendar, so it stays valid under the shift.
             j = (d-bi["start"]).days + lead
-            if 0 <= j < bi["len"]: run.append((bi["idx"], j, bi["gid"][j]))
+            if 0 <= j < bi["len"] + bi["ext"]:
+                w = bi["gid"][j] if j < bi["len"] else 0.0   # ahead-tail days have no game-i weight
+                run.append((bi["idx"], j, w))
         if not run: continue
         wsum = sum(w for _,_,w in run)
         for idx,j,w in run:
@@ -143,7 +152,7 @@ for tag in GAMES:
         idx = bi["idx"]
         if idx not in btotal: continue
         mo = {k:round(x) for k,x in bmonthly[idx].items() if round(x) > 0}
-        daily = [round(bdaily[idx].get(j,0.0)) for j in range(bi["len"])]
+        daily = [round(bdaily[idx].get(j,0.0)) for j in range(bi["len"] + bi["ext"])]
         # start = the banner's CHINA run start (global start shifted back by `lead`), so the
         # daily[] series and its labels line up with when the banner actually ran in China.
         cn_start = bi["start"] - datetime.timedelta(days=lead)
