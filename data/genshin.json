@@ -4,13 +4,13 @@
  "jp": "原神",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E5%8E%9F%E7%A5%9E",
- "updated": "2026-09-23T19:44:32Z",
+ "updated": "2026-09-24T17:13:20Z",
  "count": 106,
  "now": {
-  "ios": 7,
-  "android": 35,
-  "month": 75,
-  "next_add": 95533967,
+  "ios": 11,
+  "android": 4,
+  "month": 63,
+  "next_add": 85180476,
   "ym": "2026/09",
   "ranks": {
    "prev": [
@@ -71,7 +71,7 @@
     107,
     93,
     7,
-    null,
+    10,
     null,
     null,
     null,
@@ -82,7 +82,7 @@
   }
  },
  "monthly": {
-  "2026-09": 4.07,
+  "2026-09": 4.78,
   "2026-08": 6.04,
   "2026-07": 13.49,
   "2026-06": 5.08,
@@ -5208,7 +5208,7 @@
    "name": "ヴェスナ&ヴォジャニーツァ",
    "start": "2026-09-23",
    "end": "2026-10-13",
-   "rev": 0.8827,
+   "rev": 1.59,
    "yrank": 13,
    "ytot": 13,
    "cum": 106,
@@ -5220,17 +5220,15 @@
    "ongoing": true,
    "rank_series": [
     93,
-    7
+    7,
+    10
    ],
-   "icons": [
-    "https://enka.network/ui/UI_AvatarIcon_Vesna.png",
-    "https://enka.network/ui/UI_AvatarIcon_Vodyanitsa.png"
-   ],
+   "icons": [],
    "agents": [
     "Vesna",
     "Vodyanitsa"
    ],
-   "accent": "#57c69a",
+   "accent": null,
    "en": "Vesna & Vodyanitsa",
    "bar": "#93cfd2"
   }
