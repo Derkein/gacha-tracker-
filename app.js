@@ -473,6 +473,7 @@ function qimaiAnalysisBlock(b){
   const qm=bannerQimai(b); if(!qm.hasData) return "";
   const st=cnRunStats(b);
   const qmRev=p=>bannerQimai(p.b).total;
+  const qmPeak=p=>bannerQimai(p.b).peak;   // biggest single China-iPhone day
   // No China rank for this run: fall back to a revenue-only placement + peers.
   if(!st || st.none){
     const r=qimaiRankInfo(b);
@@ -528,10 +529,12 @@ function qimaiAnalysisBlock(b){
 
   // two face strips: by China revenue (the money spine) and by peak rank
   let revStrip="", rankStrip="";
-  const yrRev=peers.filter(p=>p.b.year===b.year && !p.b.ongoing && qmRev(p)>0);
-  if(yrRev.length>=2 && qm.total>0){ const hi=yrRev.filter(p=>qmRev(p)>qm.total).length, lo=yrRev.length-hi;
-    revStrip=cohortStrip([...yrRev,{b,st}].sort((x,y)=>qmRev(y)-qmRev(x)),b,x=>fmtUSD(qmRev(x)),
-      `This game's <b>${yrRev.length+1}</b> banners in ${b.year} by China-iPhone revenue — ${n(hi)} earned more than this one, ${n(lo)} the same or less.`,"By China iOS revenue"); }
+  // By PEAK China-iPhone day (biggest single day), not total — the "similar total by day"
+  // list below already covers the total, so this strip reads the height of the spike instead.
+  const yrRev=peers.filter(p=>p.b.year===b.year && !p.b.ongoing && qmPeak(p)>0);
+  if(yrRev.length>=2 && qm.peak>0){ const hi=yrRev.filter(p=>qmPeak(p)>qm.peak).length, lo=yrRev.length-hi;
+    revStrip=cohortStrip([...yrRev,{b,st}].sort((x,y)=>qmPeak(y)-qmPeak(x)),b,x=>fmtUSD(qmPeak(x)),
+      `This game's <b>${yrRev.length+1}</b> banners in ${b.year} by their biggest single China-iPhone day — ${n(hi)} had a bigger day than this one, ${n(lo)} the same or smaller.`,"By China iOS revenue at peak"); }
   const yrAll=peers.filter(p=>p.b.year===b.year && !p.b.ongoing);
   if(yrAll.length>=2){ const hi=yrAll.filter(p=>p.st.peak<pk).length, lo=yrAll.length-hi;
     rankStrip=cohortStrip([...yrAll,{b,st}].sort((x,y)=>x.st.peak-y.st.peak),b,x=>`#${x.st.peak}`,
