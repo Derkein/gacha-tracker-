@@ -405,11 +405,14 @@
     null,
     null
    ],
-   "agents": [],
+   "agents": [
+    "Fest of Brilliance"
+   ],
    "icons": [
     "icons/faces/endfield/2026-05-14-a4d3df.webp"
    ],
-   "bar": "#994a3d"
+   "bar": "#994a3d",
+   "en": "Fest of Brilliance"
   },
   {
    "name": "ミ・フ",
@@ -665,18 +668,21 @@
    "year": 2026,
    "related": "★6 イヴォンヌ",
    "banner_img": "https://appmedia.jp/wp-content/uploads/2026/03/140048_p56ke.webp",
-   "rerun": false,
+   "rerun": true,
    "ongoing": true,
    "rank_series": [
     null,
     193,
     null
    ],
-   "agents": [],
+   "agents": [
+    "Yvonne"
+   ],
    "icons": [
     "icons/faces/endfield/2026-09-24-98a47e.webp"
    ],
-   "bar": "#ff5d89"
+   "bar": "#ff5d89",
+   "en": "Yvonne"
   }
  ]
 }

@@ -146,16 +146,17 @@ def mark_reruns(banners, chrono, tag=None):
     it's a rerun if that first character carries 復刻, or already headlined an
     earlier banner (first appearance = debut). Event-named games just use 復刻.
     """
+    # 復刻 (fukkoku) and 再現 (saigen, Endfield's "再現スカウト") both mean a rerun banner.
     if not chrono:
         for b in banners:
-            b["rerun"] = "復刻" in b["name"]
+            b["rerun"] = ("復刻" in b["name"]) or ("再現" in b["name"])
         return banners
     split, strip = (_HEAD_SPLIT_G, _HEAD_STRIP_G) if tag == "genshin" else (_HEAD_SPLIT, _HEAD_STRIP)
     seen = set()
     for b in sorted(banners, key=lambda x: (x["start"], x["name"])):
         head = split.split(b["name"])[0]
         key = strip.sub("", head)
-        b["rerun"] = ("復刻" in head) or (key in seen)
+        b["rerun"] = ("復刻" in head) or ("再現" in b["name"]) or (key in seen)
         if key:
             seen.add(key)
     return banners
