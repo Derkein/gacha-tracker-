@@ -384,6 +384,11 @@
   "accent": "#b9b9b9",
   "en": "Yao Guang"
  },
+ "パール": {
+  "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1503.png",
+  "accent": "#5fc7e8",
+  "en": "Pearl"
+ },
  "不死途": {
   "icon": "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1504.png",
   "accent": "#c56af0",
