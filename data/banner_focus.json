@@ -1,0 +1,2448 @@
+{
+ "zzz": {
+  "エレン": {
+   "x": 30.0,
+   "y": 32.0,
+   "w": 1200,
+   "h": 675,
+   "det": false,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2024/07/03/6bba29d65ca1eedb223a9d9c94b33941_5499962239353471418.jpg"
+  },
+  "朱鳶": {
+   "x": 30.0,
+   "y": 32.0,
+   "w": 1200,
+   "h": 675,
+   "det": false,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2024/07/21/57e3315ccc323046dc583de3074feb59_2617150514785173076.png"
+  },
+  "青衣": {
+   "x": 30.0,
+   "y": 32.0,
+   "w": 1200,
+   "h": 675,
+   "det": false,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2024/08/12/e2fb82fce9aebbc008a3caa7ce347859_6557508229557722076.png"
+  },
+  "ジェーン": {
+   "x": 30.0,
+   "y": 32.0,
+   "w": 1200,
+   "h": 675,
+   "det": false,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2024/09/01/76dda47bc80ba82a0c8c3c6495a10871_1586658923347644498.png"
+  },
+  "シーザー": {
+   "x": 30.0,
+   "y": 32.0,
+   "w": 1200,
+   "h": 675,
+   "det": false,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2024/09/23/4c12ff1c5a003b841e2f047710293ac0_5032913656868719596.png"
+  },
+  "バーニス": {
+   "x": 30.0,
+   "y": 32.0,
+   "w": 1200,
+   "h": 675,
+   "det": false,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2024/10/13/c6b31b56e015e54de622a2e757e6a61e_3201649773093284741.png"
+  },
+  "月城柳": {
+   "x": 47.6,
+   "y": 55.9,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2024/11/04/ccd3f3d80f51319c8f5068c8d9c942c9_2854112462371700529.png"
+  },
+  "ライト": {
+   "x": 30.0,
+   "y": 32.0,
+   "w": 1200,
+   "h": 675,
+   "det": false,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2024/11/25/10bfcfcdb9ac34809e92aaaa93934b91_4997730475620532095.png"
+  },
+  "星見雅&浅羽悠真": {
+   "x": 30.0,
+   "y": 32.0,
+   "w": 1200,
+   "h": 675,
+   "det": false,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2024/12/16/77bc086606152db4e9ac4a5a41581c73_1873391038276700699.png"
+  },
+  "アストラ": {
+   "x": 30.0,
+   "y": 32.0,
+   "w": 1080,
+   "h": 390,
+   "det": false,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2025/01/20/0/ad7d09f8ba8c8bc54c5e145c719fda4d_6739625479710825112.png"
+  },
+  "イヴリン": {
+   "x": 30.0,
+   "y": 32.0,
+   "w": 1080,
+   "h": 390,
+   "det": false,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2025/02/08/0/0b392f69cae00184a2e0d4d9b0b5a1d6_5361461955412877612.png"
+  },
+  "0号・アンビー": {
+   "x": 30.0,
+   "y": 32.0,
+   "w": 1080,
+   "h": 390,
+   "det": false,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2025/03/11/0/eb4187980c8d22f75bfd19d74cb5c933_8873561380462898961.png"
+  },
+  "トリガー": {
+   "x": 30.0,
+   "y": 32.0,
+   "w": 1080,
+   "h": 390,
+   "det": false,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2025/03/29/0/157aea35133e59f233f37b2dad796dea_4866926260728101940.png"
+  },
+  "ビビアン": {
+   "x": 30.0,
+   "y": 32.0,
+   "w": 1080,
+   "h": 390,
+   "det": false,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2025/04/21/0/727ee4614f087227e908fe8c210edf80_8791527087210083349.png"
+  },
+  "ヒューゴ": {
+   "x": 30.0,
+   "y": 32.0,
+   "w": 1200,
+   "h": 675,
+   "det": false,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2025/05/09/5dcb663ca0ebe5b097be0a5c479f38b4_5782056941758100341.png"
+  },
+  "儀玄": {
+   "x": 30.0,
+   "y": 32.0,
+   "w": 1920,
+   "h": 1080,
+   "det": false,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2025/05/31/0/b68c1b88a12a4d3e3ec45c55af13f562_53862237629036960.jpeg"
+  },
+  "橘福福": {
+   "x": 30.0,
+   "y": 32.0,
+   "w": 1920,
+   "h": 1080,
+   "det": false,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2025/06/21/0/fc53b841887bc8a83b40035407d56097_7811217789272024816.png"
+  },
+  "浮波柚葉": {
+   "x": 30.0,
+   "y": 32.0,
+   "w": 1920,
+   "h": 1080,
+   "det": false,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2025/07/14/0/c010c73227ce08537b6f41561e588651_2767097572243287365.png"
+  },
+  "アリス": {
+   "x": 30.0,
+   "y": 32.0,
+   "w": 1920,
+   "h": 1080,
+   "det": false,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2025/08/02/0/a59e10103061e577ce600dca58c2f370_1527510047349135663.png"
+  },
+  "シード": {
+   "x": 37.8,
+   "y": 29.4,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2025/08/31/0/1cda45e715bf919344ec39c4cfa9aa1b_2421914902883085064.png"
+  },
+  "オルペウス＆「鬼火」": {
+   "x": 30.0,
+   "y": 32.0,
+   "w": 1920,
+   "h": 1080,
+   "det": false,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2025/09/19/0/6530d65ca883890dddea554c29002000_842926848461823309.png"
+  },
+  "リュシア": {
+   "x": 30.1,
+   "y": 31.9,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2025/10/12/02b6ba2c5eb17ed147bb2148c2b01ace_7318968870335504507.png"
+  },
+  "イドリー": {
+   "x": 27.1,
+   "y": 31.3,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2025/11/01/77436e9b074181d050e0a1528d681eda_3425570479124323064.png"
+  },
+  "ダイアリン": {
+   "x": 26.7,
+   "y": 27.4,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2025/11/22/88dc2cf83d100314bc2598b2caf728ff_873841350043859990.jpg"
+  },
+  "盤岳": {
+   "x": 20.5,
+   "y": 57.1,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2025/12/15/7b35c3626799ae5286d7273303856866_3485356385322714877.png"
+  },
+  "葉瞬光 & 照": {
+   "x": 28.0,
+   "y": 37.0,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "src": "https://pbs.twimg.com/media/G8fXNxcXIAE6Xp-.jpg"
+  },
+  "アリス復刻&0号・アンビー復刻&アストラ復刻": {
+   "x": 16.0,
+   "y": 26.4,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2026/01/16/dea0e549c052e574dbc0ba5fb5dc7aca_8573109417544585764.png"
+  },
+  "千夏": {
+   "x": 26.9,
+   "y": 28.7,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2026/02/03/da3e2efdf715eb1115d516dcf765077f_8633114800754574367.png"
+  },
+  "アリア": {
+   "x": 20.9,
+   "y": 27.1,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2026/03/01/397fc1681e36ee4ca233345526281987_5136538002278189903.png"
+  },
+  "南宮羽": {
+   "x": 31.3,
+   "y": 26.2,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2026/03/21/3c38c029fadef707a9e7663b10a63caa_6053805145055247498.jpg"
+  },
+  "シーシィア": {
+   "x": 25.8,
+   "y": 31.3,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2026/04/11/bb59147df6a6321c0ca7214ff8a8f26c_8902418724023440394.jpg"
+  },
+  "プロメイア": {
+   "x": 30.0,
+   "y": 32.0,
+   "w": 1200,
+   "h": 675,
+   "det": false,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2026/05/03/b1a7defea969529edd54296c094aa78e_5855656063880158867.jpg"
+  },
+  "スターライト・ビリー": {
+   "x": 30.0,
+   "y": 32.0,
+   "w": 1200,
+   "h": 675,
+   "det": false,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2026/05/23/72725b7058ee60e259cb149688595ce1_4007954319504263447.jpg"
+  },
+  "ヴェリナ": {
+   "x": 29.1,
+   "y": 28.5,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2026/06/13/207ae69f45dcf56daacd5c7285d7e24b_4241302439310508979.png"
+  },
+  "ノルムー": {
+   "x": 24.0,
+   "y": 35.4,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2026/07/05/a0b3ee434966d7763569266e524cfe91_2432634877569909579.jpg"
+  },
+  "レミエール": {
+   "x": 25.8,
+   "y": 26.5,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2026/07/26/d0c9ef750515b09470a0e1628cc8c5d8_3043520861090809467.jpg"
+  },
+  "シグリッド": {
+   "x": 30.0,
+   "y": 32.0,
+   "w": 1200,
+   "h": 675,
+   "det": false,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2026/08/15/e0eef032750a865c632006dd6dcbc7ad_3931431059532579849.jpg"
+  },
+  "クラレッタ": {
+   "x": 26.0,
+   "y": 26.2,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2026/09/06/e4d40ab9511d3f981c161a2ac0b1faa1_1790127964738960830.jpg"
+  }
+ },
+ "hsr": {
+  "ルアン・メェイ&刃復刻": {
+   "x": 63.7,
+   "y": 30.5,
+   "w": 600,
+   "h": 315,
+   "det": true,
+   "src": "https://img.gamewith.jp/img/3e16693a0bf742ea4eb2142d8e017531.png"
+  },
+  "ブラックスワン&丹恒・飲月復刻": {
+   "x": 51.3,
+   "y": 37.3,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2024/02/05/a474e1ad0bdb9c70bb7f2e810d66ca22_8185363732810897994.jpg"
+  },
+  "花火&景元復刻": {
+   "x": 66.3,
+   "y": 35.9,
+   "w": 600,
+   "h": 315,
+   "det": true,
+   "src": "https://img.gamewith.jp/img/dfb05a076c6da648091b7fd81bab36a1.png"
+  },
+  "黄泉": {
+   "x": 50.0,
+   "y": 40.0,
+   "w": 1200,
+   "h": 675,
+   "det": false,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2024/03/26/d3cfcc45510d72563d39c9101d919dbb_5639048768455787790.png"
+  },
+  "アベンチュリン": {
+   "x": 81.2,
+   "y": 59.3,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2024/04/16/231b619075ed159939e5a23bb0c8e5c7_8114377701622392138.jpg"
+  },
+  "ロビン": {
+   "x": 53.7,
+   "y": 27.5,
+   "w": 1200,
+   "h": 765,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2024/05/06/1b55e350ac3b526dda835d2b0c4ed716_174149695325607706.jpg"
+  },
+  "ブートヒル": {
+   "x": 83.0,
+   "y": 27.8,
+   "w": 1200,
+   "h": 765,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2024/05/28/8951ca34c6bddf7eb6a3c28e96b20788_6993851434336903549.jpg"
+  },
+  "ホタル": {
+   "x": 82.8,
+   "y": 32.4,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2024/06/17/7d918c34d914905c841ff3fb60db6a37_3527533942708609984.jpg"
+  },
+  "ジェイド": {
+   "x": 83.9,
+   "y": 32.1,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2024/07/01/1f1974213a4879b6705b4f5e6ccd7ffe_464888288462220410.jpg"
+  },
+  "雲璃": {
+   "x": 74.2,
+   "y": 40.2,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2024/07/29/3a2b58cbb611718c1061cb78848caf4d_1201045797212196437.jpg"
+  },
+  "椒丘": {
+   "x": 82.0,
+   "y": 39.0,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2024/08/19/3574c24ca2ecc4fb715db5a023ff815a_4410476124873270409.jpg"
+  },
+  "飛霄": {
+   "x": 50.1,
+   "y": 35.7,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2024/08/29/7d99e8bde818d13a54bdf0a7eada8d3f_1801706652461444902.jpg"
+  },
+  "霊砂": {
+   "x": 49.4,
+   "y": 36.7,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2024/09/27/3351d21fc2220a64f7abdf9cedcd8c5d_6375580495504659476.jpg"
+  },
+  "乱破": {
+   "x": 82.3,
+   "y": 44.1,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2024/10/22/40c243102694fdf92f0dffc2b2e97d11_3244689230259670174.jpg"
+  },
+  "黄泉復刻&アベンチュリン復刻": {
+   "x": 58.9,
+   "y": 41.1,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2024/11/11/238774211f9f12c3b626b6f63d2fff60_7129866645847237397.jpg"
+  },
+  "サンデー": {
+   "x": 86.8,
+   "y": 52.2,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2024/12/02/21ca538bfa9f179bceb4990da35f9a45_4545955086929265986.jpg"
+  },
+  "帰忘の流離人": {
+   "x": 83.6,
+   "y": 30.5,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2024/12/23/4655c5edeee3a04cd7bf79ea6d5e346c_8927543372060864198.jpg"
+  },
+  "マダム・ヘルタ": {
+   "x": 48.7,
+   "y": 62.5,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2025/01/14/82dcf6b2aec9f8fad19c20e76d303d64_988647656753510923.png"
+  },
+  "アグライア": {
+   "x": 95.4,
+   "y": 20.1,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2025/01/26/ff04dc2750320f22838e7c99be88b854_8183225600223947491.png"
+  },
+  "トリビー": {
+   "x": 93.7,
+   "y": 48.3,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "src": "https://cdn.wikiwiki.jp/to/w/star-rail/%E8%B7%B3%E8%BA%8D/::attach/3.1.1%E3%82%AC%E3%83%81%E3%83%A31.webp"
+  },
+  "モーディス": {
+   "x": 84.2,
+   "y": 39.7,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2025/03/17/167aa3c663e94c7b5d33617551616b5b_7624999381991197609.png"
+  },
+  "キャストリス": {
+   "x": 62.5,
+   "y": 40.9,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2025/04/07/27447deda57308e280d513cab1dd160b_6414601962120357039.png"
+  },
+  "アナイクス": {
+   "x": 83.6,
+   "y": 37.0,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2025/04/28/ce271e7aabbd43de4f77cb66f84b92f0_2016551048350226190.png"
+  },
+  "ヒアンシー": {
+   "x": 51.1,
+   "y": 33.3,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2025/05/19/c2c1c6671c0757f60d07067902a16740_5706429163957003333.png"
+  },
+  "サフェル": {
+   "x": 57.1,
+   "y": 46.3,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2025/06/09/38f964017f7f71665017b852078f2180_8953583870553831637.png"
+  },
+  "ファイノン": {
+   "x": 64.5,
+   "y": 40.3,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2025/06/30/0f55744e64638a293c4e712c213fb7a3_6818180084291571132.png"
+  },
+  "セイバー&アーチャー": {
+   "x": 59.5,
+   "y": 34.4,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2025/07/08/42dd7d9f4217213be45eac33215c5491_7195350653089586610.png"
+  },
+  "ホタル復刻&鏡流復刻&刃復刻": {
+   "x": 61.0,
+   "y": 25.0,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2025/07/22/8c9abc7b3160a71a8b6f18155607c40c_7965881045904889154.png"
+  },
+  "セイレンス": {
+   "x": 58.9,
+   "y": 39.4,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2025/08/11/82cdd59cd0d4a563d26c277493040746_3234602174256542058.png"
+  },
+  "ケリュドラ": {
+   "x": 61.9,
+   "y": 39.4,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2025/08/15/144e822e22d596c413c5a2608c84301d_4046498584382561178.png"
+  },
+  "長夜月": {
+   "x": 87.7,
+   "y": 53.3,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2025/09/22/b48cea6bd934735b1c268e4455002366_5391058018832163727.png"
+  },
+  "丹恒・騰荒": {
+   "x": 55.3,
+   "y": 39.5,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2025/10/10/f696aa5387278dc4f1d991f94e8ffe92_7545657641864917271.png"
+  },
+  "キュレネ": {
+   "x": 72.0,
+   "y": 45.8,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2025/10/28/ee015367a081b9889b32878ba9d8e78e_7222742705258423855.jpg"
+  },
+  "ファイノン復刻": {
+   "x": 11.9,
+   "y": 10.9,
+   "w": 1125,
+   "h": 633,
+   "det": false,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2025/07/03/282170832/d1b190f52a58001fc9ff47351f3bf153_5164149095055474675.jpg"
+  },
+  "ダリア": {
+   "x": 81.8,
+   "y": 41.0,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2025/12/15/c782cb4cac1d58238b7100a66acc66ca_3494724903666133436.png"
+  },
+  "帰忘の流離人復刻&霊砂復刻": {
+   "x": 82.3,
+   "y": 40.8,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2025/12/30/33165cbd4b76d893d3f0cac9ddbbe49a_7984448432167134208.png"
+  },
+  "アグライア復刻&サンデー復刻": {
+   "x": 81.9,
+   "y": 39.5,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2026/01/23/f3c0689fd791da5203b223de2adf9b1d_1677596865044055558.png"
+  },
+  "爻光": {
+   "x": 82.9,
+   "y": 46.2,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2026/02/11/a96f510875df918979756d9ffc132abc_45980191276080135.png"
+  },
+  "火花": {
+   "x": 50.0,
+   "y": 40.0,
+   "w": 1920,
+   "h": 1080,
+   "det": false,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2026/03/02/e27b9833ce320d3f7c470e5807f0aa42_2757735735473312822.png"
+  },
+  "不死途": {
+   "x": 27.2,
+   "y": 36.0,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2026/03/24/3308c7790670e98434b5fe4d9485fbcf_5541550260578855048.png"
+  },
+  "ブートヒル復刻": {
+   "x": 47.9,
+   "y": 21.9,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2026/04/03/7f82f6076f49c67097613c6076021c58_7781893289418800900.png"
+  },
+  "銀狼LV.999": {
+   "x": 27.4,
+   "y": 32.9,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2026/04/21/8c07b0f887f8bde4ac76b1298471193e_6821004034996987174.png"
+  },
+  "緋英": {
+   "x": 28.7,
+   "y": 39.3,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2026/05/06/e2a7174ff666b28fc67a51ffb10af7a2_528218712884697264.png"
+  },
+  "千冶・刃": {
+   "x": 24.6,
+   "y": 29.5,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2026/05/28/8c6a586a70cbfda33e3c292437767e27_4773141744358845314.png"
+  },
+  "キュレネ復刻&ファイノン復刻": {
+   "x": 44.1,
+   "y": 41.5,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2026/06/17/0dc1726cfa65100ffc85c196531bed18_4792943494357490669.png"
+  },
+  "姫子・旅立ち": {
+   "x": 31.0,
+   "y": 27.2,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2026/07/13/dac99c7f389ebbe7e6daa4236ab67122_2577942517555224803.png"
+  },
+  "遠坂凛&ギルガメッシュ": {
+   "x": 21.8,
+   "y": 24.0,
+   "w": 850,
+   "h": 1098,
+   "det": true,
+   "src": "icons/banner_art/hsr-rin-tohsaka.webp"
+  },
+  "ロビン・夏空の歌": {
+   "x": 77.7,
+   "y": 29.8,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/community/2026/08/25/8e66e6e1dfa735fc70fdd4a6c2eb8c6f_7362219746973488405.png"
+  },
+  "アベンチュリン・波と戯れる夏": {
+   "x": 50.0,
+   "y": 40.0,
+   "w": 1920,
+   "h": 1080,
+   "det": false,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/community/2026/09/10/f91926920b2123d9146adefd2b0fe1d4_6249783087489241155.png"
+  }
+ },
+ "wuwa": {
+  "忌炎": {
+   "x": 59.0,
+   "y": 51.7,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "src": "https://hw-media-cdn-mingchao.kurogame.com/object/1716480000000/o2cvj32h8cj20zwan7-1716563627995.jpg"
+  },
+  "吟霖": {
+   "x": 38.5,
+   "y": 28.5,
+   "w": 1920,
+   "h": 1080,
+   "det": false,
+   "src": "https://hw-media-cdn-mingchao.kurogame.com/object/1717516800000/spcqbfelec4zw8s53c-1717567858155.jpg"
+  },
+  "今汐": {
+   "x": 50.4,
+   "y": 66.1,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "src": "https://hw-media-cdn-mingchao.kurogame.com/object/1719331200000/qvpanefeio17n7v2bx-1719386709685.jpg"
+  },
+  "長離": {
+   "x": 44.2,
+   "y": 22.7,
+   "w": 1920,
+   "h": 1080,
+   "det": false,
+   "src": "https://hw-media-cdn-mingchao.kurogame.com/object/1721232000000/e2ua4tyo77r1nae7oy-1721299368289.jpg"
+  },
+  "折枝": {
+   "x": 54.1,
+   "y": 34.3,
+   "w": 1920,
+   "h": 1080,
+   "det": false,
+   "src": "https://hw-media-cdn-mingchao.kurogame.com/object/1723392000000/drw2v0kzsb4lhfpn3y-1723432603024.jpg"
+  },
+  "相里要": {
+   "x": 63.0,
+   "y": 32.0,
+   "w": 1920,
+   "h": 1080,
+   "det": false,
+   "src": "https://hw-media-cdn-mingchao.kurogame.com/object/1725379200000/0fa108uwu1xxyf45b0-1725422738003.JPG"
+  },
+  "ショアキーパー": {
+   "x": 70.5,
+   "y": 30.0,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "src": "https://hw-media-cdn-mingchao.kurogame.com/object/1727366400000/wy3rpqvixe6ovwdd7a-1727406817974.jpg"
+  },
+  "忌炎復刻": {
+   "x": 17.6,
+   "y": 31.0,
+   "w": 1920,
+   "h": 1080,
+   "det": false,
+   "src": "https://hw-media-cdn-mingchao.kurogame.com/object/1729612800000/2kuvbi4l82zmirbpa2-1729648580503.jpg"
+  },
+  "ツバキ": {
+   "x": 63.0,
+   "y": 32.0,
+   "w": 1920,
+   "h": 1080,
+   "det": false,
+   "src": "https://hw-media-cdn-mingchao.kurogame.com/akiwebsite/website2.0/images/1731340800000/mdsrhqpdwr1yok8k33-1731405528199.jpg"
+  },
+  "吟霖復刻&相里要復刻": {
+   "x": 29.4,
+   "y": 32.5,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "src": "https://hw-media-cdn-mingchao.kurogame.com/object/1733846400000/r86rb26tlvpxg85ut6-1733883464006.jpg"
+  },
+  "カルロッタ&折枝復刻": {
+   "x": 29.0,
+   "y": 47.1,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "src": "https://hw-media-cdn-mingchao.kurogame.com/akiwebsite/website2.0/images/1735401600000/diyl4qmlwqgqsd8sl5-1735487874926.jpg"
+  },
+  "ロココ&今汐復刻": {
+   "x": 63.0,
+   "y": 32.0,
+   "w": 1920,
+   "h": 1080,
+   "det": false,
+   "src": "https://hw-media-cdn-mingchao.kurogame.com/akiwebsite/website2.0/images/1736956800000/2l8nq15vo418kbirq3-1736994711820.jpeg"
+  },
+  "フィービー": {
+   "x": 51.2,
+   "y": 42.1,
+   "w": 1920,
+   "h": 1080,
+   "det": false,
+   "src": "https://hw-media-cdn-mingchao.kurogame.com/akiwebsite/website2.0/images/1738944000000/umh85l4trxp9ut2vac-1739016125292.jpg"
+  },
+  "ブラント&長離復刻": {
+   "x": 60.3,
+   "y": 27.4,
+   "w": 1920,
+   "h": 1080,
+   "det": false,
+   "src": "https://hw-media-cdn-mingchao.kurogame.com/akiwebsite/website2.0/images/1740672000000/0t4dmgui1ldv4w9glc-1740739379907.jpeg"
+  },
+  "カンタレラ&ツバキ復刻": {
+   "x": 19.2,
+   "y": 64.1,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "src": "https://hw-media-cdn-mingchao.kurogame.com/object/1742918400000/1oyj87c99o3801sev4-1742954162956.jpg"
+  },
+  "ショアキーパー復刻": {
+   "x": 57.4,
+   "y": 23.1,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "src": "https://hw-media-cdn-mingchao.kurogame.com/object/1744732800000/uis368x9h4djlzdnku-1744786406290.jpg"
+  },
+  "ザンニー": {
+   "x": 66.8,
+   "y": 34.4,
+   "w": 1920,
+   "h": 1080,
+   "det": false,
+   "src": "https://hw-media-cdn-mingchao.kurogame.com/object/1745769600000/zmn8zcd6tzwpwm1do1-1745835584710.jpg"
+  },
+  "シャコンヌ": {
+   "x": 75.2,
+   "y": 28.6,
+   "w": 1920,
+   "h": 1080,
+   "det": false,
+   "src": "https://hw-media-cdn-mingchao.kurogame.com/object/1747670400000/3ax3m1s58cggaim2tl-1747739872262.jpg"
+  },
+  "カルテジア": {
+   "x": 56.8,
+   "y": 47.0,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "src": "https://hw-media-cdn-mingchao.kurogame.com/object/1749484800000/agv4cnxbooizk27dnp-1749549910260.jpg"
+  },
+  "ルパ": {
+   "x": 58.0,
+   "y": 47.8,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "src": "https://hw-media-cdn-mingchao.kurogame.com/object/1751385600000/kcu55w7li0zfy3ooyk-1751429071911.jpg"
+  },
+  "フローヴァ": {
+   "x": 64.8,
+   "y": 37.0,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "src": "https://hw-media-cdn-mingchao.kurogame.com/object/1753200000000/rpvoaoe63ohee5ylow-1753236323686.jpg"
+  },
+  "カンタレラ復刻&ブラント復刻": {
+   "x": 19.3,
+   "y": 63.8,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "src": "https://hw-media-cdn-mingchao.kurogame.com/object/1754928000000/ym857yxba1ywg0vwip-1754993984981.jpg"
+  },
+  "オーガスタ": {
+   "x": 61.1,
+   "y": 66.8,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "src": "https://hw-media-cdn-mingchao.kurogame.com/object/1756224000000/oqn1cp4uwc4vzmt977-1756261999548.jpg"
+  },
+  "ユーノ": {
+   "x": 66.9,
+   "y": 28.0,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "src": "https://hw-media-cdn-mingchao.kurogame.com/object/1757952000000/v5v3tnrh0daa9qm99b-1757991004032.jpg"
+  },
+  "ガルブレーナ": {
+   "x": 63.0,
+   "y": 32.0,
+   "w": 1920,
+   "h": 1080,
+   "det": false,
+   "src": "https://hw-media-cdn-mingchao.kurogame.com/object/1759680000000/qszpcdmjunlfdhpcjy-1759735422512.jpg"
+  },
+  "仇遠": {
+   "x": 70.3,
+   "y": 26.0,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "src": "https://hw-media-cdn-mingchao.kurogame.com/object/1761667200000/06zaj5j8xx9f7sfcv0-1761723066249.jpg"
+  },
+  "千咲": {
+   "x": 63.0,
+   "y": 32.0,
+   "w": 1920,
+   "h": 1080,
+   "det": false,
+   "src": "https://hw-media-cdn-mingchao.kurogame.com/object/1763481600000/51cl4rkkmy6fzcp1co-1763520585416.jpg"
+  },
+  "フローヴァ&カンタレラ復刻": {
+   "x": 64.8,
+   "y": 37.1,
+   "w": 1280,
+   "h": 720,
+   "det": true,
+   "src": "https://i.imgur.com/Q6JdYut.jpeg"
+  },
+  "リンネー&カルテジア&シャコンヌ": {
+   "x": 17.9,
+   "y": 29.0,
+   "w": 1280,
+   "h": 720,
+   "det": false,
+   "src": "https://i.mopix.cc/Uim02C.jpg"
+  },
+  "モーニエ": {
+   "x": 76.2,
+   "y": 25.7,
+   "w": 1280,
+   "h": 720,
+   "det": false,
+   "src": "https://i.mopix.cc/XlW1yn.jpg"
+  },
+  "エイメス": {
+   "x": 21.6,
+   "y": 45.6,
+   "w": 1280,
+   "h": 720,
+   "det": true,
+   "src": "https://i.mopix.cc/YaWroI.jpg"
+  },
+  "リューク・ヘルセン": {
+   "x": 67.2,
+   "y": 42.6,
+   "w": 1280,
+   "h": 720,
+   "det": false,
+   "src": "https://i.mopix.cc/LYaAaB.jpg"
+  },
+  "シグリカ": {
+   "x": 62.4,
+   "y": 27.2,
+   "w": 1280,
+   "h": 720,
+   "det": true,
+   "src": "https://i.mopix.cc/kRp8lQ.jpg"
+  },
+  "リンネー復刻&ザンニー復刻&フィービー復刻": {
+   "x": 17.9,
+   "y": 29.0,
+   "w": 1280,
+   "h": 720,
+   "det": false,
+   "src": "https://i.mopix.cc/Uim02C.jpg"
+  },
+  "緋雪": {
+   "x": 62.2,
+   "y": 37.8,
+   "w": 1280,
+   "h": 720,
+   "det": true,
+   "src": "https://i.mopix.cc/C2UOMU.jpg"
+  },
+  "ダーニャ": {
+   "x": 64.4,
+   "y": 38.1,
+   "w": 1200,
+   "h": 674,
+   "det": false,
+   "src": "https://i.mopix.cc/Hk7KNj.jpg"
+  },
+  "ルーシー&レベッカ&ルシラー": {
+   "x": 63.3,
+   "y": 22.6,
+   "w": 854,
+   "h": 1280,
+   "det": true,
+   "src": "https://i.mopix.cc/OforYt.jpg"
+  },
+  "秧秧．玄翎": {
+   "x": 63.0,
+   "y": 32.0,
+   "w": 1280,
+   "h": 720,
+   "det": false,
+   "src": "https://i.mopix.cc/pI0ghq.jpg"
+  },
+  "穗穗": {
+   "x": 44.9,
+   "y": 48.1,
+   "w": 1280,
+   "h": 720,
+   "det": true,
+   "src": "https://i.mopix.cc/B5K8b8.jpg"
+  },
+  "清宵": {
+   "x": 57.4,
+   "y": 49.3,
+   "w": 680,
+   "h": 382,
+   "det": true,
+   "src": "https://i.mopix.cc/weNdVz.jpg"
+  },
+  "景燃": {
+   "x": 83.1,
+   "y": 71.4,
+   "w": 1280,
+   "h": 720,
+   "det": false,
+   "src": "https://i.mopix.cc/fgN03v.jpg"
+  }
+ },
+ "genshin": {
+  "ウェンティピックアップ": {
+   "x": 43.0,
+   "y": 26.4,
+   "w": 1080,
+   "h": 533,
+   "det": true,
+   "src": "https://gamenoshirase.com/wp-content/uploads/2021/04/k-0005_chara_001.jpg"
+  },
+  "クレーピックアップ": {
+   "x": 86.5,
+   "y": 26.5,
+   "w": 1080,
+   "h": 533,
+   "det": true,
+   "src": "https://gamenoshirase.com/wp-content/uploads/2021/04/k-0005_chara_002.jpg"
+  },
+  "タルタリヤピックアップ": {
+   "x": 77.9,
+   "y": 42.3,
+   "w": 1080,
+   "h": 533,
+   "det": true,
+   "src": "https://paimon.moe/images/banners/Farewell%20of%20Snezhnaya%201.png"
+  },
+  "鍾離ピックアップ": {
+   "x": 52.2,
+   "y": 18.0,
+   "w": 1080,
+   "h": 533,
+   "det": true,
+   "src": "https://gamenoshirase.com/wp-content/uploads/2021/04/k-0005_chara_004.jpg"
+  },
+  "アルベドピックアップ": {
+   "x": 26.4,
+   "y": 31.3,
+   "w": 1080,
+   "h": 608,
+   "det": true,
+   "src": "https://gamenoshirase.com/wp-content/uploads/2021/04/k-0005_chara_005.jpg"
+  },
+  "甘雨ピックアップ": {
+   "x": 71.4,
+   "y": 20.4,
+   "w": 1080,
+   "h": 608,
+   "det": true,
+   "src": "https://gamenoshirase.com/wp-content/uploads/2021/04/k-0005_chara_006.jpg"
+  },
+  "魈ピックアップ": {
+   "x": 48.2,
+   "y": 26.8,
+   "w": 800,
+   "h": 450,
+   "det": true,
+   "src": "https://gamenoshirase.com/wp-content/uploads/2021/04/k-0005_chara_007.jpg"
+  },
+  "刻晴ピックアップ": {
+   "x": 45.3,
+   "y": 25.4,
+   "w": 800,
+   "h": 450,
+   "det": true,
+   "src": "https://gamenoshirase.com/wp-content/uploads/2021/04/k-0005_chara_008.jpg"
+  },
+  "胡桃ピックアップ": {
+   "x": 89.7,
+   "y": 20.9,
+   "w": 1080,
+   "h": 608,
+   "det": true,
+   "src": "https://gamenoshirase.com/wp-content/uploads/2021/04/k-0005_chara_009.jpg"
+  },
+  "ウェンティ復刻": {
+   "x": 48.5,
+   "y": 25.8,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "src": "https://gamenoshirase.com/wp-content/uploads/2021/04/k-0005_chara_010.jpg"
+  },
+  "タルタリヤ復刻": {
+   "x": 75.2,
+   "y": 46.9,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "src": "https://gamenoshirase.com/wp-content/uploads/2021/04/k-0005_chara_011.jpg"
+  },
+  "鍾離復刻": {
+   "x": 51.6,
+   "y": 21.4,
+   "w": 1080,
+   "h": 533,
+   "det": true,
+   "src": "https://paimon.moe/images/banners/Gentry%20of%20Hermitage%202.png"
+  },
+  "エウルアピックアップ": {
+   "x": 57.0,
+   "y": 31.5,
+   "w": 1080,
+   "h": 608,
+   "det": true,
+   "src": "https://gamenoshirase.com/wp-content/uploads/2021/05/k-0005_chara_013.jpg"
+  },
+  "クレー復刻": {
+   "x": 55.0,
+   "y": 32.6,
+   "w": 1080,
+   "h": 608,
+   "det": true,
+   "src": "https://gamenoshirase.com/wp-content/uploads/2021/06/k-0005_chara_014.jpg"
+  },
+  "楓原万葉ピックアップ": {
+   "x": 51.7,
+   "y": 26.7,
+   "w": 1080,
+   "h": 608,
+   "det": true,
+   "src": "https://gamenoshirase.com/wp-content/uploads/2021/06/k-0005_chara_015.jpg"
+  },
+  "神里綾華ピックアップ": {
+   "x": 54.4,
+   "y": 25.3,
+   "w": 1080,
+   "h": 608,
+   "det": true,
+   "src": "https://gamenoshirase.com/wp-content/uploads/2021/07/k-0005_chara_016.jpg"
+  },
+  "宵宮ピックアップ": {
+   "x": 52.0,
+   "y": 34.0,
+   "w": 1080,
+   "h": 608,
+   "det": true,
+   "src": "https://gamenoshirase.com/wp-content/uploads/2021/08/k-0005_chara_017.jpg"
+  },
+  "雷電将軍ピックアップ": {
+   "x": 57.1,
+   "y": 22.6,
+   "w": 1080,
+   "h": 608,
+   "det": true,
+   "src": "https://gamenoshirase.com/wp-content/uploads/2021/08/k-0005_chara_018.jpg"
+  },
+  "珊瑚宮心海ピックアップ": {
+   "x": 61.4,
+   "y": 22.9,
+   "w": 1024,
+   "h": 576,
+   "det": true,
+   "src": "https://gamenoshirase.com/wp-content/uploads/2021/09/k-0005_chara_019-1024x576.jpg"
+  },
+  "タルタリヤ復刻2": {
+   "x": 79.9,
+   "y": 48.4,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "src": "https://gamenoshirase.com/wp-content/uploads/2021/10/k-0005_chara_020.jpg"
+  },
+  "胡桃復刻": {
+   "x": 95.3,
+   "y": 39.9,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "src": "https://gamenoshirase.com/wp-content/uploads/2021/10/k-0005_chara_021.jpg"
+  },
+  "エウルア復刻&アルベド復刻": {
+   "x": 55.2,
+   "y": 30.4,
+   "w": 1080,
+   "h": 533,
+   "det": true,
+   "src": "https://paimon.moe/images/banners/Born%20of%20Ocean%20Swell%202.png"
+  },
+  "荒瀧一斗ピックアップ": {
+   "x": 90.4,
+   "y": 38.1,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "src": "https://gamenoshirase.com/wp-content/uploads/2021/12/k-0005_chara_024.jpg"
+  },
+  "申鶴ピックアップ＆魈復刻": {
+   "x": 55.6,
+   "y": 26.4,
+   "w": 1080,
+   "h": 533,
+   "det": true,
+   "src": "https://paimon.moe/images/banners/The%20Transcendent%20One%20Returns%201.png"
+  },
+  "甘雨復刻&鍾離復刻": {
+   "x": 53.9,
+   "y": 20.1,
+   "w": 1080,
+   "h": 533,
+   "det": true,
+   "src": "https://paimon.moe/images/banners/Adrift%20in%20the%20Harbor%202.png"
+  },
+  "八重神子ピックアップ": {
+   "x": 52.6,
+   "y": 26.1,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "src": "https://gamenoshirase.com/wp-content/uploads/2022/02/k-0005_chara_029.jpg"
+  },
+  "雷電将軍復刻&珊瑚宮心海復刻": {
+   "x": 57.5,
+   "y": 18.8,
+   "w": 1080,
+   "h": 533,
+   "det": true,
+   "src": "https://paimon.moe/images/banners/Reign%20of%20Serenity%202.png"
+  },
+  "神里綾人ピックアップ&ウェンティ復刻": {
+   "x": 51.7,
+   "y": 20.6,
+   "w": 1080,
+   "h": 533,
+   "det": true,
+   "src": "https://paimon.moe/images/banners/Azure%20Excursion%201.png"
+  },
+  "神里綾華復刻": {
+   "x": 53.8,
+   "y": 28.3,
+   "w": 1080,
+   "h": 533,
+   "det": true,
+   "src": "https://paimon.moe/images/banners/The%20Herons%20Court%202.png"
+  },
+  "夜蘭ピックアップ＆魈復刻": {
+   "x": 49.9,
+   "y": 22.3,
+   "w": 1080,
+   "h": 533,
+   "det": true,
+   "src": "https://paimon.moe/images/banners/Discerner%20of%20Enigmas%201.png"
+  },
+  "荒瀧一斗復刻": {
+   "x": 48.8,
+   "y": 48.3,
+   "w": 1080,
+   "h": 533,
+   "det": true,
+   "src": "https://paimon.moe/images/events/onis_royale_2.jpg"
+  },
+  "楓原万葉復刻&クレー復刻2": {
+   "x": 53.7,
+   "y": 23.6,
+   "w": 1080,
+   "h": 533,
+   "det": true,
+   "src": "https://paimon.moe/images/banners/Leaves%20in%20the%20Wind%202.png"
+  },
+  "宵宮復刻": {
+   "x": 51.9,
+   "y": 31.9,
+   "w": 1080,
+   "h": 533,
+   "det": true,
+   "src": "https://paimon.moe/images/banners/Tapestry%20of%20Golden%20Flames%202.png"
+  },
+  "ティナリと鍾離復刻": {
+   "x": 64.2,
+   "y": 45.9,
+   "w": 1080,
+   "h": 533,
+   "det": true,
+   "src": "https://paimon.moe/images/events/viridescent_vigil_1.jpg"
+  },
+  "心海と甘雨復刻": {
+   "x": 92.5,
+   "y": 29.1,
+   "w": 1080,
+   "h": 533,
+   "det": true,
+   "src": "https://paimon.moe/images/events/adrift_in_the_harbor_3.jpg"
+  },
+  "セノとウェンティ復刻※6日から値上げ": {
+   "x": 88.5,
+   "y": 33.4,
+   "w": 1080,
+   "h": 533,
+   "det": true,
+   "src": "https://paimon.moe/images/events/twilight_arbiter_1.jpg"
+  },
+  "ニィロウとアルベド復刻": {
+   "x": 72.0,
+   "y": 26.7,
+   "w": 600,
+   "h": 315,
+   "det": true,
+   "src": "https://img.gamewith.jp/article/thumbnail/rectangle/367009.png"
+  },
+  "ナヒーダと宵宮": {
+   "x": 36.1,
+   "y": 52.8,
+   "w": 1080,
+   "h": 533,
+   "det": true,
+   "src": "https://paimon.moe/images/banners/The%20Moongrass'%20Enlightenment%201.png"
+  },
+  "八重神子 & タルタリヤピックアップ": {
+   "x": 56.0,
+   "y": 24.6,
+   "w": 1080,
+   "h": 533,
+   "det": true,
+   "src": "https://paimon.moe/images/events/everbloom_violet_2.jpg"
+  },
+  "放浪者と荒瀧一斗": {
+   "x": 53.1,
+   "y": 21.1,
+   "w": 1080,
+   "h": 533,
+   "det": true,
+   "src": "https://paimon.moe/images/banners/From%20Ashes%20Reborn%201.png"
+  },
+  "雷電将軍と神里綾人": {
+   "x": 57.5,
+   "y": 19.2,
+   "w": 1080,
+   "h": 533,
+   "det": true,
+   "src": "https://paimon.moe/images/banners/Reign%20of%20Serenity%203.png"
+  },
+  "アルハイゼンと魈": {
+   "x": 86.8,
+   "y": 17.5,
+   "w": 1080,
+   "h": 533,
+   "det": true,
+   "src": "https://paimon.moe/images/events/caution_in_confidence_1.jpg"
+  },
+  "胡桃復刻2と夜蘭復刻": {
+   "x": 93.8,
+   "y": 40.4,
+   "w": 1080,
+   "h": 533,
+   "det": true,
+   "src": "https://paimon.moe/images/banners/Moment%20of%20Bloom%203.png"
+  },
+  "Dehya and Cyno": {
+   "x": 45.0,
+   "y": 67.3,
+   "w": 1080,
+   "h": 533,
+   "det": true,
+   "src": "https://paimon.moe/images/banners/Auric%20Blaze%201.png"
+  },
+  "Shenhe Ayaka": {
+   "x": 54.5,
+   "y": 23.5,
+   "w": 1080,
+   "h": 533,
+   "det": true,
+   "src": "https://paimon.moe/images/banners/The%20Transcendent%20One%20Returns%202.png"
+  },
+  "ナヒーダ2とニィロウ2": {
+   "x": 33.4,
+   "y": 50.3,
+   "w": 1080,
+   "h": 533,
+   "det": true,
+   "src": "https://paimon.moe/images/banners/The%20Moongrass'%20Enlightenment%202.png"
+  },
+  "白朮と甘雨復刻": {
+   "x": 47.7,
+   "y": 21.2,
+   "w": 1080,
+   "h": 533,
+   "det": true,
+   "src": "https://paimon.moe/images/banners/Immaculate%20Pulse%201.png"
+  },
+  "宵宮復刻３と八重神子復刻２": {
+   "x": 54.4,
+   "y": 28.2,
+   "w": 1080,
+   "h": 533,
+   "det": true,
+   "src": "https://paimon.moe/images/banners/Tapestry%20of%20Golden%20Flames%204.png"
+  },
+  "アルハイゼン復刻と楓原万葉復刻２": {
+   "x": 92.9,
+   "y": 35.6,
+   "w": 1080,
+   "h": 533,
+   "det": true,
+   "src": "https://paimon.moe/images/banners/Caution%20in%20Confidence%202.png"
+  },
+  "エウルア復刻2&クレー復刻3": {
+   "x": 56.6,
+   "y": 27.5,
+   "w": 1080,
+   "h": 533,
+   "det": true,
+   "src": "https://paimon.moe/images/banners/Born%20of%20Ocean%20Swell%203.png"
+  },
+  "珊瑚宮心海復刻3&放浪者復刻": {
+   "x": 53.2,
+   "y": 22.0,
+   "w": 1080,
+   "h": 533,
+   "det": true,
+   "src": "https://paimon.moe/images/banners/From%20Ashes%20Reborn%202.png"
+  },
+  "リネピックアップと夜蘭復刻2": {
+   "x": 40.4,
+   "y": 26.6,
+   "w": 480,
+   "h": 271,
+   "det": true,
+   "src": "https://asset.watch.impress.co.jp/img/gmw/docs/1521/927/1_l.jpg"
+  },
+  "鍾離復刻4&タルタリヤ復刻4": {
+   "x": 49.6,
+   "y": 22.4,
+   "w": 710,
+   "h": 399,
+   "det": true,
+   "src": "https://img.gamewith.jp/img/8d051db9464d3c64a219fd6835a0a6b5.jpg"
+  },
+  "ヌヴィレット初回&胡桃復刻3": {
+   "x": 64.8,
+   "y": 56.1,
+   "w": 710,
+   "h": 399,
+   "det": true,
+   "src": "https://img.gamewith.jp/img/c1743bbe32c711b80833624445aceb30.jpeg"
+  },
+  "リオセスリ初回&ウェンティ復刻4": {
+   "x": 32.5,
+   "y": 33.8,
+   "w": 710,
+   "h": 399,
+   "det": true,
+   "src": "https://img.gamewith.jp/img/0fa7b54bfc45178b5dd765fe917d943e.jpeg"
+  },
+  "フリーナ初回＆白朮復刻": {
+   "x": 26.8,
+   "y": 46.1,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "src": "https://fastcdn.hoyoverse.com/content-v2/hk4e/113512/d86e3ecbcfc9b4c0421d742d1f59d702_990398834884337294.jpg"
+  },
+  "セノ復刻と神里綾人復刻": {
+   "x": 78.7,
+   "y": 19.3,
+   "w": 710,
+   "h": 399,
+   "det": true,
+   "src": "https://img.gamewith.jp/img/63b050436e8524d24b38f7e65a5d7ffa.png"
+  },
+  "ナヴィア初回＆神里綾華": {
+   "x": 49.5,
+   "y": 29.2,
+   "w": 2560,
+   "h": 1440,
+   "det": false,
+   "src": "https://fastcdn.hoyoverse.com/content-v2/hk4e/114014/40958bf8aaf8d02564ce7aace9f67964_8283254283739051781.jpg"
+  },
+  "雷電将軍と宵宮復刻": {
+   "x": 51.4,
+   "y": 29.5,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "src": "https://img.gamewith.jp/img/original_6f88961e07a3956f3239879e2099b633.jpg"
+  },
+  "閑雲初回とナヒーダ": {
+   "x": 40.1,
+   "y": 35.1,
+   "w": 710,
+   "h": 399,
+   "det": true,
+   "src": "https://img.gamewith.jp/img/dd5a75180ad6f4bbaa2850367c851a7a.jpeg"
+  },
+  "魈と八重神子": {
+   "x": 35.6,
+   "y": 32.5,
+   "w": 710,
+   "h": 399,
+   "det": true,
+   "src": "https://img.gamewith.jp/img/fe164036326d8d3da7cacfa865f0dbe0.jpeg"
+  },
+  "千織と荒滝一斗": {
+   "x": 41.5,
+   "y": 39.5,
+   "w": 710,
+   "h": 399,
+   "det": false,
+   "src": "https://img.gamewith.jp/img/c3256486cfdc1e0b2e5cf89233a9bdaa.jpeg"
+  },
+  "ヌヴィレットと楓原万葉": {
+   "x": 61.8,
+   "y": 48.6,
+   "w": 710,
+   "h": 399,
+   "det": true,
+   "src": "https://img.gamewith.jp/img/af828c392fc77832f219597638c53962.jpeg"
+  },
+  "アルレッキーノとリネ復刻": {
+   "x": 50.0,
+   "y": 40.0,
+   "w": 710,
+   "h": 399,
+   "det": false,
+   "src": "https://img.gamewith.jp/img/e6f781ecc8eae3afd81ad8b7a48ab0c0.jpeg"
+  },
+  "放浪者復刻2と白朮復刻2": {
+   "x": 71.1,
+   "y": 29.2,
+   "w": 710,
+   "h": 399,
+   "det": true,
+   "src": "https://img.gamewith.jp/img/d9e4c0b45b6e80a38d347b6dbe548578.jpeg"
+  },
+  "クロリンデ&アルハイゼン復刻2": {
+   "x": 13.5,
+   "y": 13.1,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2024/06/03/0/5e700294350bd2ea942800127ef0fbf5_6205033083023036495.jpeg"
+  },
+  "シグウィン&フリーナ復刻": {
+   "x": 52.8,
+   "y": 29.1,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2024/06/20/0/02f62854b7ad8a16c3432e837a703083_2323391094639384563.jpeg"
+  },
+  "ナヴィア復刻&ニィロウ復刻2": {
+   "x": 50.9,
+   "y": 24.9,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2024/07/12/0/0c93fbaab1d01bf2265f481f504e2252_1999101370260728182.jpeg"
+  },
+  "エミリエ&夜蘭復刻": {
+   "x": 78.9,
+   "y": 34.0,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2024/07/31/0/1e9dbd336af3343a96114538f0c97a31_2302900058160100692.jpeg"
+  },
+  "ムアラニ&楓原万葉復刻": {
+   "x": 21.2,
+   "y": 40.1,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2024/08/26/0/084945fe36ba39ee45730b0c8d2bb03c_6348091551060473017.jpeg"
+  },
+  "キィニチ&雷電将軍復刻": {
+   "x": 93.1,
+   "y": 33.6,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2024/09/11/91f577a717afcc9976463a0a9cfe54e8_7398512192234296705.jpg"
+  },
+  "シロネン＆千織復刻": {
+   "x": 89.8,
+   "y": 32.5,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2024/10/06/0/d999ca2ad59413c9e525e0e67b558131_1246210284913203565.jpeg"
+  },
+  "ナヒーダ復刻&胡桃復刻": {
+   "x": 47.8,
+   "y": 22.2,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2024/10/23/0/344cd08b6b48adfa875b996ba0b219c3_8055236353833625038.jpeg"
+  },
+  "チャスカ&リネ復刻": {
+   "x": 77.4,
+   "y": 36.1,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2024/11/15/0/6c6332e9c76b4392043f56c34a2fabcf_7620603469069275850.jpeg"
+  },
+  "ヌヴィレット復刻&鍾離復刻": {
+   "x": 51.2,
+   "y": 20.2,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2024/12/04/0/c78ccd5843dbc3996f263f91a7890e95_3846122510955764502.jpeg"
+  },
+  "マーヴィカ&シトラリ": {
+   "x": 91.7,
+   "y": 36.4,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2024/12/27/0/42cec471ee55ebcd3dac4c9cc39c33a4_3081370112186905576.jpeg"
+  },
+  "アルレッキーノ復刻&クロリンデ復刻": {
+   "x": 83.7,
+   "y": 16.6,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2024/12/30/0/bfdb5734d21590b2e27acbbeae10ac6e_4621479989988408355.jpeg"
+  },
+  "夢見月瑞希&シグウィン復刻": {
+   "x": 55.5,
+   "y": 21.7,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2025/02/07/0/3c7dceda043e860cc1a859756c0aee7f_823675954244895025.jpeg"
+  },
+  "リオセスリ復刻&フリーナ復刻": {
+   "x": 21.3,
+   "y": 12.7,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2025/02/26/221c127b961eba1c62c610cc11b6f289_3469217581724871397.jpg"
+  },
+  "ヴァレサ&閑雲復刻": {
+   "x": 86.7,
+   "y": 13.1,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2025/03/21/5935aed29bc08c7d1e2fbb8f2b88a76f_7662838973682167949.jpg"
+  },
+  "シロネン復刻&ウェンティ復刻": {
+   "x": 89.2,
+   "y": 38.2,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2025/04/09/dd4f139635182b7fd570b7534eda2908_1840557538363451263.jpg"
+  },
+  "エスコフィエ": {
+   "x": 57.6,
+   "y": 29.3,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2025/04/30/142a0942277004de21a7aa908ef5ce38_3367995657944649773.jpg"
+  },
+  "キィニチ復刻&雷電将軍復刻": {
+   "x": 86.3,
+   "y": 44.5,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2025/05/20/9b3533fb3602e36cf0de355ec387eead_8481502789443642874.jpg"
+  },
+  "スカーク": {
+   "x": 29.0,
+   "y": 59.5,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2025/06/13/e82471d6437baa04dcfed78eb2fc02a3_4986421211168343162.jpg"
+  },
+  "マーヴィカ復刻&エミリエ復刻": {
+   "x": 47.4,
+   "y": 26.4,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2025/07/03/119467b87609ca06247f512e0ec5e340_6231794123022969564.jpg"
+  },
+  "イネファ": {
+   "x": 47.0,
+   "y": 20.7,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2025/07/25/74bd3dd43d387175d6488d531b1dc876_2376537358052853601.jpg"
+  },
+  "ムアラニ復刻&チャスカ復刻": {
+   "x": 49.2,
+   "y": 26.8,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2025/08/13/5695e8cae4299e6c3c5d5609a6ea2eb6_2960019148035950589.jpg"
+  },
+  "ラウマ": {
+   "x": 20.2,
+   "y": 27.6,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2025/09/08/df8ebd49c2ac99d701f3e88a96c970c6_4362035183919378694.jpg"
+  },
+  "フリンズ": {
+   "x": 93.9,
+   "y": 38.7,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2025/09/25/5502559493f5ec79f029c83c3a911694_4527499613479705532.jpg"
+  },
+  "ネフェル": {
+   "x": 94.1,
+   "y": 37.3,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2025/10/17/521613c0dab0b4018fc68d926affaa6a_3857502028067489407.jpg"
+  },
+  "アルレッキーノ復刻&鍾離復刻": {
+   "x": 92.0,
+   "y": 37.9,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2025/11/05/dc6dc0787edd06c117eaca2e57a5287a_2988516736738081068.jpg"
+  },
+  "ドゥリン": {
+   "x": 94.2,
+   "y": 36.4,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "src": "https://pbs.twimg.com/media/G7DR9lxXwAAsdoT.jpg"
+  },
+  "ヴァレサ復刻&シロネン復刻": {
+   "x": 88.4,
+   "y": 13.0,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2025/12/16/3ad1503120788bc3e15a09d52232afa9_2373601342062660402.jpg"
+  },
+  "コロンビーナ": {
+   "x": 93.8,
+   "y": 34.5,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "src": "https://pbs.twimg.com/media/G-blMLpXMAAPNmR.jpg"
+  },
+  "兹白": {
+   "x": 94.2,
+   "y": 41.3,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2026/01/22/e5f370029d6e45ecc4e51427f7c164b5_2047444970886058009.jpg"
+  },
+  "ファルカ": {
+   "x": 70.2,
+   "y": 35.6,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2026/02/13/0a462af54a91f6a5fcb6a1d884cad245_1998948553019150990.jpg"
+  },
+  "スカーク復刻&エスコフィエ復刻": {
+   "x": 49.8,
+   "y": 22.4,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2026/03/11/93a7419d864f13f2270f89924c0b8e4a_7397518726044578515.jpg"
+  },
+  "リンネア": {
+   "x": 56.0,
+   "y": 24.7,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2026/04/06/daa7021a27e0b565c48577edf05a1ece_2551284884487609917.jpg"
+  },
+  "ラウマ復刻&ネフェル復刻": {
+   "x": 43.0,
+   "y": 23.0,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2026/04/22/0/964100e3fe6295fd0483e735b463a329_4365338839486256120.webp"
+  },
+  "ニコ": {
+   "x": 53.5,
+   "y": 23.4,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2026/05/15/8c2fe2e9cbf65169b54d499ec2bb42fd_7520440180828628783.jpg"
+  },
+  "ローエン": {
+   "x": 51.2,
+   "y": 25.4,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2026/06/02/0/9ac9e23478b7656719b6795b0a8cd71b_3425170184116618980.jpeg"
+  },
+  "サンドローネ": {
+   "x": 54.2,
+   "y": 31.4,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2026/06/29/0/781da55472dc1186e3e8d2d93140cf70_7777178998231754007.jpeg"
+  },
+  "コロンビーナ復刻&雷電将軍復刻": {
+   "x": 40.1,
+   "y": 17.0,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2026/07/16/0/7ffc11a507b64fe3e2985ab283a571a9_5317296703043248121.jpeg"
+  },
+  "オデット": {
+   "x": 44.4,
+   "y": 26.4,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2026/08/10/0/2886697955c25a097992a760d242f0b4_5998042542646910621.jpeg"
+  },
+  "フリンズ復刻&イネファ復刻": {
+   "x": 85.4,
+   "y": 17.4,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2026/08/26/12e8ec8f8799a3f2daab6f8ab802918f_3020365450284400704.jpg"
+  },
+  "ヴェスナ&ヴォジャニーツァ": {
+   "x": 85.4,
+   "y": 13.7,
+   "w": 1080,
+   "h": 533,
+   "det": true,
+   "src": "https://upload-os-bbs.hoyolab.com/upload/2026/09/20/d893fa546294fbd561acdf3d1bcd3d67_4660126670995464673.png"
+  }
+ },
+ "endfield": {
+  "レーヴァテイン": {
+   "x": 32.4,
+   "y": 52.4,
+   "w": 800,
+   "h": 450,
+   "det": true,
+   "src": "https://arknights-endfield.wikiru.jp/attach2/696D67_3236303132322E706E67.png"
+  },
+  "ギルベルタ": {
+   "x": 28.4,
+   "y": 37.8,
+   "w": 800,
+   "h": 450,
+   "det": true,
+   "src": "https://arknights-endfield.wikiru.jp/attach2/696D67_3236303230372E706E67.png"
+  },
+  "イヴォンヌ": {
+   "x": 30.4,
+   "y": 41.5,
+   "w": 1600,
+   "h": 900,
+   "det": true,
+   "src": "https://arknights-endfield.wikiru.jp/attach2/696D67_3236303232342E6A7067.jpg"
+  },
+  "タンタン": {
+   "x": 25.9,
+   "y": 39.3,
+   "w": 1600,
+   "h": 900,
+   "det": true,
+   "src": "https://arknights-endfield.wikiru.jp/attach2/696D67_E6B0B4E381AEE794B3E38197E5AD902E6A7067.jpg"
+  },
+  "ロッシ": {
+   "x": 30.8,
+   "y": 38.3,
+   "w": 1600,
+   "h": 900,
+   "det": true,
+   "src": "https://arknights-endfield.wikiru.jp/attach2/696D67_E382A6E383ABE38395E38391E383BCE383AB2E6A7067.jpg"
+  },
+  "ゾアン・ファンイ": {
+   "x": 52.3,
+   "y": 19.9,
+   "w": 1600,
+   "h": 900,
+   "det": true,
+   "src": "https://arknights-endfield.wikiru.jp/attach2/696D67_E698A5E99BB7E99FBFE3818DE38081E4B887E789A9E88ABDE590B9E3818F2E6A7067.jpg"
+  },
+  "輝きの祝典": {
+   "x": 38.0,
+   "y": 35.1,
+   "w": 1000,
+   "h": 563,
+   "det": true,
+   "src": "https://appmedia.jp/wp-content/uploads/2026/04/222404_kbeni.webp"
+  },
+  "ミ・フ": {
+   "x": 26.5,
+   "y": 46.3,
+   "w": 1000,
+   "h": 562,
+   "det": true,
+   "src": "https://appmedia.jp/wp-content/uploads/2026/05/221355_dbpju.webp"
+  },
+  "カミーユ": {
+   "x": 52.7,
+   "y": 18.8,
+   "w": 1000,
+   "h": 560,
+   "det": true,
+   "src": "https://appmedia.jp/wp-content/uploads/2026/05/221355_4n7kw.webp"
+  },
+  "オクギ": {
+   "x": 67.0,
+   "y": 27.2,
+   "w": 1000,
+   "h": 563,
+   "det": true,
+   "src": "https://appmedia.jp/wp-content/uploads/2026/07/205629_2i6pf.webp"
+  },
+  "リーノ": {
+   "x": 61.0,
+   "y": 37.7,
+   "w": 1000,
+   "h": 563,
+   "det": true,
+   "src": "https://appmedia.jp/wp-content/uploads/2026/07/205634_wjyam.webp"
+  },
+  "ティフォロス": {
+   "x": 24.7,
+   "y": 41.7,
+   "w": 1000,
+   "h": 563,
+   "det": true,
+   "src": "https://appmedia.jp/wp-content/uploads/2026/03/135754_sbthe.webp"
+  },
+  "再現スカウト「超爆盛れカラフル」#1": {
+   "x": 29.0,
+   "y": 37.5,
+   "w": 1000,
+   "h": 563,
+   "det": true,
+   "src": "https://appmedia.jp/wp-content/uploads/2026/03/140048_p56ke.webp"
+  }
+ },
+ "nte": {
+  "ナナリ": {
+   "x": 55.6,
+   "y": 65.4,
+   "w": 1000,
+   "h": 418,
+   "det": true,
+   "src": "https://appmedia.jp/wp-content/uploads/2026/04/163020_3xopn.webp"
+  },
+  "潯": {
+   "x": 67.9,
+   "y": 41.2,
+   "w": 1000,
+   "h": 563,
+   "det": true,
+   "src": "https://appmedia.jp/wp-content/uploads/2026/04/100812_yx1l6.webp"
+  },
+  "レクイエム": {
+   "x": 48.4,
+   "y": 26.9,
+   "w": 1000,
+   "h": 553,
+   "det": true,
+   "src": "https://appmedia.jp/wp-content/uploads/2026/05/221003_x6ys7.webp"
+  },
+  "カオス": {
+   "x": 50.1,
+   "y": 22.9,
+   "w": 1000,
+   "h": 543,
+   "det": true,
+   "src": "https://appmedia.jp/wp-content/uploads/2026/05/221403_qtlvo.webp"
+  },
+  "真紅": {
+   "x": 66.5,
+   "y": 33.0,
+   "w": 1000,
+   "h": 505,
+   "det": true,
+   "src": "https://appmedia.jp/wp-content/uploads/2026/07/101921_q8b4w.webp"
+  },
+  "イロヒ": {
+   "x": 71.9,
+   "y": 32.0,
+   "w": 1000,
+   "h": 505,
+   "det": true,
+   "src": "https://appmedia.jp/wp-content/uploads/2026/05/030207_5plcs.webp"
+  },
+  "残虹": {
+   "x": 67.8,
+   "y": 31.2,
+   "w": 1000,
+   "h": 504,
+   "det": true,
+   "src": "https://appmedia.jp/wp-content/uploads/2026/05/204720_tfbq2.webp"
+  },
+  "リンコ": {
+   "x": 49.9,
+   "y": 47.5,
+   "w": 1000,
+   "h": 563,
+   "det": true,
+   "src": "https://appmedia.jp/wp-content/uploads/2026/09/102606_xs8po.webp"
+  }
+ },
+ "uma": {
+  "ピックアップ プリティーダービーガチャ・サポートカードガチャ": {
+   "x": 83.9,
+   "y": 28.7,
+   "w": 1024,
+   "h": 576,
+   "det": true,
+   "src": "https://pbs.twimg.com/media/F8xU8LqaIAANFNb.jpg"
+  },
+  "TVアニメコラボ プリティーダービーガチャ・サポートカードガチャ": {
+   "x": 17.1,
+   "y": 31.9,
+   "w": 1024,
+   "h": 576,
+   "det": true,
+   "src": "https://pbs.twimg.com/media/ExshfLcVoAAS59f.jpg"
+  },
+  "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ": {
+   "x": 25.1,
+   "y": 47.7,
+   "w": 1024,
+   "h": 576,
+   "det": true,
+   "src": "https://pbs.twimg.com/media/HR53NyebcAEo22N.jpg"
+  },
+  "新育成シナリオ記念 プリティーダービーガチャ・サポートカードガチャ": {
+   "x": 25.9,
+   "y": 47.2,
+   "w": 1024,
+   "h": 576,
+   "det": true,
+   "src": "https://pbs.twimg.com/media/Fa5PfazaQAAk845.jpg"
+  },
+  "アオハル杯アップデート記念ピックアップ": {
+   "x": 38.4,
+   "y": 38.4,
+   "w": 1024,
+   "h": 576,
+   "det": true,
+   "src": "https://pbs.twimg.com/media/Fm4lDAzacAAwTol.jpg"
+  },
+  "2nd Anniversary プリティーダービーガチャ・サポートカードガチャ": {
+   "x": 36.8,
+   "y": 49.7,
+   "w": 1024,
+   "h": 576,
+   "det": true,
+   "src": "https://pbs.twimg.com/media/Fps0BI3aEAE_uHO.jpg"
+  },
+  "ギャルウィーク プリティーダービーガチャ": {
+   "x": 14.7,
+   "y": 35.3,
+   "w": 1024,
+   "h": 576,
+   "det": true,
+   "src": "https://pbs.twimg.com/media/FuJa9T0akAAFNOw.jpg"
+  },
+  "2.5th Anniversary プリティーダービーガチャ・サポートカードガチャ": {
+   "x": 21.3,
+   "y": 48.7,
+   "w": 1024,
+   "h": 576,
+   "det": true,
+   "src": "https://pbs.twimg.com/media/F4Q8EwcaYAA8npl.jpg"
+  },
+  "トゥインクルコレクション プリティーダービーガチャ": {
+   "x": 9.7,
+   "y": 36.6,
+   "w": 1024,
+   "h": 576,
+   "det": true,
+   "src": "https://pbs.twimg.com/media/GdwwrL-bUAAmXP2.jpg"
+  },
+  "ピックアッププリティーダービーガチャ・ピックアップサポートカードガチャ": {
+   "x": 71.2,
+   "y": 70.7,
+   "w": 1024,
+   "h": 576,
+   "det": true,
+   "src": "https://pbs.twimg.com/media/F5totL2bwAAfu_U.jpg"
+  },
+  "セレクトピックアップ サポートカードガチャ": {
+   "x": 86.7,
+   "y": 27.6,
+   "w": 1024,
+   "h": 576,
+   "det": true,
+   "src": "https://pbs.twimg.com/media/GtStC8GbMAEoru0.jpg"
+  },
+  "ピックアップ プリティーダービーガチャ,ピックアップ サポートカードガチャ": {
+   "x": 37.5,
+   "y": 43.7,
+   "w": 1024,
+   "h": 576,
+   "det": true,
+   "src": "https://pbs.twimg.com/media/F9k0ycNaEAAapZw.jpg"
+  },
+  "ピックアップ サポートカードガチャ": {
+   "x": 43.6,
+   "y": 23.8,
+   "w": 1024,
+   "h": 576,
+   "det": true,
+   "src": "https://pbs.twimg.com/media/GU6SASgbAAAwIPR.jpg"
+  },
+  "ピックアップ プリティーダービーガチャ/ピックアップ サポートカードガチャ": {
+   "x": 24.0,
+   "y": 46.4,
+   "w": 1024,
+   "h": 576,
+   "det": true,
+   "src": "https://pbs.twimg.com/media/GSA43QxbQAEOXnZ.jpg"
+  },
+  "ピックアップ プリティーダービーガチャ": {
+   "x": 50.9,
+   "y": 41.1,
+   "w": 1024,
+   "h": 576,
+   "det": true,
+   "src": "https://pbs.twimg.com/media/GtSsLecbQAAxEWo.jpg"
+  },
+  "ピックアップ プリティーダービーガチャ・セレクトピックアップ サポートカードガチャ": {
+   "x": 25.7,
+   "y": 49.7,
+   "w": 1024,
+   "h": 576,
+   "det": true,
+   "src": "https://pbs.twimg.com/media/HNuEa37aEAAYWDg.jpg"
+  },
+  "ピックアップ プリティーダービーガチャ・3rd Anniv.セレクトピックアップ サポートカードガチャ": {
+   "x": 31.1,
+   "y": 48.2,
+   "w": 1024,
+   "h": 576,
+   "det": true,
+   "src": "https://pbs.twimg.com/media/GIcDhV-bMAAaNSs.jpg"
+  },
+  "3rd Anniversary プリティーダービーガチャ・3rd Anniversary サポートカードガチャ": {
+   "x": 37.5,
+   "y": 46.5,
+   "w": 1024,
+   "h": 576,
+   "det": true,
+   "src": "https://pbs.twimg.com/media/GHEgwcebAAANLnq.jpg"
+  },
+  "劇場版『ウマ娘』公開記念 プリティーダービーガチャ/セレクトピックアップ サポートカードガチャ": {
+   "x": 66.5,
+   "y": 27.1,
+   "w": 1024,
+   "h": 576,
+   "det": true,
+   "src": "https://pbs.twimg.com/media/GP6_fOpbgAAXAb1.jpg"
+  },
+  "新育成シナリオ開幕 プリティーダービーガチャ/新育成シナリオ開幕 サポートカードガチャ": {
+   "x": 92.7,
+   "y": 40.7,
+   "w": 1024,
+   "h": 576,
+   "det": true,
+   "src": "https://pbs.twimg.com/media/GQ98QY-a8AAgbWz.jpg"
+  },
+  "ピックアップ プリティーダービーガチャ/セレクトピックアップ サポートカードガチャ": {
+   "x": 21.6,
+   "y": 46.7,
+   "w": 1024,
+   "h": 576,
+   "det": true,
+   "src": "https://pbs.twimg.com/media/GS0Y28SbMAACH6H.jpg"
+  },
+  "3.5th Anniv.セレクトピックアップ サポートカードガチャ": {
+   "x": 33.0,
+   "y": 32.6,
+   "w": 1024,
+   "h": 576,
+   "det": true,
+   "src": "https://pbs.twimg.com/media/GU6Sa8oa4AQpZT4.jpg"
+  },
+  "3.5th Anniv. プレミアム プリティーダービーガチャ・3.5th Anniv. サポートカードガチャ": {
+   "x": 23.7,
+   "y": 47.0,
+   "w": 1024,
+   "h": 576,
+   "det": true,
+   "src": "https://pbs.twimg.com/media/GVtxqfnaEAAOt6L.jpg"
+  },
+  "メインストーリー第2部中編公開プリティーダービーガチャ・ピックアップ サポートカードガチャ": {
+   "x": 25.1,
+   "y": 48.8,
+   "w": 1024,
+   "h": 576,
+   "det": true,
+   "src": "https://pbs.twimg.com/media/GXFUycNbEAAUmo4.jpg"
+  },
+  "ピックアップ プリティーダービーガチャ・3.5th Anniv.セレクトピックアップ サポートカードガチャ": {
+   "x": 27.7,
+   "y": 46.0,
+   "w": 1024,
+   "h": 576,
+   "det": true,
+   "src": "https://pbs.twimg.com/media/GX401IcaUAECKwk.jpg"
+  },
+  "新育成シナリオ開幕 プリティーダービーガチャ・新育成シナリオ開幕 サポートカードガチャ": {
+   "x": 25.5,
+   "y": 50.3,
+   "w": 1024,
+   "h": 576,
+   "det": true,
+   "src": "https://pbs.twimg.com/media/GuayeMLbEAE28bs.jpg"
+  },
+  "ピックアップ プリティーダービーガチャ・クリスマス特別セレクトピックアップ サポートカードガチャ": {
+   "x": 25.9,
+   "y": 43.5,
+   "w": 1024,
+   "h": 576,
+   "det": true,
+   "src": "https://pbs.twimg.com/media/GfITuUNa8AAXovb.jpg"
+  },
+  "トゥインクルコレクション プリティーダービーガチャ・SSR確定スピードガチャ": {
+   "x": 41.8,
+   "y": 37.3,
+   "w": 1024,
+   "h": 576,
+   "det": true,
+   "src": "https://pbs.twimg.com/media/GglBGGga8AA3zPT.jpg"
+  },
+  "ピックアップ プリティーダービーガチャ・4th Anniv.セレクトピックアップ サポートカードガチャ": {
+   "x": 25.6,
+   "y": 42.4,
+   "w": 1024,
+   "h": 576,
+   "det": true,
+   "src": "https://pbs.twimg.com/media/GmiF88haEAkZBuz.jpg"
+  },
+  "4th Anniv. プレミアム プリティーダービーガチャ・4th Anniv. サポートカードガチャ": {
+   "x": 25.4,
+   "y": 47.8,
+   "w": 1024,
+   "h": 576,
+   "det": true,
+   "src": "https://pbs.twimg.com/media/GkhWgBnbQAA6sp5.jpg"
+  },
+  "ピックアップ プリティーダービーガチャ・4.5th Anniv.セレクトピックアップ サポートカードガチャ": {
+   "x": 24.0,
+   "y": 44.0,
+   "w": 1024,
+   "h": 576,
+   "det": true,
+   "src": "https://pbs.twimg.com/media/G1LYqH-aMAAwnCp.jpg"
+  },
+  "4.5th Anniv. サポートカードガチャ": {
+   "x": 90.3,
+   "y": 32.0,
+   "w": 1024,
+   "h": 576,
+   "det": false,
+   "src": "https://pbs.twimg.com/media/GzFeo36bYAAT1gk.jpg"
+  },
+  "4.5th Anniv. プレミアム プリティーダービーガチャ": {
+   "x": 53.3,
+   "y": 41.8,
+   "w": 1024,
+   "h": 576,
+   "det": true,
+   "src": "https://pbs.twimg.com/media/GzFejBxa0AAmWsE.jpg"
+  },
+  "ジャングルポケット リバイバルピックアップ プリティーダービーガチャ": {
+   "x": 66.3,
+   "y": 27.4,
+   "w": 1024,
+   "h": 576,
+   "det": true,
+   "src": "https://pbs.twimg.com/media/G3iF0eka8AA0KNR.jpg"
+  },
+  "ダンツフレーム登場! プリティーダービーガチャ・セレクトピックアップ サポートカードガチャ": {
+   "x": 27.6,
+   "y": 45.1,
+   "w": 1024,
+   "h": 576,
+   "det": true,
+   "src": "https://pbs.twimg.com/media/G3ipK5xawAEigKT.jpg"
+  },
+  "新育成シナリオ開幕 サポートカードガチャ": {
+   "x": 46.8,
+   "y": 30.5,
+   "w": 1024,
+   "h": 576,
+   "det": true,
+   "src": "https://pbs.twimg.com/media/HL8xuWUacAA4iZ3.jpg"
+  },
+  "新育成シナリオ開幕 プリティーダービーガチャ": {
+   "x": 50.3,
+   "y": 43.5,
+   "w": 1024,
+   "h": 576,
+   "det": true,
+   "src": "https://pbs.twimg.com/media/HL8xZ1HbkAAGKMl.jpg"
+  },
+  "イナリワン登場! ピックアップサポートカードガチャ": {
+   "x": 71.5,
+   "y": 35.6,
+   "w": 1024,
+   "h": 576,
+   "det": true,
+   "src": "https://pbs.twimg.com/media/G721AGsaMAEKgsT.jpg"
+  },
+  "新衣装オグリキャップ登場! プレミアム プリティーダービーガチャ": {
+   "x": 4.4,
+   "y": 21.4,
+   "w": 1024,
+   "h": 576,
+   "det": false,
+   "src": "https://pbs.twimg.com/media/G720PdBbAAAnXsk.jpg"
+  },
+  "クリスマス特別セレクトピックアップ サポートカードガチャ": {
+   "x": 28.9,
+   "y": 13.4,
+   "w": 1024,
+   "h": 576,
+   "det": true,
+   "src": "https://pbs.twimg.com/media/G8r6TQ_bkAAeZ8_.jpg"
+  },
+  "ステイゴールド登場! プレミアム プリティーダービーガチャ": {
+   "x": 54.3,
+   "y": 45.0,
+   "w": 1024,
+   "h": 576,
+   "det": true,
+   "src": "https://pbs.twimg.com/media/G8r6Py0boAAo1E1.jpg"
+  },
+  "ジェンティルドンナ リバイバルピックアップ プリティーダービーガチャ/オルフェーヴル リバイバルピックアップ プリティーダービーガチャ": {
+   "x": 24.5,
+   "y": 49.8,
+   "w": 1024,
+   "h": 576,
+   "det": true,
+   "src": "https://pbs.twimg.com/media/G9EGhLaaAAAZbDc.jpg"
+  },
+  "5th Anniv.セレクトピックアップ サポートカードガチャ": {
+   "x": 26.8,
+   "y": 44.5,
+   "w": 1024,
+   "h": 576,
+   "det": true,
+   "src": "https://pbs.twimg.com/media/HBFivQ0bYAA74OP.jpg"
+  },
+  "5th Anniv. サポートカードガチャ": {
+   "x": 85.0,
+   "y": 33.9,
+   "w": 1024,
+   "h": 576,
+   "det": false,
+   "src": "https://pbs.twimg.com/media/HB5DpCOaQAEXUKI.jpg"
+  },
+  "5th Anniv. プレミアム プリティーダービーガチャ": {
+   "x": 57.8,
+   "y": 44.0,
+   "w": 1024,
+   "h": 576,
+   "det": true,
+   "src": "https://pbs.twimg.com/media/HB5CvOVaAAELyjt.jpg"
+  },
+  "ピックアップ プリティーダービーガチャ・5th Anniv.セレクトピックアップ サポートカードガチャ": {
+   "x": 22.1,
+   "y": 38.8,
+   "w": 1024,
+   "h": 576,
+   "det": true,
+   "src": "https://pbs.twimg.com/media/HDvfZrxbIAA_eUg.jpg"
+  },
+  "ピックアップ プリティーダービーガチャ・5.5th Anniv.セレクトピックアップ サポートカードガチャ": {
+   "x": 25.9,
+   "y": 43.9,
+   "w": 1024,
+   "h": 576,
+   "det": true,
+   "src": "https://pbs.twimg.com/media/HPpqkywaAAAMK59.jpg"
+  },
+  "5.5th Anniv. サポートカードガチャ": {
+   "x": 86.6,
+   "y": 48.0,
+   "w": 1024,
+   "h": 576,
+   "det": true,
+   "src": "https://pbs.twimg.com/media/HQdK0cdbAAA91vr.jpg"
+  },
+  "5.5th Anniv. プレミアム プリティーダービーガチャ": {
+   "x": 4.4,
+   "y": 21.2,
+   "w": 1024,
+   "h": 576,
+   "det": false,
+   "src": "https://pbs.twimg.com/media/HQdKj8QbwAAZvNU.jpg"
+  }
+ }
+}

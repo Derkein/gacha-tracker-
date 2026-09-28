@@ -24,6 +24,18 @@ BASE = "https://game-i.daa.jp/"
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 
+# Manual banner-art overrides (tag -> {banner name -> local art path}). Some banners' scraped
+# art is a busy event promo with no character face; this swaps in a proper splash committed to
+# the repo (icons/banner_art/). Applied on every scrape so it survives the daily refresh.
+def _load_banner_overrides():
+    p = ROOT / "icons" / "banner_overrides.json"
+    try:
+        import json as _j
+        return _j.loads(p.read_text(encoding="utf-8"))
+    except Exception:
+        return {}
+BANNER_OVERRIDES = _load_banner_overrides()
+
 # tag -> game-i wiki page under ガチャ分析/ , plus display metadata.
 # `apid` (App Store id) also addresses game-i's per-app page ?APP/<apid>, which we
 # scrape for today's store ranks and the daily rank history sparkline.
@@ -383,6 +395,11 @@ def scrape_game(tag, meta):
         seen.add(key)
         uniq.append(b)
     uniq = merge_split_runs(uniq)                 # fold paused-and-resumed runs into one
+    ov = BANNER_OVERRIDES.get(tag, {})            # swap in committed splash art for chosen banners
+    if ov:
+        for b in uniq:
+            if b.get("name") in ov:
+                b["banner_img"] = ov[b["name"]]
     return mark_reruns(uniq, tag in CHRONO_GAMES, tag)
 
 

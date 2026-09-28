@@ -22,3 +22,8 @@ qimai_daily.bat
 # CN scrape working files (the merged data/cn_revenue.json + cn_monthly.json are committed)
 data/cn_shards/
 data/cn_verify/
+
+# local OpenCV 4.x for scripts/compute_focus.py (opencv 5 dropped CascadeClassifier).
+# Regenerate with: pip install --target scripts/.face_cv2 "opencv-python==4.11.0.86"
+scripts/.face_cv2/
+scripts/.focus_imgcache/

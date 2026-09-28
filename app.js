@@ -3,7 +3,7 @@ const GAME_ACCENT = {          // per-game hue (used for bars/dots without a sam
   zzz:"#e0a400", hsr:"#8a7bd8", wuwa:"#2fb6c0", genshin:"#d8a24a", endfield:"#e07b3a", nte:"#d94f8a",
   uma:"#3fb98f",
 };
-const state = { games:[], tag:null, data:null, ext:null, reported:null, cn:null, qimai:null, mode:"time", table:false, reverse:false, bracket:0, tabsExpanded:false, graphYear:"all", graphDim:"year", matchHigh:true, monthYear:"all", periodSort:"timeline", dataSource:"gamei", search:"", agreeMode:"month" };
+const state = { games:[], tag:null, data:null, ext:null, reported:null, cn:null, qimai:null, mode:"time", table:false, reverse:false, bracket:0, tabsExpanded:false, graphYear:"all", graphDim:"year", matchHigh:true, monthYear:"all", periodSort:"timeline", dataSource:"gamei", search:"", agreeMode:"month", compare:{picks:[], sources:{}, chart:"jp"} };
 
 // Major game-version (X.0) launch dates, JST — used to bucket banners into 1.X / 2.X
 // groups. Only version-based games have these; sourced from each game's official
@@ -681,6 +681,8 @@ async function init(){
   // Qimai daily China-iPhone revenue (USD, App Store gross, Qimai model estimate), per
   // banner + per month. A daily source like game-i, but for China iOS. Best-effort.
   try { state.qimai = await getJSON("data/qimai.json"); } catch(e){ state.qimai=null; }
+  // Per-banner face focus points (game -> name -> {x,y,w,h}) for the Compare collage crops.
+  try { state.focus = await getJSON("data/banner_focus.json"); } catch(e){ state.focus=null; }
   // China's own store chart, day by day (the real ranking, not an estimate).
   try { state.cnrank = await getJSON("data/ranks/cn_ios_series.json"); } catch(e){ state.cnrank=null; }
   state.pending = {};   // "pending banners" overlay is disabled (no lagging games tracked)
@@ -705,6 +707,13 @@ async function init(){
     _fitT=setTimeout(()=>{ if(document.querySelector("#chart .mcb")) fitBannerNames($("#chart")); }, 150); });
   const start = (location.hash||"").replace("#","");
   selectGame(state.games.some(g=>g.game===start)?start:state.games[0].game);
+  // a shared ?c= link opens the compare dialog on the saved picks
+  const cp=cmpParseURL();
+  if(cp && cp.picks.length){
+    state.compare.picks=cp.picks;
+    state.compare.sources={}; CMP_SOURCES.forEach(([k])=>state.compare.sources[k]=!cp.off.includes(k));
+    $("#compareModal").hidden=false; renderCompare();
+  }
 }
 
 // Collapse the game list to one no-wrap row with an "+N more" toggle. Collapsed is a
@@ -3772,6 +3781,988 @@ $("#bTable").onclick=function(){state.table=!state.table;
   this.classList.toggle("on",state.table); this.textContent=state.table?"Chart view":"Table view";
   render();};   // render() -> updateControlVis() switches the rest of the row
 
+// ---- Compare: head-to-head between two banners ----------------------------------
+// A banner is one event, so a fair comparison is day-for-day: it caps BOTH runs to the
+// number of days the SHORTER one has (an ongoing banner five days in is compared against
+// only the first five days of a finished one). Every metric that exists is computed over
+// that window and scored, and whichever banner wins more metrics is called the better run.
+// It works across games too — the same rank-and-revenue sources apply — with a warning,
+// because the games measure on different scales.
+//
+// The metric extractors (bannerST/bannerCN/bannerQimai/cnRunSeries/dailyBreakdown) all read
+// the global `state` for the CURRENT game. To pull a banner from another game we load that
+// game into its own prepared context and briefly swap the globals to it while extracting —
+// see loadCtx / withCtx. Only one game's data is ever live at a time, so this reuses every
+// existing (tested) calculation instead of duplicating it.
+const MONTHS_ABBR=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+function cmpDate(iso){ if(!iso) return ""; const [y,m]=iso.split("-"); return `${MONTHS_ABBR[+m-1]} ${y}`; }
+
+// Prepare a game's data exactly as selectGame does, but into a cached side context rather
+// than the live globals, so its banners carry the same _i / monthly attribution / sharing.
+async function loadCtx(tag){
+  state._ctx=state._ctx||{};
+  if(state._ctx[tag]) return state._ctx[tag];
+  const data=await getJSON(`data/${tag}.json`);
+  const save={tag:state.tag,data:state.data,monthly:state.monthly,
+    gb:state._gameBurn,sc:state._shareCurve,cp:state._cnPeers,jp:state._jpPeers};
+  try{
+    state.tag=tag; state.data=data;
+    state.data.banners=state.data.banners.filter(b=>!b._synthetic&&!b.pending);
+    computeMonthly();
+    state.data.banners=state.data.banners.concat(computeUnlisted());
+    [...state.data.banners].sort((a,b)=>b.rev-a.rev).forEach((b,i)=>b._rank=i+1);
+    state.data.banners.forEach((x,i)=>x._i=i);
+    computeSharing();
+    state._gameBurn=undefined; state._shareCurve=undefined; state._cnPeers=undefined; state._jpPeers=undefined;
+    state._ctx[tag]={tag, data:state.data, monthly:state.monthly, name:(state.data.name||tag)};
+  } finally {
+    Object.assign(state,{tag:save.tag,data:save.data,monthly:save.monthly,
+      _gameBurn:save.gb,_shareCurve:save.sc,_cnPeers:save.cp,_jpPeers:save.jp});
+  }
+  return state._ctx[tag];
+}
+// Run fn with the globals pointed at ctx's game, then restore. Synchronous — JS is single
+// threaded, so nothing else reads the globals while fn runs.
+function withCtx(ctx, fn){
+  const save={tag:state.tag,data:state.data,monthly:state.monthly,
+    gb:state._gameBurn,sc:state._shareCurve,cp:state._cnPeers,jp:state._jpPeers};
+  try{
+    state.tag=ctx.tag; state.data=ctx.data; state.monthly=ctx.monthly;
+    state._gameBurn=undefined; state._shareCurve=undefined; state._cnPeers=undefined; state._jpPeers=undefined;
+    return fn();
+  } finally {
+    Object.assign(state,{tag:save.tag,data:save.data,monthly:save.monthly,
+      _gameBurn:save.gb,_shareCurve:save.sc,_cnPeers:save.cp,_jpPeers:save.jp});
+  }
+}
+// English-preferred display name for a banner: the character(s) in English where we have
+// them (agents / the `en` field), else game-i's raw name (which for HoYo games is Japanese).
+function cmpDisp(b){
+  if(b.agents&&b.agents.length) return b.agents.join(" & ");
+  if(b.en) return b.en;
+  return bLabel(b);
+}
+// Load every game once and index every real banner, so both pickers can search across games.
+async function buildCompareIndex(){
+  if(state._cmpIndex) return;
+  await Promise.all((state.games||[]).map(g=>loadCtx(g.game).catch(()=>null)));
+  const idx=[];
+  for(const g of (state.games||[])){ const ctx=state._ctx&&state._ctx[g.game]; if(!ctx) continue;
+    ctx.data.banners.forEach(b=>{ if(b._synthetic||b.pending) return;
+      const disp=cmpDisp(b);
+      idx.push({gtag:g.game, i:b._i, label:disp,
+        en:(b.agents&&b.agents.length?b.agents.join(" & "):""), jp:(b.name&&b.name!==disp?b.name:""),
+        game:g.name, icon:(b.icons&&b.icons[0])||"", rev:b.rev||0, start:b.start, rerun:!!b.rerun}); });
+  }
+  idx.sort((a,b)=> a.game===b.game ? b.rev-a.rev : (a.game<b.game?-1:1));
+  state._cmpIndex=idx;
+  const rc={}; idx.forEach(it=>{ const k=it.gtag+"|"+it.label.toLowerCase(); rc[k]=(rc[k]||0)+1; });
+  state._cmpRunCounts=rc;               // how many banners share a character label (for "compare reruns")
+}
+// Every banner of one character (same game + display label), chronological — powers the
+// one-click "compare its reruns".
+function cmpRunsOf(tag,label){
+  const k=(label||"").toLowerCase();
+  return (state._cmpIndex||[]).filter(it=>it.gtag===tag && it.label.toLowerCase()===k)
+    .slice().sort((a,b)=> a.start<b.start?-1 : a.start>b.start?1 : 0);
+}
+
+// The periods (months / years / versions) of one game that can be compared, newest first.
+function gamePeriods(ctx, kind){
+  return withCtx(ctx,()=>{
+    if(kind==="month"){
+      return Object.keys(ctx.monthly||{}).filter(ym=>/^\d{4}-\d{2}$/.test(ym)).sort().reverse()
+        .map(ym=>({key:ym, label:`${MONTHS_ABBR[+ym.slice(5,7)-1]} ${ym.slice(0,4)}`}));
+    }
+    if(kind==="year"){
+      const ys=new Set((ctx.data.banners||[]).filter(b=>!b._synthetic&&!b.pending).map(b=>+String(b.start).slice(0,4)));
+      return [...ys].sort((a,b)=>b-a).map(y=>({key:String(y), label:String(y)}));
+    }
+    if(kind==="version"){
+      const v=VERSIONS[ctx.tag]||[];
+      return v.map(x=>({key:x[0], label:x[0]})).reverse();
+    }
+    return [];
+  });
+}
+const _cmpISO=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+// The calendar [start,end] a comparable entity spans (end is the scheduled/period end, not
+// yet capped to today — the snapshot builder does the elapsed cap).
+function entityRange(ctx, kind, key){
+  if(kind==="banner"){ const b=ctx.data.banners[+key]; return {start:b.start, end:b.end}; }
+  if(kind==="month"){ const y=+key.slice(0,4), m=+key.slice(5,7);
+    return {start:`${key}-01`, end:_cmpISO(new Date(y, m, 0))}; }              // day 0 of next month = last day
+  if(kind==="year"){ return {start:`${key}-01-01`, end:`${key}-12-31`}; }
+  if(kind==="version"){ const v=VERSIONS[ctx.tag]||[]; const i=v.findIndex(x=>x[0]===key);
+    const start=v[i][1];
+    const end = i+1<v.length ? _cmpISO(new Date(Date.parse(v[i+1][1])-864e5)) : `${new Date().getFullYear()}-12-31`;
+    return {start, end}; }
+  return null;
+}
+function periodLabel(ctx, kind, key){
+  if(kind==="month"){ return {label:`${MONTHS_ABBR[+key.slice(5,7)-1]} ${key.slice(0,4)}`, sub:`${ctx.name} · month`}; }
+  if(kind==="year"){ return {label:key, sub:`${ctx.name} · year`}; }
+  if(kind==="version"){ return {label:`Version ${key}`, sub:`${ctx.name} · version`}; }
+  return {label:key, sub:ctx.name};
+}
+
+// An entity's raw comparable data (a banner OR a period), extracted once in its own game
+// context and memoised. Every kind produces the SAME shape — day-indexed jp/cn/gi/qm series
+// plus full-run totals — so buildComparison treats them identically.
+function entityMetrics(entity){
+  const cacheKey=[entity.tag,entity.kind,entity.key].join("#");
+  state._cmpMetrics=state._cmpMetrics||{};
+  if(state._cmpMetrics[cacheKey]) return state._cmpMetrics[cacheKey];
+  const ctx=state._ctx&&state._ctx[entity.tag];
+  if(!ctx) return null;
+  const m=withCtx(ctx,()=> entity.kind==="banner" ? bannerSnapshot(ctx,+entity.key) : periodSnapshot(ctx,entity.kind,entity.key));
+  return (state._cmpMetrics[cacheKey]=m);
+}
+// One banner. Must run inside withCtx(ctx).
+function bannerSnapshot(ctx,i){
+  const b=ctx.data.banners[i]; if(!b) return null;
+  const jp=(b.rank_series||[]).slice();
+  const cnRun=cnRunSeries(b); const cn=cnRun?cnRun.map(x=>x.rank):null;
+  // whether the China chart was actually recorded that day (depth known). A null rank on a
+  // recorded day = genuinely below #200; a null on an unrecorded day = data not fetched yet.
+  const cnKnown=cnRun?cnRun.map(x=>x.depth!=null):null;
+  const bd=dailyBreakdown(b); const gi=bd?bd.days.map(d=>({add:d.add,cum:d.cum})):[];
+  const qm=bannerQimai(b); const qmDaily=(qm.daily||[]).slice();
+  const st=bannerST(b); const cnv=bannerCN(b);
+  return {
+    gtag:ctx.tag, kind:"banner", key:String(i),
+    label:cmpDisp(b), name:cmpDisp(b), sub:`${ctx.name} · ${cmpDate(b.start)}${b.rerun?" · ↻ rerun":""}`,
+    game:ctx.name, art:b.banner_img||"", icon:(b.icons&&b.icons[0])||"", accent:barColor(b), face:cmpFace(ctx.tag, b.name),
+    start:b.start, end:b.end, ongoing:!!b.ongoing, rerun:!!b.rerun,
+    scheduled:Math.round((Date.parse(b.end)-Date.parse(b.start))/864e5)+1,
+    rev:b.rev||0, jp, cn, cnKnown, gi, qmDaily, hasQm:!!qm.hasData,
+    stTotal: st.hasData?st.total:null,
+    cnLo: cnv.hasData?cnv.lo:null, cnHi: cnv.hasData?(cnv.hi==null?cnv.lo:cnv.hi):null,
+    runDays: Math.max(jp.length, cn?cn.length:0, qmDaily.length, gi.length),
+    pct: bannerPct(ctx,i),          // standing among this game's banners (percentile)
+    rival: bannerRival(b),          // biggest concurrent banner it shared the schedule with
+    proj: bannerProj(b),            // where an ongoing run is tracking towards
+    agents: b.agents||[],
+  };
+}
+// A banner's overall standing among its game's banners: the mean of its available
+// source percentiles (game-i / Qimai / ST / CN / JP rank / CN rank). Must run in withCtx.
+function bannerPct(ctx,i){
+  try{
+    const A=bannerAgreement(ctx.tag); const r=A.rows.find(x=>x.key===String(i));
+    if(!r) return null;
+    const vals=[r.gi,r.qm,r.st,r.cn,r.jr,r.cr].filter(v=>v!=null);
+    return vals.length? Math.round(vals.reduce((a,c)=>a+c,0)/vals.length) : null;
+  }catch(e){ return null; }
+}
+// The concurrent banner this one most shared revenue with, by that rival's own size.
+function bannerRival(b){
+  const sh=b._share; if(!sh || !sh.on || !sh.with||!sh.with.length) return null;
+  const top=sh.with.reduce((m,w)=> (w.o.rev||0)>(m.o.rev||0)?w:m, sh.with[0]);
+  return { name:top.name, rev:top.o.rev||0, days:sh.days, frac:sh.revFrac };
+}
+// Where an ongoing run is heading, from how much this game's finished banners have usually
+// banked by the same day (same logic burnBlock uses on the game-i tab).
+function bannerProj(b){
+  if(!b.ongoing) return null;
+  const bo=burnout(b), sc=gameShareCurve(); if(!bo||!sc) return null;
+  const D=bo.days; if(D<2||D>sc.days) return null;
+  const sh=sc.share[D-1]; if(!sh||sh<=0.02||!(b.rev>0)) return null;
+  return { day:D, scheduled:Math.round((Date.parse(b.end)-Date.parse(b.start))/864e5)+1,
+    sh, projTotal:b.rev/sh, lo:b.rev/sc.hi[D-1], hi:b.rev/sc.lo[D-1] };
+}
+// A whole month / year / version: the game's daily series over the range, built from every
+// banner that ran plus the game's real China chart. Must run inside withCtx(ctx).
+function periodSnapshot(ctx, kind, key){
+  const R=entityRange(ctx, kind, key); if(!R) return null;
+  const startD=new Date(R.start+"T00:00:00");
+  let endD=new Date(R.end+"T00:00:00");
+  const today=new Date(); today.setHours(0,0,0,0);
+  const ongoing = endD>today; if(ongoing) endD=today;
+  const idxOf=dt=>Math.round((dt-startD)/864e5);
+  const n=idxOf(endD)+1;
+  if(n<=0) return null;
+  const giAdd=new Array(n).fill(0), jp=new Array(n).fill(null), qm=new Array(n).fill(0);
+  let anyQm=false;
+  const bans=ctx.data.banners.filter(b=>!b._synthetic&&!b.pending);
+  for(const b of bans){
+    const bd=dailyBreakdown(b);
+    if(bd){ const s0=Date.parse(b.start);
+      bd.days.forEach(d=>{ const idx=idxOf(new Date(s0+d.i*864e5));
+        if(idx>=0&&idx<n){ giAdd[idx]+=d.add; if(d.rank!=null && (jp[idx]==null||d.rank<jp[idx])) jp[idx]=d.rank; } }); }
+    else if(b.rank_series){ const s0=Date.parse(b.start);
+      b.rank_series.forEach((r,i)=>{ if(r==null) return; const idx=idxOf(new Date(s0+i*864e5));
+        if(idx>=0&&idx<n && (jp[idx]==null||r<jp[idx])) jp[idx]=r; }); }
+    const q=bannerQimai(b);
+    if(q.hasData && q.daily && q.daily.length){ const qs=Date.parse(q.start||b.start);
+      q.daily.forEach((val,i)=>{ const idx=idxOf(new Date(qs+i*864e5)); if(idx>=0&&idx<n && val){ qm[idx]+=val; anyQm=true; } }); }
+  }
+  const cn=new Array(n).fill(null), cnKnown=new Array(n).fill(false);
+  const cr=state.cnrank&&state.cnrank.games&&state.cnrank.games[ctx.tag];
+  const crDays=state.cnrank&&state.cnrank.days;
+  for(let idx=0; idx<n; idx++){ const iso=_cmpISO(new Date(startD.getTime()+idx*864e5));
+    if(crDays&&crDays[iso]) cnKnown[idx]=true;                 // the China chart was recorded that day
+    if(cr){ const v=cr[iso]; if(v!=null) cn[idx]=v; } }
+  let cum=0; const gi=giAdd.map(a=>({add:a, cum:(cum+=a)}));
+  const inRange=ym=>ym>=R.start.slice(0,7) && ym<=R.end.slice(0,7);
+  const st=extSum(inRange, ctx.tag), cnv=cnSum(inRange, ctx.tag);
+  const lbl=periodLabel(ctx, kind, key);
+  // characters running during the period (any overlap), biggest first — shown on the card
+  const running=bans.filter(b=>b.start<=R.end && b.end>=R.start)
+    .sort((a,b)=>(b.rev||0)-(a.rev||0))
+    .map(b=>({label:cmpDisp(b), icon:(b.icons&&b.icons[0])||"", art:b.banner_img||"", face:cmpFace(ctx.tag, b.name)}));
+  return {
+    gtag:ctx.tag, kind, key, label:lbl.label, name:`${lbl.label} · ${ctx.name}`, sub:lbl.sub, game:ctx.name,
+    art:"", icon:"", accent:GAME_ACCENT[ctx.tag]||"#8a8a8a", banners:running,
+    start:R.start, end:R.end, ongoing, rerun:false, scheduled:n,
+    rev:gi.length?gi[gi.length-1].cum:0, jp, cn, cnKnown, gi, qmDaily:qm, hasQm:anyQm,
+    stTotal: st?st.rev:null, cnLo: cnv?cnv.lo:null, cnHi: cnv?cnv.hi:null,
+    runDays:n,
+  };
+}
+
+// Rank stats over the first k days of a rank series (nulls = below the trackable top 200).
+// `mask`, when given, marks which days actually have data — a null on an unrecorded day is
+// "not fetched yet", not a real drop, so it never triggers a drop-out.
+function cmpRankStats(arr,k,mask){
+  if(!arr) return {none:true};
+  const OFF=201;                                   // below-200 days penalised, so a run that
+  const win=arr.slice(0,k);                        //   held the chart beats one that fell off
+  const has=idx=> !mask || mask[idx];              // day has data (default: always)
+  const known=win.map((v,idx)=>[idx,v]).filter(([,v])=>v!=null);
+  if(!known.length) return {none:true};
+  const vals=known.map(([,v])=>v), sorted=[...vals].sort((a,b)=>a-b);
+  const peak=sorted[0], peakDay=known.find(([,v])=>v===peak)[0];
+  const last=known[known.length-1][1];
+  const span=(win.length-1)-peakDay;
+  // top-200 drop-out: the FIRST recorded day it falls below #200 after entering the chart (a
+  // mid-run exit counts, not only a trailing one). Days with no data (mask false) are skipped,
+  // so a run whose recent days simply haven't been fetched isn't misread as a drop.
+  const firstIdx=known[0][0]; let firstDrop=-1;
+  for(let idx=firstIdx+1; idx<win.length; idx++){ if(!has(idx)) continue; if(win[idx]==null){ firstDrop=idx; break; } }
+  const droppedOut = firstDrop>=0;
+  // last day with data, so "no drop" scoring isn't inflated by trailing unfetched days
+  let lastData=firstIdx; for(let idx=win.length-1; idx>firstIdx; idx--){ if(has(idx)){ lastData=idx; break; } }
+  return { none:false, peak, peakDay, open:known[0][1], last,
+    med:sorted[Math.floor(sorted.length/2)],
+    sum:win.reduce((a,v)=>a+(v==null?OFF:v),0),
+    top10:vals.filter(v=>v<=10).length, top20:vals.filter(v=>v<=20).length,
+    degrade: span>0 ? (last-peak)/span : 0, charted:known.length,
+    heldDays: droppedOut ? firstDrop : lastData+1, droppedOut, dropDay: droppedOut ? firstDrop+1 : null };
+}
+const cmpSum=(arr,k)=>{ const w=(arr||[]).slice(0,k); return w.length?w.reduce((a,v)=>a+(v||0),0):null; };
+const cmpCum=(gi,k)=>{ if(!gi||!gi.length) return null; const idx=Math.min(k,gi.length)-1; return idx>=0?gi[idx].cum:null; };
+
+const cmpMid=(lo,hi)=> lo==null?null:(lo+(hi==null?lo:hi))/2;
+// The comparable sources, in display order. Ranks default on alongside the rest.
+const CMP_SOURCES=[["gamei","game-i"],["qimai","Qimai"],["st","Sensor Tower"],["cn","CN"],["jp","JP rank"],["cnrank","CN rank"]];
+function cmpSources(){ const s=state.compare.sources||(state.compare.sources={});
+  CMP_SOURCES.forEach(([k])=>{ if(s[k]===undefined) s[k]=true; }); return s; }
+// Assemble the comparison rows for A vs B, honouring which sources are toggled on.
+// N-way comparison over an array of entity snapshots (2–4). Each metric picks a single best
+// side; ties among the best award no point. Returns rows (one per metric, N cells each),
+// per-side points, chart availability and per-side region skew.
+function buildComparison(E){
+  const en=cmpSources();
+  const M=E.length;
+  const N=Math.min(...E.map(e=>e.runDays||0));
+  const minLen=(arr)=>Math.min(N, ...E.map(e=>(arr(e)||[]).length));
+  const kGI=minLen(e=>e.gi);
+  const kQM=E.every(e=>e.hasQm)?minLen(e=>e.qmDaily):0;
+  const kJP=minLen(e=>e.jp);
+  const kCN=E.every(e=>e.cn)?minLen(e=>e.cn):0;
+  const sJP=E.map(e=>cmpRankStats(e.jp,kJP)), sCN=E.map(e=>cmpRankStats(e.cn,kCN,e.cnKnown));
+  const rows=[];
+  const rk=v=>v==null?"—":"#"+Math.round(v);
+  const dOnly=v=>v==null?"—":Math.round(v)+"d";
+  const dec=v=>v==null?"—":(v>0?"+":"")+v.toFixed(1)+"/day";
+  const push=(o)=>rows.push(Object.assign({note:"",full:false},o));
+  const cellsFrom=(fn,dispFn)=>E.map((e,i)=>({v:fn(e,i), disp:dispFn?dispFn(e,i):null}));
+
+  if(en.gamei && kGI>0){ const w=Math.min(7,kGI);
+    push({group:"Revenue",src:"gamei",metric:"gamei_total",label:"Total",k:kGI,better:"high",fmt:G,cells:cellsFrom(e=>cmpCum(e.gi,kGI))});
+    push({group:"Revenue",src:"gamei",metric:"gamei_peak",label:"Peak-rank day",better:"high",fmt:G,note:"revenue on its best JP-rank day",cells:cellsFrom((e,i)=>{const pd=sJP[i].none?null:sJP[i].peakDay; return (pd!=null&&pd<e.gi.length)?e.gi[pd].add:null;})});
+    push({group:"Revenue",src:"gamei",metric:"gamei_week",label:"First week",k:w,better:"high",fmt:G,cells:cellsFrom(e=>cmpCum(e.gi,w))});
+    push({group:"Revenue",src:"gamei",metric:"gamei_perday",label:"Per day",k:kGI,better:"high",fmt:G,note:"revenue ÷ days compared",cells:cellsFrom(e=>{const c=cmpCum(e.gi,kGI);return c==null?null:c/kGI;})});
+  }
+  if(en.qimai && kQM>0){ const w=Math.min(7,kQM);
+    push({group:"Revenue",src:"qimai",metric:"qimai_total",label:"Total",k:kQM,better:"high",fmt:fmtUSD,cells:cellsFrom(e=>cmpSum(e.qmDaily,kQM))});
+    push({group:"Revenue",src:"qimai",metric:"qimai_peak",label:"Peak-rank day",better:"high",fmt:fmtUSD,note:"revenue on its best CN-rank day",cells:cellsFrom((e,i)=>{const pd=sCN[i].none?null:sCN[i].peakDay; return (pd!=null&&pd<e.qmDaily.length)?e.qmDaily[pd]:null;})});
+    push({group:"Revenue",src:"qimai",metric:"qimai_week",label:"First week",k:w,better:"high",fmt:fmtUSD,cells:cellsFrom(e=>cmpSum(e.qmDaily,w))});
+    push({group:"Revenue",src:"qimai",metric:"qimai_perday",label:"Per day",k:kQM,better:"high",fmt:fmtUSD,note:"revenue ÷ days compared",cells:cellsFrom(e=>{const c=cmpSum(e.qmDaily,kQM);return c==null?null:c/kQM;})});
+  }
+  if(en.st && E.every(e=>e.stTotal!=null)){
+    push({group:"Revenue",src:"st",metric:"st_total",label:"Total",better:"high",fmt:fmtUSD,full:true,note:"whole run — monthly source",cells:cellsFrom(e=>e.stTotal)});
+    push({group:"Revenue",src:"st",metric:"st_perday",label:"Per day",better:"high",fmt:fmtUSD,full:true,note:"÷ full run length",cells:cellsFrom(e=>e.stTotal/e.scheduled)});
+  }
+  if(en.cn && E.every(e=>e.cnLo!=null)){
+    push({group:"Revenue",src:"cn",metric:"cn_total",label:"Total",better:"high",fmt:null,full:true,note:"whole run — monthly source",
+      cells:cellsFrom(e=>cmpMid(e.cnLo,e.cnHi), e=>fmtCNYRange(e.cnLo,e.cnHi))});
+    push({group:"Revenue",src:"cn",metric:"cn_perday",label:"Per day",better:"high",fmt:fmtCNY,full:true,note:"÷ full run length",cells:cellsFrom(e=>cmpMid(e.cnLo,e.cnHi)/e.scheduled)});
+  }
+  // days a run held the top 200 before falling off (never dropping scores highest). Cell shows
+  // the day it fell ("day D"), "no drop" if it held the whole window, or "—" if never charted.
+  const dropCells=(stats,k)=>stats.map(s=> s.none ? {v:null,disp:null}
+    : s.droppedOut ? {v:s.heldDays, disp:`day ${s.dropDay}`} : {v:k+1, disp:"no drop"});
+  if(en.jp && kJP>0){ const jf=(f)=>cellsFrom((e,i)=>sJP[i].none?null:f(sJP[i]));
+    push({group:"Japan rank",src:"jp",metric:"jp_peak",label:"Peak rank",k:kJP,better:"low",fmt:rk,cells:jf(s=>s.peak)});
+    push({group:"Japan rank",src:"jp",metric:"jp_med",label:"Median rank",k:kJP,better:"low",fmt:rk,cells:jf(s=>s.med)});
+    push({group:"Japan rank",src:"jp",metric:"jp_top10",label:"Days in top 10",k:kJP,better:"high",fmt:dOnly,note:"staying power",cells:jf(s=>s.top10)});
+    push({group:"Japan rank",src:"jp",metric:"jp_drop",label:"Dropped from top 200",k:kJP,better:"high",note:"day it fell off — later (or no drop) is better",cells:dropCells(sJP,kJP)});
+    if(kJP>=5 && E.every((e,i)=>!sJP[i].none && sJP[i].charted>=3))
+      push({group:"Japan rank",src:"jp",metric:"jp_decay",label:"Rank decay",k:kJP,better:"low",fmt:dec,note:"places lost per day after the peak",cells:jf(s=>s.degrade)});
+  }
+  if(en.cnrank && kCN>0){ const cf=(f)=>cellsFrom((e,i)=>sCN[i].none?null:f(sCN[i]));
+    push({group:"China rank",src:"cnrank",metric:"cnr_peak",label:"Peak rank",k:kCN,better:"low",fmt:rk,cells:cf(s=>s.peak)});
+    push({group:"China rank",src:"cnrank",metric:"cnr_med",label:"Median rank",k:kCN,better:"low",fmt:rk,cells:cf(s=>s.med)});
+    push({group:"China rank",src:"cnrank",metric:"cnr_top10",label:"Days in top 10",k:kCN,better:"high",fmt:dOnly,note:"staying power",cells:cf(s=>s.top10)});
+    push({group:"China rank",src:"cnrank",metric:"cnr_drop",label:"Dropped from top 200",k:kCN,better:"high",note:"day it fell off — later (or no drop) is better",cells:dropCells(sCN,kCN)});
+    if(kCN>=5 && E.every((e,i)=>!sCN[i].none && sCN[i].charted>=3))
+      push({group:"China rank",src:"cnrank",metric:"cnr_decay",label:"Rank decay",k:kCN,better:"low",fmt:dec,note:"places lost per day after the peak",cells:cf(s=>s.degrade)});
+  }
+  // score each row: single best side wins a point; a tie for best awards none. Also record how
+  // close the win was (relative gap between best and runner-up), so the read-out can flag slim leads.
+  const points=new Array(M).fill(0); const W={}, margin={};
+  for(const r of rows){
+    const vs=r.cells.map(c=>c.v), have=vs.filter(v=>v!=null);
+    r.scored=have.length>=2;
+    if(!r.scored){ r.winner=null; continue; }
+    const best = r.better==="high" ? Math.max(...have) : Math.min(...have);
+    const idxs=[]; vs.forEach((v,i)=>{ if(v!=null && v===best) idxs.push(i); });
+    if(idxs.length===1){ r.winner=idxs[0]; points[idxs[0]]++; W[r.metric]=idxs[0];
+      const srt=[...have].sort((a,b)=> r.better==="high"?b-a:a-b), den=Math.max(Math.abs(srt[0]),Math.abs(srt[1]),1e-9);
+      r.margin = margin[r.metric] = Math.abs(srt[0]-srt[1])/den;
+    } else { r.winner="tie"; W[r.metric]="tie"; }
+  }
+  const decided=rows.filter(r=>typeof r.winner==="number").length;
+  const top=Math.max(...points), leaders=points.filter(p=>p===top).length;
+  const overall = (top>0 && leaders===1) ? points.indexOf(top) : "even";
+  const ctxRows=[
+    {label:"game-i total (full run)", cells:E.map(e=>({disp:e.rev>0?G(e.rev):"—"}))},
+    {label:"Full run length", cells:E.map(e=>({disp:`${e.scheduled}d${e.ongoing?" (ongoing)":""}`}))},
+  ];
+  return {N,M,kGI,kQM,kJP,kCN,rows,ctxRows,points,decided,W,margin,overall,
+    skews:E.map((e,i)=>({jpMed:sJP[i].none?null:sJP[i].med, cnMed:sCN[i].none?null:sCN[i].med})),
+    charts:{ jp:kJP>0 && sJP.filter(s=>!s.none).length>=2, cn:kCN>0 && sCN.filter(s=>!s.none).length>=2,
+             gamei:kGI>0, qimai:kQM>0 } };
+}
+
+// ---- per-category plain-English read-out of the numbers -------------------------------
+// Revenue: which markets each side wins, and what a split between them implies (Japan vs
+// China, mobile vs all-platform, worldwide vs Japan).
+const cmpJoinList=arr=> arr.length>1 ? arr.slice(0,-1).join(", ")+" and "+arr[arr.length-1] : (arr[0]||"");
+// ---- two-side (rich) read-outs ----
+const CMP_CLOSE=0.10;                                  // a win under ~10% ahead reads as "narrow"
+function cmpRevComment2(R,A,B){
+  const nA=esc(A.name||A.label), nB=esc(B.name||B.label);
+  const w=m=> R.W[m]===0?"a":R.W[m]===1?"b":(R.W[m]==="tie"?"draw":undefined);
+  const close=m=> R.margin[m]!=null && R.margin[m]<CMP_CLOSE;
+  const short={gamei_total:"Japan (game-i)", qimai_total:"China iPhone (Qimai)", st_total:"worldwide (Sensor Tower)", cn_total:"all-platform (CN)"};
+  const totals=Object.keys(short).filter(m=>w(m)==="a"||w(m)==="b");
+  if(totals.length<1) return "";
+  const mark=m=> close(m) ? short[m].replace(/\)$/, ", narrowly)") : short[m];
+  const list=ms=>cmpJoinList(ms.map(mark));
+  const byA=totals.filter(m=>w(m)==="a"), byB=totals.filter(m=>w(m)==="b");
+  if(!byB.length) return `<b>${nA}</b> out-earns ${nB} on every revenue source shown — ${list(byA)}.`;
+  if(!byA.length) return `<b>${nB}</b> out-earns ${nA} on every revenue source shown — ${list(byB)}.`;
+  const base=`${nA} earns more in ${list(byA)}, ${nB} more in ${list(byB)}`;
+  const clauses=[];
+  if(w("gamei_total") && w("qimai_total") && w("gamei_total")!==w("qimai_total"))
+    clauses.push(`${w("gamei_total")==="a"?nA:nB} is the stronger earner in Japan while ${w("qimai_total")==="a"?nA:nB} leads in China, so they pull revenue from different regions`);
+  if(w("cn_total")){ const mob=["gamei_total","qimai_total","st_total"].map(w).filter(x=>x==="a"||x==="b"); const cnName=w("cn_total")==="a"?nA:nB;
+    if(mob.length && mob.every(x=>x!==w("cn_total")))
+      clauses.push(close("cn_total")
+        ? `${cnName} edges ahead once PC and console are counted (the CN all-platform figure), so that lead is marginal`
+        : `${cnName} only pulls ahead once PC and console are counted (the CN all-platform figure), which hints at stronger non-mobile revenue`);
+  }
+  if(w("st_total") && w("gamei_total") && w("st_total")!==w("gamei_total") && !clauses.length)
+    clauses.push(`${w("st_total")==="a"?nA:nB} is larger worldwide despite trailing in Japan, so it earns relatively more outside Japan`);
+  return clauses.length ? `${base} — ${clauses.slice(0,2).join("; ")}.` : base+".";
+}
+function cmpRankComment2(R,E,prefix,market){
+  const nA=esc(E[0].name||E[0].label), nB=esc(E[1].name||E[1].label);
+  const w=k=> R.W[prefix+k]===0?"a":R.W[prefix+k]===1?"b":(R.W[prefix+k]==="tie"?"draw":undefined);
+  const asp=[["peak","a higher peak"],["med","a better median"],["top10","more days in the top 10"],["decay","a slower decay"]];
+  const aw=[], bw=[];
+  for(const [key,phrase] of asp){ const x=w(key); if(x==="a") aw.push({key,phrase}); else if(x==="b") bw.push({key,phrase}); }
+  const join=arr=>cmpJoinList(arr.map(o=>o.phrase));
+  const strongTied=[["peak","peak rank"],["top10","days in the top 10"]].filter(([k])=>w(k)==="draw").map(([,l])=>l);
+  const tieNote = strongTied.length
+    ? ` They tie on ${cmpJoinList(strongTied)} — generally the stronger indicator${strongTied.length>1?"s":""} — so they're more evenly matched than that suggests.` : "";
+  if(!aw.length && !bw.length)
+    return strongTied.length ? `Neck and neck on the ${market} chart — level on ${cmpJoinList(strongTied)}, the stronger indicator${strongTied.length>1?"s":""}.` : "";
+  if(!bw.length) return `<b>${nA}</b> leads the ${market} chart — ${join(aw)}.${tieNote}`;
+  if(!aw.length) return `<b>${nB}</b> leads the ${market} chart — ${join(bw)}.${tieNote}`;
+  const peakW=w("peak"), stayK=["med","top10","decay"];
+  const stayA=aw.filter(o=>stayK.includes(o.key)), stayB=bw.filter(o=>stayK.includes(o.key));
+  const stayWin = stayA.length>stayB.length?"a":stayB.length>stayA.length?"b":null;
+  if(peakW && (peakW==="a"||peakW==="b") && stayWin && peakW!==stayWin){
+    const spike=peakW==="a"?nA:nB, hold=stayWin==="a"?nA:nB, held=join(stayWin==="a"?stayA:stayB);
+    return `${spike} hit a higher ${market} peak, but ${hold} held the chart better (${held}) — ${spike} was more front-loaded while ${hold} had the staying power.${tieNote}`;
+  }
+  return `${nA} takes ${join(aw)}; ${nB} takes ${join(bw)} — a mixed ${market} result.${tieNote}`;
+}
+// ---- N-side (3–4) read-outs: name the leader of the category and what they took ----
+function cmpCatCountN(R,E,metrics){                         // {counts[], leaderIdx|null}
+  const counts=new Array(E.length).fill(0); let any=false;
+  for(const m of metrics){ const wi=R.W[m]; if(typeof wi==="number"){ counts[wi]++; any=true; } }
+  if(!any) return {counts, leaderIdx:null};
+  const top=Math.max(...counts), n=counts.filter(c=>c===top).length;
+  return {counts, leaderIdx:(top>0&&n===1)?counts.indexOf(top):null};
+}
+function cmpRevCommentN(R,E){
+  const metrics=["gamei_total","qimai_total","st_total","cn_total"].filter(m=>m in R.W);
+  if(!metrics.length) return "";
+  const {counts,leaderIdx}=cmpCatCountN(R,E,metrics);
+  if(leaderIdx==null) return `No single side leads on revenue — the sources split between them.`;
+  const name=esc(E[leaderIdx].name||E[leaderIdx].label);
+  const closeWon=metrics.filter(m=>R.W[m]===leaderIdx && R.margin[m]!=null && R.margin[m]<CMP_CLOSE).length;
+  const closeNote=closeWon?` (${closeWon===1?"one":closeWon} by a slim margin)`:"";
+  return counts[leaderIdx]===metrics.length
+    ? `<b>${name}</b> out-earns the rest on every revenue source shown${closeNote}.`
+    : `<b>${name}</b> leads on revenue, topping ${counts[leaderIdx]} of the ${metrics.length} sources${closeNote}.`;
+}
+function cmpRankCommentN(R,E,prefix,market){
+  const metrics=["peak","med","top10","decay"].map(k=>prefix+k).filter(m=>m in R.W);
+  if(!metrics.length) return "";
+  const {counts,leaderIdx}=cmpCatCountN(R,E,metrics);
+  const strongTied=[["peak","peak rank"],["top10","days in the top 10"]].filter(([k])=>R.W[prefix+k]==="tie").map(([,l])=>l);
+  const tieNote = strongTied.length ? ` The ${cmpJoinList(strongTied)} — the stronger indicator${strongTied.length>1?"s":""} — ${strongTied.length>1?"were":"was"} tied.` : "";
+  if(leaderIdx==null) return `No single side owns the ${market} chart — the measures split.${tieNote}`;
+  return `<b>${esc(E[leaderIdx].name||E[leaderIdx].label)}</b> leads the ${market} chart, taking ${counts[leaderIdx]} of the ${metrics.length} measures.${tieNote}`;
+}
+function cmpComments(R,E){
+  if(E.length===2) return {
+    "Revenue": cmpRevComment2(R,E[0],E[1]),
+    "Japan rank": cmpRankComment2(R,E,"jp_","Japan"),
+    "China rank": cmpRankComment2(R,E,"cnr_","China"),
+  };
+  return {
+    "Revenue": cmpRevCommentN(R,E),
+    "Japan rank": cmpRankCommentN(R,E,"jp_","Japan"),
+    "China rank": cmpRankCommentN(R,E,"cnr_","China"),
+  };
+}
+// One-line summary under the verdict: how decisive the win was and which categories drove it.
+function cmpTLDR(R,E){
+  if(!R.decided) return "";
+  if(R.overall==="even") return "A dead heat — the sides trade wins across the categories.";
+  const wi=R.overall, name=esc(E[wi].name||E[wi].label);
+  const gap=R.points[wi]-Math.max(...R.points.filter((_,i)=>i!==wi));
+  const decisive = gap>=6?"decisively":gap>=3?"comfortably":"narrowly";
+  const lead=ms=>cmpCatCountN(R,E,ms.filter(m=>m in R.W)).leaderIdx;
+  const rev=lead(["gamei_total","qimai_total","st_total","cn_total"]);
+  const jp=lead(["jp_peak","jp_med","jp_top10","jp_drop","jp_decay"]);
+  const cn=lead(["cnr_peak","cnr_med","cnr_top10","cnr_drop","cnr_decay"]);
+  const won=[]; if(rev===wi)won.push("revenue"); if(jp===wi)won.push("the Japan chart"); if(cn===wi)won.push("the China chart");
+  let s=`${name} takes it ${decisive}`;
+  if(won.length) s+=`, leading on ${cmpJoinList(won)}`;
+  if(E.length===2){ const li=1-wi, ceded=[];
+    if(rev===li)ceded.push("revenue"); if(jp===li)ceded.push("the Japan chart"); if(cn===li)ceded.push("the China chart");
+    if(ceded.length) s+=`, while ${esc(E[li].name||E[li].label)} took ${cmpJoinList(ceded)}`;
+  }
+  return s+".";
+}
+
+// ---- Compare card rendering (lives above the game tabs; game -> type -> entity) ----
+const CMP_KINDS=[["banner","Character"],["month","Month"],["year","Year"],["version","Version"]];
+function cmpArtThumb(m,cls){
+  if(m.art) return `<img class="${cls||""}" src="${esc(m.art)}" alt="" referrerpolicy="no-referrer" data-fb="mono" data-nm="${esc(m.label)}"${cmpFacePos(m.face)}>`;
+  if(m.icon) return `<img class="${cls||""}" src="${esc(m.icon)}" alt="" referrerpolicy="no-referrer" data-fb="mono" data-nm="${esc(m.label)}">`;
+  const kindWord = m.kind==="banner" ? "" : (m.kind||"").toUpperCase();
+  const artl = m.kind==="version" ? m.key : m.label;   // avoid "VERSION / Version 2.X"
+  return `<span class="cmp-artmono ${cls||""}" style="--acc:${m.dispAccent||m.accent}">${kindWord?`<span class="cmp-artk">${esc(kindWord)}</span>`:""}<span class="cmp-artl">${esc(artl)}</span></span>`;
+}
+// Where each banner's headliner face sits, as a point in the source art (x%,y% from top-left),
+// so every Compare crop can aim at the face instead of slicing through it. The bulk comes from
+// data/banner_focus.json (auto-detected offline by scripts/compute_focus.py); this map is only
+// for the handful the detector gets wrong — a turned head, one eye hidden — and it wins.
+const CMP_FACE_OVERRIDE = {
+  // ZZZ
+  "シグリッド": {x:25, y:22},   // Sigrid — cat-girl looking down, one eye hidden; detector misses her
+  // HSR — detector picked a false positive or the wrong side; these are the true face centres.
+  "爻光": {x:21, y:27},                     // Yao Guang — left of the promo (detector grabbed the right)
+  "アベンチュリン・波と戯れる夏": {x:20, y:27}, // Aventurine · Waveflair — left of the promo (was a fallback)
+  "遠坂凛&ギルガメッシュ": {x:56, y:31},      // Rin — centred portrait (detector grabbed far left)
+  "花火&景元復刻": {x:60, y:37},            // Sparkle — right side of the art
+  "ロビン・夏空の歌": {x:74, y:24},          // Robin — right side of a 16:9 summer promo
+  // WuWa — busy art defeats the detector (real face too small, or only the rate-up icons found).
+  "秧秧．玄翎": {x:68, y:29},                // Yangyang: Xuanling — right-side character
+  "穗穗": {x:62, y:31},                     // Suisui — center-right (a bg false positive outscored her)
+};
+// Resolve a banner's face point: manual override first, else the detected entry. Returns
+// {x,y} in source-% plus natural {w,h} when known, or null when we have nothing to aim at.
+function cmpFace(tag, name){
+  const ov = CMP_FACE_OVERRIDE[name];
+  const d = state.focus && state.focus[tag] && state.focus[tag][name];
+  if(!ov && !d) return null;
+  return { x: ov&&ov.x!=null ? ov.x : d.x, y: ov&&ov.y!=null ? ov.y : d.y,
+           w: d?d.w:null, h: d?d.h:null };
+}
+// data-* attributes carrying the face point onto an <img>, read back by cmpFitWedge / used
+// directly as object-position on rectangular tiles.
+function cmpFaceAttrs(face){
+  if(!face) return "";
+  return ` data-fx="${face.x}" data-fy="${face.y}"${face.w?` data-fw="${face.w}"`:""}${face.h?` data-fh="${face.h}"`:""}`;
+}
+function cmpFacePos(face){ return face ? ` style="object-position:${face.x}% ${face.y}%"` : ""; }
+// Geometry of the three collage wedges (fractions of the card box): the bounding box each slice
+// must stay covered, the target point the face should land on, and how far to zoom in.
+const CMP_WEDGE = {
+  l: {bx0:0,   bx1:0.5, by0:0, by1:0.8333, tx:0.24, ty:0.30, s:1.35},
+  r: {bx0:0.5, bx1:1,   by0:0, by1:0.8333, tx:0.76, ty:0.30, s:1.35},
+  b: {bx0:0,   bx1:1,   by0:0.5, by1:1,    tx:0.50, ty:0.68, s:1.95},
+};
+// Pan/zoom one wedge's art so the face lands on the slice's target, clamped so the slice's
+// bounding box always stays covered (no background gaps). Cover-maps with object-position
+// center-top to match the CSS, using the live box size + the image's natural size.
+function cmpFitWedge(img){
+  const fx=img.dataset.fx; if(fx==null||fx==="") return;
+  const p=img.parentElement, cls=p.classList;
+  const w = cls.contains("cmp-cpw-l")?"l" : cls.contains("cmp-cpw-r")?"r" : cls.contains("cmp-cpw-b")?"b" : null;
+  if(!w) return;
+  const box=p.getBoundingClientRect(), W=box.width, H=box.height; if(!W||!H) return;
+  const natW=img.naturalWidth||+img.dataset.fw, natH=img.naturalHeight||+img.dataset.fh;
+  if(!natW||!natH) return;                                  // no dims yet — wait for load
+  const sc=Math.max(W/natW, H/natH), rw=natW*sc, rh=natH*sc, offX=(W-rw)/2, offY=0;
+  const bx=(+fx)/100*rw+offX, by=(+img.dataset.fy)/100*rh+offY;
+  const c=CMP_WEDGE[w], S=c.s, Ox=W/2, Oy=H/2;
+  let tx=c.tx*W - (Ox + S*(bx-Ox)), ty=c.ty*H - (Oy + S*(by-Oy));
+  const txMax=c.bx0*W - Ox*(1-S), txMin=c.bx1*W - Ox*(1-S) - S*W;
+  const tyMax=c.by0*H - Oy*(1-S), tyMin=c.by1*H - Oy*(1-S) - S*H;
+  tx=Math.max(txMin,Math.min(txMax,tx)); ty=Math.max(tyMin,Math.min(tyMax,ty));
+  img.style.transform=`translate(${tx.toFixed(1)}px,${ty.toFixed(1)}px) scale(${S})`;
+  img.style.transformOrigin="center center";
+}
+// Fit every wedge in a just-rendered subtree, and keep fitting each as it loads (natural size
+// isn't known until then). Idempotent — safe to call again on resize.
+function cmpFitCollages(root){
+  (root||document).querySelectorAll(".cmp-cpw img[data-fx]").forEach(img=>{
+    cmpFitWedge(img);
+    if(!img._fitBound){ img._fitBound=1; img.addEventListener("load",()=>cmpFitWedge(img)); }
+  });
+}
+if(typeof window!=="undefined" && !window._cmpFitResize){
+  window._cmpFitResize=1;
+  window.addEventListener("resize",()=>cmpFitCollages(document));
+}
+// A period (month/year/version) has no single artwork, so its card is a collage of the banner
+// arts that ran during it (cropped to fill, never stretched), with the game + period overlaid.
+function cmpPeriodArt(m){
+  const kindWord=(m.kind||"").toUpperCase(), lab=m.kind==="version"?m.key:m.label;
+  const list=(m.banners||[]).filter(b=>b.art||b.icon);
+  const N=list.length;
+  let grid="";
+  if(N===3){
+    // three wedges meeting at the centre, 120° apart (one up, two to the bottom corners) —
+    // clip-path polygons so each banner art fills its slice, cropped not stretched
+    const img=b=>`<img src="${esc(b.art||b.icon)}" referrerpolicy="no-referrer" data-fb="remove" alt="" title="${esc(b.label)}"${cmpFaceAttrs(b.face)}>`;
+    grid=`<div class="cmp-cp3wrap">
+        <div class="cmp-cpw cmp-cpw-l">${img(list[0])}</div>
+        <div class="cmp-cpw cmp-cpw-r">${img(list[1])}</div>
+        <div class="cmp-cpw cmp-cpw-b">${img(list[2])}</div>
+      </div>
+      <svg class="cmp-cp3div" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+        <line x1="50" y1="50" x2="50" y2="0"/><line x1="50" y1="50" x2="0" y2="83.333"/><line x1="50" y1="50" x2="100" y2="83.333"/>
+      </svg>
+      <div class="cmp-cpscrim"></div>`;
+  } else if(N){
+    const cols = N<=1?1 : N<=2?2 : N===4?2 : N<=8?3 : 4;
+    const rows=Math.ceil(N/cols), empty=cols*rows-N;
+    const tiles=list.map((b,idx)=>{
+      const span=(idx===N-1&&empty>0)?` style="grid-column:span ${empty+1}"`:"";
+      return `<div class="cmp-cptile"${span}><img src="${esc(b.art||b.icon)}" referrerpolicy="no-referrer" data-fb="remove" alt="" title="${esc(b.label)}"${cmpFacePos(b.face)}></div>`;
+    }).join("");
+    grid=`<div class="cmp-cpgrid" style="grid-template-columns:repeat(${cols},1fr)">${tiles}</div><div class="cmp-cpscrim"></div>`;
+  }
+  return `<div class="cmp-artperiod cmp-art-img${N?" has-art":""}" style="--acc:${m.dispAccent||m.accent}">
+     ${grid}
+     <div class="cmp-cptext">
+       <span class="cmp-ap-head"><span class="cmp-ap-kind">${esc(kindWord)}</span>${esc(m.game)}</span>
+       <span class="cmp-ap-label">${esc(lab)}</span>
+       ${N?"":`<span class="cmp-ap-none">no banners ran</span>`}
+     </div>
+   </div>`;
+}
+function cmpPicks(){ const c=state.compare; if(!Array.isArray(c.picks)) c.picks=[]; return c.picks; }
+function cmpReady(s){ return s && s.tag && s.kind && s.key!=null && s.key!==""; }
+// Same exact pick (reruns are distinct banners with their own key, so they're allowed).
+function cmpSame(x,y){ return x&&y && x.tag===y.tag && x.kind===y.kind && String(x.key)===String(y.key); }
+function cmpDefaultGame(){ return (state.games||[]).some(g=>g.game===state.tag) ? state.tag : (state.games[0]&&state.games[0].game); }
+function cmpMiniAv(m){
+  if(m.icon) return `<img src="${esc(m.icon)}" referrerpolicy="no-referrer" data-fb="remove" alt="">`;
+  if(m.art)  return `<img src="${esc(m.art)}" referrerpolicy="no-referrer" data-fb="remove" alt="">`;
+  return `<span class="cmp-mono sm" style="--acc:${m.dispAccent||m.accent}">${esc((m.label||"?")[0]||"?")}</span>`;
+}
+// Give each side a distinct display colour: keep the character's own accent, but when two
+// sides would share a hue (e.g. comparing a character with its own reruns) shift the later
+// ones onto a fallback palette so every card, cell and chart line stays tellable apart.
+const CMP_PALETTE=["#4f8fe0","#e8843c","#46b38a","#b06fd0","#d9534f","#e0b83a"];
+function cmpAssignColors(E){
+  const hue=hex=>hexToHsl(hex)[0]*360;
+  const clash=(hex,list)=>list.some(o=>{ let d=Math.abs(hue(hex)-hue(o)); d=Math.min(d,360-d); return d<24; });
+  const out=[]; let pi=0;
+  for(const e of E){ let c=e.accent||"#888";
+    if(clash(c,out)){ while(pi<CMP_PALETTE.length){ const cand=CMP_PALETTE[pi++]; if(!clash(cand,out)){ c=cand; break; } } }
+    out.push(c); e.dispAccent=c;
+  }
+  return out;
+}
+// One picker column (by index): game, type, then the entity control. Slots after the second
+// carry a remove button; a banner with reruns carries a one-click "compare its reruns".
+function cmpSlotHTML(i){
+  const picks=cmpPicks(), sel=picks[i]||{};
+  const gameOpts=(state.games||[]).map(g=>`<option value="${g.game}"${g.game===sel.tag?" selected":""}>${esc(g.name)}</option>`).join("");
+  const kindOpts=CMP_KINDS.filter(([k])=>k!=="version"||hasVersions(sel.tag)).map(([k,lab])=>`<option value="${k}"${k===sel.kind?" selected":""}>${lab}</option>`).join("");
+  const takenElsewhere=(p)=>picks.some((o,j)=>j!==i && o && o.kind==="banner" && o.tag===sel.tag && +o.key===(p.i!=null?p.i:+p.key));
+  let ent="";
+  if(sel.kind==="banner"){
+    const m=(sel.key!=null)?entityMetrics(sel):null;
+    const runs = m ? (state._cmpRunCounts[sel.tag+"|"+m.label.toLowerCase()]||0) : 0;
+    const chip=m?`<div class="cmp-chip" style="--acc:${m.accent}">
+        <span class="cmp-chip-av">${cmpArtThumb(m)}</span>
+        <span class="cmp-chip-tx"><b>${esc(m.label)}</b><span class="cmp-chip-sub">${esc(m.sub)}</span></span>
+        ${runs>=2?`<button class="cmp-chip-rr" type="button" data-cmp-reruns="${i}" title="Compare all ${runs} of ${esc(m.label)}'s banners">↻ reruns</button>`:""}
+        <button class="cmp-chip-x" type="button" data-cmp-clear="${i}" title="Clear" aria-label="Clear">×</button>
+      </div>`:"";
+    ent=`${chip}<div class="cmp-combo">
+        <input class="cmp-input" type="text" data-cmp-input="${i}" autocomplete="off" spellcheck="false"
+          placeholder="${sel.key!=null?"Change character…":"Search a character…"}" aria-label="Pick character for side ${i+1}">
+        <div class="cmp-drop" data-cmp-drop="${i}" hidden></div></div>`;
+  } else {
+    const ctx=state._ctx&&state._ctx[sel.tag];
+    const periods=ctx?gamePeriods(ctx, sel.kind):[];
+    const opts=periods.map(p=>{ const taken=takenElsewhere(p);
+      return `<option value="${esc(p.key)}"${p.key===sel.key?" selected":""}${taken?" disabled":""}>${esc(p.label)}${taken?" (in use)":""}</option>`;}).join("");
+    ent=`<select class="cmp-sel cmp-entsel" data-cmp-ent="${i}" aria-label="Pick ${sel.kind} for side ${i+1}">
+        <option value="">Choose a ${esc(sel.kind)}…</option>${opts}</select>`;
+  }
+  return `<div class="cmp-slot">
+     <div class="cmp-slot-h"><span>Side ${i+1}</span>${picks.length>2?`<button class="cmp-slotrm" type="button" data-cmp-remove="${i}" title="Remove this side" aria-label="Remove">×</button>`:""}</div>
+     <div class="cmp-controls">
+       <select class="cmp-sel" data-cmp-game="${i}" aria-label="Game for side ${i+1}">${gameOpts}</select>
+       <select class="cmp-sel" data-cmp-kind="${i}" aria-label="What to compare for side ${i+1}">${kindOpts}</select>
+     </div>
+     <div class="cmp-entpick">${ent}</div>
+   </div>`;
+}
+function renderCmpDrop(i,q){
+  const picks=cmpPicks(), sel=picks[i]; const d=$(`[data-cmp-drop="${i}"]`); if(!d||!sel) return;
+  const taken=new Set(picks.filter((o,j)=>j!==i && o && o.kind==="banner" && o.tag===sel.tag).map(o=>+o.key));
+  const ql=(q||"").trim().toLowerCase();
+  let items=(state._cmpIndex||[]).filter(it=>it.gtag===sel.tag && !taken.has(it.i));
+  if(ql) items=items.filter(it=>it.label.toLowerCase().includes(ql)
+    || (it.en&&it.en.toLowerCase().includes(ql)) || (it.jp&&it.jp.toLowerCase().includes(ql)));
+  items=items.slice().sort((a,b)=> a.start<b.start?1 : a.start>b.start?-1 : 0);   // newest release first, all of them
+  if(!items.length){ d.innerHTML=`<div class="cmp-drop-empty">No matches</div>`; d.hidden=false; cmpSizeDrop(d); return; }
+  d.innerHTML=items.map(it=>`<div class="cmp-drop-item" data-cmp-pick="${it.i}" data-slot="${i}">
+     <span class="cmp-di-av">${it.icon?`<img src="${esc(it.icon)}" referrerpolicy="no-referrer" data-fb="remove" alt="">`:`<span class="cmp-mono sm">${esc((it.label||"?")[0]||"?")}</span>`}</span>
+     <span class="cmp-di-tx"><b>${esc(it.label)}</b><span class="cmp-di-sub">${esc(cmpDate(it.start))}${it.rerun?" · ↻":""}</span></span>
+     <span class="cmp-di-rev">${it.rev>0?G(it.rev):""}</span></div>`).join("");
+  d.hidden=false;
+  cmpSizeDrop(d);
+}
+// The list is absolutely positioned inside the dialog, whose overflow clips it. Cap its height
+// to the room left below the input so it scrolls internally instead of being cut off.
+function cmpSizeDrop(d){
+  const card=d.closest(".modal-card");
+  const floor=card ? card.getBoundingClientRect().bottom : window.innerHeight;
+  const avail=Math.min(floor, window.innerHeight) - d.getBoundingClientRect().top - 12;
+  d.style.maxHeight=Math.max(140, Math.min(360, avail))+"px";
+}
+function wireComparePickers(){
+  cmpPicks().forEach((p,i)=>{
+    const inp=$(`[data-cmp-input="${i}"]`); if(!inp) return;
+    inp.addEventListener("input",()=>renderCmpDrop(i,inp.value));
+    inp.addEventListener("focus",()=>renderCmpDrop(i,inp.value));
+    inp.addEventListener("blur",()=>setTimeout(()=>{ const d=$(`[data-cmp-drop="${i}"]`); if(d) d.hidden=true; },160));
+  });
+}
+// ---- shareable link (encodes picks + which sources are off, in the ?c= query) ----
+function cmpEncodePicks(){ return cmpPicks().filter(cmpReady).map(p=>`${p.tag}:${p.kind}:${p.key}`).join("~"); }
+function cmpUpdateURL(){
+  try{ const url=new URL(location.href), c=cmpEncodePicks();
+    if(c) url.searchParams.set("c",c); else url.searchParams.delete("c");
+    const off=CMP_SOURCES.filter(([k])=>!cmpSources()[k]).map(([k])=>k).join(",");
+    if(off) url.searchParams.set("coff",off); else url.searchParams.delete("coff");
+    history.replaceState(null,"",url);
+  }catch(e){}
+}
+function cmpParseURL(){
+  try{ const p=new URLSearchParams(location.search), c=p.get("c"); if(!c) return null;
+    const picks=c.split("~").filter(Boolean).map(s=>{ const [tag,kind,key]=s.split(":");
+      return {tag, kind, key: kind==="banner"?+key:key}; });
+    return {picks, off:(p.get("coff")||"").split(",").filter(Boolean)};
+  }catch(e){ return null; }
+}
+// ---- overlay chart: every side's daily curve on one axis, over the day-capped window ----
+function cmpChartSVG(E,R){
+  const kind=state.compare.chart, rankMode=(kind==="jp"||kind==="cn");
+  const k = kind==="jp"?R.kJP : kind==="cn"?R.kCN : kind==="gamei"?R.kGI : R.kQM;
+  if(!k) return "";
+  const series=E.map(e=>{ let pts;
+    if(kind==="jp") pts=(e.jp||[]).slice(0,k);
+    else if(kind==="cn") pts=(e.cn||[]).slice(0,k);
+    else if(kind==="gamei") pts=(e.gi||[]).slice(0,k).map(d=>d.cum);
+    else { let cum=0; pts=(e.qmDaily||[]).slice(0,k).map(v=>(cum+=(v||0))); }
+    return {name:e.name||e.label, accent:e.dispAccent||e.accent, pts};
+  });
+  const W=720,H=250,ML=52,MR=14,MT=14,MB=26,pW=W-ML-MR,pH=H-MT-MB, n=k;
+  const xOf=i=> n>1?ML+(i/(n-1))*pW:ML+pW/2;
+  let grid, yOf;
+  if(rankMode){
+    const worst=Math.max(1,...series.flatMap(s=>s.pts.filter(v=>v!=null)));
+    const ymax = worst<=10?10:worst<=20?20:worst<=30?30:worst<=50?50:worst<=100?100:200;
+    yOf=r=>MT+((r-1)/(ymax-1))*pH;
+    grid=[...new Set([1,Math.round(ymax/4),Math.round(ymax/2),Math.round(3*ymax/4),ymax])]
+      .map(r=>{const y=yOf(r);return `<line class="grid" x1="${ML}" y1="${y.toFixed(1)}" x2="${W-MR}" y2="${y.toFixed(1)}"/><text class="axislbl" x="${ML-6}" y="${(y+3).toFixed(1)}" text-anchor="end">#${r}</text>`;}).join("");
+  } else {
+    const max=Math.max(1,...series.flatMap(s=>s.pts.filter(v=>v!=null)));
+    const fmt=kind==="gamei"?G:fmtUSD;
+    yOf=v=>MT+(1-v/max)*pH;
+    grid=[0,.25,.5,.75,1].map(fr=>{const v=max*fr,y=yOf(v);return `<line class="grid" x1="${ML}" y1="${y.toFixed(1)}" x2="${W-MR}" y2="${y.toFixed(1)}"/><text class="axislbl" x="${ML-6}" y="${(y+3).toFixed(1)}" text-anchor="end">${fmt(v)}</text>`;}).join("");
+  }
+  const xt=[...new Set([0,Math.round((n-1)/3),Math.round(2*(n-1)/3),n-1])].filter(i=>i>=0)
+    .map(i=>`<text class="axislbl" x="${xOf(i).toFixed(1)}" y="${H-8}" text-anchor="middle">d${i+1}</text>`).join("");
+  const lines=series.map(s=>{ let d="",pen=false;
+    s.pts.forEach((v,i)=>{ if(v==null){pen=false;return;} const x=xOf(i),y=yOf(v); d+=`${pen?"L":"M"}${x.toFixed(1)} ${y.toFixed(1)}`; pen=true; });
+    const dots=s.pts.map((v,i)=>v==null?"":`<circle cx="${xOf(i).toFixed(1)}" cy="${yOf(v).toFixed(1)}" r="2.4" fill="${s.accent}"/>`).join("");
+    return `<path d="${d}" fill="none" stroke="${s.accent}" stroke-width="2.2" stroke-linejoin="round"/>${dots}`;
+  }).join("");
+  // hover layer: a guideline, a highlight group filled on hover, and one invisible band per day
+  const guide=`<line id="cmpGuide" class="cmp-guide" x1="0" y1="${MT}" x2="0" y2="${MT+pH}" style="opacity:0"/>`;
+  const bandHalf = n>1 ? (pW/(n-1))/2 : pW/2;
+  const hits=Array.from({length:n},(_,i)=>{ const x=Math.max(ML, xOf(i)-bandHalf), w=Math.min(W-MR-x, bandHalf*2);
+    return `<rect class="cmp-hit" data-cd="${i}" x="${x.toFixed(1)}" y="${MT}" width="${Math.max(0,w).toFixed(1)}" height="${pH}" fill="transparent"/>`;}).join("");
+  _cmpChartCtx={ series, n, rankMode, xOf, yOf, MT, botY:MT+pH,
+    fmt: rankMode?null:(kind==="gamei"?G:fmtUSD) };
+  const legend=`<div class="cmp-legend">${series.map(s=>`<span class="cmp-leg"><span class="cmp-legdot" style="background:${s.accent}"></span>${esc(s.name)}</span>`).join("")}</div>`;
+  return `<svg class="cmp-chartsvg rcsvg" viewBox="0 0 ${W} ${H}" role="img">${grid}${guide}<g id="cmpHi"></g>${lines}${xt}${hits}</svg>${legend}`;
+}
+let _cmpChartCtx=null;
+// hover read-out for the overlay chart: lists every side's value at the hovered day (so
+// overlapping / near-overlapping lines are still separable), with a guideline and dot markers.
+function cmpChartTip(i,e){
+  const c=_cmpChartCtx, svg=document.querySelector("#cmpBody .cmp-chartsvg"); if(!c||!svg){ bmTip.hidden=true; return; }
+  const x=c.xOf(i);
+  const g=svg.querySelector("#cmpGuide"); if(g){ g.setAttribute("x1",x.toFixed(1)); g.setAttribute("x2",x.toFixed(1)); g.style.opacity="1"; }
+  const hi=svg.querySelector("#cmpHi");
+  if(hi) hi.innerHTML=c.series.map(s=>{ const v=s.pts[i]; if(v==null) return "";
+    return `<circle cx="${x.toFixed(1)}" cy="${c.yOf(v).toFixed(1)}" r="4.5" fill="${s.accent}" stroke="var(--surface)" stroke-width="1.6"/>`;}).join("");
+  const val=v=> v==null ? '<span style="color:var(--muted)">below #200</span>' : (c.rankMode?("#"+v):c.fmt(v));
+  const rows=c.series.map(s=>`<div class="cmp-tiprow"><span class="cmp-tipdot" style="background:${s.accent}"></span><span class="cmp-tipnm">${esc(s.name)}</span><span class="cmp-tipval">${val(s.pts[i])}</span></div>`).join("");
+  bmTip.innerHTML=`<div class="body"><div class="cmp-tiphd">Day ${i+1}</div>${rows}</div>`;
+  bmTip.hidden=false;
+  const pad=14,w=bmTip.offsetWidth,h=bmTip.offsetHeight;
+  let px=e.clientX+pad,py=e.clientY+pad;
+  if(px+w>innerWidth)px=e.clientX-w-pad; if(py+h>innerHeight)py=e.clientY-h-pad;
+  bmTip.style.left=Math.max(6,px)+"px"; bmTip.style.top=Math.max(6,py)+"px";
+}
+function cmpChartHideTip(){ bmTip.hidden=true; const svg=document.querySelector("#cmpBody .cmp-chartsvg"); if(!svg) return;
+  const g=svg.querySelector("#cmpGuide"); if(g) g.style.opacity="0"; const hi=svg.querySelector("#cmpHi"); if(hi) hi.innerHTML=""; }
+async function renderCompare(){
+  const body=$("#cmpBody"); if(!body) return;
+  if(!state._cmpIndex){
+    body.innerHTML=`<div class="cmp-loading">Loading every game for comparison…</div>`;
+    try{ await buildCompareIndex(); }
+    catch(e){ body.innerHTML=`<div class="cmp-loading err">Couldn't load the games to compare (${esc(e.message||e)}).</div>`; return; }
+  }
+  const picks=cmpPicks(), dg=cmpDefaultGame();
+  if(picks.length<2){ while(picks.length<2) picks.push({tag:dg, kind:"banner", key:null}); }
+  // prefill side 1 with the game's top banner so it isn't empty on first open
+  if(picks[0].kind==="banner" && picks[0].key==null){
+    const first=(state._cmpIndex||[]).find(it=>it.gtag===picks[0].tag); if(first) picks[0].key=first.i;
+  }
+  cmpUpdateURL();
+  // widen the dialog with more sides, shrink back with fewer, so it fits the cards
+  const card=document.querySelector("#compareModal .modal-card");
+  if(card) card.style.maxWidth=({2:900,3:1060,4:1200}[picks.length]||900)+"px";
+  body.innerHTML=`<div class="cmp-wrap">
+      <div class="cmp-intro">Pick two to four of anything — a <b>character</b>, a <b>month</b>, a <b>year</b> or a <b>version</b>, from any game. Every metric is compared <b>day for day</b> over the shortest one, and whoever wins the most comes out on top.</div>
+      <div class="cmp-pickers">${picks.map((p,i)=>cmpSlotHTML(i)).join("")}${picks.length<4?`<button class="cmp-add" type="button" data-cmp-add title="Add another side">＋<span>Add</span></button>`:""}</div>
+      <div class="cmp-toolbar"><button class="cmp-linkbtn" type="button" data-cmp-link>🔗 Copy link</button></div>
+      <div id="cmpResult"></div></div>`;
+  wireComparePickers();
+  renderCompareResult();
+}
+function renderCompareResult(){
+  const host=$("#cmpResult"); if(!host) return;
+  const allPicks=cmpPicks();
+  const readyIdx=allPicks.map((_,idx)=>idx).filter(idx=>cmpReady(allPicks[idx]));   // original slot indices
+  const picks=readyIdx.map(idx=>allPicks[idx]);
+  if(picks.length<2){
+    host.innerHTML=`<div class="cmp-empty">${picks.length?"Pick a second thing to compare.":"Choose a game, a type, then a pick on each side."}</div>`; return;
+  }
+  for(let i=0;i<picks.length;i++) for(let j=i+1;j<picks.length;j++) if(cmpSame(picks[i],picks[j])){
+    host.innerHTML=`<div class="cmp-empty">Two sides are the same ${picks[i].kind==="banner"?"banner":picks[i].kind} — pick different things to compare.</div>`; return;
+  }
+  const E=picks.map(entityMetrics).filter(Boolean);
+  if(E.length<2){ host.innerHTML=`<div class="cmp-empty">Couldn't read one of the picks.</div>`; return; }
+  cmpAssignColors(E);                 // distinct per-side colour (de-collides same-character reruns)
+  const R=buildComparison(E), M=E.length;
+  const crossGame=new Set(E.map(e=>e.gtag)).size>1, mixedKind=new Set(E.map(e=>e.kind)).size>1;
+
+  // ---- warnings ----
+  const warns=[];
+  const shorter = E.reduce((m,e)=> e.runDays<m.runDays?e:m, E[0]);
+  warns.push(`<b>Comparing the first ${R.N} day${R.N!==1?"s":""}</b> — the length of the shortest run${shorter.ongoing?` (${esc(shorter.label)} is still ongoing, day ${shorter.runDays})`:""}. Every scored metric is measured over that same window for all sides.`);
+  if(crossGame) warns.push(`<b>Different games.</b> These are measured on different scales and player bases — treat cross-game revenue and rank gaps as rough, not like-for-like.`);
+  if(mixedKind) warns.push(`<b>Different scopes.</b> A character, a month and a version cover different spans — the day-for-day cap keeps it fair, but read it as a curiosity.`);
+  if(R.kCN===0) warns.push(`No shared <b>China rank</b> window — at least one side has no China chart data, so those rows are skipped.`);
+  if(R.kQM===0) warns.push(`No shared <b>Qimai</b> window — at least one side has no China-iPhone revenue data, so those rows are skipped.`);
+
+  // ---- side cards ----
+  const even=R.overall==="even";
+  const skewChip=i=>{ const s=R.skews[i]; if(s.jpMed==null||s.cnMed==null) return "";
+    const d=s.jpMed-s.cnMed, lab=d>=8?"China-leaning":d<=-8?"Japan-leaning":"Balanced JP/CN";
+    return `<span class="cmp-chip2" title="Median rank over the window — Japan #${Math.round(s.jpMed)} vs China #${Math.round(s.cnMed)}">${lab}</span>`; };
+  const pctChip=e=> e.pct!=null?`<span class="cmp-chip2" title="Mean percentile across its available sources, among ${esc(e.game)}'s banners (higher = stronger)">${ordinal(e.pct)} pct · ${esc(e.game)}</span>`:"";
+  const noteLines=e=>{ let h="";
+    if(e.rival) h+=`<div class="cmp-cardnote" title="About ${Math.round(e.rival.frac*100)}% of this run's revenue overlapped a concurrent banner, which can split spending">↔ ran alongside <b>${esc(e.rival.name)}</b></div>`;
+    if(e.proj) h+=`<div class="cmp-cardnote" title="From how much this game's finished banners have usually banked by day ${e.proj.day}">→ tracking toward <b>${G(e.proj.projTotal)}</b> (day ${e.proj.day} of ${e.proj.scheduled})</div>`;
+    return h; };
+  const card=(e,i)=>{
+    const won=R.overall===i;
+    const ribbon = even ? `<span class="cmp-ribbon tie">TIE</span>` : won ? `<span class="cmp-ribbon win">★ WINNER</span>` : "";
+    const art = e.kind==="banner" ? cmpArtThumb(e,"cmp-art-img") : cmpPeriodArt(e);
+    return `<div class="cmp-side${won?" is-win":""}${even?" is-tie":""}" style="--acc:${e.dispAccent||e.accent}" data-cmp-side="${readyIdx[i]}" title="Click to change this side">
+        <div class="cmp-art">${art}${ribbon}</div>
+        <div class="cmp-sidename"><b>${esc(e.label)}</b>
+          <span class="cmp-sidesub">${esc(e.sub)}${e.ongoing?" · ● ongoing":""}</span>
+          <div class="cmp-chips">${R.decided?`<span class="cmp-scorepill">won ${R.points[i]} of ${R.decided}</span>`:""}${skewChip(i)}${pctChip(e)}</div>
+          ${noteLines(e)}
+        </div>
+      </div>`;
+  };
+  const vs=`<div class="cmp-vs cmp-cols${M}">${E.map((e,i)=>card(e,i)).join("")}</div>`;
+
+  // ---- verdict (head-to-head phrasing for two sides, a points line for more) ----
+  const tied=R.rows.filter(r=>r.winner==="tie").length;
+  let verdict;
+  if(!R.decided) verdict=`No decisive metrics for the selected sources.`;
+  else if(M===2){
+    const drawn = tied?` (${tied} drawn)`:"";
+    verdict = even
+      ? `<b>It's a tie</b> — ${R.points[0]} each${drawn}.`
+      : `<b>${esc(E[R.overall].name||E[R.overall].label)}</b> wins the head-to-head, ${Math.max(R.points[0],R.points[1])}–${Math.min(R.points[0],R.points[1])}${drawn}.`;
+  } else {
+    const pointsStr=E.map((e,i)=>`${esc(e.label)} ${R.points[i]}`).join(" · ");
+    verdict = even ? `<b>Too close to call</b> — ${pointsStr}.` : `<b>${esc(E[R.overall].name||E[R.overall].label)}</b> comes out on top — ${pointsStr}.`;
+  }
+  const tldr=cmpTLDR(R,E);
+
+  // ---- charts ----
+  const chartTypes=[["jp","JP rank"],["cn","CN rank"],["gamei","game-i ¥"],["qimai","Qimai $"]].filter(([t])=>R.charts[t]);
+  let chartHTML="";
+  if(chartTypes.length){
+    if(!R.charts[state.compare.chart]) state.compare.chart=chartTypes[0][0];
+    chartHTML=`<div class="cmp-charts">
+      <div class="cmp-chartsel">${chartTypes.map(([t,l])=>`<button type="button" class="cmp-chartbtn${state.compare.chart===t?" on":""}" data-cmp-chart="${t}">${l}</button>`).join("")}</div>
+      ${cmpChartSVG(E,R)}</div>`;
+  }
+
+  // ---- source toggles ----
+  const en=cmpSources();
+  const avail={ gamei:R.kGI>0, qimai:R.kQM>0, st:E.every(e=>e.stTotal!=null), cn:E.every(e=>e.cnLo!=null), jp:R.kJP>0, cnrank:R.kCN>0 };
+  const tog=`<div class="cmp-srcbar"><span class="cmp-srclabel">Sources</span>${CMP_SOURCES.map(([k,lab])=>
+    `<button type="button" class="cmp-srctog${en[k]?" on":""}${avail[k]?"":" na"}" data-cmp-src="${k}"${avail[k]?"":' disabled title="No data for these picks"'}>${lab}</button>`).join("")}</div>`;
+
+  // ---- metric table ----
+  const comments=cmpComments(R,E);
+  const cell=(r,i)=>{ const c=r.cells[i], v=c.v, win=r.winner===i;
+    const txt = v==null?'<span class="cmp-na">—</span>':(c.disp!=null?esc(c.disp):(r.fmt?r.fmt(v):String(v)));
+    return `<div class="cmp-cell${win?" w":""}" style="--acc:${E[i].dispAccent||E[i].accent}">${txt}${win?'<span class="cmp-tick">✓</span>':""}</div>`; };
+  const mhead=`<div class="cmp-mrow cmp-mhead"><div class="cmp-lab"></div>${E.map(e=>
+    `<div class="cmp-mh" style="--acc:${e.dispAccent||e.accent}"><span class="cmp-mh-av">${cmpMiniAv(e)}</span><span class="cmp-mh-nm">${esc(e.name||e.label)}</span></div>`).join("")}</div>`;
+  const SRC_SUB={ gamei:"game-i — Japan mobile (¥)", qimai:"Qimai — China iPhone ($)",
+    st:"Sensor Tower — worldwide mobile ($)", cn:"CN — all-platform, incl. PC/console (CN¥)" };
+  let rowsHTML="", lastGroup="", lastSrc="";
+  const flush=g=>{ if(comments[g]) rowsHTML+=`<div class="cmp-comment">${comments[g]}</div>`; };
+  for(const r of R.rows){
+    if(r.group!==lastGroup){ if(lastGroup) flush(lastGroup); rowsHTML+=`<div class="cmp-grp">${esc(r.group)}</div>`; lastGroup=r.group; lastSrc=""; }
+    if(r.group==="Revenue" && r.src!==lastSrc){ rowsHTML+=`<div class="cmp-subgrp">${esc(SRC_SUB[r.src]||r.src)}</div>`; lastSrc=r.src; }
+    const kNote = r.full ? "" : (r.k&&r.k!==R.N ? `<span class="cmp-k">first ${r.k}d</span>` : "");
+    rowsHTML+=`<div class="cmp-mrow cmp-row${r.scored?"":" cmp-unscored"}">
+        <div class="cmp-lab"><span class="cmp-lab-t">${esc(r.label)}</span>${kNote}${r.note?`<span class="cmp-note">${esc(r.note)}</span>`:""}${r.winner==="tie"?`<span class="cmp-draw">tie</span>`:""}</div>
+        ${E.map((e,i)=>cell(r,i)).join("")}
+      </div>`;
+  }
+  if(lastGroup) flush(lastGroup);
+  if(!R.rows.length) rowsHTML=`<div class="cmp-empty" style="margin:14px">No metrics for the selected sources — turn some on above.</div>`;
+  rowsHTML+=`<div class="cmp-grp">For reference — full run<span class="cmp-grp-sub">not day-capped, so not scored</span></div>`;
+  for(const r of R.ctxRows){
+    rowsHTML+=`<div class="cmp-mrow cmp-row cmp-unscored"><div class="cmp-lab"><span class="cmp-lab-t">${esc(r.label)}</span></div>${r.cells.map((c,i)=>`<div class="cmp-cell" style="--acc:${E[i].dispAccent||E[i].accent}">${c.disp}</div>`).join("")}</div>`;
+  }
+
+  host.innerHTML=`${vs}
+    <div class="cmp-verdict">${verdict}${tldr?`<div class="cmp-tldr">${tldr}</div>`:""}</div>
+    <div class="cmp-warn">${warns.map(w=>`<p>${w}</p>`).join("")}</div>
+    ${chartHTML}
+    ${tog}
+    <div class="cmp-metrics" style="--cols:${M}">${mhead}${rowsHTML}</div>`;
+  cmpFitCollages(host);   // pan each 3-wedge art onto its face (needs the DOM box sizes)
+}
+// Open a compared entity's own detail dialog (banner modal / period modal). These read the
+// live game state, so switch to that game first; the detail modal layers above the compare one.
+async function openCompareDetail(p){
+  if(!cmpReady(p)) return;
+  if(state.tag!==p.tag){ try{ await selectGame(p.tag); }catch(e){ return; } }
+  if(p.kind==="banner"){ const b=state.data.banners[+p.key]; if(b) openBanner(b); }
+  else openPeriod(p.kind, String(p.key));
+}
+// Compare dialog open/close.
+$("#cmpOpen").onclick=()=>{ $("#compareModal").hidden=false; renderCompare(); };
+$("#cmpClose").onclick=()=>{ $("#compareModal").hidden=true; cmpChartHideTip(); };
+$("#compareModal").addEventListener("click",e=>{ if(e.target.id==="compareModal"){ $("#compareModal").hidden=true; cmpChartHideTip(); } });
+// picker actions (delegated once on the persistent dialog body). Character picks fire on
+// mousedown+preventDefault so the input doesn't blur and hide the list before the pick lands.
+$("#cmpBody").addEventListener("mousedown",e=>{
+  const pick=e.target.closest("[data-cmp-pick]"); if(!pick) return;
+  e.preventDefault();
+  const i=+pick.dataset.slot, picks=cmpPicks();
+  picks[i]={tag:picks[i].tag, kind:"banner", key:+pick.dataset.cmpPick};
+  renderCompare();
+});
+$("#cmpBody").addEventListener("click",e=>{
+  const picks=cmpPicks();
+  const clr=e.target.closest("[data-cmp-clear]");
+  if(clr){ const s=picks[+clr.dataset.cmpClear]; if(s) s.key=null; renderCompare(); return; }
+  const rr=e.target.closest("[data-cmp-reruns]");
+  if(rr){ const s=picks[+rr.dataset.cmpReruns], m=entityMetrics(s);
+    if(m){ const runs=cmpRunsOf(s.tag,m.label).slice(0,4);
+      if(runs.length>=2){ state.compare.picks=runs.map(it=>({tag:it.gtag,kind:"banner",key:it.i})); } }
+    renderCompare(); return; }
+  const rm=e.target.closest("[data-cmp-remove]");
+  if(rm){ if(picks.length>2){ picks.splice(+rm.dataset.cmpRemove,1); renderCompare(); } return; }
+  // click a result card -> open that entity's detail dialog (banner modal, or period modal)
+  const sideCard=e.target.closest("[data-cmp-side]");
+  if(sideCard){ openCompareDetail(cmpPicks()[+sideCard.dataset.cmpSide]); return; }
+  if(e.target.closest("[data-cmp-add]")){ if(picks.length<4){ picks.push({tag:cmpDefaultGame(),kind:"banner",key:null}); renderCompare(); } return; }
+  const src=e.target.closest("[data-cmp-src]");
+  if(src && !src.disabled){ const s=cmpSources(); s[src.dataset.cmpSrc]=!s[src.dataset.cmpSrc]; cmpUpdateURL(); renderCompareResult(); return; }
+  const ch=e.target.closest("[data-cmp-chart]");
+  if(ch){ state.compare.chart=ch.dataset.cmpChart; renderCompareResult(); return; }
+  const lk=e.target.closest("[data-cmp-link]");
+  if(lk){ cmpUpdateURL(); const done=()=>{ lk.classList.add("ok"); lk.textContent="✓ Copied!"; setTimeout(()=>{ lk.classList.remove("ok"); lk.textContent="🔗 Copy link"; },1600); };
+    if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(location.href).then(done,done); else done(); return; }
+});
+// overlay-chart hover: show every side's value at the hovered day (handles line overlap)
+$("#cmpBody").addEventListener("mousemove",e=>{
+  const hit=e.target.closest(".cmp-hit");
+  if(hit) cmpChartTip(+hit.dataset.cd,e); else if(!bmTip.hidden) cmpChartHideTip();
+});
+$("#cmpBody").addEventListener("mouseleave",cmpChartHideTip);
+$("#cmpBody").addEventListener("change",e=>{
+  const picks=cmpPicks();
+  const g=e.target.closest("[data-cmp-game]");
+  if(g){ const s=picks[+g.dataset.cmpGame]; s.tag=g.value;
+    if(s.kind==="version" && !hasVersions(s.tag)) s.kind="banner"; s.key=null; renderCompare(); return; }
+  const k=e.target.closest("[data-cmp-kind]");
+  if(k){ const s=picks[+k.dataset.cmpKind]; s.kind=k.value; s.key=null; renderCompare(); return; }
+  const en=e.target.closest("[data-cmp-ent]");
+  if(en){ const s=picks[+en.dataset.cmpEnt]; s.key=en.value||null; cmpUpdateURL(); renderCompareResult(); return; }
+});
+
 // ---- character search + autocomplete (applies to every view) ----
 const searchInput=$("#searchInput"), searchAC=$("#searchAC"), searchClear=$("#searchClear");
 let _acItems=[], _acSel=-1;
@@ -3845,6 +4836,8 @@ infoModal.onclick=e=>{ if(e.target===infoModal) infoModal.hidden=true; };
 addEventListener("keydown",e=>{ if(e.key==="Escape"){
   if(!lightbox.hidden){ lightbox.hidden=true; lightboxImg.src=""; return; }
   if(!bannerModal.hidden){ closeBanner(); return; }   // step back down the stack first
-  infoModal.hidden=true; periodModal.hidden=true; } });
+  if(!periodModal.hidden){ periodModal.hidden=true; return; }   // period detail sits above compare
+  const cm=$("#compareModal"); if(cm && !cm.hidden){ cm.hidden=true; return; }
+  infoModal.hidden=true; } });
 
 init().catch(e=>{$("#chart").innerHTML=`<div class="loading">Failed to load data: ${e}</div>`;});

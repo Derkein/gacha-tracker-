@@ -12,7 +12,7 @@
 <title>Gacha Revenue Tracker</title>
 <meta name="description" content="Estimated gacha banner revenue over time for Zenless Zone Zero, Honkai: Star Rail, Wuthering Waves, Genshin Impact and Arknights: Endfield. Auto-updated from game-i.daa.jp.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>%F0%9F%8E%B0</text></svg>">
-<link rel="stylesheet" href="style.css?v=239">
+<link rel="stylesheet" href="style.css?v=285">
 </head>
 <body>
 <div class="wrap">
@@ -28,6 +28,12 @@
       <div class="updated" id="updated"></div>
     </div>
   </header>
+
+  <button class="cmp-launch" id="cmpOpen" type="button">
+    <span class="cmp-card-ic">⚔</span>
+    <span class="cmp-card-tx"><b>Compare</b><span class="cmp-card-sub">Two to four head-to-head — characters, months, years or versions, from any game</span></span>
+    <span class="cmp-launch-go">Open ▸</span>
+  </button>
 
   <div class="tabsrow">
     <nav class="tabs collapsed" id="tabs" aria-label="Games"></nav>
@@ -118,6 +124,14 @@
   <div class="modal-card bmodal" role="dialog" aria-modal="true" aria-labelledby="pdTitle">
     <button class="modal-close" id="pdClose" aria-label="Close">×</button>
     <div id="pdBody"></div>
+  </div>
+</div>
+
+<!-- compare dialog: 2–4 head-to-head picks (characters / months / years / versions) -->
+<div class="modal" id="compareModal" hidden>
+  <div class="modal-card cmpmodal" role="dialog" aria-modal="true" aria-label="Compare head-to-head">
+    <button class="modal-close" id="cmpClose" aria-label="Close">×</button>
+    <div id="cmpBody"></div>
   </div>
 </div>
 
@@ -358,6 +372,6 @@
 
 <div class="lightbox" id="lightbox" hidden><img id="lightboxImg" src="" alt=""></div>
 
-<script src="app.js?v=239"></script>
+<script src="app.js?v=285"></script>
 </body>
 </html>

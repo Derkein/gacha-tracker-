@@ -208,7 +208,7 @@ a{color:inherit}
 /* tooltip */
 .tip{position:fixed; z-index:60; pointer-events:none; background:var(--surface); color:var(--ink);
   border:1px solid var(--base); border-radius:12px; padding:0; box-shadow:var(--shadow); max-width:270px; overflow:hidden}
-#bmTip{z-index:120}    /* above the banner modal (z-index 100) */
+#bmTip{z-index:140}    /* above the banner detail modal */
 .tip img.art{display:block; width:100%; height:120px; object-fit:cover; background:var(--track)}
 .tip .body{padding:10px 12px; font-size:12.5px}
 .tip h4{margin:0 0 3px; font-size:14px; display:flex; align-items:center; gap:7px}
@@ -529,7 +529,10 @@ tr.clk{cursor:pointer} tr.clk:hover td{background:var(--track)}
 .yr-row[data-period]:hover .yr-y, .mo-row[data-period]:hover .mo-m{color:var(--accent)}
 
 /* period dialog (banners of a year / month / version) */
-#periodModal{z-index:95}            /* sits under the banner detail modal (100) */
+/* detail modals sit ABOVE the compare dialog (z 100) so a card click opens on top of it;
+   the banner modal stays above the period modal for the period→banner drill-down */
+#periodModal{z-index:130}
+#bannerModal{z-index:135}
 .pd-title{font-size:19px; margin:2px 40px 2px 0; letter-spacing:-.02em}
 .pd-subtitle{font-size:12.5px; color:var(--muted); margin:0 0 14px; font-variant-numeric:tabular-nums}
 .pd-empty{color:var(--muted); padding:20px 0}
@@ -1002,3 +1005,216 @@ body[data-agmode="banner"] .ag-row{grid-template-columns:206px 1fr 196px}
 .bm-stat .v{white-space:nowrap}
 .bm-stat .v.long{font-size:12.5px; letter-spacing:-.15px}
 .bm-headline .v{white-space:nowrap}
+
+/* ---- Compare launcher (above the game tabs) + dialog -------------------------- */
+.cmp-launch{width:100%; margin:0 0 12px; display:flex; align-items:center; gap:11px;
+  border:1px solid var(--border); border-radius:14px; background:var(--surface);
+  color:var(--ink); font:inherit; text-align:left; padding:12px 15px; cursor:pointer; transition:border-color .12s,background .12s}
+.cmp-launch:hover{background:var(--surface2); border-color:color-mix(in srgb,var(--accent) 45%, var(--border))}
+.cmp-card-ic{font-size:18px; line-height:1; flex:none; color:var(--accent)}
+.cmp-card-tx{flex:1; min-width:0; display:flex; flex-direction:column; line-height:1.3}
+.cmp-card-tx b{font-size:15px}
+.cmp-card-sub{font-size:12px; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.cmp-launch-go{flex:none; font-size:12.5px; font-weight:700; color:var(--accent)}
+/* min-height so a character search dropdown has room to open without being clipped by the
+   dialog when the result area below is still short (e.g. only one side picked) */
+.modal-card.cmpmodal{max-width:900px; min-height:min(82vh,640px)}
+.cmp-loading{padding:24px; text-align:center; color:var(--muted); font-size:13.5px}
+.cmp-loading.err{color:var(--ink2)}
+
+/* ---- Compare: head-to-head -------------------------------- */
+.cmp-wrap{width:100%; margin:0 auto}
+.cmp-intro{font-size:13px; color:var(--ink2); margin:2px 34px 14px 2px; line-height:1.5}
+.cmp-pickers{display:flex; flex-wrap:wrap; align-items:flex-start; gap:10px}
+.cmp-slot{flex:1 1 200px; min-width:185px}
+.cmp-slot-h{display:flex; align-items:center; justify-content:space-between; font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); font-weight:700; margin:0 2px 5px}
+.cmp-slotrm{border:0; background:transparent; color:var(--muted); font-size:16px; line-height:1; cursor:pointer; padding:0 2px}
+.cmp-slotrm:hover{color:var(--danger,#d9534f)}
+.cmp-add{flex:0 0 auto; align-self:stretch; min-height:44px; margin-top:18px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px;
+  border:1px dashed var(--border); border-radius:10px; background:transparent; color:var(--muted); font:inherit; font-size:18px; font-weight:700; cursor:pointer; padding:6px 12px}
+.cmp-add span{font-size:11px; letter-spacing:.04em}
+.cmp-add:hover{border-color:var(--accent); color:var(--accent)}
+.cmp-toolbar{display:flex; justify-content:flex-end; margin:8px 0 2px}
+.cmp-linkbtn{border:1px solid var(--border); background:var(--surface); color:var(--ink2); font:inherit; font-size:12px; font-weight:650; padding:5px 11px; border-radius:8px; cursor:pointer}
+.cmp-linkbtn:hover{border-color:var(--accent); color:var(--accent)}
+.cmp-linkbtn.ok{border-color:var(--accent); color:var(--accent)}
+.cmp-controls{display:flex; gap:6px; margin-bottom:6px}
+.cmp-sel{flex:1 1 0; min-width:0; box-sizing:border-box; background:var(--surface); color:var(--ink);
+  border:1px solid var(--border); border-radius:9px; padding:7px 9px; font:inherit; font-size:12.5px; cursor:pointer; outline:none}
+.cmp-sel:focus{border-color:var(--accent)}
+.cmp-entsel{width:100%; flex:none}
+.cmp-chip{display:flex; align-items:center; gap:9px; background:var(--surface); border:1px solid var(--border);
+  border-left:3px solid var(--acc,var(--accent)); border-radius:10px; padding:6px 8px; margin-bottom:6px}
+.cmp-chip-av{width:34px; height:34px; border-radius:8px; overflow:hidden; flex:none; display:flex; align-items:center; justify-content:center; background:var(--track)}
+.cmp-chip-av img{width:100%; height:100%; object-fit:cover}
+.cmp-chip-tx{min-width:0; flex:1; display:flex; flex-direction:column; line-height:1.25}
+.cmp-chip-tx b{font-size:13.5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.cmp-chip-sub{font-size:11px; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.cmp-chip-x{border:0; background:transparent; color:var(--muted); font-size:19px; line-height:1; cursor:pointer; padding:0 2px; flex:none}
+.cmp-chip-x:hover{color:var(--ink)}
+.cmp-chip-rr{flex:none; border:1px solid color-mix(in srgb,var(--acc,var(--accent)) 45%, var(--border)); background:transparent; color:var(--acc,var(--accent));
+  font:inherit; font-size:10.5px; font-weight:700; padding:2px 7px; border-radius:20px; cursor:pointer; white-space:nowrap}
+.cmp-chip-rr:hover{background:color-mix(in srgb,var(--acc,var(--accent)) 14%, transparent)}
+.cmp-combo{position:relative}
+.cmp-input{width:100%; box-sizing:border-box; background:var(--surface); color:var(--ink);
+  border:1px solid var(--border); border-radius:9px; padding:8px 11px; font:inherit; font-size:13px; outline:none}
+.cmp-input:focus{border-color:var(--accent)}
+.cmp-drop{position:absolute; z-index:30; top:calc(100% + 4px); left:0; right:0; max-height:320px; overflow:auto;
+  background:var(--surface); border:1px solid var(--border); border-radius:10px; box-shadow:var(--shadow,0 10px 30px rgba(0,0,0,.2)); padding:4px}
+.cmp-drop-item{display:flex; align-items:center; gap:9px; padding:6px 8px; border-radius:8px; cursor:pointer}
+.cmp-drop-item:hover{background:var(--surface2)}
+.cmp-di-av{width:30px; height:30px; border-radius:7px; overflow:hidden; flex:none; display:flex; align-items:center; justify-content:center; background:var(--track)}
+.cmp-di-av img{width:100%; height:100%; object-fit:cover}
+.cmp-di-tx{min-width:0; flex:1; display:flex; flex-direction:column; line-height:1.25}
+.cmp-di-tx b{font-size:13px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.cmp-di-sub{font-size:10.5px; color:var(--muted)}
+.cmp-di-rev{font-size:11px; color:var(--muted); font-variant-numeric:tabular-nums; white-space:nowrap; flex:none}
+.cmp-drop-empty{padding:10px; color:var(--muted); font-size:12.5px; text-align:center}
+.cmp-mono{font-weight:800; color:var(--muted)}
+.cmp-mono.sm{font-size:13px}
+/* period art block (month/year/version have no image) */
+.cmp-artmono{width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px;
+  text-align:center; color:#fff; background:linear-gradient(135deg, var(--acc), color-mix(in srgb,var(--acc) 55%, #000 30%))}
+.cmp-artmono .cmp-artk{font-size:10px; font-weight:800; letter-spacing:.12em; opacity:.85}
+.cmp-artmono .cmp-artl{font-size:13px; font-weight:800; padding:0 8px; line-height:1.15}
+.cmp-chip-av .cmp-artmono .cmp-artl{font-size:10px}
+.cmp-chip-av .cmp-artmono .cmp-artk{display:none}
+.cmp-art .cmp-artmono .cmp-artl{font-size:22px}
+.cmp-art .cmp-artmono .cmp-artk{font-size:12px; letter-spacing:.16em}
+/* period card: a collage of the month's banner arts (cropped to fill, not stretched),
+   with the game + period label overlaid on a scrim */
+.cmp-artperiod{position:relative; width:100%; height:100%; overflow:hidden; color:#fff;
+  background:linear-gradient(150deg, var(--acc), color-mix(in srgb,var(--acc) 45%, #000 45%))}
+.cmp-cpgrid{position:absolute; inset:0; display:grid; grid-auto-rows:1fr; gap:1px; background:rgba(0,0,0,.35)}
+/* three-wedge (peace-sign) split: one up, two to the bottom corners */
+.cmp-cp3wrap{position:absolute; inset:0; background:rgba(0,0,0,.35)}
+.cmp-cpw{position:absolute; inset:0; overflow:hidden; background:color-mix(in srgb,var(--acc) 40%, #000 45%)}
+/* The face in portrait banner art sits near the centre, which is exactly where the three cuts
+   meet — so a plain centre crop slices every face in half. Instead we SLIDE each art inside its
+   wedge (translate) so the character lands inside its own slice, and zoom in a touch so the slide
+   never exposes the wedge background. Two layers of vars: per-wedge base (--wx/--wy/--ws) pulls the
+   centred face into that slice; per-banner nudge (--fx/--fy/--fs, set inline) fine-tunes one art
+   whose character sits off-centre. */
+.cmp-cpw img{
+  width:100%; height:100%; object-fit:cover; object-position:center top; display:block;
+  --wx:0%; --wy:0%; --ws:1;   /* per-wedge base */
+  --fx:0%; --fy:0%; --fs:1;   /* per-banner nudge (inline) */
+  transform:translate(calc(var(--wx) + var(--fx)), calc(var(--wy) + var(--fy)))
+            scale(calc(var(--ws) * var(--fs)));
+  transform-origin:center center;
+}
+/* equal-area thirds: the two lower rays hit the side edges at 83.3% (not the corners), so
+   each wedge is exactly 1/3 of the card */
+.cmp-cpw-l{clip-path:polygon(50% 50%, 50% 0, 0 0, 0 83.333%)}
+.cmp-cpw-r{clip-path:polygon(50% 50%, 50% 0, 100% 0, 100% 83.333%)}
+.cmp-cpw-b{clip-path:polygon(50% 50%, 0 83.333%, 0 100%, 100% 100%, 100% 83.333%)}
+/* upper-left slice: pull the centre face left+up into the corner; upper-right: right+up */
+.cmp-cpw-l img{--wx:-20%; --wy:-4%; --ws:1.28}
+.cmp-cpw-r img{--wx:20%;  --wy:-4%; --ws:1.28}
+.cmp-cpw-b img{--wx:0%;   --wy:24%; --ws:1.28}   /* lower slice: drop the art so its upper half shows */
+.cmp-cp3div{position:absolute; inset:0; width:100%; height:100%; pointer-events:none}
+.cmp-cp3div line{stroke:rgba(255,255,255,.5); stroke-width:2; vector-effect:non-scaling-stroke}
+.cmp-cptile{overflow:hidden; background:color-mix(in srgb,var(--acc) 40%, #000 45%)}
+.cmp-cptile img{width:100%; height:100%; object-fit:cover; object-position:center 25%; display:block}
+.cmp-cpscrim{position:absolute; inset:0; pointer-events:none;
+  background:linear-gradient(180deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0) 48%, rgba(0,0,0,.85) 100%)}
+.cmp-cptext{position:absolute; left:0; right:0; bottom:0; padding:11px 13px; display:flex; flex-direction:column; gap:2px}
+.cmp-ap-head{font-size:12px; font-weight:700; opacity:.96; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; text-shadow:0 1px 4px rgba(0,0,0,.7)}
+.cmp-ap-kind{font-size:10px; font-weight:800; letter-spacing:.14em; opacity:.8; margin-right:5px}
+.cmp-ap-label{font-size:26px; font-weight:800; line-height:1.04; letter-spacing:-.01em; text-shadow:0 2px 8px rgba(0,0,0,.75)}
+.cmp-ap-none{font-size:12px; opacity:.85; margin-top:2px}
+.cmp-empty{margin:26px 0; text-align:center; color:var(--muted); font-size:13.5px}
+
+/* head-to-head cards (2–4 across) */
+.cmp-vs{display:grid; gap:10px; margin:16px 0 6px}
+.cmp-vs.cmp-cols2{grid-template-columns:1fr 1fr}
+.cmp-vs.cmp-cols3{grid-template-columns:repeat(3,1fr)}
+.cmp-vs.cmp-cols4{grid-template-columns:repeat(4,1fr)}
+.cmp-side{display:flex; flex-direction:column; border:1px solid var(--border); border-radius:14px; overflow:hidden; background:var(--surface); cursor:pointer}
+.cmp-side:hover{border-color:color-mix(in srgb,var(--acc) 55%, var(--border))}
+.cmp-side.is-win{border-color:var(--acc); box-shadow:0 0 0 1px var(--acc), 0 8px 26px color-mix(in srgb,var(--acc) 26%, transparent)}
+.cmp-side.is-tie{opacity:.82}
+.cmp-side.is-tie .cmp-art-img{filter:grayscale(.55)}
+.cmp-side.is-tie .cmp-artmono{filter:grayscale(.5); opacity:.9}
+.cmp-art{position:relative; aspect-ratio:3/2; background:var(--track); display:flex; align-items:center; justify-content:center; overflow:hidden}
+.cmp-art-img{width:100%; height:100%; object-fit:cover; object-position:center 22%; display:block}
+.cmp-art .cmp-mono{font-size:34px}
+.cmp-ribbon{position:absolute; top:8px; left:8px; font-size:11px; font-weight:800; letter-spacing:.04em;
+  padding:4px 9px; border-radius:20px; color:#fff; background:var(--acc); box-shadow:0 2px 8px rgba(0,0,0,.3)}
+.cmp-ribbon.tie{background:var(--muted)}
+.cmp-sidename{padding:9px 11px; display:flex; flex-direction:column; gap:3px; line-height:1.25}
+.cmp-sidename b{font-size:14.5px}
+.cmp-sidesub{font-size:11px; color:var(--muted)}
+.cmp-scorepill{font-size:11px; font-weight:700; color:var(--acc);
+  border:1px solid color-mix(in srgb,var(--acc) 45%, var(--border)); border-radius:20px; padding:2px 9px}
+.cmp-chips{display:flex; flex-wrap:wrap; align-items:center; gap:5px; margin-top:4px}
+.cmp-chip2{font-size:10px; font-weight:650; color:var(--ink2); background:var(--surface2); border:1px solid var(--border); border-radius:20px; padding:2px 7px}
+.cmp-cardnote{margin-top:4px; font-size:10.5px; color:var(--ink2); line-height:1.35}
+.cmp-cardnote b{color:var(--ink)}
+.cmp-verdict{text-align:center; font-size:15px; line-height:1.5; margin:14px auto 12px; padding:12px 18px; max-width:680px;
+  background:var(--surface2); border:1px solid var(--border); border-radius:12px}
+.cmp-tldr{margin-top:6px; font-size:12.5px; font-weight:500; color:var(--ink2); line-height:1.5}
+.cmp-warn{margin:6px 0 12px}
+/* overlay chart */
+.cmp-charts{margin:0 0 12px; border:1px solid var(--border); border-radius:12px; background:var(--surface); padding:10px 12px 6px}
+.cmp-chartsel{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:6px}
+.cmp-chartbtn{border:1px solid var(--border); background:transparent; color:var(--ink2); font:inherit; font-size:12px; font-weight:650; padding:4px 11px; border-radius:20px; cursor:pointer}
+.cmp-chartbtn:hover{border-color:var(--accent)}
+.cmp-chartbtn.on{background:color-mix(in srgb,var(--accent) 16%, var(--surface)); border-color:var(--accent); color:var(--ink)}
+.cmp-chartsvg{width:100%; height:auto; display:block}
+.cmp-guide{stroke:var(--muted); stroke-width:1; stroke-dasharray:3 3; pointer-events:none; transition:opacity .08s}
+.cmp-hit{cursor:crosshair}
+.cmp-tiphd{font-weight:800; font-size:12px; margin-bottom:4px}
+.cmp-tiprow{display:flex; align-items:center; gap:7px; font-size:12px; line-height:1.5}
+.cmp-tipdot{width:9px; height:9px; border-radius:50%; flex:none}
+.cmp-tipnm{overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:150px}
+.cmp-tipval{margin-left:auto; padding-left:12px; font-weight:700; font-variant-numeric:tabular-nums}
+.cmp-legend{display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin:2px 0 4px; font-size:11.5px; color:var(--ink2)}
+.cmp-leg{display:inline-flex; align-items:center; gap:5px}
+.cmp-legdot{width:11px; height:11px; border-radius:50%; flex:none}
+/* source toggles */
+.cmp-srcbar{display:flex; flex-wrap:wrap; align-items:center; gap:6px; margin:0 0 10px}
+.cmp-srclabel{font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); font-weight:700; margin-right:2px}
+.cmp-srctog{border:1px solid var(--border); background:var(--surface); color:var(--ink2); font:inherit; font-size:12px; font-weight:650;
+  padding:5px 11px; border-radius:20px; cursor:pointer}
+.cmp-srctog:hover{border-color:var(--accent)}
+.cmp-srctog.on{background:color-mix(in srgb,var(--accent) 16%, var(--surface)); border-color:var(--accent); color:var(--ink)}
+.cmp-srctog.na{opacity:.4; cursor:not-allowed; text-decoration:line-through}
+/* per-category read-out */
+.cmp-comment{font-size:12.5px; line-height:1.55; color:var(--ink2); padding:9px 13px; background:var(--surface2);
+  border-top:1px solid var(--border)}
+.cmp-comment b{color:var(--ink)}
+.cmp-warn p{margin:0 0 6px; font-size:12px; color:var(--ink2); line-height:1.5; background:var(--surface2);
+  border:1px solid var(--border); border-radius:9px; padding:7px 11px}
+
+/* metric table: label column on the left, one column per side */
+.cmp-metrics{--cols:2; border:1px solid var(--border); border-radius:12px; overflow:hidden; background:var(--surface)}
+.cmp-grp{background:var(--surface2); font-size:11px; text-transform:uppercase; letter-spacing:.06em; font-weight:700;
+  color:var(--muted); padding:7px 12px; border-top:1px solid var(--border); display:flex; justify-content:space-between; align-items:baseline}
+.cmp-grp-sub{text-transform:none; letter-spacing:0; font-weight:500; font-size:10.5px}
+.cmp-subgrp{font-size:11px; font-weight:700; color:var(--ink2); padding:6px 12px 4px 14px; border-top:1px solid var(--border);
+  background:color-mix(in srgb,var(--surface2) 55%, transparent); border-left:3px solid var(--accent)}
+.cmp-mrow{display:grid; grid-template-columns:minmax(120px,1.5fr) repeat(var(--cols),minmax(0,1fr)); border-top:1px solid var(--border)}
+.cmp-metrics>.cmp-mrow:first-child{border-top:0}
+.cmp-mhead{background:var(--surface2); position:sticky; top:0; z-index:2}
+.cmp-mh{display:flex; align-items:center; gap:6px; padding:7px 10px; border-left:1px solid var(--border); border-bottom:2px solid var(--acc); min-width:0}
+.cmp-mh-av{width:22px; height:22px; border-radius:6px; overflow:hidden; flex:none; background:var(--track); display:flex; align-items:center; justify-content:center}
+.cmp-mh-av img{width:100%; height:100%; object-fit:cover}
+.cmp-mh-nm{font-size:11.5px; font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.cmp-cell{padding:9px 12px; text-align:right; font-variant-numeric:tabular-nums; font-size:13.5px; font-weight:650; position:relative; white-space:nowrap; border-left:1px solid var(--border)}
+.cmp-cell.w{font-weight:800; background:color-mix(in srgb,var(--acc) 20%, transparent)}
+.cmp-tick{font-size:11px; margin-left:4px; color:var(--acc); vertical-align:1px}
+.cmp-na{color:var(--muted); font-weight:500}
+.cmp-lab{padding:8px 12px; display:flex; flex-direction:column; gap:1px; justify-content:center}
+.cmp-lab-t{font-size:12.5px; font-weight:650; color:var(--ink)}
+.cmp-k{font-size:10px; color:var(--accent); font-weight:600}
+.cmp-note{font-size:10px; color:var(--muted)}
+.cmp-draw{font-size:10px; color:var(--muted); font-weight:700; text-transform:uppercase; letter-spacing:.05em}
+.cmp-mrow.cmp-unscored .cmp-cell{font-weight:600; color:var(--ink2)}
+.cmp-mrow.cmp-unscored .cmp-lab-t{color:var(--muted); font-weight:600}
+@media(max-width:560px){
+  .cmp-cell{font-size:12px; padding:8px 7px}
+  .cmp-mrow{grid-template-columns:minmax(84px,1.2fr) repeat(var(--cols),minmax(0,1fr))}
+  .cmp-lab-t{font-size:11px}
+  .cmp-mh-nm{font-size:10.5px}
+}

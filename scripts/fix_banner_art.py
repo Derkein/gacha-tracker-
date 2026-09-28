@@ -140,7 +140,8 @@ def main():
     # Round 1 — verify only the "live-looking" current links (present, not a known-expiring
     # Discord attachment). paimon-hosted links we already trust via the cache aren't re-checked.
     cur_to_check = {b["banner_img"] for b in bans
-                    if b.get("banner_img") and urlparse(b["banner_img"]).netloc not in DISCORD_HOSTS
+                    if b.get("banner_img") and b["banner_img"].startswith("http")
+                    and urlparse(b["banner_img"]).netloc not in DISCORD_HOSTS
                     and b["banner_img"] not in cache}
     cur_status = verify_many(cur_to_check)
 
@@ -149,6 +150,8 @@ def main():
     resolved, paimon_to_check = {}, set()
     for b in bans:
         cur = b.get("banner_img"); host = urlparse(cur).netloc if cur else ""
+        if cur and not cur.startswith("http"):
+            continue                                # local committed override — never replace
         broken = (not cur) or (host in DISCORD_HOSTS)
         if not broken and cur not in cache:
             st = cur_status.get(cur)
