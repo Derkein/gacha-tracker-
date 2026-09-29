@@ -3932,7 +3932,7 @@ function bannerSnapshot(ctx,i){
   return {
     gtag:ctx.tag, kind:"banner", key:String(i),
     label:cmpDisp(b), name:cmpDisp(b), sub:`${ctx.name} · ${cmpDate(b.start)}${b.rerun?" · ↻ rerun":""}`,
-    game:ctx.name, art:b.banner_img||"", icon:(b.icons&&b.icons[0])||"", accent:barColor(b), face:cmpFace(ctx.tag, b.name),
+    game:ctx.name, art:b.banner_img||"", icon:(b.icons&&b.icons[0])||"", accent:barColor(b), face:cmpFace(ctx.tag, b.name, b.banner_img),
     start:b.start, end:b.end, ongoing:!!b.ongoing, rerun:!!b.rerun,
     scheduled:Math.round((Date.parse(b.end)-Date.parse(b.start))/864e5)+1,
     rev:b.rev||0, jp, cn, cnKnown, gi, qmDaily, hasQm:!!qm.hasData,
@@ -4010,7 +4010,7 @@ function periodSnapshot(ctx, kind, key){
   // characters running during the period (any overlap), biggest first — shown on the card
   const running=bans.filter(b=>b.start<=R.end && b.end>=R.start)
     .sort((a,b)=>(b.rev||0)-(a.rev||0))
-    .map(b=>({label:cmpDisp(b), icon:(b.icons&&b.icons[0])||"", art:b.banner_img||"", face:cmpFace(ctx.tag, b.name)}));
+    .map(b=>({label:cmpDisp(b), icon:(b.icons&&b.icons[0])||"", art:b.banner_img||"", face:cmpFace(ctx.tag, b.name, b.banner_img)}));
   return {
     gtag:ctx.tag, kind, key, label:lbl.label, name:`${lbl.label} · ${ctx.name}`, sub:lbl.sub, game:ctx.name,
     art:"", icon:"", accent:GAME_ACCENT[ctx.tag]||"#8a8a8a", banners:running,
@@ -4043,8 +4043,13 @@ function cmpRankStats(arr,k,mask){
   const droppedOut = firstDrop>=0;
   // last day with data, so "no drop" scoring isn't inflated by trailing unfetched days
   let lastData=firstIdx; for(let idx=win.length-1; idx>firstIdx; idx--){ if(has(idx)){ lastData=idx; break; } }
+  // median skips launch day: day 1 swings wildly between games (partial day, maintenance,
+  // time-zone cut), while day 2 is where every game peaks — so count from day 2 onward
+  // (falls back to all days when day 1 is the only one charted).
+  const medVals=known.filter(([idx])=>idx>=1).map(([,v])=>v).sort((a,b)=>a-b);
+  const medPool=medVals.length?medVals:sorted;
   return { none:false, peak, peakDay, open:known[0][1], last,
-    med:sorted[Math.floor(sorted.length/2)],
+    med:medPool[Math.floor(medPool.length/2)],
     sum:win.reduce((a,v)=>a+(v==null?OFF:v),0),
     top10:vals.filter(v=>v<=10).length, top20:vals.filter(v=>v<=20).length,
     degrade: span>0 ? (last-peak)/span : 0, charted:known.length,
@@ -4106,7 +4111,7 @@ function buildComparison(E){
     : s.droppedOut ? {v:s.heldDays, disp:`day ${s.dropDay}`} : {v:k+1, disp:"no drop"});
   if(en.jp && kJP>0){ const jf=(f)=>cellsFrom((e,i)=>sJP[i].none?null:f(sJP[i]));
     push({group:"Japan rank",src:"jp",metric:"jp_peak",label:"Peak rank",k:kJP,better:"low",fmt:rk,cells:jf(s=>s.peak)});
-    push({group:"Japan rank",src:"jp",metric:"jp_med",label:"Median rank",k:kJP,better:"low",fmt:rk,cells:jf(s=>s.med)});
+    push({group:"Japan rank",src:"jp",metric:"jp_med",label:"Median rank",k:kJP,better:"low",fmt:rk,note:"from day 2 — launch day skipped",cells:jf(s=>s.med)});
     push({group:"Japan rank",src:"jp",metric:"jp_top10",label:"Days in top 10",k:kJP,better:"high",fmt:dOnly,note:"staying power",cells:jf(s=>s.top10)});
     push({group:"Japan rank",src:"jp",metric:"jp_drop",label:"Dropped from top 200",k:kJP,better:"high",note:"day it fell off — later (or no drop) is better",cells:dropCells(sJP,kJP)});
     if(kJP>=5 && E.every((e,i)=>!sJP[i].none && sJP[i].charted>=3))
@@ -4114,7 +4119,7 @@ function buildComparison(E){
   }
   if(en.cnrank && kCN>0){ const cf=(f)=>cellsFrom((e,i)=>sCN[i].none?null:f(sCN[i]));
     push({group:"China rank",src:"cnrank",metric:"cnr_peak",label:"Peak rank",k:kCN,better:"low",fmt:rk,cells:cf(s=>s.peak)});
-    push({group:"China rank",src:"cnrank",metric:"cnr_med",label:"Median rank",k:kCN,better:"low",fmt:rk,cells:cf(s=>s.med)});
+    push({group:"China rank",src:"cnrank",metric:"cnr_med",label:"Median rank",k:kCN,better:"low",fmt:rk,note:"from day 2 — launch day skipped",cells:cf(s=>s.med)});
     push({group:"China rank",src:"cnrank",metric:"cnr_top10",label:"Days in top 10",k:kCN,better:"high",fmt:dOnly,note:"staying power",cells:cf(s=>s.top10)});
     push({group:"China rank",src:"cnrank",metric:"cnr_drop",label:"Dropped from top 200",k:kCN,better:"high",note:"day it fell off — later (or no drop) is better",cells:dropCells(sCN,kCN)});
     if(kCN>=5 && E.every((e,i)=>!sCN[i].none && sCN[i].charted>=3))
@@ -4275,26 +4280,19 @@ function cmpArtThumb(m,cls){
 }
 // Where each banner's headliner face sits, as a point in the source art (x%,y% from top-left),
 // so every Compare crop can aim at the face instead of slicing through it. The bulk comes from
-// data/banner_focus.json (auto-detected offline by scripts/compute_focus.py); this map is only
-// for the handful the detector gets wrong — a turned head, one eye hidden — and it wins.
+// data/banner_focus.json (detected by scripts/compute_focus.py in the daily refresh, keyed by
+// the art URL); this map, keyed by banner name, is only for the rare art where the detected
+// point is right but looks off in the crop — and it wins.
 const CMP_FACE_OVERRIDE = {
-  // ZZZ
-  "シグリッド": {x:25, y:22},   // Sigrid — cat-girl looking down, one eye hidden; detector misses her
-  // HSR — detector picked a false positive or the wrong side; these are the true face centres.
-  "爻光": {x:21, y:27},                     // Yao Guang — left of the promo (detector grabbed the right)
-  "アベンチュリン・波と戯れる夏": {x:20, y:27}, // Aventurine · Waveflair — left of the promo (was a fallback)
-  "遠坂凛&ギルガメッシュ": {x:56, y:31},      // Rin — centred portrait (detector grabbed far left)
-  "花火&景元復刻": {x:60, y:37},            // Sparkle — right side of the art
-  "ロビン・夏空の歌": {x:74, y:24},          // Robin — right side of a 16:9 summer promo
-  // WuWa — busy art defeats the detector (real face too small, or only the rate-up icons found).
-  "秧秧．玄翎": {x:68, y:29},                // Yangyang: Xuanling — right-side character
-  "穗穗": {x:62, y:31},                     // Suisui — center-right (a bg false positive outscored her)
+  "シグリッド": {x:25, y:22},          // Sigrid — head tilted down; the detected point sits low
+  "花火&景元復刻": {x:60, y:37},       // Sparkle — pull left onto her face, off the frame edge
+  "ロビン・夏空の歌": {x:74, y:24},     // Robin — 16:9 promo, face hard right; pull toward centre
 };
-// Resolve a banner's face point: manual override first, else the detected entry. Returns
-// {x,y} in source-% plus natural {w,h} when known, or null when we have nothing to aim at.
-function cmpFace(tag, name){
+// Resolve a banner's face point: manual override first, else the detected entry for its art.
+// Returns {x,y} in source-% plus natural {w,h} when known, or null when we have nothing to aim at.
+function cmpFace(tag, name, art){
   const ov = CMP_FACE_OVERRIDE[name];
-  const d = state.focus && state.focus[tag] && state.focus[tag][name];
+  const d = art && state.focus && state.focus[tag] && state.focus[tag][art];
   if(!ov && !d) return null;
   return { x: ov&&ov.x!=null ? ov.x : d.x, y: ov&&ov.y!=null ? ov.y : d.y,
            w: d?d.w:null, h: d?d.h:null };
@@ -4308,31 +4306,89 @@ function cmpFaceAttrs(face){
 function cmpFacePos(face){ return face ? ` style="object-position:${face.x}% ${face.y}%"` : ""; }
 // Geometry of the three collage wedges (fractions of the card box): the bounding box each slice
 // must stay covered, the target point the face should land on, and how far to zoom in.
+// `poly` is the slice's visible outline (card %, matching the CSS clip-paths); `s`..`smax` is the
+// zoom range the fit may use; `tys` are candidate face heights; `low` rewards a lower face and
+// `centre` penalises a face off the slice's centre line (both bottom-slice only).
 const CMP_WEDGE = {
-  l: {bx0:0,   bx1:0.5, by0:0, by1:0.8333, tx:0.24, ty:0.30, s:1.35},
-  r: {bx0:0.5, bx1:1,   by0:0, by1:0.8333, tx:0.76, ty:0.30, s:1.35},
-  b: {bx0:0,   bx1:1,   by0:0.5, by1:1,    tx:0.50, ty:0.68, s:1.95},
+  l: {bx0:0,   bx1:0.5, by0:0, by1:0.8333, tx:0.24, ty:0.30, s:1.35, smax:2.1,
+      poly:[[50,50],[50,0],[0,0],[0,83.333]]},
+  r: {bx0:0.5, bx1:1,   by0:0, by1:0.8333, tx:0.76, ty:0.30, s:1.35, smax:2.1,
+      poly:[[50,50],[50,0],[100,0],[100,83.333]]},
+  // bottom: wide view, face low and centred left-right (the title may overlap it — it reads fine
+  // over the scrim); the title flips to the right when the face comes from the art's left side
+  b: {bx0:0,   bx1:1,   by0:0.5, by1:1,    tx:0.50, ty:0.80, s:1.5, smax:2.4, low:1, centre:3, flip:true,
+      tys:[0.80,0.76,0.72], goal:0.10,
+      poly:[[50,50],[0,83.333],[0,100],[100,100],[100,83.333]]},
 };
-// Pan/zoom one wedge's art so the face lands on the slice's target, clamped so the slice's
-// bounding box always stays covered (no background gaps). Cover-maps with object-position
-// center-top to match the CSS, using the live box size + the image's natural size.
+// How far a point sits inside a polygon (px; negative = outside): its distance to the nearest edge.
+function cmpInset(px,py,poly){
+  let inside=false, d=Infinity;
+  for(let i=0,j=poly.length-1;i<poly.length;j=i++){
+    const [xi,yi]=poly[i], [xj,yj]=poly[j];
+    if(((yi>py)!==(yj>py)) && (px<(xj-xi)*(py-yi)/(yj-yi)+xi)) inside=!inside;
+    const ex=xj-xi, ey=yj-yi, t=Math.max(0,Math.min(1,((px-xi)*ex+(py-yi)*ey)/((ex*ex+ey*ey)||1)));
+    d=Math.min(d, Math.hypot(px-(xi+t*ex), py-(yi+t*ey)));
+  }
+  return inside ? d : -d;
+}
+// Place one wedge's art so the face lands on the slice's target, without ever showing background.
+// Two stages, cheapest first:
+//  1. the cover-crop itself: wide (or tall) art overflows the slice box, so object-position
+//     slides that overflow to bring the face as close to the target as it allows — free, no zoom;
+//  2. a transform (pan + zoom) for the rest, clamped so the slice's bounding box stays covered.
+// A face at the very edge of wide art can't be panned onto the target at the base zoom, so the
+// search steps zoom up (to `smax`) and keeps the placement with the best score: least zoom, and on
+// the bottom slice a lower, more centred face.
 function cmpFitWedge(img){
   const fx=img.dataset.fx; if(fx==null||fx==="") return;
   const p=img.parentElement, cls=p.classList;
   const w = cls.contains("cmp-cpw-l")?"l" : cls.contains("cmp-cpw-r")?"r" : cls.contains("cmp-cpw-b")?"b" : null;
   if(!w) return;
   const box=p.getBoundingClientRect(), W=box.width, H=box.height; if(!W||!H) return;
+  const fy=img.dataset.fy, c=CMP_WEDGE[w], Ox=W/2, Oy=H/2, ty0=(c.tys||[c.ty])[0];
+  // stage 1 — where the face sits in the <img> box before any transform
+  let bx, by;
   const natW=img.naturalWidth||+img.dataset.fw, natH=img.naturalHeight||+img.dataset.fh;
-  if(!natW||!natH) return;                                  // no dims yet — wait for load
-  const sc=Math.max(W/natW, H/natH), rw=natW*sc, rh=natH*sc, offX=(W-rw)/2, offY=0;
-  const bx=(+fx)/100*rw+offX, by=(+img.dataset.fy)/100*rh+offY;
-  const c=CMP_WEDGE[w], S=c.s, Ox=W/2, Oy=H/2;
-  let tx=c.tx*W - (Ox + S*(bx-Ox)), ty=c.ty*H - (Oy + S*(by-Oy));
-  const txMax=c.bx0*W - Ox*(1-S), txMin=c.bx1*W - Ox*(1-S) - S*W;
-  const tyMax=c.by0*H - Oy*(1-S), tyMin=c.by1*H - Oy*(1-S) - S*H;
-  tx=Math.max(txMin,Math.min(txMax,tx)); ty=Math.max(tyMin,Math.min(tyMax,ty));
-  img.style.transform=`translate(${tx.toFixed(1)}px,${ty.toFixed(1)}px) scale(${S})`;
+  if(natW && natH){
+    const sc=Math.max(W/natW, H/natH), rw=natW*sc, rh=natH*sc;
+    const sx=(+fx)/100*rw, sy=(+fy)/100*rh;                 // face in the scaled art
+    const offX=Math.max(W-rw, Math.min(0, c.tx*W - sx));    // slide the overflow toward the target
+    const offY=Math.max(H-rh, Math.min(0, ty0*H - sy));
+    const px = rw-W>0.5 ? offX/(W-rw)*100 : 50, py = rh-H>0.5 ? offY/(H-rh)*100 : 50;
+    img.style.objectPosition=`${px.toFixed(2)}% ${py.toFixed(2)}%`;
+    bx=sx+offX; by=sy+offY;
+  } else {                                                  // no size yet: anchor on the face
+    img.style.objectPosition=`${fx}% ${fy}%`;               // (it sits at its own % of the box);
+    bx=(+fx)/100*W; by=(+fy)/100*H;                          // refit runs again on load
+  }
+  // stage 2 — pan + zoom
+  const poly=c.poly.map(([x,y])=>[x/100*W, y/100*H]);
+  const goal=(c.goal||0.16)*H;                              // "comfortably inside": ~a face's width
+  let best=null, ok=null;
+  for(let S=c.s; S<=c.smax+1e-9; S+=0.05){
+    for(const tgy of (c.tys||[c.ty])){
+      let tx=c.tx*W - (Ox + S*(bx-Ox)), ty=tgy*H - (Oy + S*(by-Oy));
+      const txMax=c.bx0*W - Ox*(1-S), txMin=c.bx1*W - Ox*(1-S) - S*W;
+      const tyMax=c.by0*H - Oy*(1-S), tyMin=c.by1*H - Oy*(1-S) - S*H;
+      tx=Math.max(txMin,Math.min(txMax,tx)); ty=Math.max(tyMin,Math.min(tyMax,ty));
+      const fx2=Ox+S*(bx-Ox)+tx, fy2=Oy+S*(by-Oy)+ty;
+      const inset=cmpInset(fx2,fy2,poly);
+      const score=(c.low||0)*(fy2/H) - (c.centre||0)*Math.abs(fx2/W - c.tx) - 0.5*(S-c.s);
+      const cand={S,tx,ty,inset,score,fx2,fy2};
+      if(inset>=goal && (!ok || score>ok.score+1e-6)) ok=cand;
+      if(!best || inset>best.inset+0.5) best=cand;
+    }
+  }
+  const pick=ok||best;
+  img.style.transform=`translate(${pick.tx.toFixed(1)}px,${pick.ty.toFixed(1)}px) scale(${pick.S.toFixed(2)})`;
   img.style.transformOrigin="center center";
+  img._fit={x:pick.fx2/W*100, y:pick.fy2/H*100, S:pick.S};  // where the face ended up (for checks)
+  // Mirror the title to the right when the bottom face comes from the LEFT of its art, so the
+  // two don't crowd the same corner.
+  if(c.flip){
+    const txt=p.closest(".cmp-artperiod")?.querySelector(".cmp-cptext");
+    if(txt) txt.classList.toggle("is-right", +fx < 50);
+  }
 }
 // Fit every wedge in a just-rendered subtree, and keep fitting each as it loads (natural size
 // isn't known until then). Idempotent — safe to call again on resize.
@@ -4615,17 +4671,17 @@ function renderCompareResult(){
   const even=R.overall==="even";
   const skewChip=i=>{ const s=R.skews[i]; if(s.jpMed==null||s.cnMed==null) return "";
     const d=s.jpMed-s.cnMed, lab=d>=8?"China-leaning":d<=-8?"Japan-leaning":"Balanced JP/CN";
-    return `<span class="cmp-chip2" title="Median rank over the window — Japan #${Math.round(s.jpMed)} vs China #${Math.round(s.cnMed)}">${lab}</span>`; };
+    return `<span class="cmp-chip2" title="Median rank over the window, from day 2 (launch day skipped) — Japan #${Math.round(s.jpMed)} vs China #${Math.round(s.cnMed)}">${lab}</span>`; };
   const pctChip=e=> e.pct!=null?`<span class="cmp-chip2" title="Mean percentile across its available sources, among ${esc(e.game)}'s banners (higher = stronger)">${ordinal(e.pct)} pct · ${esc(e.game)}</span>`:"";
   const noteLines=e=>{ let h="";
     if(e.rival) h+=`<div class="cmp-cardnote" title="About ${Math.round(e.rival.frac*100)}% of this run's revenue overlapped a concurrent banner, which can split spending">↔ ran alongside <b>${esc(e.rival.name)}</b></div>`;
     if(e.proj) h+=`<div class="cmp-cardnote" title="From how much this game's finished banners have usually banked by day ${e.proj.day}">→ tracking toward <b>${G(e.proj.projTotal)}</b> (day ${e.proj.day} of ${e.proj.scheduled})</div>`;
     return h; };
   const card=(e,i)=>{
-    const won=R.overall===i;
-    const ribbon = even ? `<span class="cmp-ribbon tie">TIE</span>` : won ? `<span class="cmp-ribbon win">★ WINNER</span>` : "";
+    const won=R.overall===i, lost=!even && !won;
+    const ribbon = even ? `<span class="cmp-ribbon tie">TIE</span>` : won ? `<span class="cmp-ribbon win">★ WINNER</span>` : `<span class="cmp-ribbon lose">LOSER</span>`;
     const art = e.kind==="banner" ? cmpArtThumb(e,"cmp-art-img") : cmpPeriodArt(e);
-    return `<div class="cmp-side${won?" is-win":""}${even?" is-tie":""}" style="--acc:${e.dispAccent||e.accent}" data-cmp-side="${readyIdx[i]}" title="Click to change this side">
+    return `<div class="cmp-side${won?" is-win":""}${lost?" is-lose":""}${even?" is-tie":""}" style="--acc:${e.dispAccent||e.accent}" data-cmp-side="${readyIdx[i]}" title="Click to change this side">
         <div class="cmp-art">${art}${ribbon}</div>
         <div class="cmp-sidename"><b>${esc(e.label)}</b>
           <span class="cmp-sidesub">${esc(e.sub)}${e.ongoing?" · ● ongoing":""}</span>

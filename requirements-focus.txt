@@ -1,0 +1,6 @@
+# scripts/compute_focus.py only — deepghs' YOLO anime face/head detectors (CPU, ONNX).
+# Kept OUT of requirements.txt: it pulls its own opencv-contrib-python, which would clash
+# with face_icons.py's opencv-python-headless<5. CI installs this into a separate venv,
+# and only on runs where a banner actually needs a face point.
+dghs-imgutils>=0.19,<0.20
+onnxruntime

@@ -23,7 +23,9 @@ qimai_daily.bat
 data/cn_shards/
 data/cn_verify/
 
-# local OpenCV 4.x for scripts/compute_focus.py (opencv 5 dropped CascadeClassifier).
-# Regenerate with: pip install --target scripts/.face_cv2 "opencv-python==4.11.0.86"
+# scripts/compute_focus.py: its detector venv (pip install -r requirements-focus.txt) and
+# downloaded-art cache. .face_cv2 is a retired local OpenCV 4.x install from the old
+# cascade detector — still ignored so it can never be committed by accident.
+.focusenv/
 scripts/.face_cv2/
 scripts/.focus_imgcache/

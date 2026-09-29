@@ -71,6 +71,18 @@ jobs:
         run: python scripts/fix_banner_art.py
         continue-on-error: true    # best-effort; portrait fallback covers any miss
 
+      - name: Locate headliner faces in banner art (Compare crops)
+        # Incremental: only new / re-arted banners get detected. The detector (deepghs YOLO,
+        # ~60 packages) lives in its own venv so its OpenCV can't clash with face_icons.py's,
+        # and it's only installed when --pending (stdlib-only) says a banner needs it.
+        run: |
+          if python scripts/compute_focus.py --pending; then
+            python -m venv .focusenv
+            .focusenv/bin/pip install -q -r requirements-focus.txt
+            .focusenv/bin/python scripts/compute_focus.py
+          fi
+        continue-on-error: true    # a miss just leaves that banner on the default crop
+
       - name: Crop face icons from banner art (icon-less games)
         run: python scripts/face_icons.py
         continue-on-error: true    # face detection is best-effort

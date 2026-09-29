@@ -1119,6 +1119,8 @@ body[data-agmode="banner"] .ag-row{grid-template-columns:206px 1fr 196px}
 .cmp-cpscrim{position:absolute; inset:0; pointer-events:none;
   background:linear-gradient(180deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0) 48%, rgba(0,0,0,.85) 100%)}
 .cmp-cptext{position:absolute; left:0; right:0; bottom:0; padding:11px 13px; display:flex; flex-direction:column; gap:2px}
+/* mirrored by the collage fit when the bottom slice's face comes from the left of its art */
+.cmp-cptext.is-right{align-items:flex-end; text-align:right}
 .cmp-ap-head{font-size:12px; font-weight:700; opacity:.96; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; text-shadow:0 1px 4px rgba(0,0,0,.7)}
 .cmp-ap-kind{font-size:10px; font-weight:800; letter-spacing:.14em; opacity:.8; margin-right:5px}
 .cmp-ap-label{font-size:26px; font-weight:800; line-height:1.04; letter-spacing:-.01em; text-shadow:0 2px 8px rgba(0,0,0,.75)}
@@ -1133,15 +1135,16 @@ body[data-agmode="banner"] .ag-row{grid-template-columns:206px 1fr 196px}
 .cmp-side{display:flex; flex-direction:column; border:1px solid var(--border); border-radius:14px; overflow:hidden; background:var(--surface); cursor:pointer}
 .cmp-side:hover{border-color:color-mix(in srgb,var(--acc) 55%, var(--border))}
 .cmp-side.is-win{border-color:var(--acc); box-shadow:0 0 0 1px var(--acc), 0 8px 26px color-mix(in srgb,var(--acc) 26%, transparent)}
-.cmp-side.is-tie{opacity:.82}
-.cmp-side.is-tie .cmp-art-img{filter:grayscale(.55)}
-.cmp-side.is-tie .cmp-artmono{filter:grayscale(.5); opacity:.9}
+/* a tie greys every side; a decided result greys the losers the same way */
+.cmp-side.is-tie, .cmp-side.is-lose{opacity:.82}
+.cmp-side.is-tie .cmp-art-img, .cmp-side.is-lose .cmp-art-img{filter:grayscale(.55)}
+.cmp-side.is-tie .cmp-artmono, .cmp-side.is-lose .cmp-artmono{filter:grayscale(.5); opacity:.9}
 .cmp-art{position:relative; aspect-ratio:3/2; background:var(--track); display:flex; align-items:center; justify-content:center; overflow:hidden}
 .cmp-art-img{width:100%; height:100%; object-fit:cover; object-position:center 22%; display:block}
 .cmp-art .cmp-mono{font-size:34px}
 .cmp-ribbon{position:absolute; top:8px; left:8px; font-size:11px; font-weight:800; letter-spacing:.04em;
   padding:4px 9px; border-radius:20px; color:#fff; background:var(--acc); box-shadow:0 2px 8px rgba(0,0,0,.3)}
-.cmp-ribbon.tie{background:var(--muted)}
+.cmp-ribbon.tie, .cmp-ribbon.lose{background:var(--muted)}
 .cmp-sidename{padding:9px 11px; display:flex; flex-direction:column; gap:3px; line-height:1.25}
 .cmp-sidename b{font-size:14.5px}
 .cmp-sidesub{font-size:11px; color:var(--muted)}
