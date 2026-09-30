@@ -4,7 +4,7 @@
  "jp": "鳴潮",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E9%B3%B4%E6%BD%AE",
- "updated": "2026-09-30T16:52:30Z",
+ "updated": "2026-09-30T17:35:13Z",
  "count": 42,
  "now": {
   "ios": 14,
@@ -2049,13 +2049,13 @@
     14
    ],
    "agents": [
-    "Lucy"
+    "Hsin"
    ],
-   "en": "Lucy",
+   "en": "Hsin",
    "icons": [
     "icons/faces/wuwa/2026-09-30-d4b99a.webp"
    ],
-   "accent": "#8ec8e1",
+   "accent": "#eaaa7c",
    "bar": "#f6c56f"
   }
  ]
