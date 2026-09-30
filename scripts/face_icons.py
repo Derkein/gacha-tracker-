@@ -103,6 +103,48 @@ def drip_from_title(dom, title):
     return img if (ART_RE.search(fn) and not BAD_RE.search(fn)) else None
 
 
+# Category listing every playable character on each wiki. Each character page's name template
+# carries its Japanese / Chinese name (|ja = 心, |zhs = 清宵), which gives an EXACT, verified
+# JP-name -> page mapping. The full-text search below is fuzzy: a single-kanji name like 心
+# matched Lucy's Japanese voice-line transcript first and named the Hsin banner "Lucy".
+CHAR_CATEGORY = {"wuwa": "Category:Resonators"}
+_NAME_MAPS = {}
+
+
+def wiki_name_map(tag, dom):
+    """{JP/CN character name: wiki page title} from the character category, built once per
+    run. Only unambiguous names are kept; any failure yields {} (callers fall back to search)."""
+    if tag in _NAME_MAPS:
+        return _NAME_MAPS[tag]
+    cat, out = CHAR_CATEGORY.get(tag), {}
+    if cat and dom:
+        try:
+            titles, cont = [], ""
+            while True:
+                r = getj(f"https://{dom}/api.php?action=query&list=categorymembers&cmlimit=500"
+                         f"&cmnamespace=0&format=json&cmtitle={urllib.parse.quote(cat)}{cont}")
+                titles += [m["title"] for m in r["query"]["categorymembers"] if "/" not in m["title"]]
+                if "continue" not in r:
+                    break
+                cont = "&cmcontinue=" + urllib.parse.quote(r["continue"]["cmcontinue"])
+            seen = {}
+            for i in range(0, len(titles), 50):
+                q = getj(f"https://{dom}/api.php?action=query&format=json&prop=revisions&rvprop=content"
+                         f"&rvslots=main&titles={urllib.parse.quote('|'.join(titles[i:i + 50]))}")
+                for p in q["query"]["pages"].values():
+                    txt = (p.get("revisions") or [{}])[0].get("slots", {}).get("main", {}).get("*", "")
+                    for f in ("ja", "zhs", "zht"):
+                        for v in re.findall(rf"^\s*\|\s*{f}\s*=\s*([^\n|}}]+?)\s*$", txt, re.M):
+                            if v.strip():
+                                seen.setdefault(v.strip(), set()).add(p["title"])
+            out = {k: next(iter(v)) for k, v in seen.items() if len(v) == 1}
+        except Exception as e:
+            print(f"  [{tag}] character-name map unavailable ({e}); using wiki search only")
+            out = {}
+    _NAME_MAPS[tag] = out
+    return out
+
+
 def resolve_drip(dom, jp_name):
     """Search the wiki for a Japanese name; return (image_url_or_None, english_name).
 
@@ -116,6 +158,10 @@ def resolve_drip(dom, jp_name):
            f"&srsearch={urllib.parse.quote(jp_name)}")
     fallback = None
     for r in getj(url)["query"]["search"]:
+        # voice-line / story transcripts are dialogue: a common kanji in someone's lines says
+        # nothing about who the page is (心 hit "Lucy/Voicelines/Japanese" first)
+        if re.search(r"/(Voicelines|Story|Quotes)", r["title"], re.I):
+            continue
         title = r["title"].split("/")[0].strip()          # drop subpages (Chaos/Profile -> Chaos)
         if _NOTCHAR.search(title):
             continue
@@ -214,6 +260,7 @@ def process(tag, cascade, force=False):
     # crops still get translated on re-runs without re-querying the wiki.
     nfile = ICONS / "faces" / f"{tag}_names.json"
     names = json.loads(nfile.read_text(encoding="utf-8")) if nfile.exists() else {}
+    wmap = wiki_name_map(tag, dom)
     drip_hits = made = kept = 0
     for b in data["banners"]:
         primary = primary_name(b["name"])
@@ -227,6 +274,14 @@ def process(tag, cascade, force=False):
                     cached = _im.width >= ICON_PX
             except Exception:
                 cached = False
+        # A verified name (the character page's own JP/CN name field) beats whatever the fuzzy
+        # search cached — including a wrong one, whose icon was cropped from the wrong character's
+        # art, so the crop is redone too.
+        verified = wmap.get(primary)
+        if verified and names.get(primary) != verified:
+            print(f"  [{tag}] {b['name']}: name {names.get(primary)!r} -> {verified!r} (verified on the wiki)")
+            names[primary] = verified
+            cached = False
         # resolve drip art once: gives both the image and the English name
         drip_img, en = None, names.get(primary)
         if dom and (en is None or not cached):
