@@ -4,13 +4,13 @@
  "jp": "鳴潮",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E9%B3%B4%E6%BD%AE",
- "updated": "2026-09-30T17:35:13Z",
+ "updated": "2026-09-30T19:57:52Z",
  "count": 42,
  "now": {
-  "ios": 14,
+  "ios": 13,
   "android": 35,
   "month": 14,
-  "next_add": 154659999,
+  "next_add": 156762668,
   "ym": "2026/10",
   "ranks": {
    "prev": [
@@ -2055,7 +2055,6 @@
    "icons": [
     "icons/faces/wuwa/2026-09-30-d4b99a.webp"
    ],
-   "accent": "#eaaa7c",
    "bar": "#f6c56f"
   }
  ]
