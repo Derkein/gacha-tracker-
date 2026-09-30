@@ -609,16 +609,6 @@
   "accent": "#7fc8e0",
   "en": "Sandrone"
  },
- "ヴォジャニーツァ": {
-  "icon": "https://enka.network/ui/UI_AvatarIcon_Vodyanitsa.png",
-  "accent": "#4a90d9",
-  "en": "Vodyanitsa"
- },
- "ヴェスナ": {
-  "icon": "https://enka.network/ui/UI_AvatarIcon_Vesna.png",
-  "accent": "#57c69a",
-  "en": "Vesna"
- },
  "アリョーシャ": {
   "icon": "https://enka.network/ui/UI_AvatarIcon_Alyosha.png",
   "accent": "#b57fd4",
