@@ -1272,6 +1272,15 @@
    "det": true,
    "name": "景燃",
    "v": 2
+  },
+  "https://i.mopix.cc/SVwg3P.jpg": {
+   "x": 63.2,
+   "y": 24.9,
+   "w": 1280,
+   "h": 719,
+   "det": true,
+   "name": "心",
+   "v": 2
   }
  },
  "genshin": {
@@ -4344,6 +4353,15 @@
   "https://pbs.twimg.com/media/HR53NyebcAEo22N.jpg": {
    "x": 25.2,
    "y": 47.3,
+   "w": 1024,
+   "h": 576,
+   "det": true,
+   "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
+   "v": 2
+  },
+  "https://pbs.twimg.com/media/HTbtZifbwAAWyH9.jpg": {
+   "x": 12.2,
+   "y": 49.0,
    "w": 1024,
    "h": 576,
    "det": true,
