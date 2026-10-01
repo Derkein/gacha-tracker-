@@ -56,6 +56,13 @@ jobs:
         continue-on-error: true    # history grows one day at a time; a miss is one gap,
                                    # never a failed refresh
 
+      - name: Re-attribute Qimai China revenue to banners (picks up newly listed banners)
+        # Qimai's daily figures are fetched locally (data/qimai_daily), but the split across
+        # banners needs game-i's banner list. A banner game-i lists after the local Qimai run
+        # would otherwise get no Qimai revenue until the next local run. Stdlib only.
+        run: python scripts/build_qimai.py
+        continue-on-error: true
+
       - name: Attach character portraits
         run: python scripts/enrich_icons.py
 
