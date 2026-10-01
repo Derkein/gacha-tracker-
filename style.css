@@ -290,7 +290,7 @@ tr.clk{cursor:pointer} tr.clk:hover td{background:var(--track)}
   border-left:3px solid #d9a441; border-radius:8px; padding:9px 12px; margin:0 0 12px; line-height:1.5}
 .mo-warn b{color:var(--ink)}
 
-/* eog.gg / Sensor Tower comparison chip — external, USD, visually distinct from game-i's yen */
+/* Sensor Tower comparison chip — external, USD, visually distinct from game-i's yen */
 .st-chip{font-size:11px; font-weight:750; font-variant-numeric:tabular-nums; white-space:nowrap;
   color:#0f8a9e; background:var(--surface2); border:1px solid var(--border); border-radius:999px;
   padding:1px 8px; cursor:help}

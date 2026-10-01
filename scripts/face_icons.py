@@ -348,7 +348,7 @@ def apply_overrides(cascade):
             continue
         data = json.loads(dfile.read_text(encoding="utf-8"))
         # data/ also holds revenue tables with no banner list (cn_monthly, cn_revenue,
-        # external_revenue, reported_revenue). Skipping by name would break again the
+        # reported_revenue). Skipping by name would break again the
         # next time one is added, so test for the shape instead.
         if not isinstance(data, dict) or "banners" not in data:
             continue

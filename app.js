@@ -111,9 +111,8 @@ const G = oku => "¥" + fmtG(oku);
 // ---- external global monthly revenue, in USD (a comparison layer vs game-i) ----
 // Source: the actual Sensor Tower / gacharevenue monthly REPORT figures, read from the
 // report images (data/reported_revenue.json) — combined region (all regions incl. China
-// iOS + a separate JP server where one exists), Oct 2021 -> present. Images only; the
-// eog reconstruction (data/external_revenue.json, scripts/scrape_external.py) is kept in
-// the repo but no longer used by the app. A month with no report yet simply shows no ST.
+// iOS + a separate JP server where one exists), Oct 2021 -> present. Images only, no
+// reconstruction. A month with no report yet simply shows no ST.
 // A DIFFERENT measurement from game-i (global USD, not JP-iOS 億G) — shown side by side,
 // NEVER summed with game-i.
 function fmtUSD(v){
@@ -142,7 +141,7 @@ function extSum(pred, tag){
   const mm=extGameMonths(tag); let rev=0, months=0, hasApprox=false;
   for(const ym in mm){ if(!pred(ym)) continue;
     rev+=mm[ym].rev; months++;
-    if(mm[ym].method==="approx"||mm[ym].method==="reported_approx") hasApprox=true; }
+    if(mm[ym].method==="reported_approx") hasApprox=true; }
   return months?{rev,months,hasApprox}:null;
 }
 // A banner's ESTIMATED Sensor Tower revenue (global USD). Sensor Tower only publishes a
@@ -185,18 +184,16 @@ function versionOfYm(ym){
   return cur;
 }
 // A small "ST $X" chip (ST = Sensor Tower). "*" marks approximate values — a
-// region-summed older report, or eog's newest not-yet-finalized month. The tooltip
-// says whether it's a published report figure or the validated reconstruction.
+// region-summed older report.
 function stChip(rev, method, extra){
   if(rev==null) return "";
   const isSum = method && typeof method==="object";
-  const approx = method==="approx" || method==="reported_approx" || (isSum && method.hasApprox);
-  let base;
-  if(isSum) base = "gacharevenue / Sensor Tower monthly figures summed (published reports where available, else the validated eog reconstruction) — combined region, USD";
-  else if(method==="reported"||method==="reported_approx") base = "gacharevenue / Sensor Tower published monthly report figure — combined region (all regions incl. China iOS + separate JP server), USD";
-  else base = "gacharevenue combined estimate (USD) — reconstructed from eog.gg Sensor Tower data (China-Android modelled at 1.75× China-iOS), validated against the reports";
+  const approx = method==="reported_approx" || (isSum && method.hasApprox);
+  const base = isSum
+    ? "gacharevenue / Sensor Tower published monthly report figures summed — combined region, USD"
+    : "gacharevenue / Sensor Tower published monthly report figure — combined region (all regions incl. China iOS + separate JP server), USD";
   const tip = base
-    + (approx?". Approximate — region-summed from an older report, or eog's not-yet-finalized latest month":"")
+    + (approx?". Approximate — region-summed from an older report":"")
     + (extra?". "+extra:"");
   return `<span class="st-chip${approx?" est":""}" title="${esc(tip)}">ST ${fmtUSD(rev)}${approx?"*":""}</span>`;
 }
@@ -673,8 +670,7 @@ async function init(){
   try { idx = await getJSON("data/index.json"); }
   catch(e){ showError(e, init); return; }
   // external comparison layer. Best-effort: a miss just hides the ST figures.
-  // reported = canonical monthly report figures; ext = validated eog reconstruction (fallback).
-  try { state.ext = await getJSON("data/external_revenue.json"); } catch(e){ state.ext=null; }
+  // reported = the monthly Sensor Tower report figures, read from the report images.
   try { state.reported = await getJSON("data/reported_revenue.json"); } catch(e){ state.reported=null; }
   // CN monthly layer. Best-effort like the others: a miss just hides the CN figures.
   try { state.cn = await getJSON("data/cn_monthly.json"); } catch(e){ state.cn=null; }
@@ -1815,7 +1811,7 @@ function renderMonthly(){
     const diff = (g!=null && g>0) ? (o-g)/g*100 : null;
     const kGi = g!=null ? `<div class="mck gi"><span class="mck-k">game-i monthly</span><span class="mck-v">${G(g)}</span><span class="mck-n">月次売上予測</span></div>` : "";
     const kRe = `<div class="mck re"><span class="mck-k">from daily ranks</span><span class="mck-v">${G(o)}</span><span class="mck-n">${diff!=null?`${diff>=0?"+":""}${diff.toFixed(0)}% vs game-i`:"reconstruction"}</span></div>`;
-    const stApprox = st && (st.method==="approx"||st.method==="reported_approx");
+    const stApprox = st && st.method==="reported_approx";
     const stSub = st ? (st.usonly ? `<span class="usonly-tag" title="Global (US) only — no China figure available for this month, so it's undercounted">global only</span>` : (st.method==="reported"||st.method==="reported_approx" ? "combined · reported" : "combined · reconstructed")) : "";
     const kSt = st ? `<div class="mck st${st.usonly?" usonly":""}"><span class="mck-k">Sensor Tower${stApprox?" *":""}</span><span class="mck-v">${fmtUSD(st.rev)}</span><span class="mck-n">${stSub}</span></div>` : "";
     // Qimai scorecard: China iPhone gross for the month (daily source, summed)
@@ -2142,7 +2138,7 @@ function openPeriod(kind, key){
     // banner's assumed slice of it (its share of the game-i month × the global total).
     if(st){
       const base=(gi!=null && o>0 && (gi-o)/gi>=0.08) ? gi : o;   // same denominator as bannerST
-      const ap = st.method==="approx"||st.method==="reported_approx";
+      const ap = st.method==="reported_approx";
       const stItems=items.map(it=>{ const gi=base>0?it.rev/base:0, qs=qimaiShare(it.b,key);
         const share=blendShare(gi,qs); return {b:it.b, share, giShare:gi, qmShare:qs, jp:it.rev, val:share*st.rev}; })
         .sort((a,b)=>b.val-a.val);
@@ -2280,7 +2276,7 @@ function stMonthsHTML(pred){
   const mm=extGameMonths(state.tag); const list=Object.keys(mm).filter(pred).sort();
   if(!list.length) return "";
   const max=Math.max(...list.map(m=>mm[m].rev),1);
-  const rows=list.map(m=>{ const v=mm[m], ap=v.method==="approx"||v.method==="reported_approx";
+  const rows=list.map(m=>{ const v=mm[m], ap=v.method==="reported_approx";
     const [y,mo]=m.split("-"); const w=Math.max(2,v.rev/max*100);
     return `<div class="pd-mo"><span class="pd-mo-l">${_mn[+mo-1]} ${y}</span>
       <div class="pd-mo-track"><div class="pd-mo-fill" style="width:${w}%"></div></div>

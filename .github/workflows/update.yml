@@ -56,10 +56,6 @@ jobs:
         continue-on-error: true    # history grows one day at a time; a miss is one gap,
                                    # never a failed refresh
 
-      - name: Scrape external monthly revenue (eog.gg / Sensor Tower)
-        run: python scripts/scrape_external.py
-        continue-on-error: true    # comparison layer; never block a game-i refresh
-
       - name: Attach character portraits
         run: python scripts/enrich_icons.py
 
