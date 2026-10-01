@@ -4,13 +4,13 @@
  "jp": "ゼンレスゾーンゼロ",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E3%82%BC%E3%83%B3%E3%83%AC%E3%82%B9%E3%82%BE%E3%83%BC%E3%83%B3%E3%82%BC%E3%83%AD",
- "updated": "2026-10-01T17:31:52Z",
+ "updated": "2026-10-01T20:19:25Z",
  "count": 39,
  "now": {
-  "ios": 88,
-  "android": 56,
+  "ios": 93,
+  "android": 48,
   "month": 75,
-  "next_add": 18811203,
+  "next_add": 18358799,
   "ym": "2026/10",
   "ranks": {
    "prev": [
