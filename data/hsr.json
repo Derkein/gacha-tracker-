@@ -4,13 +4,13 @@
  "jp": "崩壊：スターレイル",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E5%B4%A9%E5%A3%8A%EF%BC%9A%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%AC%E3%82%A4%E3%83%AB",
- "updated": "2026-10-01T14:14:17Z",
+ "updated": "2026-10-01T17:11:54Z",
  "count": 63,
  "now": {
-  "ios": 20,
+  "ios": 22,
   "android": 6,
   "month": 17,
-  "next_add": 129674998,
+  "next_add": 63916666,
   "ym": "2026/10",
   "ranks": {
    "prev": [
@@ -48,7 +48,7 @@
    ],
    "cur": [
     17,
-    null,
+    20,
     null,
     null,
     null,
@@ -82,7 +82,7 @@
   }
  },
  "monthly": {
-  "2026-10": 0.7863,
+  "2026-10": 2.08,
   "2026-09": 16.01,
   "2026-08": 11.87,
   "2026-07": 16.85,
@@ -1356,7 +1356,7 @@
    "rev": 6.51,
    "yrank": 16,
    "ytot": 17,
-   "cum": 50,
+   "cum": 51,
    "cumtot": 64,
    "year": 2024,
    "related": "丹恒・飲月復刻、リンクス、雪衣、御空",
@@ -1777,7 +1777,7 @@
    "rev": 7.49,
    "yrank": 14,
    "ytot": 18,
-   "cum": 49,
+   "cum": 50,
    "cumtot": 64,
    "year": 2025,
    "related": "Dr.レイシオ復刻",
@@ -3047,10 +3047,10 @@
    "name": "パール",
    "start": "2026-09-28",
    "end": "2026-10-21",
-   "rev": 6.48,
+   "rev": 7.78,
    "yrank": 9,
    "ytot": 16,
-   "cum": 51,
+   "cum": 49,
    "cumtot": 64,
    "year": 2026,
    "related": "緋英",
@@ -3061,7 +3061,8 @@
     41,
     1,
     6,
-    17
+    17,
+    20
    ],
    "icons": [
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1503.png"

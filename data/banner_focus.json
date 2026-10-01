@@ -341,6 +341,15 @@
    "det": true,
    "name": "クラレッタ",
    "v": 2
+  },
+  "https://upload-os-bbs.hoyolab.com/upload/2026/09/25/89a70e7dd03c196e5162bdb1e2dbc989_3664680002470205822.jpg": {
+   "x": 24.9,
+   "y": 29.9,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "name": "Roxy",
+   "v": 2
   }
  },
  "hsr": {
@@ -2429,6 +2438,15 @@
    "h": 563,
    "det": true,
    "name": "リンコ",
+   "v": 2
+  },
+  "https://appmedia.jp/wp-content/uploads/2026/04/101315_42qt5.webp": {
+   "x": 63.4,
+   "y": 20.1,
+   "w": 1000,
+   "h": 563,
+   "det": true,
+   "name": "クロバネ",
    "v": 2
   }
  },

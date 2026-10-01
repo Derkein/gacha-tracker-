@@ -4,13 +4,13 @@
  "jp": "NTE： Neverness to Everness",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/NTE%EF%BC%9A%20Neverness%20to%20Everness",
- "updated": "2026-10-01T14:15:28Z",
- "count": 8,
+ "updated": "2026-10-01T17:12:51Z",
+ "count": 9,
  "now": {
   "ios": 53,
   "android": 28,
-  "month": 35,
-  "next_add": 46971479,
+  "month": 45,
+  "next_add": 26781984,
   "ym": "2026/10",
   "ranks": {
    "prev": [
@@ -48,7 +48,7 @@
    ],
    "cur": [
     35,
-    null,
+    53,
     null,
     null,
     null,
@@ -82,7 +82,7 @@
   }
  },
  "monthly": {
-  "2026-10": 0.3885,
+  "2026-10": 0.8582,
   "2026-09": 3.06,
   "2026-08": 5.23,
   "2026-07": 6.29,
@@ -99,7 +99,7 @@
    "yrank": 5,
    "ytot": 9,
    "cum": 5,
-   "cumtot": 8,
+   "cumtot": 9,
    "year": 2026,
    "related": "",
    "banner_img": "https://appmedia.jp/wp-content/uploads/2026/04/163020_3xopn.webp",
@@ -137,7 +137,7 @@
    "yrank": 2,
    "ytot": 9,
    "cum": 2,
-   "cumtot": 8,
+   "cumtot": 9,
    "year": 2026,
    "related": "",
    "banner_img": "https://appmedia.jp/wp-content/uploads/2026/04/100812_yx1l6.webp",
@@ -183,7 +183,7 @@
    "yrank": 1,
    "ytot": 9,
    "cum": 1,
-   "cumtot": 8,
+   "cumtot": 9,
    "year": 2026,
    "related": "",
    "banner_img": "https://appmedia.jp/wp-content/uploads/2026/05/221003_x6ys7.webp",
@@ -229,7 +229,7 @@
    "yrank": 7,
    "ytot": 9,
    "cum": 7,
-   "cumtot": 8,
+   "cumtot": 9,
    "year": 2026,
    "related": "",
    "banner_img": "https://appmedia.jp/wp-content/uploads/2026/05/221403_qtlvo.webp",
@@ -268,7 +268,7 @@
    "yrank": 3,
    "ytot": 9,
    "cum": 3,
-   "cumtot": 8,
+   "cumtot": 9,
    "year": 2026,
    "related": "",
    "banner_img": "https://appmedia.jp/wp-content/uploads/2026/07/101921_q8b4w.webp",
@@ -315,7 +315,7 @@
    "yrank": 6,
    "ytot": 9,
    "cum": 6,
-   "cumtot": 8,
+   "cumtot": 9,
    "year": 2026,
    "related": "",
    "banner_img": "https://appmedia.jp/wp-content/uploads/2026/05/030207_5plcs.webp",
@@ -361,7 +361,7 @@
    "yrank": 4,
    "ytot": 9,
    "cum": 4,
-   "cumtot": 8,
+   "cumtot": 9,
    "year": 2026,
    "related": "ナナリ",
    "banner_img": "https://appmedia.jp/wp-content/uploads/2026/05/204720_tfbq2.webp",
@@ -403,11 +403,11 @@
    "name": "リンコ",
    "start": "2026-09-09",
    "end": "2026-09-30",
-   "rev": 2.08,
+   "rev": 1.73,
    "yrank": 8,
    "ytot": 9,
    "cum": 8,
-   "cumtot": 8,
+   "cumtot": 9,
    "year": 2026,
    "related": "潯",
    "banner_img": "https://appmedia.jp/wp-content/uploads/2026/09/102606_xs8po.webp",
@@ -445,6 +445,35 @@
     "icons/faces/nte/2026-09-09-10ab18.webp"
    ],
    "bar": "#00eee3"
+  },
+  {
+   "name": "クロバネ",
+   "start": "2026-09-30",
+   "end": "2026-10-20",
+   "rev": 0.8193,
+   "yrank": 9,
+   "ytot": 9,
+   "cum": 9,
+   "cumtot": 9,
+   "year": 2026,
+   "related": "",
+   "banner_img": "https://appmedia.jp/wp-content/uploads/2026/04/101315_42qt5.webp",
+   "rerun": false,
+   "ongoing": true,
+   "rank_series": [
+    null,
+    35,
+    53
+   ],
+   "agents": [
+    "Blackbird"
+   ],
+   "en": "Blackbird",
+   "icons": [
+    "icons/faces/nte/2026-09-30-c90996.webp"
+   ],
+   "accent": "#5e82a1",
+   "bar": "#546982"
   }
  ]
 }
