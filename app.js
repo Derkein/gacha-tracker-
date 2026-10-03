@@ -3,7 +3,7 @@ const GAME_ACCENT = {          // per-game hue (used for bars/dots without a sam
   zzz:"#e0a400", hsr:"#8a7bd8", wuwa:"#2fb6c0", genshin:"#d8a24a", endfield:"#e07b3a", nte:"#d94f8a",
   uma:"#3fb98f",
 };
-const state = { games:[], tag:null, data:null, ext:null, reported:null, cn:null, qimai:null, mode:"time", table:false, reverse:false, bracket:0, tabsExpanded:false, graphYear:"all", graphDim:"year", matchHigh:true, monthYear:"all", periodSort:"timeline", dataSource:"gamei", search:"", agreeMode:"month", compare:{picks:[], sources:{}, chart:"jp"} };
+const state = { games:[], tag:null, data:null, reported:null, cn:null, qimai:null, mode:"time", table:false, reverse:false, bracket:0, tabsExpanded:false, graphYear:"all", graphDim:"year", matchHigh:true, monthYear:"all", periodSort:"timeline", dataSource:"gamei", search:"", agreeMode:"month", compare:{picks:[], sources:{}, chart:"jp"} };
 
 // Major game-version (X.0) launch dates, JST — used to bucket banners into 1.X / 2.X
 // groups. Only version-based games have these; sourced from each game's official
@@ -1119,6 +1119,389 @@ function renderBars(){
   });
 }
 
+// ---- Ranking view: scored rankings — Total revenue · Charts · Everything ---------------------
+// "Single revenue" is the plain leaderboard above (one money source at a time). The other three
+// rank by a 0–100 score instead:
+//   Charts         JP and/or CN top-grossing chart runs, scored Level × Hold (see chartRun)
+//   Total revenue  every money source at once — each as a % of the game's best banner on it
+//   Everything     Total revenue + both charts as revenue-equivalent sources
+function rankByScored(){ return state.mode==="rank" && !state.table && ["total","charts","all"].includes(state.rankBy); }
+// Every banner is measured over the same window — its first 3 weeks, the usual banner length — so
+// a banner that game-i lists for a whole 6-week version doesn't win just by having more days.
+const CHART_WINDOW = 21;
+// rank -> relative revenue that day, per chart (off the chart = 0). JP: game-i's own curve
+// (RANK_VAL ≈ 6.6·r^−0.80), the same one that shapes every banner's daily JP revenue. CN: a power
+// law fitted to our own data — Qimai's daily China-iPhone revenue against that day's China chart
+// rank, 5,000+ game-days over 6 games, gives r^−0.96 (R² 0.89); the one published iPhone
+// top-grossing estimate (Garg & Telang, MIS Quarterly 2013) is r^−0.86.
+const CN_RANK_EXP = 0.95;
+const chartVal = (kind, r) => r==null ? 0 : kind==="jp" ? rankValue(r) : Math.pow(Math.min(Math.max(r,1),200), -CN_RANK_EXP);
+// a recorded day below #200 is worth half of #200 — not nothing: the game is still earning, just
+// below what the chart shows. (Scoring it 0 flattened every weak run to the same 0.0.)
+const chartOff = kind => chartVal(kind,200)/2;
+const chartDayVal = (kind, r) => r==null ? chartOff(kind) : chartVal(kind, r);
+// the rank that would earn `v` every day (inverse of chartVal); Infinity = below #200 on average
+function chartEqRank(kind, v){
+  if(!(v>0)) return null;
+  if(v < chartVal(kind,200)) return Infinity;
+  if(v >= chartVal(kind,1)) return 1;
+  if(kind!=="jp") return Math.pow(v, -1/CN_RANK_EXP);
+  let lo=1, hi=200;
+  for(let i=0;i<40;i++){ const m=Math.sqrt(lo*hi); if(rankValue(m)>v) lo=m; else hi=m; }
+  return Math.sqrt(lo*hi);
+}
+const fmtEqRank = r => r==null ? "—" : r===Infinity ? "below #200" : "#"+(r<9.95 ? r.toFixed(1).replace(/\.0$/,"") : Math.round(r));
+// "≈ #N every day" — the rank that would have earned the run's average every day
+const eqPhrase = (eq, bold) => eq===Infinity ? "below #200 on average" : `≈ ${bold?"<b>":""}${fmtEqRank(eq)}${bold?"</b>":""} every day`;
+const fmtRk = r => r==null ? "—" : r>200 ? ">#200" : "#"+Math.round(r);
+const fmtDbl = d => d==null ? "—" : d===Infinity ? "held" : d.toFixed(1)+"d";
+const CHART_SORTS = ["score","peak","top1","top3","med","top10","held","decay"];
+// Day offsets (from b.start) a banner was actually up. A paused-and-resumed run (b.periods —
+// e.g. HSR's Himeko • Nova, paused 11 days while the Fate collab had the store, then reopened)
+// skips its gap: game-i leaves those days blank, and reading them as "fell off the chart" sank
+// the run. null = one continuous run.
+function runDayIdx(b){
+  if(!b.periods || b.periods.length<2) return null;
+  if(b._runIdx) return b._runIdx;
+  const s=Date.parse(b.start), out=[];
+  for(const [a,z] of b.periods){
+    const i0=Math.round((Date.parse(a)-s)/864e5), i1=Math.round((Date.parse(z)-s)/864e5);
+    for(let i=i0;i<=i1;i++) out.push(i);
+  }
+  return (b._runIdx=out);
+}
+// a per-calendar-day series (indexed from b.start) cut down to the days the banner was running
+const onRunDays = (b, arr) => { const ix=runDayIdx(b); return !arr||!ix ? arr : ix.filter(i=>i<arr.length).map(i=>arr[i]); };
+// how many days the banner was scheduled to run (its gap excluded)
+function runLength(b){
+  const ix=runDayIdx(b); if(ix) return ix.length;
+  return Math.round((Date.parse(b.end)-Date.parse(b.start))/864e5)+1;
+}
+// A listing much shorter than this game's usual banner — game-i sometimes ends a run early
+// when another starts alongside it (HSR's Phainon: listed 10 days, the Fate collab took over
+// the listing although her banner stayed up), so its money and day counts are partial.
+// this game's usual banner length (median over its finished banners), in days
+function typicalRunLength(){
+  const C=state._typLen||(state._typLen={});
+  if(!(state.tag in C)){
+    const L=state.data.banners.filter(x=>!x._synthetic&&!x.pending&&!x.ongoing).map(runLength).sort((a,c)=>a-c);
+    C[state.tag]=L.length?L[L.length>>1]:0;
+  }
+  return C[state.tag];
+}
+function shortListing(b){
+  if(b.ongoing) return false;
+  const typ=typicalRunLength();
+  return typ>0 && runLength(b) < 0.6*typ;
+}
+// {ranks, known} for one banner's first CHART_WINDOW running days: ranks null = below the
+// chart; known false = no data that day
+function chartSeries(b, kind){
+  if(kind==="jp"){
+    const r=(onRunDays(b, b.rank_series||[])||[]).slice(0,CHART_WINDOW);
+    return r.length && r.some(v=>v!=null) ? {ranks:r, known:r.map(()=>true)} : null;
+  }
+  const run=onRunDays(b, cnRunSeries(b)); if(!run) return null;
+  const w=run.slice(0,CHART_WINDOW), ranks=w.map(x=>x.rank);
+  return ranks.some(v=>v!=null) ? {ranks, known:w.map(x=>x.depth!=null)} : null;
+}
+// the recorded days a chart score counts: day 2 on (launch day skipped, like the median — it's a
+// partial day), or day 1 alone when it's all there is
+const chartDays = s => s.ranks.map((r,i)=>[i,r]).filter(([i])=>s.known[i] && (i>=1 || s.ranks.length===1));
+// revenue-equivalent of a run PER DAY: each recorded day's rank turned into relative revenue,
+// averaged — a rate, so a short listing or a still-running banner isn't marked down for the
+// days it doesn't have (the money sources already carry the "how long" part)
+function chartRevEq(b, kind){
+  const s=chartSeries(b, kind), r=s&&chartRun(b, s, kind);   // same projection as the chart score
+  return r ? r.vbar : null;
+}
+// The game's typical rank-doubling time on a chart (median over its finished banners) — what a
+// banner's own decay is judged against, so "holds well" means well for THIS game.
+function chartTypicalDbl(kind){
+  const C=state._dblTyp||(state._dblTyp={}), key=state.tag+":"+kind;
+  if(key in C) return C[key];
+  const vals=[];
+  for(const b of state.data.banners){
+    if(b._synthetic||b.pending||b.ongoing) continue;
+    const s=chartSeries(b, kind); if(!s||s.ranks.length<5) continue;
+    const st=cmpRankStats(s.ranks, s.ranks.length, s.known);
+    if(!st.none && st.charted>=3 && st.dbl!=null) vals.push(st.dbl);
+  }
+  vals.sort((a,b)=>a-b);
+  let t=vals.length ? vals[vals.length>>1] : null;
+  if(t===Infinity) t=60;                                  // most of the game's banners never decayed
+  return (C[key]=t);
+}
+// One banner's chart run: Compare's rank stats (cmpRankStats) plus the 0–100 chart score.
+//   Level  how much the run earned per day — the average revenue-equivalent of its ranks, placed
+//          on a log scale between "#200 every day" (0) and "#1 every day" (1)
+//   Hold   how slowly the rank decayed after the peak vs this game's typical banner:
+//          doubling time ÷ (doubling time + the game's median); 0.5 = typical, 1 = never decayed
+//   Score  100 × Level × (0.75 + 0.25 × Hold)
+// Hold multiplies rather than adds, so a banner sitting flat at #120 can't earn points just for
+// being flat — decay costs a strong run at most a quarter of its score.
+function chartRun(b, s, kind){
+  const st=cmpRankStats(s.ranks, s.ranks.length, s.known);
+  if(st.none) return null;
+  // A short listing (game-i ended it early — HSR's Phainon, 10 of a usual 21 days) is measured
+  // over the game's usual run length, not its own: otherwise its average holds only its
+  // strongest days and it outranks banners that ran the full three weeks.
+  const short=shortListing(b);
+  const D=Math.max(1, Math.min(CHART_WINDOW, (short ? typicalRunLength() : runLength(b))||CHART_WINDOW));
+  const hasDecay = s.ranks.length>=5 && st.charted>=3 && st.dbl!=null;   // same gate Compare uses
+  const typ=chartTypicalDbl(kind);
+  // A banner still running — or a short listing — has only had its best days, the launch peak, so
+  // its average would top the list. Project the rest of its window instead: from its latest rank,
+  // decaying at its own pace once it has 5+ days (else this game's typical pace), the rank number
+  // doubling every `pace` days. Peak, days at #1 etc. stay as recorded; only Level uses the
+  // projection — so a banner that was collapsing loses a lot, one holding steady very little.
+  let ss=s, projected=0;
+  if((b.ongoing||short) && s.ranks.length<D && typ!=null){
+    const lastK=[...s.ranks.keys()].reverse().find(i=>s.known[i]);
+    const from = lastK==null ? null : (s.ranks[lastK]==null ? RANK_OFF : s.ranks[lastK]);
+    const pace = hasDecay && st.dbl!==Infinity ? st.dbl : hasDecay ? 60 : typ;
+    if(from!=null){
+      const ranks=s.ranks.slice(), known=s.known.slice();
+      for(let t=1; ranks.length<D; t++){ const r=from*Math.pow(2, t/pace); ranks.push(r>200?null:r); known.push(true); }
+      projected=D-s.ranks.length; ss={ranks, known};
+    }
+  }
+  const days=chartDays(ss);
+  const vbar=days.reduce((a,[,r])=>a+chartDayVal(kind,r),0)/Math.max(1,days.length);
+  const v1=chartVal(kind,1), v0=chartOff(kind);
+  // 0 = off the chart every day, 1 = #1 every day, on a log scale
+  const level = Math.max(0, Math.min(1, Math.log(vbar/v0)/Math.log(v1/v0)));
+  const hold = !hasDecay || typ==null ? 0.5 : st.dbl===Infinity ? 1 : st.dbl/(st.dbl+typ);
+  return Object.assign(st, { score:100*level*(0.75+0.25*hold), level, hold, vbar, eq:chartEqRank(kind,vbar),
+    D, hasDecay, typ, days:s.ranks.length, projected, short });
+}
+// sort comparator + bar fill (0..1) + value label for each single-chart sort; ties fall back to the score
+function chartSortSpec(key){
+  const byScore=(x,y)=>y.run.score-x.run.score;
+  const dblKey=r=> r.hasDecay ? (r.dbl===Infinity?1e9:r.dbl) : -1;
+  switch(key){
+    case "peak":  return {cmp:(x,y)=>x.run.peak-y.run.peak||y.run.top1-x.run.top1||x.run.best3-y.run.best3||byScore(x,y),
+                          fill:r=>chartRankScore(r.peak), val:r=>fmtRk(r.peak)};
+    case "top1":  return {cmp:(x,y)=>y.run.top1-x.run.top1||byScore(x,y), fill:r=>r.top1/CHART_WINDOW, val:r=>r.top1+"d"};
+    case "top3":  return {cmp:(x,y)=>y.run.top3-x.run.top3||byScore(x,y), fill:r=>r.top3/CHART_WINDOW, val:r=>r.top3+"d"};
+    case "med":   return {cmp:(x,y)=>x.run.med-y.run.med||byScore(x,y), fill:r=>chartRankScore(r.med), val:r=>fmtRk(r.med)};
+    case "top10": return {cmp:(x,y)=>y.run.top10-x.run.top10||byScore(x,y), fill:r=>r.top10/CHART_WINDOW, val:r=>r.top10+"d"};
+    case "held":  return {cmp:(x,y)=>y.run.heldDays-x.run.heldDays||byScore(x,y), fill:r=>r.heldDays/CHART_WINDOW, val:r=>r.heldDays+"d"};
+    case "decay": return {cmp:(x,y)=>dblKey(y.run)-dblKey(x.run)||byScore(x,y), fill:r=>r.hasDecay?r.hold:0,
+                          val:r=>r.hasDecay?fmtDbl(r.dbl):"—"};
+    default:      return {cmp:byScore, fill:r=>r.score/100, val:r=>r.score.toFixed(1)};
+  }
+}
+// rank position -> 0..1 on a log scale (#1 = 1, #10 ≈ .57, #200 = 0) — bar length for rank sorts
+const chartRankScore = r => r==null ? 0 : Math.max(0, 1 - Math.log(r)/Math.log(200));
+// one chart's stat line (every Compare rank metric); the sorted metric in bold
+function chartStatLine(run, sortKey){
+  const hl=(key,txt)=> key===sortKey ? `<b>${txt}</b>` : txt;
+  const held = run.droppedOut ? `fell off day ${run.dropDay}` : run.days>=run.D ? `held top 200 all ${run.D}d`
+    : run.short ? `held top 200 all ${run.days} listed days` : `in top 200 so far`;
+  return [
+    `${eqPhrase(run.eq,true)}${run.projected?` <span class="cr-n" title="${run.short?`game-i lists only ${run.days} days: the other ${run.projected} of a usual ${run.D}-day run`:`Still running: the last ${run.projected} day${run.projected>1?"s":""} of its ${run.D}-day window`} are projected from its ${run.short?"last listed":"latest"} rank at ${run.hasDecay?"its own":"this game's typical"} decay pace">(projected)</span>`:""}`,
+    hl("peak", `Pk ${fmtRk(run.peak)}`),
+    hl("top1", `${run.top1}d at #1`),
+    hl("top3", `${run.top3}d in top 3`),
+    hl("med", `Med ${fmtRk(run.med)}`),
+    hl("top10", `${run.top10}d in top 10`),
+    hl("held", held),
+    run.hasDecay ? hl("decay", run.dbl===Infinity ? "rank held after peak" : `rank ×2 in ${fmtDbl(run.dbl)}`) : null,
+  ].filter(Boolean).join(" · ");
+}
+// The money/chart sources a Total revenue / Everything score can draw on
+const SCORE_SRCS = [
+  {k:"gamei",  lab:"game-i",       full:"game-i — Japan mobile (¥)"},
+  {k:"qimai",  lab:"Qimai",        full:"Qimai — China iPhone ($)"},
+  {k:"st",     lab:"Sensor Tower", full:"Sensor Tower — worldwide mobile ($)"},
+  {k:"cn",     lab:"CN",           full:"CN — all-platform incl. PC/console (CN¥)"},
+  {k:"jp",     lab:"JP chart",     full:"JP chart — Japan iOS top-grossing, revenue-equivalent", chart:true},
+  {k:"cnrank", lab:"CN chart",     full:"CN chart — China iPhone top-grossing, revenue-equivalent", chart:true},
+];
+function scoreSrcAvailable(k){
+  const t=state.tag;
+  if(k==="gamei") return true;
+  if(k==="qimai") return hasQimai(t);
+  if(k==="st") return Object.keys(extGameMonths(t)).length>0;
+  if(k==="cn") return !!(state.cn&&state.cn.games&&state.cn.games[t]);
+  if(k==="jp") return state.data.banners.some(b=>b.rank_series&&b.rank_series.some(v=>v!=null));
+  if(k==="cnrank") return !!(state.cnrank&&state.cnrank.games&&state.cnrank.games[t]);
+  return false;
+}
+function rankSrcs(){ const s=state.rankSrcs||(state.rankSrcs={}); SCORE_SRCS.forEach(({k})=>{ if(s[k]===undefined) s[k]=true; }); return s; }
+// recent enough that a monthly source just hasn't published the month yet
+const notOutYet = b => b.ongoing || (Date.now()-new Date(b.end+"T00:00:00"))/864e5 < 45;
+// one banner's value on one source -> {v, warn} (v null = no data; warn = short flag for the row)
+function scoreSrcValue(b, k){
+  if(k==="gamei") return b.pending||!(b.rev>0) ? {v:null, warn:"not on game-i yet"} : {v:b.rev};
+  if(k==="qimai"){ const q=bannerQimai(b); return q.hasData ? {v:q.total} : {v:null, warn:"no Qimai data"}; }
+  if(k==="st"){ const s=bannerST(b);
+    if(!s.hasData) return {v:null, warn: s.missing&&notOutYet(b) ? "Sensor Tower not out yet" : "no Sensor Tower data"};
+    return {v:s.total, warn: s.partial ? (notOutYet(b)?"Sensor Tower partial — month not out yet":"Sensor Tower partial") : null}; }
+  if(k==="cn"){ const c=bannerCN(b);
+    if(!c.hasData) return {v:null, warn: c.missing&&notOutYet(b) ? "CN not out yet" : "no CN data"};
+    return {v:cnMid({lo:c.lo,hi:c.hi}), warn: c.partial ? (notOutYet(b)?"CN partial — month not out yet":"CN partial") : null}; }
+  const kind = k==="jp" ? "jp" : "cn", v=chartRevEq(b, kind);
+  return v>0 ? {v} : {v:null, warn:`no ${k==="jp"?"JP":"CN"} chart data`};
+}
+// shared leaderboard row for the scored rankings
+function scoredRowHTML(b, pos, fillPct, valStr, statHTML, chartMode){
+  const c=barColor(b), [bl,bd]=barShades(c), m=pos<=3?` m${pos}`:"";
+  const en=b.agents&&b.agents.length?b.agents.join(" & "):"";
+  const rr=b.rerun?`<span class="rr" title="Rerun banner">↻ rerun</span>`:"";
+  const ran=Math.min((onRunDays(b, b.rank_series||[])||[]).length, runLength(b));
+  const live=b.ongoing?`<span class="rr" title="Still running — day ${ran} of ${runLength(b)}. Its score is provisional until the run is over: early days sit near the peak.">● live · day ${ran}</span>`:"";
+  const short=shortListing(b)?`<span class="rr" title="game-i lists this banner for only ${runLength(b)} days — shorter than this game's usual run (another banner took over the listing while it may still have been up). In the chart scores the rest of a usual run is projected from its last listed rank at its own decay pace, so it isn't scored on its strongest days alone; its revenue totals only cover the listed days.">${runLength(b)}-day listing</span>`:"";
+  const paused=runDayIdx(b)?`<span class="rr" title="Ran in ${b.periods.length} parts — the days it was paused are left out, not counted as off the chart">paused &amp; resumed</span>`:"";
+  const sh=b._share;
+  const shared=chartMode&&sh&&sh.on?`<span class="rr" title="Ran alongside ${esc(sh.with.slice(0,2).map(w=>w.name).join(" and "))} for ${sh.days} of its days. A chart rank is the whole game's, so on those days it reflects both banners.">shared ${sh.days}d</span>`:"";
+  return `<div class="row" data-i="${b._i}" style="--bar-l:${bl};--bar-d:${bd};--av-ring:${c}">
+      <div class="rk${m}">${pos}</div>
+      <div class="av">${avatarHTML(b)}</div>
+      <div class="meta">
+        <div class="nm"><b>${esc(bLabel(b))}</b>${en&&en!==bLabel(b)?`<span class="en">${esc(en)}</span>`:""}${rr}${live}${short}${paused}${shared}</div>
+        <div class="barline"><div class="track"><div class="barfill" style="width:${Math.max(1.2, Math.min(100, fillPct))}%"></div></div>
+          <span class="val">${valStr}</span></div>
+        <div class="cr-stat">${statHTML}</div>
+      </div></div>`;
+}
+const scoreAxes = () => [25,50,75,100].map(t=>`<div class="axis" style="left:calc(87px + (100% - 87px - 74px) * ${t/100})"><span>${t}</span></div>`).join("");
+const missingNote = (n, what) => n ? ` <b>${n}</b> banner${n>1?"s":""} in this range ha${n>1?"ve":"s"} no ${what}, so ${n>1?"they aren't":"it isn't"} ranked.` : "";
+const CHART_NOTE = `Each recorded day from day 2 to day ${CHART_WINDOW} (launch day skipped — a partial day) is turned into relative revenue with that chart's `
+  + `rank→revenue curve — Japan: game-i's own curve (≈ r<sup>−0.80</sup>); China: r<sup>−${CN_RANK_EXP}</sup>, fitted from Qimai's daily China revenue against the China chart `
+  + `(R² 0.89). A day off the chart counts as half of #200 — the game is still earning, just below the chart. <b>Level</b> = that average, on a log scale from "off the chart every day" (0) to "#1 every day" (1); shown as `
+  + `"≈ #N every day". <b>Hold</b> = how slowly the rank decays after the peak: the days it takes for the rank number to double (a robust Theil–Sen fit of `
+  + `log-rank), against this game's typical banner — 0.5 is typical, 1 never decayed. <b>Score = 100 × Level × (0.75 + 0.25 × Hold)</b>: earning sets the score, `
+  + `decay can cost at most a quarter of it, and a banner flat but low on the chart gets nothing for being flat. Revenue weighting means one day at #1 `
+  + `counts like about 6½ days at #10 in Japan (9 in China), as it does in money — instead of every place counting the same.`;
+function renderScoredRanking(){
+  const all=state.data.banners; all.forEach((x,i)=>x._i=i);
+  const pool=poolBanners().filter(searchMatch).filter(b=>!b._synthetic && !b.pending);
+  if(!pool.length){ $("#chart").innerHTML=noResultsHTML(); return; }
+  if(state.rankBy==="charts") return renderChartRanking(pool);
+  renderSourceRanking(pool, state.rankBy==="all");
+}
+function renderChartRanking(pool){
+  const hasCn=scoreSrcAvailable("cnrank");
+  const which = hasCn ? (state.chartWhich||"both") : "jp";
+  const kinds = which==="both" ? ["jp","cn"] : [which];
+  const rows=[], missing=[];
+  for(const b of pool){
+    const runs={};
+    for(const k of kinds){ const s=chartSeries(b,k), r=s&&chartRun(b,s,k); if(r) runs[k]=r; }
+    const got=Object.keys(runs);
+    if(!got.length){ missing.push(b); continue; }
+    rows.push({b, runs, run: which==="both" ? null : runs[which],
+      score: got.reduce((a,k)=>a+runs[k].score,0)/got.length});
+  }
+  const market = which==="both" ? "Japan or China" : which==="jp" ? "Japan" : "China";
+  if(!rows.length){
+    $("#chart").innerHTML=`<div class="noresults">No ${market} chart data for <b>${esc(state.data.name)}</b> in this range.</div>`;
+    return;
+  }
+  const sortKey = which!=="both" && CHART_SORTS.includes(state.chartSort) ? state.chartSort : "score";
+  const spec = which==="both" ? {cmp:(x,y)=>y.score-x.score, fill:r=>r.score/100} : chartSortSpec(sortKey);
+  rows.sort((x,y)=> spec.cmp(x,y) || y.b.start.localeCompare(x.b.start));
+  rows.forEach((r,i)=>r.pos=i+1);                            // position = best-first, even when reversed
+  if(state.reverse) rows.reverse();
+  let html = sortKey==="score" ? scoreAxes() : "";
+  for(const r of rows){
+    let stat, fill, val;
+    if(which==="both"){
+      stat = ["jp","cn"].map(k=> r.runs[k]
+          ? `<span class="cr-part"><b>${k.toUpperCase()} ${r.runs[k].score.toFixed(1)}</b> · ${eqPhrase(r.runs[k].eq)}${r.runs[k].projected?" (projected)":""} · Pk ${fmtRk(r.runs[k].peak)} · ${r.runs[k].top1}d at #1 · ${r.runs[k].top3}d in top 3</span>`
+          : `<span class="partialbadge" title="No ${k==="jp"?"Japan":"China"} chart data for this banner — its score is the ${k==="jp"?"China":"Japan"} chart alone">no ${k.toUpperCase()} chart data</span>`).join("");
+      fill=r.score; val=r.score.toFixed(1);
+    } else {
+      stat=chartStatLine(r.run, sortKey); fill=spec.fill(r.run)*100; val=spec.val(r.run);
+      if(sortKey!=="score") stat+=` · score ${r.run.score.toFixed(1)}`;
+    }
+    html+=scoredRowHTML(r.b, r.pos, fill, val, stat, true);
+  }
+  const src = which==="both" ? "Japan + China top-grossing charts" : which==="jp" ? "Japan iOS top-grossing (game-i)" : "China iPhone top-grossing";
+  html+=`<div class="stnote cr-note"><b>${src} — chart score.</b> ${CHART_NOTE}`
+    + (which==="both" ? ` <b>JP + CN</b> averages the two chart scores; a banner with only one chart's data is scored on that one and flagged.`
+                      : ` <b>Sort</b> by any single rank metric instead (ties broken by the score; peak ties by days at #1, then the best 3 days).`)
+    + ` Banners marked ● live are still running: the rest of their ${CHART_WINDOW}-day window is <i>projected</i> from their latest rank at their own decay pace (this game's typical pace until they have 5 days), so a banner on day 3 isn't scored on its launch peak alone. `
+    + `Days a banner was paused (<i>paused &amp; resumed</i>) are left out rather than counted as off the chart; a <i>short listing</i> (game-i ended it well before this game's usual run length) has the rest of a usual run projected the same way, from its last listed rank, so it isn't scored on its strongest days alone; `
+    + `<i>shared</i> marks days it ran alongside another banner — a chart rank is the whole game's, so those days reflect both.`
+    + missingNote(missing.length, `${market} chart data${which!=="jp"?" (the China chart archive doesn't reach back that far, or those days weren't recorded)":""}`)
+    + `</div>`;
+  $("#chart").innerHTML=html;
+}
+// Total revenue / Everything: every enabled source scored as a % of the game's best banner on it
+// (100 = the game's top banner there), averaged over the sources that have data for the banner.
+// The sources can't simply be added — different currencies, and they overlap (Sensor Tower's
+// worldwide figure already contains Japan and China iPhone) — so each is put on the same 0–100
+// footing first.
+function renderSourceRanking(pool, everything){
+  const en=rankSrcs();
+  const srcs=SCORE_SRCS.filter(s=>(everything||!s.chart) && scoreSrcAvailable(s.k));
+  const on=srcs.filter(s=>en[s.k]);
+  const bar=`<div class="cmp-srcbar cr-srcbar"><span class="cmp-srclabel">Sources</span>${srcs.map(s=>
+    `<button type="button" class="cmp-srctog${en[s.k]?" on":""}" data-rank-src="${s.k}" title="${esc(s.full)}">${esc(s.lab)}</button>`).join("")}</div>`;
+  if(!on.length){ $("#chart").innerHTML=bar+`<div class="noresults">Every source is switched off — turn one on above.</div>`; return; }
+  // best value per source across ALL of this game's banners (not just the filtered range), so a
+  // banner's score doesn't change when you filter to a year
+  const best={};
+  for(const s of on){ let m=0;
+    for(const b of state.data.banners){ if(b._synthetic||b.pending) continue; const {v}=scoreSrcValue(b,s.k); if(v>m) m=v; }
+    best[s.k]=m; }
+  const rows=[], missing=[];
+  for(const b of pool){
+    const parts=[], warns=[];
+    for(const s of on){ const {v,warn}=scoreSrcValue(b,s.k);
+      if(warn) warns.push(warn);
+      parts.push({s, sc: v!=null && best[s.k]>0 ? 100*v/best[s.k] : null}); }
+    const have=parts.filter(p=>p.sc!=null);
+    if(!have.length){ missing.push(b); continue; }
+    rows.push({b, parts, warns, n:have.length, score:have.reduce((a,p)=>a+p.sc,0)/have.length});
+  }
+  if(!rows.length){ $("#chart").innerHTML=bar+`<div class="noresults">None of the selected sources has data for <b>${esc(state.data.name)}</b> in this range.</div>`; return; }
+  rows.sort((x,y)=> y.score-x.score || y.n-x.n || y.b.start.localeCompare(x.b.start));
+  rows.forEach((r,i)=>r.pos=i+1);
+  if(state.reverse) rows.reverse();
+  let html=bar;
+  for(const r of rows){
+    const stat = r.parts.map(p=> p.sc==null ? `${esc(p.s.lab)} —` : `${esc(p.s.lab)} <b>${p.sc.toFixed(0)}</b>`).join(" · ")
+      + (r.n<on.length ? ` · <span class="cr-n">${r.n} of ${on.length} sources</span>` : "")
+      + r.warns.map(w=>`<span class="partialbadge" title="${esc(w)} — this banner's score is the average of the sources that do have data">${esc(w)}</span>`).join("");
+    html+=scoredRowHTML(r.b, r.pos, r.score, r.score.toFixed(1), stat, everything);
+  }
+  html+=`<div class="stnote cr-note"><b>${everything?"Everything":"Total revenue"} — score.</b> The revenue sources can't just be added together: `
+    + `they're in different currencies (¥, $, CN¥) and they overlap — Sensor Tower's worldwide figure already contains Japan and China iPhone. `
+    + `So each source is scored as a <b>% of this game's best banner on that source</b> (100 = the game's top banner there), and a banner's score is `
+    + `the <b>average over the sources that have data for it</b>, each weighted equally. Switch sources off above to leave them out. `
+    + `A banner missing a source — most often Sensor Tower or CN, whose monthly figure isn't published until the month is over — is averaged `
+    + `over the rest and flagged, so read its score as provisional. Ongoing banners (● live) are still adding revenue.`
+    + (everything ? ` <b>JP chart</b> and <b>CN chart</b> join as revenue-equivalent sources: each recorded day from day 2 to day ${CHART_WINDOW} turned into relative revenue with that chart's rank→revenue curve `
+      + `(Japan: game-i's; China: r<sup>−${CN_RANK_EXP}</sup>, fitted from Qimai) and averaged per day — with running banners and short listings projected over a usual run, exactly as in Charts. game-i's Japan revenue is itself built from the Japan chart, `
+      + `so leaving both on gives Japan's chart extra weight — switch one off for an even split.` : "")
+    + missingNote(missing.length, "data on any selected source")
+    + `</div>`;
+  $("#chart").innerHTML=html;
+}
+
+$("#rankByWrap").querySelectorAll("[data-rankby]").forEach(btn=>btn.onclick=()=>{
+  state.rankBy=btn.dataset.rankby;
+  updateControlVis(); updateDirLabel();
+  if(!state.table) render();
+});
+$("#crSort").onchange=e=>{ state.chartSort=e.target.value; if(rankByScored()) render(); };
+$("#chartWhichWrap").querySelectorAll("[data-chartwhich]").forEach(btn=>btn.onclick=()=>{
+  state.chartWhich=btn.dataset.chartwhich;
+  updateControlVis();
+  if(rankByScored()) render();
+});
+// Total revenue / Everything source toggles live inside the ranking itself
+$("#chart").addEventListener("click",e=>{
+  const t=e.target.closest("[data-rank-src]"); if(!t) return;
+  const s=rankSrcs(), k=t.dataset.rankSrc;
+  s[k]=!s[k];
+  render();
+});
+
 // ---- grouping: the timeline/graph group (and its x-axis window) follow the
 // Year/Version filter toggle, so switching to Version regroups by 1.X / 2.X … ----
 function groupKey(b){
@@ -1259,10 +1642,21 @@ function updateControlVis(){
   $("#gfilter").hidden   = state.table || period || state.mode==="agree";   // Year/Version graph filter: timeline/graph/ranking only (not Sources)
   $("#bSortWrap").hidden  = state.table || !(period || state.mode==="agree");        // period-card sort dropdown: by-Year/Month/Version only
   $("#agModeWrap").hidden = state.table || state.mode!=="agree";   // Sources month/banner toggle: Sources view only
+  // Ranking view: Single revenue (one money source) or a scored ranking (Total revenue /
+  // Charts / Everything); Charts picks JP + CN, JP or CN, and a single chart can be sorted by metric
+  const rkw=$("#rankByWrap"); rkw.hidden = state.table || m!=="rank";
+  if(!["rev","total","charts","all"].includes(state.rankBy)) state.rankBy="rev";
+  rkw.querySelectorAll("[data-rankby]").forEach(b=>b.classList.toggle("on",b.dataset.rankby===state.rankBy));
+  const cw=$("#chartWhichWrap"), hasCnRk=scoreSrcAvailable("cnrank");
+  cw.hidden = !(rankByScored() && state.rankBy==="charts");
+  cw.querySelectorAll('[data-chartwhich="both"],[data-chartwhich="cn"]').forEach(b=>b.hidden=!hasCnRk);
+  const which = hasCnRk ? (state.chartWhich||"both") : "jp";
+  cw.querySelectorAll("[data-chartwhich]").forEach(b=>b.classList.toggle("on",b.dataset.chartwhich===which));
+  $("#crSortWrap").hidden = !(rankByScored() && state.rankBy==="charts" && which!=="both");
   $("#bYearsWrap").hidden = state.table || state.mode!=="month";   // month year-filter: by-Month only
   $("#hintRow").hidden    = state.table || isPeriodMode(state.mode) || state.mode==="agree";   // hover hint: Timeline/Graph/Ranking only, under the right-side buttons
   $("#bDir").hidden       = state.table;                   // direction is meaningless in the table view
-  $("#dataSrc").hidden    = state.table || m==="agree";   // this view shows all sources at once
+  $("#dataSrc").hidden    = state.table || m==="agree" || rankByScored();   // Sources shows all at once; a scored ranking picks its own sources
   const cnBtn=$("#dataSrc").querySelector('[data-src="cn"]');
   if(cnBtn){ const has=!!(state.cn&&state.cn.games&&state.cn.games[state.tag]);
     cnBtn.hidden=!has;
@@ -1283,7 +1677,7 @@ function render(){
   // only inside renderBars left a note stranded on screen after switching source in a
   // period view, since those never call it. The caveats apply everywhere, so show the
   // note whenever its source is selected and there's a chart under it.
-  const showNote = !state.table;
+  const showNote = !state.table && !rankByScored();      // a scored ranking explains its own sources
   $("#stnote").hidden = !(showNote && state.dataSource==="st");
   $("#cnnote").hidden = !(showNote && state.dataSource==="cn");
   if($("#qmnote")) $("#qmnote").hidden = !(showNote && state.dataSource==="qimai");
@@ -1293,6 +1687,7 @@ function render(){
   if(state.mode==="month"){ renderMonthly(); return; }
   if(state.mode==="version"){ renderVersions(); return; }
   if(state.mode==="agree"){ renderAgreement(); return; }
+  if(rankByScored()){ renderScoredRanking(); return; }
   renderBars();
 }
 
@@ -3739,7 +4134,9 @@ $("#bmBody").addEventListener("click",e=>{
 const isPeriodMode = m => m==="year"||m==="month"||m==="version";
 function updateDirLabel(){
   const byRev = state.mode==="rank" || (isPeriodMode(state.mode) && state.periodSort==="ranking");
-  $("#bDir").textContent = byRev
+  $("#bDir").textContent = rankByScored()
+    ? (state.reverse ? "Worst first" : "Best first")
+    : byRev
     ? (state.reverse ? "Lowest first" : "Highest first")
     : (state.reverse ? "Oldest first" : "Newest first");
   const bs=$("#bSort"); if(bs) bs.value = state.periodSort;
@@ -3917,20 +4314,22 @@ function entityMetrics(entity){
 // One banner. Must run inside withCtx(ctx).
 function bannerSnapshot(ctx,i){
   const b=ctx.data.banners[i]; if(!b) return null;
-  const jp=(b.rank_series||[]).slice();
-  const cnRun=cnRunSeries(b); const cn=cnRun?cnRun.map(x=>x.rank):null;
+  // series are cut to the days the banner actually ran (a paused run skips its gap)
+  const jp=onRunDays(b, (b.rank_series||[]).slice());
+  const cnRun=onRunDays(b, cnRunSeries(b)); const cn=cnRun?cnRun.map(x=>x.rank):null;
   // whether the China chart was actually recorded that day (depth known). A null rank on a
   // recorded day = genuinely below #200; a null on an unrecorded day = data not fetched yet.
   const cnKnown=cnRun?cnRun.map(x=>x.depth!=null):null;
-  const bd=dailyBreakdown(b); const gi=bd?bd.days.map(d=>({add:d.add,cum:d.cum})):[];
-  const qm=bannerQimai(b); const qmDaily=(qm.daily||[]).slice();
+  const bd=dailyBreakdown(b);
+  let giCum=0; const gi=bd?onRunDays(b, bd.days).map(d=>({add:d.add, cum:(giCum+=d.add)})):[];
+  const qm=bannerQimai(b); const qmDaily=onRunDays(b, (qm.daily||[]).slice());
   const st=bannerST(b); const cnv=bannerCN(b);
   return {
     gtag:ctx.tag, kind:"banner", key:String(i),
     label:cmpDisp(b), name:cmpDisp(b), sub:`${ctx.name} · ${cmpDate(b.start)}${b.rerun?" · ↻ rerun":""}`,
     game:ctx.name, art:b.banner_img||"", icon:(b.icons&&b.icons[0])||"", accent:barColor(b), face:cmpFace(ctx.tag, b.name, b.banner_img),
     start:b.start, end:b.end, ongoing:!!b.ongoing, rerun:!!b.rerun,
-    scheduled:Math.round((Date.parse(b.end)-Date.parse(b.start))/864e5)+1,
+    scheduled:runLength(b),
     rev:b.rev||0, jp, cn, cnKnown, gi, qmDaily, hasQm:!!qm.hasData,
     stTotal: st.hasData?st.total:null,
     cnLo: cnv.hasData?cnv.lo:null, cnHi: cnv.hasData?(cnv.hi==null?cnv.lo:cnv.hi):null,
@@ -4019,11 +4418,21 @@ function periodSnapshot(ctx, kind, key){
 
 // Rank stats over the first k days of a rank series (nulls = below the trackable top 200).
 // `mask`, when given, marks which days actually have data — a null on an unrecorded day is
-// "not fetched yet", not a real drop, so it never triggers a drop-out.
+// "not fetched yet", not a real drop: it never triggers a drop-out and never counts as off-chart.
+const RANK_OFF=201;                                // a recorded day below #200 counts as #201
+// Theil–Sen slope (median of the pairwise slopes): a trend line that one odd day — a mid-banner
+// bump, a maintenance dip — can't swing the way a first-to-last endpoint slope can
+function theilSen(pts){
+  const sl=[];
+  for(let i=0;i<pts.length;i++) for(let j=i+1;j<pts.length;j++)
+    if(pts[j][0]!==pts[i][0]) sl.push((pts[j][1]-pts[i][1])/(pts[j][0]-pts[i][0]));
+  if(!sl.length) return null;
+  sl.sort((a,b)=>a-b); const m=sl.length>>1;
+  return sl.length%2 ? sl[m] : (sl[m-1]+sl[m])/2;
+}
 function cmpRankStats(arr,k,mask){
   if(!arr) return {none:true};
-  const OFF=201;                                   // below-200 days penalised, so a run that
-  const win=arr.slice(0,k);                        //   held the chart beats one that fell off
+  const win=arr.slice(0,k);
   const has=idx=> !mask || mask[idx];              // day has data (default: always)
   const known=win.map((v,idx)=>[idx,v]).filter(([,v])=>v!=null);
   if(!known.length) return {none:true};
@@ -4039,16 +4448,29 @@ function cmpRankStats(arr,k,mask){
   const droppedOut = firstDrop>=0;
   // last day with data, so "no drop" scoring isn't inflated by trailing unfetched days
   let lastData=firstIdx; for(let idx=win.length-1; idx>firstIdx; idx--){ if(has(idx)){ lastData=idx; break; } }
+  // every recorded day, off-chart ones as #201
+  const recorded=win.map((v,idx)=>[idx,v]).filter(([idx])=>has(idx)).map(([idx,v])=>[idx, v==null?RANK_OFF:v]);
   // median skips launch day: day 1 swings wildly between games (partial day, maintenance,
-  // time-zone cut), while day 2 is where every game peaks — so count from day 2 onward
-  // (falls back to all days when day 1 is the only one charted).
-  const medVals=known.filter(([idx])=>idx>=1).map(([,v])=>v).sort((a,b)=>a-b);
+  // time-zone cut), while day 2 is where every game peaks — so count from day 2 onward (falls
+  // back to all days when day 1 is the only one). Days below #200 count as #201: a run that
+  // fell off the chart isn't scored on the days it was still on it.
+  const medVals=recorded.filter(([idx])=>idx>=1).map(([,v])=>v).sort((a,b)=>a-b);
   const medPool=medVals.length?medVals:sorted;
+  // decay after the peak, on a LOG scale: the Theil–Sen slope of ln(rank) per day from the peak
+  // day on. Places-per-day scored #1→#11 the same as #100→#110, though on any rank→revenue curve
+  // the first is a ~7× fall and the second ~8%. dbl = days for the rank number to double
+  // (Infinity = it held or climbed after the peak).
+  const tail=recorded.filter(([idx])=>idx>=peakDay).map(([idx,v])=>[idx, Math.log(v)]);
+  const lslope = tail.length>=3 ? theilSen(tail) : null;
+  const dbl = lslope==null ? null : lslope<=0 ? Infinity : Math.LN2/lslope;
+  const b3=sorted.slice(0,3);
   return { none:false, peak, peakDay, open:known[0][1], last,
     med:medPool[Math.floor(medPool.length/2)],
-    sum:win.reduce((a,v)=>a+(v==null?OFF:v),0),
+    sum:win.reduce((a,v)=>a+(v==null?RANK_OFF:v),0),
+    top1:vals.filter(v=>v<=1).length, top3:vals.filter(v=>v<=3).length,
     top10:vals.filter(v=>v<=10).length, top20:vals.filter(v=>v<=20).length,
-    degrade: span>0 ? (last-peak)/span : 0, charted:known.length,
+    best3:b3.reduce((a,v)=>a+v,0)/b3.length,       // mean of the 3 best days — breaks ties among #1 peaks
+    degrade: span>0 ? (last-peak)/span : 0, lslope, dbl, charted:known.length,
     heldDays: droppedOut ? firstDrop : lastData+1, droppedOut, dropDay: droppedOut ? firstDrop+1 : null };
 }
 const cmpSum=(arr,k)=>{ const w=(arr||[]).slice(0,k); return w.length?w.reduce((a,v)=>a+(v||0),0):null; };
@@ -4074,9 +4496,9 @@ function buildComparison(E){
   const kCN=E.every(e=>e.cn)?minLen(e=>e.cn):0;
   const sJP=E.map(e=>cmpRankStats(e.jp,kJP)), sCN=E.map(e=>cmpRankStats(e.cn,kCN,e.cnKnown));
   const rows=[];
-  const rk=v=>v==null?"—":"#"+Math.round(v);
+  const rk=v=>v==null?"—":v>200?">#200":"#"+Math.round(v);
   const dOnly=v=>v==null?"—":Math.round(v)+"d";
-  const dec=v=>v==null?"—":(v>0?"+":"")+v.toFixed(1)+"/day";
+  const dec=v=>v==null?"—":v>=999?"held":v.toFixed(1)+"d";       // rank-doubling time; 999 = never decayed
   const push=(o)=>rows.push(Object.assign({note:"",full:false},o));
   const cellsFrom=(fn,dispFn)=>E.map((e,i)=>({v:fn(e,i), disp:dispFn?dispFn(e,i):null}));
 
@@ -4084,13 +4506,13 @@ function buildComparison(E){
     push({group:"Revenue",src:"gamei",metric:"gamei_total",label:"Total",k:kGI,better:"high",fmt:G,cells:cellsFrom(e=>cmpCum(e.gi,kGI))});
     push({group:"Revenue",src:"gamei",metric:"gamei_peak",label:"Peak-rank day",better:"high",fmt:G,note:"revenue on its best JP-rank day",cells:cellsFrom((e,i)=>{const pd=sJP[i].none?null:sJP[i].peakDay; return (pd!=null&&pd<e.gi.length)?e.gi[pd].add:null;})});
     push({group:"Revenue",src:"gamei",metric:"gamei_week",label:"First week",k:w,better:"high",fmt:G,cells:cellsFrom(e=>cmpCum(e.gi,w))});
-    push({group:"Revenue",src:"gamei",metric:"gamei_perday",label:"Per day",k:kGI,better:"high",fmt:G,note:"revenue ÷ days compared",cells:cellsFrom(e=>{const c=cmpCum(e.gi,kGI);return c==null?null:c/kGI;})});
+    push({group:"Revenue",src:"gamei",metric:"gamei_perday",label:"Per day",k:kGI,better:"high",fmt:G,note:"revenue ÷ days compared — same days for every side, so it always follows Total; not scored",unscored:true,cells:cellsFrom(e=>{const c=cmpCum(e.gi,kGI);return c==null?null:c/kGI;})});
   }
   if(en.qimai && kQM>0){ const w=Math.min(7,kQM);
     push({group:"Revenue",src:"qimai",metric:"qimai_total",label:"Total",k:kQM,better:"high",fmt:fmtUSD,cells:cellsFrom(e=>cmpSum(e.qmDaily,kQM))});
     push({group:"Revenue",src:"qimai",metric:"qimai_peak",label:"Peak-rank day",better:"high",fmt:fmtUSD,note:"revenue on its best CN-rank day",cells:cellsFrom((e,i)=>{const pd=sCN[i].none?null:sCN[i].peakDay; return (pd!=null&&pd<e.qmDaily.length)?e.qmDaily[pd]:null;})});
     push({group:"Revenue",src:"qimai",metric:"qimai_week",label:"First week",k:w,better:"high",fmt:fmtUSD,cells:cellsFrom(e=>cmpSum(e.qmDaily,w))});
-    push({group:"Revenue",src:"qimai",metric:"qimai_perday",label:"Per day",k:kQM,better:"high",fmt:fmtUSD,note:"revenue ÷ days compared",cells:cellsFrom(e=>{const c=cmpSum(e.qmDaily,kQM);return c==null?null:c/kQM;})});
+    push({group:"Revenue",src:"qimai",metric:"qimai_perday",label:"Per day",k:kQM,better:"high",fmt:fmtUSD,note:"revenue ÷ days compared — same days for every side, so it always follows Total; not scored",unscored:true,cells:cellsFrom(e=>{const c=cmpSum(e.qmDaily,kQM);return c==null?null:c/kQM;})});
   }
   if(en.st && E.every(e=>e.stTotal!=null)){
     push({group:"Revenue",src:"st",metric:"st_total",label:"Total",better:"high",fmt:fmtUSD,full:true,note:"whole run — monthly source",cells:cellsFrom(e=>e.stTotal)});
@@ -4107,26 +4529,30 @@ function buildComparison(E){
     : s.droppedOut ? {v:s.heldDays, disp:`day ${s.dropDay}`} : {v:k+1, disp:"no drop"});
   if(en.jp && kJP>0){ const jf=(f)=>cellsFrom((e,i)=>sJP[i].none?null:f(sJP[i]));
     push({group:"Japan rank",src:"jp",metric:"jp_peak",label:"Peak rank",k:kJP,better:"low",fmt:rk,cells:jf(s=>s.peak)});
-    push({group:"Japan rank",src:"jp",metric:"jp_med",label:"Median rank",k:kJP,better:"low",fmt:rk,note:"from day 2 — launch day skipped",cells:jf(s=>s.med)});
+    push({group:"Japan rank",src:"jp",metric:"jp_top1",label:"Days at #1",k:kJP,better:"high",fmt:dOnly,note:"days it held the top spot",cells:jf(s=>s.top1)});
+    push({group:"Japan rank",src:"jp",metric:"jp_top3",label:"Days in top 3",k:kJP,better:"high",fmt:dOnly,cells:jf(s=>s.top3)});
+    push({group:"Japan rank",src:"jp",metric:"jp_med",label:"Median rank",k:kJP,better:"low",fmt:rk,note:"from day 2 — launch day skipped; days off the chart count as below #200",cells:jf(s=>s.med)});
     push({group:"Japan rank",src:"jp",metric:"jp_top10",label:"Days in top 10",k:kJP,better:"high",fmt:dOnly,note:"staying power",cells:jf(s=>s.top10)});
     push({group:"Japan rank",src:"jp",metric:"jp_drop",label:"Dropped from top 200",k:kJP,better:"high",note:"day it fell off — later (or no drop) is better",cells:dropCells(sJP,kJP)});
-    if(kJP>=5 && E.every((e,i)=>!sJP[i].none && sJP[i].charted>=3))
-      push({group:"Japan rank",src:"jp",metric:"jp_decay",label:"Rank decay",k:kJP,better:"low",fmt:dec,note:"places lost per day after the peak",cells:jf(s=>s.degrade)});
+    if(kJP>=5 && E.every((e,i)=>!sJP[i].none && sJP[i].charted>=3 && sJP[i].dbl!=null))
+      push({group:"Japan rank",src:"jp",metric:"jp_decay",label:"Rank decay",k:kJP,better:"high",fmt:dec,note:"days for its rank to double after the peak — longer is a slower decay",cells:jf(s=>s.dbl===Infinity?999:s.dbl)});
   }
   if(en.cnrank && kCN>0){ const cf=(f)=>cellsFrom((e,i)=>sCN[i].none?null:f(sCN[i]));
     push({group:"China rank",src:"cnrank",metric:"cnr_peak",label:"Peak rank",k:kCN,better:"low",fmt:rk,cells:cf(s=>s.peak)});
-    push({group:"China rank",src:"cnrank",metric:"cnr_med",label:"Median rank",k:kCN,better:"low",fmt:rk,note:"from day 2 — launch day skipped",cells:cf(s=>s.med)});
+    push({group:"China rank",src:"cnrank",metric:"cnr_top1",label:"Days at #1",k:kCN,better:"high",fmt:dOnly,note:"days it held the top spot",cells:cf(s=>s.top1)});
+    push({group:"China rank",src:"cnrank",metric:"cnr_top3",label:"Days in top 3",k:kCN,better:"high",fmt:dOnly,cells:cf(s=>s.top3)});
+    push({group:"China rank",src:"cnrank",metric:"cnr_med",label:"Median rank",k:kCN,better:"low",fmt:rk,note:"from day 2 — launch day skipped; days off the chart count as below #200",cells:cf(s=>s.med)});
     push({group:"China rank",src:"cnrank",metric:"cnr_top10",label:"Days in top 10",k:kCN,better:"high",fmt:dOnly,note:"staying power",cells:cf(s=>s.top10)});
     push({group:"China rank",src:"cnrank",metric:"cnr_drop",label:"Dropped from top 200",k:kCN,better:"high",note:"day it fell off — later (or no drop) is better",cells:dropCells(sCN,kCN)});
-    if(kCN>=5 && E.every((e,i)=>!sCN[i].none && sCN[i].charted>=3))
-      push({group:"China rank",src:"cnrank",metric:"cnr_decay",label:"Rank decay",k:kCN,better:"low",fmt:dec,note:"places lost per day after the peak",cells:cf(s=>s.degrade)});
+    if(kCN>=5 && E.every((e,i)=>!sCN[i].none && sCN[i].charted>=3 && sCN[i].dbl!=null))
+      push({group:"China rank",src:"cnrank",metric:"cnr_decay",label:"Rank decay",k:kCN,better:"high",fmt:dec,note:"days for its rank to double after the peak — longer is a slower decay",cells:cf(s=>s.dbl===Infinity?999:s.dbl)});
   }
   // score each row: single best side wins a point; a tie for best awards none. Also record how
   // close the win was (relative gap between best and runner-up), so the read-out can flag slim leads.
   const points=new Array(M).fill(0); const W={}, margin={};
   for(const r of rows){
     const vs=r.cells.map(c=>c.v), have=vs.filter(v=>v!=null);
-    r.scored=have.length>=2;
+    r.scored=!r.unscored && have.length>=2;
     if(!r.scored){ r.winner=null; continue; }
     const best = r.better==="high" ? Math.max(...have) : Math.min(...have);
     const idxs=[]; vs.forEach((v,i)=>{ if(v!=null && v===best) idxs.push(i); });
@@ -4183,18 +4609,18 @@ function cmpRevComment2(R,A,B){
 function cmpRankComment2(R,E,prefix,market){
   const nA=esc(E[0].name||E[0].label), nB=esc(E[1].name||E[1].label);
   const w=k=> R.W[prefix+k]===0?"a":R.W[prefix+k]===1?"b":(R.W[prefix+k]==="tie"?"draw":undefined);
-  const asp=[["peak","a higher peak"],["med","a better median"],["top10","more days in the top 10"],["decay","a slower decay"]];
+  const asp=[["peak","a higher peak"],["top1","more days at #1"],["top3","more days in the top 3"],["med","a better median"],["top10","more days in the top 10"],["decay","a slower decay"]];
   const aw=[], bw=[];
   for(const [key,phrase] of asp){ const x=w(key); if(x==="a") aw.push({key,phrase}); else if(x==="b") bw.push({key,phrase}); }
   const join=arr=>cmpJoinList(arr.map(o=>o.phrase));
-  const strongTied=[["peak","peak rank"],["top10","days in the top 10"]].filter(([k])=>w(k)==="draw").map(([,l])=>l);
+  const strongTied=[["peak","peak rank"],["top1","days at #1"],["top10","days in the top 10"]].filter(([k])=>w(k)==="draw").map(([,l])=>l);
   const tieNote = strongTied.length
     ? ` They tie on ${cmpJoinList(strongTied)} — generally the stronger indicator${strongTied.length>1?"s":""} — so they're more evenly matched than that suggests.` : "";
   if(!aw.length && !bw.length)
     return strongTied.length ? `Neck and neck on the ${market} chart — level on ${cmpJoinList(strongTied)}, the stronger indicator${strongTied.length>1?"s":""}.` : "";
   if(!bw.length) return `<b>${nA}</b> leads the ${market} chart — ${join(aw)}.${tieNote}`;
   if(!aw.length) return `<b>${nB}</b> leads the ${market} chart — ${join(bw)}.${tieNote}`;
-  const peakW=w("peak"), stayK=["med","top10","decay"];
+  const peakW=w("peak"), stayK=["top3","med","top10","decay"];
   const stayA=aw.filter(o=>stayK.includes(o.key)), stayB=bw.filter(o=>stayK.includes(o.key));
   const stayWin = stayA.length>stayB.length?"a":stayB.length>stayA.length?"b":null;
   if(peakW && (peakW==="a"||peakW==="b") && stayWin && peakW!==stayWin){
@@ -4224,10 +4650,10 @@ function cmpRevCommentN(R,E){
     : `<b>${name}</b> leads on revenue, topping ${counts[leaderIdx]} of the ${metrics.length} sources${closeNote}.`;
 }
 function cmpRankCommentN(R,E,prefix,market){
-  const metrics=["peak","med","top10","decay"].map(k=>prefix+k).filter(m=>m in R.W);
+  const metrics=["peak","top1","top3","med","top10","decay"].map(k=>prefix+k).filter(m=>m in R.W);
   if(!metrics.length) return "";
   const {counts,leaderIdx}=cmpCatCountN(R,E,metrics);
-  const strongTied=[["peak","peak rank"],["top10","days in the top 10"]].filter(([k])=>R.W[prefix+k]==="tie").map(([,l])=>l);
+  const strongTied=[["peak","peak rank"],["top1","days at #1"],["top10","days in the top 10"]].filter(([k])=>R.W[prefix+k]==="tie").map(([,l])=>l);
   const tieNote = strongTied.length ? ` The ${cmpJoinList(strongTied)} — the stronger indicator${strongTied.length>1?"s":""} — ${strongTied.length>1?"were":"was"} tied.` : "";
   if(leaderIdx==null) return `No single side owns the ${market} chart — the measures split.${tieNote}`;
   return `<b>${esc(E[leaderIdx].name||E[leaderIdx].label)}</b> leads the ${market} chart, taking ${counts[leaderIdx]} of the ${metrics.length} measures.${tieNote}`;
@@ -4253,8 +4679,8 @@ function cmpTLDR(R,E){
   const decisive = gap>=6?"decisively":gap>=3?"comfortably":"narrowly";
   const lead=ms=>cmpCatCountN(R,E,ms.filter(m=>m in R.W)).leaderIdx;
   const rev=lead(["gamei_total","qimai_total","st_total","cn_total"]);
-  const jp=lead(["jp_peak","jp_med","jp_top10","jp_drop","jp_decay"]);
-  const cn=lead(["cnr_peak","cnr_med","cnr_top10","cnr_drop","cnr_decay"]);
+  const jp=lead(["jp_peak","jp_top1","jp_top3","jp_med","jp_top10","jp_drop","jp_decay"]);
+  const cn=lead(["cnr_peak","cnr_top1","cnr_top3","cnr_med","cnr_top10","cnr_drop","cnr_decay"]);
   const won=[]; if(rev===wi)won.push("revenue"); if(jp===wi)won.push("the Japan chart"); if(cn===wi)won.push("the China chart");
   let s=`${name} takes it ${decisive}`;
   if(won.length) s+=`, leading on ${cmpJoinList(won)}`;

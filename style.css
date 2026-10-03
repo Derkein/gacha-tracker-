@@ -195,6 +195,15 @@ a{color:inherit}
 .av .mono.syn{background:var(--muted); font-size:19px}
 .synrow .nm b{color:var(--ink2); font-weight:750}
 .synrow .barfill{background-image:repeating-linear-gradient(-45deg,transparent 0 5px,rgba(127,127,127,.32) 5px 10px)}
+/* store-chart ranking (Ranking → JP/CN chart): the revenue leaderboard row, bar = chart score
+   (or the picked sort metric), plus a stat line under the bar with every Compare rank metric */
+.cr-stat{margin-top:3px; font-size:11px; color:var(--ink2); font-variant-numeric:tabular-nums}
+.cr-stat b{color:var(--ink); font-weight:700}
+.cr-note{position:relative; z-index:1; margin-top:14px}
+.cr-srcbar{margin-bottom:14px}
+.cr-part{display:block}
+.cr-n{color:var(--muted)}
+.cr-stat .partialbadge{display:inline-block; margin:0 0 0 6px; vertical-align:1px}
 /* pending banner (game-i hasn't logged it yet) — real dates/art/names, no revenue */
 .pendrow .track{background:repeating-linear-gradient(-45deg,var(--track) 0 6px,transparent 6px 12px)}
 .val.pendingval{font-weight:700; font-style:italic; font-size:11px; color:var(--accent); opacity:.9}

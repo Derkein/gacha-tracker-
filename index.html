@@ -12,7 +12,7 @@
 <title>Gacha Revenue Tracker</title>
 <meta name="description" content="Estimated gacha banner revenue over time for Zenless Zone Zero, Honkai: Star Rail, Wuthering Waves, Genshin Impact and Arknights: Endfield. Auto-updated from game-i.daa.jp.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>%F0%9F%8E%B0</text></svg>">
-<link rel="stylesheet" href="style.css?v=294">
+<link rel="stylesheet" href="style.css?v=306">
 </head>
 <body>
 <div class="wrap">
@@ -74,10 +74,31 @@
       </div>
       <div class="seg" id="gyears"></div>
     </div>
+    <div class="seg agmode" id="rankByWrap" role="tablist" aria-label="Rank banners by" hidden>
+      <button data-rankby="rev" class="on" title="Rank banners by ONE revenue source (pick it on the right)">Single revenue</button>
+      <button data-rankby="total" title="Rank banners by every revenue source at once — each scored as a % of the game's best banner on it, then averaged. Switch sources on/off.">Total revenue</button>
+      <button data-rankby="charts" title="Rank banners by their run on the Japan and/or China top-grossing charts: a score from the revenue their ranks imply and how slowly they decayed">Charts</button>
+      <button data-rankby="all" title="Everything: every revenue source plus both charts, each scored as a % of the game's best banner, then averaged. Switch sources on/off.">Everything</button>
+    </div>
+    <div class="seg agmode" id="chartWhichWrap" role="tablist" aria-label="Which chart" hidden>
+      <button data-chartwhich="both" class="on" title="Average of the Japan and China chart scores">JP + CN</button>
+      <button data-chartwhich="jp" title="Japan iOS top-grossing (game-i) only">JP</button>
+      <button data-chartwhich="cn" title="China iPhone top-grossing only">CN</button>
+    </div>
     <div class="seg agmode" id="agModeWrap" role="tablist" aria-label="Sources view" hidden>
       <button data-agmode="month" class="on" title="Score each MONTH against the source's own history, and list the banners that ran">by Month</button>
       <button data-agmode="banner" title="Score each BANNER against the game's other banners — do the sources agree it was a strong banner?">by Banner</button>
     </div>
+    <label class="sortsel" id="crSortWrap" hidden>Sort <select id="crSort" title="Order the chart ranking by its score or by one rank metric">
+      <option value="score">Chart score</option>
+      <option value="peak">Peak rank</option>
+      <option value="top1">Days at #1</option>
+      <option value="top3">Days in top 3</option>
+      <option value="med">Median rank</option>
+      <option value="top10">Days in top 10</option>
+      <option value="held">Days in top 200</option>
+      <option value="decay">Rank decay</option>
+    </select></label>
     <label class="sortsel" id="bSortWrap" hidden>Sort <select id="bSort" title="Order the period cards">
       <option value="timeline">Timeline</option>
       <option value="ranking">Ranking</option>
@@ -372,6 +393,6 @@
 
 <div class="lightbox" id="lightbox" hidden><img id="lightboxImg" src="" alt=""></div>
 
-<script src="app.js?v=294"></script>
+<script src="app.js?v=306"></script>
 </body>
 </html>
