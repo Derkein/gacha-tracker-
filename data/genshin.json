@@ -4,13 +4,13 @@
  "jp": "原神",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E5%8E%9F%E7%A5%9E",
- "updated": "2026-10-07T21:24:29Z",
+ "updated": "2026-10-08T17:57:44Z",
  "count": 106,
  "now": {
-  "ios": 80,
-  "android": 21,
-  "month": 71,
-  "next_add": 13695699,
+  "ios": 77,
+  "android": 29,
+  "month": 72,
+  "next_add": 15194251,
   "ym": "2026/10",
   "ranks": {
    "prev": [
@@ -55,7 +55,7 @@
     86,
     86,
     83,
-    null,
+    85,
     null,
     null,
     null,
@@ -82,7 +82,7 @@
   }
  },
  "monthly": {
-  "2026-10": 1.63,
+  "2026-10": 1.77,
   "2026-09": 6.26,
   "2026-08": 6.04,
   "2026-07": 13.49,
@@ -3016,7 +3016,7 @@
    "rev": 4.73,
    "yrank": 13,
    "ytot": 17,
-   "cum": 76,
+   "cum": 77,
    "cumtot": 106,
    "year": 2024,
    "related": "",
@@ -3460,7 +3460,7 @@
    "rev": 4.75,
    "yrank": 12,
    "ytot": 17,
-   "cum": 75,
+   "cum": 76,
    "cumtot": 106,
    "year": 2024,
    "related": "",
@@ -5209,10 +5209,10 @@
    "name": "ヴェスナ&ヴォジャニーツァ",
    "start": "2026-09-23",
    "end": "2026-10-13",
-   "rev": 4.7,
+   "rev": 4.83,
    "yrank": 4,
    "ytot": 13,
-   "cum": 77,
+   "cum": 75,
    "cumtot": 106,
    "year": 2026,
    "related": "",
@@ -5235,7 +5235,8 @@
     76,
     86,
     86,
-    83
+    83,
+    85
    ],
    "icons": [
     "https://enka.network/ui/UI_AvatarIcon_Vesna.png",

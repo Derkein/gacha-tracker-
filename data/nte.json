@@ -4,13 +4,13 @@
  "jp": "NTE： Neverness to Everness",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/NTE%EF%BC%9A%20Neverness%20to%20Everness",
- "updated": "2026-10-07T21:24:45Z",
+ "updated": "2026-10-08T17:58:03Z",
  "count": 9,
  "now": {
-  "ios": 173,
+  "ios": null,
   "android": 50,
-  "month": 72,
-  "next_add": 7967077,
+  "month": 79,
+  "next_add": 5508769,
   "ym": "2026/10",
   "ranks": {
    "prev": [
@@ -55,7 +55,7 @@
     149,
     169,
     179,
-    null,
+    197,
     null,
     null,
     null,
@@ -82,7 +82,7 @@
   }
  },
  "monthly": {
-  "2026-10": 1.6,
+  "2026-10": 1.66,
   "2026-09": 3.06,
   "2026-08": 5.23,
   "2026-07": 6.29,
@@ -450,7 +450,7 @@
    "name": "クロバネ",
    "start": "2026-09-30",
    "end": "2026-10-20",
-   "rev": 1.56,
+   "rev": 1.62,
    "yrank": 9,
    "ytot": 9,
    "cum": 9,
@@ -469,7 +469,8 @@
     124,
     149,
     169,
-    179
+    179,
+    197
    ],
    "agents": [
     "Blackbird"
