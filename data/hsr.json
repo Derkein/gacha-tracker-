@@ -4,13 +4,13 @@
  "jp": "崩壊：スターレイル",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E5%B4%A9%E5%A3%8A%EF%BC%9A%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%AC%E3%82%A4%E3%83%AB",
- "updated": "2026-10-08T21:24:35Z",
+ "updated": "2026-10-09T17:21:47Z",
  "count": 63,
  "now": {
-  "ios": 78,
+  "ios": 89,
   "android": 23,
   "month": 29,
-  "next_add": 15056648,
+  "next_add": 13478631,
   "ym": "2026/10",
   "ranks": {
    "prev": [
@@ -56,7 +56,7 @@
     61,
     70,
     81,
-    null,
+    91,
     null,
     null,
     null,
@@ -82,7 +82,7 @@
   }
  },
  "monthly": {
-  "2026-10": 3.82,
+  "2026-10": 3.95,
   "2026-09": 16.01,
   "2026-08": 11.87,
   "2026-07": 16.85,
@@ -1498,7 +1498,7 @@
    "rev": 9.52,
    "yrank": 13,
    "ytot": 17,
-   "cum": 40,
+   "cum": 41,
    "cumtot": 64,
    "year": 2024,
    "related": "ホタル復刻、ギャラガー、御空、ミーシャ",
@@ -2087,7 +2087,7 @@
    "rev": 9.58,
    "yrank": 10,
    "ytot": 18,
-   "cum": 39,
+   "cum": 40,
    "cumtot": 64,
    "year": 2025,
    "related": "銀狼復刻",
@@ -3047,10 +3047,10 @@
    "name": "パール",
    "start": "2026-09-28",
    "end": "2026-10-21",
-   "rev": 9.51,
+   "rev": 9.65,
    "yrank": 7,
    "ytot": 16,
-   "cum": 41,
+   "cum": 39,
    "cumtot": 64,
    "year": 2026,
    "related": "緋英",
@@ -3069,7 +3069,8 @@
     51,
     61,
     70,
-    81
+    81,
+    91
    ],
    "icons": [
     "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/icon/character/1503.png"
