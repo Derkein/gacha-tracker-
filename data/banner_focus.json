@@ -2246,6 +2246,15 @@
    "det": true,
    "name": "ヴェスナ&ヴォジャニーツァ",
    "v": 2
+  },
+  "https://upload-os-bbs.hoyolab.com/upload/2026/10/08/68758aadd6021891543c4b8259e0b999_1160471361709252361.jpg": {
+   "x": 49.9,
+   "y": 21.9,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "name": "スカーク",
+   "v": 2
   }
  },
  "endfield": {
