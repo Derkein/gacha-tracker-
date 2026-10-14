@@ -1204,15 +1204,16 @@ function shortListing(b){
 function chartSeries(b, kind){
   if(kind==="jp"){
     const r=(onRunDays(b, b.rank_series||[])||[]).slice(0,CHART_WINDOW);
-    return r.length && r.some(v=>v!=null) ? {ranks:r, known:r.map(()=>true)} : null;
+    return r.length && r.some(v=>v!=null) ? {ranks:r, known:r.map(()=>true), from:1} : null;
   }
   const run=onRunDays(b, cnRunSeries(b)); if(!run) return null;
   const w=run.slice(0,CHART_WINDOW), ranks=w.map(x=>x.rank);
-  return ranks.some(v=>v!=null) ? {ranks, known:w.map(x=>x.depth!=null), best:w.map(x=>x.best)} : null;
+  return ranks.some(v=>v!=null) ? {ranks, known:w.map(x=>x.depth!=null), best:w.map(x=>x.best), from:0} : null;
 }
-// the recorded days a chart score counts: day 2 on (launch day skipped, like the median — it's a
-// partial day), or day 1 alone when it's all there is
-const chartDays = s => s.ranks.map((r,i)=>[i,r]).filter(([i])=>s.known[i] && (i>=1 || s.ranks.length===1));
+// the recorded days a chart score counts. Japan: day 2 on — game-i's reading for launch day is
+// taken at midnight JST, before the banner is up. China: every day — Qimai's end-of-day reading
+// has the launch on its real date. A run with a single day counts that day either way.
+const chartDays = s => s.ranks.map((r,i)=>[i,r]).filter(([i])=>s.known[i] && (i>=(s.from||0) || s.ranks.length===1));
 // revenue-equivalent of a run PER DAY: each recorded day's rank turned into relative revenue,
 // averaged — a rate, so a short listing or a still-running banner isn't marked down for the
 // days it doesn't have (the money sources already carry the "how long" part)
@@ -1229,7 +1230,7 @@ function chartTypicalDbl(kind){
   for(const b of state.data.banners){
     if(b._synthetic||b.pending||b.ongoing) continue;
     const s=chartSeries(b, kind); if(!s||s.ranks.length<5) continue;
-    const st=cmpRankStats(s.ranks, s.ranks.length, s.known, s.best);
+    const st=cmpRankStats(s.ranks, s.ranks.length, s.known, s.best, s.from||0);
     if(!st.none && st.charted>=3 && st.dbl!=null) vals.push(st.dbl);
   }
   vals.sort((a,b)=>a-b);
@@ -1246,7 +1247,7 @@ function chartTypicalDbl(kind){
 // Hold multiplies rather than adds, so a banner sitting flat at #120 can't earn points just for
 // being flat — decay costs a strong run at most a quarter of its score.
 function chartRun(b, s, kind){
-  const st=cmpRankStats(s.ranks, s.ranks.length, s.known, s.best);
+  const st=cmpRankStats(s.ranks, s.ranks.length, s.known, s.best, s.from||0);
   if(st.none) return null;
   // A short listing (game-i ended it early — HSR's Phainon, 10 of a usual 21 days) is measured
   // over the game's usual run length, not its own: otherwise its average holds only its
@@ -1373,7 +1374,7 @@ function scoredRowHTML(b, pos, fillPct, valStr, statHTML, chartMode){
 }
 const scoreAxes = () => [25,50,75,100].map(t=>`<div class="axis" style="left:calc(87px + (100% - 87px - 74px) * ${t/100})"><span>${t}</span></div>`).join("");
 const missingNote = (n, what) => n ? ` <b>${n}</b> banner${n>1?"s":""} in this range ha${n>1?"ve":"s"} no ${what}, so ${n>1?"they aren't":"it isn't"} ranked.` : "";
-const CHART_NOTE = `Each recorded day from day 2 to day ${CHART_WINDOW} (launch day skipped — a partial day) is turned into relative revenue with that chart's `
+const CHART_NOTE = `Each recorded day of the first ${CHART_WINDOW} (Japan from day 2 — game-i reads launch day before the banner is up; China from launch day) is turned into relative revenue with that chart's `
   + `rank→revenue curve — Japan: game-i's own curve (≈ r<sup>−0.80</sup>); China: r<sup>−${CN_RANK_EXP}</sup>, fitted from Qimai's daily China revenue against the China chart `
   + `(R² ≈ 0.9). A day off the chart counts as half of #200 — the game is still earning, just below the chart. <b>Level</b> = that average, on a log scale from "off the chart every day" (0) to "#1 every day" (1); shown as `
   + `"≈ #N every day". <b>Hold</b> = how slowly the rank decays after the peak: the days it takes for the rank number to double (a robust Theil–Sen fit of `
@@ -1480,7 +1481,7 @@ function renderSourceRanking(pool, everything){
     + `the <b>average over the sources that have data for it</b>, each weighted equally. Switch sources off above to leave them out. `
     + `A banner missing a source — most often Sensor Tower or CN, whose monthly figure isn't published until the month is over — is averaged `
     + `over the rest and flagged, so read its score as provisional. Ongoing banners (● live) are still adding revenue.`
-    + (everything ? ` <b>JP chart</b> and <b>CN chart</b> join as revenue-equivalent sources: each recorded day from day 2 to day ${CHART_WINDOW} turned into relative revenue with that chart's rank→revenue curve `
+    + (everything ? ` <b>JP chart</b> and <b>CN chart</b> join as revenue-equivalent sources: each recorded day of the first ${CHART_WINDOW} (Japan from day 2, China from launch day) turned into relative revenue with that chart's rank→revenue curve `
       + `(Japan: game-i's; China: r<sup>−${CN_RANK_EXP}</sup>, fitted from Qimai) and averaged per day — with running banners and short listings projected over a usual run, exactly as in Charts. game-i's Japan revenue is itself built from the Japan chart, `
       + `so leaving both on gives Japan's chart extra weight — switch one off for an even split.` : "")
     + missingNote(missing.length, "data on any selected source")
@@ -4453,7 +4454,7 @@ function theilSen(pts){
   sl.sort((a,b)=>a-b); const m=sl.length>>1;
   return sl.length%2 ? sl[m] : (sl[m-1]+sl[m])/2;
 }
-function cmpRankStats(arr,k,mask,best){
+function cmpRankStats(arr,k,mask,best,from=1){
   if(!arr) return {none:true};
   const win=arr.slice(0,k);
   const has=idx=> !mask || mask[idx];              // day has data (default: always)
@@ -4481,11 +4482,12 @@ function cmpRankStats(arr,k,mask,best){
   let lastData=firstIdx; for(let idx=win.length-1; idx>firstIdx; idx--){ if(has(idx)){ lastData=idx; break; } }
   // every recorded day, off-chart ones as #201
   const recorded=win.map((v,idx)=>[idx,v]).filter(([idx])=>has(idx)).map(([idx,v])=>[idx, v==null?RANK_OFF:v]);
-  // median skips launch day: day 1 swings wildly between games (partial day, maintenance,
-  // time-zone cut), while day 2 is where every game peaks — so count from day 2 onward (falls
+  // `from` = first run-day index the median counts. Japan (1): game-i reads the chart at midnight
+  // JST, so day 1 is a reading from BEFORE the banner went up and day 2 is where every game
+  // peaks. China (0): the end-of-day reading puts the launch on day 1, so nothing is skipped. (falls
   // back to all days when day 1 is the only one). Days below #200 count as #201: a run that
   // fell off the chart isn't scored on the days it was still on it.
-  const medVals=recorded.filter(([idx])=>idx>=1).map(([,v])=>v).sort((a,b)=>a-b);
+  const medVals=recorded.filter(([idx])=>idx>=from).map(([,v])=>v).sort((a,b)=>a-b);
   const medPool=medVals.length?medVals:sorted;
   // decay after the peak, on a LOG scale: the Theil–Sen slope of ln(rank) per day from the peak
   // day on. Places-per-day scored #1→#11 the same as #100→#110, though on any rank→revenue curve
@@ -4525,7 +4527,7 @@ function buildComparison(E){
   const kQM=E.every(e=>e.hasQm)?minLen(e=>e.qmDaily):0;
   const kJP=minLen(e=>e.jp);
   const kCN=E.every(e=>e.cn)?minLen(e=>e.cn):0;
-  const sJP=E.map(e=>cmpRankStats(e.jp,kJP)), sCN=E.map(e=>cmpRankStats(e.cn,kCN,e.cnKnown,e.cnBest));
+  const sJP=E.map(e=>cmpRankStats(e.jp,kJP)), sCN=E.map(e=>cmpRankStats(e.cn,kCN,e.cnKnown,e.cnBest,0));
   const rows=[];
   const rk=v=>v==null?"—":v>200?">#200":"#"+Math.round(v);
   const dOnly=v=>v==null?"—":Math.round(v)+"d";
@@ -4572,7 +4574,7 @@ function buildComparison(E){
     push({group:"China rank",src:"cnrank",metric:"cnr_peak",label:"Peak rank",k:kCN,better:"low",fmt:rk,note:"best rank reached at any point of a day",cells:cf(s=>s.peak)});
     push({group:"China rank",src:"cnrank",metric:"cnr_top1",label:"Days at #1",k:kCN,better:"high",fmt:dOnly,note:"days it held the top spot",cells:cf(s=>s.top1)});
     push({group:"China rank",src:"cnrank",metric:"cnr_top3",label:"Days in top 3",k:kCN,better:"high",fmt:dOnly,cells:cf(s=>s.top3)});
-    push({group:"China rank",src:"cnrank",metric:"cnr_med",label:"Median rank",k:kCN,better:"low",fmt:rk,note:"from day 2 — launch day skipped; days off the chart count as below #200",cells:cf(s=>s.med)});
+    push({group:"China rank",src:"cnrank",metric:"cnr_med",label:"Median rank",k:kCN,better:"low",fmt:rk,note:"end-of-day rank, from launch day; days off the chart count as below #200",cells:cf(s=>s.med)});
     push({group:"China rank",src:"cnrank",metric:"cnr_top10",label:"Days in top 10",k:kCN,better:"high",fmt:dOnly,note:"staying power",cells:cf(s=>s.top10)});
     push({group:"China rank",src:"cnrank",metric:"cnr_drop",label:"Dropped from top 200",k:kCN,better:"high",note:"day it fell off — later (or no drop) is better",cells:dropCells(sCN,kCN)});
     if(kCN>=5 && E.every((e,i)=>!sCN[i].none && sCN[i].charted>=3 && sCN[i].dbl!=null))
@@ -5126,7 +5128,7 @@ function renderCompareResult(){
   const even=R.overall==="even";
   const skewChip=i=>{ const s=R.skews[i]; if(s.jpMed==null||s.cnMed==null) return "";
     const d=s.jpMed-s.cnMed, lab=d>=8?"China-leaning":d<=-8?"Japan-leaning":"Balanced JP/CN";
-    return `<span class="cmp-chip2" title="Median rank over the window, from day 2 (launch day skipped) — Japan #${Math.round(s.jpMed)} vs China #${Math.round(s.cnMed)}">${lab}</span>`; };
+    return `<span class="cmp-chip2" title="Median rank over the window (Japan from day 2, China from launch day) — Japan #${Math.round(s.jpMed)} vs China #${Math.round(s.cnMed)}">${lab}</span>`; };
   const pctChip=e=> e.pct!=null?`<span class="cmp-chip2" title="Mean percentile across its available sources, among ${esc(e.game)}'s banners (higher = stronger)">${ordinal(e.pct)} pct · ${esc(e.game)}</span>`:"";
   const noteLines=e=>{ let h="";
     if(e.rival) h+=`<div class="cmp-cardnote" title="About ${Math.round(e.rival.frac*100)}% of this run's revenue overlapped a concurrent banner, which can split spending">↔ ran alongside <b>${esc(e.rival.name)}</b></div>`;
