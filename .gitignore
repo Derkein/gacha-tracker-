@@ -16,6 +16,7 @@ __pycache__/
 scripts/.qimai_cookie*
 scripts/qimai_gui.py
 scripts/fetch_qimai_today.py
+scripts/fetch_qimai_ranks.py
 scripts/qimai_daily.ps1
 qimai_daily.bat
 

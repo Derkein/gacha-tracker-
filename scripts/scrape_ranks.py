@@ -17,9 +17,6 @@ ask about, saved once a day by the same refresh workflow:
                                         (30 from 2025), on ~250 scattered days Sep 2020 ->
                                         Jan 2026 -- Appfigures' public chart page as saved
                                         by the Wayback Machine and Common Crawl. Not daily
-  data/ranks/cn_ios_top10.json   PAST   Apple China iPhone top-grossing, ALL apps, TOP 10
-                                        only, but EVERY day since Genshin's launch --
-                                        AppFollow's free record of the chart. Not daily
 
 WHOLE CHARTS, NOT JUST OUR GAMES
 Every snapshot stores the complete top 100 (the archive file: its 50 or 30) as an ordered
@@ -51,13 +48,6 @@ run. Four exceptions, all pulled by --backfill:
     the same page fill in days the Wayback Machine lacks (11 of the 247). Only 50 deep (30
     from 2025) and patchy -- 2 days in 2020, 22-28 a year 2021-22, 43-83 a year 2023-25 --
     so it goes to its own file, never mixed into cn_ios.json. --appfigures runs just this.
-  * China iOS, all apps, top 10, every day: AppFollow's free top charts keep Apple's real
-    chart for every past day, 10 deep. Pulled day by day from Genshin's launch through the
-    endpoint its chart page calls (appfollow.io/rankings/top.json), one request per ~4 s;
-    a run stops when AppFollow starts refusing (429/400) and the next run resumes.
-    Its Terms bar scraping for commercial use; this site is open source and
-    non-commercial, and the owner approved the pull on that basis. --appfollow runs just
-    this.
 
 SOURCES CHECKED AND NOT USED (Sep 2026), so they needn't be re-tested
   * Qimai (api.qimai.cn/rank/index): a plain request returns today and the two previous
@@ -111,10 +101,6 @@ CHECKING SOURCES -- the real chart, used to verify the files above
     DAILY cap on chart views ("View List data has been limited, please try it
     tomorrow"), hit after roughly a hundred page loads -- fine for spot checks, far too
     little for a 2,000-day backfill.
-  * AppFollow (appfollow.io/rankings/iphone/cn/all-categories?date=YYYY-MM-DD): free and
-    without login, EVERY day back to at least Genshin's launch -- but only the top 10 of
-    each list. It verified cn_ios_archive.json (the same ten apps on 5 of 6 days
-    checked), and its whole daily top 10 is now saved as cn_ios_top10.json (see above).
 
 APPLE'S CHART MOVES IN STEPS
 The China grossing chart changes only a handful of times a day, at irregular times (they
@@ -130,7 +116,6 @@ slice -- comparable day to day, which is what a rank series needs.
     python scripts/scrape_ranks.py              # today's snapshots
     python scripts/scrape_ranks.py --backfill   # also Wayback China history + Steam weekly history
     python scripts/scrape_ranks.py --appfigures # only the Appfigures China archive
-    python scripts/scrape_ranks.py --appfollow  # only the AppFollow daily top 10
 
 Pure standard library, like scrape.py.
 """
@@ -217,16 +202,7 @@ CC_DATA = "https://data.commoncrawl.org/"
 CC_FROM = "CC-MAIN-2020-40"   # the crawl holding Genshin's launch week
 CC_AF = "appfigures.com/top-apps/ios-app-store/china/*"
 
-# AppFollow's free top charts keep Apple's real China chart for every past day, top 10 only.
-# Read through the same endpoint its chart page calls. Its Terms bar scraping for commercial
-# use; this site is open source and non-commercial, and the owner approved the pull on that
-# basis. Paced at FOLLOW_PAUSE; a run stops as soon as AppFollow starts refusing.
-FOLLOW_URL = "https://appfollow.io/rankings/top.json"
-FOLLOW_FROM = "2020-09-28"    # Genshin's launch
-FOLLOW_PAUSE = 4.0            # seconds between requests; 1.5 s drew 429s after ~450 days
 
-
-# ---- http --------------------------------------------------------------------------
 def fetch(url, tries=3, timeout=40, headers=None, data=None):
     """Bytes, gzip-decoded. Retries with backoff: the Wayback Machine refuses connections
     outright when it throttles, and that must read as "try later", not "no data". A 404
@@ -450,13 +426,12 @@ def af_doc():
                  "2 in 2020, 22-28 a year in 2021-22, 43-83 a year in 2023-25 -- and a "
                  "tracked game missing from a day ranked below that day's depth. Kept apart "
                  "from cn_ios.json: someone else's copy, at another hour and depth."),
-        "checked": ("Top 10 compared with AppFollow's record of the same chart (appfollow.io, "
-                    "free, top 10 only) on 6 days of 2020-21: the same ten apps on 5 of them, "
-                    "in the same order on 3 (the others ordered at another hour of the day). "
-                    "The sixth, 2020-12-01, is stamped 16:00 UTC -- midnight in China -- and "
-                    "lines up with AppFollow's 2 Dec instead: 9 of 10, Genshin #2 in both. "
-                    "Days are UTC dates, so a chart stamped 16:00 UTC or later is already "
-                    "the next day in China."),
+        "checked": ("Top 10 compared with an independent daily record of the same chart on 6 "
+                    "days of 2020-21: the same ten apps on 5 of them, in the same order on 3 "
+                    "(the others ordered at another hour of the day). The sixth, 2020-12-01, "
+                    "is stamped 16:00 UTC -- midnight in China -- and lines up with the next "
+                    "day's chart instead: 9 of 10, Genshin #2 in both. Days are UTC dates, so "
+                    "a chart stamped 16:00 UTC or later is already the next day in China."),
         "tracked": CN_TRACKED,
         "names": {},
         "days": {},
@@ -501,82 +476,6 @@ def af_backfill(doc):
             if doc["days"]:
                 save("cn_ios_archive.json", doc, "days")   # a long run keeps what it has
     return added, len(by_day)
-
-
-def follow_doc():
-    return load("cn_ios_top10.json", {
-        "source": "AppFollow free top charts (appfollow.io) -- China, iPhone, Top Grossing, "
-                  "all categories",
-        "source_url": "https://appfollow.io/rankings/iphone/cn/all-categories",
-        "chart": "China iPhone App Store top-grossing, all apps, top 10",
-        "day_basis": "the date AppFollow files the chart under",
-        "note": ("Past days only -- not updated daily. Every day since Genshin's launch, but "
-                 "only the top 10: a tracked game absent from a day was below #10 that day. "
-                 "AppFollow records Apple's real chart (checked against cn_ios_archive.json: "
-                 "the same ten apps on 5 of 6 days); it doesn't say at what hour it reads it, so "
-                 "on days the chart moved it can differ from cn_ios.json's reading. A null id "
-                 "is a rank AppFollow left empty. Pulled through AppFollow's own chart "
-                 "endpoint for this open-source, non-commercial site."),
-        "tracked": CN_TRACKED,
-        "names": {},
-        "days": {},
-    })
-
-
-def follow_day(day):
-    """-> ([Apple id or None for ranks 1..10], {id: name}) of AppFollow's Top Grossing list
-    for one day, or None when it answers for a different date."""
-    res = json.loads(fetch(FOLLOW_URL, timeout=40, headers={"Content-Type": "application/json"},
-                           data=json.dumps({"date": day, "device": "iphone", "genre": "0",
-                                            "country": "cn"}).encode()).decode("utf-8"))
-    if str(res.get("date", day))[:10] != day:
-        return None
-    gross = [x for x in res.get("result", []) if x.get("feed_type") == "gross" and x.get("pos")]
-    ids = [None] * max((x["pos"] for x in gross), default=0)
-    names = {}
-    for x in gross:
-        ids[x["pos"] - 1] = str(x["ext_id"])
-        names[str(x["ext_id"])] = x.get("title", "")
-    return ids, names
-
-
-def follow_backfill(doc):
-    """Every day from Genshin's launch to yesterday not held yet; an empty answer is left
-    out, so a re-run retries it."""
-    d = datetime.fromisoformat(FOLLOW_FROM).date()
-    end = datetime.now(timezone.utc).date() - timedelta(days=1)
-    added = empty = asked = refused = 0
-    while d <= end:
-        day = d.isoformat()
-        d += timedelta(days=1)
-        if day in doc["days"]:
-            continue
-        try:
-            got = follow_day(day)
-            refused = 0
-        except urllib.error.HTTPError as e:
-            print(f"  appfollow {day}: refused (HTTP {e.code})", file=sys.stderr)
-            got = None
-            refused += 1
-            if refused >= 3:                          # it is saying stop: stop, resume another day
-                print("  appfollow: refusing requests -- stopped; re-run later to resume",
-                      file=sys.stderr)
-                break
-        except Exception as e:                       # noqa: BLE001
-            print(f"  appfollow {day}: skipped ({str(e)[:60]})", file=sys.stderr)
-            got = None
-        if got and sum(1 for i in got[0] if i) >= 8:
-            doc["names"].update(got[1])               # chronological, so the latest name wins
-            doc["days"][day] = {"ids": got[0]}
-            added += 1
-        else:
-            empty += 1
-        asked += 1
-        if asked % 50 == 0:
-            print(f"  appfollow: up to {day}, {added} imported, {empty} empty", flush=True)
-            save("cn_ios_top10.json", doc, "days")   # a long run keeps what it has
-        time.sleep(FOLLOW_PAUSE)
-    return added, empty
 
 
 # ---- Steam -------------------------------------------------------------------------
@@ -696,19 +595,7 @@ def main():
         if ar["days"]:
             save("cn_ios_archive.json", ar, "days")
 
-    if backfill or "--appfollow" in sys.argv:
-        fd = follow_doc()
-        try:
-            got, empty = follow_backfill(fd)
-            last = max(fd["days"]) if fd["days"] else "-"
-            print(f"cn_top10 appfollow: {got} new days ({empty} empty), {len(fd['days'])} held | "
-                  f"{last}: {where(fd, 'days', last, CN_TRACKED)}")
-        except Exception as e:                       # noqa: BLE001
-            print(f"cn_top10 appfollow FAILED: {e}", file=sys.stderr)
-        if fd["days"]:
-            save("cn_ios_top10.json", fd, "days")
-
-    if not backfill and ("--appfigures" in sys.argv or "--appfollow" in sys.argv):
+    if not backfill and "--appfigures" in sys.argv:
         return                                        # a one-archive run skips the live charts
 
     held = {}

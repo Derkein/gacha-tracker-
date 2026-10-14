@@ -792,20 +792,25 @@ function cnNowTile(){
   const days=Object.keys(R.days).sort();
   if(!days.length) return "";
   const mine=(R.games && R.games[state.tag]) || {};
-  const last=days[days.length-1], depth=R.days[last][0];
-  const win=days.slice(-60), vals=win.map(d=>mine[d]!=null?mine[d]:null);
+  const mineBest=(R.best && R.best[state.tag]) || {};
+  const cov=R.covered && R.covered[state.tag];
+  const mineDays=cov ? days.filter(d=>d>=cov[0] && d<=cov[1]) : days;
+  if(!mineDays.length) return "";
+  const last=mineDays[mineDays.length-1], depth=R.days[last][0];
+  const win=mineDays.slice(-60), vals=win.map(d=>mine[d]!=null?mine[d]:null);
   const known=vals.filter(v=>v!=null);
   const rank=mine[last]!=null?"#"+mine[last]:depth+"+";
-  const best=known.length?Math.min(...known):null;
+  const bests=win.map(d=>mineBest[d]!=null?mineBest[d]:mine[d]).filter(v=>v!=null);
+  const best=bests.length?Math.min(...bests):null;
   const d=new Date(last+"T00:00:00");
   const today=new Date(); today.setHours(0,0,0,0);
   const when=(today-d)/864e5>=1
     ? `as of ${d.toLocaleDateString("en",{month:"short",day:"numeric"})}`
     : `charted ${known.length}/${win.length}d`;
   const note=best!=null ? `Best #${best} · ${when}` : `below #${depth} for ${win.length}d`;
-  const tip=`Daily place on China's App Store top-grossing chart, ALL apps (games compete `
-    + `with Douyin, WeChat and the video apps), ${depth} deep, last ${win.length} chart days. `
-    + `"${depth}+" means it sat below the chart's depth that day.`;
+  const tip=`Place on China's App Store top-grossing chart at the end of each day, ALL apps (games compete `
+    + `with Douyin, WeChat and the video apps), ${depth} deep, last ${win.length} days, from Qimai. `
+    + `"Best" is the highest it reached at any point of a day. "${depth}+" means it sat below the chart that day.`;
   return `<div class="tile" title="${esc(tip)}"><span class="l">CN store rank today</span>`
        + `<span class="v">iOS ${rank}</span>`
        + `<span class="n">${esc(note)}</span>`
@@ -1132,7 +1137,7 @@ const CHART_WINDOW = 21;
 // rank -> relative revenue that day, per chart (off the chart = 0). JP: game-i's own curve
 // (RANK_VAL ≈ 6.6·r^−0.80), the same one that shapes every banner's daily JP revenue. CN: a power
 // law fitted to our own data — Qimai's daily China-iPhone revenue against that day's China chart
-// rank, 5,000+ game-days over 6 games, gives r^−0.96 (R² 0.89); the one published iPhone
+// rank, 5,000+ game-days over 6 games, gives r^−0.93 to r^−0.98 depending on how the days are lined up (R² 0.84–0.93); the one published iPhone
 // top-grossing estimate (Garg & Telang, MIS Quarterly 2013) is r^−0.86.
 const CN_RANK_EXP = 0.95;
 const chartVal = (kind, r) => r==null ? 0 : kind==="jp" ? rankValue(r) : Math.pow(Math.min(Math.max(r,1),200), -CN_RANK_EXP);
@@ -1203,7 +1208,7 @@ function chartSeries(b, kind){
   }
   const run=onRunDays(b, cnRunSeries(b)); if(!run) return null;
   const w=run.slice(0,CHART_WINDOW), ranks=w.map(x=>x.rank);
-  return ranks.some(v=>v!=null) ? {ranks, known:w.map(x=>x.depth!=null)} : null;
+  return ranks.some(v=>v!=null) ? {ranks, known:w.map(x=>x.depth!=null), best:w.map(x=>x.best)} : null;
 }
 // the recorded days a chart score counts: day 2 on (launch day skipped, like the median — it's a
 // partial day), or day 1 alone when it's all there is
@@ -1224,7 +1229,7 @@ function chartTypicalDbl(kind){
   for(const b of state.data.banners){
     if(b._synthetic||b.pending||b.ongoing) continue;
     const s=chartSeries(b, kind); if(!s||s.ranks.length<5) continue;
-    const st=cmpRankStats(s.ranks, s.ranks.length, s.known);
+    const st=cmpRankStats(s.ranks, s.ranks.length, s.known, s.best);
     if(!st.none && st.charted>=3 && st.dbl!=null) vals.push(st.dbl);
   }
   vals.sort((a,b)=>a-b);
@@ -1241,7 +1246,7 @@ function chartTypicalDbl(kind){
 // Hold multiplies rather than adds, so a banner sitting flat at #120 can't earn points just for
 // being flat — decay costs a strong run at most a quarter of its score.
 function chartRun(b, s, kind){
-  const st=cmpRankStats(s.ranks, s.ranks.length, s.known);
+  const st=cmpRankStats(s.ranks, s.ranks.length, s.known, s.best);
   if(st.none) return null;
   // A short listing (game-i ended it early — HSR's Phainon, 10 of a usual 21 days) is measured
   // over the game's usual run length, not its own: otherwise its average holds only its
@@ -1370,7 +1375,7 @@ const scoreAxes = () => [25,50,75,100].map(t=>`<div class="axis" style="left:cal
 const missingNote = (n, what) => n ? ` <b>${n}</b> banner${n>1?"s":""} in this range ha${n>1?"ve":"s"} no ${what}, so ${n>1?"they aren't":"it isn't"} ranked.` : "";
 const CHART_NOTE = `Each recorded day from day 2 to day ${CHART_WINDOW} (launch day skipped — a partial day) is turned into relative revenue with that chart's `
   + `rank→revenue curve — Japan: game-i's own curve (≈ r<sup>−0.80</sup>); China: r<sup>−${CN_RANK_EXP}</sup>, fitted from Qimai's daily China revenue against the China chart `
-  + `(R² 0.89). A day off the chart counts as half of #200 — the game is still earning, just below the chart. <b>Level</b> = that average, on a log scale from "off the chart every day" (0) to "#1 every day" (1); shown as `
+  + `(R² ≈ 0.9). A day off the chart counts as half of #200 — the game is still earning, just below the chart. <b>Level</b> = that average, on a log scale from "off the chart every day" (0) to "#1 every day" (1); shown as `
   + `"≈ #N every day". <b>Hold</b> = how slowly the rank decays after the peak: the days it takes for the rank number to double (a robust Theil–Sen fit of `
   + `log-rank), against this game's typical banner — 0.5 is typical, 1 never decayed. <b>Score = 100 × Level × (0.75 + 0.25 × Hold)</b>: earning sets the score, `
   + `decay can cost at most a quarter of it, and a banner flat but low on the chart gets nothing for being flat. Revenue weighting means one day at #1 `
@@ -1725,7 +1730,8 @@ function jpRankMonths(){
 // the CN rank series. Lower is better.
 function cnRankMonths(tag){
   const g=state.cnrank&&state.cnrank.games&&state.cnrank.games[tag]; if(!g) return {};
-  const bm={}; for(const dt in g){ const r=g[dt]; if(r==null) continue; const ym=dt.slice(0,7);
+  const bst=(state.cnrank.best&&state.cnrank.best[tag])||{};
+  const bm={}; for(const dt in g){ const r=bst[dt]!=null?Math.min(bst[dt],g[dt]):g[dt]; if(r==null) continue; const ym=dt.slice(0,7);
     bm[ym]=bm[ym]==null?r:Math.min(bm[ym],r); }
   return bm;
 }
@@ -3055,9 +3061,17 @@ function bannerSTShareBlock(b){
 // with the range kept intact and the metric label printed per month so a run that
 // straddles the Nov 2023 basis change is obvious rather than silently averaged.
 // ---- China iOS chart, day by day -------------------------------------------------
-// data/ranks/cn_ios_series.json: days[date]=[depth,source], games[tag][date]=rank.
-// A day present in `days` with no rank for the game is a real reading -- the game sat
-// BELOW that day's depth -- while a date absent from `days` is simply a day nobody has.
+// data/ranks/cn_ios_series.json, read from Qimai's rank-trend chart (scripts/fetch_qimai_ranks.py):
+//   games[tag][date] = the game's rank at the END of that China day
+//   best[tag][date]  = the BEST rank it reached at any point that day
+//   covered[tag]     = [first, last] date read for that game
+// Inside a game's covered span a date with no rank is a real reading -- the game sat BELOW
+// the chart's 200 places -- while a date outside it simply hasn't been read.
+function cnCovered(tag, iso){
+  const R=state.cnrank, c=R&&R.covered&&R.covered[tag];
+  return c ? (iso>=c[0] && iso<=c[1]) : !!(R&&R.days&&R.days[iso]);
+}
+const CN_SRC_NAME={qimai:"Qimai"};
 // Days the China server runs AHEAD of the global/JP banner calendar for this game (0 when
 // servers are in sync). Written into qimai.json by scripts/build_qimai.py (CN_LEAD), and
 // used to line the China rank window up with the banner's ACTUAL China run — same shift
@@ -3067,15 +3081,18 @@ function cnLead(tag){ const g=state.qimai&&state.qimai.games&&state.qimai.games[
 function cnRunSeries(b){
   const R=state.cnrank; if(!R||!R.games||!R.days) return null;
   const g=R.games[state.tag]; if(!g) return null;
+  const bst=(R.best&&R.best[state.tag])||{};
   const iso=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
   const out=[]; let any=false;
   const lead=cnLead();   // shift the run window back to the banner's China dates
   const d=new Date(b.start+"T00:00:00"), end=new Date(b.end+"T00:00:00"), today=new Date();
   if(lead){ d.setDate(d.getDate()-lead); end.setDate(end.getDate()-lead); }
   while(d<=end&&d<=today){
-    const k=iso(d), day=R.days[k];
+    const k=iso(d), day=cnCovered(state.tag,k) ? (R.days[k]||[200,"qimai"]) : null;
     if(day) any=true;
-    out.push({iso:k, rank:g[k]!=null?g[k]:null, depth:day?day[0]:null, src:day?day[1]:null});
+    const rank=g[k]!=null?g[k]:null;
+    // best = the day's intraday best; falls back to the end-of-day rank where Qimai has no separate best
+    out.push({iso:k, rank, best:bst[k]!=null?bst[k]:rank, depth:day?day[0]:null, src:day?day[1]:null});
     d.setDate(d.getDate()+1);
   }
   return any?out:null;
@@ -3123,10 +3140,12 @@ function cnRunStats(b){
   if(!known.length) return (b._cnStats={run, charted:charted.length, days:run.length, none:true,
                                         depth:charted.length?Math.max(...charted.map(x=>x.depth)):null});
   const ranks=known.map(x=>x.rank).sort((a,c)=>a-c);
+  // the peak is the best rank reached at ANY point of a day (Qimai's intraday best), which can
+  // sit above that day's end-of-day reading; the other stats use the one-reading-a-day series
   let peakIdx=-1, peakRank=Infinity;
-  run.forEach((x,i)=>{ if(x.rank!=null && x.rank<peakRank){ peakRank=x.rank; peakIdx=i; } });
+  run.forEach((x,i)=>{ const r=x.best!=null?x.best:x.rank; if(r!=null && r<peakRank){ peakRank=r; peakIdx=i; } });
   return (b._cnStats={run, charted:charted.length, days:run.length, none:false,
-    open:known[0].rank, peak:ranks[0], peakDay:peakIdx+1, last:known[known.length-1].rank,
+    open:known[0].rank, peak:peakRank, peakDay:peakIdx+1, last:known[known.length-1].rank,
     median:ranks[Math.floor(ranks.length/2)], top10:known.filter(x=>x.rank<=10).length,
     // staying power: days spent inside each tier. Correlates with revenue about as
     // strongly as the peak does (+0.55..+0.86 across games) and is NOT the same thing --
@@ -3736,8 +3755,8 @@ function cnAnalysisBlock(b){
 // Day-by-day rank as a table. The chart can only draw days the game was INSIDE the top
 // 200 -- once it falls off, the line just stops and those days vanish. Here they stay
 // visible as rows, so falling off the chart reads as an event rather than a gap. Three
-// states: a rank, "200+" (the chart is known, the game wasn't in it) and "no data" (no
-// source holds that day at all). No revenue columns -- China publishes a monthly total,
+// states: a rank, "200+" (the chart is known, the game wasn't in it) and "no data" (that
+// day hasn't been read). No revenue columns -- China publishes a monthly total,
 // never a daily one, so there is no per-day build-up to show the way game-i's tab does.
 function cnRankTable(run){
   if(!run||!run.length) return "";
@@ -3766,19 +3785,20 @@ function cnRankBlock(b, noTable){
   const tbl=run=>noTable?"":cnRankTable(run);
   const head=`<h3>Daily China iOS rank during the run</h3>`;
   const run=cnRunSeries(b);
-  if(!run) return head+`<p class="bm-note">No source holds a single day of this run. China's chart is captured daily from <b>Aug 2026</b> on; earlier days exist only where an archive kept them, and the rest are still being collected a few at a time. See <b>How these numbers work → China iOS chart</b>.</p>`;
+  if(!run) return head+`<p class="bm-note">Qimai's rank history hasn't been read for this run's dates yet. See <b>How these numbers work → China iOS chart</b>.</p>`;
   const known=run.filter(x=>x.rank!=null), charted=run.filter(x=>x.depth!=null);
-  const srcs=[...new Set(charted.map(x=>x.src))].map(s=>(state.cnrank.sources||{})[s]?s:s);
+  const srcs=[...new Set(charted.map(x=>x.src))].map(s=>CN_SRC_NAME[s]||s);
   const depths=charted.map(x=>x.depth);
   const cover=`Held for <b>${charted.length}</b> of the run's ${run.length} day${run.length>1?"s":""}`
     +(depths.length?`, ${Math.min(...depths)===Math.max(...depths)?`<b>${depths[0]}</b> deep`:`<b>${Math.min(...depths)}–${Math.max(...depths)}</b> deep`}`:"")
     +` (${srcs.join(", ")}).`;
   if(!known.length)
     return head+`<p class="bm-note">${cover} The game sat <b>below</b> the chart's depth on every one of them — on China's all-apps chart it never entered the top ${Math.max(...depths)} during this run.</p>${tbl(run)}`;
-  const first=known[0].rank, last=known[known.length-1].rank, best=Math.min(...known.map(x=>x.rank));
-  const cap=`Opened at <b>#${first}</b>, peaked at <b>#${best}</b>, last seen at <b>#${last}</b>.`;
+  const first=known[0].rank, last=known[known.length-1].rank;
+  const best=Math.min(...run.map(x=>x.best!=null?x.best:x.rank).filter(v=>v!=null));
+  const cap=`Closed its first day at <b>#${first}</b>, peaked at <b>#${best}</b>, last seen at <b>#${last}</b>.`;
   return head+`<div class="bm-cap">${cap}</div>${cnRankSVG(run,b)}${tbl(run)}
-    <p class="bm-note">#1 is the top of China's App Store <b>all-apps</b> top-grossing chart — games compete with Douyin, WeChat and the video apps, so climbing it means out-earning them. ${cover} Ticks along the bottom are days the chart is known but the game wasn't in it, meaning it ranked below that depth; blank stretches are days no source has. This is the <b>real store chart</b>, not an estimate.</p>`;
+    <p class="bm-note">#1 is the top of China's App Store <b>all-apps</b> top-grossing chart — games compete with Douyin, WeChat and the video apps, so climbing it means out-earning them. ${cover} Each point is the rank at the <b>end of that day</b> in China; the peak is the best rank reached at <b>any point</b> of a day, so it can sit above every point on the line. Ticks along the bottom are days the game wasn't on the chart, meaning it ranked below that depth; blank stretches are days not read yet. This is the <b>real store chart</b>, not an estimate.</p>`;
 }
 function cnShareBlock(b){
   const sh=b._share, cn=bannerCN(b);
@@ -4057,9 +4077,10 @@ function showCnTip(i,e){
   bmTip.innerHTML=`<div class="body">
     <h4>${dt.toLocaleDateString("en",{month:"short",day:"numeric",year:"numeric"})}</h4>
     <div style="color:var(--muted);font-size:11.5px">Day ${i+1} · China, all apps</div>
-    <dl><dt>Rank</dt><dd><b>${where}</b></dd>
+    <dl><dt>End of day</dt><dd><b>${where}</b></dd>
+    ${day.best!=null && day.best!==day.rank ? `<dt>Best that day</dt><dd>#${day.best}</dd>` : ""}
     <dt>Chart known</dt><dd>${day.depth} deep</dd>
-    <dt>Read from</dt><dd>${esc(String(day.src||"-"))}</dd></dl></div>`;
+    <dt>Read from</dt><dd>${esc(CN_SRC_NAME[day.src]||String(day.src||"-"))}</dd></dl></div>`;
   bmTip.hidden=false;
   const pad=14,w=bmTip.offsetWidth,h=bmTip.offsetHeight;
   let x=e.clientX+pad,y=e.clientY+pad;
@@ -4320,6 +4341,7 @@ function bannerSnapshot(ctx,i){
   // whether the China chart was actually recorded that day (depth known). A null rank on a
   // recorded day = genuinely below #200; a null on an unrecorded day = data not fetched yet.
   const cnKnown=cnRun?cnRun.map(x=>x.depth!=null):null;
+  const cnBest=cnRun?cnRun.map(x=>x.best):null;                  // best rank reached each day
   const bd=dailyBreakdown(b);
   let giCum=0; const gi=bd?onRunDays(b, bd.days).map(d=>({add:d.add, cum:(giCum+=d.add)})):[];
   const qm=bannerQimai(b); const qmDaily=onRunDays(b, (qm.daily||[]).slice());
@@ -4330,7 +4352,7 @@ function bannerSnapshot(ctx,i){
     game:ctx.name, art:b.banner_img||"", icon:(b.icons&&b.icons[0])||"", accent:barColor(b), face:cmpFace(ctx.tag, b.name, b.banner_img),
     start:b.start, end:b.end, ongoing:!!b.ongoing, rerun:!!b.rerun,
     scheduled:runLength(b),
-    rev:b.rev||0, jp, cn, cnKnown, gi, qmDaily, hasQm:!!qm.hasData,
+    rev:b.rev||0, jp, cn, cnKnown, cnBest, gi, qmDaily, hasQm:!!qm.hasData,
     stTotal: st.hasData?st.total:null,
     cnLo: cnv.hasData?cnv.lo:null, cnHi: cnv.hasData?(cnv.hi==null?cnv.lo:cnv.hi):null,
     runDays: Math.max(jp.length, cn?cn.length:0, qmDaily.length, gi.length),
@@ -4392,12 +4414,13 @@ function periodSnapshot(ctx, kind, key){
     if(q.hasData && q.daily && q.daily.length){ const qs=Date.parse(q.start||b.start);
       q.daily.forEach((val,i)=>{ const idx=idxOf(new Date(qs+i*864e5)); if(idx>=0&&idx<n && val){ qm[idx]+=val; anyQm=true; } }); }
   }
-  const cn=new Array(n).fill(null), cnKnown=new Array(n).fill(false);
+  const cn=new Array(n).fill(null), cnKnown=new Array(n).fill(false), cnBest=new Array(n).fill(null);
   const cr=state.cnrank&&state.cnrank.games&&state.cnrank.games[ctx.tag];
-  const crDays=state.cnrank&&state.cnrank.days;
+  const crBest=state.cnrank&&state.cnrank.best&&state.cnrank.best[ctx.tag];
   for(let idx=0; idx<n; idx++){ const iso=_cmpISO(new Date(startD.getTime()+idx*864e5));
-    if(crDays&&crDays[iso]) cnKnown[idx]=true;                 // the China chart was recorded that day
-    if(cr){ const v=cr[iso]; if(v!=null) cn[idx]=v; } }
+    if(cr && cnCovered(ctx.tag, iso)) cnKnown[idx]=true;       // the China chart was read that day
+    if(cr){ const v=cr[iso]; if(v!=null) cn[idx]=v; }
+    cnBest[idx] = crBest&&crBest[iso]!=null ? crBest[iso] : cn[idx]; }
   let cum=0; const gi=giAdd.map(a=>({add:a, cum:(cum+=a)}));
   const inRange=ym=>ym>=R.start.slice(0,7) && ym<=R.end.slice(0,7);
   const st=extSum(inRange, ctx.tag), cnv=cnSum(inRange, ctx.tag);
@@ -4410,7 +4433,7 @@ function periodSnapshot(ctx, kind, key){
     gtag:ctx.tag, kind, key, label:lbl.label, name:`${lbl.label} · ${ctx.name}`, sub:lbl.sub, game:ctx.name,
     art:"", icon:"", accent:GAME_ACCENT[ctx.tag]||"#8a8a8a", banners:running,
     start:R.start, end:R.end, ongoing, rerun:false, scheduled:n,
-    rev:gi.length?gi[gi.length-1].cum:0, jp, cn, cnKnown, gi, qmDaily:qm, hasQm:anyQm,
+    rev:gi.length?gi[gi.length-1].cum:0, jp, cn, cnKnown, cnBest, gi, qmDaily:qm, hasQm:anyQm,
     stTotal: st?st.rev:null, cnLo: cnv?cnv.lo:null, cnHi: cnv?cnv.hi:null,
     runDays:n,
   };
@@ -4430,14 +4453,22 @@ function theilSen(pts){
   sl.sort((a,b)=>a-b); const m=sl.length>>1;
   return sl.length%2 ? sl[m] : (sl[m-1]+sl[m])/2;
 }
-function cmpRankStats(arr,k,mask){
+function cmpRankStats(arr,k,mask,best){
   if(!arr) return {none:true};
   const win=arr.slice(0,k);
   const has=idx=> !mask || mask[idx];              // day has data (default: always)
   const known=win.map((v,idx)=>[idx,v]).filter(([,v])=>v!=null);
   if(!known.length) return {none:true};
   const vals=known.map(([,v])=>v), sorted=[...vals].sort((a,b)=>a-b);
-  const peak=sorted[0], peakDay=known.find(([,v])=>v===peak)[0];
+  let peak=sorted[0], peakDay=known.find(([,v])=>v===peak)[0];
+  // `best`, when given (China), is the best rank reached at any point of each day. The peak and
+  // the days at #1 come from it: a banner that touched #3 at 9pm and closed the day at #5 peaked
+  // at #3. Everything else stays on the one-reading-a-day series, so days are comparable.
+  const bvals=best ? best.slice(0,k).map((v,idx)=>[idx,v]).filter(([idx,v])=>v!=null && has(idx)) : null;
+  if(bvals && bvals.length){
+    const bp=Math.min(...bvals.map(([,v])=>v));
+    if(bp<peak){ peak=bp; peakDay=bvals.find(([,v])=>v===bp)[0]; }
+  }
   const last=known[known.length-1][1];
   const span=(win.length-1)-peakDay;
   // top-200 drop-out: the FIRST recorded day it falls below #200 after entering the chart (a
@@ -4467,7 +4498,7 @@ function cmpRankStats(arr,k,mask){
   return { none:false, peak, peakDay, open:known[0][1], last,
     med:medPool[Math.floor(medPool.length/2)],
     sum:win.reduce((a,v)=>a+(v==null?RANK_OFF:v),0),
-    top1:vals.filter(v=>v<=1).length, top3:vals.filter(v=>v<=3).length,
+    top1:(bvals&&bvals.length ? bvals.map(([,v])=>v) : vals).filter(v=>v<=1).length, top3:vals.filter(v=>v<=3).length,
     top10:vals.filter(v=>v<=10).length, top20:vals.filter(v=>v<=20).length,
     best3:b3.reduce((a,v)=>a+v,0)/b3.length,       // mean of the 3 best days — breaks ties among #1 peaks
     degrade: span>0 ? (last-peak)/span : 0, lslope, dbl, charted:known.length,
@@ -4494,7 +4525,7 @@ function buildComparison(E){
   const kQM=E.every(e=>e.hasQm)?minLen(e=>e.qmDaily):0;
   const kJP=minLen(e=>e.jp);
   const kCN=E.every(e=>e.cn)?minLen(e=>e.cn):0;
-  const sJP=E.map(e=>cmpRankStats(e.jp,kJP)), sCN=E.map(e=>cmpRankStats(e.cn,kCN,e.cnKnown));
+  const sJP=E.map(e=>cmpRankStats(e.jp,kJP)), sCN=E.map(e=>cmpRankStats(e.cn,kCN,e.cnKnown,e.cnBest));
   const rows=[];
   const rk=v=>v==null?"—":v>200?">#200":"#"+Math.round(v);
   const dOnly=v=>v==null?"—":Math.round(v)+"d";
@@ -4538,7 +4569,7 @@ function buildComparison(E){
       push({group:"Japan rank",src:"jp",metric:"jp_decay",label:"Rank decay",k:kJP,better:"high",fmt:dec,note:"days for its rank to double after the peak — longer is a slower decay",cells:jf(s=>s.dbl===Infinity?999:s.dbl)});
   }
   if(en.cnrank && kCN>0){ const cf=(f)=>cellsFrom((e,i)=>sCN[i].none?null:f(sCN[i]));
-    push({group:"China rank",src:"cnrank",metric:"cnr_peak",label:"Peak rank",k:kCN,better:"low",fmt:rk,cells:cf(s=>s.peak)});
+    push({group:"China rank",src:"cnrank",metric:"cnr_peak",label:"Peak rank",k:kCN,better:"low",fmt:rk,note:"best rank reached at any point of a day",cells:cf(s=>s.peak)});
     push({group:"China rank",src:"cnrank",metric:"cnr_top1",label:"Days at #1",k:kCN,better:"high",fmt:dOnly,note:"days it held the top spot",cells:cf(s=>s.top1)});
     push({group:"China rank",src:"cnrank",metric:"cnr_top3",label:"Days in top 3",k:kCN,better:"high",fmt:dOnly,cells:cf(s=>s.top3)});
     push({group:"China rank",src:"cnrank",metric:"cnr_med",label:"Median rank",k:kCN,better:"low",fmt:rk,note:"from day 2 — launch day skipped; days off the chart count as below #200",cells:cf(s=>s.med)});
@@ -4606,6 +4637,8 @@ function cmpRevComment2(R,A,B){
     clauses.push(`${w("st_total")==="a"?nA:nB} is larger worldwide despite trailing in Japan, so it earns relatively more outside Japan`);
   return clauses.length ? `${base} — ${clauses.slice(0,2).join("; ")}.` : base+".";
 }
+// a "tie" where nobody scored at all (0 days at #1 each) isn't a result worth pointing at
+const cmpTiedAtZero=(R,metric)=>{ const r=R.rows.find(x=>x.metric===metric); return !!r && r.cells.every(c=>!c.v); };
 function cmpRankComment2(R,E,prefix,market){
   const nA=esc(E[0].name||E[0].label), nB=esc(E[1].name||E[1].label);
   const w=k=> R.W[prefix+k]===0?"a":R.W[prefix+k]===1?"b":(R.W[prefix+k]==="tie"?"draw":undefined);
@@ -4613,7 +4646,7 @@ function cmpRankComment2(R,E,prefix,market){
   const aw=[], bw=[];
   for(const [key,phrase] of asp){ const x=w(key); if(x==="a") aw.push({key,phrase}); else if(x==="b") bw.push({key,phrase}); }
   const join=arr=>cmpJoinList(arr.map(o=>o.phrase));
-  const strongTied=[["peak","peak rank"],["top1","days at #1"],["top10","days in the top 10"]].filter(([k])=>w(k)==="draw").map(([,l])=>l);
+  const strongTied=[["peak","peak rank"],["top1","days at #1"],["top10","days in the top 10"]].filter(([k])=>w(k)==="draw" && !cmpTiedAtZero(R,prefix+k)).map(([,l])=>l);
   const tieNote = strongTied.length
     ? ` They tie on ${cmpJoinList(strongTied)} — generally the stronger indicator${strongTied.length>1?"s":""} — so they're more evenly matched than that suggests.` : "";
   if(!aw.length && !bw.length)
@@ -4653,7 +4686,7 @@ function cmpRankCommentN(R,E,prefix,market){
   const metrics=["peak","top1","top3","med","top10","decay"].map(k=>prefix+k).filter(m=>m in R.W);
   if(!metrics.length) return "";
   const {counts,leaderIdx}=cmpCatCountN(R,E,metrics);
-  const strongTied=[["peak","peak rank"],["top1","days at #1"],["top10","days in the top 10"]].filter(([k])=>R.W[prefix+k]==="tie").map(([,l])=>l);
+  const strongTied=[["peak","peak rank"],["top1","days at #1"],["top10","days in the top 10"]].filter(([k])=>R.W[prefix+k]==="tie" && !cmpTiedAtZero(R,prefix+k)).map(([,l])=>l);
   const tieNote = strongTied.length ? ` The ${cmpJoinList(strongTied)} — the stronger indicator${strongTied.length>1?"s":""} — ${strongTied.length>1?"were":"was"} tied.` : "";
   if(leaderIdx==null) return `No single side owns the ${market} chart — the measures split.${tieNote}`;
   return `<b>${esc(E[leaderIdx].name||E[leaderIdx].label)}</b> leads the ${market} chart, taking ${counts[leaderIdx]} of the ${metrics.length} measures.${tieNote}`;

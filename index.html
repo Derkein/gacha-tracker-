@@ -12,7 +12,7 @@
 <title>Gacha Revenue Tracker</title>
 <meta name="description" content="Estimated gacha banner revenue over time for Zenless Zone Zero, Honkai: Star Rail, Wuthering Waves, Genshin Impact and Arknights: Endfield. Auto-updated from game-i.daa.jp.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>%F0%9F%8E%B0</text></svg>">
-<link rel="stylesheet" href="style.css?v=307">
+<link rel="stylesheet" href="style.css?v=309">
 </head>
 <body>
 <div class="wrap">
@@ -331,20 +331,25 @@
     <p><b>All apps</b> is the point. Games sit in one list with Douyin, WeChat, Alipay and the video apps, so a banner launch that climbs past them is a far stronger signal than moving inside a games-only chart.</p>
 
     <h3>One source, every day</h3>
-    <p>Every day comes from <b>AppFollow</b>'s record of the chart, read from a signed-in account: <b>200 places deep</b>, for <b>every day since Genshin's launch</b> on 28 September 2020 — <b>2,159 days</b> in all.</p>
-    <p>It deliberately isn't mixed with anything else. Apple's own feed stops at 100, Appfigures' archived pages at 50, and each source reads the chart at its own hour — so a game "missing" from a day would mean below #10, below #50 or below #200 depending on who recorded it, and two days would not be comparable. Those other sources are still collected and cross-checked against this one; they just don't go into the line you see.</p>
-    <p>Sixteen days are absent because AppFollow never recorded a grossing chart for them: <b>28 Nov 2020</b>, <b>22 Apr – 4 May 2023</b> and <b>8–9 Dec 2023</b>. On those dates it holds the free and paid charts only. They show as blanks rather than being filled from a different source.</p>
+    <p>Every day comes from <b>Qimai</b> (七麦数据)'s record of the chart, read from a signed-in account: <b>200 places deep</b>, from each game's first day on it — Genshin's goes back to its launch on 28 September 2020.</p>
+    <p>Two readings are kept for each day, both on <b>China time</b>:</p>
+    <ul>
+      <li>the rank at the <b>end of the day</b> — the daily line, and what the median, the days in the top 10 and the decay are measured on;</li>
+      <li>the <b>best rank reached at any point</b> of that day — what <b>Peak rank</b> and <b>Days at #1</b> use.</li>
+    </ul>
+    <p>The two differ because a banner usually goes live mid-morning and peaks that evening. A single reading taken early each morning — what this page used until October 2026 — filed launch day as "off the chart" while the game was down for its update, and caught the peak only after it had started to fade, so peaks read a place or several too low.</p>
+    <p>It deliberately isn't mixed with anything else. Apple's own feed stops at 100, Appfigures' archived pages at 50, and each source reads the chart at its own hour — so a game "missing" from a day would mean below #50, below #100 or below #200 depending on who recorded it, and two days would not be comparable. Those other sources are still collected and cross-checked against this one; they just don't go into the line you see.</p>
 
     <h3>How to read the line</h3>
     <ul>
-      <li>A <b>point</b> is the game's position that day.</li>
+      <li>A <b>point</b> is the game's position at the end of that day.</li>
       <li>A <b>tick along the bottom</b> is a day the game wasn't in the top 200 — a real reading, not missing data.</li>
-      <li>A <b>blank stretch</b> is one of those sixteen days.</li>
+      <li>A <b>blank stretch</b> is a day that hasn't been read yet — the newest day or two, until the next fetch.</li>
     </ul>
-    <p>Hover any day on the line for its date, rank, how deep that day's chart is known, and which source it came from.</p>
+    <p>Hover any day on the line for its date, its end-of-day rank, the best rank it reached that day when that was higher, how deep the chart is known, and where it was read from.</p>
 
     <h3>Why a day can disagree with another source</h3>
-    <p>Apple's China chart changes a handful of times a day at irregular hours, and every recorder reads it at its own moment. A day here can therefore differ by a few places from Apple's own feed or from diandian without either being wrong. Checked against diandian's record, our snapshots matched <b>16 of 19 days exactly</b> across the top 20, the rest differing only in the hour they were read.</p>
+    <p>Apple's China chart changes through the day, and every recorder reads it at its own moment. A day here can therefore differ by a few places from Apple's own feed or from diandian without either being wrong — an end-of-day reading and a morning one are simply different moments of the same chart.</p>
 
     <h3>The comparison under each banner</h3>
     <p>When a banner has China days, its <b>CN chart</b> tab places the run against this game's other banners: where its opening rank sits within the version, the year and all-time, and how its peak and median compare with a <b>contemporary</b> banner — the same year, not the game's launch era, so a 2026 run isn't measured against 2020 form.</p>
@@ -393,6 +398,6 @@
 
 <div class="lightbox" id="lightbox" hidden><img id="lightboxImg" src="" alt=""></div>
 
-<script src="app.js?v=307"></script>
+<script src="app.js?v=309"></script>
 </body>
 </html>
