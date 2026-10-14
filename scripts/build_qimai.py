@@ -34,15 +34,6 @@ GAMES = sorted(t[:-5] for t in os.listdir(DAILY)
 #   (CN launched Apr 23 vs global Apr 29; v1.3 CN Aug 13 vs global Aug 19). Verified 2026-09.
 CN_LEAD = {"nte": 6}
 
-# Qimai files each day's revenue estimate about ONE DAY BEHIND the spending it describes. Set
-# against the App Store chart itself (data/ranks/cn_ios_series.json, end-of-day rank), a day's
-# revenue tracks the PREVIOUS day's rank far better than its own (R² 0.90-0.93 vs 0.61-0.84 in
-# every game), and across 225 banner launches the chart peaks on launch day in 206 while Qimai's
-# revenue peaks the day AFTER in 193 -- HSR's Pearl closed launch day at #9 with a Qimai figure
-# lower than the day before. So each figure is moved back this many days when the series is
-# loaded; the raw files in data/qimai_daily keep Qimai's own dates.
-QIMAI_DAY_LAG = 1
-
 RANK_VAL = [[1,5.90],[2,3.47],[3,3.03],[4,2.61],[5,2.03],[10,.9034],[50,.2584],[100,.1640],[200,.10]]
 def rankValue(r):
     if r is None: return 0.0
@@ -76,7 +67,7 @@ def load_qimai(tag):
     r = json.load(io.open(os.path.join(DAILY, f"{tag}.json"), encoding="utf-8"))
     d0 = datetime.date.fromisoformat(r["first"])
     daily = fill_holes([(v or 0) for v in r["daily"]])
-    return {d0+datetime.timedelta(days=i-QIMAI_DAY_LAG): v for i,v in enumerate(daily)}
+    return {d0+datetime.timedelta(days=i): v for i,v in enumerate(daily)}
 
 out = {"meta": {"source":"qimai pred/revenue","currency":"USD","country":"cn","device":"iphone",
        "note":"Per-banner China-iPhone revenue. Each day's Qimai game total is split among that "
@@ -109,7 +100,6 @@ for tag in GAMES:
     btotal   = collections.defaultdict(float)
     bdaily   = collections.defaultdict(dict)   # idx -> {j: value}
     gm = collections.defaultdict(lambda: {"qtot":0.0, "attr":0.0})
-    orphan = {}                                    # China date -> revenue on a day with no banner running
     for d,inc in q.items():
         # MONTHLY buckets use the GLOBAL-equivalent month (China date + lead) so the
         # by-Month view — which lists banners by their game-i/global month — stays complete
@@ -129,9 +119,7 @@ for tag in GAMES:
             if 0 <= j < bi["len"] + bi["ext"]:
                 w = bi["gid"][j] if j < bi["len"] else 0.0   # ahead-tail days have no game-i weight
                 run.append((bi["idx"], j, w))
-        if not run:
-            orphan[d] = inc                       # a day no banner was up — see the launch-eve pass below
-            continue
+        if not run: continue
         wsum = sum(w for _,_,w in run)
         for idx,j,w in run:
             a = inc*w/wsum if wsum>0 else inc/len(run)
@@ -140,13 +128,12 @@ for tag in GAMES:
         gm[gmo]["attr"] += inc
 
     # ---- handoff-day reattribution -------------------------------------------------------
-    # Even after the one-day shift above, the first slice of a launch lands on the day BEFORE
-    # the new banner's start: Qimai's figure for launch day itself is only a part-day (a median
-    # 27% of the peak day), and the shift moves it back onto the OUTGOING banner's last day —
-    # e.g. ZZZ Norma's last day would read $319K (16x her ~$27K trend) when it is Remielle's
-    # launch. Keep the outgoing banner at its own end-of-run TREND (a rising end-of-banner bump
-    # is normal) and move only the excess to the incoming banner's first day. Fires only on a
-    # handoff (the next banner starts the day after, or on, the outgoing one's last day) with a
+    # A new banner's China launch spikes revenue on the day BEFORE game-i lists its start
+    # (game-i logs the first FULL day), so that launch money lands on the OUTGOING banner's
+    # last day — e.g. ZZZ Norma's last day read $319K (16x her ~$27K trend, 41% of her whole
+    # total) but it was Remielle's launch. Keep the outgoing banner at its own end-of-run
+    # TREND (a rising end-of-banner bump is normal) and move only the excess to the incoming
+    # banner. Fires only on a clean handoff (next banner starts the very next day) with a
     # genuine spike, so an ordinary end boost is left untouched.
     def handoff_baseline(tail):                    # tail = up to 4 real days before the spike
         pos = [t for t in tail if t > 1000][-4:]
@@ -162,51 +149,16 @@ for tag in GAMES:
         if nxt >= len(banners) or idx not in btotal or nxt not in btotal: continue
         end    = datetime.date.fromisoformat(banners[idx]["end"][:10])
         nstart = datetime.date.fromisoformat(banners[nxt]["start"][:10])
-        if (nstart - end).days not in (0, 1): continue         # not a handoff
-        J = (nstart - bi["start"]).days - 1                    # outgoing run-day = the day before the new start
-        if J < 4: continue
-        spike = bdaily[idx].get(J, 0.0)
-        base = handoff_baseline([bdaily[idx].get(J-k, 0.0) for k in range(4,0,-1)])
-        # gate: a real launch-sized bump only. About 4 launches in 10 show one on the eve (the
-        # rest sit at 1.0-1.3x normal: Qimai's launch-day figure caught none of the launch).
-        if base and spike >= 2*base and spike - base >= 25000:
-            excess = spike - base
-            gmo = ym(bi["start"] + datetime.timedelta(days=J))     # global month of the spike day
-            bdaily[idx][J] -= excess; btotal[idx] -= excess; bmonthly[idx][gmo] -= excess
-            bdaily[nxt][0] = bdaily[nxt].get(0,0.0) + excess       # lump into the incoming's day 1
-            btotal[nxt] += excess; bmonthly[nxt][gmo] += excess    # keep it in the same (real) month
-        # Half of all handoffs overlap by a day: game-i ends the outgoing banner on the date the
-        # new one starts, so launch day itself is split between the two — and its money is the
-        # launch. Leave the outgoing banner at its own trend there too; the rest is the new one's.
-        if (nstart - end).days == 0:
-            J0 = J + 1
-            share = bdaily[idx].get(J0, 0.0)
-            base0 = handoff_baseline([bdaily[idx].get(J0-k, 0.0) for k in range(4,0,-1)])
-            if base0 and share - base0 >= 10000:
-                excess = share - base0
-                gmo = ym(bi["start"] + datetime.timedelta(days=J0))
-                bdaily[idx][J0] -= excess; btotal[idx] -= excess; bmonthly[idx][gmo] -= excess
-                bdaily[nxt][0] = bdaily[nxt].get(0,0.0) + excess
-                btotal[nxt] += excess; bmonthly[nxt][gmo] += excess
-
-    # ---- launch eve with no outgoing banner ------------------------------------------------
-    # The same part-day launch slice, where nothing ran the day before to hand it off from: a
-    # game's very first banner (the game's own launch day), or a banner opening after a gap.
-    # If the eve of a banner's China start is an unattributed day carrying a launch-sized figure,
-    # it is that banner's opening money — add it to its first day.
-    for bi in binfo:
-        idx = bi["idx"]
-        if idx not in btotal: continue
-        eve = bi["start"] - datetime.timedelta(days=lead + 1)
-        amt = orphan.get(eve, 0.0)
-        if amt < 25000: continue
-        before = [q.get(eve - datetime.timedelta(days=k), 0.0) for k in range(1, 5)]
-        before = sorted(v for v in before if v > 1000)
-        if before and amt < 3 * before[len(before)//2]: continue   # an ordinary quiet day, not a launch
-        gmo = ym(eve + datetime.timedelta(days=lead))
-        bdaily[idx][0] = bdaily[idx].get(0, 0.0) + amt
-        btotal[idx] += amt; bmonthly[idx][gmo] += amt; gm[gmo]["attr"] += amt
-        del orphan[eve]
+        if (nstart - end).days != 1: continue                  # not a clean 1-day handoff
+        L = bi["len"]; spike = bdaily[idx].get(L-1, 0.0)
+        base = handoff_baseline([bdaily[idx].get(L-1-k, 0.0) for k in range(4,0,-1)])
+        if not base or spike < 3*base: continue                # gate: real launch-sized spike only
+        excess = spike - base
+        if excess < 25000: continue                            # skip noise
+        gmo = ym(bi["start"] + datetime.timedelta(days=L-1))   # global month of the spike day
+        bdaily[idx][L-1] -= excess; btotal[idx] -= excess; bmonthly[idx][gmo] -= excess
+        bdaily[nxt][0] = bdaily[nxt].get(0,0.0) + excess       # lump into the incoming's day 1
+        btotal[nxt] += excess; bmonthly[nxt][gmo] += excess    # keep it in the same (real) month
 
     monthly = {}
     for m,v in gm.items():

@@ -3920,7 +3920,8 @@ function bannerQimaiView(b){
       <p class="bm-note">Qimai estimates China-iPhone revenue <b>day by day</b>, so unlike the other tabs this build-up isn't spread from a monthly total — each bar is this banner's split of that day's China total and the line is the running total, up to <b>${fmtUSD(qm.total)}</b>. Still a Qimai model estimate, just at daily resolution.</p>
       ${qimaiBurnBlock(b)}
       ${buildupSVG(qbd,b,fmtUSD,"qbu")}
-      ${dailyTable(qbd,fmtUSD,"China&nbsp;rank")}`;
+      ${dailyTable(qbd,fmtUSD,"China&nbsp;rank")}
+      <p class="bm-note">Why the biggest day comes <b>after</b> the best rank: Qimai dates its estimate about a day behind the App&nbsp;Store chart, so the spending of a launch day shows up mostly under the <b>next</b> date. The rank is where the game stood at the end of each day; the revenue is exactly as Qimai dates it.</p>`;
   }
   return `<div class="bm-stats">${tiles}</div>${head}${offWarn}${cnRankBlock(b,true)}${build}${qimaiAnalysisBlock(b)}`;
 }
@@ -4543,7 +4544,8 @@ function buildComparison(E){
   }
   if(en.qimai && kQM>0){ const w=Math.min(7,kQM);
     push({group:"Revenue",src:"qimai",metric:"qimai_total",label:"Total",k:kQM,better:"high",fmt:fmtUSD,cells:cellsFrom(e=>cmpSum(e.qmDaily,kQM))});
-    push({group:"Revenue",src:"qimai",metric:"qimai_peak",label:"Peak-rank day",better:"high",fmt:fmtUSD,note:"revenue on its best CN-rank day",cells:cellsFrom((e,i)=>{const pd=sCN[i].none?null:sCN[i].peakDay; return (pd!=null&&pd<e.qmDaily.length)?e.qmDaily[pd]:null;})});
+    // Qimai dates revenue about a day behind the chart, so the money of the best-rank day is the NEXT entry
+    push({group:"Revenue",src:"qimai",metric:"qimai_peak",label:"Peak-rank day",better:"high",fmt:fmtUSD,note:"revenue of its best CN-rank day — Qimai dates it one day later",cells:cellsFrom((e,i)=>{const pd=sCN[i].none?null:sCN[i].peakDay; if(pd==null) return null; return pd+1<e.qmDaily.length ? e.qmDaily[pd+1] : (pd<e.qmDaily.length ? e.qmDaily[pd] : null);})});
     push({group:"Revenue",src:"qimai",metric:"qimai_week",label:"First week",k:w,better:"high",fmt:fmtUSD,cells:cellsFrom(e=>cmpSum(e.qmDaily,w))});
     push({group:"Revenue",src:"qimai",metric:"qimai_perday",label:"Per day",k:kQM,better:"high",fmt:fmtUSD,note:"revenue ÷ days compared — same days for every side, so it always follows Total; not scored",unscored:true,cells:cellsFrom(e=>{const c=cmpSum(e.qmDaily,kQM);return c==null?null:c/kQM;})});
   }
