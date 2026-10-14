@@ -4,13 +4,13 @@
  "jp": "アークナイツ：エンドフィールド",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E3%82%A2%E3%83%BC%E3%82%AF%E3%83%8A%E3%82%A4%E3%83%84%EF%BC%9A%E3%82%A8%E3%83%B3%E3%83%89%E3%83%95%E3%82%A3%E3%83%BC%E3%83%AB%E3%83%89",
- "updated": "2026-10-14T02:26:06Z",
+ "updated": "2026-10-14T17:11:55Z",
  "count": 13,
  "now": {
   "ios": null,
-  "android": 117,
-  "month": 395,
-  "next_add": 3427333,
+  "android": 116,
+  "month": 393,
+  "next_add": 3973439,
   "ym": "2026/10",
   "ranks": {
    "prev": [
@@ -82,7 +82,7 @@
   }
  },
  "monthly": {
-  "2026-10": 0.3472,
+  "2026-10": 0.383,
   "2026-09": 3.01,
   "2026-08": 2.53,
   "2026-07": 3.61,
@@ -674,10 +674,11 @@
    "related": "★6 イヴォンヌ",
    "banner_img": "https://appmedia.jp/wp-content/uploads/2026/03/140048_p56ke.webp",
    "rerun": true,
-   "ongoing": true,
+   "ongoing": false,
    "rank_series": [
     null,
     193,
+    null,
     null,
     null,
     null,
