@@ -699,11 +699,14 @@
     null,
     null
    ],
-   "agents": [],
+   "agents": [
+    "Yvonne"
+   ],
    "icons": [
     "icons/faces/endfield/2026-09-24-98a47e.webp"
    ],
-   "bar": "#ff5d89"
+   "bar": "#ff5d89",
+   "en": "Yvonne"
   },
   {
    "name": "スー",
@@ -724,11 +727,14 @@
     15,
     20
    ],
-   "agents": [],
+   "agents": [
+    "Si"
+   ],
    "icons": [
     "icons/faces/endfield/2026-10-15-894197.webp"
    ],
-   "bar": "#47f5b7"
+   "bar": "#47f5b7",
+   "en": "Si"
   }
  ]
 }

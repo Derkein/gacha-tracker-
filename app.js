@@ -4025,6 +4025,10 @@ function closeBanner(){
 function openBanner(b, keepStack){
   if(!keepStack) _bmStack=[];
   _bmCur=b;
+  // the card takes the banner's OWN colour (the one its bar has on the chart, light/dark shade
+  // per theme) in place of the game's accent — headings, the headline figure, borders
+  { const [bl,bd]=barShades(b._synthetic?GAME_ACCENT[state.tag]:barColor(b));
+    bannerModal.style.setProperty("--bm-acc-l", bl); bannerModal.style.setProperty("--bm-acc-d", bd); }
   const under=_bmStack.length?_bmStack[_bmStack.length-1]:null;
   const backBar=under
     ? `<button type="button" class="bm-back" id="bmBack">← Back to ${esc(peerName(under))}</button>` : "";

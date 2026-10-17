@@ -356,6 +356,12 @@ tr.clk{cursor:pointer} tr.clk:hover td{background:var(--track)}
 .modal-note{margin:0 0 4px !important; font-size:12.5px !important; color:var(--muted) !important;
   background:var(--surface2); border:1px solid var(--border); border-radius:10px; padding:10px 12px}
 .modal-card h3{margin:16px 0 4px; font-size:13.5px; color:var(--accent); letter-spacing:.01em}
+/* banner card: --accent becomes the banner's own bar colour (set per card in openBanner),
+   the same shade its bar uses on the chart in each theme */
+#bannerModal .modal-card{--accent:var(--bm-acc-l)}
+@media (prefers-color-scheme:dark){ #bannerModal .modal-card{--accent:var(--bm-acc-d)} }
+:root[data-theme=light] #bannerModal .modal-card{--accent:var(--bm-acc-l)}
+:root[data-theme=dark]  #bannerModal .modal-card{--accent:var(--bm-acc-d)}
 .modal-card p{margin:0; font-size:13.5px; color:var(--ink2); line-height:1.55}
 .modal-card p b{color:var(--ink)}
 .modal-src{margin-top:18px !important; font-size:11.5px !important; color:var(--muted) !important}
