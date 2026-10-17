@@ -3090,6 +3090,18 @@ const CN_SRC_NAME={qimai:"Qimai"};
 // build_qimai applies to the China revenue, so rank and revenue share one window.
 function cnLead(tag){ const g=state.qimai&&state.qimai.games&&state.qimai.games[tag||state.tag];
   return (g&&g.cn_lead)||0; }
+// A banner's last China day. When another banner STARTS on this one's end date (a same-day
+// handover — Endfield, Genshin, HSR... all do it), that day's China chart is the newcomer's
+// launch (Yvonne rerun's last day read #13 — that was Si), so it belongs to the incoming banner
+// and the outgoing run stops the day before. scripts/build_qimai.py cuts the Qimai revenue the
+// same way. Japan keeps the day: game-i's midnight-JST reading still shows the outgoing banner.
+function cnRunEnd(b){
+  const e=b.end;
+  const handover=(state.data.banners||[]).some(o=>o!==b && !o._synthetic && o.start===e && o.start>b.start);
+  if(!handover) return e;
+  const d=new Date(e+"T00:00:00"); d.setDate(d.getDate()-1);
+  return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+}
 function cnRunSeries(b){
   const R=state.cnrank; if(!R||!R.games||!R.days) return null;
   const g=R.games[state.tag]; if(!g) return null;
@@ -3097,7 +3109,7 @@ function cnRunSeries(b){
   const iso=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
   const out=[]; let any=false;
   const lead=cnLead();   // shift the run window back to the banner's China dates
-  const d=new Date(b.start+"T00:00:00"), end=new Date(b.end+"T00:00:00"), today=new Date();
+  const d=new Date(b.start+"T00:00:00"), end=new Date(cnRunEnd(b)+"T00:00:00"), today=new Date();
   if(lead){ d.setDate(d.getDate()-lead); end.setDate(end.getDate()-lead); }
   while(d<=end&&d<=today){
     const k=iso(d), day=cnCovered(state.tag,k) ? (R.days[k]||[200,"qimai"]) : null;

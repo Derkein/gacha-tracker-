@@ -99,8 +99,16 @@ for tag in GAMES:
         # stalls `lead` days behind the calendar. Extra days get no game-i weight (they split
         # equally, i.e. 100% to a solo ongoing banner). Past banners have a complete series.
         run_days = (datetime.date.fromisoformat(b["end"][:10]) - start).days + 1
-        ext = min(lead, max(0, run_days - len(s))) if b.get("ongoing") else 0
-        binfo.append({"idx":idx, "start":start, "len":len(s), "gid":gid, "ext":ext})
+        # Same-day handover: when another banner STARTS on this one's end date, that China day is
+        # the newcomer's launch day, not this banner's last one, so it is left off here (the
+        # site's China rank run drops it too — see cnRunEnd in app.js). Japan keeps it: game-i's
+        # midnight-JST reading that day still belongs to the outgoing banner.
+        if any(o is not b and o["start"][:10] == b["end"][:10] and o["start"][:10] > b["start"][:10]
+               for o in banners):
+            run_days -= 1
+        n = min(len(s), run_days)
+        ext = min(lead, max(0, run_days - n)) if b.get("ongoing") else 0
+        binfo.append({"idx":idx, "start":start, "len":n, "gid":gid, "ext":ext})
     bmonthly = collections.defaultdict(lambda: collections.defaultdict(float))
     btotal   = collections.defaultdict(float)
     bdaily   = collections.defaultdict(dict)   # idx -> {j: value}
