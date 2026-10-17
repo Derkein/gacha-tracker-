@@ -3130,7 +3130,11 @@ function cnRankSVG(run,b){
   // days the chart is known but the game wasn't on it: a tick along the bottom
   const below=run.map((x,i)=>x.depth!=null&&x.rank==null
     ? `<line class="grid" x1="${xOf(i).toFixed(1)}" y1="${(H-MB-3).toFixed(1)}" x2="${xOf(i).toFixed(1)}" y2="${(H-MB).toFixed(1)}"/>`:"").join("");
-  const [pi,pv]=known.reduce((a,c)=>c[1]<a[1]?c:a);
+  // the peak is the best rank reached at ANY point of a day (Qimai's intraday best) — the same
+  // figure the caption and the placement line use — so it can sit just above that day's
+  // end-of-day point on the line
+  let pi=-1, pv=Infinity;
+  run.forEach((x,i)=>{ const r=x.best!=null?x.best:x.rank; if(r!=null && r<pv){ pv=r; pi=i; } });
   const peak=`<circle class="rc-peak" cx="${xOf(pi).toFixed(1)}" cy="${yOf(pv).toFixed(1)}" r="5"/>`
     +`<text class="rc-peaklbl" x="${xOf(pi).toFixed(1)}" y="${(yOf(pv)-9).toFixed(1)}" text-anchor="middle">peak #${pv}</text>`;
   // hover targets on every charted day, including the ones the game sat below
