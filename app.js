@@ -3230,13 +3230,29 @@ const cumAtDay=(b,d)=>{ const c=cumCurve(b); return c&&c.length>=d&&d>=1 ? c[d-1
 // banners against new banners, reruns against reruns — a rerun always trails new banners, so
 // that comparison is the fair one for the verdict). `val` gives the measure (null = no data);
 // `lowerBetter` for ranks.
+// A measure can also be a KEY — an array compared item by item — so a tie on the first item is
+// broken by the next (see rankKey: dozens of banners peak at #1).
+const cmpKey=(a,c)=>{ if(!Array.isArray(a)) return a-c;
+  for(let i=0;i<a.length;i++){ const d=(a[i]??Infinity)-(c[i]??Infinity); if(d) return d; } return 0; };
 function bannerPlacement(b, val, lowerBetter){
   const v=val(b); if(v==null) return null;
   const pool=state.data.banners.filter(x=>!x._synthetic && !x.pending && val(x)!=null);
-  const beats=x=> lowerBetter ? val(x)<v : val(x)>v;
+  const beats=x=> lowerBetter ? cmpKey(val(x),v)<0 : cmpKey(val(x),v)>0;
   const place=list=>({rank:1+list.filter(x=>x!==b && beats(x)).length, of:list.length});
   const yr=pool.filter(x=>x.year===b.year), like=x=>!!x.rerun===!!b.rerun;
-  return { all:place(pool), year:place(yr), allLike:place(pool.filter(like)), yearLike:place(yr.filter(like)) };
+  // banners sharing this one's headline value (its peak, for a rank key)
+  const head=k=>Array.isArray(k)?k[0]:k;
+  const tied=pool.filter(x=>head(val(x))===head(v)).length;
+  return { all:place(pool), year:place(yr), allLike:place(pool.filter(like)), yearLike:place(yr.filter(like)), tied, head:head(v) };
+}
+// Peak rank as a sortable key: [peak, -days at that peak, mean of the 3 best days, median]. Peak
+// rank alone ties constantly — in HSR dozens of banners touched #1 in Japan — so a tie goes to
+// the banner that HELD the peak longer, then to the one whose best three days were higher, then
+// to the better median. Lower is better throughout (days at the peak are negated).
+function rankKey(ranks){
+  const k=ranks.filter(v=>v!=null).sort((a,c)=>a-c); if(!k.length) return null;
+  const p=k[0], b3=[0,1,2].map(i=>k[i]!=null?k[i]:201);
+  return [p, -k.filter(v=>v===p).length, (b3[0]+b3[1]+b3[2])/3, k[Math.floor(k.length/2)]];
 }
 // placement -> [word, tone]; null when the field is too small to say anything
 function placeWord(p){
@@ -3264,8 +3280,11 @@ function placementLine(b, val, lowerBetter, what){
     const w=wa||wy; verdict=`<span class="bm-place-v ${w[1]}">${w[0]}</span> ${wa?"all-time":`for ${b.year}`}`;
   }
   if(verdict) verdict=` — ${verdict}, against this game's other ${kind}.`;
+  // ranks: say when the peak itself is shared, and how the tie was broken
+  const ties = lowerBetter && P.tied>1
+    ? ` <span class="muted">${P.tied} of this game's banners peaked at #${P.head}; ties go to more days at that peak, then the best three days.</span>` : "";
   const live=b.ongoing ? ` <span class="muted">Still running, so this is its ${lowerBetter?"peak":"total"} so far.</span>` : "";
-  return `<p class="bm-place"><span class="bm-place-what">${what}</span>${parts.join(" · ")}${verdict||"."}${live}</p>`;
+  return `<p class="bm-place"><span class="bm-place-what">${what}</span>${parts.join(" · ")}${verdict||"."}${ties}${live}</p>`;
 }
 // the measures the four tabs place a banner on
 const placeVal = {
@@ -3273,8 +3292,8 @@ const placeVal = {
   qimai: x => { const q=bannerQimai(x); return q.hasData ? q.total : null; },
   st:    x => { const s=bannerST(x); return s.hasData ? s.total : null; },
   cn:    x => { const c=bannerCN(x); return c.hasData ? cnMid({lo:c.lo, hi:c.hi}) : null; },
-  jpPeak:x => { const s=jpRunStats(x); return s ? s.peak : null; },
-  cnPeak:x => { const s=cnRunStats(x); return s && !s.none ? s.peak : null; },
+  jpPeak:x => rankKey(x.rank_series||[]),
+  cnPeak:x => { const s=cnRunStats(x); return s && !s.none ? rankKey(s.run.map(d=>d.rank)) : null; },
 };
 function jpRunStats(b){
   if(b._jpStats!==undefined) return b._jpStats;
