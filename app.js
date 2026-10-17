@@ -680,7 +680,7 @@ async function init(){
   // Per-banner face focus points (game -> name -> {x,y,w,h}) for the Compare collage crops.
   try { state.focus = await getJSON("data/banner_focus.json"); } catch(e){ state.focus=null; }
   // China's own store chart, day by day (the real ranking, not an estimate).
-  try { state.cnrank = await getJSON("data/ranks/cn_ios_series.json"); } catch(e){ state.cnrank=null; }
+  try { state.cnrank = useBestOfDay(await getJSON("data/ranks/cn_ios_series.json")); } catch(e){ state.cnrank=null; }
   state.pending = {};   // "pending banners" overlay is disabled (no lagging games tracked)
   state.games = (idx && idx.games) || [];
   if(!state.games.length){                    // empty index (e.g. a failed data refresh) — don't crash
@@ -808,9 +808,9 @@ function cnNowTile(){
     ? `as of ${d.toLocaleDateString("en",{month:"short",day:"numeric"})}`
     : `charted ${known.length}/${win.length}d`;
   const note=best!=null ? `Best #${best} · ${when}` : `below #${depth} for ${win.length}d`;
-  const tip=`Place on China's App Store top-grossing chart at the end of each day, ALL apps (games compete `
+  const tip=`Best place each day on China's App Store top-grossing chart, ALL apps (games compete `
     + `with Douyin, WeChat and the video apps), ${depth} deep, last ${win.length} days, from Qimai. `
-    + `"Best" is the highest it reached at any point of a day. "${depth}+" means it sat below the chart that day.`;
+    + `"${depth}+" means it sat below the chart that day.`;
   return `<div class="tile" title="${esc(tip)}"><span class="l">CN store rank today</span>`
        + `<span class="v">iOS ${rank}</span>`
        + `<span class="n">${esc(note)}</span>`
@@ -1221,7 +1221,7 @@ function chartSeries(b, kind){
   return ranks.some(v=>v!=null) ? {ranks, known:w.map(x=>x.depth!=null), best:w.map(x=>x.best), from:0} : null;
 }
 // the recorded days a chart score counts. Japan: day 2 on — game-i's reading for launch day is
-// taken at midnight JST, before the banner is up. China: every day — Qimai's end-of-day reading
+// taken at midnight JST, before the banner is up. China: every day — Qimai's best-of-day reading
 // has the launch on its real date. A run with a single day counts that day either way.
 const chartDays = s => s.ranks.map((r,i)=>[i,r]).filter(([i])=>s.known[i] && (i>=(s.from||0) || s.ranks.length===1));
 // revenue-equivalent of a run PER DAY: each recorded day's rank turned into relative revenue,
@@ -3079,6 +3079,23 @@ function bannerSTShareBlock(b){
 //   covered[tag]     = [first, last] date read for that game
 // Inside a game's covered span a date with no rank is a real reading -- the game sat BELOW
 // the chart's 200 places -- while a date outside it simply hasn't been read.
+// The site's daily China rank is the BEST place a game reached at any point of each day — the
+// whole reason for reading Qimai's chart: a launch peaks in the evening or overnight, and one
+// fixed reading a day caught it late and low. The file keeps both readings; on load `games`
+// becomes the day's best (falling back to the end-of-day reading on a day with no separate
+// best) and the end-of-day series moves to `eod`, kept for the hover tooltip only.
+function useBestOfDay(R){
+  if(!R || !R.games || !R.best || R.eod) return R;
+  const games={};
+  for(const tag of new Set([...Object.keys(R.games), ...Object.keys(R.best)])){
+    const e=R.games[tag]||{}, b=R.best[tag]||{}, m={};
+    for(const d of new Set([...Object.keys(e), ...Object.keys(b)])){
+      const v=[e[d], b[d]].filter(x=>x!=null); if(v.length) m[d]=Math.min(...v);
+    }
+    games[tag]=m;
+  }
+  return Object.assign({}, R, {eod:R.games, games});
+}
 function cnCovered(tag, iso){
   const R=state.cnrank, c=R&&R.covered&&R.covered[tag];
   return c ? (iso>=c[0] && iso<=c[1]) : !!(R&&R.days&&R.days[iso]);
@@ -3093,7 +3110,7 @@ function cnLead(tag){ const g=state.qimai&&state.qimai.games&&state.qimai.games[
 function cnRunSeries(b){
   const R=state.cnrank; if(!R||!R.games||!R.days) return null;
   const g=R.games[state.tag]; if(!g) return null;
-  const bst=(R.best&&R.best[state.tag])||{};
+  const bst=(R.best&&R.best[state.tag])||{}, eod=(R.eod&&R.eod[state.tag])||{};
   const iso=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
   const out=[]; let any=false;
   const lead=cnLead();   // shift the run window back to the banner's China dates
@@ -3104,7 +3121,8 @@ function cnRunSeries(b){
     if(day) any=true;
     const rank=g[k]!=null?g[k]:null;
     // best = the day's intraday best; falls back to the end-of-day rank where Qimai has no separate best
-    out.push({iso:k, rank, best:bst[k]!=null?bst[k]:rank, depth:day?day[0]:null, src:day?day[1]:null});
+    out.push({iso:k, rank, best:bst[k]!=null?Math.min(bst[k],rank??Infinity):rank, eod:eod[k]!=null?eod[k]:null,
+              depth:day?day[0]:null, src:day?day[1]:null});
     d.setDate(d.getDate()+1);
   }
   return any?out:null;
@@ -3863,9 +3881,9 @@ function cnRankBlock(b, noTable){
     return head+`<p class="bm-note">${cover} The game sat <b>below</b> the chart's depth on every one of them — on China's all-apps chart it never entered the top ${Math.max(...depths)} during this run.</p>${tbl(run)}`;
   const first=known[0].rank, last=known[known.length-1].rank;
   const best=Math.min(...run.map(x=>x.best!=null?x.best:x.rank).filter(v=>v!=null));
-  const cap=`Closed its first day at <b>#${first}</b>, peaked at <b>#${best}</b>, last seen at <b>#${last}</b>.`;
+  const cap=`Opened at <b>#${first}</b>, peaked at <b>#${best}</b>, last seen at <b>#${last}</b>.`;
   return head+`<div class="bm-cap">${cap}</div>${placementLine(b, placeVal.cnPeak, true, "China peak rank")}${cnRankSVG(run,b)}${tbl(run)}
-    <p class="bm-note">#1 is the top of China's App Store <b>all-apps</b> top-grossing chart — games compete with Douyin, WeChat and the video apps, so climbing it means out-earning them. ${cover} Each point is the rank at the <b>end of that day</b> in China; the peak is the best rank reached at <b>any point</b> of a day, so it can sit above every point on the line. Ticks along the bottom are days the game wasn't on the chart, meaning it ranked below that depth; blank stretches are days not read yet. This is the <b>real store chart</b>, not an estimate.</p>`;
+    <p class="bm-note">#1 is the top of China's App Store <b>all-apps</b> top-grossing chart — games compete with Douyin, WeChat and the video apps, so climbing it means out-earning them. ${cover} Each point is the <b>best rank the game reached at any point of that day</b> in China (hover a day for where it closed the day too). Ticks along the bottom are days the game wasn't on the chart, meaning it ranked below that depth; blank stretches are days not read yet. This is the <b>real store chart</b>, not an estimate.</p>`;
 }
 function cnShareBlock(b){
   const sh=b._share, cn=bannerCN(b);
@@ -3989,7 +4007,7 @@ function bannerQimaiView(b){
       ${qimaiBurnBlock(b)}
       ${buildupSVG(qbd,b,fmtUSD,"qbu")}
       ${dailyTable(qbd,fmtUSD,"China&nbsp;rank")}
-      <p class="bm-note">Why the biggest day comes <b>after</b> the best rank: Qimai dates its estimate about a day behind the App&nbsp;Store chart, so the spending of a launch day shows up mostly under the <b>next</b> date. The rank is where the game stood at the end of each day; the revenue is exactly as Qimai dates it.</p>`;
+      <p class="bm-note">Why the biggest day comes <b>after</b> the best rank: Qimai dates its estimate about a day behind the App&nbsp;Store chart, so the spending of a launch day shows up mostly under the <b>next</b> date. The rank is the best place the game reached that day; the revenue is exactly as Qimai dates it.</p>`;
   }
   return `<div class="bm-stats">${tiles}</div>${head}${offWarn}${cnRankBlock(b,true)}${build}${qimaiAnalysisBlock(b)}`;
 }
@@ -4149,8 +4167,8 @@ function showCnTip(i,e){
   bmTip.innerHTML=`<div class="body">
     <h4>${dt.toLocaleDateString("en",{month:"short",day:"numeric",year:"numeric"})}</h4>
     <div style="color:var(--muted);font-size:11.5px">Day ${i+1} · China, all apps</div>
-    <dl><dt>End of day</dt><dd><b>${where}</b></dd>
-    ${day.best!=null && day.best!==day.rank ? `<dt>Best that day</dt><dd>#${day.best}</dd>` : ""}
+    <dl><dt>Best that day</dt><dd><b>${where}</b></dd>
+    ${day.eod!=null && day.eod!==day.rank ? `<dt>End of day</dt><dd>#${day.eod}</dd>` : ""}
     <dt>Chart known</dt><dd>${day.depth} deep</dd>
     <dt>Read from</dt><dd>${esc(CN_SRC_NAME[day.src]||String(day.src||"-"))}</dd></dl></div>`;
   bmTip.hidden=false;
@@ -4555,7 +4573,7 @@ function cmpRankStats(arr,k,mask,best,from=1){
   const recorded=win.map((v,idx)=>[idx,v]).filter(([idx])=>has(idx)).map(([idx,v])=>[idx, v==null?RANK_OFF:v]);
   // `from` = first run-day index the median counts. Japan (1): game-i reads the chart at midnight
   // JST, so day 1 is a reading from BEFORE the banner went up and day 2 is where every game
-  // peaks. China (0): the end-of-day reading puts the launch on day 1, so nothing is skipped. (falls
+  // peaks. China (0): the best-of-day reading puts the launch on day 1, so nothing is skipped. (falls
   // back to all days when day 1 is the only one). Days below #200 count as #201: a run that
   // fell off the chart isn't scored on the days it was still on it.
   const medVals=recorded.filter(([idx])=>idx>=from).map(([,v])=>v).sort((a,b)=>a-b);
@@ -4646,7 +4664,7 @@ function buildComparison(E){
     push({group:"China rank",src:"cnrank",metric:"cnr_peak",label:"Peak rank",k:kCN,better:"low",fmt:rk,note:"best rank reached at any point of a day",cells:cf(s=>s.peak)});
     push({group:"China rank",src:"cnrank",metric:"cnr_top1",label:"Days at #1",k:kCN,better:"high",fmt:dOnly,note:"days it held the top spot",cells:cf(s=>s.top1)});
     push({group:"China rank",src:"cnrank",metric:"cnr_top3",label:"Days in top 3",k:kCN,better:"high",fmt:dOnly,cells:cf(s=>s.top3)});
-    push({group:"China rank",src:"cnrank",metric:"cnr_med",label:"Median rank",k:kCN,better:"low",fmt:rk,note:"end-of-day rank, from launch day; days off the chart count as below #200",cells:cf(s=>s.med)});
+    push({group:"China rank",src:"cnrank",metric:"cnr_med",label:"Median rank",k:kCN,better:"low",fmt:rk,note:"best rank each day, from launch day; days off the chart count as below #200",cells:cf(s=>s.med)});
     push({group:"China rank",src:"cnrank",metric:"cnr_top10",label:"Days in top 10",k:kCN,better:"high",fmt:dOnly,note:"staying power",cells:cf(s=>s.top10)});
     push({group:"China rank",src:"cnrank",metric:"cnr_drop",label:"Dropped from top 200",k:kCN,better:"high",note:"day it fell off — later (or no drop) is better",cells:dropCells(sCN,kCN)});
     if(kCN>=5 && E.every((e,i)=>!sCN[i].none && sCN[i].charted>=3 && sCN[i].dbl!=null))
