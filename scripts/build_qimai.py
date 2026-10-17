@@ -47,6 +47,7 @@ def rankValue(r):
     return 0.0
 def ym(d): return d.strftime("%Y-%m")
 
+HOLE_RATIO = 4      # neighbours further apart than this = a ramp (launch/maintenance), not a hole
 HOLE_FLOOR = 2000   # a real day for these games is never this low mid-run; below it + a 10x
                     # drop from both neighbours means Qimai failed to model that day
 def fill_holes(daily):
@@ -55,11 +56,15 @@ def fill_holes(daily):
     only when it is BOTH under 10% of that average AND absolutely tiny (< HOLE_FLOOR) — so a
     genuine low day that just happens to sit between two launch spikes (tens of thousands, not
     a hole) is left alone. Applied at BUILD time only: the raw daily files keep Qimai's original
-    values, and a later rebuild picks up the real figure if Qimai fixes it."""
+    values, and a later rebuild picks up the real figure if Qimai fixes it.
+    The two neighbours must also be ALIKE (within HOLE_RATIO of each other): a hole sits inside a
+    flat stretch. A near-zero day next to a launch jump is a real one — the game was down for its
+    update (Endfield 2026-10-15: $6.5K, $3, $748K — off the chart through maintenance), and
+    averaging it invented a $377K day that was then split between the outgoing and new banner."""
     out = daily[:]
     for i in range(1, len(daily)-1):
         a, b = daily[i-1], daily[i+1]
-        if a > 0 and b > 0 and daily[i] < HOLE_FLOOR and daily[i] < 0.10*(a+b)/2:
+        if a > 0 and b > 0 and max(a, b) <= HOLE_RATIO*min(a, b)                 and daily[i] < HOLE_FLOOR and daily[i] < 0.10*(a+b)/2:
             out[i] = round((a+b)/2)
     return out
 
