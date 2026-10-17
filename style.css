@@ -145,11 +145,15 @@ a{color:inherit}
 .axis{position:absolute; top:0; bottom:0; width:1px; background:var(--grid); pointer-events:none}
 .axis span{position:absolute; top:-3px; left:5px; font-size:10.5px; color:var(--muted); font-variant-numeric:tabular-nums}
 .yhead{font-size:11px; font-weight:800; color:var(--muted); letter-spacing:.08em; margin:16px 0 5px; text-transform:uppercase; position:relative; z-index:1}
-.row{display:grid; grid-template-columns:30px 46px 1fr; align-items:center; gap:11px; padding:5px 0; position:relative; z-index:1; cursor:pointer}
+.row{display:grid; grid-template-columns:44px 46px 1fr; align-items:center; gap:11px; padding:5px 0; position:relative; z-index:1; cursor:pointer}
 .row:hover .nm b{text-decoration:underline; text-decoration-color:var(--av-ring); text-underline-offset:2px}
 .row:hover .barfill{filter:brightness(1.10)}
 .rk{font-size:12px; font-weight:800; color:var(--muted); text-align:center; font-variant-numeric:tabular-nums}
 .rk.m1{color:#e0a400}.rk.m2{color:#9aa2ad}.rk.m3{color:#c08040}
+/* "30/63" — place among the banners shown, and under it the place among new banners only */
+.rk.rk-of{line-height:1.15; white-space:nowrap}
+.rk .rk-tot{font-size:9.5px; font-weight:700; color:var(--muted)}
+.rk .rk-new{display:block; font-size:9px; font-weight:650; color:var(--muted); opacity:.85}
 .av{position:relative; width:44px; height:44px}
 .av img{width:44px; height:44px; border-radius:50%; object-fit:cover; background:var(--track);
   box-shadow:0 0 0 2px var(--surface),0 0 0 3.5px var(--av-ring,var(--accent))}
@@ -393,6 +397,16 @@ tr.clk{cursor:pointer} tr.clk:hover td{background:var(--track)}
 .bm-stat .l{font-size:10.5px; color:var(--muted); text-transform:uppercase; letter-spacing:.04em}
 .bm-stat .v{font-size:15px; font-weight:750; font-variant-numeric:tabular-nums}
 .bm-cap{font-size:12.5px; color:var(--ink2); margin:2px 0 6px} .bm-cap b{color:var(--ink)}
+/* "where it places" line under a revenue figure or a rank curve, with a coloured verdict
+   (same greens/reds as the year-on-year and month-card changes) */
+.bm-place{font-size:12.5px; color:var(--ink2); margin:6px 0 8px; line-height:1.5}
+.bm-place b{color:var(--ink); font-variant-numeric:tabular-nums}
+.bm-place-what{display:inline-block; font-size:10.5px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--muted); margin-right:7px}
+.bm-place-v{font-weight:750}
+.bm-place-v.up{color:#1f9d57} .bm-place-v.down{color:#d64b45} .bm-place-v.flat{color:var(--ink)}
+@media (prefers-color-scheme:dark){ .bm-place-v.up{color:#46c684} .bm-place-v.down{color:#f0736c} }
+:root[data-theme=dark] .bm-place-v.up{color:#46c684} :root[data-theme=dark] .bm-place-v.down{color:#f0736c}
+:root[data-theme=light] .bm-place-v.up{color:#1f9d57} :root[data-theme=light] .bm-place-v.down{color:#d64b45}
 .bm-note{font-size:11.5px !important; color:var(--muted) !important; margin-top:8px !important; line-height:1.5}
 .rcsvg{width:100%; height:auto; display:block; overflow:visible; margin-top:2px}
 .rcsvg .grid{stroke:var(--grid); stroke-width:1}
@@ -505,7 +519,8 @@ tr.clk{cursor:pointer} tr.clk:hover td{background:var(--track)}
      avatar/rank shrink so the bar itself gets the width. */
   .chart{min-width:0}
   .axis{display:none}
-  .row{grid-template-columns:22px 40px 1fr; gap:9px; padding:6px 0}
+  .row{grid-template-columns:38px 40px 1fr; gap:9px; padding:6px 0}
+  .rk .rk-tot{font-size:8.5px} .rk .rk-new{font-size:8px}
   .row + .row{border-top:1px solid var(--grid)}
   .av{width:40px; height:40px}
   .av img,.av .mono{width:40px; height:40px}

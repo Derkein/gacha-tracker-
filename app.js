@@ -1076,7 +1076,9 @@ function rowHTML(b,rank,max){
   } else { val=b.rev; valStr=`<span class="val">${G(val)}</span>`; }
   const w=Math.max(val>0?1.2:0,(val/max)*100), m=rank<=3?` m${rank}`:"";
   return `<div class="row${b._synthetic?" synrow":""}${b.pending?" pendrow":""}" data-i="${b._i}" style="--bar-l:${bl};--bar-d:${bd};--av-ring:${c}">
-    <div class="rk${m}">${rank}</div>
+    ${b._rk!=null
+      ? `<div class="rk rk-of${m}" title="#${b._rk} of the ${b._rkOf} banners shown, reruns included${b._rkNew!=null?` · #${b._rkNew} of the ${b._rkNewOf} new banners`:" · a rerun"}">${b._rk}<span class="rk-tot">/${b._rkOf}</span>${b._rkNew!=null&&b._rkNewOf!==b._rkOf?`<span class="rk-new">${b._rkNew}/${b._rkNewOf}</span>`:""}</div>`
+      : `<div class="rk${m}">${b._synthetic||b.pending?"·":rank}</div>`}
     <div class="av">${avatarHTML(b)}</div>
     <div class="meta">
       <div class="nm"><b>${esc(bLabel(b))}</b>${en&&en!==bLabel(b)?`<span class="en">${esc(en)}</span>`:""}${rr}</div>
@@ -1089,7 +1091,7 @@ function axesHTML(max){
   // CN reuses the USD tick maths -- both are plain linear money axes, unlike game-i's 億
   const tk = (src==="st"||src==="cn"||src==="qimai") ? usdTicks(max) : ticks(max,state.bracket);
   const fmt = src==="st" ? fmtUSD : src==="cn" ? fmtCNY : src==="qimai" ? fmtUSD : G;
-  return tk.map(t=>`<div class="axis" style="left:calc(87px + (100% - 87px - 74px) * ${t/max})"><span>${fmt(t)}</span></div>`).join("");}
+  return tk.map(t=>`<div class="axis" style="left:calc(101px + (100% - 101px - 74px) * ${t/max})"><span>${fmt(t)}</span></div>`).join("");}
 
 function renderBars(){
   const stMode=state.dataSource==="st";
@@ -1098,6 +1100,14 @@ function renderBars(){
   const pool=poolBanners().filter(searchMatch);               // Year filter + character search
   if(!pool.length){ $("#stnote").hidden=true; $("#cnnote").hidden=true; $("#chart").innerHTML=noResultsHTML(); return; }
   [...pool].sort((a,c)=>V(c)-V(a)).forEach((x,i)=>x._rank=i+1);   // rank within the shown set
+  // the same order shown as "rank / of": real banners only (not the synthetic unlisted-revenue
+  // rows or banners game-i hasn't logged), and again among new banners alone — reruns always
+  // trail, so that second number is the like-for-like one
+  const real=[...pool].filter(x=>!x._synthetic && !x.pending).sort((a,c)=>V(c)-V(a));
+  const fresh=real.filter(x=>!x.rerun);
+  pool.forEach(x=>{ x._rk=x._rkOf=x._rkNew=x._rkNewOf=null; });
+  real.forEach((x,i)=>{ x._rk=i+1; x._rkOf=real.length; });
+  fresh.forEach((x,i)=>{ x._rkNew=i+1; x._rkNewOf=fresh.length; });
   // one axis (timeline gridlines are full-height, so they can't vary per year): match-highest
   // fits the axis tightly to the shown set's peak; otherwise leaves roomy headroom.
   const peak=Math.max(0,...pool.map(V));
@@ -1372,7 +1382,7 @@ function scoredRowHTML(b, pos, fillPct, valStr, statHTML, chartMode){
         <div class="cr-stat">${statHTML}</div>
       </div></div>`;
 }
-const scoreAxes = () => [25,50,75,100].map(t=>`<div class="axis" style="left:calc(87px + (100% - 87px - 74px) * ${t/100})"><span>${t}</span></div>`).join("");
+const scoreAxes = () => [25,50,75,100].map(t=>`<div class="axis" style="left:calc(101px + (100% - 101px - 74px) * ${t/100})"><span>${t}</span></div>`).join("");
 const missingNote = (n, what) => n ? ` <b>${n}</b> banner${n>1?"s":""} in this range ha${n>1?"ve":"s"} no ${what}, so ${n>1?"they aren't":"it isn't"} ranked.` : "";
 const CHART_NOTE = `Each recorded day of the first ${CHART_WINDOW} (Japan from day 2 — game-i reads launch day before the banner is up; China from launch day) is turned into relative revenue with that chart's `
   + `rank→revenue curve — Japan: game-i's own curve (≈ r<sup>−0.80</sup>); China: r<sup>−${CN_RANK_EXP}</sup>, fitted from Qimai's daily China revenue against the China chart `
@@ -2988,7 +2998,8 @@ function bannerSTBlock(b){
   const stMonths=st.covered+st.missing;
   const headline=`<div class="bm-headline">
     <span><span class="l">Assumed combined revenue${st.partial?" so far":""}</span><div class="v">≈${fmtUSD(st.total)}</div></span>
-    <span class="sub">${st.covered} of ${stMonths} month${stMonths>1?"s":""} covered · US$, worldwide, mobile</span></div>`;
+    <span class="sub">${st.covered} of ${stMonths} month${stMonths>1?"s":""} covered · US$, worldwide, mobile</span></div>
+    ${placementLine(b, placeVal.st, false, "Worldwide revenue")}`;
   const rows=st.months.map(m=>{
     const ym=m.ym, lab=`${MONTHS[+ym.slice(5,7)-1]} ${ym.slice(0,4)}`;
     const co=((bm[ym]&&bm[ym].banners)||[]).filter(x=>x.i!==b._i && x.rev>0.001)
@@ -3192,6 +3203,57 @@ function cumCurve(b){
 }
 const cumAtDay=(b,d)=>{ const c=cumCurve(b); return c&&c.length>=d&&d>=1 ? c[d-1] : null; };
 
+// ---- where a banner places among this game's banners, on one measure --------------------
+// All-time and within its own year, both across every banner and against its like (new
+// banners against new banners, reruns against reruns — a rerun always trails new banners, so
+// that comparison is the fair one for the verdict). `val` gives the measure (null = no data);
+// `lowerBetter` for ranks.
+function bannerPlacement(b, val, lowerBetter){
+  const v=val(b); if(v==null) return null;
+  const pool=state.data.banners.filter(x=>!x._synthetic && !x.pending && val(x)!=null);
+  const beats=x=> lowerBetter ? val(x)<v : val(x)>v;
+  const place=list=>({rank:1+list.filter(x=>x!==b && beats(x)).length, of:list.length});
+  const yr=pool.filter(x=>x.year===b.year), like=x=>!!x.rerun===!!b.rerun;
+  return { all:place(pool), year:place(yr), allLike:place(pool.filter(like)), yearLike:place(yr.filter(like)) };
+}
+// placement -> [word, tone]; null when the field is too small to say anything
+function placeWord(p){
+  if(!p || p.of<3) return null;
+  const q=1-(p.rank-1)/(p.of-1);                   // 1 = the best, 0 = the weakest
+  return q>=0.9 ? ["one of the best","up"] : q>=0.7 ? ["strong","up"] : q>=0.4 ? ["middle of the pack","flat"]
+       : q>=0.15 ? ["weak","down"] : ["one of the weakest","down"];
+}
+// One line under a figure: "#30 of 63 all-time · #27 of 58 among new banners · #8 of 15 in 2026
+// — weak all-time, middle of the pack for 2026."
+function placementLine(b, val, lowerBetter, what){
+  const P=bannerPlacement(b, val, lowerBetter); if(!P) return "";
+  const kind=b.rerun?"reruns":"new banners";
+  const f=p=>`<b>#${p.rank}</b> of ${p.of}`;
+  const parts=[`${f(P.all)} all-time`];
+  if(P.allLike.of!==P.all.of) parts.push(`${f(P.allLike)} among ${kind}`);
+  parts.push(`${f(P.year)} in ${b.year}` + (P.yearLike.of!==P.year.of ? ` (${f(P.yearLike)} among ${kind})` : ""));
+  const wa=placeWord(P.allLike), wy=placeWord(P.yearLike);
+  let verdict="";
+  if(wa && wy){
+    verdict = wa[0]===wy[0]
+      ? `<span class="bm-place-v ${wa[1]}">${wa[0]}</span> all-time and in ${b.year}`
+      : `<span class="bm-place-v ${wa[1]}">${wa[0]}</span> all-time, <span class="bm-place-v ${wy[1]}">${wy[0]}</span> for ${b.year}`;
+  } else if(wa || wy){
+    const w=wa||wy; verdict=`<span class="bm-place-v ${w[1]}">${w[0]}</span> ${wa?"all-time":`for ${b.year}`}`;
+  }
+  if(verdict) verdict=` — ${verdict}, against this game's other ${kind}.`;
+  const live=b.ongoing ? ` <span class="muted">Still running, so this is its ${lowerBetter?"peak":"total"} so far.</span>` : "";
+  return `<p class="bm-place"><span class="bm-place-what">${what}</span>${parts.join(" · ")}${verdict||"."}${live}</p>`;
+}
+// the measures the four tabs place a banner on
+const placeVal = {
+  gamei: x => x.rev>0 ? x.rev : null,
+  qimai: x => { const q=bannerQimai(x); return q.hasData ? q.total : null; },
+  st:    x => { const s=bannerST(x); return s.hasData ? s.total : null; },
+  cn:    x => { const c=bannerCN(x); return c.hasData ? cnMid({lo:c.lo, hi:c.hi}) : null; },
+  jpPeak:x => { const s=jpRunStats(x); return s ? s.peak : null; },
+  cnPeak:x => { const s=cnRunStats(x); return s && !s.none ? s.peak : null; },
+};
 function jpRunStats(b){
   if(b._jpStats!==undefined) return b._jpStats;
   const s=b.rank_series||[];
@@ -3798,7 +3860,7 @@ function cnRankBlock(b, noTable){
   const first=known[0].rank, last=known[known.length-1].rank;
   const best=Math.min(...run.map(x=>x.best!=null?x.best:x.rank).filter(v=>v!=null));
   const cap=`Closed its first day at <b>#${first}</b>, peaked at <b>#${best}</b>, last seen at <b>#${last}</b>.`;
-  return head+`<div class="bm-cap">${cap}</div>${cnRankSVG(run,b)}${tbl(run)}
+  return head+`<div class="bm-cap">${cap}</div>${placementLine(b, placeVal.cnPeak, true, "China peak rank")}${cnRankSVG(run,b)}${tbl(run)}
     <p class="bm-note">#1 is the top of China's App Store <b>all-apps</b> top-grossing chart — games compete with Douyin, WeChat and the video apps, so climbing it means out-earning them. ${cover} Each point is the rank at the <b>end of that day</b> in China; the peak is the best rank reached at <b>any point</b> of a day, so it can sit above every point on the line. Ticks along the bottom are days the game wasn't on the chart, meaning it ranked below that depth; blank stretches are days not read yet. This is the <b>real store chart</b>, not an estimate.</p>`;
 }
 function cnShareBlock(b){
@@ -3834,7 +3896,8 @@ function bannerCNView(b){
   const months=cn.covered+cn.missing;
   const headline=`<div class="bm-headline">
     <span><span class="l">Est. revenue${cn.partial?" so far":""}</span><div class="v">≈${fmtCNYRange(cn.lo,cn.hi)}</div></span>
-    <span class="sub">${cn.covered} of ${months} month${months>1?"s":""} covered · yuan, global, all platforms</span></div>`;
+    <span class="sub">${cn.covered} of ${months} month${months>1?"s":""} covered · yuan, global, all platforms</span></div>
+    ${placementLine(b, placeVal.cn, false, "All-platform revenue")}`;
   const r=cnRankInfo(b);
   const tiles=[
     [`Est. revenue${b.ongoing?" so far":cn.partial?" (so far)":""}`, `≈${fmtCNYRange(cn.lo,cn.hi)}`],
@@ -3904,7 +3967,8 @@ function bannerQimaiView(b){
     <p class="bm-note">Qimai's <b>daily</b> China App&nbsp;Store <b>gross</b> estimate (USD), summed over this run. On days this banner shared the store with a concurrent one, that day's China total is split between them by game-i's daily shape. <b>China iOS only</b> — a small slice, not comparable to game-i (Japan), Sensor&nbsp;Tower (worldwide) or CN (all platforms). See <b>How these numbers work → Qimai</b> for why it reads low.</p>
     <div class="bm-headline">
       <span><span class="l">Est. revenue${b.ongoing?" so far":""}</span><div class="v">${qm.hasData?fmtUSD(qm.total):na}</div></span>
-      <span class="sub">China · iPhone · gross · Qimai's own estimate</span></div>`;
+      <span class="sub">China · iPhone · gross · Qimai's own estimate</span></div>
+    ${qm.hasData ? placementLine(b, placeVal.qimai, false, "China iPhone revenue") : ""}`;
   if(!qm.hasData) return `<div class="bm-stats">${tiles}</div>${head}
     <p class="bm-note">No Qimai China-iPhone revenue for this banner — its game isn't in the Qimai set yet, or it ran before Qimai's daily data.</p>`;
   // build-up from the real daily series — same components as game-i's tab (burn analysis,
@@ -4005,6 +4069,7 @@ function openBanner(b, keepStack){
       : `Opened at <b>#${first}</b>, peaked at <b>#${best}</b>, closed at <b>#${last}</b>.`;
     curve=`<h3>Daily iOS store rank during the run</h3>
       <div class="bm-cap">${cap}</div>
+      ${placementLine(b, placeVal.jpPeak, true, "Japan peak rank")}
       ${rankCurveSVG(b)}
       <p class="bm-note">#1 is the top of Japan's App Store top-grossing chart. Breaks in the line are days the app sat below game-i's trackable ~top&nbsp;200 (counted as ¥0). Rank is snapshotted at midnight JST, so a launch day can read below-200 when the banner went live after the snapshot. iOS only — game-i keeps no daily Android history.</p>`;
   } else {
@@ -4041,7 +4106,8 @@ function openBanner(b, keepStack){
     <p class="bm-note bm-recon">game-i publishes one figure per banner: its estimate of what the banner earned from mobile gacha <b>in Japan</b>, in its own "G" unit (1億G ≈ ¥100 million). It is the only per-banner revenue anyone publishes, which is why the other two tabs lean on its shape.</p>
     <div class="bm-headline">
       <span><span class="l">Est. revenue${b.ongoing?" so far":""}</span><div class="v">${G(b.rev)}</div></span>
-      <span class="sub">Japan · mobile only · game-i's own estimate</span></div>`;
+      <span class="sub">Japan · mobile only · game-i's own estimate</span></div>
+    ${placementLine(b, placeVal.gamei, false, "Japan revenue")}`;
   // Build-up sits directly under the rank curve: it is the same run, day by day, read
   // off that very curve -- so the two belong together, before the peer comparison.
   const gameiHTML=`<div class="bm-stats">${stats}</div>${gameiHead}${curve}${build}${jpAnalysisBlock(b)}${shareBlock}`;
