@@ -18,6 +18,11 @@ const VERSIONS = {
   nte:     [["1.X","2026-04-29"]],
 };
 const hasVersions = tag => !!VERSIONS[tag];
+// Games whose art is a tall character sheet rather than a wide banner (CZN's official
+// introduction sheets): the wide hero/tooltip crop would land on the chest, so anchor it
+// near the top, where the face is.
+const ART_POS = { czn:"50% 14%" };
+const artPos = () => ART_POS[state.tag] ? ` style="object-position:${ART_POS[state.tag]}"` : "";
 function versionOf(b){
   const v=VERSIONS[state.tag]; if(!v) return null;
   let cur=v[0][0];
@@ -2417,7 +2422,7 @@ function showTip(b,e){
     tip.hidden=false; place(tip,e); return;
   }
   const en=b.agents&&b.agents.length?b.agents.join(" & "):(b.related||"");
-  const art=b.banner_img?`<img class="art" src="${esc(b.banner_img)}" alt="" referrerpolicy="no-referrer" data-fb="art" data-alt="${esc((b.icons&&b.icons[0])||"")}">`:"";
+  const art=b.banner_img?`<img class="art"${artPos()} src="${esc(b.banner_img)}" alt="" referrerpolicy="no-referrer" data-fb="art" data-alt="${esc((b.icons&&b.icons[0])||"")}">`:"";
   const rr=b.rerun?` <span class="rr">↻ rerun</span>`:"";
   const hint=(b.rank_series&&b.rank_series.length)
     ? `<div class="tiphint">▸ Click to see daily rankings during the run</div>` : "";
@@ -4105,7 +4110,7 @@ function openBanner(b, keepStack){
     <div class="bm-period">${per(b.start)} – ${per(b.end)}</div>`;
   const head=b.banner_img
     ? `<div class="bm-hero" style="--av-ring:${barColor(b)}">
-         <img src="${esc(b.banner_img)}" alt="" referrerpolicy="no-referrer" data-fb="art" data-alt="${esc((b.icons&&b.icons[0])||"")}">
+         <img${artPos()} src="${esc(b.banner_img)}" alt="" referrerpolicy="no-referrer" data-fb="art" data-alt="${esc((b.icons&&b.icons[0])||"")}">
          <div class="bm-herobar">${title}</div></div>`
     : `<div class="bm-head" style="--av-ring:${barColor(b)}">
          ${b.icons&&b.icons[0]?`<img class="bm-art sq" src="${esc(b.icons[0])}" alt="" referrerpolicy="no-referrer" data-fb="remove">`:""}
