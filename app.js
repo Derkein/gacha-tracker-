@@ -19,16 +19,20 @@ const VERSIONS = {
 };
 const hasVersions = tag => !!VERSIONS[tag];
 // Games whose art is a tall character sheet rather than a wide banner (CZN's official
-// introduction sheets): the wide hero/tooltip crop would land on the chest, so anchor it
-// near the top, where the face is.
-const ART_POS = { czn:"50% 14%" };
-const artPos = () => ART_POS[state.tag] ? ` style="object-position:${ART_POS[state.tag]}"` : "";
-function versionOf(b){
-  const v=VERSIONS[state.tag]; if(!v) return null;
-  let cur=v[0][0];
-  for(const [label,date] of v){ if(b.start>=date) cur=label; else break; }
-  return cur;
+// introduction sheets, in two templates: 1200x1350 and 1700x2550). A wide crop of one lands
+// on the chest, so the image is sized from the sheet's OWN proportions to show the same
+// share of it every time — `frac` of its height starting `from` the top: the face plus the
+// column of three expression portraits on the right (~25-66% of the height on both).
+const ART_POS = { czn:{from:0.11, frac:0.56} };
+const artPos = () => ART_POS[state.tag] ? ` data-sheet="${state.tag}"` : "";
+function artFit(img){
+  const a=ART_POS[img.dataset.sheet]; if(!a || !img.naturalWidth) return;
+  img.style.aspectRatio=`${img.naturalWidth} / ${Math.round(img.naturalHeight*a.frac)}`;
+  img.style.height="auto"; img.style.maxHeight="none";
+  img.style.objectPosition=`50% ${Math.round(a.from/(1-a.frac)*100)}%`;
 }
+// load events don't bubble, so catch them in the capture phase (the CSP rules out onload=)
+document.addEventListener("load", e => { if(e.target.dataset && e.target.dataset.sheet) artFit(e.target); }, true);
 // Manual per-character colour overrides (by agent name), when the sampled colours
 // don't match the character's identity. Keep this small and deliberate.
 // Curated per-character signature colors (keyed by agent name, per game). game-i's
