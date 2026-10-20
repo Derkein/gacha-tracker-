@@ -18,7 +18,7 @@ notice writes it), start, end (YYYY-MM-DD, JST), year, related, banner_img.
 
     python scripts/official_banners.py stellasora      # print the list
 """
-import html, json, re, sys, time, urllib.request
+import html, json, re, sys, time, urllib.parse, urllib.request
 from datetime import date, datetime, timedelta, timezone
 
 JST = timezone(timedelta(hours=9))
@@ -34,6 +34,14 @@ def _get(url, headers=None, tries=3):
             if i == tries - 1:
                 raise
             time.sleep(2 * (i + 1))
+
+
+def _url(u):
+    """Absolute, ASCII-safe image URL ('//cdn…' -> https; Korean file names percent-encoded)."""
+    if not u:
+        return u
+    u = ("https:" + u) if u.startswith("//") else u
+    return urllib.parse.quote(u, safe=":/?&=%#~+,;@!$'*()")
 
 
 def _text(content):
@@ -102,7 +110,7 @@ def stellasora():
                     "start": per[0].isoformat(), "end": per[1].isoformat(),
                     "year": per[0].year,
                     "related": title.group(1) if title else "",
-                    "banner_img": img.group(1) if img else det.get("thumbnail"),
+                    "banner_img": _url(img.group(1) if img else det.get("thumbnail")),
                     # 熟練巡遊者募集 = a rate-up on an existing standard-pool Trekker, not a debut
                     "standard": "熟練巡遊者募集" in r["title"],
                     "src": f"https://stellasora.jp/news/{r['id']}"})
@@ -152,7 +160,7 @@ def czn():
             print(f"[czn] skipped {a['article_id']} {a['title']}: no period", file=sys.stderr)
             continue
         names = [n for n in names if not re.search(r"★4", t.split(n)[0][-6:])]   # drop ★4 co-features
-        imgs = [("https:" + u if u.startswith("//") else u) for u in re.findall(r'<img[^>]+src="([^"]+)"', raw)]
+        imgs = [_url(u) for u in re.findall(r'<img[^>]+src="([^"]+)"', raw)]
         out.append({"name": "・".join(dict.fromkeys(names)), "start": per[0].isoformat(),
                     "end": per[1].isoformat(), "year": per[0].year, "related": "",
                     "banner_img": imgs, "standard": False,
@@ -205,6 +213,32 @@ def _dedupe(rows):
 
 
 SOURCES = {"stellasora": stellasora, "czn": czn}
+
+CZN_CHAR_BOARD = 139270                  # 要員情報: one introduction post per character
+
+
+def character_art(tag):
+    """{JP headliner -> character art URL}. CZN's banner art is a red-washed promo with the
+    title over it; its 要員情報 board has a 「キャラクター性能紹介 - X」 post per combatant whose
+    first image is a clean character sheet (same template for everyone), which reads far
+    better on the site. Stella Sora's banner art is already a clean character shot: {}."""
+    if tag != "czn":
+        return {}
+    out = {}
+    try:
+        for a in sorted(_stove_list(CZN_CHAR_BOARD), key=lambda x: x["create_datetime"]):
+            # 「キャラクター性能紹介 - X」, or the launch-era 「◤<tagline> - X◢」 (partners use 「X」)
+            m = (re.search(r"キャラクター性能紹介\s*[-ー－]\s*([^\s◢]+)", a["title"])
+                 or re.search(r"\s[-ー－]\s*([^\s◢「」]+)◢\s*$", a["title"]))
+            if not m:
+                continue
+            raw = _stove_body(a["article_id"])[0]
+            img = re.search(r'<img[^>]+src="([^"]+)"', raw)
+            if img:                              # the newest introduction wins (re-releases)
+                out[m.group(1)] = _url(img.group(1))
+    except Exception as e:
+        print(f"[czn] character art lookup failed (non-fatal): {e}", file=sys.stderr)
+    return out
 
 
 # ---------------------------------------------------------------- English names

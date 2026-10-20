@@ -5,13 +5,13 @@
  "unit": "億G",
  "source": "https://stellasora.jp/news/",
  "banners_from": "official",
- "updated": "2026-10-20T15:59:36Z",
- "count": 32,
+ "updated": "2026-10-20T16:42:16Z",
+ "count": 22,
  "now": {
-  "ios": null,
+  "ios": 95,
   "android": null,
   "month": 440,
-  "next_add": 5243389
+  "next_add": 12795565
  },
  "monthly": {
   "2026-10": 0.4091,
@@ -68,12 +68,12 @@
     112,
     106
    ],
-   "rev": 2.0088,
+   "rev": 2.0179,
    "cum": 1,
-   "cumtot": 32,
+   "cumtot": 22,
    "yrank": 1,
-   "ytot": 8,
-   "bar": "#3d6199"
+   "ytot": 5,
+   "bar": "#cd98a8"
   },
   {
    "name": "シア",
@@ -113,57 +113,12 @@
     147,
     156
    ],
-   "rev": 1.0209,
-   "cum": 2,
-   "cumtot": 32,
-   "yrank": 2,
-   "ytot": 8,
-   "bar": "#566eaa"
-  },
-  {
-   "name": "ナノハ",
-   "start": "2025-11-11",
-   "end": "2025-12-02",
-   "year": 2025,
-   "related": "熟練巡遊者募集",
-   "banner_img": "https://webusstatic.yo-star.com/web-cms-prod/upload/content/2025/11/07/8Zw1n0xt.png",
-   "agents": [
-    "Nanoha"
-   ],
-   "en": "Nanoha",
-   "source_url": "https://stellasora.jp/news/1964",
-   "rerun": true,
-   "ongoing": false,
-   "rank_series": [
-    106,
-    110,
-    125,
-    164,
-    179,
-    167,
-    147,
-    156,
-    54,
-    41,
-    76,
-    137,
-    164,
-    176,
-    188,
-    199,
-    null,
-    null,
-    null,
-    null,
-    null,
-    147
-   ],
-   "rev": 0.8029,
+   "rev": 1.2885,
    "cum": 3,
-   "cumtot": 32,
+   "cumtot": 22,
    "yrank": 3,
-   "ytot": 8,
-   "bar": "#92b2d3"
+   "ytot": 5,
+   "bar": "#9d94d1"
   },
   {
    "name": "フユカ",
@@ -203,57 +158,12 @@
     null,
     null
    ],
-   "rev": 0.7094,
-   "cum": 4,
-   "cumtot": 32,
-   "yrank": 4,
-   "ytot": 8,
-   "bar": "#71a6f4"
-  },
-  {
-   "name": "グレイ",
-   "start": "2025-12-02",
-   "end": "2025-12-23",
-   "year": 2025,
-   "related": "熟練巡遊者募集",
-   "banner_img": "https://webusstatic.yo-star.com/pubplat/gm/prod_backend/userFile/8c776315a17d2d5fd7b47ff925c9d6d3.png",
-   "agents": [
-    "Gerie"
-   ],
-   "en": "Gerie",
-   "source_url": "https://stellasora.jp/news/2042",
-   "rerun": true,
-   "ongoing": false,
-   "rank_series": [
-    147,
-    160,
-    200,
-    null,
-    null,
-    null,
-    null,
-    null,
-    122,
-    74,
-    127,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null
-   ],
-   "rev": 0.5263,
-   "cum": 9,
-   "cumtot": 32,
-   "yrank": 8,
-   "ytot": 8,
-   "bar": "#277faf"
+   "rev": 1.4175,
+   "cum": 2,
+   "cumtot": 22,
+   "yrank": 2,
+   "ytot": 5,
+   "bar": "#f3cb72"
   },
   {
    "name": "ナツカ",
@@ -293,12 +203,12 @@
     null,
     null
    ],
-   "rev": 0.5625,
-   "cum": 7,
-   "cumtot": 32,
-   "yrank": 6,
-   "ytot": 8,
-   "bar": "#436b93"
+   "rev": 0.91,
+   "cum": 5,
+   "cumtot": 22,
+   "yrank": 4,
+   "ytot": 5,
+   "bar": "#fcb669"
   },
   {
    "name": "ラール（聖夜）",
@@ -338,57 +248,12 @@
     null,
     null
    ],
-   "rev": 0.5448,
-   "cum": 8,
-   "cumtot": 32,
-   "yrank": 7,
-   "ytot": 8,
-   "bar": "#315da5"
-  },
-  {
-   "name": "フリージア",
-   "start": "2025-12-30",
-   "end": "2026-01-20",
-   "year": 2025,
-   "related": "熟練巡遊者募集",
-   "banner_img": "https://webusstatic.yo-star.com/pubplat/gm/prod_backend/userFile/113d0d1d0853a9f0d19367ce9e4e2e6a.png",
-   "agents": [
-    "Freesia"
-   ],
-   "en": "Freesia",
-   "source_url": "https://stellasora.jp/news/2260",
-   "rerun": true,
-   "ongoing": false,
-   "rank_series": [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    93,
-    78,
-    143,
-    null,
-    null,
-    null,
-    null
-   ],
-   "rev": 0.6016,
+   "rev": 0.8828,
    "cum": 6,
-   "cumtot": 32,
+   "cumtot": 22,
    "yrank": 5,
-   "ytot": 8,
-   "bar": "#7ebee7"
+   "ytot": 5,
+   "bar": "#a33344"
   },
   {
    "name": "フィレン",
@@ -428,57 +293,12 @@
     null,
     null
    ],
-   "rev": 0.6854,
-   "cum": 5,
-   "cumtot": 32,
+   "rev": 1.0842,
+   "cum": 4,
+   "cumtot": 22,
    "yrank": 1,
-   "ytot": 24,
-   "bar": "#8ac1db"
-  },
-  {
-   "name": "ミスティ",
-   "start": "2026-01-27",
-   "end": "2026-02-17",
-   "year": 2026,
-   "related": "熟練巡遊者募集",
-   "banner_img": "https://webusstatic.yo-star.com/pubplat/gm/prod_backend/userFile/c6c7d1db0a2f6a5c886ca9262d1c7f9a.png",
-   "agents": [
-    "Mistique"
-   ],
-   "en": "Mistique",
-   "source_url": "https://stellasora.jp/news/2482",
-   "rerun": true,
-   "ongoing": false,
-   "rank_series": [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    167,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null
-   ],
-   "rev": 0.3521,
-   "cum": 11,
-   "cumtot": 32,
-   "yrank": 3,
-   "ytot": 24,
-   "bar": "#5361a3"
+   "ytot": 17,
+   "bar": "#cbce97"
   },
   {
    "name": "クルニス（華服）",
@@ -518,57 +338,12 @@
     null,
     null
    ],
-   "rev": 0.3099,
-   "cum": 12,
-   "cumtot": 32,
-   "yrank": 4,
-   "ytot": 24,
-   "bar": "#8c9ed9"
-  },
-  {
-   "name": "チーシア",
-   "start": "2026-02-17",
-   "end": "2026-03-10",
-   "year": 2026,
-   "related": "熟練巡遊者募集",
-   "banner_img": "https://webusstatic.yo-star.com/pubplat/gm/prod_backend/userFile/19f98c5b0138a533fdd74de5c483d793.png",
-   "agents": [
-    "Chixia"
-   ],
-   "en": "Chixia",
-   "source_url": "https://stellasora.jp/news/2615",
-   "rerun": true,
-   "ongoing": false,
-   "rank_series": [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    189,
-    174,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null
-   ],
-   "rev": 0.2925,
-   "cum": 15,
-   "cumtot": 32,
-   "yrank": 7,
-   "ytot": 24,
-   "bar": "#82c0e3"
+   "rev": 0.6157,
+   "cum": 7,
+   "cumtot": 22,
+   "yrank": 2,
+   "ytot": 17,
+   "bar": "#20a4b6"
   },
   {
    "name": "レイス",
@@ -608,33 +383,12 @@
     null,
     null
    ],
-   "rev": 0.2743,
-   "cum": 16,
-   "cumtot": 32,
-   "yrank": 8,
-   "ytot": 24,
-   "bar": "#90a0d5"
-  },
-  {
-   "name": "ミネルバ",
-   "start": "2026-03-10",
-   "end": "2026-03-31",
-   "year": 2026,
-   "related": "熟練巡遊者募集",
-   "banner_img": "https://webusstatic.yo-star.com/web-cms-prod/upload/content/2026/03/05/4sCEeoCn.png",
-   "agents": [
-    "Minova"
-   ],
-   "en": "Minova",
-   "source_url": "https://stellasora.jp/news/2748",
-   "rerun": true,
-   "ongoing": false,
-   "rev": 0.2205,
-   "cum": 23,
-   "cumtot": 32,
-   "yrank": 15,
-   "ytot": 24,
-   "bar": "#7cbae9"
+   "rev": 0.5447,
+   "cum": 8,
+   "cumtot": 22,
+   "yrank": 3,
+   "ytot": 17,
+   "bar": "#3d4299"
   },
   {
    "name": "トーナ",
@@ -650,12 +404,12 @@
    "source_url": "https://stellasora.jp/news/2782",
    "rerun": false,
    "ongoing": false,
-   "rev": 0.2256,
-   "cum": 20,
-   "cumtot": 32,
-   "yrank": 12,
-   "ytot": 24,
-   "bar": "#86bbdf"
+   "rev": 0.3753,
+   "cum": 11,
+   "cumtot": 22,
+   "yrank": 6,
+   "ytot": 17,
+   "bar": "#a56054"
   },
   {
    "name": "ナズナ",
@@ -671,12 +425,12 @@
    "source_url": "https://stellasora.jp/news/2845",
    "rerun": true,
    "ongoing": false,
-   "rev": 0.2726,
-   "cum": 17,
-   "cumtot": 32,
-   "yrank": 9,
-   "ytot": 24,
-   "bar": "#8abbdb"
+   "rev": 0.2733,
+   "cum": 19,
+   "cumtot": 22,
+   "yrank": 14,
+   "ytot": 17,
+   "bar": "#ddbd5a"
   },
   {
    "name": "オトハ",
@@ -693,11 +447,11 @@
    "rerun": false,
    "ongoing": false,
    "rev": 0.3667,
-   "cum": 10,
-   "cumtot": 32,
-   "yrank": 2,
-   "ytot": 24,
-   "bar": "#949ed1"
+   "cum": 13,
+   "cumtot": 22,
+   "yrank": 8,
+   "ytot": 17,
+   "bar": "#909dd5"
   },
   {
    "name": "チトセ",
@@ -706,7 +460,6 @@
    "year": 2026,
    "related": "色に出づるは刃文の揺らめき",
    "banner_img": "https://webusstatic.yo-star.com/web-cms-prod/upload/content/2026/04/24/xq_9Ew01.png",
-   "standard": false,
    "agents": [
     "Chitose"
    ],
@@ -715,11 +468,11 @@
    "rerun": true,
    "ongoing": false,
    "rev": 0.3094,
-   "cum": 13,
-   "cumtot": 32,
-   "yrank": 5,
-   "ytot": 24,
-   "bar": "#3e6098"
+   "cum": 15,
+   "cumtot": 22,
+   "yrank": 10,
+   "ytot": 17,
+   "bar": "#cd98a7"
   },
   {
    "name": "ホタル",
@@ -735,34 +488,12 @@
    "source_url": "https://stellasora.jp/news/3498",
    "rerun": false,
    "ongoing": false,
-   "rev": 0.2972,
-   "cum": 14,
-   "cumtot": 32,
-   "yrank": 6,
-   "ytot": 24,
-   "bar": "#eacc7b"
-  },
-  {
-   "name": "シア",
-   "start": "2026-05-26",
-   "end": "2026-06-16",
-   "year": 2026,
-   "related": "月までとどけビッグウェーブ",
-   "banner_img": "https://webusstatic.yo-star.com/web-cms-prod/upload/content/2026/05/21/rMgcQHaE.png",
-   "standard": false,
-   "agents": [
-    "Shia"
-   ],
-   "en": "Shia",
-   "source_url": "https://stellasora.jp/news/3539",
-   "rerun": true,
-   "ongoing": false,
-   "rev": 0.1953,
-   "cum": 28,
-   "cumtot": 32,
-   "yrank": 20,
-   "ytot": 24,
-   "bar": "#576eaa"
+   "rev": 0.3761,
+   "cum": 10,
+   "cumtot": 22,
+   "yrank": 5,
+   "ytot": 17,
+   "bar": "#9ba8ca"
   },
   {
    "name": "スパクル",
@@ -778,12 +509,12 @@
    "source_url": "https://stellasora.jp/news/3570",
    "rerun": false,
    "ongoing": false,
-   "rev": 0.169,
-   "cum": 30,
-   "cumtot": 32,
-   "yrank": 22,
-   "ytot": 24,
-   "bar": "#a59366"
+   "rev": 0.2847,
+   "cum": 17,
+   "cumtot": 22,
+   "yrank": 12,
+   "ytot": 17,
+   "bar": "#d7cb8e"
   },
   {
    "name": "ナノハ",
@@ -792,7 +523,6 @@
    "year": 2026,
    "related": "熟練巡遊者募集",
    "banner_img": "https://webusstatic.yo-star.com/web-cms-prod/upload/content/2026/06/09/6Miwri3j.png",
-   "standard": true,
    "agents": [
     "Nanoha"
    ],
@@ -800,12 +530,12 @@
    "source_url": "https://stellasora.jp/news/3666",
    "rerun": true,
    "ongoing": false,
-   "rev": 0.2093,
-   "cum": 27,
-   "cumtot": 32,
-   "yrank": 19,
-   "ytot": 24,
-   "bar": "#92b2d3"
+   "rev": 0.2099,
+   "cum": 21,
+   "cumtot": 22,
+   "yrank": 16,
+   "ytot": 17,
+   "bar": "#9c3a52"
   },
   {
    "name": "シャトン",
@@ -821,34 +551,12 @@
    "source_url": "https://stellasora.jp/news/3750",
    "rerun": false,
    "ongoing": false,
-   "rev": 0.2409,
-   "cum": 19,
-   "cumtot": 32,
+   "rev": 0.2955,
+   "cum": 16,
+   "cumtot": 22,
    "yrank": 11,
-   "ytot": 24,
-   "bar": "#efc276"
-  },
-  {
-   "name": "チーシア",
-   "start": "2026-07-14",
-   "end": "2026-08-04",
-   "year": 2026,
-   "related": "熟練巡遊者募集",
-   "banner_img": "https://webusstatic.yo-star.com/web-cms-test/upload/content/2026/07/07/RLLo_bHW.png",
-   "standard": true,
-   "agents": [
-    "Chixia"
-   ],
-   "en": "Chixia",
-   "source_url": "https://stellasora.jp/news/3855",
-   "rerun": true,
-   "ongoing": false,
-   "rev": 0.2104,
-   "cum": 26,
-   "cumtot": 32,
-   "yrank": 18,
-   "ytot": 24,
-   "bar": "#82c0e3"
+   "ytot": 17,
+   "bar": "#f7ce6e"
   },
   {
    "name": "ウィロー（水着）",
@@ -864,12 +572,12 @@
    "source_url": "https://stellasora.jp/news/3962",
    "rerun": false,
    "ongoing": false,
-   "rev": 0.2169,
-   "cum": 25,
-   "cumtot": 32,
-   "yrank": 17,
-   "ytot": 24,
-   "bar": "#85bee0"
+   "rev": 0.372,
+   "cum": 12,
+   "cumtot": 22,
+   "yrank": 7,
+   "ytot": 17,
+   "bar": "#21a3e6"
   },
   {
    "name": "ナツカ",
@@ -878,7 +586,6 @@
    "year": 2026,
    "related": "風にゆらゆら薫る純情゙",
    "banner_img": "https://webusstatic.yo-star.com/web-cms-test/upload/content/2026/07/28/BxoXckA1.png",
-   "standard": false,
    "agents": [
     "Nazuka"
    ],
@@ -886,12 +593,12 @@
    "source_url": "https://stellasora.jp/news/4095",
    "rerun": true,
    "ongoing": false,
-   "rev": 0.2174,
-   "cum": 24,
-   "cumtot": 32,
-   "yrank": 16,
-   "ytot": 24,
-   "bar": "#436b93"
+   "rev": 0.2181,
+   "cum": 20,
+   "cumtot": 22,
+   "yrank": 15,
+   "ytot": 17,
+   "bar": "#fcb669"
   },
   {
    "name": "カリン",
@@ -907,34 +614,12 @@
    "source_url": "https://stellasora.jp/news/4321",
    "rerun": false,
    "ongoing": false,
-   "rev": 0.2215,
-   "cum": 22,
-   "cumtot": 32,
-   "yrank": 14,
-   "ytot": 24,
-   "bar": "#86c2df"
-  },
-  {
-   "name": "フユカ",
-   "start": "2026-09-01",
-   "end": "2026-09-22",
-   "year": 2026,
-   "related": "雪解けは芽吹きの訪れ",
-   "banner_img": "https://webusstatic.yo-star.com/web-cms-test/upload/content/2026/08/19/NGAXHguP.png",
-   "standard": false,
-   "agents": [
-    "Fuyuka"
-   ],
-   "en": "Fuyuka",
-   "source_url": "https://stellasora.jp/news/4439",
-   "rerun": true,
-   "ongoing": false,
-   "rev": 0.1829,
-   "cum": 29,
-   "cumtot": 32,
-   "yrank": 21,
-   "ytot": 24,
-   "bar": "#71a6f4"
+   "rev": 0.2836,
+   "cum": 18,
+   "cumtot": 22,
+   "yrank": 13,
+   "ytot": 17,
+   "bar": "#ba2457"
   },
   {
    "name": "エレノア",
@@ -950,12 +635,12 @@
    "source_url": "https://stellasora.jp/news/4518",
    "rerun": false,
    "ongoing": false,
-   "rev": 0.2232,
-   "cum": 21,
-   "cumtot": 32,
-   "yrank": 13,
-   "ytot": 24,
-   "bar": "#8abfdb"
+   "rev": 0.344,
+   "cum": 14,
+   "cumtot": 22,
+   "yrank": 9,
+   "ytot": 17,
+   "bar": "#1fa4b7"
   },
   {
    "name": "エリー",
@@ -971,34 +656,12 @@
    "source_url": "https://stellasora.jp/news/4725",
    "rerun": false,
    "ongoing": false,
-   "rev": 0.2713,
-   "cum": 18,
-   "cumtot": 32,
-   "yrank": 10,
-   "ytot": 24,
-   "bar": "#d68f96"
-  },
-  {
-   "name": "フィレン",
-   "start": "2026-10-06",
-   "end": "2026-10-27",
-   "year": 2026,
-   "related": "輝ける翠玉のイデア",
-   "banner_img": "https://webusstatic.yo-star.com/web-cms-test/upload/content/2026/10/01/Jjt_aKqx.png",
-   "standard": false,
-   "agents": [
-    "Firenze"
-   ],
-   "en": "Firenze",
-   "source_url": "https://stellasora.jp/news/4790",
-   "rerun": true,
-   "ongoing": true,
-   "rev": 0.1474,
-   "cum": 31,
-   "cumtot": 32,
-   "yrank": 23,
-   "ytot": 24,
-   "bar": "#8ac1db"
+   "rev": 0.3943,
+   "cum": 9,
+   "cumtot": 22,
+   "yrank": 4,
+   "ytot": 17,
+   "bar": "#e28399"
   },
   {
    "name": "セイナ（原点）",
@@ -1014,12 +677,12 @@
    "source_url": "https://stellasora.jp/news/4875",
    "rerun": false,
    "ongoing": true,
-   "rev": 0.0319,
-   "cum": 32,
-   "cumtot": 32,
-   "yrank": 24,
-   "ytot": 24,
-   "bar": "#78cded"
+   "rev": 0.0562,
+   "cum": 22,
+   "cumtot": 22,
+   "yrank": 17,
+   "ytot": 17,
+   "bar": "#d8918d"
   }
  ]
 }

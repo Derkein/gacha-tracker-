@@ -385,15 +385,50 @@ def scrape_official(tag, meta):
         b["source_url"] = b.pop("src", None)
         out.append(b)
     mark_reruns(out, True, tag)
-    art = {}
-    for b in sorted(out, key=lambda x: x["start"]):         # a standard-pool rate-up is never a debut
-        b["rerun"] = b["rerun"] or bool(b.pop("standard", False))
+    art = getattr(official_banners, "character_art", lambda t: {})(tag)   # per-character art
+    first = {}
+    for b in sorted(out, key=lambda x: x["start"]):
+        b["standard"] = bool(b.get("standard"))
+        b["rerun"] = b["rerun"] or b["standard"]          # a standard-pool rate-up is never a debut
         head = b["name"].split("・")[0]
-        if b.get("banner_img"):
-            art.setdefault(head, b["banner_img"])
-        elif head in art:                                   # reruns from patch notes carry no art:
-            b["banner_img"] = art[head]                     # reuse the character's earlier banner
+        if head in art:                                     # the character's own art beats banner art
+            b["banner_img"] = art[head]
+        elif b.get("banner_img"):
+            first.setdefault(head, b["banner_img"])
+        elif head in first:                                 # reruns from patch notes carry no art:
+            b["banner_img"] = first[head]                   # reuse the character's earlier banner
+    out = fold_reruns(out)
+    for b in out:
+        b.pop("standard", None)
     return out
+
+
+def fold_reruns(banners):
+    """game-i's listing rule. A rerun running alongside a new banner is NOT a banner of its
+    own — WuWa lists only the new character each patch, HSR/ZZZ fold the rerun into the main
+    entry ("A&B") — it only gets an entry when it is the only banner up. Priority: new
+    banner > limited rerun > standard-pool rate-up. A lower-priority banner on exactly the
+    same dates as a higher one is merged into it ("A & B"); one whose every day is covered by
+    higher-priority banners is dropped (those days go to them); one with days of its own
+    stays, sharing the overlap days as game-i splits any concurrent banners."""
+    rank = lambda b: 2 if b["standard"] else (1 if b["rerun"] else 0)
+    D = date.fromisoformat
+    kept = []
+    for b in sorted(banners, key=lambda x: (rank(x), x["start"])):
+        hi = [k for k in kept if rank(k) < rank(b)]
+        same = next((k for k in hi if k["start"] == b["start"] and k["end"] == b["end"]), None)
+        if same:
+            same["name"] += "&" + b["name"]
+            if b.get("en"):
+                same["agents"] = (same.get("agents") or [same.get("en") or same["name"]]) + (b.get("agents") or [b["en"]])
+                same["en"] = " & ".join(same["agents"])
+            continue
+        s, e = D(b["start"]), D(b["end"])
+        days = [s + timedelta(days=i) for i in range((e - s).days + 1)]
+        if days and all(any(D(k["start"]) <= d <= D(k["end"]) for k in hi) for d in days):
+            continue
+        kept.append(b)
+    return sorted(kept, key=lambda x: (x["start"], x["name"]))
 
 
 def _month_list(d, ym):
