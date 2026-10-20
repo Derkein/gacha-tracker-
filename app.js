@@ -24,12 +24,27 @@ const hasVersions = tag => !!VERSIONS[tag];
 // share of it every time — `frac` of its height starting `from` the top: the face plus the
 // column of three expression portraits on the right (~25-66% of the height on both).
 const ART_POS = { czn:{from:0.11, frac:0.56} };
-const artPos = () => ART_POS[state.tag] ? ` data-sheet="${state.tag}"` : "";
+// Sizing is written straight into the markup once a sheet's dimensions are known, so the
+// hover tooltip — rebuilt on every mouse move — renders at the right crop immediately
+// instead of flashing the default crop until the image's load event lands.
+const SHEET_DIM = {};
+const sheetStyle = (tag, url) => { const a=ART_POS[tag], d=SHEET_DIM[url]; if(!a||!d) return "";
+  return `aspect-ratio:${d[0]} / ${Math.round(d[1]*a.frac)};height:auto;max-height:none;`
+       + `object-position:50% ${Math.round(a.from/(1-a.frac)*100)}%`; };
+const artPos = url => ART_POS[state.tag]
+  ? ` data-sheet="${state.tag}"${SHEET_DIM[url]?` style="${sheetStyle(state.tag,url)}"`:""}` : "";
 function artFit(img){
   const a=ART_POS[img.dataset.sheet]; if(!a || !img.naturalWidth) return;
-  img.style.aspectRatio=`${img.naturalWidth} / ${Math.round(img.naturalHeight*a.frac)}`;
-  img.style.height="auto"; img.style.maxHeight="none";
-  img.style.objectPosition=`50% ${Math.round(a.from/(1-a.frac)*100)}%`;
+  const url=esc(img.getAttribute("src"));
+  if(!SHEET_DIM[url]) SHEET_DIM[url]=[img.naturalWidth, img.naturalHeight];
+  img.setAttribute("style", sheetStyle(img.dataset.sheet, url));
+}
+// measure every sheet of a sheet-art game up front, so even a banner's FIRST hover is framed
+function preloadSheets(tag, data){
+  if(!ART_POS[tag] || !data || !data.banners) return;
+  for(const b of data.banners){ const url=b.banner_img; if(!url || SHEET_DIM[esc(url)]) continue;
+    const im=new Image(); im.referrerPolicy="no-referrer";
+    im.onload=()=>{ SHEET_DIM[esc(url)]=[im.naturalWidth, im.naturalHeight]; }; im.src=url; }
 }
 // load events don't bubble, so catch them in the capture phase (the CSP rules out onload=)
 document.addEventListener("load", e => { if(e.target.dataset && e.target.dataset.sheet) artFit(e.target); }, true);
@@ -747,6 +762,7 @@ async function selectGame(tag){
   catch(e){ if(seq===_loadSeq) showError(e, ()=>selectGame(tag)); return; }
   if(seq!==_loadSeq) return;   // a newer tab click won this race
   state.data = data;
+  preloadSheets(tag, data);
   // rank by revenue *within our dataset* — game-i's cum is against the game's full
   // history (often far larger than what we scrape), so it isn't 1..N here.
   state.data.banners = state.data.banners.filter(b=>!b._synthetic && !b.pending);   // defensive on re-entry
@@ -2426,7 +2442,7 @@ function showTip(b,e){
     tip.hidden=false; place(tip,e); return;
   }
   const en=b.agents&&b.agents.length?b.agents.join(" & "):(b.related||"");
-  const art=b.banner_img?`<img class="art"${artPos()} src="${esc(b.banner_img)}" alt="" referrerpolicy="no-referrer" data-fb="art" data-alt="${esc((b.icons&&b.icons[0])||"")}">`:"";
+  const art=b.banner_img?`<img class="art"${artPos(esc(b.banner_img))} src="${esc(b.banner_img)}" alt="" referrerpolicy="no-referrer" data-fb="art" data-alt="${esc((b.icons&&b.icons[0])||"")}">`:"";
   const rr=b.rerun?` <span class="rr">↻ rerun</span>`:"";
   const hint=(b.rank_series&&b.rank_series.length)
     ? `<div class="tiphint">▸ Click to see daily rankings during the run</div>` : "";
@@ -4114,7 +4130,7 @@ function openBanner(b, keepStack){
     <div class="bm-period">${per(b.start)} – ${per(b.end)}</div>`;
   const head=b.banner_img
     ? `<div class="bm-hero" style="--av-ring:${barColor(b)}">
-         <img${artPos()} src="${esc(b.banner_img)}" alt="" referrerpolicy="no-referrer" data-fb="art" data-alt="${esc((b.icons&&b.icons[0])||"")}">
+         <img${artPos(esc(b.banner_img))} src="${esc(b.banner_img)}" alt="" referrerpolicy="no-referrer" data-fb="art" data-alt="${esc((b.icons&&b.icons[0])||"")}">
          <div class="bm-herobar">${title}</div></div>`
     : `<div class="bm-head" style="--av-ring:${barColor(b)}">
          ${b.icons&&b.icons[0]?`<img class="bm-art sq" src="${esc(b.icons[0])}" alt="" referrerpolicy="no-referrer" data-fb="remove">`:""}
