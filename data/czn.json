@@ -5,11 +5,11 @@
  "unit": "億G",
  "source": "https://page.onstove.com/chaoszeronightmare/jp",
  "banners_from": "official",
- "updated": "2026-10-20T16:44:17Z",
+ "updated": "2026-10-20T18:00:26Z",
  "count": 18,
  "now": {
   "ios": null,
-  "android": 182,
+  "android": 180,
   "month": 327,
   "next_add": 5243389,
   "ym": "2026/10",
@@ -137,7 +137,7 @@
     136
    ],
    "rev": 2.124,
-   "cum": 5,
+   "cum": 3,
    "cumtot": 18,
    "yrank": 3,
    "ytot": 4,
@@ -182,7 +182,7 @@
     138
    ],
    "rev": 2.1395,
-   "cum": 4,
+   "cum": 2,
    "cumtot": 18,
    "yrank": 2,
    "ytot": 4,
@@ -226,8 +226,8 @@
     null,
     null
    ],
-   "rev": 1.7777,
-   "cum": 6,
+   "rev": 1.4593,
+   "cum": 5,
    "cumtot": 18,
    "yrank": 4,
    "ytot": 4,
@@ -271,7 +271,7 @@
     139,
     124
    ],
-   "rev": 3.2049,
+   "rev": 3.1552,
    "cum": 1,
    "cumtot": 18,
    "yrank": 1,
@@ -316,10 +316,10 @@
     null,
     null
    ],
-   "rev": 2.5073,
-   "cum": 2,
+   "rev": 1.2635,
+   "cum": 6,
    "cumtot": 18,
-   "yrank": 1,
+   "yrank": 2,
    "ytot": 14,
    "bar": "#607eef"
   },
@@ -361,10 +361,10 @@
     null,
     null
    ],
-   "rev": 1.3856,
-   "cum": 7,
+   "rev": 0.5331,
+   "cum": 9,
    "cumtot": 18,
-   "yrank": 3,
+   "yrank": 5,
    "ytot": 14,
    "bar": "#635f77"
   },
@@ -406,10 +406,10 @@
     null,
     null
    ],
-   "rev": 1.1471,
-   "cum": 10,
+   "rev": 0.4202,
+   "cum": 11,
    "cumtot": 18,
-   "yrank": 6,
+   "yrank": 7,
    "ytot": 14,
    "bar": "#f3cb72"
   },
@@ -451,10 +451,10 @@
     null,
     null
    ],
-   "rev": 0.884,
-   "cum": 13,
+   "rev": 0.2572,
+   "cum": 12,
    "cumtot": 18,
-   "yrank": 9,
+   "yrank": 8,
    "ytot": 14,
    "bar": "#d96d82"
   },
@@ -503,10 +503,10 @@
     98,
     114
    ],
-   "rev": 1.3406,
-   "cum": 8,
+   "rev": 0.6487,
+   "cum": 7,
    "cumtot": 18,
-   "yrank": 4,
+   "yrank": 3,
    "ytot": 14,
    "bar": "#a17194"
   },
@@ -555,10 +555,10 @@
     null,
     156
    ],
-   "rev": 2.3303,
-   "cum": 3,
+   "rev": 1.4606,
+   "cum": 4,
    "cumtot": 18,
-   "yrank": 2,
+   "yrank": 1,
    "ytot": 14,
    "bar": "#de3960"
   },
@@ -600,10 +600,10 @@
     null,
     null
    ],
-   "rev": 1.0192,
-   "cum": 11,
+   "rev": 0.523,
+   "cum": 10,
    "cumtot": 18,
-   "yrank": 7,
+   "yrank": 6,
    "ytot": 14,
    "bar": "#7494ad"
   },
@@ -646,10 +646,10 @@
     null,
     null
    ],
-   "rev": 0.6526,
-   "cum": 16,
+   "rev": 0.1161,
+   "cum": 15,
    "cumtot": 18,
-   "yrank": 12,
+   "yrank": 11,
    "ytot": 14,
    "bar": "#b04e6c"
   },
@@ -691,10 +691,10 @@
     null,
     null
    ],
-   "rev": 0.6169,
-   "cum": 17,
+   "rev": 0.0596,
+   "cum": 16,
    "cumtot": 18,
-   "yrank": 13,
+   "yrank": 12,
    "ytot": 14,
    "bar": "#bb2723"
   },
@@ -736,10 +736,10 @@
     null,
     null
    ],
-   "rev": 0.9529,
-   "cum": 12,
+   "rev": 0.1347,
+   "cum": 14,
    "cumtot": 18,
-   "yrank": 8,
+   "yrank": 10,
    "ytot": 14,
    "bar": "#695c95"
   },
@@ -781,10 +781,10 @@
     null,
     null
    ],
-   "rev": 1.2833,
-   "cum": 9,
+   "rev": 0.5515,
+   "cum": 8,
    "cumtot": 18,
-   "yrank": 5,
+   "yrank": 4,
    "ytot": 14,
    "bar": "#c41217"
   },
@@ -826,10 +826,10 @@
     null,
     null
    ],
-   "rev": 0.8499,
-   "cum": 14,
+   "rev": 0.2554,
+   "cum": 13,
    "cumtot": 18,
-   "yrank": 10,
+   "yrank": 9,
    "ytot": 14,
    "bar": "#2aad98"
   },
@@ -847,10 +847,10 @@
    "source_url": "https://page.onstove.com/chaoszeronightmare/jp/view/14554264",
    "rerun": true,
    "ongoing": false,
-   "rev": 0.7525,
-   "cum": 15,
+   "rev": 0.0,
+   "cum": 17,
    "cumtot": 18,
-   "yrank": 11,
+   "yrank": 13,
    "ytot": 14,
    "bar": "#5ea5e6"
   },
@@ -868,7 +868,7 @@
    "source_url": "https://page.onstove.com/chaoszeronightmare/jp/view/14593132",
    "rerun": false,
    "ongoing": true,
-   "rev": 0.0356,
+   "rev": 0.0,
    "cum": 18,
    "cumtot": 18,
    "yrank": 14,

@@ -327,13 +327,15 @@ def official_revenue(apid, banners, monthly):
       1. a day's revenue = that month's game-i total (月次売上予測, the sum of its daily
          rank values) x the day's share of the month by rank (game-i's 推測 rank fills
          the days below the chart, so they keep their share of the month);
-      2. EVERY day of the run counts, at its official rank or game-i's 推測 rank below
-         the chart — game-i's own banner figures include those days: on the two Chaos
-         Zero Nightmare banners it did list, counting them gives 2.14 / 1.78 against
-         game-i's 2.16 / 1.74 億G, while dropping them gives 2.14 / 1.46;
+      2. only days ON the iOS top-grossing chart (<= #200) count towards a banner, as on
+         every game-i banner page: game-i's MONTHLY total keeps growing while a game sits
+         below the chart (ZZZ, Oct 2026: +~0.05億G a day), but a banner's total stops —
+         Roxy stayed at 1.11億G from the day ZZZ dropped below #200. The below-chart days
+         keep their share of the month; it just isn't credited to any banner. On the two
+         CZN banners game-i did list: 2.14 / 1.46 against its 2.16 / 1.74 億G;
       3. a day is split between the banners running that day, the first day weighted
          +80% and the last -80% (game-i's own ガチャ売上分析 rules).
-    rank_series (the chart line on the site) stays the official top-200 rank only."""
+    A banner that never reached the top 200 therefore earns 0, as it would on game-i."""
     today = _jst_now().date()
     spans = [(b, date.fromisoformat(b["start"]), date.fromisoformat(b["end"])) for b in banners]
     day_val = {}
@@ -351,9 +353,9 @@ def official_revenue(apid, banners, monthly):
     for b in banners:
         b["rev"] = 0.0
     for b, s, e in spans:
-        for i in range((min(e, today) - s).days + 1):
+        for i, r in enumerate(b.get("rank_series") or []):
             d = s + timedelta(days=i)
-            if d not in day_val:                            # no rank of any kind that day
+            if r is None or d not in day_val:               # below the chart: game-i adds nothing
                 continue
             on = [(x, xs, xe) for x, xs, xe in spans if xs <= d <= xe]
             wt = lambda xs, xe: 1.8 if d == xs and xs != xe else (0.2 if d == xe else 1.0)
