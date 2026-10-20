@@ -482,6 +482,15 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 0.67
+    },
+    "2026-09": {
+     "rev_min_cny": 22430000,
+     "rev_max_cny": 22430000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 0.43
     }
    },
    "ocr_variants": [
@@ -1309,6 +1318,15 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 0.75
+    },
+    "2026-09": {
+     "rev_min_cny": 183160000,
+     "rev_max_cny": 183160000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
     }
    },
    "ocr_variants": [
@@ -1393,6 +1411,15 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 1.0
+    },
+    "2026-09": {
+     "rev_min_cny": 218270000,
+     "rev_max_cny": 259850000,
+     "is_range": true,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 0.8
     }
    }
   },
@@ -1920,6 +1947,15 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 1.0
+    },
+    "2026-09": {
+     "rev_min_cny": 2084610000,
+     "rev_max_cny": 2481680000,
+     "is_range": true,
+     "excludes_mihoyo_payment_center": true,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
     }
    }
   },
@@ -2294,6 +2330,15 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 1.0
+    },
+    "2026-09": {
+     "rev_min_cny": 902570000,
+     "rev_max_cny": 1074490000,
+     "is_range": true,
+     "excludes_mihoyo_payment_center": true,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 0.6
     }
    }
   },
@@ -2339,6 +2384,15 @@
     "2026-08": {
      "rev_min_cny": 319130000,
      "rev_max_cny": 379920000,
+     "is_range": true,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
+    },
+    "2026-09": {
+     "rev_min_cny": 191530000,
+     "rev_max_cny": 228020000,
      "is_range": true,
      "excludes_mihoyo_payment_center": false,
      "mom_pct": null,
@@ -2873,6 +2927,15 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 1.0
+    },
+    "2026-09": {
+     "rev_min_cny": 241730000,
+     "rev_max_cny": 241730000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
     }
    }
   },
@@ -3130,6 +3193,15 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 1.0
+    },
+    "2026-09": {
+     "rev_min_cny": 320570000,
+     "rev_max_cny": 381640000,
+     "is_range": true,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
     }
    }
   },
@@ -3364,6 +3436,15 @@
     "2026-08": {
      "rev_min_cny": 791980000,
      "rev_max_cny": 942820000,
+     "is_range": true,
+     "excludes_mihoyo_payment_center": true,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
+    },
+    "2026-09": {
+     "rev_min_cny": 349730000,
+     "rev_max_cny": 416350000,
      "is_range": true,
      "excludes_mihoyo_payment_center": true,
      "mom_pct": null,
@@ -3657,6 +3738,15 @@
     "2026-08": {
      "rev_min_cny": 32880000,
      "rev_max_cny": 32880000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
+    },
+    "2026-09": {
+     "rev_min_cny": 35440000,
+     "rev_max_cny": 35440000,
      "is_range": false,
      "excludes_mihoyo_payment_center": false,
      "mom_pct": null,
@@ -4464,6 +4554,15 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 1.0
+    },
+    "2026-09": {
+     "rev_min_cny": 37480000,
+     "rev_max_cny": 37480000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
     }
    },
    "ocr_variants": [
@@ -4972,6 +5071,15 @@
     "2026-08": {
      "rev_min_cny": 80810000,
      "rev_max_cny": 80810000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
+    },
+    "2026-09": {
+     "rev_min_cny": 27760000,
+     "rev_max_cny": 27760000,
      "is_range": false,
      "excludes_mihoyo_payment_center": false,
      "mom_pct": null,
@@ -5613,6 +5721,15 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 1.0
+    },
+    "2026-09": {
+     "rev_min_cny": 14320000,
+     "rev_max_cny": 14320000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
     }
    },
    "ocr_variants": [
@@ -5785,6 +5902,15 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 1.0
+    },
+    "2026-09": {
+     "rev_min_cny": 57390000,
+     "rev_max_cny": 57390000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
     }
    }
   },
@@ -5912,6 +6038,15 @@
     "2026-08": {
      "rev_min_cny": 17620000,
      "rev_max_cny": 17620000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
+    },
+    "2026-09": {
+     "rev_min_cny": 28350000,
+     "rev_max_cny": 28350000,
      "is_range": false,
      "excludes_mihoyo_payment_center": false,
      "mom_pct": null,
@@ -6469,6 +6604,15 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 0.5
+    },
+    "2026-09": {
+     "rev_min_cny": 50570000,
+     "rev_max_cny": 50570000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
     }
    }
   },
@@ -7098,6 +7242,15 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 1.0
+    },
+    "2026-09": {
+     "rev_min_cny": 18660000,
+     "rev_max_cny": 18660000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
     }
    }
   },
@@ -7622,6 +7775,15 @@
     "2026-08": {
      "rev_min_cny": 27700000,
      "rev_max_cny": 27700000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
+    },
+    "2026-09": {
+     "rev_min_cny": 19390000,
+     "rev_max_cny": 19390000,
      "is_range": false,
      "excludes_mihoyo_payment_center": false,
      "mom_pct": null,
@@ -8168,6 +8330,15 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 1.0
+    },
+    "2026-09": {
+     "rev_min_cny": 43720000,
+     "rev_max_cny": 43720000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
     }
    }
   },
@@ -8459,6 +8630,15 @@
     "2026-08": {
      "rev_min_cny": 56680000,
      "rev_max_cny": 67480000,
+     "is_range": true,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
+    },
+    "2026-09": {
+     "rev_min_cny": 57430000,
+     "rev_max_cny": 68370000,
      "is_range": true,
      "excludes_mihoyo_payment_center": false,
      "mom_pct": null,
@@ -8990,6 +9170,15 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 1.0
+    },
+    "2026-09": {
+     "rev_min_cny": 40680000,
+     "rev_max_cny": 48440000,
+     "is_range": true,
+     "excludes_mihoyo_payment_center": true,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
     }
    }
   },
@@ -9247,6 +9436,15 @@
     "2026-08": {
      "rev_min_cny": 2700000,
      "rev_max_cny": 2700000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": true,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
+    },
+    "2026-09": {
+     "rev_min_cny": 2550000,
+     "rev_max_cny": 2550000,
      "is_range": false,
      "excludes_mihoyo_payment_center": true,
      "mom_pct": null,
@@ -9771,6 +9969,15 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 1.0
+    },
+    "2026-09": {
+     "rev_min_cny": 7810000,
+     "rev_max_cny": 9300000,
+     "is_range": true,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
     }
    }
   },
@@ -10097,6 +10304,15 @@
     "2026-08": {
      "rev_min_cny": 43470000,
      "rev_max_cny": 43470000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
+    },
+    "2026-09": {
+     "rev_min_cny": 39130000,
+     "rev_max_cny": 39130000,
      "is_range": false,
      "excludes_mihoyo_payment_center": false,
      "mom_pct": null,
@@ -10561,6 +10777,15 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 1.0
+    },
+    "2026-09": {
+     "rev_min_cny": 15110000,
+     "rev_max_cny": 15110000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
     }
    },
    "ocr_variants": [
@@ -10853,6 +11078,15 @@
     "2026-08": {
      "rev_min_cny": 195550000,
      "rev_max_cny": 195550000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
+    },
+    "2026-09": {
+     "rev_min_cny": 217530000,
+     "rev_max_cny": 217530000,
      "is_range": false,
      "excludes_mihoyo_payment_center": false,
      "mom_pct": null,
@@ -11386,6 +11620,15 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 1.0
+    },
+    "2026-09": {
+     "rev_min_cny": 21230000,
+     "rev_max_cny": 21230000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
     }
    }
   },
@@ -11855,6 +12098,15 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 1.0
+    },
+    "2026-09": {
+     "rev_min_cny": 12620000,
+     "rev_max_cny": 12620000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
     }
    },
    "ocr_variants": [
@@ -12048,6 +12300,15 @@
     "2026-08": {
      "rev_min_cny": 68450000,
      "rev_max_cny": 81490000,
+     "is_range": true,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
+    },
+    "2026-09": {
+     "rev_min_cny": 74450000,
+     "rev_max_cny": 88640000,
      "is_range": true,
      "excludes_mihoyo_payment_center": false,
      "mom_pct": null,
@@ -12440,6 +12701,15 @@
     "2026-08": {
      "rev_min_cny": 16540000,
      "rev_max_cny": 16540000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
+    },
+    "2026-09": {
+     "rev_min_cny": 29750000,
+     "rev_max_cny": 29750000,
      "is_range": false,
      "excludes_mihoyo_payment_center": false,
      "mom_pct": null,
@@ -12968,6 +13238,15 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 1.0
+    },
+    "2026-09": {
+     "rev_min_cny": 242790000,
+     "rev_max_cny": 242790000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
     }
    },
    "ocr_variants": [
@@ -13043,6 +13322,15 @@
     "2026-08": {
      "rev_min_cny": 12460000,
      "rev_max_cny": 12460000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
+    },
+    "2026-09": {
+     "rev_min_cny": 12110000,
+     "rev_max_cny": 12110000,
      "is_range": false,
      "excludes_mihoyo_payment_center": false,
      "mom_pct": null,
@@ -13576,6 +13864,15 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 0.75
+    },
+    "2026-09": {
+     "rev_min_cny": 19770000,
+     "rev_max_cny": 19770000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": true,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
     }
    },
    "ocr_variants": [
@@ -14630,6 +14927,15 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 1.0
+    },
+    "2026-09": {
+     "rev_min_cny": 22910000,
+     "rev_max_cny": 22910000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
     }
    },
    "ocr_variants": [
@@ -15028,6 +15334,15 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 0.75
+    },
+    "2026-09": {
+     "rev_min_cny": 525500000,
+     "rev_max_cny": 525500000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
     }
    },
    "ocr_variants": [
@@ -15522,6 +15837,15 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 1.0
+    },
+    "2026-09": {
+     "rev_min_cny": 17430000,
+     "rev_max_cny": 17430000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 0.67
     }
    },
    "ocr_variants": [
@@ -16412,6 +16736,15 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 1.0
+    },
+    "2026-09": {
+     "rev_min_cny": 79310000,
+     "rev_max_cny": 79310000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
     }
    },
    "ocr_variants": [
@@ -17284,6 +17617,15 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 1.0
+    },
+    "2026-09": {
+     "rev_min_cny": 34960000,
+     "rev_max_cny": 34960000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
     }
    },
    "ocr_variants": [
@@ -17881,6 +18223,15 @@
     "2026-08": {
      "rev_min_cny": 72030000,
      "rev_max_cny": 72030000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
+    },
+    "2026-09": {
+     "rev_min_cny": 65440000,
+     "rev_max_cny": 65440000,
      "is_range": false,
      "excludes_mihoyo_payment_center": false,
      "mom_pct": null,
@@ -18536,6 +18887,15 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 1.0
+    },
+    "2026-09": {
+     "rev_min_cny": 29030000,
+     "rev_max_cny": 29030000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
     }
    },
    "ocr_variants": [
@@ -19052,6 +19412,15 @@
     "2026-08": {
      "rev_min_cny": 101090000,
      "rev_max_cny": 101090000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
+    },
+    "2026-09": {
+     "rev_min_cny": 299710000,
+     "rev_max_cny": 299710000,
      "is_range": false,
      "excludes_mihoyo_payment_center": false,
      "mom_pct": null,
@@ -19818,6 +20187,15 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 1.0
+    },
+    "2026-09": {
+     "rev_min_cny": 25300000,
+     "rev_max_cny": 25300000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
     }
    }
   },
@@ -19846,6 +20224,20 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 0.5
+    }
+   }
+  },
+  "命运冠位指定": {
+   "name_cn": "命运冠位指定",
+   "monthly": {
+    "2026-09": {
+     "rev_min_cny": 174680000,
+     "rev_max_cny": 174680000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
     }
    }
   }
@@ -20140,7 +20532,21 @@
    "bvid": "BV1SnhJ6EELg",
    "entries": 44,
    "kept": 44
+  },
+  "2026-09": {
+   "bvid": "BV1wQJ26XEWx",
+   "entries": 44,
+   "kept": 43
   }
  },
- "failures": {}
+ "failures": {},
+ "unnamed_entries": {
+  "2026-09": [
+   {
+    "rev_min_cny": 25880000,
+    "rev_max_cny": 25880000,
+    "frames": 1
+   }
+  ]
+ }
 }
