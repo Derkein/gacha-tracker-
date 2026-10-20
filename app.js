@@ -1,7 +1,7 @@
 // Gacha Revenue Tracker — client logic. Data comes from data/*.json (built by scripts/).
 const GAME_ACCENT = {          // per-game hue (used for bars/dots without a sampled color)
   zzz:"#e0a400", hsr:"#8a7bd8", wuwa:"#2fb6c0", genshin:"#d8a24a", endfield:"#e07b3a", nte:"#d94f8a",
-  uma:"#3fb98f",
+  uma:"#3fb98f", stellasora:"#5aa9e6", czn:"#d2463c",
 };
 const state = { games:[], tag:null, data:null, reported:null, cn:null, qimai:null, mode:"time", table:false, reverse:false, bracket:0, tabsExpanded:false, graphYear:"all", graphDim:"year", matchHigh:true, monthYear:"all", periodSort:"timeline", dataSource:"gamei", search:"", agreeMode:"month", compare:{picks:[], sources:{}, chart:"jp"} };
 
@@ -4154,7 +4154,9 @@ function openBanner(b, keepStack){
   }
 
   const gameiHead=`<h3>game-i — estimated Japan revenue</h3>
-    <p class="bm-note bm-recon">game-i publishes one figure per banner: its estimate of what the banner earned from mobile gacha <b>in Japan</b>, in its own "G" unit (1億G ≈ ¥100 million). It is the only per-banner revenue anyone publishes, which is why the other two tabs lean on its shape.</p>
+    ${state.data.banners_from==="official"
+      ? `<p class="bm-note bm-recon">game-i tracks ${esc(gameName())}'s Japan revenue every day but has no banner page for it, so this figure is <b>rebuilt the way game-i builds its own</b>: the banner dates come from the game's <a href="${esc(state.data.source)}" target="_blank" rel="noopener">official notices</a>${b.source_url?` (<a href="${esc(b.source_url)}" target="_blank" rel="noopener">this banner</a>)`:""}, and each day's share of game-i's monthly total (月次売上予測), weighted by that day's rank, goes to the banners running that day — split equally, first day +80%, last day −80%, as game-i does. On the two Chaos Zero Nightmare banners game-i did list, this lands within 2% of its own figures. In game-i's "G" unit (1億G ≈ ¥100 million).</p>`
+      : `<p class="bm-note bm-recon">game-i publishes one figure per banner: its estimate of what the banner earned from mobile gacha <b>in Japan</b>, in its own "G" unit (1億G ≈ ¥100 million). It is the only per-banner revenue anyone publishes, which is why the other two tabs lean on its shape.</p>`}
     <div class="bm-headline">
       <span><span class="l">Est. revenue${b.ongoing?" so far":""}</span><div class="v">${G(b.rev)}</div></span>
       <span class="sub">Japan · mobile only · game-i's own estimate</span></div>

@@ -65,6 +65,7 @@ scripts/verify_cn_frame.py    # pulls the source frames behind a stored figure, 
 scripts/scrape_ranks.py  # daily store charts: China iOS top-grossing + Steam top sellers -> data/ranks/
 scripts/build_icons.py   # JP name -> portrait + accent  ->  icons/<game>.json     (Enka + StarRailRes)
 scripts/scrape.py        # game-i banners: name, dates, revenue, ranks, daily rank series, today's store rank
+scripts/official_banners.py # Stella Sora / Chaos Zero Nightmare banner lists from the official JP news APIs (game-i has no banner page for them)
 scripts/enrich_icons.py  # matches banners to portraits, adds icons/accent to data/<game>.json
 scripts/translate_names.py  # English character names for data-only games (game wikis / game data)
 scripts/face_icons.py    # icon-less games: crop a face circle from drip/banner art -> icons/faces/<game>/*.webp
@@ -88,7 +89,7 @@ python -m http.server 8000        # then open http://localhost:8000
 
 Serve it over HTTP (not the `file://` path) — the page fetches `data/*.json`. `scrape.py`, `build_icons.py`, `enrich_icons.py` and `translate_names.py` are pure standard library; only `face_icons.py` needs the pip install.
 
-**Add a game:** add it to the `GAMES` dict in [`scripts/scrape.py`](scripts/scrape.py) — anything game-i tracks under `ガチャ分析/<name>` works. Add an Enka builder in `build_icons.py` for character portraits, or it falls back to banner art.
+**Add a game:** add it to the `GAMES` dict in [`scripts/scrape.py`](scripts/scrape.py) — anything game-i tracks under `ガチャ分析/<name>` works. A game game-i tracks but has no banner page for can still be added with `"official"`: give [`scripts/official_banners.py`](scripts/official_banners.py) a reader for its official news, and `official_revenue()` rebuilds each banner's figure from game-i's daily ranks and monthly totals using game-i's own split rules (within 2% on the two CZN banners game-i did list). Add an Enka builder in `build_icons.py` for character portraits, or it falls back to banner art.
 
 ---
 

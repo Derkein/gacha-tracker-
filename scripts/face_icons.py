@@ -34,7 +34,7 @@ ICON_PX = 256
 UA = {"User-Agent": "Mozilla/5.0 (gacha-tracker)"}
 
 # only these games get face-crop icons (others are data-only, banner-art thumbnails)
-FACE_GAMES = {"wuwa", "nte", "endfield"}
+FACE_GAMES = {"wuwa", "nte", "endfield", "stellasora", "czn"}
 # games whose characters have clean drip art on a JP-searchable Fandom wiki
 FANDOM = {
     "wuwa": "wuthering-waves.fandom.com",

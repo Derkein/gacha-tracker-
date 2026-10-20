@@ -31,7 +31,7 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 OUT = DATA / "banner_focus.json"
 IMG_CACHE = ROOT / "scripts" / ".focus_imgcache"   # downloaded bytes, keyed by URL hash (gitignored)
-GAMES = ["zzz", "hsr", "wuwa", "genshin", "endfield", "nte", "uma"]
+GAMES = ["zzz", "hsr", "wuwa", "genshin", "endfield", "nte", "uma", "stellasora", "czn"]
 VERSION = 2                                        # bump when the detector/selection changes
 
 # Games whose banner art became a two-character version promo — the banner's OWN (new)

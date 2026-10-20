@@ -50,6 +50,14 @@ GAMES = {
     # so we don't hardcode long JP page names full of ：＆！／). Data-only: these
     # use banner-art thumbnails, not character icons.
     "uma":         {"apid": "1325457827", "name": "Umamusume: Pretty Derby"},
+    # game-i keeps these apps' daily ranks and monthly totals but never made them a
+    # ガチャ分析 page, so the banner list comes from the game's OFFICIAL JP news feed
+    # (scripts/official_banners.py) and the revenue is rebuilt the way game-i builds its
+    # own (see official_revenue).
+    "stellasora":  {"apid": "6657974534", "name": "Stella Sora", "jp": "ステラソラ",
+                    "official": "https://stellasora.jp/news/"},
+    "czn":         {"apid": "6502326151", "name": "Chaos Zero Nightmare", "jp": "カオスゼロナイトメア",
+                    "official": "https://page.onstove.com/chaoszeronightmare/jp"},
 }
 
 UA = {"User-Agent": "Mozilla/5.0 (gacha-tracker; +https://github.com/)"}
@@ -268,6 +276,126 @@ def month_ranks(apid, ym, android=False):
     return cur
 
 
+_est_cache = {}
+
+
+def month_est(apid, ym):
+    """{day -> rank} for one month including game-i's 推測 (estimated) rank on days the app
+    sat below the trackable chart — the feed's column 4. Only used to weight a month's
+    days against each other (official_revenue); the official rank wins where present."""
+    if (apid, ym) in _est_cache:
+        return _est_cache[(apid, ym)]
+    url = BASE + f"?cmd=app_detail_js&apid={apid}&Ym={ym}&width=95%25&height=300px&And="
+    out = {}
+    try:
+        for line in re.findall(r"\[('\d+日'[^\]]*)\]", fetch(url)):
+            day = int(re.match(r"'(\d+)日'", line).group(1))
+            f = re.sub(r"'[^']*'", "", line).split(",")
+            if len(f) < 11:
+                continue
+            v = f[10] if f[10].strip().isdigit() else f[4]
+            out[day] = int(v) if v.strip().isdigit() else None
+        time.sleep(0.25)
+    except Exception:
+        pass
+    _est_cache[(apid, ym)] = out
+    return out
+
+
+# game-i's rank -> daily revenue shape (億G at each rank; same table as app.js RANK_VAL),
+# continued past #200 along the #100 -> #200 slope for the estimated (推測) ranks.
+RANK_VAL = [[1, 5.90], [2, 3.47], [3, 3.03], [4, 2.61], [5, 2.03], [10, .9034], [50, .2584], [100, .1640], [200, .10]]
+
+
+def rank_value(r):
+    import math
+    if r is None:
+        return 0.0
+    if r <= 1:
+        return RANK_VAL[0][1]
+    if r >= 200:
+        return 0.10 * (r / 200) ** (math.log(0.10 / 0.164) / math.log(2))
+    for (r0, v0), (r1, v1) in zip(RANK_VAL, RANK_VAL[1:]):
+        if r0 <= r <= r1:
+            t = (math.log(r) - math.log(r0)) / (math.log(r1) - math.log(r0))
+            return math.exp(math.log(v0) + t * (math.log(v1) - math.log(v0)))
+    return 0.0
+
+
+def official_revenue(apid, banners, monthly):
+    """Per-banner revenue for an official-source game, built the way game-i builds its own:
+      1. a day's revenue = that month's game-i total (月次売上予測, the sum of its daily
+         rank values) x the day's share of the month by rank (game-i's 推測 rank fills
+         the days below the chart, so they keep their share of the month);
+      2. EVERY day of the run counts, at its official rank or game-i's 推測 rank below
+         the chart — game-i's own banner figures include those days: on the two Chaos
+         Zero Nightmare banners it did list, counting them gives 2.14 / 1.78 against
+         game-i's 2.16 / 1.74 億G, while dropping them gives 2.14 / 1.46;
+      3. a day is split between the banners running that day, the first day weighted
+         +80% and the last -80% (game-i's own ガチャ売上分析 rules).
+    rank_series (the chart line on the site) stays the official top-200 rank only."""
+    today = _jst_now().date()
+    spans = [(b, date.fromisoformat(b["start"]), date.fromisoformat(b["end"])) for b in banners]
+    day_val = {}
+    for ym in sorted({f"{d.year}/{d.month:02d}" for _, s, e in spans
+                      for d in (s + timedelta(days=i) for i in range((min(e, today) - s).days + 1))}):
+        y, m = map(int, ym.split("/"))
+        tot = monthly.get(f"{y}-{m:02d}")
+        est = month_est(apid, ym)
+        w = {d: rank_value(r) for d, r in est.items() if r is not None}
+        ws = sum(w.values())
+        if not tot or ws <= 0:
+            continue
+        for d, v in w.items():
+            day_val[date(y, m, d)] = tot * v / ws
+    for b in banners:
+        b["rev"] = 0.0
+    for b, s, e in spans:
+        for i in range((min(e, today) - s).days + 1):
+            d = s + timedelta(days=i)
+            if d not in day_val:                            # no rank of any kind that day
+                continue
+            on = [(x, xs, xe) for x, xs, xe in spans if xs <= d <= xe]
+            wt = lambda xs, xe: 1.8 if d == xs and xs != xe else (0.2 if d == xe else 1.0)
+            b["rev"] += day_val.get(d, 0.0) * wt(s, e) / sum(wt(xs, xe) for _, xs, xe in on)
+    for b in banners:
+        b["rev"] = round(b["rev"], 4)
+    # game-i's two rankings: within the calendar year, and all-time
+    for i, b in enumerate(sorted(banners, key=lambda x: -x["rev"])):
+        b["cum"], b["cumtot"] = i + 1, len(banners)
+    for y in {b["year"] for b in banners}:
+        yr = sorted([b for b in banners if b["year"] == y], key=lambda x: -x["rev"])
+        for i, b in enumerate(yr):
+            b["yrank"], b["ytot"] = i + 1, len(yr)
+
+
+def scrape_official(tag, meta):
+    """Banner list from the game's official news (started banners only), with English
+    headliner names from its English channel."""
+    import official_banners
+    today = _jst_now().date()
+    names = official_banners.english_names(tag, ROOT)
+    out = []
+    for b in official_banners.SOURCES[tag]():
+        if date.fromisoformat(b["start"]) > today:
+            continue                                        # announced, not running yet
+        en = [names[h] for h in b["name"].split("・") if h in names]
+        if en:
+            b["agents"], b["en"] = en, " & ".join(en)
+        b["source_url"] = b.pop("src", None)
+        out.append(b)
+    mark_reruns(out, True, tag)
+    art = {}
+    for b in sorted(out, key=lambda x: x["start"]):         # a standard-pool rate-up is never a debut
+        b["rerun"] = b["rerun"] or bool(b.pop("standard", False))
+        head = b["name"].split("・")[0]
+        if b.get("banner_img"):
+            art.setdefault(head, b["banner_img"])
+        elif head in art:                                   # reruns from patch notes carry no art:
+            b["banner_img"] = art[head]                     # reuse the character's earlier banner
+    return out
+
+
 def _month_list(d, ym):
     return [d.get(k) for k in range(1, (max(d) if d else 0) + 1)]
 
@@ -410,7 +538,7 @@ def main():
     for tag in only:
         meta = GAMES[tag]
         try:
-            banners = scrape_game(tag, meta)
+            banners = scrape_official(tag, meta) if meta.get("official") else scrape_game(tag, meta)
         except Exception as e:
             print(f"[{tag}] FAILED: {e}", file=sys.stderr)
             continue
@@ -429,12 +557,16 @@ def main():
             print(f"[{tag}] daily rank series on {got}/{len(banners)} banners")
         except Exception as e:
             print(f"[{tag}] rank-series failed (non-fatal): {e}", file=sys.stderr)
+        if meta.get("official"):
+            official_revenue(meta["apid"], banners, monthly)
         out = {
             "game": tag,
             "name": meta["name"],
             "jp": meta["jp"],
             "unit": "億G",
-            "source": page_url(meta["page"]),
+            "source": meta["official"] if meta.get("official") else page_url(meta["page"]),
+            # banner list from the official notices, figures rebuilt from game-i's daily data
+            "banners_from": "official" if meta.get("official") else "game-i",
             "updated": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
             "count": len(banners),
             "now": now,

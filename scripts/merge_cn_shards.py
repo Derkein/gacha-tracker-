@@ -168,7 +168,7 @@ def main():
     ap.add_argument("shards", nargs="+")
     ap.add_argument("--index", help="archive index, to report missing months")
     ap.add_argument("--out", default="data/cn_revenue.json")
-    ap.add_argument("--tracked", default="genshin,hsr,zzz,wuwa,nte,endfield,uma")
+    ap.add_argument("--tracked", default="genshin,hsr,zzz,wuwa,nte,endfield,uma,stellasora,czn")
     args = ap.parse_args()
 
     paths = []
@@ -218,8 +218,10 @@ def main():
     slim["note"] = ("Slim per-game view of cn_revenue.json for the site; the full "
                     "archive with every charted game stays in cn_revenue.json.")
     slim["games"] = {}
+    # site tags whose CN rows are still keyed by the chart's Chinese title
+    SLIM_ALIAS = {"stellasora": "星塔旅人", "czn": "卡厄斯梦境"}
     for slug in tracked:
-        g = merged["games"].get(slug)
+        g = merged["games"].get(slug) or merged["games"].get(SLIM_ALIAS.get(slug, ""))
         if not g:
             continue
         slim["games"][slug] = {
