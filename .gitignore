@@ -14,11 +14,22 @@ __pycache__/
 #  data/qimai.json + data/qimai_daily are committed. build_qimai.py — a pure, cookie-free
 #  rebuild of that data — stays tracked for provenance.)
 scripts/.qimai_cookie*
+scripts/.qimai_accounts.json
 scripts/qimai_gui.py
 scripts/fetch_qimai_today.py
 scripts/fetch_qimai_ranks.py
 scripts/qimai_daily.ps1
 qimai_daily.bat
+
+# one-click daily fetch (auto_daily.py): per-account persistent browser profiles,
+# optional credentials.json, per-day quota state, diandian sniff dumps — local only.
+# Diandian fallback numbers are a different model/currency: kept as a separate,
+# local-only series until the owner decides to publish them.
+scripts/auto_daily.py
+scripts/diandian_fetch.py
+qimai_auto.bat
+scripts/.auto/
+data/diandian_daily/
 
 # CN scrape working files (the merged data/cn_revenue.json + cn_monthly.json are committed)
 data/cn_shards/
