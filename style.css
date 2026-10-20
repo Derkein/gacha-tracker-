@@ -1253,3 +1253,7 @@ body[data-agmode="banner"] .ag-row{grid-template-columns:206px 1fr 196px}
   .cmp-lab-t{font-size:11px}
   .cmp-mh-nm{font-size:10.5px}
 }
+
+/* daily-vs-monthly note (official-source games) */
+.grnote .grhead{display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap; margin-bottom:5px}
+.grnote .grseg button{font-size:11.5px; padding:4px 10px}

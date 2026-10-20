@@ -12,7 +12,7 @@
 <title>Gacha Revenue Tracker</title>
 <meta name="description" content="Estimated gacha banner revenue over time for Zenless Zone Zero, Honkai: Star Rail, Wuthering Waves, Genshin Impact and Arknights: Endfield. Auto-updated from game-i.daa.jp.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>%F0%9F%8E%B0</text></svg>">
-<link rel="stylesheet" href="style.css?v=330">
+<link rel="stylesheet" href="style.css?v=332">
 </head>
 <body>
 <div class="wrap">
@@ -117,6 +117,14 @@
   </div>
   <div class="qmnote" id="qmnote" hidden>
     <b>Estimated China iPhone revenue.</b> From <a href="https://qimai.cn/" target="_blank" rel="noopener">Qimai&nbsp;(七麦)</a>'s daily <b>China App&nbsp;Store gross</b> revenue estimate, in <b>US$</b> — a model figure ("仅供参考"), iPhone only. Unlike Sensor Tower and CN this is a <b>daily</b> source like game-i, so each banner's total is summed <em>directly</em> from its run days (each concurrent day split between the running banners the same way game-i splits it) — no monthly-share guess. It is <b>China iOS only</b>, so it is smaller than, and not comparable to, the worldwide (Sensor&nbsp;Tower) or all-platform (CN) layers, or game-i's Japan. Gathered on a rotation under Qimai's free 3-app/day cap, so newer days lag; games without Qimai data don't show this toggle.
+  </div>
+  <div class="stnote grnote" id="grnote" hidden>
+    <div class="grhead"><b>Daily or monthly?</b>
+      <div class="seg grseg" id="revMode">
+        <button data-revmode="daily" class="on" title="game-i's own rule: a banner only earns on days the game is in Japan's iOS top 200">Daily · game-i rule</button>
+        <button data-revmode="month" title="Every day of each month goes to the banners running that day, so the banners add up to game-i's full monthly total">Monthly share</button>
+      </div></div>
+    <span id="grtext"></span>
   </div>
   <div class="chartwrap" id="chartwrap"><div class="chart" id="chart"><div class="loading">Loading…</div></div></div>
   <div class="tablewrap" id="tablewrap" hidden></div>
@@ -410,6 +418,6 @@
 
 <div class="lightbox" id="lightbox" hidden><img id="lightboxImg" src="" alt=""></div>
 
-<script src="app.js?v=330"></script>
+<script src="app.js?v=332"></script>
 </body>
 </html>

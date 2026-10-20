@@ -335,7 +335,9 @@ def official_revenue(apid, banners, monthly):
          CZN banners game-i did list: 2.14 / 1.46 against its 2.16 / 1.74 億G;
       3. a day is split between the banners running that day, the first day weighted
          +80% and the last -80% (game-i's own ガチャ売上分析 rules).
-    A banner that never reached the top 200 therefore earns 0, as it would on game-i."""
+    A banner that never reached the top 200 therefore earns 0, as it would on game-i.
+    `rev_month` is the same split over EVERY day (the below-chart days at game-i's 推測 rank),
+    so the banners add up to game-i's whole monthly total — the site's "Monthly share" toggle."""
     today = _jst_now().date()
     spans = [(b, date.fromisoformat(b["start"]), date.fromisoformat(b["end"])) for b in banners]
     day_val = {}
@@ -351,17 +353,21 @@ def official_revenue(apid, banners, monthly):
         for d, v in w.items():
             day_val[date(y, m, d)] = tot * v / ws
     for b in banners:
-        b["rev"] = 0.0
+        b["rev"] = b["rev_month"] = 0.0
     for b, s, e in spans:
-        for i, r in enumerate(b.get("rank_series") or []):
+        rs = b.get("rank_series") or []
+        for i in range((min(e, today) - s).days + 1):
             d = s + timedelta(days=i)
-            if r is None or d not in day_val:               # below the chart: game-i adds nothing
+            if d not in day_val:
                 continue
             on = [(x, xs, xe) for x, xs, xe in spans if xs <= d <= xe]
             wt = lambda xs, xe: 1.8 if d == xs and xs != xe else (0.2 if d == xe else 1.0)
-            b["rev"] += day_val.get(d, 0.0) * wt(s, e) / sum(wt(xs, xe) for _, xs, xe in on)
+            share = day_val[d] * wt(s, e) / sum(wt(xs, xe) for _, xs, xe in on)
+            b["rev_month"] += share                         # every day: the month shared out
+            if i < len(rs) and rs[i] is not None:           # game-i's rule: top-200 days only
+                b["rev"] += share
     for b in banners:
-        b["rev"] = round(b["rev"], 4)
+        b["rev"], b["rev_month"] = round(b["rev"], 4), round(b["rev_month"], 4)
     # game-i's two rankings: within the calendar year, and all-time
     for i, b in enumerate(sorted(banners, key=lambda x: -x["rev"])):
         b["cum"], b["cumtot"] = i + 1, len(banners)

@@ -3,7 +3,7 @@ const GAME_ACCENT = {          // per-game hue (used for bars/dots without a sam
   zzz:"#e0a400", hsr:"#8a7bd8", wuwa:"#2fb6c0", genshin:"#d8a24a", endfield:"#e07b3a", nte:"#d94f8a",
   uma:"#3fb98f", stellasora:"#5aa9e6", czn:"#d2463c",
 };
-const state = { games:[], tag:null, data:null, reported:null, cn:null, qimai:null, mode:"time", table:false, reverse:false, bracket:0, tabsExpanded:false, graphYear:"all", graphDim:"year", matchHigh:true, monthYear:"all", periodSort:"timeline", dataSource:"gamei", search:"", agreeMode:"month", compare:{picks:[], sources:{}, chart:"jp"} };
+const state = { revMode:"daily", games:[], tag:null, data:null, reported:null, cn:null, qimai:null, mode:"time", table:false, reverse:false, bracket:0, tabsExpanded:false, graphYear:"all", graphDim:"year", matchHigh:true, monthYear:"all", periodSort:"timeline", dataSource:"gamei", search:"", agreeMode:"month", compare:{picks:[], sources:{}, chart:"jp"} };
 
 // Major game-version (X.0) launch dates, JST — used to bucket banners into 1.X / 2.X
 // groups. Only version-based games have these; sourced from each game's official
@@ -18,6 +18,12 @@ const VERSIONS = {
   nte:     [["1.X","2026-04-29"]],
 };
 const hasVersions = tag => !!VERSIONS[tag];
+function versionOf(b){
+  const v=VERSIONS[state.tag]; if(!v) return null;
+  let cur=v[0][0];
+  for(const [label,date] of v){ if(b.start>=date) cur=label; else break; }
+  return cur;
+}
 // Games whose art is a tall character sheet rather than a wide banner (CZN's official
 // introduction sheets, in two templates: 1200x1350 and 1700x2550). A wide crop of one lands
 // on the chest, so the image is sized from the sheet's OWN proportions to show the same
@@ -38,6 +44,33 @@ function artFit(img){
   const url=esc(img.getAttribute("src"));
   if(!SHEET_DIM[url]) SHEET_DIM[url]=[img.naturalWidth, img.naturalHeight];
   img.setAttribute("style", sheetStyle(img.dataset.sheet, url));
+}
+// ---- daily vs monthly (official-source games) -----------------------------------
+// game-i only credits a banner on days the game is in Japan's iOS top 200, but its MONTHLY
+// total keeps counting the days below it. Stella Sora / CZN spend much of their life below
+// the chart, so the two diverge a lot. Each banner carries both: `rev` (game-i's rule) and
+// `rev_month` (every day of the month shared out). The toggle picks one; everything —
+// bars, ranks, the by-Month split, the other tabs' shares — is rebuilt from it.
+function applyRevMode(data){
+  if(!data || data.banners_from!=="official") return;
+  const B=data.banners.filter(b=>!b._synthetic);
+  for(const b of B){ if(b._revDaily===undefined) b._revDaily=b.rev;
+    b.rev = state.revMode==="month" && b.rev_month!=null ? b.rev_month : b._revDaily; }
+  [...B].sort((x,y)=>y.rev-x.rev).forEach((b,i)=>{ b.cum=i+1; b.cumtot=B.length; });
+  for(const y of new Set(B.map(b=>b.year))){
+    const yr=B.filter(b=>b.year===y).sort((x,z)=>z.rev-x.rev); yr.forEach((b,i)=>{ b.yrank=i+1; b.ytot=yr.length; }); }
+}
+function grNote(show){
+  const el=$("#grnote"); if(!el) return;
+  const on = show && state.data && state.data.banners_from==="official";
+  el.hidden=!on; if(!on) return;
+  const B=state.data.banners.filter(b=>!b._synthetic), mo=state.data.monthly||{};
+  const daily=B.reduce((a,b)=>a+(b._revDaily??b.rev),0), month=Object.values(mo).reduce((a,v)=>a+v,0);
+  const zero=B.filter(b=>!(b._revDaily??b.rev)).length;
+  el.querySelectorAll("[data-revmode]").forEach(x=>x.classList.toggle("on",x.dataset.revmode===state.revMode));
+  $("#grtext").innerHTML = state.revMode==="daily"
+    ? `${esc(gameName())} spends much of its time <b>below Japan's iOS top&nbsp;200</b>, and game-i only credits a banner on days the game is <b>on</b> the chart — so these banners add up to just <b>${G(daily)}</b> of the <b>${G(month)}</b> game-i counts for the game month by month${zero?`, and ${zero} of them show ¥0 because the game never charted during their run`:""}. game-i's monthly totals keep counting the days below the chart (from its estimated rank there), which is why the two diverge so much. See <b>By Month</b> for the full monthly figures, or switch to <b>Monthly share</b>.`
+    : `<b>Monthly share:</b> every day of each month — including the days below the top&nbsp;200, valued from game-i's estimated rank — goes to the banners running that day (split equally, first day +80%, last day −80%), so the banners add up to game-i's full <b>${G(month)}</b>. That accounts for all of the money, but each banner's figure is then <b>our split of game-i's monthly total</b>, not a number game-i itself would show: on game-i, a banner earns nothing on days below the chart.`;
 }
 // measure every sheet of a sheet-art game up front, so even a banner's FIRST hover is framed
 function preloadSheets(tag, data){
@@ -762,6 +795,7 @@ async function selectGame(tag){
   catch(e){ if(seq===_loadSeq) showError(e, ()=>selectGame(tag)); return; }
   if(seq!==_loadSeq) return;   // a newer tab click won this race
   state.data = data;
+  applyRevMode(data);
   preloadSheets(tag, data);
   // rank by revenue *within our dataset* — game-i's cum is against the game's full
   // history (often far larger than what we scrape), so it isn't 1..N here.
@@ -1720,6 +1754,7 @@ function render(){
   // note whenever its source is selected and there's a chart under it.
   const showNote = !state.table && !rankByScored();      // a scored ranking explains its own sources
   $("#stnote").hidden = !(showNote && state.dataSource==="st");
+  grNote(showNote && state.dataSource==="gamei");
   $("#cnnote").hidden = !(showNote && state.dataSource==="cn");
   if($("#qmnote")) $("#qmnote").hidden = !(showNote && state.dataSource==="qimai");
   if(state.table){ buildTable(); return; }
@@ -4318,6 +4353,10 @@ function setMode(m){
   if(!state.table) render();
 }
 $("#bSort").onchange=function(){ state.periodSort = this.value; updateDirLabel(); if(!state.table) render(); };
+$("#revMode").querySelectorAll("[data-revmode]").forEach(btn=>btn.onclick=()=>{
+  if(state.revMode===btn.dataset.revmode) return;
+  state.revMode=btn.dataset.revmode; selectGame(state.tag);   // rebuild every derived view from the new figures
+});
 $("#dataSrc").querySelectorAll("[data-src]").forEach(btn=>btn.onclick=()=>{
   state.dataSource=btn.dataset.src;
   $("#dataSrc").querySelectorAll("[data-src]").forEach(b=>b.classList.toggle("on",b===btn));
