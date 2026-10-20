@@ -346,6 +346,11 @@ def official_revenue(apid, banners, monthly):
         y, m = map(int, ym.split("/"))
         tot = monthly.get(f"{y}-{m:02d}")
         est = month_est(apid, ym)
+        if tot and not any(v is not None for v in est.values()):
+            # game-i's daily feed came back empty (timeout / its アタック対策 throttling): a month
+            # with revenue but no ranks would read as ¥0 for every banner. Fail loudly instead,
+            # so main() keeps the last good data file.
+            raise RuntimeError(f"game-i daily feed returned no ranks for {ym}")
         w = {d: rank_value(r) for d, r in est.items() if r is not None}
         ws = sum(w.values())
         if not tot or ws <= 0:
@@ -603,8 +608,19 @@ def main():
             print(f"[{tag}] daily rank series on {got}/{len(banners)} banners")
         except Exception as e:
             print(f"[{tag}] rank-series failed (non-fatal): {e}", file=sys.stderr)
+            if meta.get("official"):
+                continue                     # its revenue is BUILT from those ranks: keep the old file
         if meta.get("official"):
-            official_revenue(meta["apid"], banners, monthly)
+            # every figure of an official-source game is rebuilt from game-i's daily data, so a
+            # failed / empty feed must not overwrite yesterday's numbers with zeros
+            if not monthly:
+                print(f"[{tag}] FAILED: no monthly table from game-i — keeping the previous data", file=sys.stderr)
+                continue
+            try:
+                official_revenue(meta["apid"], banners, monthly)
+            except Exception as e:
+                print(f"[{tag}] FAILED: {e} — keeping the previous data", file=sys.stderr)
+                continue
         out = {
             "game": tag,
             "name": meta["name"],

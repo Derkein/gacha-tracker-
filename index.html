@@ -12,7 +12,7 @@
 <title>Gacha Revenue Tracker</title>
 <meta name="description" content="Estimated gacha banner revenue over time for Zenless Zone Zero, Honkai: Star Rail, Wuthering Waves, Genshin Impact and Arknights: Endfield. Auto-updated from game-i.daa.jp.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>%F0%9F%8E%B0</text></svg>">
-<link rel="stylesheet" href="style.css?v=336">
+<link rel="stylesheet" href="style.css?v=337">
 </head>
 <body>
 <div class="wrap">
@@ -202,6 +202,14 @@
     </ul>
     <p style="margin-top:6px">The published figures bear this out: adding up every banner in a year comes to <b>88–98% of game-i's own monthly totals, never more</b> (the gap is days no banner was listed), and two banners on <b>exactly</b> the same dates carry <b>exactly equal</b> figures — which is what an equal split produces. game-i's own summary of its precision: <i>どこまでいってもどんぶり勘定です</i> — “it's rough accounting however you slice it.”</p>
     <p style="margin-top:6px">On the charts, a <b>hatched section of a bar</b> (and a <b>“▨ shared” tag</b>) marks the portion of a run that <b>overlapped another listed banner</b> — i.e. revenue that was split rather than earned alone. This shows up mostly on games that run several banners at once (like Umamusume); HoYo titles usually merge simultaneous characters into one “A&amp;B” banner, so the split happens inside a single entry and the bar stays solid.</p>
+
+    <h3 id="giDailyMonthly">Why a game's banners don't add up to its monthly total</h3>
+    <p>game-i publishes two numbers that are built from the same daily estimate but count different days, so they can disagree:</p>
+    <ul>
+      <li><b>A banner's figure</b> adds up the days that banner was running: each day's rank × that date's value, split equally with any banner running alongside it (first day +80%, last day −80%). It only grows while the game is <b>on the iOS top-grossing chart (top 200)</b> — from the day a game drops below #200 its banner totals stop moving.</li>
+      <li><b>The monthly total</b> (月次売上予測) is the <b>whole month</b> of the game: every day of it, including days when no banner is listed and days spent below #200, which game-i keeps valuing from its estimated rank beyond the chart.</li>
+    </ul>
+    <p>So the monthly total is never smaller. For a game that stays in the top 200 the difference is just the days with no listed banner: its banners come to <b>88–98%</b> of the monthly totals (above). For a game that spends weeks below #200 the gap gets large — ZZZ's October total kept rising about ¥5M a day after ZZZ left the chart on 10/5, while Roxy's banner stayed at ¥111M; Stella Sora's banners add up to under half of its monthly totals, and a run spent entirely below the chart shows ¥0. Months also don't line up one-to-one with banners: a banner that straddles two months takes a share of both, and the current month is still being added to. The <b>By Month</b> view always shows the monthly totals next to the banners.</p>
 
     <h3>Stella Sora and Chaos Zero Nightmare</h3>
     <p>game-i records both games' Japan top-grossing rank every day and publishes their monthly totals (月次売上予測), but it never made a banner page for either. Their banner lists come instead from each game's <b>official Japanese notices</b> — the <a href="https://stellasora.jp/news/" target="_blank" rel="noopener">Stella Sora news feed</a> and the <a href="https://page.onstove.com/chaoszeronightmare/jp" target="_blank" rel="noopener">Chaos Zero Nightmare community</a> — with English names from their English channels, and each banner's figure is rebuilt the way game-i builds its own: a day's share of game-i's monthly total, weighted by that day's rank, goes to whatever banners are running, split equally with the first day +80% and the last −80%. As on every game-i banner, only days on the iOS top-grossing chart (top 200) count: game-i's monthly total keeps growing while a game sits below the chart, but a banner's total stops (ZZZ's Roxy has stayed at ¥111M since ZZZ dropped below #200), so a banner that never reached the top 200 shows ¥0. On the two Chaos Zero Nightmare banners game-i did list this gives ¥214M and ¥146M against its ¥216M and ¥174M.</p>
@@ -418,6 +426,6 @@
 
 <div class="lightbox" id="lightbox" hidden><img id="lightboxImg" src="" alt=""></div>
 
-<script src="app.js?v=336"></script>
+<script src="app.js?v=337"></script>
 </body>
 </html>

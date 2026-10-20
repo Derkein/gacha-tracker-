@@ -60,6 +60,8 @@ function applyRevMode(data){
   for(const y of new Set(B.map(b=>b.year))){
     const yr=B.filter(b=>b.year===y).sort((x,z)=>z.rev-x.rev); yr.forEach((b,i)=>{ b.yrank=i+1; b.ytot=yr.length; }); }
 }
+// why game-i's two numbers differ — the short version of "How these numbers work"
+const grWhy = `<span class="grwhy"><b>Why the two differ:</b> game-i builds both from the same daily estimate, but a <b>banner</b> only counts its own days <b>while the game is in the top&nbsp;200</b>, whereas the <b>monthly total</b> counts <b>every day of the month</b> — days with no banner listed and days below the chart included (valued from game-i's estimated rank there). The more time a game spends below #200, the bigger the gap. <button class="infolink grwhylink" type="button">More in How these numbers work ›</button></span>`;
 function grNote(show){
   const el=$("#grnote"); if(!el) return;
   const on = show && state.data && state.data.banners_from==="official";
@@ -69,8 +71,8 @@ function grNote(show){
   const zero=B.filter(b=>!(b._revDaily??b.rev)).length;
   el.querySelectorAll("[data-revmode]").forEach(x=>x.classList.toggle("on",x.dataset.revmode===state.revMode));
   $("#grtext").innerHTML = state.revMode==="daily"
-    ? `${esc(gameName())} spends much of its time <b>below Japan's iOS top&nbsp;200</b>, and game-i only credits a banner on days the game is <b>on</b> the chart — so these banners add up to just <b>${G(daily)}</b> of the <b>${G(month)}</b> game-i counts for the game month by month${zero?`, and ${zero} of them show ¥0 because the game never charted during their run`:""}. game-i's monthly totals keep counting the days below the chart (from its estimated rank there), which is why the two diverge so much. See <b>By Month</b> for the full monthly figures, or switch to <b>Monthly share</b>.`
-    : `<b>Monthly share:</b> every day of each month — including the days below the top&nbsp;200, valued from game-i's estimated rank — goes to the banners running that day (split equally, first day +80%, last day −80%), so the banners add up to game-i's full <b>${G(month)}</b>. That accounts for all of the money, but each banner's figure is then <b>our split of game-i's monthly total</b>, not a number game-i itself would show: on game-i, a banner earns nothing on days below the chart.`;
+    ? `${esc(gameName())} spends much of its time <b>below Japan's iOS top&nbsp;200</b>, and game-i only credits a banner on days the game is <b>on</b> the chart — so these banners add up to just <b>${G(daily)}</b> of the <b>${G(month)}</b> game-i counts for the game month by month${zero?`, and ${zero} of them show ¥0 because the game never charted during their run`:""}. game-i's monthly totals keep counting the days below the chart (from its estimated rank there), which is why the two diverge so much. See <b>By Month</b> for the full monthly figures, or switch to <b>Monthly share</b>.${grWhy}`
+    : `<b>Monthly share:</b> every day of each month — including the days below the top&nbsp;200, valued from game-i's estimated rank — goes to the banners running that day (split equally, first day +80%, last day −80%), so the banners add up to game-i's full <b>${G(month)}</b>. That accounts for all of the money, but each banner's figure is then <b>our split of game-i's monthly total</b>, not a number game-i itself would show: on game-i, a banner earns nothing on days below the chart.${grWhy}`;
 }
 // measure every sheet of a sheet-art game up front, so even a banner's FIRST hover is framed
 function preloadSheets(tag, data){
@@ -1091,7 +1093,37 @@ function computeSharing(){
       with:[...withMap.entries()].sort((a,c)=>c[1]-a[1])
               .map(([o,d])=>({o, name:(o.agents&&o.agents.length?o.agents.join(" & "):o.name), days:d})) };
   }
+  computeSharingCN(all);
 }
+// The same overlap, on the CHINA calendar, for a game whose China edition ran its own banner
+// order (cnSchedule): there a banner's China run can be months away from its global one, so
+// the global overlap says nothing about who it shared China days with. Each banner's China run
+// is the window build_qimai gave it (qimai.json start + daily length); days are weighted by
+// the real Qimai figure. Used for the Qimai view's hatching and shared/solo split.
+function computeSharingCN(all){
+  const g=state.qimai&&state.qimai.games&&state.qimai.games[state.tag];
+  if(!g || !g.cn_schedule){ all.forEach(b=>{ delete b._shareCN; }); return; }
+  const DAY=864e5, win=b=>{ const e=g.banners[b._i]; if(!e||!e.daily||!e.daily.length) return null;
+    const s=Date.parse(e.start); return {s, e:s+(e.daily.length-1)*DAY, d:e.daily}; };
+  const W=new Map(all.map(b=>[b,win(b)]));
+  for(const b of all){
+    const w=W.get(b); if(!w){ b._shareCN=null; continue; }
+    let sharedDays=0, runDays=0, maxN=1, tot=0, shared=0; const withMap=new Map();
+    for(let t=w.s,i=0; t<=w.e; t+=DAY,i++){
+      runDays++; const v=w.d[i]||0; tot+=v;
+      // a changeover day (one run ends the day the other starts) isn't real sharing
+      const others=all.filter(o=>{ const x=W.get(o); return o!==b && x && x.s<=t && t<=x.e && x.s!==w.e && x.e!==w.s; });
+      if(others.length){ sharedDays++; shared+=v; maxN=Math.max(maxN,others.length+1); others.forEach(o=>withMap.set(o,(withMap.get(o)||0)+1)); }
+    }
+    const revFrac=tot?shared/tot:0;
+    b._shareCN={days:sharedDays, totalDays:runDays, maxN, revFrac, sharedRev:b.rev*revFrac, soloRev:b.rev*(1-revFrac),
+      on:sharedDays>=SHARE_MIN_DAYS,
+      with:[...withMap.entries()].sort((a,c)=>c[1]-a[1]).map(([o,d])=>({o, name:(o.agents&&o.agents.length?o.agents.join(" & "):o.name), days:d}))};
+  }
+}
+// the overlap figure that matches what's on screen: the China one in the Qimai view of a
+// cnSchedule game, game-i's global one everywhere else
+const shareFor = b => (state.dataSource==="qimai" && b._shareCN!==undefined) ? b._shareCN : b._share;
 
 // ---- bar rows (timeline / ranking) with FLIP reordering ----
 // value shown/ranked for a banner under the current data source (game-i yen vs Sensor Tower USD)
@@ -1111,7 +1143,7 @@ function rowHTML(b,rank,max){
   const c=barColor(b), [bl,bd]=barShades(c);
   const en=b.agents&&b.agents.length?b.agents.join(" & "):"";
   const rr=b.rerun?`<span class="rr" title="Rerun banner">↻ rerun</span>`:"";
-  const sh=b._share;
+  const sh=shareFor(b);
   const shSeg = sh&&sh.on
     ? `<span class="shared" style="width:${Math.min(100,Math.round(sh.revFrac*100))}%" title="~${Math.round(sh.revFrac*100)}% of this run's revenue was split equally with a concurrent banner"></span>` : "";
   let val, valStr;
@@ -2482,7 +2514,7 @@ function showTip(b,e){
   const rr=b.rerun?` <span class="rr">↻ rerun</span>`:"";
   const hint=(b.rank_series&&b.rank_series.length)
     ? `<div class="tiphint">▸ Click to see daily rankings during the run</div>` : "";
-  const sh=b._share;
+  const sh=shareFor(b);
   const shRow = sh&&sh.on
     ? `<dt>On its own</dt><dd>${G(sh.soloRev)}</dd>`
     + `<dt>While shared</dt><dd>${G(sh.sharedRev)}</dd>` : "";
@@ -5542,6 +5574,10 @@ function showInfoTab(which){
   const card=infoModal.querySelector(".modal-card"); if(card) card.scrollTop=0;
 }
 $("#infoToggle").querySelectorAll("[data-info]").forEach(btn=>btn.onclick=()=>showInfoTab(btn.dataset.info));
+// "More in How these numbers work" under the daily/monthly toggle: open game-i's page at that section
+document.addEventListener("click",e=>{ if(!e.target.closest(".grwhylink")) return;
+  showInfoTab("gamei"); infoModal.hidden=false;
+  const h=document.getElementById("giDailyMonthly"); if(h) setTimeout(()=>h.scrollIntoView({block:"start"}),30); });
 $("#infoBtn").onclick=()=>{ showInfoTab(state.dataSource==="st"?"st":state.dataSource==="cn"?"cn":state.dataSource==="qimai"?"qimai":"gamei"); infoModal.hidden=false; };
 // click a worked-example source image to enlarge it in a lightbox
 const lightbox=$("#lightbox"), lightboxImg=$("#lightboxImg");
