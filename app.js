@@ -2265,6 +2265,7 @@ function renderMonthly(){
   if(lowRank) html+=`<div class="mo-warn">⚠ Many of this game's banners fall <b>below game-i's trackable top&nbsp;200</b> within a few days. game-i counts those days as <b>¥0</b> even though the app is still selling, so its <b>monthly total undercounts</b> and the per-banner split is shaky — take everything here as ballpark.</div>`;
   const lead=cnLead(state.tag);
   if(lead) html+=`<div class="mo-warn">⚠ <b>${esc(state.data.name)}'s China server runs ${lead} days ahead of the global/JP schedule.</b> Each banner really earned this <b>Qimai · China iPhone</b> revenue ~${lead} days before its game-i window, but here it's <b>mapped to the matching global month</b> so it lines up with the game-i, Sensor&nbsp;Tower and CN¥ columns and the split still sums to the month. Open a banner's <b>Qimai</b> tab to see its true China dates.</div>`;
+  { const sc=cnSchedule(); if(sc) html+=`<div class="mo-warn">⚠ <b>${esc(state.data.name)}'s China edition ran its own banner order until ${esc(per(sc.sync))}</b> (it opened with Fei early, then Heidemarie, then Tenebria), then matched the global calendar. Each of those China runs' <b>Qimai · China iPhone</b> revenue is <b>mapped to that banner's global month</b> so it lines up with the game-i, Sensor&nbsp;Tower and CN¥ columns — e.g. Fei's China launch weeks (May–June) sit under July, when her global banner ran. Open a banner's <b>Qimai</b> tab for its real China dates.</div>`; }
   let curY=null;
   order.forEach(ym=>{
     const y=ym.slice(0,4), mo=+ym.slice(5,7);
@@ -3150,6 +3151,19 @@ const CN_SRC_NAME={qimai:"Qimai"};
 // build_qimai applies to the China revenue, so rank and revenue share one window.
 function cnLead(tag){ const g=state.qimai&&state.qimai.games&&state.qimai.games[tag||state.tag];
   return (g&&g.cn_lead)||0; }
+// A game whose China edition ran its OWN banner order for a while (build_qimai CN_SCHEDULE —
+// CZN launched in China with Fei early, then Heidemarie, then Tenebria, and has matched the
+// global calendar since `sync`). For a banner from before `sync`, its China run is the window
+// build_qimai gave it (qimai.json banners[i].start + daily length) — or none at all.
+function cnSchedule(tag){ const g=state.qimai&&state.qimai.games&&state.qimai.games[tag||state.tag];
+  return (g&&g.cn_schedule)||null; }
+function cnWindow(b){
+  const sc=cnSchedule(); if(!sc || b.start>=sc.sync) return null;
+  const e=state.qimai.games[state.tag].banners[b._i];
+  if(!e || !e.daily || !e.daily.length) return {none:true};
+  const z=new Date(e.start+"T00:00:00"); z.setDate(z.getDate()+e.daily.length-1);
+  return {start:e.start, end:z.getFullYear()+"-"+String(z.getMonth()+1).padStart(2,"0")+"-"+String(z.getDate()).padStart(2,"0")};
+}
 // A banner's last China day. When another banner STARTS on this one's end date (a same-day
 // handover — Endfield, Genshin, HSR... all do it), that day's China chart is the newcomer's
 // launch (Yvonne rerun's last day read #13 — that was Si), so it belongs to the incoming banner
@@ -3169,8 +3183,9 @@ function cnRunSeries(b){
   const iso=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
   const out=[]; let any=false;
   const lead=cnLead();   // shift the run window back to the banner's China dates
-  const d=new Date(b.start+"T00:00:00"), end=new Date(cnRunEnd(b)+"T00:00:00"), today=new Date();
-  if(lead){ d.setDate(d.getDate()-lead); end.setDate(end.getDate()-lead); }
+  const win=cnWindow(b); if(win&&win.none) return null;   // never ran in China
+  const d=new Date((win?win.start:b.start)+"T00:00:00"), end=new Date((win?win.end:cnRunEnd(b))+"T00:00:00"), today=new Date();
+  if(lead && !win){ d.setDate(d.getDate()-lead); end.setDate(end.getDate()-lead); }
   while(d<=end&&d<=today){
     const k=iso(d), day=cnCovered(state.tag,k) ? (R.days[k]||[200,"qimai"]) : null;
     if(day) any=true;
@@ -4063,7 +4078,9 @@ function bannerQimaiView(b){
   const qm=bannerQimai(b), na=`<span class="muted">n/a</span>`, r=qm.hasData?qimaiRankInfo(b):null;
   const scheduled=Math.round((Date.parse(b.end)-Date.parse(b.start))/864e5)+1;
   const lead=cnLead(state.tag);   // China server runs this many days ahead of game-i's global dates
-  const offWarn = lead ? `<p class="bm-note bm-warn">⚠ <b>${esc(gameName())}'s China server runs ${lead} days ahead of the global/JP schedule.</b> game-i tracks the global banner dates, so everything below is re-aligned onto this banner's <b>actual China run</b> (~${lead} days earlier): the dates on the chart and table are the China ones and won't match the game-i banner window, and the China total is this banner's real China performance — not whatever was selling globally on the same calendar days.</p>` : "";
+  const sc=cnSchedule(), win=cnWindow(b);
+  const schedWarn = sc ? `<p class="bm-note bm-warn">⚠ <b>${esc(gameName())}'s China edition ran its own banner order until ${esc(per(sc.sync))}</b>, then matched the global calendar. Before that, a banner's China revenue and rank are taken from <b>when that character's banner ran in China</b>, not its game-i (global) dates${win&&!win.none?` — here <b>${esc(per(win.start))} – ${esc(per(win.end))}</b>`:win&&win.none?` — <b>this banner never ran in China then</b>, so it has no China figures`:""}. China opened with Fei early, then Heidemarie, then Tenebria (official CN notices on TapTap).</p>` : "";
+  const offWarn = schedWarn || lead ? schedWarn + (lead ? `<p class="bm-note bm-warn">⚠ <b>${esc(gameName())}'s China server runs ${lead} days ahead of the global/JP schedule.</b> game-i tracks the global banner dates, so everything below is re-aligned onto this banner's <b>actual China run</b> (~${lead} days earlier): the dates on the chart and table are the China ones and won't match the game-i banner window, and the China total is this banner's real China performance — not whatever was selling globally on the same calendar days.</p>` : "") : "";
   const tiles=[
     [`Est. revenue${b.ongoing?" so far":""}`, qm.hasData?fmtUSD(qm.total):na],
     ["All-time rank ($)", r?`#${r.rank} / ${r.of}`:na],
@@ -4076,8 +4093,10 @@ function bannerQimaiView(b){
       <span><span class="l">Est. revenue${b.ongoing?" so far":""}</span><div class="v">${qm.hasData?fmtUSD(qm.total):na}</div></span>
       <span class="sub">China · iPhone · gross · Qimai's own estimate</span></div>
     ${qm.hasData ? placementLine(b, placeVal.qimai, false, "China iPhone revenue") : ""}`;
-  if(!qm.hasData) return `<div class="bm-stats">${tiles}</div>${head}
-    <p class="bm-note">No Qimai China-iPhone revenue for this banner — its game isn't in the Qimai set yet, or it ran before Qimai's daily data.</p>`;
+  if(!qm.hasData) return `<div class="bm-stats">${tiles}</div>${head}${schedWarn}
+    <p class="bm-note">No Qimai China-iPhone revenue for this banner — ${win&&win.none
+      ? "it had no banner of its own in China before the editions synced — at most a permanent-pool rate-up next to another banner, and those days count for that banner, as in game-i's own listing"
+      : "its game isn't in the Qimai set yet, or it ran before Qimai's daily data"}.</p>`;
   // build-up from the real daily series — same components as game-i's tab (burn analysis,
   // bars+cumulative chart, four-column daily table), but measured China dollars not a
   // rank reconstruction, and the rank column is the China iOS rank.

@@ -16,7 +16,7 @@ Output per game:
 Source daily files: data/qimai_daily/<tag>.json  ({first, daily[]}), one per game.
 Run from the gacha-tracker repo root (or anywhere — paths are absolute below).
 """
-import json, io, math, datetime, collections, os
+import json, io, math, datetime, collections, os, sys
 
 GT   = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))   # gacha-tracker/
 DAILY = os.path.join(GT, "data", "qimai_daily")                      # raw game-total daily lives here
@@ -33,6 +33,24 @@ GAMES = sorted(t[:-5] for t in os.listdir(DAILY)
 #   NTE (异环): CN and global run a deliberate, consistent 6-day offset, CN first
 #   (CN launched Apr 23 vs global Apr 29; v1.3 CN Aug 13 vs global Aug 19). Verified 2026-09.
 CN_LEAD = {"nte": 6}
+
+# A game whose China edition ran its OWN banner order for a while — not a constant offset, so
+# CN_LEAD can't describe it. Before `sync`, each China day goes to the banner of the character
+# China was actually running (matched to the site's banner by headliner name, folded like the
+# global list: the permanent-pool rate-ups China ran alongside are not banners); from `sync`
+# on, China follows the global calendar (lead 0). Global banners that never ran in China
+# before `sync` get no China revenue. Source: the CN edition's official TapTap feed
+# (taptap.cn/app/759688, 营救概率提升 notices).
+#   CZN (卡厄思梦境, CN by Tencent, launched 2026-05-28): opened with 绯/Fei EARLY (global
+#   7/08), then 海德玛丽/Heidemarie (global 4/29), 泰妮布里雅/Tenebria (global 6/17), and from
+#   7/29 (希露德/Hilde) runs the same banners on the same dates as global.
+CN_SCHEDULE = {
+    "czn": {"sync": "2026-07-29", "runs": [
+        ("フェイ",       "2026-05-28", "2026-06-16"),
+        ("ハイデマリ",   "2026-06-17", "2026-07-07"),
+        ("テネブレア",   "2026-07-08", "2026-07-28"),
+    ]},
+}
 
 RANK_VAL = [[1,5.90],[2,3.47],[3,3.03],[4,2.61],[5,2.03],[10,.9034],[50,.2584],[100,.1640],[200,.10]]
 def rankValue(r):
@@ -86,6 +104,8 @@ for tag in GAMES:
     banners = [b for b in data["banners"] if not b.get("_synthetic")]
     q = load_qimai(tag)
     lead = CN_LEAD.get(tag, 0)   # China server runs this many days ahead of global
+    sched = CN_SCHEDULE.get(tag)
+    sync = datetime.date.fromisoformat(sched["sync"]) if sched else None
     binfo = []
     for idx,b in enumerate(banners):
         s = b.get("rank_series") or []
@@ -107,8 +127,28 @@ for tag in GAMES:
                for o in banners):
             run_days -= 1
         n = min(len(s), run_days)
+        if not s:
+            # never in Japan's top 200, so game-i has no daily shape for it — but it still ran,
+            # and China may well have been spending on it: give it its run days (through
+            # today) with no game-i weight, so it takes an equal share of each China day
+            n = max(0, min(run_days, (datetime.date.today() - start).days + 1))
+            gid = [0.0] * n
         ext = min(lead, max(0, run_days - n)) if b.get("ongoing") else 0
-        binfo.append({"idx":idx, "start":start, "len":n, "gid":gid, "ext":ext})
+        bi = {"idx":idx, "start":start, "cn0":start - datetime.timedelta(days=lead),
+              "len":n, "gid":gid, "ext":ext}
+        if sched and start < sync:
+            bi["len"] = bi["ext"] = 0        # before China caught up: only CN_SCHEDULE runs count
+        binfo.append(bi)
+    if sched:
+        for head, a, z in sched["runs"]:
+            a, z = datetime.date.fromisoformat(a), datetime.date.fromisoformat(z)
+            cands = [bi for bi in binfo if banners[bi["idx"]]["name"].split("&")[0].split("・")[0] == head]
+            if not cands:
+                print(f"{tag}: CN_SCHEDULE {head} matches no banner", file=sys.stderr); continue
+            # the character's debut banner (a rerun, if any, is a separate global run)
+            bi = min(cands, key=lambda x: (banners[x["idx"]].get("rerun", False), x["start"]))
+            days = (z - a).days + 1
+            bi.update({"cn0": a, "len": days, "ext": 0, "gid": [1.0] * days, "sched": True})
     bmonthly = collections.defaultdict(lambda: collections.defaultdict(float))
     btotal   = collections.defaultdict(float)
     bdaily   = collections.defaultdict(dict)   # idx -> {j: value}
@@ -121,17 +161,24 @@ for tag in GAMES:
         # month differs from its global month. The DAILY series (below) stays on true China
         # dates for the banner modal; only the month rollup is re-aligned.
         gmo = ym(d + datetime.timedelta(days=lead))
-        gm[gmo]["qtot"] += inc
-        if inc <= 0: continue
         run = []
         for bi in binfo:
-            # China date d maps to run-day j of the banner's CHINA window, which starts
-            # `lead` days before its global start. gid (game-i's daily shape) is indexed by
-            # run-day, not calendar, so it stays valid under the shift.
-            j = (d-bi["start"]).days + lead
+            # China date d maps to run-day j of the banner's CHINA window (cn0: its global start
+            # shifted back by `lead`, or its CN_SCHEDULE start). gid (game-i's daily shape) is
+            # indexed by run-day, not calendar, so it stays valid under the shift.
+            j = (d - bi["cn0"]).days
             if 0 <= j < bi["len"] + bi["ext"]:
                 w = bi["gid"][j] if j < bi["len"] else 0.0   # ahead-tail days have no game-i weight
                 run.append((bi["idx"], j, w))
+        # a CN_SCHEDULE day is filed under the GLOBAL month of the banner it goes to (that
+        # banner's run-day j on the global calendar), as CN_LEAD files NTE's — so the by-Month
+        # view lists it with the banner's game-i month and the column still sums
+        sch = [r for r in run if next(b for b in binfo if b["idx"] == r[0]).get("sched")]
+        if sch:
+            b0 = next(b for b in binfo if b["idx"] == sch[0][0])
+            gmo = ym(b0["start"] + datetime.timedelta(days=sch[0][1]))
+        gm[gmo]["qtot"] += inc
+        if inc <= 0: continue
         if not run: continue
         wsum = sum(w for _,_,w in run)
         for idx,j,w in run:
@@ -185,7 +232,7 @@ for tag in GAMES:
         daily = [round(bdaily[idx].get(j,0.0)) for j in range(bi["len"] + bi["ext"])]
         # start = the banner's CHINA run start (global start shifted back by `lead`), so the
         # daily[] series and its labels line up with when the banner actually ran in China.
-        cn_start = bi["start"] - datetime.timedelta(days=lead)
+        cn_start = bi["cn0"]
         bans[str(idx)] = {"total":round(btotal[idx]), "start":cn_start.isoformat(),
                           "monthly":mo, "daily":daily}
     # first/last China date Qimai actually has data for, so the site can label a banner day
@@ -193,6 +240,7 @@ for tag in GAMES:
     # rather than a real ¥0 / below-#200 day.
     cov = sorted(q)
     out["games"][tag] = {"cn_lead": lead,
+                         **({"cn_schedule": {"sync": sched["sync"], "runs": [list(r) for r in sched["runs"]]}} if sched else {}),
                          "first": cov[0].isoformat() if cov else None,
                          "last":  cov[-1].isoformat() if cov else None,
                          "monthly": dict(sorted(monthly.items())), "banners": bans}

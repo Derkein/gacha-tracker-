@@ -575,7 +575,10 @@ def scrape_game(tag, meta):
 
 
 def main():
-    only = sys.argv[1:] or list(GAMES)
+    # --index-only: rebuild data/index.json from the data files already on disk, scraping
+    # nothing — used to settle a merge where the daily refresh and a local run both wrote it
+    index_only = "--index-only" in sys.argv
+    only = [] if index_only else ([a for a in sys.argv[1:] if not a.startswith("--")] or list(GAMES))
     DATA.mkdir(exist_ok=True)
     summary = []
     for tag in only:
@@ -647,7 +650,7 @@ def main():
     (DATA / "index.json").write_text(json.dumps({"games": games}, ensure_ascii=False, indent=1), encoding="utf-8")
     kept = len(games) - len(fresh)
     print(f"wrote data/index.json with {len(games)} games ({len(fresh)} fresh, {kept} kept from disk)")
-    if not fresh:
+    if not fresh and not index_only:
         print("WARNING: every game failed to scrape this run (game-i unreachable?)", file=sys.stderr)
         sys.exit(1)   # fail the CI step so a total outage doesn't commit a no-op 'refresh'
 
