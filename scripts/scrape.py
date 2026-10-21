@@ -46,10 +46,6 @@ GAMES = {
     "genshin":  {"page": "ガチャ分析/原神",                  "name": "Genshin Impact",     "jp": "原神",            "apid": "1517783697"},
     "endfield": {"page": "ガチャ分析/アークナイツ：エンドフィールド", "name": "Arknights: Endfield","jp": "アークナイツ：エンドフィールド", "apid": "6752642477"},
     "nte":      {"page": "ガチャ分析/NTE： Neverness to Everness", "name": "Neverness to Everness", "jp": "NTE： Neverness to Everness", "apid": "6754593077"},
-    # Top popular gacha titles game-i tracks (resolved by App Store id at runtime,
-    # so we don't hardcode long JP page names full of ：＆！／). Data-only: these
-    # use banner-art thumbnails, not character icons.
-    "uma":         {"apid": "1325457827", "name": "Umamusume: Pretty Derby"},
     # game-i keeps these apps' daily ranks and monthly totals but never made them a
     # ガチャ分析 page, so the banner list comes from the game's OFFICIAL JP news feed
     # (scripts/official_banners.py) and the revenue is rebuilt the way game-i builds its
@@ -58,6 +54,11 @@ GAMES = {
                     "official": "https://stellasora.jp/news/"},
     "czn":         {"apid": "6502326151", "name": "Chaos Zero Nightmare", "jp": "カオスゼロナイトメア",
                     "official": "https://page.onstove.com/chaoszeronightmare/jp"},
+    # Top popular gacha titles game-i tracks (resolved by App Store id at runtime,
+    # so we don't hardcode long JP page names full of ：＆！／). Data-only: these
+    # use banner-art thumbnails, not character icons. Kept last: the site's game rail
+    # follows this order.
+    "uma":         {"apid": "1325457827", "name": "Umamusume: Pretty Derby"},
 }
 
 UA = {"User-Agent": "Mozilla/5.0 (gacha-tracker; +https://github.com/)"}

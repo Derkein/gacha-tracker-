@@ -55,15 +55,6 @@
    "icon": "icons/games/nte.png"
   },
   {
-   "game": "uma",
-   "name": "Umamusume: Pretty Derby",
-   "jp": "ウマ娘 プリティーダービー",
-   "count": 216,
-   "total_oku": 2804.2,
-   "updated": "2026-10-20T20:04:19Z",
-   "icon": "icons/games/uma.png"
-  },
-  {
    "game": "stellasora",
    "name": "Stella Sora",
    "jp": "ステラソラ",
@@ -80,6 +71,15 @@
    "total_oku": 15.1,
    "updated": "2026-10-20T18:22:11Z",
    "icon": "icons/games/czn.png"
+  },
+  {
+   "game": "uma",
+   "name": "Umamusume: Pretty Derby",
+   "jp": "ウマ娘 プリティーダービー",
+   "count": 216,
+   "total_oku": 2804.2,
+   "updated": "2026-10-20T20:04:19Z",
+   "icon": "icons/games/uma.png"
   }
  ]
 }
