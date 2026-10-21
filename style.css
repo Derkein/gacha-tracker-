@@ -1260,3 +1260,6 @@ body[data-agmode="banner"] .ag-row{grid-template-columns:206px 1fr 196px}
 .grnote .grwhy{display:block; margin-top:7px; padding-top:7px; border-top:1px solid var(--border); color:var(--muted)}
 .grnote .grwhy b{color:var(--ink2)}
 .grnote .grwhylink{font-size:12px; margin-left:4px}
+.info-warn{margin:6px 0 10px; padding:8px 11px; border-radius:8px; border:1px solid rgba(214,140,40,.45); background:rgba(214,140,40,.10); font-size:13px}
+.grnote .recon-warn{margin:0 0 7px}
+.recon-warn .reconlink{font-size:12px; margin-left:4px}

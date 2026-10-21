@@ -12,7 +12,7 @@
 <title>Gacha Revenue Tracker</title>
 <meta name="description" content="Estimated gacha banner revenue over time for Zenless Zone Zero, Honkai: Star Rail, Wuthering Waves, Genshin Impact and Arknights: Endfield. Auto-updated from game-i.daa.jp.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>%F0%9F%8E%B0</text></svg>">
-<link rel="stylesheet" href="style.css?v=339">
+<link rel="stylesheet" href="style.css?v=341">
 </head>
 <body>
 <div class="wrap">
@@ -211,11 +211,13 @@
     </ul>
     <p>What game-i's published figures show is that it didn't: <b>a banner stops growing the day its game leaves the overall top 200, while the monthly total keeps growing.</b></p>
     <p>So the monthly total is never smaller than the banners. For a game that stays in the top 200 the difference is just days with no listed banner (its banners come to <b>88–98%</b> of the monthly totals, above). For a game that spends weeks below #200 the gap gets large — Stella Sora's banners add up to under half of its monthly totals, and a run spent entirely below the chart shows ¥0. A banner that straddles two months also takes a share of both, and the current month is still being added to. The <b>By Month</b> view always shows the monthly totals next to the banners.</p>
-    <p>Where this site needs a value for a day below the chart — the <b>Monthly share</b> view of Stella Sora and Chaos Zero Nightmare — it uses the faint line on game-i's own rank graphs (推測): game-i's estimate of the rank below #200, worked out from Android's top 600 and assuming the game doesn't climb back into the top 200.</p>
+    <p>Where this site needs a value for a day below the chart — the <b>Monthly share</b> view of a game whose banners aren't on game-i (below) — it uses the faint line on game-i's own rank graphs (推測): game-i's estimate of the rank below #200, worked out from Android's top 600 and assuming the game doesn't climb back into the top 200.</p>
 
-    <h3>Stella Sora and Chaos Zero Nightmare</h3>
-    <p>game-i records both games' Japan top-grossing rank every day and publishes their monthly totals (月次売上予測), but it never made a banner page for either. Their banner lists come instead from each game's <b>official Japanese notices</b> — the <a href="https://stellasora.jp/news/" target="_blank" rel="noopener">Stella Sora news feed</a> and the <a href="https://page.onstove.com/chaoszeronightmare/jp" target="_blank" rel="noopener">Chaos Zero Nightmare community</a> — with English names from their English channels, and each banner's figure is rebuilt the way game-i builds its own: a day's share of game-i's monthly total, weighted by that day's rank, goes to whatever banners are running, split equally with the first day +80% and the last −80%. As on every game-i banner, only days on the iOS top-grossing chart (top 200) count: game-i's monthly total keeps growing while a game sits below the chart, but a banner's total stops (ZZZ's Roxy has stayed at ¥111M since ZZZ dropped below #200), so a banner that never reached the top 200 shows ¥0. On the two Chaos Zero Nightmare banners game-i did list this gives ¥214M and ¥146M against its ¥216M and ¥174M.</p>
-    <p>Banners are listed the way game-i lists them: a rerun or standard-pool rate-up running alongside a new character isn't an entry of its own — its days belong to the new banner, as with WuWa's reruns, or Star Rail's "A & B" entries when both start and end together — and only gets its own entry for a stretch when it was the only banner up. Stella Sora genuinely runs two new Trekker banners at once for about a week each time (each lasts three weeks and the next starts after two), so most of its banners share days, split equally as game-i does.</p>
+    <h3 id="giOfficial">Games with banners not on game-i</h3>
+    <p class="info-warn">⚠ <b>These are reconstructions.</b> game-i publishes no banner figures for these games, so every per-banner number on their game-i tab is rebuilt by this site from game-i's daily ranks and monthly totals. Treat them as an estimate of what game-i would show, not as game-i's own numbers.</p>
+    <p>Some games are tracked by game-i — it records their Japan top-grossing rank every day and publishes their monthly totals (月次売上予測) — but it never made a banner page for them. Chaos Zero Nightmare is one. For these, the <b>banner list</b> comes from the game's <b>official Japanese notices</b> (for Chaos Zero Nightmare, <a href="https://page.onstove.com/chaoszeronightmare/jp" target="_blank" rel="noopener">its STOVE community</a>), with English names matched from its English channel, and each banner's figure is <b>rebuilt the way game-i builds its own</b>: a day's share of game-i's monthly total, weighted by that day's rank, goes to whatever banners are running, split equally with the first day +80% and the last −80%.</p>
+    <p>As on every game-i banner, a banner only earns on days the game is in the <b>overall top 200</b> (see above), so a run spent entirely below the chart shows ¥0; the <b>Monthly share</b> toggle shares out the whole month instead. Checked against the two Chaos Zero Nightmare banners game-i did once list, this gives ¥214M and ¥146M against its own ¥216M and ¥174M.</p>
+    <p>Banners are listed the way game-i lists them: a rerun or standard-pool rate-up running alongside a new character isn't an entry of its own — its days belong to the new banner, as with WuWa's reruns, or Star Rail's "A & B" entries when both start and end together — and only gets its own entry for a stretch when it was the only banner up. Where a game genuinely runs two new banners at once (Stella Sora overlaps each new Trekker banner with the next for about a week), they share those days, split equally as game-i does.</p>
 
     <h3>Does it change after day 1?</h3>
     <p><b>Yes — but mostly in the first few days.</b> Each day the banner is live adds that day's estimate from the game's current top-grossing rank. Because a banner spikes to its highest rank at launch and then steadily falls, <b>most of the increase lands in the opening days</b>; after that the daily additions get small and the total barely moves. It stops changing once the game drops out of the tracked ranking (below ~rank 200) or the banner ends.</p>
@@ -428,6 +430,6 @@
 
 <div class="lightbox" id="lightbox" hidden><img id="lightboxImg" src="" alt=""></div>
 
-<script src="app.js?v=339"></script>
+<script src="app.js?v=341"></script>
 </body>
 </html>

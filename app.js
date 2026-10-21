@@ -60,6 +60,8 @@ function applyRevMode(data){
   for(const y of new Set(B.map(b=>b.year))){
     const yr=B.filter(b=>b.year===y).sort((x,z)=>z.rev-x.rev); yr.forEach((b,i)=>{ b.yrank=i+1; b.ytot=yr.length; }); }
 }
+// shown on every game-i view of a game whose banners aren't on game-i (banners_from "official")
+const RECON_WARN = `<p class="bm-note bm-warn recon-warn">⚠ <b>Reconstruction.</b> game-i has no banner data for this game, so these banner figures are <b>rebuilt by this site</b> from game-i's daily ranks and monthly totals — an estimate of what game-i would show, not game-i's own numbers. <button class="infolink reconlink" type="button">How it's rebuilt ›</button></p>`;
 // why game-i's two numbers differ — the short version of "How these numbers work"
 const grWhy = `<span class="grwhy"><b>Why the two differ:</b> game-i's <b>monthly total</b> and its <b>banner figures</b> come from two parts of its system. Since 2021 the monthly total is built from a <b>"virtual top 1000"</b> (Apple's games and genre charts fill in places below #200), so it keeps counting a game that has left the overall chart. The banner analysis (2019) still uses the game's <b>overall top-200 rank</b>, so a banner stops growing the day its game drops below #200. The more time a game spends below #200, the bigger the gap. <button class="infolink grwhylink" type="button">More in How these numbers work ›</button></span>`;
 function grNote(show){
@@ -70,9 +72,9 @@ function grNote(show){
   const daily=B.reduce((a,b)=>a+(b._revDaily??b.rev),0), month=Object.values(mo).reduce((a,v)=>a+v,0);
   const zero=B.filter(b=>!(b._revDaily??b.rev)).length;
   el.querySelectorAll("[data-revmode]").forEach(x=>x.classList.toggle("on",x.dataset.revmode===state.revMode));
-  $("#grtext").innerHTML = state.revMode==="daily"
+  $("#grtext").innerHTML = RECON_WARN + (state.revMode==="daily"
     ? `${esc(gameName())} spends much of its time <b>below Japan's iOS top&nbsp;200</b>, and game-i only credits a banner on days the game is <b>on</b> the chart — so these banners add up to just <b>${G(daily)}</b> of the <b>${G(month)}</b> game-i counts for the game month by month${zero?`, and ${zero} of them show ¥0 because the game never charted during their run`:""}. game-i's monthly totals keep counting the days below the chart (from its estimated rank there), which is why the two diverge so much. See <b>By Month</b> for the full monthly figures, or switch to <b>Monthly share</b>.${grWhy}`
-    : `<b>Monthly share:</b> every day of each month — including the days below the top&nbsp;200, valued from game-i's estimated rank — goes to the banners running that day (split equally, first day +80%, last day −80%), so the banners add up to game-i's full <b>${G(month)}</b>. That accounts for all of the money, but each banner's figure is then <b>our split of game-i's monthly total</b>, not a number game-i itself would show: on game-i, a banner earns nothing on days below the chart.${grWhy}`;
+    : `<b>Monthly share:</b> every day of each month — including the days below the top&nbsp;200, valued from game-i's estimated rank — goes to the banners running that day (split equally, first day +80%, last day −80%), so the banners add up to game-i's full <b>${G(month)}</b>. That accounts for all of the money, but each banner's figure is then <b>our split of game-i's monthly total</b>, not a number game-i itself would show: on game-i, a banner earns nothing on days below the chart.${grWhy}`);
 }
 // measure every sheet of a sheet-art game up front, so even a banner's FIRST hover is framed
 function preloadSheets(tag, data){
@@ -2297,7 +2299,7 @@ function renderMonthly(){
   if(lowRank) html+=`<div class="mo-warn">⚠ Many of this game's banners fall <b>below game-i's trackable top&nbsp;200</b> within a few days. game-i counts those days as <b>¥0</b> even though the app is still selling, so its <b>monthly total undercounts</b> and the per-banner split is shaky — take everything here as ballpark.</div>`;
   const lead=cnLead(state.tag);
   if(lead) html+=`<div class="mo-warn">⚠ <b>${esc(state.data.name)}'s China server runs ${lead} days ahead of the global/JP schedule.</b> Each banner really earned this <b>Qimai · China iPhone</b> revenue ~${lead} days before its game-i window, but here it's <b>mapped to the matching global month</b> so it lines up with the game-i, Sensor&nbsp;Tower and CN¥ columns and the split still sums to the month. Open a banner's <b>Qimai</b> tab to see its true China dates.</div>`;
-  { const sc=cnSchedule(); if(sc) html+=`<div class="mo-warn">⚠ <b>${esc(state.data.name)}'s China edition ran its own banner order until ${esc(per(sc.sync))}</b> (it opened with Fei early, then Heidemarie, then Tenebria), then matched the global calendar. Each of those China runs' <b>Qimai · China iPhone</b> revenue is <b>mapped to that banner's global month</b> so it lines up with the game-i, Sensor&nbsp;Tower and CN¥ columns — e.g. Fei's China launch weeks (May–June) sit under July, when her global banner ran. Open a banner's <b>Qimai</b> tab for its real China dates.</div>`; }
+  { const sc=cnSchedule(); if(sc) html+=`<div class="mo-warn">⚠ <b>${esc(state.data.name)}'s China edition ran its own banner order until ${esc(per(sc.sync))}</b> (it opened with ${esc(cnScheduleOrder())}), then matched the global calendar. Each of those China runs' <b>Qimai · China iPhone</b> revenue is <b>mapped to that banner's global month</b> so it lines up with the game-i, Sensor&nbsp;Tower and CN¥ columns. Open a banner's <b>Qimai</b> tab for its real China dates.</div>`; }
   let curY=null;
   order.forEach(ym=>{
     const y=ym.slice(0,4), mo=+ym.slice(5,7);
@@ -3184,11 +3186,15 @@ const CN_SRC_NAME={qimai:"Qimai"};
 function cnLead(tag){ const g=state.qimai&&state.qimai.games&&state.qimai.games[tag||state.tag];
   return (g&&g.cn_lead)||0; }
 // A game whose China edition ran its OWN banner order for a while (build_qimai CN_SCHEDULE —
-// CZN launched in China with Fei early, then Heidemarie, then Tenebria, and has matched the
+// e.g. CZN launched in China with Fei early, then Heidemarie, then Tenebria, and has matched the
 // global calendar since `sync`). For a banner from before `sync`, its China run is the window
 // build_qimai gave it (qimai.json banners[i].start + daily length) — or none at all.
 function cnSchedule(tag){ const g=state.qimai&&state.qimai.games&&state.qimai.games[tag||state.tag];
   return (g&&g.cn_schedule)||null; }
+// "Fei, then Heidemarie, then Tenebria" — the China edition's own early order, from its schedule
+function cnScheduleOrder(){ const sc=cnSchedule(); if(!sc) return "";
+  return sc.runs.map(([head])=>{ const b=state.data.banners.find(x=>!x._synthetic && x.name.split(/[&・]/)[0]===head);
+    return b&&b.agents&&b.agents[0] ? b.agents[0] : head; }).join(", then "); }
 function cnWindow(b){
   const sc=cnSchedule(); if(!sc || b.start>=sc.sync) return null;
   const e=state.qimai.games[state.tag].banners[b._i];
@@ -4111,7 +4117,7 @@ function bannerQimaiView(b){
   const scheduled=Math.round((Date.parse(b.end)-Date.parse(b.start))/864e5)+1;
   const lead=cnLead(state.tag);   // China server runs this many days ahead of game-i's global dates
   const sc=cnSchedule(), win=cnWindow(b);
-  const schedWarn = sc ? `<p class="bm-note bm-warn">⚠ <b>${esc(gameName())}'s China edition ran its own banner order until ${esc(per(sc.sync))}</b>, then matched the global calendar. Before that, a banner's China revenue and rank are taken from <b>when that character's banner ran in China</b>, not its game-i (global) dates${win&&!win.none?` — here <b>${esc(per(win.start))} – ${esc(per(win.end))}</b>`:win&&win.none?` — <b>this banner never ran in China then</b>, so it has no China figures`:""}. China opened with Fei early, then Heidemarie, then Tenebria (official CN notices on TapTap).</p>` : "";
+  const schedWarn = sc ? `<p class="bm-note bm-warn">⚠ <b>${esc(gameName())}'s China edition ran its own banner order until ${esc(per(sc.sync))}</b>, then matched the global calendar. Before that, a banner's China revenue and rank are taken from <b>when that character's banner ran in China</b>, not its game-i (global) dates${win&&!win.none?` — here <b>${esc(per(win.start))} – ${esc(per(win.end))}</b>`:win&&win.none?` — <b>this banner never ran in China then</b>, so it has no China figures`:""}. China opened with ${esc(cnScheduleOrder())} (from its official China notices).</p>` : "";
   const offWarn = schedWarn || lead ? schedWarn + (lead ? `<p class="bm-note bm-warn">⚠ <b>${esc(gameName())}'s China server runs ${lead} days ahead of the global/JP schedule.</b> game-i tracks the global banner dates, so everything below is re-aligned onto this banner's <b>actual China run</b> (~${lead} days earlier): the dates on the chart and table are the China ones and won't match the game-i banner window, and the China total is this banner's real China performance — not whatever was selling globally on the same calendar days.</p>` : "") : "";
   const tiles=[
     [`Est. revenue${b.ongoing?" so far":""}`, qm.hasData?fmtUSD(qm.total):na],
@@ -4266,7 +4272,7 @@ function openBanner(b, keepStack){
 
   const gameiHead=`<h3>game-i — estimated Japan revenue</h3>
     ${state.data.banners_from==="official"
-      ? `<p class="bm-note bm-recon">game-i tracks ${esc(gameName())}'s Japan revenue every day but has no banner page for it, so this figure is <b>rebuilt the way game-i builds its own</b>: the banner dates come from the game's <a href="${esc(state.data.source)}" target="_blank" rel="noopener">official notices</a>${b.source_url?` (<a href="${esc(b.source_url)}" target="_blank" rel="noopener">this banner</a>)`:""}, and each day's share of game-i's monthly total (月次売上予測), weighted by that day's rank, goes to the banners running that day — split equally, first day +80%, last day −80%, as game-i does — and, as on game-i, only days in the iOS top 200 count, so a run spent below the chart earns nothing here. In game-i's "G" unit (1億G ≈ ¥100 million).</p>`
+      ? `${RECON_WARN}<p class="bm-note bm-recon">game-i tracks ${esc(gameName())}'s Japan revenue every day but has no banner page for it, so this figure is <b>rebuilt the way game-i builds its own</b>: the banner dates come from the game's <a href="${esc(state.data.source)}" target="_blank" rel="noopener">official notices</a>${b.source_url?` (<a href="${esc(b.source_url)}" target="_blank" rel="noopener">this banner</a>)`:""}, and each day's share of game-i's monthly total (月次売上予測), weighted by that day's rank, goes to the banners running that day — split equally, first day +80%, last day −80%, as game-i does — and, as on game-i, only days in the iOS top 200 count, so a run spent below the chart earns nothing here. In game-i's "G" unit (1億G ≈ ¥100 million).</p>`
       : `<p class="bm-note bm-recon">game-i publishes one figure per banner: its estimate of what the banner earned from mobile gacha <b>in Japan</b>, in its own "G" unit (1億G ≈ ¥100 million). It is the only per-banner revenue anyone publishes, which is why the other two tabs lean on its shape.</p>`}
     <div class="bm-headline">
       <span><span class="l">Est. revenue${b.ongoing?" so far":""}</span><div class="v">${G(b.rev)}</div></span>
@@ -5575,9 +5581,10 @@ function showInfoTab(which){
 }
 $("#infoToggle").querySelectorAll("[data-info]").forEach(btn=>btn.onclick=()=>showInfoTab(btn.dataset.info));
 // "More in How these numbers work" under the daily/monthly toggle: open game-i's page at that section
-document.addEventListener("click",e=>{ if(!e.target.closest(".grwhylink")) return;
+document.addEventListener("click",e=>{ const l=e.target.closest(".grwhylink,.reconlink"); if(!l) return;
   showInfoTab("gamei"); infoModal.hidden=false;
-  const h=document.getElementById("giDailyMonthly"); if(h) setTimeout(()=>h.scrollIntoView({block:"start"}),30); });
+  const h=document.getElementById(l.classList.contains("reconlink")?"giOfficial":"giDailyMonthly");
+  if(h) setTimeout(()=>h.scrollIntoView({block:"start"}),30); });
 $("#infoBtn").onclick=()=>{ showInfoTab(state.dataSource==="st"?"st":state.dataSource==="cn"?"cn":state.dataSource==="qimai"?"qimai":"gamei"); infoModal.hidden=false; };
 // click a worked-example source image to enlarge it in a lightbox
 const lightbox=$("#lightbox"), lightboxImg=$("#lightboxImg");
