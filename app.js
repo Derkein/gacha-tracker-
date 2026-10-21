@@ -61,7 +61,7 @@ function applyRevMode(data){
     const yr=B.filter(b=>b.year===y).sort((x,z)=>z.rev-x.rev); yr.forEach((b,i)=>{ b.yrank=i+1; b.ytot=yr.length; }); }
 }
 // why game-i's two numbers differ — the short version of "How these numbers work"
-const grWhy = `<span class="grwhy"><b>Why the two differ:</b> game-i builds both from the same daily estimate, but a <b>banner</b> only counts its own days <b>while the game is in the top&nbsp;200</b>, whereas the <b>monthly total</b> counts <b>every day of the month</b> — days with no banner listed and days below the chart included (valued from game-i's estimated rank there). The more time a game spends below #200, the bigger the gap. <button class="infolink grwhylink" type="button">More in How these numbers work ›</button></span>`;
+const grWhy = `<span class="grwhy"><b>Why the two differ:</b> game-i's <b>monthly total</b> and its <b>banner figures</b> come from two parts of its system. Since 2021 the monthly total is built from a <b>"virtual top 1000"</b> (Apple's games and genre charts fill in places below #200), so it keeps counting a game that has left the overall chart. The banner analysis (2019) still uses the game's <b>overall top-200 rank</b>, so a banner stops growing the day its game drops below #200 — game-i doesn't say so, but its numbers show it (ZZZ's October total kept rising after 10/5 while Roxy's banner froze). The more time a game spends below #200, the bigger the gap. <button class="infolink grwhylink" type="button">More in How these numbers work ›</button></span>`;
 function grNote(show){
   const el=$("#grnote"); if(!el) return;
   const on = show && state.data && state.data.banners_from==="official";
