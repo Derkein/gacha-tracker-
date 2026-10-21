@@ -12,7 +12,7 @@
 <title>Gacha Revenue Tracker</title>
 <meta name="description" content="Estimated gacha banner revenue over time for Zenless Zone Zero, Honkai: Star Rail, Wuthering Waves, Genshin Impact and Arknights: Endfield. Auto-updated from game-i.daa.jp.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>%F0%9F%8E%B0</text></svg>">
-<link rel="stylesheet" href="style.css?v=351">
+<link rel="stylesheet" href="style.css?v=352">
 </head>
 <body>
 <div class="wrap">
@@ -218,7 +218,7 @@
     </ul>
     <p>What game-i's published figures show is that it didn't: <b>a banner stops growing the day its game leaves the overall top 200, while the monthly total keeps growing.</b></p>
     <p>So the monthly total is never smaller than the banners. For a game that stays in the top 200 the difference is just days with no listed banner (its banners come to <b>88–98%</b> of the monthly totals, above). For a game that spends weeks below #200 the gap gets large — Stella Sora's banners add up to under half of its monthly totals, and a run spent entirely below the chart shows ¥0. A banner that straddles two months also takes a share of both, and the current month is still being added to. The <b>By Month</b> view always shows the monthly totals next to the banners.</p>
-    <p>Where this site needs a value for a day below the chart — the <b>Monthly share</b> view of a game whose banners aren't on game-i (below) — it uses the faint line on game-i's own rank graphs (推測): game-i's estimate of the rank below #200, worked out from Android's top 600 and assuming the game doesn't climb back into the top 200.</p>
+    <p>game-i also draws a <b>faint line</b> on its rank graphs below #200 (推測) — a <b>separate</b> estimate from the virtual top 1000, used only for those graphs: it's worked out from <b>Android's</b> top 600 with spline interpolation (AndroidのセルランTOP600及び数値解析を用いて), assumes the game won't climb back into the top 200 (上昇予測でも200位以内にはならない), and game-i doesn't say it feeds the monthly total. game-i doesn't publish a game's place in the virtual top 1000, so where this site needs a value for a day below the chart — the <b>Monthly share</b> view of a game whose banners aren't on game-i (below) — it uses that faint line, the nearest thing game-i does publish, only to weigh the days <em>within</em> a month against each other; the month's total is still game-i's own figure (<a href="https://note.com/game_i/n/nbdae77c08cee" target="_blank" rel="noopener">same note</a>).</p>
 
     <h3 id="giOfficial">Games with banners not on game-i</h3>
     <p class="info-warn">⚠ <b>These are reconstructions.</b> game-i publishes no banner figures for these games, so every per-banner number on their game-i tab is rebuilt by this site from game-i's daily ranks and monthly totals. Treat them as an estimate of what game-i would show, not as game-i's own numbers.</p>
@@ -437,6 +437,6 @@
 
 <div class="lightbox" id="lightbox" hidden><img id="lightboxImg" src="" alt=""></div>
 
-<script src="app.js?v=351"></script>
+<script src="app.js?v=352"></script>
 </body>
 </html>
