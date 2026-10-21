@@ -3,7 +3,7 @@ const GAME_ACCENT = {          // per-game hue (used for bars/dots without a sam
   zzz:"#e0a400", hsr:"#8a7bd8", wuwa:"#2fb6c0", genshin:"#d8a24a", endfield:"#e07b3a", nte:"#d94f8a",
   uma:"#3fb98f", stellasora:"#5aa9e6", czn:"#d2463c",
 };
-const state = { revMode:"daily", games:[], tag:null, data:null, reported:null, cn:null, qimai:null, mode:"time", table:false, reverse:false, bracket:0, tabsExpanded:false, graphYear:"all", graphDim:"year", matchHigh:true, monthYear:"all", periodSort:"timeline", dataSource:"gamei", search:"", agreeMode:"month", compare:{picks:[], sources:{}, chart:"jp"} };
+const state = { revMode:"daily", games:[], tag:null, data:null, reported:null, cn:null, qimai:null, mode:"time", table:false, reverse:false, bracket:0, graphYear:"all", graphDim:"year", matchHigh:true, monthYear:"all", periodSort:"timeline", dataSource:"gamei", search:"", agreeMode:"month", compare:{picks:[], sources:{}, chart:"jp"} };
 
 // Major game-version (X.0) launch dates, JST — used to bucket banners into 1.X / 2.X
 // groups. Only version-based games have these; sourced from each game's official
@@ -748,17 +748,7 @@ async function init(){
     showError(new Error("no games in the data index (a refresh may have failed)"), init);
     return;
   }
-  const tabs = $("#tabs"); tabs.innerHTML = "";
-  state.games.forEach(g=>{
-    const b=document.createElement("button"); b.className="tab"; b.dataset.tag=g.game;
-    b.innerHTML=`<span class="g">${g.name}</span><span class="t">${g.count} banners · ${G(g.total_oku)}</span>`;
-    b.onclick=()=>selectGame(g.game); tabs.appendChild(b);
-  });
-  // ResizeObserver fires after layout settles and on width changes; fonts.ready
-  // covers late font metrics. Deterministic width math avoids wrap-timing flakiness.
-  new ResizeObserver(layoutTabs).observe($("#tabs"));
-  addEventListener("resize", layoutTabs);
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(layoutTabs);
+  gpInit();
   // re-fit month-card banner names when the layout reflows (banner widths change)
   let _fitT; addEventListener("resize", ()=>{ clearTimeout(_fitT);
     _fitT=setTimeout(()=>{ if(document.querySelector("#chart .mcb")) fitBannerNames($("#chart")); }, 150); });
@@ -773,24 +763,98 @@ async function init(){
   }
 }
 
-// Collapse the game list to one no-wrap row with an "+N more" toggle. Collapsed is a
-// single line, so we count how many tabs fit by summing their widths (deterministic).
-function layoutTabs(){
-  const tabs=$("#tabs"), toggle=$("#tabsToggle");
-  if(!tabs.children.length || !tabs.clientWidth) return;
-  tabs.classList.toggle("collapsed", !state.tabsExpanded);
-  if(state.tabsExpanded){ toggle.hidden=false; toggle.textContent="Show less ▴"; return; }
-  let used=0, fit=0;
-  for(const t of tabs.children){ used += t.offsetWidth + 8; if(used > tabs.clientWidth && fit>0) break; fit++; }
-  const hidden = tabs.children.length - fit;
-  toggle.hidden = hidden<=0;
-  toggle.textContent = `+${hidden} more ▾`;
+// ---- game picker: a button naming the current game (opens a searchable list of every game,
+// recently viewed first) plus a rail of every game's App Store icon for one-click switching.
+// Nothing is hidden behind a "+N more" toggle however many games are tracked. ----
+const GP_RECENT="recentGames";
+let _gpKb=-1;
+function gpGame(tag){ return state.games.find(g=>g.game===tag); }
+function gpRecent(){
+  try{ return (JSON.parse(localStorage.getItem(GP_RECENT)||"[]")||[]).filter(t=>gpGame(t)); }catch(e){ return []; }
 }
-$("#tabsToggle").onclick=()=>{ state.tabsExpanded=!state.tabsExpanded; layoutTabs(); };
+function gpRemember(tag){
+  try{ localStorage.setItem(GP_RECENT, JSON.stringify([tag,...gpRecent().filter(t=>t!==tag)].slice(0,5))); }catch(e){}
+}
+function gpIcon(g, cls){
+  return g.icon ? `<img class="${cls}" src="${esc(g.icon)}" alt="" loading="lazy">`
+                : `<span class="${cls} gp-mono">${esc((g.name||"?")[0])}</span>`;
+}
+// what a query can match: English name, Japanese name, tag (hsr, czn…) and word initials (ww, nte)
+function gpMatch(g, q){
+  if(!q) return true;
+  const ini=(g.name||"").split(/[\s:：-]+/).filter(Boolean).map(w=>w[0]).join("");
+  return [g.name, g.jp||"", g.game, ini].some(s=>s.toLowerCase().includes(q));
+}
+function gpOpt(g){
+  const on=g.game===state.tag;
+  return `<button type="button" class="gp-opt${on?" on":""}" role="option" aria-selected="${on}" data-tag="${g.game}"
+    style="--gp-acc:${GAME_ACCENT[g.game]||"#e0a400"}">${gpIcon(g,"gp-oic")}
+    <span class="gp-otx"><b>${esc(g.name)}</b>${g.jp&&g.jp!==g.name?`<span>${esc(g.jp)}</span>`:""}</span>
+    <span class="gp-ost"><b>${G(g.total_oku)}</b><span>${g.count} banners</span></span></button>`;
+}
+function gpRender(){
+  const q=$("#gpSearch").value.trim().toLowerCase();
+  const all=[...state.games].sort((a,b)=>b.total_oku-a.total_oku).filter(g=>gpMatch(g,q));
+  let html="";
+  if(!q){
+    const rec=gpRecent().filter(t=>t!==state.tag).slice(0,3).map(gpGame);
+    if(rec.length) html+=`<div class="gp-hd">Recently viewed</div>${rec.map(gpOpt).join("")}<div class="gp-hd">All ${state.games.length} games · by game-i revenue</div>`;
+  }
+  html+= all.length ? all.map(gpOpt).join("") : `<div class="gp-none">No game matches “${esc(q)}”.</div>`;
+  $("#gpList").innerHTML=html;
+  _gpKb=-1;
+}
+function gpOpen(open){
+  const p=$("#gpPanel");
+  if(open===undefined) open=p.hidden;
+  p.hidden=!open; $("#gpBtn").setAttribute("aria-expanded", String(open));
+  if(open){ $("#gpSearch").value=""; gpRender(); $("#gpSearch").focus(); }
+}
+function gpPick(tag){ gpOpen(false); if(tag && tag!==state.tag) selectGame(tag); }
+function gpKeys(e){
+  const opts=[...$("#gpList").querySelectorAll(".gp-opt")];
+  if(e.key==="ArrowDown"||e.key==="ArrowUp"){
+    e.preventDefault(); if(!opts.length) return;
+    _gpKb = e.key==="ArrowDown" ? (_gpKb+1)%opts.length : (_gpKb<=0?opts.length:_gpKb)-1;
+    opts.forEach((o,i)=>o.classList.toggle("kb", i===_gpKb)); opts[_gpKb].scrollIntoView({block:"nearest"});
+  } else if(e.key==="Enter"){
+    e.preventDefault(); const o=opts[Math.max(0,_gpKb)]; if(o) gpPick(o.dataset.tag);
+  } else if(e.key==="Escape"){
+    e.preventDefault(); gpOpen(false); $("#gpBtn").focus();
+  }
+}
+function gpInit(){
+  $("#gpRail").innerHTML=state.games.map(g=>`<button type="button" class="gp-rb" data-tag="${g.game}" title="${esc(g.name)}"
+    aria-label="${esc(g.name)}" style="--gp-acc:${GAME_ACCENT[g.game]||"#e0a400"}">${gpIcon(g,"gp-ric")}</button>`).join("");
+  $("#gpRail").onclick=e=>{ const b=e.target.closest(".gp-rb"); if(b) gpPick(b.dataset.tag); };
+  $("#gpList").onclick=e=>{ const b=e.target.closest(".gp-opt"); if(b) gpPick(b.dataset.tag); };
+  $("#gpBtn").onclick=()=>gpOpen();
+  $("#gpSearch").addEventListener("input", gpRender);
+  $("#gpSearch").addEventListener("keydown", gpKeys);
+  document.addEventListener("pointerdown", e=>{ if(!$("#gpPanel").hidden && !$("#gp").contains(e.target)) gpOpen(false); });
+}
+// the button and rail follow whichever game is showing
+function gpShow(tag){
+  const g=gpGame(tag); if(!g) return;
+  $("#gpIc").innerHTML=gpIcon(g,"gp-bimg");
+  $("#gpName").textContent=g.name;
+  $("#gpSub").textContent=`${g.count} banners · ${G(g.total_oku)}`;
+  $("#gpRail").querySelectorAll(".gp-rb").forEach(b=>{ const on=b.dataset.tag===tag;
+    b.classList.toggle("on",on); b.setAttribute("aria-current", on?"true":"false"); });
+  // on a narrow screen the rail scrolls sideways: bring the current game into it (rail only,
+  // never the page)
+  const rail=$("#gpRail"), on=rail.querySelector(".gp-rb.on");
+  if(on && rail.scrollWidth>rail.clientWidth){
+    const l=on.offsetLeft, r=l+on.offsetWidth;          // .gp-rail is position:relative
+    if(l<rail.scrollLeft) rail.scrollLeft=l-8;
+    else if(r>rail.scrollLeft+rail.clientWidth) rail.scrollLeft=r-rail.clientWidth+8;
+  }
+  gpRemember(tag);
+}
 let _loadSeq = 0;
 async function selectGame(tag){
   state.tag=tag; location.hash=tag;
-  document.querySelectorAll(".tab").forEach(t=>t.classList.toggle("on",t.dataset.tag===tag));
+  gpShow(tag);
   document.documentElement.style.setProperty("--accent", GAME_ACCENT[tag]||"#e0a400");
   $("#chart").innerHTML=`<div class="loading">Loading ${tag.toUpperCase()}…</div>`;
   const seq = ++_loadSeq;

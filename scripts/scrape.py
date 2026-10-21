@@ -94,6 +94,28 @@ def fetch(url, tries=3):
             time.sleep(1.5 * (i + 1))
 
 
+def game_icon(tag):
+    """The game's App Store icon, for the site's game picker. Fetched once (Apple's lookup API
+    by the same apid game-i uses) and committed as icons/games/<tag>.png; None if unavailable."""
+    rel = f"icons/games/{tag}.png"
+    path = ROOT / rel
+    if path.exists():
+        return rel
+    try:
+        res = json.loads(fetch(f"https://itunes.apple.com/jp/lookup?id={GAMES[tag]['apid']}"))["results"]
+        art = res[0].get("artworkUrl512") or res[0]["artworkUrl100"]
+        art = re.sub(r"/[^/]+$", "/128x128bb.png", art)     # mzstatic renders any size by filename
+        raw = urllib.request.urlopen(urllib.request.Request(art, headers=UA), timeout=40).read()
+        if not raw.startswith(b"\x89PNG"):
+            raise ValueError("not a PNG")
+        path.parent.mkdir(exist_ok=True)
+        path.write_bytes(raw)
+        return rel
+    except Exception as e:
+        print(f"[{tag}] app icon unavailable (non-fatal): {e}", file=sys.stderr)
+        return None
+
+
 def page_url(page, year=None):
     u = BASE + "?" + urllib.parse.quote(page)
     if year:
@@ -638,7 +660,7 @@ def main():
         (DATA / f"{tag}.json").write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
         total = round(sum(b["rev"] for b in banners), 1)
         print(f"[{tag}] {len(banners)} banners, total {total} 億G -> data/{tag}.json")
-        summary.append({"game": tag, "name": meta["name"], "count": len(banners),
+        summary.append({"game": tag, "name": meta["name"], "jp": meta["jp"], "count": len(banners),
                         "total_oku": total, "updated": out["updated"]})
 
     # Rebuild the index from what's on disk, preferring this run's fresh summary
@@ -655,11 +677,13 @@ def main():
         if p.exists():
             try:
                 d = json.loads(p.read_text(encoding="utf-8"))
-                games.append({"game": tag, "name": d.get("name", tag), "count": len(d["banners"]),
+                games.append({"game": tag, "name": d.get("name", tag), "jp": d.get("jp"), "count": len(d["banners"]),
                               "total_oku": round(sum(b["rev"] for b in d["banners"]), 1),
                               "updated": d["updated"]})
             except Exception as e:
                 print(f"[{tag}] could not read existing data: {e}", file=sys.stderr)
+    for g in games:
+        g["icon"] = game_icon(g["game"])
     if not games:
         print("all scrapes failed and no existing data on disk — leaving index.json untouched", file=sys.stderr)
         sys.exit(1)

@@ -3,65 +3,83 @@
   {
    "game": "zzz",
    "name": "Zenless Zone Zero",
+   "jp": "ゼンレスゾーンゼロ",
    "count": 39,
    "total_oku": 225.1,
-   "updated": "2026-10-20T20:02:21Z"
+   "updated": "2026-10-20T20:02:21Z",
+   "icon": "icons/games/zzz.png"
   },
   {
    "game": "hsr",
    "name": "Honkai: Star Rail",
+   "jp": "崩壊：スターレイル",
    "count": 63,
    "total_oku": 815.0,
-   "updated": "2026-10-20T20:02:45Z"
+   "updated": "2026-10-20T20:02:45Z",
+   "icon": "icons/games/hsr.png"
   },
   {
    "game": "wuwa",
    "name": "Wuthering Waves",
+   "jp": "鳴潮",
    "count": 42,
    "total_oku": 160.0,
-   "updated": "2026-10-20T20:03:07Z"
+   "updated": "2026-10-20T20:03:07Z",
+   "icon": "icons/games/wuwa.png"
   },
   {
    "game": "genshin",
    "name": "Genshin Impact",
+   "jp": "原神",
    "count": 107,
    "total_oku": 1120.2,
-   "updated": "2026-10-20T20:03:33Z"
+   "updated": "2026-10-20T20:03:33Z",
+   "icon": "icons/games/genshin.png"
   },
   {
    "game": "endfield",
    "name": "Arknights: Endfield",
+   "jp": "アークナイツ：エンドフィールド",
    "count": 14,
    "total_oku": 44.9,
-   "updated": "2026-10-20T20:03:44Z"
+   "updated": "2026-10-20T20:03:44Z",
+   "icon": "icons/games/endfield.png"
   },
   {
    "game": "nte",
    "name": "Neverness to Everness",
+   "jp": "NTE： Neverness to Everness",
    "count": 9,
    "total_oku": 30.5,
-   "updated": "2026-10-20T20:03:52Z"
+   "updated": "2026-10-20T20:03:52Z",
+   "icon": "icons/games/nte.png"
   },
   {
    "game": "uma",
    "name": "Umamusume: Pretty Derby",
+   "jp": "ウマ娘 プリティーダービー",
    "count": 216,
    "total_oku": 2804.2,
-   "updated": "2026-10-20T20:04:19Z"
+   "updated": "2026-10-20T20:04:19Z",
+   "icon": "icons/games/uma.png"
   },
   {
    "game": "stellasora",
    "name": "Stella Sora",
+   "jp": "ステラソラ",
    "count": 22,
    "total_oku": 5.3,
-   "updated": "2026-10-20T18:20:10Z"
+   "updated": "2026-10-20T18:20:10Z",
+   "icon": "icons/games/stellasora.png"
   },
   {
    "game": "czn",
    "name": "Chaos Zero Nightmare",
+   "jp": "カオスゼロナイトメア",
    "count": 18,
    "total_oku": 15.1,
-   "updated": "2026-10-20T18:22:11Z"
+   "updated": "2026-10-20T18:22:11Z",
+   "icon": "icons/games/czn.png"
   }
  ]
 }

@@ -12,7 +12,7 @@
 <title>Gacha Revenue Tracker</title>
 <meta name="description" content="Estimated gacha banner revenue over time for Zenless Zone Zero, Honkai: Star Rail, Wuthering Waves, Genshin Impact and Arknights: Endfield. Auto-updated from game-i.daa.jp.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>%F0%9F%8E%B0</text></svg>">
-<link rel="stylesheet" href="style.css?v=343">
+<link rel="stylesheet" href="style.css?v=344">
 </head>
 <body>
 <div class="wrap">
@@ -35,9 +35,17 @@
     <span class="cmp-launch-go">Open ▸</span>
   </button>
 
-  <div class="tabsrow">
-    <nav class="tabs collapsed" id="tabs" aria-label="Games"></nav>
-    <button id="tabsToggle" class="ghost tabsbtn" hidden></button>
+  <div class="gp" id="gp">
+    <button type="button" class="gp-btn" id="gpBtn" aria-haspopup="dialog" aria-expanded="false" aria-controls="gpPanel">
+      <span class="gp-bic" id="gpIc"></span>
+      <span class="gp-btx"><span class="gp-k">Game</span><b id="gpName"></b><span class="gp-sub" id="gpSub"></span></span>
+      <span class="gp-chev" aria-hidden="true">▾</span>
+    </button>
+    <nav class="gp-rail" id="gpRail" aria-label="Games"></nav>
+    <div class="gp-panel" id="gpPanel" role="dialog" aria-label="Choose a game" hidden>
+      <input id="gpSearch" type="search" placeholder="Search games — English, Japanese or short name…" autocomplete="off" spellcheck="false" aria-controls="gpList">
+      <div class="gp-list" id="gpList" role="listbox" aria-label="Games"></div>
+    </div>
   </div>
   <div class="tiles" id="tiles"></div>
 
@@ -430,6 +438,6 @@
 
 <div class="lightbox" id="lightbox" hidden><img id="lightboxImg" src="" alt=""></div>
 
-<script src="app.js?v=343"></script>
+<script src="app.js?v=344"></script>
 </body>
 </html>
