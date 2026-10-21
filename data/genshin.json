@@ -4,13 +4,14 @@
  "jp": "原神",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E5%8E%9F%E7%A5%9E",
- "updated": "2026-10-20T20:03:33Z",
+ "banners_from": "game-i",
+ "updated": "2026-10-21T15:30:15Z",
  "count": 107,
  "now": {
-  "ios": 163,
-  "android": 40,
+  "ios": 164,
+  "android": 42,
   "month": 82,
-  "next_add": 9694222,
+  "next_add": 10166683,
   "ym": "2026/10",
   "ranks": {
    "prev": [
@@ -68,7 +69,7 @@
     139,
     167,
     175,
-    null,
+    164,
     null,
     null,
     null,
@@ -82,7 +83,7 @@
   }
  },
  "monthly": {
-  "2026-10": 3.45,
+  "2026-10": 3.55,
   "2026-09": 6.26,
   "2026-08": 6.04,
   "2026-07": 13.49,
@@ -5258,7 +5259,7 @@
    "name": "スカーク",
    "start": "2026-10-13",
    "end": "2026-11-03",
-   "rev": 1.12,
+   "rev": 1.21,
    "yrank": 14,
    "ytot": 14,
    "cum": 107,
@@ -5277,7 +5278,8 @@
     135,
     139,
     167,
-    175
+    175,
+    164
    ],
    "icons": [
     "https://enka.network/ui/UI_AvatarIcon_SkirkNew.png"

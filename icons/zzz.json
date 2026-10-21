@@ -298,5 +298,15 @@
   "icon": "https://enka.network/ui/zzz/IconRoleCircle68.png",
   "accent": "#e8e7ea",
   "en": "Roxy"
+ },
+ "セヴェリアン": {
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle1631.png",
+  "accent": "#e8e7ea",
+  "en": "Severian"
+ },
+ "フィオニー": {
+  "icon": "https://enka.network/ui/zzz/IconRoleCircle1641.png",
+  "accent": "#e8e7ea",
+  "en": "Phoenix"
  }
 }

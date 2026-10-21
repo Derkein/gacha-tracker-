@@ -5,13 +5,13 @@
  "unit": "億G",
  "source": "https://page.onstove.com/chaoszeronightmare/jp",
  "banners_from": "official",
- "updated": "2026-10-20T18:22:11Z",
+ "updated": "2026-10-21T15:33:40Z",
  "count": 18,
  "now": {
-  "ios": null,
-  "android": 175,
-  "month": 327,
-  "next_add": 5243389,
+  "ios": 21,
+  "android": 164,
+  "month": 228,
+  "next_add": 52622499,
   "ym": "2026/10",
   "ranks": {
    "prev": [
@@ -69,7 +69,7 @@
     null,
     null,
     null,
-    null,
+    21,
     null,
     null,
     null,
@@ -83,7 +83,7 @@
   }
  },
  "monthly": {
-  "2026-10": 0.7635,
+  "2026-10": 1.26,
   "2026-09": 1.19,
   "2026-08": 1.76,
   "2026-07": 0.9736,
@@ -138,15 +138,6 @@
    ],
    "rev": 2.124,
    "rev_month": 2.124,
-   "cum": 3,
-   "cumtot": 18,
-   "yrank": 3,
-   "ytot": 4,
-   "bar": "#bd1927",
-   "icons": [
-    "icons/faces/czn/2025-10-22-6f6fb4.webp"
-   ],
-   "accent": "#d7b399",
    "rev_ym": {
     "2025-10": 1.12,
     "2025-11": 1.004
@@ -154,7 +145,15 @@
    "rev_month_ym": {
     "2025-10": 1.12,
     "2025-11": 1.004
-   }
+   },
+   "cum": 3,
+   "cumtot": 18,
+   "yrank": 3,
+   "ytot": 4,
+   "icons": [
+    "icons/faces/czn/2025-10-22-6f6fb4.webp"
+   ],
+   "bar": "#bd1927"
   },
   {
    "name": "ユキ",
@@ -196,15 +195,6 @@
    ],
    "rev": 2.1395,
    "rev_month": 2.1395,
-   "cum": 2,
-   "cumtot": 18,
-   "yrank": 2,
-   "ytot": 4,
-   "bar": "#1749bf",
-   "icons": [
-    "icons/faces/czn/2025-11-12-c68980.webp"
-   ],
-   "accent": "#ff4600",
    "rev_ym": {
     "2025-11": 1.986,
     "2025-12": 0.1535
@@ -212,7 +202,15 @@
    "rev_month_ym": {
     "2025-11": 1.986,
     "2025-12": 0.1535
-   }
+   },
+   "cum": 2,
+   "cumtot": 18,
+   "yrank": 2,
+   "ytot": 4,
+   "icons": [
+    "icons/faces/czn/2025-11-12-c68980.webp"
+   ],
+   "bar": "#1749bf"
   },
   {
    "name": "チズル",
@@ -254,21 +252,20 @@
    ],
    "rev": 1.4593,
    "rev_month": 1.7777,
-   "cum": 5,
-   "cumtot": 18,
-   "yrank": 4,
-   "ytot": 4,
-   "bar": "#aa2d42",
-   "icons": [
-    "icons/faces/czn/2025-12-03-fbd43f.webp"
-   ],
-   "accent": "#e4491b",
    "rev_ym": {
     "2025-12": 1.4593
    },
    "rev_month_ym": {
     "2025-12": 1.7777
-   }
+   },
+   "cum": 5,
+   "cumtot": 18,
+   "yrank": 4,
+   "ytot": 4,
+   "icons": [
+    "icons/faces/czn/2025-12-03-fbd43f.webp"
+   ],
+   "bar": "#aa2d42"
   },
   {
    "name": "セレニエル",
@@ -310,15 +307,6 @@
    ],
    "rev": 3.1552,
    "rev_month": 3.2049,
-   "cum": 1,
-   "cumtot": 18,
-   "yrank": 1,
-   "ytot": 4,
-   "bar": "#5ea5e6",
-   "icons": [
-    "icons/faces/czn/2025-12-24-ff2662.webp"
-   ],
-   "accent": "#7caad9",
    "rev_ym": {
     "2025-12": 1.429,
     "2026-01": 1.7261
@@ -326,7 +314,15 @@
    "rev_month_ym": {
     "2025-12": 1.4788,
     "2026-01": 1.7261
-   }
+   },
+   "cum": 1,
+   "cumtot": 18,
+   "yrank": 1,
+   "ytot": 4,
+   "icons": [
+    "icons/faces/czn/2025-12-24-ff2662.webp"
+   ],
+   "bar": "#5ea5e6"
   },
   {
    "name": "ナージャ",
@@ -368,15 +364,6 @@
    ],
    "rev": 1.2635,
    "rev_month": 2.5073,
-   "cum": 6,
-   "cumtot": 18,
-   "yrank": 2,
-   "ytot": 14,
-   "bar": "#607eef",
-   "icons": [
-    "icons/faces/czn/2026-01-14-81dc12.webp"
-   ],
-   "accent": "#6481e9",
    "rev_ym": {
     "2026-01": 1.2635,
     "2026-02": 0.0
@@ -384,7 +371,15 @@
    "rev_month_ym": {
     "2026-01": 2.3339,
     "2026-02": 0.1735
-   }
+   },
+   "cum": 6,
+   "cumtot": 18,
+   "yrank": 2,
+   "ytot": 14,
+   "icons": [
+    "icons/faces/czn/2026-01-14-81dc12.webp"
+   ],
+   "bar": "#607eef"
   },
   {
    "name": "ナイン",
@@ -426,21 +421,21 @@
    ],
    "rev": 0.5331,
    "rev_month": 1.3856,
-   "cum": 9,
-   "cumtot": 18,
-   "yrank": 5,
-   "ytot": 14,
-   "bar": "#635f77",
-   "icons": [
-    "icons/faces/overrides/0e8b8b6c.webp"
-   ],
-   "accent": "#cd8853",
    "rev_ym": {
     "2026-02": 0.5331
    },
    "rev_month_ym": {
     "2026-02": 1.3856
-   }
+   },
+   "cum": 9,
+   "cumtot": 18,
+   "yrank": 5,
+   "ytot": 14,
+   "icons": [
+    "icons/faces/overrides/0e8b8b6c.webp"
+   ],
+   "accent": "#cd8853",
+   "bar": "#635f77"
   },
   {
    "name": "ティペラ",
@@ -482,15 +477,6 @@
    ],
    "rev": 0.4202,
    "rev_month": 1.1471,
-   "cum": 11,
-   "cumtot": 18,
-   "yrank": 7,
-   "ytot": 14,
-   "bar": "#f3cb72",
-   "icons": [
-    "icons/faces/czn/2026-02-25-079483.webp"
-   ],
-   "accent": "#f0c280",
    "rev_ym": {
     "2026-02": 0.4202,
     "2026-03": 0.0
@@ -498,7 +484,15 @@
    "rev_month_ym": {
     "2026-02": 0.471,
     "2026-03": 0.6761
-   }
+   },
+   "cum": 11,
+   "cumtot": 18,
+   "yrank": 7,
+   "ytot": 14,
+   "icons": [
+    "icons/faces/czn/2026-02-25-079483.webp"
+   ],
+   "bar": "#f3cb72"
   },
   {
    "name": "リタ",
@@ -540,15 +534,6 @@
    ],
    "rev": 0.2572,
    "rev_month": 0.884,
-   "cum": 12,
-   "cumtot": 18,
-   "yrank": 8,
-   "ytot": 14,
-   "bar": "#d96d82",
-   "icons": [
-    "icons/faces/czn/2026-03-18-938e39.webp"
-   ],
-   "accent": "#e06b82",
    "rev_ym": {
     "2026-03": 0.2572,
     "2026-04": 0.0
@@ -556,7 +541,15 @@
    "rev_month_ym": {
     "2026-03": 0.6639,
     "2026-04": 0.2201
-   }
+   },
+   "cum": 13,
+   "cumtot": 18,
+   "yrank": 9,
+   "ytot": 14,
+   "icons": [
+    "icons/faces/czn/2026-03-18-938e39.webp"
+   ],
+   "bar": "#d96d82"
   },
   {
    "name": "ディアナ",
@@ -605,15 +598,6 @@
    ],
    "rev": 0.6487,
    "rev_month": 1.3406,
-   "cum": 7,
-   "cumtot": 18,
-   "yrank": 3,
-   "ytot": 14,
-   "bar": "#a17194",
-   "icons": [
-    "icons/faces/czn/2026-04-08-35278a.webp"
-   ],
-   "accent": "#e28eb0",
    "rev_ym": {
     "2026-04": 0.2301,
     "2026-05": 0.4186
@@ -621,7 +605,15 @@
    "rev_month_ym": {
     "2026-04": 0.922,
     "2026-05": 0.4186
-   }
+   },
+   "cum": 7,
+   "cumtot": 18,
+   "yrank": 3,
+   "ytot": 14,
+   "icons": [
+    "icons/faces/czn/2026-04-08-35278a.webp"
+   ],
+   "bar": "#a17194"
   },
   {
    "name": "ハイデマリ",
@@ -670,15 +662,6 @@
    ],
    "rev": 1.4606,
    "rev_month": 2.3303,
-   "cum": 4,
-   "cumtot": 18,
-   "yrank": 1,
-   "ytot": 14,
-   "bar": "#de3960",
-   "icons": [
-    "icons/faces/czn/2026-04-29-24ce8e.webp"
-   ],
-   "accent": "#dd375f",
    "rev_ym": {
     "2026-04": 0.0852,
     "2026-05": 1.3754
@@ -686,7 +669,15 @@
    "rev_month_ym": {
     "2026-04": 0.1079,
     "2026-05": 2.2224
-   }
+   },
+   "cum": 4,
+   "cumtot": 18,
+   "yrank": 1,
+   "ytot": 14,
+   "icons": [
+    "icons/faces/czn/2026-04-29-24ce8e.webp"
+   ],
+   "bar": "#de3960"
   },
   {
    "name": "アーデルハイト",
@@ -728,15 +719,6 @@
    ],
    "rev": 0.523,
    "rev_month": 1.0192,
-   "cum": 10,
-   "cumtot": 18,
-   "yrank": 6,
-   "ytot": 14,
-   "bar": "#7494ad",
-   "icons": [
-    "icons/faces/czn/2026-05-27-4ab984.webp"
-   ],
-   "accent": "#6f7ca6",
    "rev_ym": {
     "2026-05": 0.523,
     "2026-06": 0.0
@@ -744,7 +726,15 @@
    "rev_month_ym": {
     "2026-05": 0.599,
     "2026-06": 0.4203
-   }
+   },
+   "cum": 10,
+   "cumtot": 18,
+   "yrank": 6,
+   "ytot": 14,
+   "icons": [
+    "icons/faces/czn/2026-05-27-4ab984.webp"
+   ],
+   "bar": "#7494ad"
   },
   {
    "name": "テネブレア&ハル",
@@ -787,15 +777,6 @@
    ],
    "rev": 0.1161,
    "rev_month": 0.6526,
-   "cum": 15,
-   "cumtot": 18,
-   "yrank": 11,
-   "ytot": 14,
-   "bar": "#b04e6c",
-   "icons": [
-    "icons/faces/czn/2026-06-17-3d4feb.webp"
-   ],
-   "accent": "#e77fa1",
    "rev_ym": {
     "2026-06": 0.1161,
     "2026-07": 0.0
@@ -803,7 +784,15 @@
    "rev_month_ym": {
     "2026-06": 0.4565,
     "2026-07": 0.196
-   }
+   },
+   "cum": 16,
+   "cumtot": 18,
+   "yrank": 12,
+   "ytot": 14,
+   "icons": [
+    "icons/faces/czn/2026-06-17-3d4feb.webp"
+   ],
+   "bar": "#b04e6c"
   },
   {
    "name": "フェイ",
@@ -845,21 +834,20 @@
    ],
    "rev": 0.0596,
    "rev_month": 0.6169,
-   "cum": 16,
-   "cumtot": 18,
-   "yrank": 12,
-   "ytot": 14,
-   "bar": "#bb2723",
-   "icons": [
-    "icons/faces/czn/2026-07-08-7b8b3b.webp"
-   ],
-   "accent": "#da2825",
    "rev_ym": {
     "2026-07": 0.0596
    },
    "rev_month_ym": {
     "2026-07": 0.6169
-   }
+   },
+   "cum": 17,
+   "cumtot": 18,
+   "yrank": 13,
+   "ytot": 14,
+   "icons": [
+    "icons/faces/czn/2026-07-08-7b8b3b.webp"
+   ],
+   "bar": "#bb2723"
   },
   {
    "name": "ヒルデ",
@@ -901,15 +889,6 @@
    ],
    "rev": 0.1347,
    "rev_month": 0.9529,
-   "cum": 14,
-   "cumtot": 18,
-   "yrank": 10,
-   "ytot": 14,
-   "bar": "#695c95",
-   "icons": [
-    "icons/faces/czn/2026-07-29-0d6eb3.webp"
-   ],
-   "accent": "#b08ed1",
    "rev_ym": {
     "2026-07": 0.1347,
     "2026-08": 0.0
@@ -917,7 +896,15 @@
    "rev_month_ym": {
     "2026-07": 0.1607,
     "2026-08": 0.7922
-   }
+   },
+   "cum": 15,
+   "cumtot": 18,
+   "yrank": 11,
+   "ytot": 14,
+   "icons": [
+    "icons/faces/czn/2026-07-29-0d6eb3.webp"
+   ],
+   "bar": "#695c95"
   },
   {
    "name": "アラベラ",
@@ -959,15 +946,6 @@
    ],
    "rev": 0.5515,
    "rev_month": 1.2833,
-   "cum": 8,
-   "cumtot": 18,
-   "yrank": 4,
-   "ytot": 14,
-   "bar": "#c41217",
-   "icons": [
-    "icons/faces/czn/2026-08-19-5b4880.webp"
-   ],
-   "accent": "#f40a12",
    "rev_ym": {
     "2026-08": 0.5515,
     "2026-09": 0.0
@@ -975,7 +953,15 @@
    "rev_month_ym": {
     "2026-08": 0.9678,
     "2026-09": 0.3155
-   }
+   },
+   "cum": 8,
+   "cumtot": 18,
+   "yrank": 4,
+   "ytot": 14,
+   "icons": [
+    "icons/faces/czn/2026-08-19-5b4880.webp"
+   ],
+   "bar": "#c41217"
   },
   {
    "name": "オルガ",
@@ -1017,21 +1003,20 @@
    ],
    "rev": 0.2554,
    "rev_month": 0.8499,
-   "cum": 13,
-   "cumtot": 18,
-   "yrank": 9,
-   "ytot": 14,
-   "bar": "#2aad98",
-   "icons": [
-    "icons/faces/czn/2026-09-09-b1e440.webp"
-   ],
-   "accent": "#37c8ae",
    "rev_ym": {
     "2026-09": 0.2554
    },
    "rev_month_ym": {
     "2026-09": 0.8499
-   }
+   },
+   "cum": 14,
+   "cumtot": 18,
+   "yrank": 10,
+   "ytot": 14,
+   "icons": [
+    "icons/faces/czn/2026-09-09-b1e440.webp"
+   ],
+   "bar": "#2aad98"
   },
   {
    "name": "セレニエル",
@@ -1048,24 +1033,23 @@
    "rerun": true,
    "ongoing": false,
    "rev": 0.0,
-   "rev_month": 0.7525,
-   "cum": 17,
-   "cumtot": 18,
-   "yrank": 13,
-   "ytot": 14,
-   "bar": "#5ea5e6",
-   "icons": [
-    "icons/faces/czn/2026-09-30-ff2662.webp"
-   ],
-   "accent": "#7caad9",
+   "rev_month": 0.9212,
    "rev_ym": {
     "2026-09": 0.0,
     "2026-10": 0.0
    },
    "rev_month_ym": {
     "2026-09": 0.0246,
-    "2026-10": 0.7279
-   }
+    "2026-10": 0.8967
+   },
+   "cum": 18,
+   "cumtot": 18,
+   "yrank": 14,
+   "ytot": 14,
+   "icons": [
+    "icons/faces/czn/2026-09-30-ff2662.webp"
+   ],
+   "bar": "#5ea5e6"
   },
   {
    "name": "ロスヴァイセ",
@@ -1078,26 +1062,29 @@
     "Rossweisse"
    ],
    "en": "Rossweisse",
-   "source_url": "https://page.onstove.com/chaoszeronightmare/jp/view/14593132",
+   "source_url": "https://page.onstove.com/chaoszeronightmare/jp/view/14592683",
    "rerun": false,
    "ongoing": true,
-   "rev": 0.0,
-   "rev_month": 0.0356,
-   "cum": 18,
+   "rank_series": [
+    null,
+    21
+   ],
+   "rev": 0.3195,
+   "rev_month": 0.3633,
+   "rev_ym": {
+    "2026-10": 0.3195
+   },
+   "rev_month_ym": {
+    "2026-10": 0.3633
+   },
+   "cum": 12,
    "cumtot": 18,
-   "yrank": 14,
+   "yrank": 8,
    "ytot": 14,
-   "bar": "#d60065",
    "icons": [
     "icons/faces/czn/2026-10-21-ee0e09.webp"
    ],
-   "accent": "#ff007a",
-   "rev_ym": {
-    "2026-10": 0.0
-   },
-   "rev_month_ym": {
-    "2026-10": 0.0356
-   }
+   "bar": "#d60065"
   }
  ]
 }

@@ -350,6 +350,15 @@
    "det": true,
    "name": "ロクシー",
    "v": 2
+  },
+  "https://upload-os-bbs.hoyolab.com/upload/2026/10/18/9659add7d811b06d707308cdcdcce493_5855896606787464047.png": {
+   "x": 26.1,
+   "y": 27.2,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "name": "フィオニー",
+   "v": 2
   }
  },
  "hsr": {
@@ -918,6 +927,15 @@
    "h": 1080,
    "det": true,
    "name": "パール",
+   "v": 2
+  },
+  "https://upload-os-bbs.hoyolab.com/upload/community/2026/10/16/32cd4e97621bfa99bbc0cd7be204d0ee_9110500451774768496.png": {
+   "x": 24.6,
+   "y": 29.8,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "name": "千冶・刃",
    "v": 2
   }
  },
@@ -2465,6 +2483,15 @@
    "h": 563,
    "det": true,
    "name": "クロバネ",
+   "v": 2
+  },
+  "https://appmedia.jp/wp-content/uploads/2026/10/103735_jet49.webp": {
+   "x": 61.7,
+   "y": 26.4,
+   "w": 1000,
+   "h": 563,
+   "det": true,
+   "name": "明音凛",
    "v": 2
   }
  },

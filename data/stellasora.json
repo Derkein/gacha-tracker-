@@ -5,16 +5,85 @@
  "unit": "億G",
  "source": "https://stellasora.jp/news/",
  "banners_from": "official",
- "updated": "2026-10-20T18:20:10Z",
+ "updated": "2026-10-21T15:32:12Z",
  "count": 22,
  "now": {
-  "ios": 95,
-  "android": null,
-  "month": 440,
-  "next_add": 12795565
+  "ios": 113,
+  "android": 127,
+  "month": 404,
+  "next_add": 13293870,
+  "ym": "2026/10",
+  "ranks": {
+   "prev": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "cur": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    113,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ]
+  }
  },
  "monthly": {
-  "2026-10": 0.4091,
+  "2026-10": 0.5338,
   "2026-09": 0.5061,
   "2026-08": 0.491,
   "2026-07": 0.6192,
@@ -70,15 +139,6 @@
    ],
    "rev": 2.0179,
    "rev_month": 2.0179,
-   "cum": 1,
-   "cumtot": 22,
-   "yrank": 1,
-   "ytot": 5,
-   "bar": "#cd98a8",
-   "icons": [
-    "icons/faces/stellasora/2025-10-20-a4ab61.webp"
-   ],
-   "accent": "#4f78b0",
    "rev_ym": {
     "2025-10": 1.5432,
     "2025-11": 0.4747
@@ -86,7 +146,15 @@
    "rev_month_ym": {
     "2025-10": 1.5432,
     "2025-11": 0.4747
-   }
+   },
+   "cum": 1,
+   "cumtot": 22,
+   "yrank": 1,
+   "ytot": 5,
+   "icons": [
+    "icons/faces/stellasora/2025-10-20-a4ab61.webp"
+   ],
+   "bar": "#cd98a8"
   },
   {
    "name": "シア",
@@ -128,15 +196,6 @@
    ],
    "rev": 1.2885,
    "rev_month": 1.2885,
-   "cum": 2,
-   "cumtot": 22,
-   "yrank": 2,
-   "ytot": 5,
-   "bar": "#9d94d1",
-   "icons": [
-    "icons/faces/stellasora/2025-10-28-fd5566.webp"
-   ],
-   "accent": "#6987c2",
    "rev_ym": {
     "2025-10": 0.3068,
     "2025-11": 0.9818
@@ -144,7 +203,15 @@
    "rev_month_ym": {
     "2025-10": 0.3068,
     "2025-11": 0.9818
-   }
+   },
+   "cum": 2,
+   "cumtot": 22,
+   "yrank": 2,
+   "ytot": 5,
+   "icons": [
+    "icons/faces/stellasora/2025-10-28-fd5566.webp"
+   ],
+   "bar": "#9d94d1"
   },
   {
    "name": "フユカ",
@@ -186,15 +253,6 @@
    ],
    "rev": 0.995,
    "rev_month": 1.4175,
-   "cum": 3,
-   "cumtot": 22,
-   "yrank": 3,
-   "ytot": 5,
-   "bar": "#f3cb72",
-   "icons": [
-    "icons/faces/stellasora/2025-11-18-915982.webp"
-   ],
-   "accent": "#70aaff",
    "rev_ym": {
     "2025-11": 0.8212,
     "2025-12": 0.1739
@@ -202,7 +260,15 @@
    "rev_month_ym": {
     "2025-11": 1.0235,
     "2025-12": 0.394
-   }
+   },
+   "cum": 3,
+   "cumtot": 22,
+   "yrank": 3,
+   "ytot": 5,
+   "icons": [
+    "icons/faces/stellasora/2025-11-18-915982.webp"
+   ],
+   "bar": "#f3cb72"
   },
   {
    "name": "ナツカ",
@@ -244,21 +310,20 @@
    ],
    "rev": 0.3864,
    "rev_month": 0.91,
-   "cum": 4,
-   "cumtot": 22,
-   "yrank": 4,
-   "ytot": 5,
-   "bar": "#fcb669",
-   "icons": [
-    "icons/faces/stellasora/2025-12-09-1df636.webp"
-   ],
-   "accent": "#577aa8",
    "rev_ym": {
     "2025-12": 0.3864
    },
    "rev_month_ym": {
     "2025-12": 0.91
-   }
+   },
+   "cum": 4,
+   "cumtot": 22,
+   "yrank": 4,
+   "ytot": 5,
+   "icons": [
+    "icons/faces/stellasora/2025-12-09-1df636.webp"
+   ],
+   "bar": "#fcb669"
   },
   {
    "name": "ラール（聖夜）",
@@ -300,14 +365,6 @@
    ],
    "rev": 0.1421,
    "rev_month": 0.8828,
-   "cum": 6,
-   "cumtot": 22,
-   "yrank": 5,
-   "ytot": 5,
-   "bar": "#a33344",
-   "icons": [
-    "icons/faces/stellasora/2025-12-23-c828a5.webp"
-   ],
    "rev_ym": {
     "2025-12": 0.1421,
     "2026-01": 0.0
@@ -315,7 +372,15 @@
    "rev_month_ym": {
     "2025-12": 0.306,
     "2026-01": 0.5767
-   }
+   },
+   "cum": 6,
+   "cumtot": 22,
+   "yrank": 5,
+   "ytot": 5,
+   "icons": [
+    "icons/faces/stellasora/2025-12-23-c828a5.webp"
+   ],
+   "bar": "#a33344"
   },
   {
    "name": "フィレン",
@@ -357,14 +422,6 @@
    ],
    "rev": 0.3067,
    "rev_month": 1.0842,
-   "cum": 5,
-   "cumtot": 22,
-   "yrank": 1,
-   "ytot": 17,
-   "bar": "#cbce97",
-   "icons": [
-    "icons/faces/stellasora/2026-01-13-6f4568.webp"
-   ],
    "rev_ym": {
     "2026-01": 0.3067,
     "2026-02": 0.0
@@ -372,7 +429,15 @@
    "rev_month_ym": {
     "2026-01": 1.0133,
     "2026-02": 0.071
-   }
+   },
+   "cum": 5,
+   "cumtot": 22,
+   "yrank": 1,
+   "ytot": 17,
+   "icons": [
+    "icons/faces/stellasora/2026-01-13-6f4568.webp"
+   ],
+   "bar": "#cbce97"
   },
   {
    "name": "クルニス（華服）",
@@ -414,21 +479,20 @@
    ],
    "rev": 0.0533,
    "rev_month": 0.6157,
-   "cum": 8,
-   "cumtot": 22,
-   "yrank": 3,
-   "ytot": 17,
-   "bar": "#20a4b6",
-   "icons": [
-    "icons/faces/overrides/92b0eaa8.webp"
-   ],
-   "accent": "#95b2d9",
    "rev_ym": {
     "2026-02": 0.0533
    },
    "rev_month_ym": {
     "2026-02": 0.6157
-   }
+   },
+   "cum": 9,
+   "cumtot": 22,
+   "yrank": 4,
+   "ytot": 17,
+   "icons": [
+    "icons/faces/overrides/92b0eaa8.webp"
+   ],
+   "bar": "#20a4b6"
   },
   {
    "name": "レイス",
@@ -470,15 +534,6 @@
    ],
    "rev": 0.1006,
    "rev_month": 0.5447,
-   "cum": 7,
-   "cumtot": 22,
-   "yrank": 2,
-   "ytot": 17,
-   "bar": "#3d4299",
-   "icons": [
-    "icons/faces/overrides/72aa7e39.webp"
-   ],
-   "accent": "#938cb6",
    "rev_ym": {
     "2026-02": 0.1006,
     "2026-03": 0.0
@@ -486,7 +541,16 @@
    "rev_month_ym": {
     "2026-02": 0.2052,
     "2026-03": 0.3396
-   }
+   },
+   "cum": 7,
+   "cumtot": 22,
+   "yrank": 2,
+   "ytot": 17,
+   "icons": [
+    "icons/faces/overrides/72aa7e39.webp"
+   ],
+   "accent": "#938cb6",
+   "bar": "#3d4299"
   },
   {
    "name": "トーナ",
@@ -504,15 +568,6 @@
    "ongoing": false,
    "rev": 0.0,
    "rev_month": 0.3753,
-   "cum": 9,
-   "cumtot": 22,
-   "yrank": 4,
-   "ytot": 17,
-   "bar": "#a56054",
-   "icons": [
-    "icons/faces/stellasora/2026-03-17-7bf00e.webp"
-   ],
-   "accent": "#ecb583",
    "rev_ym": {
     "2026-03": 0.0,
     "2026-04": 0.0
@@ -520,7 +575,15 @@
    "rev_month_ym": {
     "2026-03": 0.3118,
     "2026-04": 0.0636
-   }
+   },
+   "cum": 10,
+   "cumtot": 22,
+   "yrank": 5,
+   "ytot": 17,
+   "icons": [
+    "icons/faces/stellasora/2026-03-17-7bf00e.webp"
+   ],
+   "bar": "#a56054"
   },
   {
    "name": "ナズナ",
@@ -538,15 +601,6 @@
    "ongoing": false,
    "rev": 0.0,
    "rev_month": 0.2733,
-   "cum": 10,
-   "cumtot": 22,
-   "yrank": 5,
-   "ytot": 17,
-   "bar": "#ddbd5a",
-   "icons": [
-    "icons/faces/stellasora/2026-03-31-b40fd4.webp"
-   ],
-   "accent": "#91e18e",
    "rev_ym": {
     "2026-03": 0.0,
     "2026-04": 0.0
@@ -554,7 +608,15 @@
    "rev_month_ym": {
     "2026-03": 0.0109,
     "2026-04": 0.2625
-   }
+   },
+   "cum": 11,
+   "cumtot": 22,
+   "yrank": 6,
+   "ytot": 17,
+   "icons": [
+    "icons/faces/stellasora/2026-03-31-b40fd4.webp"
+   ],
+   "bar": "#ddbd5a"
   },
   {
    "name": "オトハ",
@@ -572,15 +634,6 @@
    "ongoing": false,
    "rev": 0.0,
    "rev_month": 0.3667,
-   "cum": 11,
-   "cumtot": 22,
-   "yrank": 6,
-   "ytot": 17,
-   "bar": "#909dd5",
-   "icons": [
-    "icons/faces/stellasora/2026-04-16-717999.webp"
-   ],
-   "accent": "#5a74a5",
    "rev_ym": {
     "2026-04": 0.0,
     "2026-05": 0.0
@@ -588,7 +641,15 @@
    "rev_month_ym": {
     "2026-04": 0.2755,
     "2026-05": 0.0913
-   }
+   },
+   "cum": 12,
+   "cumtot": 22,
+   "yrank": 7,
+   "ytot": 17,
+   "icons": [
+    "icons/faces/stellasora/2026-04-16-717999.webp"
+   ],
+   "bar": "#909dd5"
   },
   {
    "name": "チトセ",
@@ -606,15 +667,6 @@
    "ongoing": false,
    "rev": 0.0,
    "rev_month": 0.3094,
-   "cum": 12,
-   "cumtot": 22,
-   "yrank": 7,
-   "ytot": 17,
-   "bar": "#cd98a7",
-   "icons": [
-    "icons/faces/stellasora/2026-04-30-ac1cb1.webp"
-   ],
-   "accent": "#4f78b0",
    "rev_ym": {
     "2026-04": 0.0,
     "2026-05": 0.0
@@ -622,7 +674,15 @@
    "rev_month_ym": {
     "2026-04": 0.0125,
     "2026-05": 0.2969
-   }
+   },
+   "cum": 13,
+   "cumtot": 22,
+   "yrank": 8,
+   "ytot": 17,
+   "icons": [
+    "icons/faces/stellasora/2026-04-30-ac1cb1.webp"
+   ],
+   "bar": "#cd98a7"
   },
   {
    "name": "ホタル",
@@ -640,15 +700,6 @@
    "ongoing": false,
    "rev": 0.0,
    "rev_month": 0.3761,
-   "cum": 13,
-   "cumtot": 22,
-   "yrank": 8,
-   "ytot": 17,
-   "bar": "#9ba8ca",
-   "icons": [
-    "icons/faces/stellasora/2026-05-14-d77878.webp"
-   ],
-   "accent": "#3c6fc3",
    "rev_ym": {
     "2026-05": 0.0,
     "2026-06": 0.0
@@ -656,7 +707,15 @@
    "rev_month_ym": {
     "2026-05": 0.3571,
     "2026-06": 0.019
-   }
+   },
+   "cum": 14,
+   "cumtot": 22,
+   "yrank": 9,
+   "ytot": 17,
+   "icons": [
+    "icons/faces/stellasora/2026-05-14-d77878.webp"
+   ],
+   "bar": "#9ba8ca"
   },
   {
    "name": "スパクル",
@@ -674,21 +733,21 @@
    "ongoing": false,
    "rev": 0.0,
    "rev_month": 0.2847,
-   "cum": 14,
-   "cumtot": 22,
-   "yrank": 9,
-   "ytot": 17,
-   "bar": "#d7cb8e",
-   "icons": [
-    "icons/faces/overrides/739ddd77.webp"
-   ],
-   "accent": "#7d5da2",
    "rev_ym": {
     "2026-06": 0.0
    },
    "rev_month_ym": {
     "2026-06": 0.2847
-   }
+   },
+   "cum": 15,
+   "cumtot": 22,
+   "yrank": 10,
+   "ytot": 17,
+   "icons": [
+    "icons/faces/overrides/739ddd77.webp"
+   ],
+   "accent": "#7d5da2",
+   "bar": "#d7cb8e"
   },
   {
    "name": "ナノハ",
@@ -706,15 +765,6 @@
    "ongoing": false,
    "rev": 0.0,
    "rev_month": 0.2099,
-   "cum": 15,
-   "cumtot": 22,
-   "yrank": 10,
-   "ytot": 17,
-   "bar": "#9c3a52",
-   "icons": [
-    "icons/faces/overrides/111bb961.webp"
-   ],
-   "accent": "#4e67b1",
    "rev_ym": {
     "2026-06": 0.0,
     "2026-07": 0.0
@@ -722,7 +772,16 @@
    "rev_month_ym": {
     "2026-06": 0.1391,
     "2026-07": 0.0708
-   }
+   },
+   "cum": 16,
+   "cumtot": 22,
+   "yrank": 11,
+   "ytot": 17,
+   "icons": [
+    "icons/faces/overrides/111bb961.webp"
+   ],
+   "accent": "#4e67b1",
+   "bar": "#9c3a52"
   },
   {
    "name": "シャトン",
@@ -740,15 +799,6 @@
    "ongoing": false,
    "rev": 0.0,
    "rev_month": 0.2955,
-   "cum": 16,
-   "cumtot": 22,
-   "yrank": 11,
-   "ytot": 17,
-   "bar": "#f7ce6e",
-   "icons": [
-    "icons/faces/stellasora/2026-06-30-4c477d.webp"
-   ],
-   "accent": "#e6c28a",
    "rev_ym": {
     "2026-06": 0.0,
     "2026-07": 0.0
@@ -756,7 +806,15 @@
    "rev_month_ym": {
     "2026-06": 0.0092,
     "2026-07": 0.2862
-   }
+   },
+   "cum": 17,
+   "cumtot": 22,
+   "yrank": 12,
+   "ytot": 17,
+   "icons": [
+    "icons/faces/stellasora/2026-06-30-4c477d.webp"
+   ],
+   "bar": "#f7ce6e"
   },
   {
    "name": "ウィロー（水着）",
@@ -774,15 +832,6 @@
    "ongoing": false,
    "rev": 0.0,
    "rev_month": 0.372,
-   "cum": 17,
-   "cumtot": 22,
-   "yrank": 12,
-   "ytot": 17,
-   "bar": "#21a3e6",
-   "icons": [
-    "icons/faces/stellasora/2026-07-21-2fd563.webp"
-   ],
-   "accent": "#88c1e7",
    "rev_ym": {
     "2026-07": 0.0,
     "2026-08": 0.0
@@ -790,7 +839,15 @@
    "rev_month_ym": {
     "2026-07": 0.2621,
     "2026-08": 0.1099
-   }
+   },
+   "cum": 18,
+   "cumtot": 22,
+   "yrank": 13,
+   "ytot": 17,
+   "icons": [
+    "icons/faces/stellasora/2026-07-21-2fd563.webp"
+   ],
+   "bar": "#21a3e6"
   },
   {
    "name": "ナツカ",
@@ -808,21 +865,20 @@
    "ongoing": false,
    "rev": 0.0,
    "rev_month": 0.2181,
-   "cum": 18,
-   "cumtot": 22,
-   "yrank": 13,
-   "ytot": 17,
-   "bar": "#fcb669",
-   "icons": [
-    "icons/faces/stellasora/2026-08-04-c99aef.webp"
-   ],
-   "accent": "#5578aa",
    "rev_ym": {
     "2026-08": 0.0
    },
    "rev_month_ym": {
     "2026-08": 0.2181
-   }
+   },
+   "cum": 19,
+   "cumtot": 22,
+   "yrank": 14,
+   "ytot": 17,
+   "icons": [
+    "icons/faces/stellasora/2026-08-04-c99aef.webp"
+   ],
+   "bar": "#fcb669"
   },
   {
    "name": "カリン",
@@ -840,15 +896,6 @@
    "ongoing": false,
    "rev": 0.0,
    "rev_month": 0.2836,
-   "cum": 19,
-   "cumtot": 22,
-   "yrank": 14,
-   "ytot": 17,
-   "bar": "#ba2457",
-   "icons": [
-    "icons/faces/stellasora/2026-08-18-9fd7b0.webp"
-   ],
-   "accent": "#85d3ea",
    "rev_ym": {
     "2026-08": 0.0,
     "2026-09": 0.0
@@ -856,7 +903,15 @@
    "rev_month_ym": {
     "2026-08": 0.163,
     "2026-09": 0.1206
-   }
+   },
+   "cum": 20,
+   "cumtot": 22,
+   "yrank": 15,
+   "ytot": 17,
+   "icons": [
+    "icons/faces/stellasora/2026-08-18-9fd7b0.webp"
+   ],
+   "bar": "#ba2457"
   },
   {
    "name": "エレノア",
@@ -874,21 +929,20 @@
    "ongoing": false,
    "rev": 0.0,
    "rev_month": 0.344,
-   "cum": 20,
-   "cumtot": 22,
-   "yrank": 15,
-   "ytot": 17,
-   "bar": "#1fa4b7",
-   "icons": [
-    "icons/faces/stellasora/2026-09-08-8bccd5.webp"
-   ],
-   "accent": "#98c5d7",
    "rev_ym": {
     "2026-09": 0.0
    },
    "rev_month_ym": {
     "2026-09": 0.344
-   }
+   },
+   "cum": 21,
+   "cumtot": 22,
+   "yrank": 16,
+   "ytot": 17,
+   "icons": [
+    "icons/faces/stellasora/2026-09-08-8bccd5.webp"
+   ],
+   "bar": "#1fa4b7"
   },
   {
    "name": "エリー",
@@ -905,24 +959,23 @@
    "rerun": false,
    "ongoing": false,
    "rev": 0.0,
-   "rev_month": 0.3943,
-   "cum": 21,
-   "cumtot": 22,
-   "yrank": 16,
-   "ytot": 17,
-   "bar": "#e28399",
-   "icons": [
-    "icons/faces/stellasora/2026-09-29-0eb0cd.webp"
-   ],
-   "accent": "#e18fa0",
+   "rev_month": 0.4485,
    "rev_ym": {
     "2026-09": 0.0,
     "2026-10": 0.0
    },
    "rev_month_ym": {
     "2026-09": 0.0415,
-    "2026-10": 0.3529
-   }
+    "2026-10": 0.407
+   },
+   "cum": 22,
+   "cumtot": 22,
+   "yrank": 17,
+   "ytot": 17,
+   "icons": [
+    "icons/faces/stellasora/2026-09-29-0eb0cd.webp"
+   ],
+   "bar": "#e28399"
   },
   {
    "name": "セイナ（原点）",
@@ -938,23 +991,27 @@
    "source_url": "https://stellasora.jp/news/4875",
    "rerun": false,
    "ongoing": true,
-   "rev": 0.0,
-   "rev_month": 0.0562,
-   "cum": 22,
+   "rank_series": [
+    null,
+    null,
+    113
+   ],
+   "rev": 0.062,
+   "rev_month": 0.1268,
+   "rev_ym": {
+    "2026-10": 0.062
+   },
+   "rev_month_ym": {
+    "2026-10": 0.1268
+   },
+   "cum": 8,
    "cumtot": 22,
-   "yrank": 17,
+   "yrank": 3,
    "ytot": 17,
-   "bar": "#d8918d",
    "icons": [
     "icons/faces/overrides/d7108083.webp"
    ],
-   "accent": "#d19e9c",
-   "rev_ym": {
-    "2026-10": 0.0
-   },
-   "rev_month_ym": {
-    "2026-10": 0.0562
-   }
+   "bar": "#d8918d"
   }
  ]
 }

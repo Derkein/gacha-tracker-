@@ -4,13 +4,14 @@
  "jp": "鳴潮",
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E9%B3%B4%E6%BD%AE",
- "updated": "2026-10-20T20:03:07Z",
+ "banners_from": "game-i",
+ "updated": "2026-10-21T15:29:47Z",
  "count": 42,
  "now": {
-  "ios": 96,
-  "android": 24,
-  "month": 49,
-  "next_add": 12766928,
+  "ios": 97,
+  "android": 23,
+  "month": 52,
+  "next_add": 13577594,
   "ym": "2026/10",
   "ranks": {
    "prev": [
@@ -68,7 +69,7 @@
     147,
     148,
     123,
-    null,
+    97,
     null,
     null,
     null,
@@ -82,7 +83,7 @@
   }
  },
  "monthly": {
-  "2026-10": 5.33,
+  "2026-10": 5.46,
   "2026-09": 3.7,
   "2026-08": 6.65,
   "2026-07": 7.43,
@@ -213,7 +214,7 @@
    "rev": 5.44,
    "yrank": 2,
    "ytot": 10,
-   "cum": 7,
+   "cum": 8,
    "cumtot": 42,
    "year": 2024,
    "related": "",
@@ -2034,16 +2035,16 @@
    "name": "心",
    "start": "2026-09-30",
    "end": "2026-10-22",
-   "rev": 5.33,
+   "rev": 5.46,
    "yrank": 4,
    "ytot": 13,
-   "cum": 8,
+   "cum": 7,
    "cumtot": 42,
    "year": 2026,
    "related": "",
    "banner_img": "https://i.mopix.cc/SVwg3P.jpg",
    "rerun": false,
-   "ongoing": true,
+   "ongoing": false,
    "rank_series": [
     130,
     14,
@@ -2066,7 +2067,8 @@
     148,
     147,
     148,
-    123
+    123,
+    97
    ],
    "agents": [
     "Hsin"
