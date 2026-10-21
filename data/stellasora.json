@@ -74,7 +74,11 @@
    "cumtot": 22,
    "yrank": 1,
    "ytot": 5,
-   "bar": "#cd98a8"
+   "bar": "#cd98a8",
+   "icons": [
+    "icons/faces/stellasora/2025-10-20-a4ab61.webp"
+   ],
+   "accent": "#4f78b0"
   },
   {
    "name": "シア",
@@ -120,7 +124,11 @@
    "cumtot": 22,
    "yrank": 2,
    "ytot": 5,
-   "bar": "#9d94d1"
+   "bar": "#9d94d1",
+   "icons": [
+    "icons/faces/stellasora/2025-10-28-fd5566.webp"
+   ],
+   "accent": "#6987c2"
   },
   {
    "name": "フユカ",
@@ -166,7 +174,11 @@
    "cumtot": 22,
    "yrank": 3,
    "ytot": 5,
-   "bar": "#f3cb72"
+   "bar": "#f3cb72",
+   "icons": [
+    "icons/faces/stellasora/2025-11-18-915982.webp"
+   ],
+   "accent": "#70aaff"
   },
   {
    "name": "ナツカ",
@@ -212,7 +224,11 @@
    "cumtot": 22,
    "yrank": 4,
    "ytot": 5,
-   "bar": "#fcb669"
+   "bar": "#fcb669",
+   "icons": [
+    "icons/faces/stellasora/2025-12-09-1df636.webp"
+   ],
+   "accent": "#577aa8"
   },
   {
    "name": "ラール（聖夜）",
@@ -258,7 +274,10 @@
    "cumtot": 22,
    "yrank": 5,
    "ytot": 5,
-   "bar": "#a33344"
+   "bar": "#a33344",
+   "icons": [
+    "icons/faces/stellasora/2025-12-23-c828a5.webp"
+   ]
   },
   {
    "name": "フィレン",
@@ -304,7 +323,10 @@
    "cumtot": 22,
    "yrank": 1,
    "ytot": 17,
-   "bar": "#cbce97"
+   "bar": "#cbce97",
+   "icons": [
+    "icons/faces/stellasora/2026-01-13-6f4568.webp"
+   ]
   },
   {
    "name": "クルニス（華服）",
@@ -350,7 +372,11 @@
    "cumtot": 22,
    "yrank": 3,
    "ytot": 17,
-   "bar": "#20a4b6"
+   "bar": "#20a4b6",
+   "icons": [
+    "icons/faces/overrides/92b0eaa8.webp"
+   ],
+   "accent": "#95b2d9"
   },
   {
    "name": "レイス",
@@ -396,7 +422,11 @@
    "cumtot": 22,
    "yrank": 2,
    "ytot": 17,
-   "bar": "#3d4299"
+   "bar": "#3d4299",
+   "icons": [
+    "icons/faces/overrides/72aa7e39.webp"
+   ],
+   "accent": "#938cb6"
   },
   {
    "name": "トーナ",
@@ -418,7 +448,11 @@
    "cumtot": 22,
    "yrank": 4,
    "ytot": 17,
-   "bar": "#a56054"
+   "bar": "#a56054",
+   "icons": [
+    "icons/faces/stellasora/2026-03-17-7bf00e.webp"
+   ],
+   "accent": "#ecb583"
   },
   {
    "name": "ナズナ",
@@ -440,7 +474,11 @@
    "cumtot": 22,
    "yrank": 5,
    "ytot": 17,
-   "bar": "#ddbd5a"
+   "bar": "#ddbd5a",
+   "icons": [
+    "icons/faces/stellasora/2026-03-31-b40fd4.webp"
+   ],
+   "accent": "#91e18e"
   },
   {
    "name": "オトハ",
@@ -462,7 +500,11 @@
    "cumtot": 22,
    "yrank": 6,
    "ytot": 17,
-   "bar": "#909dd5"
+   "bar": "#909dd5",
+   "icons": [
+    "icons/faces/stellasora/2026-04-16-717999.webp"
+   ],
+   "accent": "#5a74a5"
   },
   {
    "name": "チトセ",
@@ -484,7 +526,11 @@
    "cumtot": 22,
    "yrank": 7,
    "ytot": 17,
-   "bar": "#cd98a7"
+   "bar": "#cd98a7",
+   "icons": [
+    "icons/faces/stellasora/2026-04-30-ac1cb1.webp"
+   ],
+   "accent": "#4f78b0"
   },
   {
    "name": "ホタル",
@@ -506,7 +552,11 @@
    "cumtot": 22,
    "yrank": 8,
    "ytot": 17,
-   "bar": "#9ba8ca"
+   "bar": "#9ba8ca",
+   "icons": [
+    "icons/faces/stellasora/2026-05-14-d77878.webp"
+   ],
+   "accent": "#3c6fc3"
   },
   {
    "name": "スパクル",
@@ -528,7 +578,11 @@
    "cumtot": 22,
    "yrank": 9,
    "ytot": 17,
-   "bar": "#d7cb8e"
+   "bar": "#d7cb8e",
+   "icons": [
+    "icons/faces/overrides/739ddd77.webp"
+   ],
+   "accent": "#7d5da2"
   },
   {
    "name": "ナノハ",
@@ -550,7 +604,11 @@
    "cumtot": 22,
    "yrank": 10,
    "ytot": 17,
-   "bar": "#9c3a52"
+   "bar": "#9c3a52",
+   "icons": [
+    "icons/faces/overrides/111bb961.webp"
+   ],
+   "accent": "#4e67b1"
   },
   {
    "name": "シャトン",
@@ -572,7 +630,11 @@
    "cumtot": 22,
    "yrank": 11,
    "ytot": 17,
-   "bar": "#f7ce6e"
+   "bar": "#f7ce6e",
+   "icons": [
+    "icons/faces/stellasora/2026-06-30-4c477d.webp"
+   ],
+   "accent": "#e6c28a"
   },
   {
    "name": "ウィロー（水着）",
@@ -594,7 +656,11 @@
    "cumtot": 22,
    "yrank": 12,
    "ytot": 17,
-   "bar": "#21a3e6"
+   "bar": "#21a3e6",
+   "icons": [
+    "icons/faces/stellasora/2026-07-21-2fd563.webp"
+   ],
+   "accent": "#88c1e7"
   },
   {
    "name": "ナツカ",
@@ -616,7 +682,11 @@
    "cumtot": 22,
    "yrank": 13,
    "ytot": 17,
-   "bar": "#fcb669"
+   "bar": "#fcb669",
+   "icons": [
+    "icons/faces/stellasora/2026-08-04-c99aef.webp"
+   ],
+   "accent": "#5578aa"
   },
   {
    "name": "カリン",
@@ -638,7 +708,11 @@
    "cumtot": 22,
    "yrank": 14,
    "ytot": 17,
-   "bar": "#ba2457"
+   "bar": "#ba2457",
+   "icons": [
+    "icons/faces/stellasora/2026-08-18-9fd7b0.webp"
+   ],
+   "accent": "#85d3ea"
   },
   {
    "name": "エレノア",
@@ -660,7 +734,11 @@
    "cumtot": 22,
    "yrank": 15,
    "ytot": 17,
-   "bar": "#1fa4b7"
+   "bar": "#1fa4b7",
+   "icons": [
+    "icons/faces/stellasora/2026-09-08-8bccd5.webp"
+   ],
+   "accent": "#98c5d7"
   },
   {
    "name": "エリー",
@@ -682,7 +760,11 @@
    "cumtot": 22,
    "yrank": 16,
    "ytot": 17,
-   "bar": "#e28399"
+   "bar": "#e28399",
+   "icons": [
+    "icons/faces/stellasora/2026-09-29-0eb0cd.webp"
+   ],
+   "accent": "#e18fa0"
   },
   {
    "name": "セイナ（原点）",
@@ -704,7 +786,11 @@
    "cumtot": 22,
    "yrank": 17,
    "ytot": 17,
-   "bar": "#d8918d"
+   "bar": "#d8918d",
+   "icons": [
+    "icons/faces/overrides/d7108083.webp"
+   ],
+   "accent": "#d19e9c"
   }
  ]
 }

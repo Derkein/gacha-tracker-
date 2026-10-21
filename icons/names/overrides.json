@@ -52,5 +52,59 @@
    0.105
   ],
   "why": "Same splash as her rerun banner; cascade detects nothing on it."
+ },
+ "ナイン": {
+  "art": "https://d2x8kymwjom7h7.cloudfront.net/live/application_no/96001/default/f33c8c328bf8480ca4a8e3a06ee38c37.jpg",
+  "box": [
+   0.44,
+   0.31,
+   0.24
+  ],
+  "why": "Official banner art; the frontal face cascade misses this pose (three-quarter / hair over the face), so the fallback cropped the whole banner."
+ },
+ "クルニス（華服）": {
+  "art": "https://webusstatic.yo-star.com/pubplat/gm/prod_backend/userFile/360cae6089f252e9fcab7b094e3b6def.png",
+  "box": [
+   0.355,
+   0.225,
+   0.12
+  ],
+  "why": "Official banner art; the frontal face cascade misses this pose (three-quarter / hair over the face), so the fallback cropped the whole banner."
+ },
+ "レイス": {
+  "art": "https://webusstatic.yo-star.com/pubplat/gm/prod_backend/userFile/a3b5f933a71ba8949e5d808c51c73024.png",
+  "box": [
+   0.425,
+   0.26,
+   0.13
+  ],
+  "why": "Official banner art; the frontal face cascade misses this pose (three-quarter / hair over the face), so the fallback cropped the whole banner."
+ },
+ "スパクル": {
+  "art": "https://webusstatic.yo-star.com/web-cms-prod/upload/content/2026/05/27/u-8KywMt.png",
+  "box": [
+   0.34,
+   0.245,
+   0.13
+  ],
+  "why": "Official banner art; the frontal face cascade misses this pose (three-quarter / hair over the face), so the fallback cropped the whole banner."
+ },
+ "ナノハ": {
+  "art": "https://webusstatic.yo-star.com/web-cms-prod/upload/content/2026/06/09/6Miwri3j.png",
+  "box": [
+   0.41,
+   0.265,
+   0.13
+  ],
+  "why": "Official banner art; the frontal face cascade misses this pose (three-quarter / hair over the face), so the fallback cropped the whole banner."
+ },
+ "セイナ（原点）": {
+  "art": "https://webusstatic.yo-star.com/web-cms-test/upload/content/2026/10/15/xR-6yD1I.png",
+  "box": [
+   0.435,
+   0.235,
+   0.13
+  ],
+  "why": "Official banner art; the frontal face cascade misses this pose (three-quarter / hair over the face), so the fallback cropped the whole banner."
  }
 }

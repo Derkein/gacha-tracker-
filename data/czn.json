@@ -142,7 +142,11 @@
    "cumtot": 18,
    "yrank": 3,
    "ytot": 4,
-   "bar": "#bd1927"
+   "bar": "#bd1927",
+   "icons": [
+    "icons/faces/czn/2025-10-22-6f6fb4.webp"
+   ],
+   "accent": "#d7b399"
   },
   {
    "name": "ユキ",
@@ -188,7 +192,11 @@
    "cumtot": 18,
    "yrank": 2,
    "ytot": 4,
-   "bar": "#1749bf"
+   "bar": "#1749bf",
+   "icons": [
+    "icons/faces/czn/2025-11-12-c68980.webp"
+   ],
+   "accent": "#ff4600"
   },
   {
    "name": "チズル",
@@ -234,7 +242,11 @@
    "cumtot": 18,
    "yrank": 4,
    "ytot": 4,
-   "bar": "#aa2d42"
+   "bar": "#aa2d42",
+   "icons": [
+    "icons/faces/czn/2025-12-03-fbd43f.webp"
+   ],
+   "accent": "#e4491b"
   },
   {
    "name": "セレニエル",
@@ -280,7 +292,11 @@
    "cumtot": 18,
    "yrank": 1,
    "ytot": 4,
-   "bar": "#5ea5e6"
+   "bar": "#5ea5e6",
+   "icons": [
+    "icons/faces/czn/2025-12-24-ff2662.webp"
+   ],
+   "accent": "#7caad9"
   },
   {
    "name": "ナージャ",
@@ -326,7 +342,11 @@
    "cumtot": 18,
    "yrank": 2,
    "ytot": 14,
-   "bar": "#607eef"
+   "bar": "#607eef",
+   "icons": [
+    "icons/faces/czn/2026-01-14-81dc12.webp"
+   ],
+   "accent": "#6481e9"
   },
   {
    "name": "ナイン",
@@ -372,7 +392,11 @@
    "cumtot": 18,
    "yrank": 5,
    "ytot": 14,
-   "bar": "#635f77"
+   "bar": "#635f77",
+   "icons": [
+    "icons/faces/overrides/0e8b8b6c.webp"
+   ],
+   "accent": "#cd8853"
   },
   {
    "name": "ティペラ",
@@ -418,7 +442,11 @@
    "cumtot": 18,
    "yrank": 7,
    "ytot": 14,
-   "bar": "#f3cb72"
+   "bar": "#f3cb72",
+   "icons": [
+    "icons/faces/czn/2026-02-25-079483.webp"
+   ],
+   "accent": "#f0c280"
   },
   {
    "name": "リタ",
@@ -464,7 +492,11 @@
    "cumtot": 18,
    "yrank": 8,
    "ytot": 14,
-   "bar": "#d96d82"
+   "bar": "#d96d82",
+   "icons": [
+    "icons/faces/czn/2026-03-18-938e39.webp"
+   ],
+   "accent": "#e06b82"
   },
   {
    "name": "ディアナ",
@@ -517,7 +549,11 @@
    "cumtot": 18,
    "yrank": 3,
    "ytot": 14,
-   "bar": "#a17194"
+   "bar": "#a17194",
+   "icons": [
+    "icons/faces/czn/2026-04-08-35278a.webp"
+   ],
+   "accent": "#e28eb0"
   },
   {
    "name": "ハイデマリ",
@@ -570,7 +606,11 @@
    "cumtot": 18,
    "yrank": 1,
    "ytot": 14,
-   "bar": "#de3960"
+   "bar": "#de3960",
+   "icons": [
+    "icons/faces/czn/2026-04-29-24ce8e.webp"
+   ],
+   "accent": "#dd375f"
   },
   {
    "name": "アーデルハイト",
@@ -616,7 +656,11 @@
    "cumtot": 18,
    "yrank": 6,
    "ytot": 14,
-   "bar": "#7494ad"
+   "bar": "#7494ad",
+   "icons": [
+    "icons/faces/czn/2026-05-27-4ab984.webp"
+   ],
+   "accent": "#6f7ca6"
   },
   {
    "name": "テネブレア&ハル",
@@ -663,7 +707,11 @@
    "cumtot": 18,
    "yrank": 11,
    "ytot": 14,
-   "bar": "#b04e6c"
+   "bar": "#b04e6c",
+   "icons": [
+    "icons/faces/czn/2026-06-17-3d4feb.webp"
+   ],
+   "accent": "#e77fa1"
   },
   {
    "name": "フェイ",
@@ -709,7 +757,11 @@
    "cumtot": 18,
    "yrank": 12,
    "ytot": 14,
-   "bar": "#bb2723"
+   "bar": "#bb2723",
+   "icons": [
+    "icons/faces/czn/2026-07-08-7b8b3b.webp"
+   ],
+   "accent": "#da2825"
   },
   {
    "name": "ヒルデ",
@@ -755,7 +807,11 @@
    "cumtot": 18,
    "yrank": 10,
    "ytot": 14,
-   "bar": "#695c95"
+   "bar": "#695c95",
+   "icons": [
+    "icons/faces/czn/2026-07-29-0d6eb3.webp"
+   ],
+   "accent": "#b08ed1"
   },
   {
    "name": "アラベラ",
@@ -801,7 +857,11 @@
    "cumtot": 18,
    "yrank": 4,
    "ytot": 14,
-   "bar": "#c41217"
+   "bar": "#c41217",
+   "icons": [
+    "icons/faces/czn/2026-08-19-5b4880.webp"
+   ],
+   "accent": "#f40a12"
   },
   {
    "name": "オルガ",
@@ -847,7 +907,11 @@
    "cumtot": 18,
    "yrank": 9,
    "ytot": 14,
-   "bar": "#2aad98"
+   "bar": "#2aad98",
+   "icons": [
+    "icons/faces/czn/2026-09-09-b1e440.webp"
+   ],
+   "accent": "#37c8ae"
   },
   {
    "name": "セレニエル",
@@ -869,7 +933,11 @@
    "cumtot": 18,
    "yrank": 13,
    "ytot": 14,
-   "bar": "#5ea5e6"
+   "bar": "#5ea5e6",
+   "icons": [
+    "icons/faces/czn/2026-09-30-ff2662.webp"
+   ],
+   "accent": "#7caad9"
   },
   {
    "name": "ロスヴァイセ",
@@ -891,7 +959,11 @@
    "cumtot": 18,
    "yrank": 14,
    "ytot": 14,
-   "bar": "#d60065"
+   "bar": "#d60065",
+   "icons": [
+    "icons/faces/czn/2026-10-21-ee0e09.webp"
+   ],
+   "accent": "#ff007a"
   }
  ]
 }
