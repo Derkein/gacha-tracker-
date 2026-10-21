@@ -2405,7 +2405,9 @@ function renderMonthly(){
   if(searching() && !order.length){ $("#chart").innerHTML=noResultsHTML(); return; }
   let dtot=0,dnul=0;
   state.data.banners.forEach(b=>{const s=b.rank_series||[]; dtot+=s.length; dnul+=s.filter(x=>x==null).length;});
-  const lowRank = dtot && dnul/dtot>=0.15;
+  // a rebuilt (official-source) game carries the Daily / Monthly share toggle, whose note
+  // already explains the below-#200 gap, so this warning would only repeat it
+  const lowRank = dtot && dnul/dtot>=0.15 && state.data.banners_from!=="official";
   const hasST = Object.keys(extGameMonths(state.tag)).length>0;
   let html=`<div class="yr-note">Each month shows the source estimates side by side: game-i's published <b>monthly total</b> (月次売上予測), the total we <b>reconstruct from daily ranks</b>, the <b>Qimai</b> China-iPhone total, the <b>CN</b> all-platform figure, and`
     + (hasST?` the <b>Sensor Tower</b> combined figure (from gacharevenue's published monthly reports). <b>*</b> marks approximate values (region-summed older reports).`:` (no Sensor Tower coverage for this game).`)
