@@ -1186,6 +1186,14 @@ function axesHTML(max){
   const fmt = src==="st" ? fmtUSD : src==="cn" ? fmtCNY : src==="qimai" ? fmtUSD : G;
   return tk.map(t=>`<div class="axis" style="left:calc(101px + (100% - 101px - 74px) * ${t/max})"><span>${fmt(t)}</span></div>`).join("");}
 
+// Every bar's track shrinks to fit its value label, so "¥0" next to "¥146M" left the tracks
+// ending at different points. Give every value column in the chart the width of the widest.
+function alignVals(){
+  const vs=[...document.querySelectorAll("#chart .barline > .val")]; if(!vs.length) return;
+  vs.forEach(v=>v.style.minWidth="");
+  const w=Math.ceil(Math.max(...vs.map(v=>v.getBoundingClientRect().width)));
+  vs.forEach(v=>v.style.minWidth=w+"px");
+}
 function renderBars(){
   const stMode=state.dataSource==="st";
   const V = state.dataSource==="gamei" ? (b=>b.rev) : srcVal;
@@ -1214,7 +1222,7 @@ function renderBars(){
   else { list.sort((x,y)=>y.start.localeCompare(x.start)); if(state.reverse) list.reverse(); let cy=null;  // newest first by default
     list.forEach(x=>{ const gk=groupKey(x); if(gk!==cy){cy=gk; html+=`<div class="yhead">${esc(gk)}</div>`+axesHTML(max);}
       html+=rowHTML(x,x._rank,max); }); }
-  $("#chart").innerHTML=html;
+  $("#chart").innerHTML=html; alignVals();
   // FLIP: invert to old position, then play to new one (icons slide up/down)
   document.querySelectorAll("#chart .row").forEach(r=>{
     const o=old[r.dataset.i]; if(o==null) return;

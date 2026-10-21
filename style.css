@@ -179,7 +179,7 @@ a{color:inherit}
 :root[data-theme=light] .barfill{background:var(--bar-l)}
 :root[data-theme=dark]  .barfill{background:var(--bar-d)}
 @keyframes barGrow{from{width:0}}
-.val{font-size:13px; font-weight:800; font-variant-numeric:tabular-nums; white-space:nowrap; text-align:right}
+.val{font-size:13px; font-weight:800; font-variant-numeric:tabular-nums; white-space:nowrap; text-align:right; box-sizing:border-box}
 .val small{font-weight:500; color:var(--ink2); font-size:11px}
 .val.nodata,.val.muted{font-weight:600; color:var(--muted); font-style:italic; font-size:11.5px}
 /* "partial" flag on a Sensor Tower total — sits UNDER the value so it can't widen the bar row */
