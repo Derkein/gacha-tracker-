@@ -12,7 +12,7 @@
 <title>Gacha Revenue Tracker</title>
 <meta name="description" content="Estimated gacha banner revenue over time for Zenless Zone Zero, Honkai: Star Rail, Wuthering Waves, Genshin Impact and Arknights: Endfield. Auto-updated from game-i.daa.jp.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>%F0%9F%8E%B0</text></svg>">
-<link rel="stylesheet" href="style.css?v=338">
+<link rel="stylesheet" href="style.css?v=339">
 </head>
 <body>
 <div class="wrap">
@@ -209,7 +209,7 @@
       <li><b>The monthly total</b> (月次売上予測) adds up a value for every day of the month (月間の売上はその合計値です). Apple's overall top-grossing chart only lists <b>200 places</b> (iOSのセルランが200位までしか取得できない), so since <b>October 2021</b> game-i builds this from a <b>"virtual top 1000"</b> (仮想TOP1000): a game below #200 overall can still be placed from Apple's <b>games</b> and <b>genre</b> top-200 charts, so it keeps getting a daily value. game-i's own caveat: below #200, accuracy drops (200位より下位のアプリは…精度が低下します), and only games that stay in the top 200 give dependable numbers. (<a href="https://note.com/game_i/n/nbdae77c08cee" target="_blank" rel="noopener">game-i: 売上予測システム改修説明</a>, <a href="https://game-i.daa.jp/?%E3%82%B5%E3%82%A4%E3%83%88%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6" target="_blank" rel="noopener">サイトについて</a>)</li>
       <li><b>A banner's figure</b> comes from the older gacha analysis (2019): each day, the daily revenue of the game's <b>overall chart rank</b> — the previous day's, recorded at midnight (前日のセルラン順位) — is added to the banners running that day, split equally, first day +80%, last day −80% (<a href="https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%A3%B2%E4%B8%8A%E5%88%86%E6%9E%90%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6" target="_blank" rel="noopener">ガチャ売上分析について</a>, <a href="https://note.com/game_i/n/n9989714e4525" target="_blank" rel="noopener">不具合修正について</a>). game-i has never said it moved this part to the virtual top 1000.</li>
     </ul>
-    <p>What game-i's published figures show is that it didn't: <b>a banner stops growing the day its game leaves the overall top 200, while the monthly total keeps growing.</b> When ZZZ dropped below #200 on 5 Oct 2026, its October total kept rising by about ¥5M a day, while Roxy's banner froze at ¥111M. game-i doesn't state this rule anywhere — it is what its numbers do, and the likely reason is simply that the banner analysis still reads the 200-place overall chart.</p>
+    <p>What game-i's published figures show is that it didn't: <b>a banner stops growing the day its game leaves the overall top 200, while the monthly total keeps growing.</b></p>
     <p>So the monthly total is never smaller than the banners. For a game that stays in the top 200 the difference is just days with no listed banner (its banners come to <b>88–98%</b> of the monthly totals, above). For a game that spends weeks below #200 the gap gets large — Stella Sora's banners add up to under half of its monthly totals, and a run spent entirely below the chart shows ¥0. A banner that straddles two months also takes a share of both, and the current month is still being added to. The <b>By Month</b> view always shows the monthly totals next to the banners.</p>
     <p>Where this site needs a value for a day below the chart — the <b>Monthly share</b> view of Stella Sora and Chaos Zero Nightmare — it uses the faint line on game-i's own rank graphs (推測): game-i's estimate of the rank below #200, worked out from Android's top 600 and assuming the game doesn't climb back into the top 200.</p>
 
@@ -428,6 +428,6 @@
 
 <div class="lightbox" id="lightbox" hidden><img id="lightboxImg" src="" alt=""></div>
 
-<script src="app.js?v=338"></script>
+<script src="app.js?v=339"></script>
 </body>
 </html>
