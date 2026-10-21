@@ -2413,7 +2413,15 @@ function renderMonthly(){
     + (hasST?` the <b>Sensor Tower</b> combined figure (from gacharevenue's published monthly reports). <b>*</b> marks approximate values (region-summed older reports).`:` (no Sensor Tower coverage for this game).`)
     + ` The bar splits the month among the banners that ran; each banner lists its game-i share and an <b>extrapolated combined</b> figure (its blended game-i + Qimai share applied to the Sensor Tower total — a rough estimate, since no per-banner breakdown exists).</div>`
     + `<div class="mo-hint">Tap or hover any character for its daily-rank detail; each card shows the full monthly breakdown, run dates &amp; below-#200 days, and how the banners overlapped.</div>`;
-  if(lowRank) html+=`<div class="mo-warn">⚠ Many of this game's banners fall <b>below game-i's trackable top&nbsp;200</b> within a few days. game-i counts those days as <b>¥0</b> even though the app is still selling, so its <b>monthly total undercounts</b> and the per-banner split is shaky — take everything here as ballpark.</div>`;
+  if(lowRank){
+    // the game's own numbers: share of banner days off the chart, and banners vs game-i monthly
+    let ours=0, gim=0;
+    for(const ym in bm) if(gi[ym]!=null){ ours+=bm[ym].ours||0; gim+=gi[ym]; }
+    html+=`<div class="mo-warn">⚠ <b>${Math.round(dnul/dtot*100)}% of ${esc(state.data.name)}'s banner days were below Japan's iOS top&nbsp;200</b>, where game-i publishes no daily rank. `
+      + `The banner totals are still game-i's own figures${gim>0?` — together they come to <b>${G(ours)}</b> against game-i's <b>${G(gim)}</b> monthly total for the same months`:""}. `
+      + `What's uncertain is how this site spreads them over time: a banner's revenue can only be placed on the days it charted, so it bunches into launch weeks, and the <b>from daily ranks</b> column can drift from <b>game-i monthly</b> month to month. `
+      + `Treat the month-by-month split as a rough guide; the game-i monthly column is game-i's own number.</div>`;
+  }
   const lead=cnLead(state.tag);
   if(lead) html+=`<div class="mo-warn">⚠ <b>${esc(state.data.name)}'s China server runs ${lead} days ahead of the global/JP schedule.</b> Each banner really earned this <b>Qimai · China iPhone</b> revenue ~${lead} days before its game-i window, but here it's <b>mapped to the matching global month</b> so it lines up with the game-i, Sensor&nbsp;Tower and CN¥ columns and the split still sums to the month. Open a banner's <b>Qimai</b> tab to see its true China dates.</div>`;
   { const sc=cnSchedule(); if(sc) html+=`<div class="mo-warn">⚠ <b>${esc(state.data.name)}'s China edition ran its own banner order until ${esc(per(sc.sync))}</b> (it opened with ${esc(cnScheduleOrder())}), then matched the global calendar. Each of those China runs' <b>Qimai · China iPhone</b> revenue is <b>mapped to that banner's global month</b> so it lines up with the game-i, Sensor&nbsp;Tower and CN¥ columns. Open a banner's <b>Qimai</b> tab for its real China dates.</div>`; }
