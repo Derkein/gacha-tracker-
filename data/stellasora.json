@@ -78,7 +78,15 @@
    "icons": [
     "icons/faces/stellasora/2025-10-20-a4ab61.webp"
    ],
-   "accent": "#4f78b0"
+   "accent": "#4f78b0",
+   "rev_ym": {
+    "2025-10": 1.5432,
+    "2025-11": 0.4747
+   },
+   "rev_month_ym": {
+    "2025-10": 1.5432,
+    "2025-11": 0.4747
+   }
   },
   {
    "name": "シア",
@@ -128,7 +136,15 @@
    "icons": [
     "icons/faces/stellasora/2025-10-28-fd5566.webp"
    ],
-   "accent": "#6987c2"
+   "accent": "#6987c2",
+   "rev_ym": {
+    "2025-10": 0.3068,
+    "2025-11": 0.9818
+   },
+   "rev_month_ym": {
+    "2025-10": 0.3068,
+    "2025-11": 0.9818
+   }
   },
   {
    "name": "フユカ",
@@ -178,7 +194,15 @@
    "icons": [
     "icons/faces/stellasora/2025-11-18-915982.webp"
    ],
-   "accent": "#70aaff"
+   "accent": "#70aaff",
+   "rev_ym": {
+    "2025-11": 0.8212,
+    "2025-12": 0.1739
+   },
+   "rev_month_ym": {
+    "2025-11": 1.0235,
+    "2025-12": 0.394
+   }
   },
   {
    "name": "ナツカ",
@@ -228,7 +252,13 @@
    "icons": [
     "icons/faces/stellasora/2025-12-09-1df636.webp"
    ],
-   "accent": "#577aa8"
+   "accent": "#577aa8",
+   "rev_ym": {
+    "2025-12": 0.3864
+   },
+   "rev_month_ym": {
+    "2025-12": 0.91
+   }
   },
   {
    "name": "ラール（聖夜）",
@@ -277,7 +307,15 @@
    "bar": "#a33344",
    "icons": [
     "icons/faces/stellasora/2025-12-23-c828a5.webp"
-   ]
+   ],
+   "rev_ym": {
+    "2025-12": 0.1421,
+    "2026-01": 0.0
+   },
+   "rev_month_ym": {
+    "2025-12": 0.306,
+    "2026-01": 0.5767
+   }
   },
   {
    "name": "フィレン",
@@ -326,7 +364,15 @@
    "bar": "#cbce97",
    "icons": [
     "icons/faces/stellasora/2026-01-13-6f4568.webp"
-   ]
+   ],
+   "rev_ym": {
+    "2026-01": 0.3067,
+    "2026-02": 0.0
+   },
+   "rev_month_ym": {
+    "2026-01": 1.0133,
+    "2026-02": 0.071
+   }
   },
   {
    "name": "クルニス（華服）",
@@ -376,7 +422,13 @@
    "icons": [
     "icons/faces/overrides/92b0eaa8.webp"
    ],
-   "accent": "#95b2d9"
+   "accent": "#95b2d9",
+   "rev_ym": {
+    "2026-02": 0.0533
+   },
+   "rev_month_ym": {
+    "2026-02": 0.6157
+   }
   },
   {
    "name": "レイス",
@@ -426,7 +478,15 @@
    "icons": [
     "icons/faces/overrides/72aa7e39.webp"
    ],
-   "accent": "#938cb6"
+   "accent": "#938cb6",
+   "rev_ym": {
+    "2026-02": 0.1006,
+    "2026-03": 0.0
+   },
+   "rev_month_ym": {
+    "2026-02": 0.2052,
+    "2026-03": 0.3396
+   }
   },
   {
    "name": "トーナ",
@@ -452,7 +512,15 @@
    "icons": [
     "icons/faces/stellasora/2026-03-17-7bf00e.webp"
    ],
-   "accent": "#ecb583"
+   "accent": "#ecb583",
+   "rev_ym": {
+    "2026-03": 0.0,
+    "2026-04": 0.0
+   },
+   "rev_month_ym": {
+    "2026-03": 0.3118,
+    "2026-04": 0.0636
+   }
   },
   {
    "name": "ナズナ",
@@ -478,7 +546,15 @@
    "icons": [
     "icons/faces/stellasora/2026-03-31-b40fd4.webp"
    ],
-   "accent": "#91e18e"
+   "accent": "#91e18e",
+   "rev_ym": {
+    "2026-03": 0.0,
+    "2026-04": 0.0
+   },
+   "rev_month_ym": {
+    "2026-03": 0.0109,
+    "2026-04": 0.2625
+   }
   },
   {
    "name": "オトハ",
@@ -504,7 +580,15 @@
    "icons": [
     "icons/faces/stellasora/2026-04-16-717999.webp"
    ],
-   "accent": "#5a74a5"
+   "accent": "#5a74a5",
+   "rev_ym": {
+    "2026-04": 0.0,
+    "2026-05": 0.0
+   },
+   "rev_month_ym": {
+    "2026-04": 0.2755,
+    "2026-05": 0.0913
+   }
   },
   {
    "name": "チトセ",
@@ -530,7 +614,15 @@
    "icons": [
     "icons/faces/stellasora/2026-04-30-ac1cb1.webp"
    ],
-   "accent": "#4f78b0"
+   "accent": "#4f78b0",
+   "rev_ym": {
+    "2026-04": 0.0,
+    "2026-05": 0.0
+   },
+   "rev_month_ym": {
+    "2026-04": 0.0125,
+    "2026-05": 0.2969
+   }
   },
   {
    "name": "ホタル",
@@ -556,7 +648,15 @@
    "icons": [
     "icons/faces/stellasora/2026-05-14-d77878.webp"
    ],
-   "accent": "#3c6fc3"
+   "accent": "#3c6fc3",
+   "rev_ym": {
+    "2026-05": 0.0,
+    "2026-06": 0.0
+   },
+   "rev_month_ym": {
+    "2026-05": 0.3571,
+    "2026-06": 0.019
+   }
   },
   {
    "name": "スパクル",
@@ -582,7 +682,13 @@
    "icons": [
     "icons/faces/overrides/739ddd77.webp"
    ],
-   "accent": "#7d5da2"
+   "accent": "#7d5da2",
+   "rev_ym": {
+    "2026-06": 0.0
+   },
+   "rev_month_ym": {
+    "2026-06": 0.2847
+   }
   },
   {
    "name": "ナノハ",
@@ -608,7 +714,15 @@
    "icons": [
     "icons/faces/overrides/111bb961.webp"
    ],
-   "accent": "#4e67b1"
+   "accent": "#4e67b1",
+   "rev_ym": {
+    "2026-06": 0.0,
+    "2026-07": 0.0
+   },
+   "rev_month_ym": {
+    "2026-06": 0.1391,
+    "2026-07": 0.0708
+   }
   },
   {
    "name": "シャトン",
@@ -634,7 +748,15 @@
    "icons": [
     "icons/faces/stellasora/2026-06-30-4c477d.webp"
    ],
-   "accent": "#e6c28a"
+   "accent": "#e6c28a",
+   "rev_ym": {
+    "2026-06": 0.0,
+    "2026-07": 0.0
+   },
+   "rev_month_ym": {
+    "2026-06": 0.0092,
+    "2026-07": 0.2862
+   }
   },
   {
    "name": "ウィロー（水着）",
@@ -660,7 +782,15 @@
    "icons": [
     "icons/faces/stellasora/2026-07-21-2fd563.webp"
    ],
-   "accent": "#88c1e7"
+   "accent": "#88c1e7",
+   "rev_ym": {
+    "2026-07": 0.0,
+    "2026-08": 0.0
+   },
+   "rev_month_ym": {
+    "2026-07": 0.2621,
+    "2026-08": 0.1099
+   }
   },
   {
    "name": "ナツカ",
@@ -686,7 +816,13 @@
    "icons": [
     "icons/faces/stellasora/2026-08-04-c99aef.webp"
    ],
-   "accent": "#5578aa"
+   "accent": "#5578aa",
+   "rev_ym": {
+    "2026-08": 0.0
+   },
+   "rev_month_ym": {
+    "2026-08": 0.2181
+   }
   },
   {
    "name": "カリン",
@@ -712,7 +848,15 @@
    "icons": [
     "icons/faces/stellasora/2026-08-18-9fd7b0.webp"
    ],
-   "accent": "#85d3ea"
+   "accent": "#85d3ea",
+   "rev_ym": {
+    "2026-08": 0.0,
+    "2026-09": 0.0
+   },
+   "rev_month_ym": {
+    "2026-08": 0.163,
+    "2026-09": 0.1206
+   }
   },
   {
    "name": "エレノア",
@@ -738,7 +882,13 @@
    "icons": [
     "icons/faces/stellasora/2026-09-08-8bccd5.webp"
    ],
-   "accent": "#98c5d7"
+   "accent": "#98c5d7",
+   "rev_ym": {
+    "2026-09": 0.0
+   },
+   "rev_month_ym": {
+    "2026-09": 0.344
+   }
   },
   {
    "name": "エリー",
@@ -764,7 +914,15 @@
    "icons": [
     "icons/faces/stellasora/2026-09-29-0eb0cd.webp"
    ],
-   "accent": "#e18fa0"
+   "accent": "#e18fa0",
+   "rev_ym": {
+    "2026-09": 0.0,
+    "2026-10": 0.0
+   },
+   "rev_month_ym": {
+    "2026-09": 0.0415,
+    "2026-10": 0.3529
+   }
   },
   {
    "name": "セイナ（原点）",
@@ -790,7 +948,13 @@
    "icons": [
     "icons/faces/overrides/d7108083.webp"
    ],
-   "accent": "#d19e9c"
+   "accent": "#d19e9c",
+   "rev_ym": {
+    "2026-10": 0.0
+   },
+   "rev_month_ym": {
+    "2026-10": 0.0562
+   }
   }
  ]
 }

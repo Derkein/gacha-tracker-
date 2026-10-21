@@ -224,7 +224,7 @@ function bannerST(b){
     // banners; Qimai (China iPhone) is a second, independent one. Average them where both
     // exist, so the monthly total is apportioned on two daily sources instead of just
     // game-i; fall back to game-i alone where Qimai has no data.
-    const giShare=base>0 ? entry.rev/base : 0;
+    const giShare=giMonthShare(b, ym, entry.rev, base);
     const qmS=qimaiShare(b, ym);
     const share = blendShare(giShare, qmS);
     const qmR=(qmS!=null) ? (((state.qimai.games[state.tag].banners[b._i]||{}).monthly||{})[ym]||0) : null;
@@ -357,7 +357,7 @@ function bannerCN(b){
     const o=bm[ym].ours||0, g=gi[ym];
     const base=(g!=null && o>0 && (g-o)/g>=0.08) ? g : o;                   // same denominator as ST
     // same two-source blend as bannerST: average game-i's and Qimai's month share
-    const giShare=base>0 ? entry.rev/base : 0;
+    const giShare=giMonthShare(b, ym, entry.rev, base);
     const qmS=qimaiShare(b, ym);
     const share = blendShare(giShare, qmS);
     const qmR=(qmS!=null) ? (((state.qimai.games[state.tag].banners[b._i]||{}).monthly||{})[ym]||0) : null;
@@ -673,6 +673,16 @@ function qimaiShare(b, ym){ const g=state.qimai&&state.qimai.games&&state.qimai.
 // below game-i's top 200 (¥0 in Japan) that Qimai saw earning in China takes HALF its Qimai
 // share, not the full one, so its missing Japan value weighs on the split (and vice-versa).
 // `qm` is null only when there's no Qimai data at all for the month — then game-i stands alone.
+// game-i's Japan share of month `ym` for banner b (rev = its game-i figure there, base = the
+// month's denominator). A rebuilt (official-source) game's banners carry their every-day
+// split (rev_month_ym), which adds up to game-i's monthly total, so that is the share used
+// to apportion Sensor Tower / CN / the month bar under either toggle: game-i's top-200 cut
+// is its banner bookkeeping, not evidence the banner earned nothing that month.
+function giMonthShare(b, ym, rev, base){
+  const tot=state.data && state.data.monthly && state.data.monthly[ym];
+  if(b && b.rev_month_ym && tot>0) return (b.rev_month_ym[ym]||0)/tot;
+  return base>0 ? rev/base : 0;
+}
 function blendShare(gi, qm){
   if(qm==null) return gi;              // no Qimai data this month → game-i alone
   return (gi+qm)/2;                    // average — a 0 from either side is a real datapoint
@@ -2229,6 +2239,19 @@ function computeMonthly(){
   // position as their eventual _i (synthetics are appended after), so capture bi here.
   state.data.banners.forEach((b,bi)=>{
     if(b._synthetic) return;                 // reconciliation uses real banners only
+    // A game whose banners this site rebuilds (banners_from "official") ships each banner's
+    // month-by-month split under both rules — game-i's (top-200 days only) and Monthly share
+    // (every day) — and lists every month the run touched, so a banner that never charted
+    // still shows (at ¥0 under game-i's rule) instead of the month reading as banner-less.
+    if(b.rev_ym && b.rev_month_ym){
+      // follow the rule b.rev itself is on: applyRevMode swaps it (selectGame), Compare's
+      // loadCtx doesn't (so _revDaily is unset there and the split stays on game-i's rule)
+      const per = (b._revDaily!==undefined && state.revMode==="month") ? b.rev_month_ym : b.rev_ym;
+      for(const ym in per){ const M=byMonth[ym]||(byMonth[ym]={ours:0,banners:[]});
+        M.ours+=per[ym];
+        M.banners.push({name:(b.agents&&b.agents.length?b.agents.join(" & "):b.name), rev:per[ym], total:b.rev, i:bi}); }
+      return;
+    }
     const s=b.rank_series; if(!s||!s.length) return;
     const raw=s.map(rankValue), tot=raw.reduce((a,c)=>a+c,0);
     // Attribute to EVERY month the run touches — not just months it earned in. A
@@ -2278,7 +2301,7 @@ function bannerContribHTML(x, base, st, ym, cnR){
   // split and Qimai's China-iPhone split averaged wherever Qimai has data (a ¥0 from game-i
   // still counts, halving the Qimai share), game-i alone when there's no Qimai — so a banner
   // reads ONE value everywhere.
-  const giShare=share, qmShare=qimaiShare(b, ym), blended=blendShare(giShare, qmShare);
+  const giShare=giMonthShare(b, ym, x.rev, base), qmShare=qimaiShare(b, ym), blended=blendShare(giShare, qmShare);
   const bmode=shareMode({giShare, qmShare, share:blended}), bpct=Math.round(blended*100);
   const shareTxt = bmode==="both"
                  ? `game-i ${Math.round(giShare*100)}% + Qimai ${Math.round(qmShare*100)}% → blended ${bpct}%`
@@ -2403,7 +2426,11 @@ function renderMonthly(){
     // KPI scorecards
     const diff = (g!=null && g>0) ? (o-g)/g*100 : null;
     const kGi = g!=null ? `<div class="mck gi"><span class="mck-k">game-i monthly</span><span class="mck-v">${G(g)}</span><span class="mck-n">月次売上予測</span></div>` : "";
-    const kRe = `<div class="mck re"><span class="mck-k">from daily ranks</span><span class="mck-v">${G(o)}</span><span class="mck-n">${diff!=null?`${diff>=0?"+":""}${diff.toFixed(0)}% vs game-i`:"reconstruction"}</span></div>`;
+    // a rebuilt (official-source) game's banner sum follows the Daily / Monthly share toggle:
+    // name the rule rather than "from daily ranks", which reads as a mismatch under either
+    const offl = state.data.banners_from==="official", shareMode = offl && state.revMode==="month";
+    const kRe = `<div class="mck re"><span class="mck-k">${offl?(shareMode?"banners · monthly share":"banners · game-i rule"):"from daily ranks"}</span><span class="mck-v">${G(o)}</span>`
+      + `<span class="mck-n">${shareMode?"every day counted":offl?`top-200 days only${diff!=null?` · ${diff>=0?"+":""}${diff.toFixed(0)}%`:""}`:diff!=null?`${diff>=0?"+":""}${diff.toFixed(0)}% vs game-i`:"reconstruction"}</span></div>`;
     const stApprox = st && st.method==="reported_approx";
     const stSub = st ? (st.usonly ? `<span class="usonly-tag" title="Global (US) only — no China figure available for this month, so it's undercounted">global only</span>` : (st.method==="reported"||st.method==="reported_approx" ? "combined · reported" : "combined · reconstructed")) : "";
     const kSt = st ? `<div class="mck st${st.usonly?" usonly":""}"><span class="mck-k">Sensor Tower${stApprox?" *":""}</span><span class="mck-v">${fmtUSD(st.rev)}</span><span class="mck-n">${stSub}</span></div>` : "";
@@ -2420,7 +2447,7 @@ function renderMonthly(){
     // Qimai's China split via the same blendShare the ST/CN cells use — so a banner that
     // sat below game-i's #200 (¥0 there) but still earned in China gets a segment too.
     // Shares are normalised to the bar because a blend of two sources needn't sum to 1.
-    const segs = bl.map(x=>({x, share: blendShare(base>0?x.rev/base:0, qimaiShare(state.data.banners[x.i], ym))}))
+    const segs = bl.map(x=>({x, share: blendShare(giMonthShare(state.data.banners[x.i], ym, x.rev, base), qimaiShare(state.data.banners[x.i], ym))}))
       .filter(s=>s.share>0.0005);
     let sumShare = segs.reduce((a,s)=>a+s.share,0);
     const scale = sumShare>1 ? 1/sumShare : 1;
@@ -2732,7 +2759,7 @@ function openPeriod(kind, key){
     if(st){
       const base=(gi!=null && o>0 && (gi-o)/gi>=0.08) ? gi : o;   // same denominator as bannerST
       const ap = st.method==="reported_approx";
-      const stItems=items.map(it=>{ const gi=base>0?it.rev/base:0, qs=qimaiShare(it.b,key);
+      const stItems=items.map(it=>{ const gi=giMonthShare(it.b, key, it.rev, base), qs=qimaiShare(it.b,key);
         const share=blendShare(gi,qs); return {b:it.b, share, giShare:gi, qmShare:qs, jp:it.rev, val:share*st.rev}; })
         .sort((a,b)=>b.val-a.val);
       const stMax=Math.max(...stItems.map(x=>x.val), 1);
@@ -2767,7 +2794,7 @@ function openPeriod(kind, key){
     if(cnR){
       const base=(gi!=null && o>0 && (gi-o)/gi>=0.08) ? gi : o;   // same denominator as bannerCN
       const cnHi = cnR.hi==null?cnR.lo:cnR.hi;
-      const cnItems=items.map(it=>{ const gi=base>0?it.rev/base:0, qs=qimaiShare(it.b,key);
+      const cnItems=items.map(it=>{ const gi=giMonthShare(it.b, key, it.rev, base), qs=qimaiShare(it.b,key);
         const share=blendShare(gi,qs);
         return {b:it.b, share, giShare:gi, qmShare:qs, jp:it.rev, lo:share*cnR.lo, hi:share*cnHi}; }).sort((a,b)=>b.hi-a.hi);
       const cnMax=Math.max(...cnItems.map(x=>(x.lo+x.hi)/2), 1);
