@@ -67,13 +67,24 @@ a{color:inherit}
 .gp-bimg{width:40px; height:40px; border-radius:10px; display:block; object-fit:cover}
 .gp-btx{min-width:0; flex:1; display:flex; flex-direction:column; line-height:1.25}
 .gp-k{font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted)}
-.gp-btx b{font-size:14px; color:var(--accent); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.gp-btx b{font-size:14px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
 .gp-sub{font-size:11px; color:var(--muted); font-variant-numeric:tabular-nums}
+.gp-btn .gp-btx b{color:var(--accent)}
+.gp-cmp{flex:0 0 auto; display:flex; align-items:center; gap:10px; border:1px solid var(--border); background:var(--surface);
+  color:var(--ink); border-radius:12px; padding:7px 12px 7px 7px; font:inherit; text-align:left; cursor:pointer;
+  transition:background .12s,border-color .12s}
+.gp-cmp:hover{background:var(--surface2); border-color:color-mix(in srgb,var(--accent) 45%, var(--border))}
+.gp-cmp:hover .gp-chev{color:var(--accent); transform:translateX(2px)}
+.gp-cic{flex:none; width:40px; height:40px; border-radius:10px; display:flex; align-items:center; justify-content:center;
+  font-size:18px; color:var(--accent); background:color-mix(in srgb,var(--accent) 14%, var(--surface2))}
 .gp-chev{flex:none; font-size:12px; color:var(--muted); transition:transform .15s}
 .gp-btn[aria-expanded="true"] .gp-chev{transform:rotate(180deg)}
 .gp-rail{position:relative; flex:1; min-width:0; display:flex; gap:6px; overflow-x:auto; padding:4px 2px;
   scrollbar-width:none}
 .gp-rail::-webkit-scrollbar{display:none}
+.gp-rail.fade-r{-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 36px),transparent); mask-image:linear-gradient(90deg,#000 calc(100% - 36px),transparent)}
+.gp-rail.fade-l{-webkit-mask-image:linear-gradient(90deg,transparent,#000 36px); mask-image:linear-gradient(90deg,transparent,#000 36px)}
+.gp-rail.fade-l.fade-r{-webkit-mask-image:linear-gradient(90deg,transparent,#000 36px,#000 calc(100% - 36px),transparent); mask-image:linear-gradient(90deg,transparent,#000 36px,#000 calc(100% - 36px),transparent)}
 .gp-rb{flex:none; width:40px; height:40px; padding:0; border:0; border-radius:11px; background:none; cursor:pointer;
   opacity:.62; filter:saturate(.7); transition:opacity .12s,transform .12s,filter .12s}
 .gp-rb:hover,.gp-rb:focus-visible{opacity:1; filter:none; transform:translateY(-1px)}
@@ -100,27 +111,54 @@ a{color:inherit}
 .gp-ost b{font-size:12.5px; color:var(--ink2)}
 .gp-ost span{font-size:11px; color:var(--muted)}
 .gp-none{padding:14px 8px; font-size:13px; color:var(--muted)}
+.gp-cmpl{display:none}
+@media (max-width:760px){
+  .gp{flex-wrap:wrap; gap:8px}
+  .gp-btn{flex:1 1 0; max-width:none; min-width:0}
+  .gp-rail{order:3; flex:1 1 100%}
+}
 @media (max-width:560px){
-  .gp{flex-direction:column; align-items:stretch; gap:6px}
-  .gp-btn{max-width:none; min-width:0}
+  /* phone: Compare shrinks to an icon + word so it shares the game button's row */
+  .gp-cmp{flex-direction:column; justify-content:center; gap:3px; padding:6px 10px}
+  .gp-cmp .gp-btx,.gp-cmp .gp-chev{display:none}
+  .gp-cmp .gp-cic{width:30px; height:30px; font-size:15px; border-radius:8px}
+  .gp-cmpl{display:block; font-size:10.5px; font-weight:700; color:var(--ink2)}
+}
+@media (max-width:1100px){
+  .gp-cmp .gp-sub{display:none}
 }
 
 /* stat tiles */
-.tiles{display:grid; grid-template-columns:repeat(auto-fit,minmax(148px,1fr)); gap:10px; margin:14px 0 18px}
-.tile{background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:12px 15px; display:flex; flex-direction:column; gap:2px; align-items:center; text-align:center}
-.tile-click{cursor:pointer; transition:border-color .12s, background .12s, transform .12s}
-.tile-click:hover{border-color:var(--accent); background:var(--surface2)}
+/* stat panel: one bordered panel, cells split by hairlines (each cell draws its right + bottom
+   line; the inner grid's -1px margins push the outer ones under the panel's own border) */
+.tiles{margin:12px 0 18px; background:var(--surface); border:1px solid var(--border); border-radius:14px; overflow:hidden}
+.tiles:empty{display:none}
+.tiles-in{display:grid; grid-template-columns:repeat(var(--n),minmax(0,1fr)); margin:0 -1px -1px 0}
+.tile{min-width:0; padding:13px 16px 14px; display:flex; flex-direction:column; gap:2px; align-items:flex-start; text-align:left;
+  border-right:1px solid var(--border); border-bottom:1px solid var(--border)}
+.tile-click{cursor:pointer; transition:background .12s}
+.tile-click:hover{background:var(--surface2)}
 .tile-click:hover .v{color:var(--accent)}
-.tile-click:active{transform:translateY(1px)}
-/* character icons pinned to the bottom of a stat tile (Highest banner / Highest month) */
-.tile-ics{display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:6px; margin-top:11px}
-.tile-ic2{width:38px; height:38px; border-radius:50%; object-fit:cover;
-  box-shadow:0 0 0 1.5px var(--surface),0 0 0 3px var(--border); background:var(--track)}
-.tile-icmore{margin-left:2px; font-size:12px; font-weight:700; color:var(--muted)}
-.tile .l{font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:.05em}
-.tile .v{font-size:22px; font-weight:800; letter-spacing:-.02em; font-variant-numeric:tabular-nums}
+@media (max-width:900px){
+  .tiles-in{grid-template-columns:repeat(var(--half),minmax(0,1fr))}
+  .tiles-in.odd-t .tile:last-child{grid-column:span 2}
+}
+@media (max-width:560px){
+  .tiles-in{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .tiles-in.odd-t .tile:last-child{grid-column:auto}
+  .tiles-in.odd-p .tile:last-child{grid-column:span 2}
+  .tile{padding:11px 13px 12px}
+}
+/* the cell's characters: an overlapping avatar group under the sub-line */
+.tile-ics{display:flex; align-items:center; margin-top:8px; padding-left:6px}
+.tile-ic2{width:30px; height:30px; margin-left:-6px; border-radius:50%; object-fit:cover;
+  box-shadow:0 0 0 2px var(--surface); background:var(--track)}
+.tile-click:hover .tile-ic2{box-shadow:0 0 0 2px var(--surface2)}
+.tile-icmore{margin-left:6px; font-size:12px; font-weight:700; color:var(--muted)}
+.tile .l{font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:100%}
+.tile .v{font-size:22px; font-weight:800; letter-spacing:-.02em; font-variant-numeric:tabular-nums; transition:color .12s}
 .tile .n{font-size:12px; color:var(--ink2); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:100%}
-.tile .spark{width:100%; height:26px; margin-top:4px}
+.tile .spark{width:100%; height:26px; margin-top:auto; padding-top:6px; box-sizing:content-box}
 .tile .spark path{fill:none; stroke:var(--accent); stroke-width:1.5; vector-effect:non-scaling-stroke}
 
 /* controls */
@@ -1072,15 +1110,6 @@ body[data-agmode="banner"] .ag-row{grid-template-columns:206px 1fr 196px}
 .bm-headline .v{white-space:nowrap}
 
 /* ---- Compare launcher (above the game tabs) + dialog -------------------------- */
-.cmp-launch{width:100%; margin:0 0 12px; display:flex; align-items:center; gap:11px;
-  border:1px solid var(--border); border-radius:14px; background:var(--surface);
-  color:var(--ink); font:inherit; text-align:left; padding:12px 15px; cursor:pointer; transition:border-color .12s,background .12s}
-.cmp-launch:hover{background:var(--surface2); border-color:color-mix(in srgb,var(--accent) 45%, var(--border))}
-.cmp-card-ic{font-size:18px; line-height:1; flex:none; color:var(--accent)}
-.cmp-card-tx{flex:1; min-width:0; display:flex; flex-direction:column; line-height:1.3}
-.cmp-card-tx b{font-size:15px}
-.cmp-card-sub{font-size:12px; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
-.cmp-launch-go{flex:none; font-size:12.5px; font-weight:700; color:var(--accent)}
 /* min-height so a character search dropdown has room to open without being clipped by the
    dialog when the result area below is still short (e.g. only one side picked) */
 .modal-card.cmpmodal{max-width:900px; min-height:min(82vh,640px)}

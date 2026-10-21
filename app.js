@@ -827,11 +827,19 @@ function gpInit(){
   $("#gpRail").innerHTML=state.games.map(g=>`<button type="button" class="gp-rb" data-tag="${g.game}" title="${esc(g.name)}"
     aria-label="${esc(g.name)}" style="--gp-acc:${GAME_ACCENT[g.game]||"#e0a400"}">${gpIcon(g,"gp-ric")}</button>`).join("");
   $("#gpRail").onclick=e=>{ const b=e.target.closest(".gp-rb"); if(b) gpPick(b.dataset.tag); };
+  $("#gpRail").addEventListener("scroll", gpFade, {passive:true});
+  new ResizeObserver(gpFade).observe($("#gpRail"));
   $("#gpList").onclick=e=>{ const b=e.target.closest(".gp-opt"); if(b) gpPick(b.dataset.tag); };
   $("#gpBtn").onclick=()=>gpOpen();
   $("#gpSearch").addEventListener("input", gpRender);
   $("#gpSearch").addEventListener("keydown", gpKeys);
   document.addEventListener("pointerdown", e=>{ if(!$("#gpPanel").hidden && !$("#gp").contains(e.target)) gpOpen(false); });
+}
+// when the rail scrolls, fade whichever edge still has icons past it, so it reads as scrollable
+function gpFade(){
+  const r=$("#gpRail"), more=r.scrollWidth-r.clientWidth;
+  r.classList.toggle("fade-l", more>2 && r.scrollLeft>2);
+  r.classList.toggle("fade-r", more>2 && r.scrollLeft<more-2);
 }
 // the button and rail follow whichever game is showing
 function gpShow(tag){
@@ -849,6 +857,7 @@ function gpShow(tag){
     if(l<rail.scrollLeft) rail.scrollLeft=l-8;
     else if(r>rail.scrollLeft+rail.clientWidth) rail.scrollLeft=r-rail.clientWidth+8;
   }
+  gpFade();
   gpRemember(tag);
 }
 let _loadSeq = 0;
@@ -938,7 +947,7 @@ function cnNowTile(){
   const tip=`Place on China's App Store top-grossing chart at the end of each day, ALL apps (games compete `
     + `with Douyin, WeChat and the video apps), ${depth} deep, last ${win.length} days, from Qimai. `
     + `"Best" is the highest it reached at any point of a day. "${depth}+" means it sat below the chart that day.`;
-  return `<div class="tile" title="${esc(tip)}"><span class="l">CN store rank today</span>`
+  return `<div class="tile" title="${esc(tip)}"><span class="l">CN rank today</span>`
        + `<span class="v">iOS ${rank}</span>`
        + `<span class="n">${esc(note)}</span>`
        + sparkSVG(vals)+`</div>`;
@@ -949,7 +958,7 @@ function nowTile(now){
   const r=v=>v==null?"200+":"#"+v;
   const add=now.next_add?` · game-i expects ≈${G(now.next_add/1e8)} more tomorrow`:"";
   const tip=`Daily iOS top-grossing rank, last two months (top = #1; gaps = below the trackable ~top 200, which game-i counts as ¥0)${add}`;
-  return `<div class="tile" title="${esc(tip)}"><span class="l">JP store rank today</span>`+
+  return `<div class="tile" title="${esc(tip)}"><span class="l">JP rank today</span>`+
          `<span class="v">iOS ${r(now.ios)}</span>`+
          `<span class="n">Android ${r(now.android)} · monthly sales ${now.month?"#"+now.month:"—"}</span>`+
          sparkline(now)+`</div>`;
@@ -977,15 +986,16 @@ function renderStats(){
             if(v>hmVal){hmVal=v; hmYm=ym;} } }
   const hmBanners = hmYm ? (((state.monthly&&state.monthly[hmYm]&&state.monthly[hmYm].banners)||[]).map(x=>state.data.banners[x.i])) : [];
   const hmName = hmYm ? `${MONTHS[+hmYm.slice(5,7)-1]} ${hmYm.slice(0,4)}` : "—";
-  // a row of character icons at the BOTTOM of a tile (a month can hold several banners)
+  // the tile's characters as an overlapping avatar group under its sub-line (a month can
+  // hold several banners)
   const icRow = bans => {
-    const list=(bans||[]).filter(x=>x&&x.icons&&x.icons[0]), cap=9;
+    const list=(bans||[]).filter(x=>x&&x.icons&&x.icons[0]), cap=6;
     if(!list.length) return "";
     const imgs=list.slice(0,cap).map(x=>`<img class="tile-ic2" src="${esc(x.icons[0])}" alt="" referrerpolicy="no-referrer" data-fb="remove" title="${esc(x.agents&&x.agents.length?x.agents.join(" & "):x.name)}">`).join("");
     return `<div class="tile-ics">${imgs}${list.length>cap?`<span class="tile-icmore">+${list.length-cap}</span>`:""}</div>`;
   };
   const tile=(l,v,n,icons="",attr="")=>`<div class="tile${attr?" tile-click":""}"${attr?" "+attr:""}><span class="l">${l}</span><span class="v">${v}</span><span class="n">${esc(n)}</span>${icons}</div>`;
-  $("#tiles").innerHTML=
+  const cells=
       tile("Total revenue", fmt(sum), `across ${real.length} banners`)
     + tile("Highest banner", fmt(val(top)), topName, icRow([top]), `data-i="${top._i}" title="Open ${esc(topName)}"`)
     + tile("Highest month", hmVal>=0?fmt(hmVal):"—", hmName, icRow(hmBanners), hmYm?`data-period="month" data-key="${hmYm}" title="Open ${esc(hmName)}"`:"")
@@ -993,6 +1003,10 @@ function renderStats(){
            st?"mean estimate · combined" : cn?"mean estimate · global, all platforms" : qm?"mean estimate · China iPhone" : "mean estimate")
     + nowTile(state.data.now)
     + cnNowTile();
+  // one panel, cells split by hairlines: all in one row on a wide screen, two even rows on a
+  // tablet (--half columns), two columns on a phone. An odd last cell spans the gap it leaves.
+  const n=(cells.match(/<div class="tile[ "]/g)||[]).length, half=n<=4?n:3;
+  $("#tiles").innerHTML=`<div class="tiles-in${n%half?" odd-t":""}${n%2?" odd-p":""}" style="--n:${n};--half:${half}">${cells}</div>`;
     const srcs = "game-i.daa.jp + Sensor Tower reports" + (state.cn?" + CN monthly ranking":"");
   $("#updated").textContent=`sources: ${srcs} · updated ${new Date(state.data.updated).toISOString().slice(0,10)}`;
 }

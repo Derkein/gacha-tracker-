@@ -12,7 +12,7 @@
 <title>Gacha Revenue Tracker</title>
 <meta name="description" content="Estimated gacha banner revenue over time for Zenless Zone Zero, Honkai: Star Rail, Wuthering Waves, Genshin Impact and Arknights: Endfield. Auto-updated from game-i.daa.jp.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>%F0%9F%8E%B0</text></svg>">
-<link rel="stylesheet" href="style.css?v=344">
+<link rel="stylesheet" href="style.css?v=345">
 </head>
 <body>
 <div class="wrap">
@@ -29,12 +29,6 @@
     </div>
   </header>
 
-  <button class="cmp-launch" id="cmpOpen" type="button">
-    <span class="cmp-card-ic">⚔</span>
-    <span class="cmp-card-tx"><b>Compare</b><span class="cmp-card-sub">Two to four head-to-head — characters, months, years or versions, from any game</span></span>
-    <span class="cmp-launch-go">Open ▸</span>
-  </button>
-
   <div class="gp" id="gp">
     <button type="button" class="gp-btn" id="gpBtn" aria-haspopup="dialog" aria-expanded="false" aria-controls="gpPanel">
       <span class="gp-bic" id="gpIc"></span>
@@ -42,6 +36,11 @@
       <span class="gp-chev" aria-hidden="true">▾</span>
     </button>
     <nav class="gp-rail" id="gpRail" aria-label="Games"></nav>
+    <button class="gp-cmp" id="cmpOpen" type="button" title="Two to four head-to-head — characters, months, years or versions, from any game">
+      <span class="gp-cic" aria-hidden="true">⚔</span><span class="gp-cmpl">Compare</span>
+      <span class="gp-btx"><span class="gp-k">Compare</span><b>Head-to-head</b><span class="gp-sub">characters · months · versions</span></span>
+      <span class="gp-chev" aria-hidden="true">▸</span>
+    </button>
     <div class="gp-panel" id="gpPanel" role="dialog" aria-label="Choose a game" hidden>
       <input id="gpSearch" type="search" placeholder="Search games — English, Japanese or short name…" autocomplete="off" spellcheck="false" aria-controls="gpList">
       <div class="gp-list" id="gpList" role="listbox" aria-label="Games"></div>
@@ -243,7 +242,7 @@
     </ul>
     <p style="margin-top:6px">It's better for top-ranked titles (more disclosed earnings to calibrate against) and rougher for smaller ones. Use these numbers to <b>compare</b> banners, not as official figures.</p>
 
-    <h3>The “JP store rank today” tile</h3>
+    <h3>The “JP rank today” tile</h3>
     <p>Each game's tiles include its <b>current top-grossing rank</b> (iOS &amp; Android, Japan) straight from game-i, with a two-month sparkline of the daily iOS rank — the raw ingredient every estimate on this page is cooked from. Gaps in the line are days below the trackable ~top 200.</p>
 
     <h3>Reading a banner's daily rank curve</h3>
@@ -438,6 +437,6 @@
 
 <div class="lightbox" id="lightbox" hidden><img id="lightboxImg" src="" alt=""></div>
 
-<script src="app.js?v=344"></script>
+<script src="app.js?v=345"></script>
 </body>
 </html>
