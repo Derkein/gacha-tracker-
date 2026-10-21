@@ -1178,8 +1178,14 @@ function computeSharing(){
     }
     const revFrac = rawTot ? rawShared/rawTot : 0;
     const sharedRev = b.rev*revFrac, soloRev = b.rev - sharedRev;
+    // A running banner that has only just been joined (Pearl + the Blade rerun, both to 11/10)
+    // is a real co-run from its first shared day, not a one-day changeover: count its SCHEDULED
+    // overlap too, so the hatch doesn't wait for the third elapsed day.
+    let schedShared=0;
+    if(b.ongoing && sharedDays>0 && sharedDays<SHARE_MIN_DAYS)
+      for(let t=s; t<=e; t+=DAY) if(runsOn(b,t) && all.some(o=>o!==b && runsOn(o,t))) schedShared++;
     b._share = { days:sharedDays, totalDays:runDays, maxN, revFrac, sharedRev, soloRev,
-      on: sharedDays>=SHARE_MIN_DAYS,
+      on: sharedDays>=SHARE_MIN_DAYS || schedShared>=SHARE_MIN_DAYS,
       with:[...withMap.entries()].sort((a,c)=>c[1]-a[1])
               .map(([o,d])=>({o, name:(o.agents&&o.agents.length?o.agents.join(" & "):o.name), days:d})) };
   }
