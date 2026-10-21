@@ -2414,13 +2414,20 @@ function renderMonthly(){
     + ` The bar splits the month among the banners that ran; each banner lists its game-i share and an <b>extrapolated combined</b> figure (its blended game-i + Qimai share applied to the Sensor Tower total — a rough estimate, since no per-banner breakdown exists).</div>`
     + `<div class="mo-hint">Tap or hover any character for its daily-rank detail; each card shows the full monthly breakdown, run dates &amp; below-#200 days, and how the banners overlapped.</div>`;
   if(lowRank){
-    // the game's own numbers: share of banner days off the chart, and banners vs game-i monthly
-    let ours=0, gim=0;
-    for(const ym in bm) if(gi[ym]!=null){ ours+=bm[ym].ours||0; gim+=gi[ym]; }
-    html+=`<div class="mo-warn">⚠ <b>${Math.round(dnul/dtot*100)}% of ${esc(state.data.name)}'s banner days were below Japan's iOS top&nbsp;200</b>, where game-i publishes no daily rank. `
-      + `The banner totals are still game-i's own figures${gim>0?` — together they come to <b>${G(ours)}</b> against game-i's <b>${G(gim)}</b> monthly total for the same months`:""}. `
-      + `What's uncertain is how this site spreads them over time: a banner's revenue can only be placed on the days it charted, so it bunches into launch weeks, and the <b>from daily ranks</b> column can drift from <b>game-i monthly</b> month to month. `
-      + `Treat the month-by-month split as a rough guide; the game-i monthly column is game-i's own number.</div>`;
+    // Both columns are game-i's: "from daily ranks" is its banner figures placed on the days
+    // they grew (game-i adds nothing to a banner on a day below #200), "game-i monthly" its
+    // 月次売上予測, which since 2021 also counts the days below #200 ("virtual top 1000").
+    // Name this game's own widest gaps, finished months only.
+    const curYm=new Date().toISOString().slice(0,7);
+    const gaps=Object.keys(bm).filter(ym=>gi[ym]>0 && ym<curYm).map(ym=>({ym, p:((bm[ym].ours||0)-gi[ym])/gi[ym]*100}));
+    const lo=gaps.length?gaps.reduce((a,c)=>c.p<a.p?c:a):null, hi=gaps.length?gaps.reduce((a,c)=>c.p>a.p?c:a):null;
+    const mname=ym=>`${MONTHS[+ym.slice(5,7)-1]} ${ym.slice(0,4)}`, pct=p=>`${p>=0?"+":""}${p.toFixed(0)}%`;
+    html+=`<div class="mo-warn">⚠ <b>${Math.round(dnul/dtot*100)}% of ${esc(state.data.name)}'s banner days were below Japan's iOS top&nbsp;200.</b> `
+      + `On those days game-i adds nothing to the banner that's running, while its <b>monthly total</b> (月次売上予測) still counts them — since 2021 it's built from a "virtual top 1000" that fills in the places below #200. `
+      + `The two also value a day on the chart differently, so <b>from daily ranks</b> (game-i's banner figures, placed on the days they grew) and <b>game-i monthly</b> don't line up month by month`
+      + (lo&&hi&&lo.p<-5&&hi.p>5 ? ` — here from <b>${pct(lo.p)}</b> in ${mname(lo.ym)} to <b>${pct(hi.p)}</b> in ${mname(hi.ym)}`
+        : lo&&lo.p<-5 ? ` — down to <b>${pct(lo.p)}</b> in ${mname(lo.ym)}` : hi&&hi.p>5 ? ` — up to <b>${pct(hi.p)}</b> in ${mname(hi.ym)}` : "")
+      + `. Both are game-i's own numbers; each answers a different question. <button class="infolink grwhylink" type="button">More in How these numbers work ›</button></div>`;
   }
   const lead=cnLead(state.tag);
   if(lead) html+=`<div class="mo-warn">⚠ <b>${esc(state.data.name)}'s China server runs ${lead} days ahead of the global/JP schedule.</b> Each banner really earned this <b>Qimai · China iPhone</b> revenue ~${lead} days before its game-i window, but here it's <b>mapped to the matching global month</b> so it lines up with the game-i, Sensor&nbsp;Tower and CN¥ columns and the split still sums to the month. Open a banner's <b>Qimai</b> tab to see its true China dates.</div>`;
