@@ -5253,8 +5253,11 @@ function cmpUpdateURL(){
 }
 function cmpParseURL(){
   try{ const p=new URLSearchParams(location.search), c=p.get("c"); if(!c) return null;
-    const picks=c.split("~").filter(Boolean).map(s=>{ const [tag,kind,key]=s.split(":");
-      return {tag, kind, key: kind==="banner"?+key:key}; });
+    // a ?c= link is anyone's text: keep only picks shaped like ones cmpEncodePicks makes
+    const KEY={banner:/^\d{1,5}$/, month:/^\d{4}-\d{2}$/, year:/^\d{4}$/, version:/^[\w.]{1,12}$/};
+    const picks=c.split("~").filter(Boolean).slice(0,4).map(s=>{ const [tag,kind,key]=s.split(":");
+      return {tag, kind, key: kind==="banner"?+key:key}; })
+      .filter(p=>KEY[p.kind] && KEY[p.kind].test(String(p.key)) && state.games.some(g=>g.game===p.tag));
     return {picks, off:(p.get("coff")||"").split(",").filter(Boolean)};
   }catch(e){ return null; }
 }
