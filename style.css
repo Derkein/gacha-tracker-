@@ -718,6 +718,9 @@ tr.clk{cursor:pointer} tr.clk:hover td{background:var(--track)}
 .mck-k{font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.03em; color:var(--muted)}
 .mck-v{font-size:17px; font-weight:800; font-variant-numeric:tabular-nums; letter-spacing:-.01em}
 .mck-n{font-size:10.5px; color:var(--muted)}
+/* "no figure this month" scorecard: muted in every theme (beats the per-theme CN colours) */
+.mck.na,:root .mck.cn.na,:root[data-theme] .mck.cn.na{border-color:var(--border)}
+.mck.na .mck-v,:root .mck.cn.na .mck-v,:root[data-theme] .mck.cn.na .mck-v{color:var(--muted); font-weight:600}
 .mck.st{border-color:rgba(15,138,158,.42)} .mck.st .mck-v{color:#0f8a9e}
 .mck.cn{border-color:rgba(176,56,74,.42)} .mck.cn .mck-v{color:#b0384a}
 @media (prefers-color-scheme:dark){ .mck.cn{border-color:rgba(240,138,153,.4)} .mck.cn .mck-v{color:#f08a99} }

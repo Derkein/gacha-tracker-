@@ -2441,8 +2441,13 @@ function renderMonthly(){
     // the value is a range because miHoYo's 支付中心 channel is excluded.
     const cnR = cnMonth(ym);
     const cnSubTxt = cnR ? (cnR.mihoyo ? "global · 支付中心 excluded" : "global · all platforms") : "";
+    // a month inside the game's CN run that the ranking video left it out of (Stella Sora,
+    // Mar–May 2026: the countdown skips it) says so, rather than the card silently vanishing
+    const cnKeys=Object.keys(cnGameMonths()).sort();
+    const cnGap = !cnR && cnKeys.length && ym>cnKeys[0] && ym<cnKeys[cnKeys.length-1];
     const kCn = cnR ? `<div class="mck cn"><span class="mck-k">CN ranking${cnR.metric?` · ${esc(cnR.metric)}`:""}${cnR.inferred?" *":""}</span>`
-      + `<span class="mck-v">${fmtCNYRange(cnR.lo,cnR.hi)}</span><span class="mck-n">${cnSubTxt}</span></div>` : "";
+      + `<span class="mck-v">${fmtCNYRange(cnR.lo,cnR.hi)}</span><span class="mck-n">${cnSubTxt}</span></div>`
+      : cnGap ? `<div class="mck cn na" title="The monthly CN ranking video for this month doesn't include ${esc(state.data.name)} — its countdown skips it, so there is no CN figure to show"><span class="mck-k">CN ranking</span><span class="mck-v">—</span><span class="mck-n">not in that month's ranking</span></div>` : "";
     // composition bar: each banner's BLENDED share of the month — game-i's JP split and
     // Qimai's China split via the same blendShare the ST/CN cells use — so a banner that
     // sat below game-i's #200 (¥0 there) but still earned in China gets a segment too.
