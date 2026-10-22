@@ -23,7 +23,7 @@ Usage:
 Detector deps (NOT in requirements.txt — they'd clash with face_icons.py's headless
 OpenCV): pip install -r requirements-focus.txt, ideally into its own venv.
 """
-import json, sys, ssl, hashlib, urllib.request, urllib.error
+import json, sys, ssl, hashlib, urllib.request, urllib.error, urllib.parse
 from io import BytesIO
 from pathlib import Path
 
@@ -31,7 +31,7 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 OUT = DATA / "banner_focus.json"
 IMG_CACHE = ROOT / "scripts" / ".focus_imgcache"   # downloaded bytes, keyed by URL hash (gitignored)
-GAMES = ["zzz", "hsr", "wuwa", "genshin", "endfield", "nte", "uma", "stellasora", "czn"]
+GAMES = ["zzz", "hsr", "wuwa", "genshin", "endfield", "nte", "uma", "stellasora", "czn", "lads"]
 VERSION = 2                                        # bump when the detector/selection changes
 
 # Games whose banner art became a two-character version promo — the banner's OWN (new)
@@ -82,7 +82,8 @@ def load_image(src):
     from PIL import Image
     if src.startswith("http"):
         IMG_CACHE.mkdir(exist_ok=True)
-        cached = IMG_CACHE / (hashlib.md5(src.encode()).hexdigest() + Path(src).suffix[:5])
+        # suffix from the URL's path: a query string ("….jpg?format=…") is not a file extension
+        cached = IMG_CACHE / (hashlib.md5(src.encode()).hexdigest() + Path(urllib.parse.urlparse(src).path).suffix[:5])
         if cached.exists():
             buf = cached.read_bytes()
         else:

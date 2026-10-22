@@ -54,6 +54,10 @@ GAMES = {
                     "official": "https://stellasora.jp/news/"},
     "czn":         {"apid": "6502326151", "name": "Chaos Zero Nightmare", "jp": "カオスゼロナイトメア",
                     "official": "https://page.onstove.com/chaoszeronightmare/jp"},
+    # game-i stopped logging its banners in June 2025; Infold's JP press releases (PR TIMES)
+    # announce every new limited ★5 event, with the leads it features
+    "lads":        {"apid": "6443467980", "name": "Love and Deepspace", "jp": "恋と深空",
+                    "official": "https://prtimes.jp/main/html/searchrlp/company_id/131862"},
     # Top popular gacha titles game-i tracks (resolved by App Store id at runtime,
     # so we don't hardcode long JP page names full of ：＆！／). Data-only: these
     # use banner-art thumbnails, not character icons. Kept last: the site's game rail
@@ -425,11 +429,13 @@ def scrape_official(tag, meta):
         if date.fromisoformat(b["start"]) > today:
             continue                                        # announced, not running yet
         en = [names[h] for h in b["name"].split("・") if h in names]
-        if en:
+        if en and not b.get("agents"):
             b["agents"], b["en"] = en, " & ".join(en)
         b["source_url"] = b.pop("src", None)
         out.append(b)
     mark_reruns(out, True, tag)
+    for b in out:                                   # the notice itself says 復刻 (LADS)
+        b["rerun"] = b["rerun"] or bool(b.pop("rerun_hint", False))
     art = getattr(official_banners, "character_art", lambda t: {})(tag)   # per-character art
     first = {}
     for b in sorted(out, key=lambda x: x["start"]):
@@ -467,7 +473,7 @@ def fold_reruns(banners):
         if same:
             same["name"] += "&" + b["name"]
             if b.get("en"):
-                same["agents"] = (same.get("agents") or [same.get("en") or same["name"]]) + (b.get("agents") or [b["en"]])
+                same["agents"] = list(dict.fromkeys((same.get("agents") or [same.get("en") or same["name"]]) + (b.get("agents") or [b["en"]])))
                 same["en"] = " & ".join(same["agents"])
             continue
         s, e = D(b["start"]), D(b["end"])

@@ -244,7 +244,8 @@
    "uma": 21000000,
    "arknights": 14250000,
    "bluearchive": 16100000,
-   "_approx": true
+   "_approx": true,
+   "lads": 12900000
   },
   "2024-02": {
    "genshin": 89800000,
@@ -253,7 +254,8 @@
    "uma": 17000000,
    "arknights": 22100000,
    "bluearchive": 19650000,
-   "_approx": true
+   "_approx": true,
+   "lads": 24800000
   },
   "2024-03": {
    "genshin": 68000000,
@@ -262,7 +264,8 @@
    "uma": 35000000,
    "arknights": 23300000,
    "bluearchive": 9700000,
-   "_approx": true
+   "_approx": true,
+   "lads": 16500000
   },
   "2024-04": {
    "genshin": 118500000,
@@ -271,7 +274,8 @@
    "uma": 6000000,
    "arknights": 7100000,
    "bluearchive": 7700000,
-   "_approx": true
+   "_approx": true,
+   "lads": 16300000
   },
   "2024-05": {
    "genshin": 53300000,
@@ -280,7 +284,8 @@
    "wuwa": 24800000,
    "fgo": 19800000,
    "uma": 10000000,
-   "bluearchive": 9630000
+   "bluearchive": 9630000,
+   "lads": 14300000
   },
   "2024-06": {
    "genshin": 66600000,
@@ -289,7 +294,8 @@
    "fgo": 14700000,
    "uma": 13000000,
    "arknights": 10900000,
-   "bluearchive": 7800000
+   "bluearchive": 7800000,
+   "lads": 13300000
   },
   "2024-07": {
    "genshin": 37300000,
@@ -300,7 +306,8 @@
    "uma": 13000000,
    "arknights": 9600000,
    "bluearchive": 13000000,
-   "_approx": true
+   "_approx": true,
+   "lads": 19400000
   },
   "2024-08": {
    "genshin": 38300000,
@@ -311,7 +318,8 @@
    "uma": 15000000,
    "arknights": 21500000,
    "bluearchive": 8800000,
-   "_approx": true
+   "_approx": true,
+   "lads": 24700000
   },
   "2024-09": {
    "genshin": 46300000,
@@ -322,7 +330,8 @@
    "uma": 24000000,
    "arknights": 16000000,
    "bluearchive": 7500000,
-   "_approx": true
+   "_approx": true,
+   "lads": 27500000
   },
   "2024-10": {
    "genshin": 51800000,
@@ -333,7 +342,8 @@
    "uma": 7000000,
    "arknights": 7500000,
    "bluearchive": 9700000,
-   "_approx": true
+   "_approx": true,
+   "lads": 19300000
   },
   "2024-11": {
    "genshin": 37795000,
@@ -343,7 +353,8 @@
    "arknights": 37350000,
    "uma": 16000000,
    "wuwa": 18250000,
-   "bluearchive": 7255000
+   "bluearchive": 7255000,
+   "lads": 26400000
   },
   "2024-12": {
    "genshin": 42565000,
@@ -353,7 +364,8 @@
    "arknights": 29950000,
    "uma": 13000000,
    "wuwa": 6475000,
-   "bluearchive": 5495000
+   "bluearchive": 5495000,
+   "lads": 41200000
   },
   "2025-01": {
    "genshin": 99440000,
@@ -363,7 +375,8 @@
    "wuwa": 28000000,
    "arknights": 22050000,
    "uma": 12000000,
-   "bluearchive": 16345000
+   "bluearchive": 16345000,
+   "lads": 30700000
   },
   "2025-02": {
    "genshin": 27280000,
@@ -373,7 +386,8 @@
    "fgo": 16015000,
    "zzz": 17935000,
    "arknights": 13750000,
-   "bluearchive": 6350000
+   "bluearchive": 6350000,
+   "lads": 28700000
   },
   "2025-03": {
    "genshin": 38845000,
@@ -383,7 +397,8 @@
    "fgo": 17050000,
    "zzz": 15915000,
    "arknights": 12000000,
-   "bluearchive": 4505000
+   "bluearchive": 4505000,
+   "lads": 40500000
   },
   "2025-04": {
    "genshin": 22690000,
@@ -393,7 +408,8 @@
    "arknights": 18550000,
    "fgo": 15865000,
    "uma": 6000000,
-   "bluearchive": 6505000
+   "bluearchive": 6505000,
+   "lads": 33500000
   },
   "2025-05": {
    "genshin": 36825000,
@@ -403,7 +419,8 @@
    "wuwa": 25625000,
    "zzz": 10880000,
    "uma": 9000000,
-   "bluearchive": 4577000
+   "bluearchive": 4577000,
+   "lads": 33900000
   },
   "2025-06": {
    "genshin": 65505000,
@@ -413,7 +430,8 @@
    "fgo": 23575000,
    "uma": 11800000,
    "arknights": 8640000,
-   "bluearchive": 4340000
+   "bluearchive": 4340000,
+   "lads": 28400000
   },
   "2025-07": {
    "hsr": 91450000,
@@ -423,7 +441,8 @@
    "zzz": 21960000,
    "wuwa": 16875000,
    "arknights": 13800000,
-   "bluearchive": 9245000
+   "bluearchive": 9245000,
+   "lads": 37000000
   },
   "2025-08": {
    "fgo": 51780000,
@@ -433,7 +452,8 @@
    "arknights": 20560000,
    "zzz": 15925000,
    "wuwa": 14875000,
-   "bluearchive": 8690000
+   "bluearchive": 8690000,
+   "lads": 27500000
   },
   "2025-09": {
    "genshin": 41590000,
@@ -443,7 +463,8 @@
    "uma": 22670000,
    "wuwa": 21900000,
    "zzz": 10880000,
-   "bluearchive": 2899500
+   "bluearchive": 2899500,
+   "lads": 29200000
   },
   "2025-10": {
    "genshin": 54725000,
@@ -455,7 +476,8 @@
    "zzz": 12915000,
    "bluearchive": 4984000,
    "czn": 6000000,
-   "stellasora": 3500000
+   "stellasora": 3500000,
+   "lads": 31500000
   },
   "2025-11": {
    "genshin": 20970000,
@@ -467,7 +489,8 @@
    "arknights": 41750000,
    "bluearchive": 4748500,
    "czn": 10000000,
-   "stellasora": 3920000
+   "stellasora": 3920000,
+   "lads": 18190000
   },
   "2025-12": {
    "genshin": 40825000,
@@ -479,7 +502,8 @@
    "arknights": 10160000,
    "bluearchive": 4970000,
    "czn": 11000000,
-   "stellasora": 2211000
+   "stellasora": 2211000,
+   "lads": 42840000
   },
   "2026-01": {
    "genshin": 66040000,
@@ -492,7 +516,8 @@
    "bluearchive": 9295000,
    "hsr": 8037500,
    "czn": 5000000,
-   "stellasora": 1250000
+   "stellasora": 1250000,
+   "lads": 21480000
   },
   "2026-02": {
    "genshin": 55245000,
@@ -505,7 +530,8 @@
    "arknights": 24300000,
    "bluearchive": 7861500,
    "czn": 3000000,
-   "stellasora": 880000
+   "stellasora": 880000,
+   "lads": 19600000
   },
   "2026-03": {
    "genshin": 40110000,
@@ -518,7 +544,8 @@
    "arknights": 9270000,
    "bluearchive": 2856500,
    "czn": 1700000,
-   "stellasora": 590000
+   "stellasora": 590000,
+   "lads": 21300000
   },
   "2026-04": {
    "genshin": 41855000,
@@ -532,7 +559,8 @@
    "endfield": 17280000,
    "bluearchive": 2824000,
    "czn": 2000000,
-   "stellasora": 427000
+   "stellasora": 427000,
+   "lads": 20400000
   },
   "2026-05": {
    "genshin": 41665000,
@@ -546,7 +574,8 @@
    "endfield": 4766000,
    "bluearchive": 3250000,
    "czn": 5600000,
-   "stellasora": 521000
+   "stellasora": 521000,
+   "lads": 27800000
   },
   "2026-06": {
    "wuwa": 34000000,
@@ -560,7 +589,8 @@
    "endfield": 9520000,
    "bluearchive": 6935000,
    "czn": 3300000,
-   "stellasora": 299000
+   "stellasora": 299000,
+   "lads": 20700000
   },
   "2026-07": {
    "genshin": 55990000,
@@ -574,7 +604,8 @@
    "endfield": 9519000,
    "bluearchive": 2877000,
    "czn": 1900000,
-   "stellasora": 349000
+   "stellasora": 349000,
+   "lads": 6740000
   },
   "2026-08": {
    "fgo": 42270000,
@@ -588,7 +619,8 @@
    "endfield": 6041000,
    "bluearchive": 5882000,
    "czn": 3100000,
-   "stellasora": 340000
+   "stellasora": 340000,
+   "lads": 8860000
   },
   "2026-09": {
    "genshin": 50230000,
@@ -602,11 +634,13 @@
    "nte": 6150000,
    "bluearchive": 2707500,
    "czn": 1740000,
-   "stellasora": 349000
+   "stellasora": 349000,
+   "lads": 10570000
   }
  },
  "per_game_source": {
   "czn": "Sensor Tower via revenue.ennead.cc (GLOBAL + CN apps, summed)",
-  "stellasora": "Sensor Tower via revenue.ennead.cc (JP + GLOBAL + KR + HK + CN apps, summed)"
+  "stellasora": "Sensor Tower via revenue.ennead.cc (JP + GLOBAL + KR + HK + CN apps, summed)",
+  "lads": "Sensor Tower via revenue.ennead.cc (JP + GLOBAL + KR + HK/TW/MO + CN apps, summed; CN = iOS only)"
  }
 }

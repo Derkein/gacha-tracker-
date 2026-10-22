@@ -16,7 +16,7 @@ DATA = ROOT / "data"
 CACHE = ROOT / "icons" / "bar_colors.json"
 # games to tint (the rest are data-only and use their game accent) — avoids
 # downloading ~1000 banner images for the big added catalogues.
-BAR_GAMES = {"zzz", "hsr", "wuwa", "genshin", "endfield", "nte", "stellasora", "czn"}
+BAR_GAMES = {"zzz", "hsr", "wuwa", "genshin", "endfield", "nte", "stellasora", "czn", "lads"}
 UA = {"User-Agent": "Mozilla/5.0 (gacha-tracker)"}
 _UNVERIFIED = ssl.create_default_context()
 _UNVERIFIED.check_hostname = False

@@ -212,7 +212,111 @@ def _dedupe(rows):
     return sorted(seen.values(), key=lambda x: (x["start"], x["name"]))
 
 
-SOURCES = {"stellasora": stellasora, "czn": czn}
+# ---------------------------------------------------------------- Love and Deepspace
+# Infold publishes every new limited ★5 event as a Japanese PR TIMES release (its own JP news
+# posts are images). The company feed holds its latest 100 releases (Love and Deepspace and
+# Infinity Nikki mixed); release URLs are numbered, so anything older than the feed's window
+# is fetched by number. One release can carry several gachas: each starts on a header line —
+#   「X」星5思念期間限定確率UPガチャ開催 / 「X」星5セット思念… / 限定願う「X」開催 (birthdays
+#   and single-lead limited wishes) / 復刻願う「X」開催 / イベント「X」開催 (2024 — kept only when
+#   its text raises a ★5's 確率, since story events use the same wording) /
+#   - X：星5思念期間限定確率UPガチャ開催 (2024) / 星5思念「ホムラ・…」が限定販売 (launch week)
+# followed by (■)イベント期間 / 期間 / 獲得期限 and the ★5 memories as 【カレ・思念名】.
+PRT_FEED = "https://prtimes.jp/companyrdf.php?company_id=131862"      # INFOLD PTE. LTD.
+PRT_REL = "https://prtimes.jp/main/html/rd/p/{:09d}.000131862.html"
+# JP -> EN for the five leads (gamerch's JP wiki list; シン arrived with Ver2.0 in July 2024
+# and マヒル with Ver3.0 in January 2025, matching Sylus and Caleb)
+LADS_LEADS = {"セイヤ": "Xavier", "レイ": "Zayne", "ホムラ": "Rafayel", "シン": "Sylus", "マヒル": "Caleb"}
+_LADS_HEAD = re.compile(r"確率UPガチャ開催|復刻願う|限定願う「|限定販売|^イベント「[^」]+」開催$")
+
+
+def _page(url, tries=3):
+    for i in range(tries):
+        try:
+            return urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=30).read().decode("utf-8")
+        except Exception:
+            if i == tries - 1:
+                raise
+            time.sleep(2 * (i + 1))
+
+
+def _lads_release(n):
+    """(publish date, banner image, body text) of release n, or None if it isn't Love and Deepspace."""
+    try:
+        h = _page(PRT_REL.format(n))
+    except Exception:
+        return None
+    title = html.unescape((re.search(r'<meta property="og:title" content="([^"]*)"', h) or [None, ""])[1])
+    if "恋と深空" not in title:
+        return None
+    m = re.search(r"(\d{4})年(\d{1,2})月(\d{1,2})日\s*\d{1,2}時\d{1,2}分", h)
+    pub = date(int(m.group(1)), int(m.group(2)), int(m.group(3))) if m else None
+    img = (re.search(r'<meta property="og:image" content="([^"]+)"', h) or [None, None])[1]
+    if img:                                    # the query is only a resize: keep the original
+        img = html.unescape(img).split("?", 1)[0]
+    h = re.sub(r"<(script|style).*?</\1>", "", h, flags=re.S)
+    t = html.unescape(re.sub(r"<[^>]+>", "\n", re.sub(r"<br\s*/?>", "\n", h)))
+    t = re.sub(r"[ \t　]+", " ", t)
+    t = re.sub(r"「\s*\n\s*", "「", re.sub(r"\s*\n\s*」", "」", t))      # names split across lines
+    t = re.sub(r"\n\s*\n+", "\n", t)
+    end = t.find("『恋と深空』とは")
+    return pub, img, (t[:end] if end > 0 else t)
+
+
+def _lads_blocks(t, pub, img, src):
+    lines = [l.strip() for l in t.split("\n")]
+    heads = [i for i, l in enumerate(lines) if _LADS_HEAD.search(l) and "報酬" not in l]
+    out = []
+    for k, i in enumerate(heads):
+        head = lines[i]
+        body = lines[i + 1:(heads[k + 1] if k + 1 < len(heads) else i + 14)]
+        if "限定販売" in head:                     # launch-week item: 星5思念「ホムラ・花火のごとき誓い」が限定販売
+            m = re.search(r"「([^」・]+)・([^」]+)」", head)
+            name = m.group(2) if m else None
+        else:
+            m = re.search(r"「([^」]+)」", head) or re.search(r"^[-‐・\s]*([^：:]+)[：:]", head)
+            name = m.group(1).strip() if m else None
+        per = None
+        for l in body[:6]:
+            pm = re.search(r"(?:イベント期間|期間|獲得期限)\s*[:：]\s*(.+)", l)
+            if pm:
+                per = _period(pm.group(1), pub); break
+        stars = []
+        for l in [head] + body:
+            if "星5" not in l:
+                continue
+            for jp, _ in re.findall(r"[【「]([^】」・]+)・([^】」]+)[】」]", l):
+                if jp in LADS_LEADS and jp not in stars:
+                    stars.append(jp)
+        if head.startswith("イベント") and not any("確率" in l for l in body[:5]):
+            continue                              # a story event, not a gacha
+        if not (name and per and stars):
+            if name and not head.startswith("イベント"):
+                print(f"[lads] skipped 「{name}」 in {src}: {'no period' if not per else 'no ★5'}", file=sys.stderr)
+            continue
+        out.append({"name": name, "start": per[0].isoformat(), "end": per[1].isoformat(), "year": per[0].year,
+                    "related": "", "banner_img": img, "standard": False,
+                    # 復刻 = an earlier event's ★5 memories back again
+                    "rerun_hint": "復刻" in head,
+                    "agents": [LADS_LEADS[j] for j in stars], "en": " & ".join(LADS_LEADS[j] for j in stars),
+                    "src": src})
+    return out
+
+
+def lads():
+    feed = _page(PRT_FEED)
+    ids = sorted({int(n) for n in re.findall(r"/rd/p/(\d{9})\.000131862\.html", feed)})
+    ids = list(range(1, ids[0])) + ids if ids else []
+    out = []
+    for n in ids:
+        r = _lads_release(n)
+        if r and r[0]:
+            out += _lads_blocks(r[2], r[0], _url(r[1]), PRT_REL.format(n))
+        time.sleep(0.3)
+    return _dedupe(out)
+
+
+SOURCES = {"stellasora": stellasora, "czn": czn, "lads": lads}
 
 CZN_CHAR_BOARD = 139270                  # 要員情報: one introduction post per character
 
@@ -310,6 +414,8 @@ def english_names(tag, root):
     path = root / "icons" / "names" / f"{tag}_map.json"
     m = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
     m = {**SEED.get(tag, {}), **m}
+    if tag == "lads":                    # the five leads are fixed (LADS_LEADS); banners carry them
+        return {**m, **LADS_LEADS}
     try:
         pairs = _ss_pairs() if tag == "stellasora" else _czn_pairs()
     except Exception as e:                       # names are cosmetic: never fail the scrape

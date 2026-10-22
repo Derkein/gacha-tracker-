@@ -1,7 +1,7 @@
 // Gacha Revenue Tracker — client logic. Data comes from data/*.json (built by scripts/).
 const GAME_ACCENT = {          // per-game hue (used for bars/dots without a sampled color)
   zzz:"#e0a400", hsr:"#8a7bd8", wuwa:"#2fb6c0", genshin:"#d8a24a", endfield:"#e07b3a", nte:"#d94f8a",
-  uma:"#3fb98f", stellasora:"#5aa9e6", czn:"#d2463c",
+  uma:"#3fb98f", stellasora:"#5aa9e6", czn:"#d2463c", lads:"#b87ee6",
 };
 const state = { revMode:"daily", games:[], tag:null, data:null, reported:null, cn:null, qimai:null, mode:"time", table:false, reverse:false, bracket:0, graphYear:"all", graphDim:"year", matchHigh:true, monthYear:"all", periodSort:"timeline", dataSource:"gamei", search:"", agreeMode:"month", compare:{picks:[], sources:{}, chart:"jp"} };
 
@@ -61,7 +61,7 @@ function applyRevMode(data){
     const yr=B.filter(b=>b.year===y).sort((x,z)=>z.rev-x.rev); yr.forEach((b,i)=>{ b.yrank=i+1; b.ytot=yr.length; }); }
 }
 // shown on every game-i view of a game whose banners aren't on game-i (banners_from "official")
-const RECON_WARN = `<p class="bm-note bm-warn recon-warn">⚠ <b>Reconstruction.</b> game-i has no banner data for this game, so these banner figures are <b>rebuilt by this site</b> from game-i's daily ranks and monthly totals — an estimate of what game-i would show, not game-i's own numbers. <button class="infolink reconlink" type="button">How it's rebuilt ›</button></p>`;
+const RECON_WARN = `<p class="bm-note bm-warn recon-warn">⚠ <b>Reconstruction.</b> game-i doesn't list this game's banners (or stopped listing them), so these banner figures are <b>rebuilt by this site</b> from game-i's daily ranks and monthly totals — an estimate of what game-i would show, not game-i's own numbers. <button class="infolink reconlink" type="button">How it's rebuilt ›</button></p>`;
 // why game-i's two numbers differ — the short version of "How these numbers work"
 const grWhy = `<span class="grwhy"><b>Why the two differ:</b> game-i's <b>monthly total</b> and its <b>banner figures</b> come from two parts of its system. Since 2021 the monthly total is built from a <b>"virtual top 1000"</b> (Apple's games and genre charts fill in places below #200), so it keeps counting a game that has left the overall chart. The banner analysis (2019) still uses the game's <b>overall top-200 rank</b>, so a banner stops growing the day its game drops below #200. The more time a game spends below #200, the bigger the gap. <button class="infolink grwhylink" type="button">More in How these numbers work ›</button></span>`;
 function grNote(show){

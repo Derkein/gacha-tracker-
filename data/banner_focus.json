@@ -4804,5 +4804,493 @@
    "name": "ロスヴァイセ",
    "v": 2
   }
+ },
+ "lads": {
+  "https://prcdn.freetls.fastly.net/release_image/131862/13/131862-13-859414c3ce11dcca69d5e4836fb398d4-1920x1080.jpg": {
+   "x": 38.8,
+   "y": 19.9,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "name": "花火のごとき誓い",
+   "v": 2
+  },
+  "https://prcdn.freetls.fastly.net/release_image/131862/14/131862-14-7d8e042c54165620e69b6ccd60dee9fd-3840x2160.jpg": {
+   "x": 82.1,
+   "y": 32.3,
+   "w": 3840,
+   "h": 2160,
+   "det": true,
+   "name": "神だけが知る時",
+   "v": 2
+  },
+  "https://prcdn.freetls.fastly.net/release_image/131862/15/131862-15-3d881c127af5425285c5f4dab7f61f05-1920x1080.jpg": {
+   "x": 55.9,
+   "y": 36.3,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "name": "夜明け前の光",
+   "v": 2
+  },
+  "https://prcdn.freetls.fastly.net/release_image/131862/16/131862-16-53be0550070d8da2b69f8bec1ae12000-3840x2160.jpg": {
+   "x": 21.4,
+   "y": 33.6,
+   "w": 3840,
+   "h": 2160,
+   "det": true,
+   "name": "独占する抱擁",
+   "v": 2
+  },
+  "https://prcdn.freetls.fastly.net/release_image/131862/17/131862-17-5adff5a4a4e5a9ee62c5a386200060a4-3840x2160.jpg": {
+   "x": 82.9,
+   "y": 34.8,
+   "w": 3840,
+   "h": 2160,
+   "det": true,
+   "name": "まなざしの先に",
+   "v": 2
+  },
+  "https://prcdn.freetls.fastly.net/release_image/131862/18/131862-18-370ed6a9181a60a45cc882852022bb54-3840x2160.jpg": {
+   "x": 67.2,
+   "y": 33.1,
+   "w": 3840,
+   "h": 2160,
+   "det": true,
+   "name": "潮汐の響く時",
+   "v": 2
+  },
+  "https://prcdn.freetls.fastly.net/release_image/131862/19/131862-19-38bb1cdad77f06cb2da6b189c261698f-1920x1080.jpg": {
+   "x": 54.4,
+   "y": 31.0,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "name": "燃えるように熱く",
+   "v": 2
+  },
+  "https://prcdn.freetls.fastly.net/release_image/131862/20/131862-20-f77d0588ab5f4c12644c1ecd8b6092a2-1920x1080.jpg": {
+   "x": 49.8,
+   "y": 31.3,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "name": "ダブルキス",
+   "v": 2
+  },
+  "https://prcdn.freetls.fastly.net/release_image/131862/21/131862-21-a919f1cf78e5b21dd3958f3a0180af9b-3840x2160.jpg": {
+   "x": 62.2,
+   "y": 30.8,
+   "w": 3840,
+   "h": 2160,
+   "det": true,
+   "name": "銀月の輝く夜",
+   "v": 2
+  },
+  "https://prcdn.freetls.fastly.net/release_image/131862/23/131862-23-88282705a95e82786abf8e6eafa84f3f-1920x1080.jpg": {
+   "x": 54.2,
+   "y": 39.2,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "name": "朝日を浴びて",
+   "v": 2
+  },
+  "https://prcdn.freetls.fastly.net/release_image/131862/26/131862-26-84e5e90d76be75c08da608525b3ea850-1920x1080.jpg": {
+   "x": 59.0,
+   "y": 28.6,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "name": "山に隠る霊跡",
+   "v": 2
+  },
+  "https://prcdn.freetls.fastly.net/release_image/131862/27/131862-27-282ff8088d628eab850f56ec4369b923-1920x1080.jpg": {
+   "x": 51.0,
+   "y": 41.5,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "name": "双影の重なる時",
+   "v": 2
+  },
+  "https://prcdn.freetls.fastly.net/release_image/131862/30/131862-30-83031f67a83688a27c40495efd687816-1920x2065.png": {
+   "x": 37.9,
+   "y": 40.4,
+   "w": 1920,
+   "h": 2065,
+   "det": true,
+   "name": "無防備な禁区",
+   "v": 2
+  },
+  "https://prcdn.freetls.fastly.net/release_image/131862/31/131862-31-3c89e8c06cb2e4e77ef3d7eb7018bdc5-2560x1440.png": {
+   "x": 63.0,
+   "y": 36.5,
+   "w": 2560,
+   "h": 1440,
+   "det": true,
+   "name": "半透明な占有",
+   "v": 2
+  },
+  "https://prcdn.freetls.fastly.net/release_image/131862/34/131862-34-0d72c2c53549b78977b2b7cd772bb3b1-2560x1440.jpg": {
+   "x": 23.0,
+   "y": 35.0,
+   "w": 2560,
+   "h": 1440,
+   "det": true,
+   "name": "昔の願いが叶う時",
+   "v": 2
+  },
+  "https://prcdn.freetls.fastly.net/release_image/131862/35/131862-35-7a135e35005d55c21d218f536feffeb3-3840x2160.jpg": {
+   "x": 59.0,
+   "y": 40.5,
+   "w": 3840,
+   "h": 2160,
+   "det": true,
+   "name": "思い込めた絵",
+   "v": 2
+  },
+  "https://prcdn.freetls.fastly.net/release_image/131862/37/131862-37-e3d40e02e74cbc94562a1c2c21e9a03a-2560x1440.jpg": {
+   "x": 87.7,
+   "y": 38.9,
+   "w": 2560,
+   "h": 1440,
+   "det": true,
+   "name": "絶景をこの目に",
+   "v": 2
+  },
+  "https://prcdn.freetls.fastly.net/release_image/131862/39/131862-39-8e2a3ced5f1c8f3e277e19b51fba06d5-2560x1440.jpg": {
+   "x": 25.3,
+   "y": 35.1,
+   "w": 2560,
+   "h": 1440,
+   "det": true,
+   "name": "揺らめく銀河",
+   "v": 2
+  },
+  "https://prcdn.freetls.fastly.net/release_image/131862/40/131862-40-095a28d3df17d42148d87ee3fe92d945-1920x1080.png": {
+   "x": 56.5,
+   "y": 25.5,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "name": "灼熱の祝福",
+   "v": 2
+  },
+  "https://prcdn.freetls.fastly.net/release_image/131862/42/131862-42-ee853ee2e7a31420f197772451738409-1920x1080.jpg": {
+   "x": 57.7,
+   "y": 38.1,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "name": "流れる音色",
+   "v": 2
+  },
+  "https://prcdn.freetls.fastly.net/release_image/131862/43/131862-43-d871c9b7c12b1a63d3d9ad3986ffbb86-1920x1080.png": {
+   "x": 13.0,
+   "y": 46.7,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "name": "畏まりました、飼育員",
+   "v": 2
+  },
+  "https://prcdn.freetls.fastly.net/release_image/131862/46/131862-46-e7b4e8a7cf1a902cb5d25f7c4da9429b-2560x1440.jpg": {
+   "x": 51.2,
+   "y": 49.2,
+   "w": 2560,
+   "h": 1440,
+   "det": true,
+   "name": "竜影の墜つる地",
+   "v": 2
+  },
+  "https://prcdn.freetls.fastly.net/release_image/131862/49/131862-49-1a730ac474f32433127d2baafa847ea1-1920x1080.jpg": {
+   "x": 33.8,
+   "y": 39.1,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "name": "降り敷く銀河の調べ",
+   "v": 2
+  },
+  "https://prcdn.freetls.fastly.net/release_image/131862/50/131862-50-49e0c4cec0bd0499bc6578d300e9dfea-1920x1080.png": {
+   "x": 62.8,
+   "y": 24.2,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "name": "高ぶる昨夜の果て",
+   "v": 2
+  },
+  "https://prcdn.freetls.fastly.net/release_image/131862/53/131862-53-4d347418bea43b14f67a6bc1532b7775-1000x1285.png": {
+   "x": 30.8,
+   "y": 27.0,
+   "w": 1000,
+   "h": 1285,
+   "det": true,
+   "name": "痛みのシグナル",
+   "v": 2
+  },
+  "https://prcdn.freetls.fastly.net/release_image/131862/55/131862-55-2b7cbcf8c94851c669a1ea75b38baf6d-2560x1440.jpg": {
+   "x": 30.0,
+   "y": 29.9,
+   "w": 2560,
+   "h": 1440,
+   "det": true,
+   "name": "逃げ場なき明日",
+   "v": 2
+  },
+  "https://prcdn.freetls.fastly.net/release_image/131862/58/131862-58-99948499448265fdd058939e57e03a73-2560x1440.jpg": {
+   "x": 28.0,
+   "y": 33.4,
+   "w": 2560,
+   "h": 1440,
+   "det": true,
+   "name": "果てしなき海に沈む&独占する抱擁",
+   "v": 2
+  },
+  "https://prcdn.freetls.fastly.net/release_image/131862/59/131862-59-53d3414068906ba3b7de9145f95a21ab-1920x1080.jpg": {
+   "x": 71.0,
+   "y": 35.6,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "name": "長き縁への願い",
+   "v": 2
+  },
+  "https://prcdn.freetls.fastly.net/release_image/131862/61/131862-61-97b6e45391d093a7f8217dc6021d5d70-2560x1440.jpg": {
+   "x": 34.9,
+   "y": 27.0,
+   "w": 2560,
+   "h": 1440,
+   "det": true,
+   "name": "宇宙が陥落する時",
+   "v": 2
+  },
+  "https://prcdn.freetls.fastly.net/release_image/131862/62/131862-62-99711fe10cf0329f9dd23093fd6340e7-2560x1440.jpg": {
+   "x": 27.9,
+   "y": 36.5,
+   "w": 2560,
+   "h": 1440,
+   "det": true,
+   "name": "心寄せる住処へ",
+   "v": 2
+  },
+  "https://prcdn.freetls.fastly.net/release_image/131862/64/131862-64-709fcb75c71207c94db88e55ad9b07c0-1920x1080.jpg": {
+   "x": 48.9,
+   "y": 28.5,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "name": "春から花へ捧ぐ",
+   "v": 2
+  },
+  "https://prcdn.freetls.fastly.net/release_image/131862/65/131862-65-b37c89095960186f6c41543012ffedf2-2560x1440.jpg": {
+   "x": 64.4,
+   "y": 37.0,
+   "w": 2560,
+   "h": 1440,
+   "det": true,
+   "name": "押し寄せる熱",
+   "v": 2
+  },
+  "https://prcdn.freetls.fastly.net/release_image/131862/66/131862-66-61e3e32153039f555409f95696122cae-2560x1440.png": {
+   "x": 25.1,
+   "y": 36.2,
+   "w": 2560,
+   "h": 1440,
+   "det": true,
+   "name": "帰らぬ夜",
+   "v": 2
+  },
+  "https://prcdn.freetls.fastly.net/release_image/131862/68/131862-68-d505dc8edff7ef809fad8e7735c71d18-1920x1080.jpg": {
+   "x": 54.8,
+   "y": 36.2,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "name": "海が海に沈む時",
+   "v": 2
+  },
+  "https://prcdn.freetls.fastly.net/release_image/131862/69/131862-69-c17c0f5e4d2e480c4d39f73a0f6f38e3-3840x2160.png": {
+   "x": 30.4,
+   "y": 33.4,
+   "w": 3840,
+   "h": 2160,
+   "det": true,
+   "name": "深空の見届けの下に",
+   "v": 2
+  },
+  "https://prcdn.freetls.fastly.net/release_image/131862/74/131862-74-19d6a29ed1a77e8ae07e1febe020efed-1920x1080.jpg": {
+   "x": 38.2,
+   "y": 23.8,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "name": "堕ちた王冠",
+   "v": 2
+  },
+  "https://prcdn.freetls.fastly.net/release_image/131862/77/131862-77-cb38a9d4b87bff4be14474e89de658fa-3840x2160.jpg": {
+   "x": 11.1,
+   "y": 36.7,
+   "w": 3840,
+   "h": 2160,
+   "det": true,
+   "name": "真夏とあなたと海風",
+   "v": 2
+  },
+  "https://prcdn.freetls.fastly.net/release_image/131862/78/131862-78-6aa9101736cc677d6b7c77d3f7f9feb4-2560x1440.jpg": {
+   "x": 75.1,
+   "y": 37.9,
+   "w": 2560,
+   "h": 1440,
+   "det": true,
+   "name": "黎明に私を&昔の願いが叶う時",
+   "v": 2
+  },
+  "https://prcdn.freetls.fastly.net/release_image/131862/80/131862-80-2f5db52c0843128569fcadf5f57ee425-1920x1080.png": {
+   "x": 67.1,
+   "y": 35.9,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "name": "時と世界の境界",
+   "v": 2
+  },
+  "https://prcdn.freetls.fastly.net/release_image/131862/81/131862-81-780e632cb932b8456fb381d34c9b6940-2560x1440.jpg": {
+   "x": 73.6,
+   "y": 36.7,
+   "w": 2560,
+   "h": 1440,
+   "det": true,
+   "name": "星の軌跡から&揺らめく銀河",
+   "v": 2
+  },
+  "https://prcdn.freetls.fastly.net/release_image/131862/82/131862-82-145cc7e22b98d0a701c2aa730be59d9f-2560x1440.png": {
+   "x": 30.5,
+   "y": 39.0,
+   "w": 2560,
+   "h": 1440,
+   "det": true,
+   "name": "鼓動が沸くまで",
+   "v": 2
+  },
+  "https://prcdn.freetls.fastly.net/release_image/131862/88/131862-88-897a1cca730e0e5ea2e6778c1f9ef844-1920x1080.jpg": {
+   "x": 33.4,
+   "y": 33.8,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "name": "銀翼の鎮魂地",
+   "v": 2
+  },
+  "https://prcdn.freetls.fastly.net/release_image/131862/89/131862-89-de0ef4a6ffa66ca889943973862c3b3f-3840x2160.jpg": {
+   "x": 11.6,
+   "y": 29.2,
+   "w": 3840,
+   "h": 2160,
+   "det": true,
+   "name": "愛、宇宙、詩の王座",
+   "v": 2
+  },
+  "https://prcdn.freetls.fastly.net/release_image/131862/92/131862-92-34e6bffb8b0768a1310754fe09bd9411-2560x1440.jpg": {
+   "x": 50.5,
+   "y": 31.4,
+   "w": 2560,
+   "h": 1440,
+   "det": true,
+   "name": "人の世の情縁",
+   "v": 2
+  },
+  "https://prcdn.freetls.fastly.net/release_image/131862/94/131862-94-05af50db45093487620c3271ba80594a-2560x1440.jpg": {
+   "x": 25.0,
+   "y": 35.1,
+   "w": 2560,
+   "h": 1440,
+   "det": true,
+   "name": "夕晴れに向かって&心のままに願いへ",
+   "v": 2
+  },
+  "https://prcdn.freetls.fastly.net/release_image/131862/97/131862-97-7a1b79db1ad7308b2d7a1a313985fd7c-1280x720.png": {
+   "x": 63.9,
+   "y": 30.3,
+   "w": 1280,
+   "h": 720,
+   "det": true,
+   "name": "万鬼、跡絶ゆ",
+   "v": 2
+  },
+  "https://prcdn.freetls.fastly.net/release_image/131862/98/131862-98-c09015a868cd73a8b115d5eaddb90dd7-2560x1440.png": {
+   "x": 72.0,
+   "y": 36.7,
+   "w": 2560,
+   "h": 1440,
+   "det": true,
+   "name": "夜照らす長雨&心寄せる住処へ",
+   "v": 2
+  },
+  "https://prcdn.freetls.fastly.net/release_image/131862/100/131862-100-7a13e6941741d6759e037dcc3a8e7f1c-2560x1440.jpg": {
+   "x": 69.8,
+   "y": 30.8,
+   "w": 2560,
+   "h": 1440,
+   "det": true,
+   "name": "浮き沈む渇望",
+   "v": 2
+  },
+  "https://prcdn.freetls.fastly.net/release_image/131862/104/131862-104-cf75011144b4a5b524d0b393d73cdaa4-3840x2160.jpg": {
+   "x": 30.3,
+   "y": 32.4,
+   "w": 3840,
+   "h": 2160,
+   "det": true,
+   "name": "この空の全てを&帰らぬ夜",
+   "v": 2
+  },
+  "https://prcdn.freetls.fastly.net/release_image/131862/105/131862-105-7f9d905b2b0e8df2134509895fcaff9d-2560x1440.jpg": {
+   "x": 10.3,
+   "y": 38.0,
+   "w": 2560,
+   "h": 1440,
+   "det": true,
+   "name": "一幕一会",
+   "v": 2
+  },
+  "https://prcdn.freetls.fastly.net/release_image/131862/110/131862-110-4eec8f9c955d3db43ed2c24435ae81f2-1920x1080.jpg": {
+   "x": 54.2,
+   "y": 36.9,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "name": "破陣子",
+   "v": 2
+  },
+  "https://prcdn.freetls.fastly.net/release_image/131862/112/131862-112-9b18443284ecbdf7521d453543162c9c-2560x1440.png": {
+   "x": 30.2,
+   "y": 38.0,
+   "w": 2560,
+   "h": 1440,
+   "det": true,
+   "name": "戦塵が舞う中&逢える日を胸に",
+   "v": 2
+  },
+  "https://prcdn.freetls.fastly.net/release_image/131862/113/131862-113-c67c24152d744c163f55f00fe4ad1185-2560x1440.jpg": {
+   "x": 9.9,
+   "y": 26.2,
+   "w": 2560,
+   "h": 1440,
+   "det": true,
+   "name": "今宵、眠れぬなら",
+   "v": 2
+  },
+  "https://prcdn.freetls.fastly.net/release_image/131862/116/131862-116-6de0c334e6fd093375004a6f694335f4-2560x1440.jpg": {
+   "x": 34.6,
+   "y": 39.4,
+   "w": 2560,
+   "h": 1440,
+   "det": true,
+   "name": "この一瞬に願いを&幾年も光と",
+   "v": 2
+  }
  }
 }

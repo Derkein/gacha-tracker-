@@ -34,7 +34,7 @@ ICON_PX = 256
 UA = {"User-Agent": "Mozilla/5.0 (gacha-tracker)"}
 
 # only these games get face-crop icons (others are data-only, banner-art thumbnails)
-FACE_GAMES = {"wuwa", "nte", "endfield", "stellasora", "czn"}
+FACE_GAMES = {"wuwa", "nte", "endfield", "stellasora", "czn", "lads"}
 # games whose characters have clean drip art on a JP-searchable Fandom wiki
 FANDOM = {
     "wuwa": "wuthering-waves.fandom.com",
@@ -250,9 +250,51 @@ def crop_box(raw, box):
     return _circle(img[y:y + s, x:x + s])
 
 
+# Games whose banners feature a FIXED CAST rather than a new character each time — Love and
+# Deepspace's five leads, any of whom a banner can feature (its scrape names them in `agents`).
+# Each lead's icon is cut once from the official JP site's character art with a hand-picked box
+# (the leads are 3D renders the anime-face cascade doesn't find), and a banner shows the icons
+# of its leads, in the order the notice lists them.
+_LADS_ART = "https://assets.papegames.com/nikkiweb/papegame/deepspacejp/material/"
+CAST = {"lads": {
+    "Xavier":  (_LADS_ART + "ztytdpcn/screen2SXH.jpg", [0.695, 0.37, 0.29]),
+    "Zayne":   (_LADS_ART + "7dsqutwf/screen2LS.jpg",  [0.61, 0.35, 0.29]),
+    "Rafayel": (_LADS_ART + "mqveefdg/screen2QY.jpg",  [0.395, 0.30, 0.29]),
+    "Sylus":   (_LADS_ART + "20240705/08f0bef2c9df599d8e600f53526d1d04.jpeg", [0.47, 0.37, 0.32]),
+    "Caleb":   (_LADS_ART + "20250110/86a8d168a3a9986adaa67be26c3d9463.png",  [0.515, 0.40, 0.32]),
+}}
+
+
+def process_cast(tag, data, force=False):
+    outdir = ICONS / "faces" / tag
+    outdir.mkdir(parents=True, exist_ok=True)
+    rel = {}
+    made = 0
+    for name, (url, box) in CAST[tag].items():
+        r = f"icons/faces/{tag}/cast-{name.lower()}.webp"
+        if force or not (ROOT / r).exists():
+            try:
+                crop_box(fetch(url), box).save(ROOT / r, "WEBP", quality=85, method=6)
+                made += 1
+            except Exception as e:
+                print(f"  [{tag}] {name}: {e}")
+        if (ROOT / r).exists():
+            rel[name] = r
+    for b in data["banners"]:
+        icons = [rel[a] for a in (b.get("agents") or []) if a in rel]
+        if icons:
+            b["icons"] = icons
+    return made
+
+
 def process(tag, cascade, force=False):
     dfile = DATA / f"{tag}.json"
     data = json.loads(dfile.read_text(encoding="utf-8"))
+    if tag in CAST:
+        made = process_cast(tag, data, force)      # portraits cut this run (of the cast)
+        dfile.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
+        withicon = sum(1 for b in data["banners"] if b.get("icons"))
+        return 0, withicon, 0, len(data["banners"])
     outdir = ICONS / "faces" / tag
     outdir.mkdir(parents=True, exist_ok=True)
     dom = FANDOM.get(tag)

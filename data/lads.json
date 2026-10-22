@@ -1,0 +1,2848 @@
+{
+ "game": "lads",
+ "name": "Love and Deepspace",
+ "jp": "恋と深空",
+ "unit": "億G",
+ "source": "https://prtimes.jp/main/html/searchrlp/company_id/131862",
+ "banners_from": "official",
+ "updated": "2026-10-22T20:21:04Z",
+ "count": 54,
+ "now": {
+  "ios": 152,
+  "android": 122,
+  "month": 189,
+  "next_add": 12739527,
+  "ym": "2026/10",
+  "ranks": {
+   "prev": [
+    101,
+    197,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    83,
+    137,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    12,
+    26,
+    66,
+    101,
+    138,
+    169,
+    189,
+    null,
+    null
+   ],
+   "cur": [
+    null,
+    null,
+    null,
+    163,
+    170,
+    189,
+    null,
+    null,
+    195,
+    173,
+    188,
+    105,
+    156,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    71,
+    94,
+    102,
+    147,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ]
+  }
+ },
+ "monthly": {
+  "2026-10": 1.84,
+  "2026-09": 2.84,
+  "2026-08": 2.27,
+  "2026-07": 2.57,
+  "2026-06": 3.98,
+  "2026-05": 5.49,
+  "2026-04": 3.1,
+  "2026-03": 3.97,
+  "2026-02": 4.39,
+  "2026-01": 6.22,
+  "2025-12": 2.93,
+  "2025-11": 2.63,
+  "2025-10": 3.15,
+  "2025-09": 3.1,
+  "2025-08": 3.77,
+  "2025-07": 4.31,
+  "2025-06": 2.62,
+  "2025-05": 4.04,
+  "2025-04": 2.93,
+  "2025-03": 4.34,
+  "2025-02": 4.89,
+  "2025-01": 5.68,
+  "2024-12": 2.9,
+  "2024-11": 3.38,
+  "2024-10": 2.61,
+  "2024-09": 3.25,
+  "2024-08": 5.65,
+  "2024-07": 3.64,
+  "2024-06": 2.53,
+  "2024-05": 3.36,
+  "2024-04": 2.99,
+  "2024-03": 4.16,
+  "2024-02": 4.77,
+  "2024-01": 1.97
+ },
+ "banners": [
+  {
+   "name": "花火のごとき誓い",
+   "start": "2024-01-27",
+   "end": "2024-02-04",
+   "year": 2024,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/13/131862-13-859414c3ce11dcca69d5e4836fb398d4-1920x1080.jpg",
+   "agents": [
+    "Rafayel"
+   ],
+   "en": "Rafayel",
+   "source_url": "https://prtimes.jp/main/html/rd/p/000000013.000131862.html",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    44,
+    21,
+    29,
+    42,
+    47,
+    63,
+    62,
+    67,
+    63
+   ],
+   "rev": 1.3295,
+   "rev_month": 1.3295,
+   "rev_ym": {
+    "2024-01": 0.8343,
+    "2024-02": 0.4952
+   },
+   "rev_month_ym": {
+    "2024-01": 0.8343,
+    "2024-02": 0.4952
+   },
+   "cum": 30,
+   "cumtot": 54,
+   "yrank": 13,
+   "ytot": 24,
+   "icons": [
+    "icons/faces/lads/cast-rafayel.webp"
+   ],
+   "accent": "#9ca8d3",
+   "bar": "#d8978d"
+  },
+  {
+   "name": "神だけが知る時",
+   "start": "2024-02-05",
+   "end": "2024-02-19",
+   "year": 2024,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/14/131862-14-7d8e042c54165620e69b6ccd60dee9fd-3840x2160.jpg",
+   "agents": [
+    "Xavier",
+    "Zayne",
+    "Rafayel"
+   ],
+   "en": "Xavier & Zayne & Rafayel",
+   "source_url": "https://prtimes.jp/main/html/rd/p/000000014.000131862.html",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    71,
+    9,
+    12,
+    31,
+    46,
+    56,
+    62,
+    58,
+    58,
+    59,
+    70,
+    69,
+    65,
+    58,
+    48
+   ],
+   "rev": 2.7864,
+   "rev_month": 2.7864,
+   "rev_ym": {
+    "2024-02": 2.7864
+   },
+   "rev_month_ym": {
+    "2024-02": 2.7864
+   },
+   "cum": 10,
+   "cumtot": 54,
+   "yrank": 3,
+   "ytot": 24,
+   "icons": [
+    "icons/faces/lads/cast-xavier.webp",
+    "icons/faces/lads/cast-zayne.webp",
+    "icons/faces/lads/cast-rafayel.webp"
+   ],
+   "accent": "#ae515b",
+   "bar": "#9f3744"
+  },
+  {
+   "name": "夜明け前の光",
+   "start": "2024-02-21",
+   "end": "2024-02-29",
+   "year": 2024,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/15/131862-15-3d881c127af5425285c5f4dab7f61f05-1920x1080.jpg",
+   "agents": [
+    "Zayne"
+   ],
+   "en": "Zayne",
+   "source_url": "https://prtimes.jp/main/html/rd/p/000000015.000131862.html",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    107,
+    15,
+    26,
+    57,
+    67,
+    75,
+    85,
+    89,
+    87
+   ],
+   "rev": 1.3662,
+   "rev_month": 1.3662,
+   "rev_ym": {
+    "2024-02": 1.3662
+   },
+   "rev_month_ym": {
+    "2024-02": 1.3662
+   },
+   "cum": 29,
+   "cumtot": 54,
+   "yrank": 12,
+   "ytot": 24,
+   "icons": [
+    "icons/faces/lads/cast-zayne.webp"
+   ],
+   "bar": "#47658f"
+  },
+  {
+   "name": "独占する抱擁",
+   "start": "2024-03-01",
+   "end": "2024-03-08",
+   "year": 2024,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/16/131862-16-53be0550070d8da2b69f8bec1ae12000-3840x2160.jpg",
+   "agents": [
+    "Rafayel"
+   ],
+   "en": "Rafayel",
+   "source_url": "https://prtimes.jp/main/html/rd/p/000000016.000131862.html",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    135,
+    27,
+    42,
+    61,
+    75,
+    78,
+    70,
+    73
+   ],
+   "rev": 1.0822,
+   "rev_month": 1.0822,
+   "rev_ym": {
+    "2024-03": 1.0822
+   },
+   "rev_month_ym": {
+    "2024-03": 1.0822
+   },
+   "cum": 32,
+   "cumtot": 54,
+   "yrank": 15,
+   "ytot": 24,
+   "icons": [
+    "icons/faces/lads/cast-rafayel.webp"
+   ],
+   "accent": "#e36f6b",
+   "bar": "#bf172c"
+  },
+  {
+   "name": "まなざしの先に",
+   "start": "2024-03-11",
+   "end": "2024-03-23",
+   "year": 2024,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/17/131862-17-5adff5a4a4e5a9ee62c5a386200060a4-3840x2160.jpg",
+   "agents": [
+    "Xavier",
+    "Zayne",
+    "Rafayel"
+   ],
+   "en": "Xavier & Zayne & Rafayel",
+   "source_url": "https://prtimes.jp/main/html/rd/p/000000017.000131862.html",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    177,
+    8,
+    14,
+    29,
+    62,
+    75,
+    80,
+    44,
+    60,
+    75,
+    76,
+    87,
+    76
+   ],
+   "rev": 2.4675,
+   "rev_month": 2.4675,
+   "rev_ym": {
+    "2024-03": 2.4675
+   },
+   "rev_month_ym": {
+    "2024-03": 2.4675
+   },
+   "cum": 16,
+   "cumtot": 54,
+   "yrank": 6,
+   "ytot": 24,
+   "icons": [
+    "icons/faces/lads/cast-xavier.webp",
+    "icons/faces/lads/cast-zayne.webp",
+    "icons/faces/lads/cast-rafayel.webp"
+   ],
+   "accent": "#c1cf99",
+   "bar": "#dedd87"
+  },
+  {
+   "name": "潮汐の響く時",
+   "start": "2024-04-03",
+   "end": "2024-04-17",
+   "year": 2024,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/18/131862-18-370ed6a9181a60a45cc882852022bb54-3840x2160.jpg",
+   "agents": [
+    "Rafayel"
+   ],
+   "en": "Rafayel",
+   "source_url": "https://prtimes.jp/main/html/rd/p/000000018.000131862.html",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    null,
+    10,
+    17,
+    36,
+    58,
+    69,
+    80,
+    85,
+    101,
+    108,
+    128,
+    130,
+    120,
+    121,
+    90
+   ],
+   "rev": 1.9071,
+   "rev_month": 1.9532,
+   "rev_ym": {
+    "2024-04": 1.9071
+   },
+   "rev_month_ym": {
+    "2024-04": 1.9532
+   },
+   "cum": 21,
+   "cumtot": 54,
+   "yrank": 9,
+   "ytot": 24,
+   "icons": [
+    "icons/faces/lads/cast-rafayel.webp"
+   ],
+   "accent": "#7fe0f0",
+   "bar": "#3590a1"
+  },
+  {
+   "name": "燃えるように熱く",
+   "start": "2024-04-19",
+   "end": "2024-04-29",
+   "year": 2024,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/19/131862-19-38bb1cdad77f06cb2da6b189c261698f-1920x1080.jpg",
+   "agents": [
+    "Xavier"
+   ],
+   "en": "Xavier",
+   "source_url": "https://prtimes.jp/main/html/rd/p/000000019.000131862.html",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    null,
+    35,
+    61,
+    93,
+    120,
+    159,
+    197,
+    187,
+    179,
+    null,
+    190
+   ],
+   "rev": 0.7306,
+   "rev_month": 0.828,
+   "rev_ym": {
+    "2024-04": 0.7306
+   },
+   "rev_month_ym": {
+    "2024-04": 0.828
+   },
+   "cum": 41,
+   "cumtot": 54,
+   "yrank": 17,
+   "ytot": 24,
+   "icons": [
+    "icons/faces/lads/cast-xavier.webp"
+   ],
+   "accent": "#e2988d",
+   "bar": "#daa28b"
+  },
+  {
+   "name": "ダブルキス",
+   "start": "2024-04-30",
+   "end": "2024-05-10",
+   "year": 2024,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/20/131862-20-f77d0588ab5f4c12644c1ecd8b6092a2-1920x1080.jpg",
+   "agents": [
+    "Zayne"
+   ],
+   "en": "Zayne",
+   "source_url": "https://prtimes.jp/main/html/rd/p/000000020.000131862.html",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    null,
+    55,
+    106,
+    136,
+    172,
+    192,
+    null,
+    null,
+    null,
+    193,
+    184
+   ],
+   "rev": 0.5427,
+   "rev_month": 0.7523,
+   "rev_ym": {
+    "2024-04": 0.0,
+    "2024-05": 0.5427
+   },
+   "rev_month_ym": {
+    "2024-04": 0.0475,
+    "2024-05": 0.7049
+   },
+   "cum": 48,
+   "cumtot": 54,
+   "yrank": 21,
+   "ytot": 24,
+   "icons": [
+    "icons/faces/lads/cast-zayne.webp"
+   ],
+   "bar": "#9b3c44"
+  },
+  {
+   "name": "銀月の輝く夜",
+   "start": "2024-05-13",
+   "end": "2024-05-27",
+   "year": 2024,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/21/131862-21-a919f1cf78e5b21dd3958f3a0180af9b-3840x2160.jpg",
+   "agents": [
+    "Xavier"
+   ],
+   "en": "Xavier",
+   "source_url": "https://prtimes.jp/main/html/rd/p/000000021.000131862.html",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    null,
+    9,
+    18,
+    31,
+    51,
+    81,
+    105,
+    109,
+    122,
+    118,
+    125,
+    146,
+    132,
+    128,
+    98
+   ],
+   "rev": 2.1119,
+   "rev_month": 2.1557,
+   "rev_ym": {
+    "2024-05": 2.1119
+   },
+   "rev_month_ym": {
+    "2024-05": 2.1557
+   },
+   "cum": 20,
+   "cumtot": 54,
+   "yrank": 8,
+   "ytot": 24,
+   "icons": [
+    "icons/faces/lads/cast-xavier.webp"
+   ],
+   "accent": "#5d5fa2",
+   "bar": "#4a508d"
+  },
+  {
+   "name": "朝日を浴びて",
+   "start": "2024-05-28",
+   "end": "2024-06-07",
+   "year": 2024,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/23/131862-23-88282705a95e82786abf8e6eafa84f3f-1920x1080.jpg",
+   "agents": [
+    "Rafayel"
+   ],
+   "en": "Rafayel",
+   "source_url": "https://prtimes.jp/main/html/rd/p/000000023.000131862.html",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    132,
+    52,
+    80,
+    135,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "rev": 0.4027,
+   "rev_month": 0.6503,
+   "rev_ym": {
+    "2024-05": 0.4027,
+    "2024-06": 0.0
+   },
+   "rev_month_ym": {
+    "2024-05": 0.4027,
+    "2024-06": 0.2476
+   },
+   "cum": 51,
+   "cumtot": 54,
+   "yrank": 23,
+   "ytot": 24,
+   "icons": [
+    "icons/faces/lads/cast-rafayel.webp"
+   ],
+   "bar": "#d3d88d"
+  },
+  {
+   "name": "山に隠る霊跡",
+   "start": "2024-06-07",
+   "end": "2024-06-21",
+   "year": 2024,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/26/131862-26-84e5e90d76be75c08da608525b3ea850-1920x1080.jpg",
+   "agents": [
+    "Zayne"
+   ],
+   "en": "Zayne",
+   "source_url": "https://prtimes.jp/main/html/rd/p/000000026.000131862.html",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    null,
+    14,
+    28,
+    59,
+    85,
+    111,
+    142,
+    163,
+    187,
+    196,
+    162,
+    174,
+    175,
+    166,
+    141
+   ],
+   "rev": 1.1661,
+   "rev_month": 1.2004,
+   "rev_ym": {
+    "2024-06": 1.1661
+   },
+   "rev_month_ym": {
+    "2024-06": 1.2004
+   },
+   "cum": 31,
+   "cumtot": 54,
+   "yrank": 14,
+   "ytot": 24,
+   "icons": [
+    "icons/faces/lads/cast-zayne.webp"
+   ],
+   "accent": "#5c79a3",
+   "bar": "#415f95"
+  },
+  {
+   "name": "双影の重なる時",
+   "start": "2024-06-25",
+   "end": "2024-07-10",
+   "year": 2024,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/27/131862-27-282ff8088d628eab850f56ec4369b923-1920x1080.jpg",
+   "agents": [
+    "Xavier",
+    "Zayne",
+    "Rafayel"
+   ],
+   "en": "Xavier & Zayne & Rafayel",
+   "source_url": "https://prtimes.jp/main/html/rd/p/000000027.000131862.html",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    null,
+    11,
+    17,
+    36,
+    67,
+    88,
+    108,
+    110,
+    118,
+    131,
+    136,
+    153,
+    140,
+    87,
+    78,
+    70
+   ],
+   "rev": 1.8925,
+   "rev_month": 1.9237,
+   "rev_ym": {
+    "2024-06": 0.9349,
+    "2024-07": 0.9575
+   },
+   "rev_month_ym": {
+    "2024-06": 0.9661,
+    "2024-07": 0.9575
+   },
+   "cum": 22,
+   "cumtot": 54,
+   "yrank": 10,
+   "ytot": 24,
+   "icons": [
+    "icons/faces/lads/cast-xavier.webp",
+    "icons/faces/lads/cast-zayne.webp",
+    "icons/faces/lads/cast-rafayel.webp"
+   ],
+   "accent": "#a86a57",
+   "bar": "#976a5d"
+  },
+  {
+   "name": "無防備な禁区",
+   "start": "2024-07-15",
+   "end": "2024-08-01",
+   "year": 2024,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/30/131862-30-83031f67a83688a27c40495efd687816-1920x2065.png",
+   "agents": [
+    "Sylus"
+   ],
+   "en": "Sylus",
+   "source_url": "https://prtimes.jp/main/html/rd/p/000000030.000131862.html",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    null,
+    18,
+    18,
+    31,
+    43,
+    59,
+    73,
+    75,
+    84,
+    88,
+    105,
+    104,
+    121,
+    114,
+    104,
+    102,
+    103,
+    103
+   ],
+   "rev": 2.5117,
+   "rev_month": 2.552,
+   "rev_ym": {
+    "2024-07": 2.4045,
+    "2024-08": 0.1073
+   },
+   "rev_month_ym": {
+    "2024-07": 2.4447,
+    "2024-08": 0.1073
+   },
+   "cum": 15,
+   "cumtot": 54,
+   "yrank": 5,
+   "ytot": 24,
+   "icons": [
+    "icons/faces/lads/cast-sylus.webp"
+   ],
+   "accent": "#daa296",
+   "bar": "#97423f"
+  },
+  {
+   "name": "半透明な占有",
+   "start": "2024-08-07",
+   "end": "2024-08-27",
+   "year": 2024,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/31/131862-31-3c89e8c06cb2e4e77ef3d7eb7018bdc5-2560x1440.png",
+   "agents": [
+    "Xavier",
+    "Zayne",
+    "Rafayel",
+    "Sylus"
+   ],
+   "en": "Xavier & Zayne & Rafayel & Sylus",
+   "source_url": "https://prtimes.jp/main/html/rd/p/000000031.000131862.html",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    120,
+    4,
+    11,
+    20,
+    39,
+    51,
+    67,
+    77,
+    83,
+    96,
+    99,
+    106,
+    102,
+    105,
+    107,
+    107,
+    114,
+    112,
+    107,
+    93,
+    72
+   ],
+   "rev": 4.8353,
+   "rev_month": 4.8353,
+   "rev_ym": {
+    "2024-08": 4.8353
+   },
+   "rev_month_ym": {
+    "2024-08": 4.8353
+   },
+   "cum": 1,
+   "cumtot": 54,
+   "yrank": 1,
+   "ytot": 24,
+   "icons": [
+    "icons/faces/lads/cast-xavier.webp",
+    "icons/faces/lads/cast-zayne.webp",
+    "icons/faces/lads/cast-rafayel.webp",
+    "icons/faces/lads/cast-sylus.webp"
+   ],
+   "accent": "#b86047",
+   "bar": "#944c42"
+  },
+  {
+   "name": "昔の願いが叶う時",
+   "start": "2024-08-31",
+   "end": "2024-09-07",
+   "year": 2024,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/34/131862-34-0d72c2c53549b78977b2b7cd772bb3b1-2560x1440.jpg",
+   "agents": [
+    "Zayne"
+   ],
+   "en": "Zayne",
+   "source_url": "https://prtimes.jp/main/html/rd/p/000000034.000131862.html",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    null,
+    69,
+    109,
+    123,
+    141,
+    151,
+    131,
+    138
+   ],
+   "rev": 0.5821,
+   "rev_month": 0.6347,
+   "rev_ym": {
+    "2024-08": 0.0,
+    "2024-09": 0.5821
+   },
+   "rev_month_ym": {
+    "2024-08": 0.0525,
+    "2024-09": 0.5821
+   },
+   "cum": 46,
+   "cumtot": 54,
+   "yrank": 20,
+   "ytot": 24,
+   "icons": [
+    "icons/faces/lads/cast-zayne.webp"
+   ],
+   "accent": "#e9c386",
+   "bar": "#f0ce75"
+  },
+  {
+   "name": "思い込めた絵",
+   "start": "2024-09-10",
+   "end": "2024-09-20",
+   "year": 2024,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/35/131862-35-7a135e35005d55c21d218f536feffeb3-3840x2160.jpg",
+   "agents": [
+    "Rafayel"
+   ],
+   "en": "Rafayel",
+   "source_url": "https://prtimes.jp/main/html/rd/p/000000035.000131862.html",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    null,
+    55,
+    81,
+    139,
+    185,
+    85,
+    120,
+    151,
+    179,
+    196,
+    194
+   ],
+   "rev": 0.8136,
+   "rev_month": 0.8641,
+   "rev_ym": {
+    "2024-09": 0.8136
+   },
+   "rev_month_ym": {
+    "2024-09": 0.8641
+   },
+   "cum": 37,
+   "cumtot": 54,
+   "yrank": 16,
+   "ytot": 24,
+   "icons": [
+    "icons/faces/lads/cast-rafayel.webp"
+   ],
+   "accent": "#a1a7ce",
+   "bar": "#8eaad7"
+  },
+  {
+   "name": "絶景をこの目に",
+   "start": "2024-09-23",
+   "end": "2024-10-09",
+   "year": 2024,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/37/131862-37-e3d40e02e74cbc94562a1c2c21e9a03a-2560x1440.jpg",
+   "agents": [
+    "Xavier",
+    "Zayne",
+    "Rafayel",
+    "Sylus"
+   ],
+   "en": "Xavier & Zayne & Rafayel & Sylus",
+   "source_url": "https://prtimes.jp/main/html/rd/p/000000037.000131862.html",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    null,
+    9,
+    16,
+    36,
+    61,
+    92,
+    105,
+    103,
+    148,
+    117,
+    119,
+    134,
+    142,
+    128,
+    110,
+    111,
+    86
+   ],
+   "rev": 2.2759,
+   "rev_month": 2.3241,
+   "rev_ym": {
+    "2024-09": 1.5401,
+    "2024-10": 0.7358
+   },
+   "rev_month_ym": {
+    "2024-09": 1.5883,
+    "2024-10": 0.7358
+   },
+   "cum": 17,
+   "cumtot": 54,
+   "yrank": 7,
+   "ytot": 24,
+   "icons": [
+    "icons/faces/lads/cast-xavier.webp",
+    "icons/faces/lads/cast-zayne.webp",
+    "icons/faces/lads/cast-rafayel.webp",
+    "icons/faces/lads/cast-sylus.webp"
+   ],
+   "accent": "#e9a97a",
+   "bar": "#9c473a"
+  },
+  {
+   "name": "揺らめく銀河",
+   "start": "2024-10-11",
+   "end": "2024-10-18",
+   "year": 2024,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/39/131862-39-8e2a3ced5f1c8f3e277e19b51fba06d5-2560x1440.jpg",
+   "agents": [
+    "Xavier"
+   ],
+   "en": "Xavier",
+   "source_url": "https://prtimes.jp/main/html/rd/p/000000039.000131862.html",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    null,
+    46,
+    67,
+    90,
+    112,
+    117,
+    113,
+    126
+   ],
+   "rev": 0.7085,
+   "rev_month": 0.7603,
+   "rev_ym": {
+    "2024-10": 0.7085
+   },
+   "rev_month_ym": {
+    "2024-10": 0.7603
+   },
+   "cum": 43,
+   "cumtot": 54,
+   "yrank": 18,
+   "ytot": 24,
+   "icons": [
+    "icons/faces/lads/cast-xavier.webp"
+   ],
+   "bar": "#5d4591"
+  },
+  {
+   "name": "灼熱の祝福",
+   "start": "2024-10-20",
+   "end": "2024-10-30",
+   "year": 2024,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/40/131862-40-095a28d3df17d42148d87ee3fe92d945-1920x1080.png",
+   "agents": [
+    "Sylus"
+   ],
+   "en": "Sylus",
+   "source_url": "https://prtimes.jp/main/html/rd/p/000000040.000131862.html",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    null,
+    31,
+    56,
+    92,
+    137,
+    184,
+    null,
+    null,
+    null,
+    176,
+    168
+   ],
+   "rev": 0.7061,
+   "rev_month": 0.9182,
+   "rev_ym": {
+    "2024-10": 0.7061
+   },
+   "rev_month_ym": {
+    "2024-10": 0.9182
+   },
+   "cum": 44,
+   "cumtot": 54,
+   "yrank": 19,
+   "ytot": 24,
+   "icons": [
+    "icons/faces/lads/cast-sylus.webp"
+   ],
+   "accent": "#a95665",
+   "bar": "#a0363d"
+  },
+  {
+   "name": "流れる音色",
+   "start": "2024-10-31",
+   "end": "2024-11-10",
+   "year": 2024,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/42/131862-42-ee853ee2e7a31420f197772451738409-1920x1080.jpg",
+   "agents": [
+    "Zayne"
+   ],
+   "en": "Zayne",
+   "source_url": "https://prtimes.jp/main/html/rd/p/000000042.000131862.html",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    null,
+    78,
+    130,
+    170,
+    187,
+    null,
+    null,
+    null,
+    null,
+    176,
+    163
+   ],
+   "rev": 0.4453,
+   "rev_month": 0.7118,
+   "rev_ym": {
+    "2024-10": 0.0,
+    "2024-11": 0.4453
+   },
+   "rev_month_ym": {
+    "2024-10": 0.053,
+    "2024-11": 0.6588
+   },
+   "cum": 49,
+   "cumtot": 54,
+   "yrank": 22,
+   "ytot": 24,
+   "icons": [
+    "icons/faces/lads/cast-zayne.webp"
+   ],
+   "accent": "#c64239",
+   "bar": "#ac312b"
+  },
+  {
+   "name": "畏まりました、飼育員",
+   "start": "2024-11-12",
+   "end": "2024-11-30",
+   "year": 2024,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/43/131862-43-d871c9b7c12b1a63d3d9ad3986ffbb86-1920x1080.png",
+   "agents": [
+    "Xavier",
+    "Zayne",
+    "Rafayel",
+    "Sylus"
+   ],
+   "en": "Xavier & Zayne & Rafayel & Sylus",
+   "source_url": "https://prtimes.jp/main/html/rd/p/000000043.000131862.html",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    null,
+    8,
+    14,
+    30,
+    57,
+    78,
+    92,
+    96,
+    115,
+    132,
+    142,
+    166,
+    163,
+    143,
+    146,
+    117,
+    120,
+    103,
+    102
+   ],
+   "rev": 2.6147,
+   "rev_month": 2.6645,
+   "rev_ym": {
+    "2024-11": 2.6147
+   },
+   "rev_month_ym": {
+    "2024-11": 2.6645
+   },
+   "cum": 12,
+   "cumtot": 54,
+   "yrank": 4,
+   "ytot": 24,
+   "icons": [
+    "icons/faces/lads/cast-xavier.webp",
+    "icons/faces/lads/cast-zayne.webp",
+    "icons/faces/lads/cast-rafayel.webp",
+    "icons/faces/lads/cast-sylus.webp"
+   ],
+   "accent": "#a76b58",
+   "bar": "#905346"
+  },
+  {
+   "name": "竜影の墜つる地",
+   "start": "2024-12-02",
+   "end": "2024-12-16",
+   "year": 2024,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/46/131862-46-e7b4e8a7cf1a902cb5d25f7c4da9429b-2560x1440.jpg",
+   "agents": [
+    "Sylus"
+   ],
+   "en": "Sylus",
+   "source_url": "https://prtimes.jp/main/html/rd/p/000000046.000131862.html",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    null,
+    13,
+    23,
+    36,
+    65,
+    101,
+    129,
+    129,
+    135,
+    148,
+    139,
+    146,
+    138,
+    139,
+    101
+   ],
+   "rev": 1.7419,
+   "rev_month": 1.7858,
+   "rev_ym": {
+    "2024-12": 1.7419
+   },
+   "rev_month_ym": {
+    "2024-12": 1.7858
+   },
+   "cum": 24,
+   "cumtot": 54,
+   "yrank": 11,
+   "ytot": 24,
+   "icons": [
+    "icons/faces/lads/cast-sylus.webp"
+   ],
+   "accent": "#ebb384",
+   "bar": "#a04936"
+  },
+  {
+   "name": "降り敷く銀河の調べ",
+   "start": "2024-12-18",
+   "end": "2024-12-28",
+   "year": 2024,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/49/131862-49-1a730ac474f32433127d2baafa847ea1-1920x1080.jpg",
+   "agents": [
+    "Xavier"
+   ],
+   "en": "Xavier",
+   "source_url": "https://prtimes.jp/main/html/rd/p/000000049.000131862.html",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    null,
+    63,
+    108,
+    176,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "rev": 0.2709,
+   "rev_month": 0.6741,
+   "rev_ym": {
+    "2024-12": 0.2709
+   },
+   "rev_month_ym": {
+    "2024-12": 0.6741
+   },
+   "cum": 53,
+   "cumtot": 54,
+   "yrank": 24,
+   "ytot": 24,
+   "icons": [
+    "icons/faces/lads/cast-xavier.webp"
+   ],
+   "accent": "#5869af",
+   "bar": "#8b9bda"
+  },
+  {
+   "name": "高ぶる昨夜の果て",
+   "start": "2024-12-31",
+   "end": "2025-01-20",
+   "year": 2024,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/50/131862-50-49e0c4cec0bd0499bc6578d300e9dfea-1920x1080.png",
+   "agents": [
+    "Xavier",
+    "Zayne",
+    "Rafayel",
+    "Sylus"
+   ],
+   "en": "Xavier & Zayne & Rafayel & Sylus",
+   "source_url": "https://prtimes.jp/main/html/rd/p/000000050.000131862.html",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    100,
+    14,
+    35,
+    44,
+    61,
+    77,
+    86,
+    95,
+    94,
+    103,
+    114,
+    74,
+    63,
+    72,
+    74,
+    80,
+    88,
+    98,
+    110,
+    101,
+    66
+   ],
+   "rev": 3.3532,
+   "rev_month": 3.3532,
+   "rev_ym": {
+    "2024-12": 0.0912,
+    "2025-01": 3.262
+   },
+   "rev_month_ym": {
+    "2024-12": 0.0912,
+    "2025-01": 3.262
+   },
+   "cum": 5,
+   "cumtot": 54,
+   "yrank": 2,
+   "ytot": 24,
+   "icons": [
+    "icons/faces/lads/cast-xavier.webp",
+    "icons/faces/lads/cast-zayne.webp",
+    "icons/faces/lads/cast-rafayel.webp",
+    "icons/faces/lads/cast-sylus.webp"
+   ],
+   "accent": "#b05e4f",
+   "bar": "#8f5647"
+  },
+  {
+   "name": "痛みのシグナル",
+   "start": "2025-01-22",
+   "end": "2025-02-08",
+   "year": 2025,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/53/131862-53-4d347418bea43b14f67a6bc1532b7775-1000x1285.png",
+   "agents": [
+    "Caleb"
+   ],
+   "en": "Caleb",
+   "source_url": "https://prtimes.jp/main/html/rd/p/000000053.000131862.html",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    158,
+    15,
+    17,
+    26,
+    39,
+    51,
+    65,
+    76,
+    86,
+    97,
+    112,
+    110,
+    105,
+    100,
+    104,
+    102,
+    103,
+    95
+   ],
+   "rev": 3.041,
+   "rev_month": 3.041,
+   "rev_ym": {
+    "2025-01": 2.2906,
+    "2025-02": 0.7504
+   },
+   "rev_month_ym": {
+    "2025-01": 2.2906,
+    "2025-02": 0.7504
+   },
+   "cum": 7,
+   "cumtot": 54,
+   "yrank": 3,
+   "ytot": 19,
+   "icons": [
+    "icons/faces/lads/cast-caleb.webp"
+   ],
+   "accent": "#d5a29a",
+   "bar": "#d79d8e"
+  },
+  {
+   "name": "逃げ場なき明日",
+   "start": "2025-02-10",
+   "end": "2025-02-27",
+   "year": 2025,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/55/131862-55-2b7cbcf8c94851c669a1ea75b38baf6d-2560x1440.jpg",
+   "agents": [
+    "Xavier",
+    "Zayne",
+    "Rafayel",
+    "Sylus",
+    "Caleb"
+   ],
+   "en": "Xavier & Zayne & Rafayel & Sylus & Caleb",
+   "source_url": "https://prtimes.jp/main/html/rd/p/000000055.000131862.html",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    163,
+    6,
+    9,
+    16,
+    23,
+    47,
+    62,
+    58,
+    58,
+    60,
+    66,
+    79,
+    81,
+    83,
+    82,
+    76,
+    59,
+    53
+   ],
+   "rev": 3.9422,
+   "rev_month": 3.9422,
+   "rev_ym": {
+    "2025-02": 3.9422
+   },
+   "rev_month_ym": {
+    "2025-02": 3.9422
+   },
+   "cum": 3,
+   "cumtot": 54,
+   "yrank": 2,
+   "ytot": 19,
+   "icons": [
+    "icons/faces/lads/cast-xavier.webp",
+    "icons/faces/lads/cast-zayne.webp",
+    "icons/faces/lads/cast-rafayel.webp",
+    "icons/faces/lads/cast-sylus.webp",
+    "icons/faces/lads/cast-caleb.webp"
+   ],
+   "accent": "#fe013f",
+   "bar": "#d4022a"
+  },
+  {
+   "name": "果てしなき海に沈む&独占する抱擁",
+   "start": "2025-03-01",
+   "end": "2025-03-08",
+   "year": 2025,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/58/131862-58-99948499448265fdd058939e57e03a73-2560x1440.jpg",
+   "agents": [
+    "Rafayel"
+   ],
+   "en": "Rafayel",
+   "source_url": "https://prtimes.jp/main/html/rd/p/000000058.000131862.html",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    180,
+    40,
+    54,
+    77,
+    98,
+    111,
+    99,
+    100
+   ],
+   "rev": 0.8804,
+   "rev_month": 0.8804,
+   "rev_ym": {
+    "2025-03": 0.8804
+   },
+   "rev_month_ym": {
+    "2025-03": 0.8804
+   },
+   "cum": 35,
+   "cumtot": 54,
+   "yrank": 14,
+   "ytot": 19,
+   "icons": [
+    "icons/faces/lads/cast-rafayel.webp"
+   ],
+   "accent": "#de85b7",
+   "bar": "#4b4096"
+  },
+  {
+   "name": "長き縁への願い",
+   "start": "2025-03-09",
+   "end": "2025-03-18",
+   "year": 2025,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/59/131862-59-53d3414068906ba3b7de9145f95a21ab-1920x1080.jpg",
+   "agents": [
+    "Zayne"
+   ],
+   "en": "Zayne",
+   "source_url": "https://prtimes.jp/main/html/rd/p/000000059.000131862.html",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    136,
+    22,
+    44,
+    74,
+    119,
+    157,
+    184,
+    195,
+    163,
+    162
+   ],
+   "rev": 1.0601,
+   "rev_month": 1.0601,
+   "rev_ym": {
+    "2025-03": 1.0601
+   },
+   "rev_month_ym": {
+    "2025-03": 1.0601
+   },
+   "cum": 33,
+   "cumtot": 54,
+   "yrank": 13,
+   "ytot": 19,
+   "icons": [
+    "icons/faces/lads/cast-zayne.webp"
+   ],
+   "bar": "#8f4851"
+  },
+  {
+   "name": "宇宙が陥落する時",
+   "start": "2025-03-28",
+   "end": "2025-04-11",
+   "year": 2025,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/61/131862-61-97b6e45391d093a7f8217dc6021d5d70-2560x1440.jpg",
+   "agents": [
+    "Caleb"
+   ],
+   "en": "Caleb",
+   "source_url": "https://prtimes.jp/main/html/rd/p/000000061.000131862.html",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    138,
+    9,
+    18,
+    32,
+    53,
+    78,
+    90,
+    107,
+    128,
+    138,
+    131,
+    128,
+    127,
+    127,
+    103
+   ],
+   "rev": 2.1806,
+   "rev_month": 2.1806,
+   "rev_ym": {
+    "2025-03": 1.2239,
+    "2025-04": 0.9567
+   },
+   "rev_month_ym": {
+    "2025-03": 1.2239,
+    "2025-04": 0.9567
+   },
+   "cum": 19,
+   "cumtot": 54,
+   "yrank": 8,
+   "ytot": 19,
+   "icons": [
+    "icons/faces/lads/cast-caleb.webp"
+   ],
+   "accent": "#be99c2",
+   "bar": "#a292d3"
+  },
+  {
+   "name": "心寄せる住処へ",
+   "start": "2025-04-13",
+   "end": "2025-04-20",
+   "year": 2025,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/62/131862-62-99711fe10cf0329f9dd23093fd6340e7-2560x1440.jpg",
+   "agents": [
+    "Sylus"
+   ],
+   "en": "Sylus",
+   "source_url": "https://prtimes.jp/main/html/rd/p/000000062.000131862.html",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    null,
+    34,
+    59,
+    100,
+    140,
+    169,
+    157,
+    161
+   ],
+   "rev": 0.6675,
+   "rev_month": 0.7197,
+   "rev_ym": {
+    "2025-04": 0.6675
+   },
+   "rev_month_ym": {
+    "2025-04": 0.7197
+   },
+   "cum": 45,
+   "cumtot": 54,
+   "yrank": 17,
+   "ytot": 19,
+   "icons": [
+    "icons/faces/lads/cast-sylus.webp"
+   ],
+   "accent": "#cad897",
+   "bar": "#cacd98"
+  },
+  {
+   "name": "春から花へ捧ぐ",
+   "start": "2025-04-30",
+   "end": "2025-05-18",
+   "year": 2025,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/64/131862-64-709fcb75c71207c94db88e55ad9b07c0-1920x1080.jpg",
+   "agents": [
+    "Xavier",
+    "Zayne",
+    "Rafayel",
+    "Sylus",
+    "Caleb"
+   ],
+   "en": "Xavier & Zayne & Rafayel & Sylus & Caleb",
+   "source_url": "https://prtimes.jp/main/html/rd/p/000000064.000131862.html",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    null,
+    16,
+    27,
+    35,
+    49,
+    62,
+    74,
+    45,
+    63,
+    82,
+    109,
+    109,
+    49,
+    59,
+    78,
+    95,
+    99,
+    98,
+    65
+   ],
+   "rev": 2.7054,
+   "rev_month": 2.7598,
+   "rev_ym": {
+    "2025-04": 0.0,
+    "2025-05": 2.7054
+   },
+   "rev_month_ym": {
+    "2025-04": 0.0544,
+    "2025-05": 2.7054
+   },
+   "cum": 11,
+   "cumtot": 54,
+   "yrank": 6,
+   "ytot": 19,
+   "icons": [
+    "icons/faces/lads/cast-xavier.webp",
+    "icons/faces/lads/cast-zayne.webp",
+    "icons/faces/lads/cast-rafayel.webp",
+    "icons/faces/lads/cast-sylus.webp",
+    "icons/faces/lads/cast-caleb.webp"
+   ],
+   "accent": "#ff7770",
+   "bar": "#d3a092"
+  },
+  {
+   "name": "押し寄せる熱",
+   "start": "2025-05-29",
+   "end": "2025-06-07",
+   "year": 2025,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/65/131862-65-b37c89095960186f6c41543012ffedf2-2560x1440.jpg",
+   "agents": [
+    "Xavier"
+   ],
+   "en": "Xavier",
+   "source_url": "https://prtimes.jp/main/html/rd/p/000000065.000131862.html",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    null,
+    53,
+    86,
+    142,
+    170,
+    188,
+    null,
+    null,
+    null,
+    null
+   ],
+   "rev": 0.4384,
+   "rev_month": 0.6869,
+   "rev_ym": {
+    "2025-05": 0.2598,
+    "2025-06": 0.1786
+   },
+   "rev_month_ym": {
+    "2025-05": 0.3152,
+    "2025-06": 0.3717
+   },
+   "cum": 50,
+   "cumtot": 54,
+   "yrank": 19,
+   "ytot": 19,
+   "icons": [
+    "icons/faces/lads/cast-xavier.webp"
+   ],
+   "accent": "#af5c50",
+   "bar": "#993d3d"
+  },
+  {
+   "name": "帰らぬ夜",
+   "start": "2025-06-08",
+   "end": "2025-06-15",
+   "year": 2025,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/66/131862-66-61e3e32153039f555409f95696122cae-2560x1440.png",
+   "agents": [
+    "Caleb"
+   ],
+   "en": "Caleb",
+   "source_url": "https://prtimes.jp/main/html/rd/p/000000066.000131862.html",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    null,
+    26,
+    50,
+    91,
+    122,
+    154,
+    137,
+    119
+   ],
+   "rev": 0.7263,
+   "rev_month": 0.7719,
+   "rev_ym": {
+    "2025-06": 0.7263
+   },
+   "rev_month_ym": {
+    "2025-06": 0.7719
+   },
+   "cum": 42,
+   "cumtot": 54,
+   "yrank": 16,
+   "ytot": 19,
+   "icons": [
+    "icons/faces/lads/cast-caleb.webp"
+   ],
+   "accent": "#d45b2b",
+   "bar": "#a25034"
+  },
+  {
+   "name": "海が海に沈む時",
+   "start": "2025-06-17",
+   "end": "2025-07-01",
+   "year": 2025,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/68/131862-68-d505dc8edff7ef809fad8e7735c71d18-1920x1080.jpg",
+   "agents": [
+    "Rafayel"
+   ],
+   "en": "Rafayel",
+   "source_url": "https://prtimes.jp/main/html/rd/p/000000068.000131862.html",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    null,
+    12,
+    null,
+    34,
+    67,
+    92,
+    104,
+    119,
+    127,
+    132,
+    148,
+    159,
+    110,
+    113,
+    120
+   ],
+   "rev": 1.4568,
+   "rev_month": 1.5048,
+   "rev_ym": {
+    "2025-06": 1.3692,
+    "2025-07": 0.0876
+   },
+   "rev_month_ym": {
+    "2025-06": 1.4171,
+    "2025-07": 0.0876
+   },
+   "cum": 28,
+   "cumtot": 54,
+   "yrank": 12,
+   "ytot": 19,
+   "icons": [
+    "icons/faces/lads/cast-rafayel.webp"
+   ],
+   "accent": "#d396a0",
+   "bar": "#79c0ec"
+  },
+  {
+   "name": "深空の見届けの下に",
+   "start": "2025-07-03",
+   "end": "2025-07-22",
+   "year": 2025,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/69/131862-69-c17c0f5e4d2e480c4d39f73a0f6f38e3-3840x2160.png",
+   "agents": [
+    "Xavier",
+    "Zayne",
+    "Rafayel",
+    "Sylus",
+    "Caleb"
+   ],
+   "en": "Xavier & Zayne & Rafayel & Sylus & Caleb",
+   "source_url": "https://prtimes.jp/main/html/rd/p/000000069.000131862.html",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    null,
+    13,
+    16,
+    30,
+    36,
+    63,
+    73,
+    78,
+    93,
+    99,
+    105,
+    98,
+    101,
+    104,
+    101,
+    112,
+    126,
+    108,
+    92,
+    70
+   ],
+   "rev": 2.8429,
+   "rev_month": 2.9019,
+   "rev_ym": {
+    "2025-07": 2.8429
+   },
+   "rev_month_ym": {
+    "2025-07": 2.9019
+   },
+   "cum": 8,
+   "cumtot": 54,
+   "yrank": 4,
+   "ytot": 19,
+   "icons": [
+    "icons/faces/lads/cast-xavier.webp",
+    "icons/faces/lads/cast-zayne.webp",
+    "icons/faces/lads/cast-rafayel.webp",
+    "icons/faces/lads/cast-sylus.webp",
+    "icons/faces/lads/cast-caleb.webp"
+   ],
+   "accent": "#5e5ca3",
+   "bar": "#524f87"
+  },
+  {
+   "name": "堕ちた王冠",
+   "start": "2025-07-25",
+   "end": "2025-08-08",
+   "year": 2025,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/74/131862-74-19d6a29ed1a77e8ae07e1febe020efed-1920x1080.jpg",
+   "agents": [
+    "Xavier"
+   ],
+   "en": "Xavier",
+   "source_url": "https://prtimes.jp/main/html/rd/p/000000074.000131862.html",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    null,
+    20,
+    29,
+    53,
+    73,
+    112,
+    128,
+    168,
+    142,
+    149,
+    155,
+    150,
+    150,
+    146,
+    136
+   ],
+   "rev": 1.6621,
+   "rev_month": 1.7148,
+   "rev_ym": {
+    "2025-07": 1.0108,
+    "2025-08": 0.6513
+   },
+   "rev_month_ym": {
+    "2025-07": 1.0634,
+    "2025-08": 0.6513
+   },
+   "cum": 26,
+   "cumtot": 54,
+   "yrank": 10,
+   "ytot": 19,
+   "icons": [
+    "icons/faces/lads/cast-xavier.webp"
+   ],
+   "accent": "#8fb1e0",
+   "bar": "#47598f"
+  },
+  {
+   "name": "真夏とあなたと海風",
+   "start": "2025-08-12",
+   "end": "2025-08-31",
+   "year": 2025,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/77/131862-77-cb38a9d4b87bff4be14474e89de658fa-3840x2160.jpg",
+   "agents": [
+    "Xavier",
+    "Zayne",
+    "Rafayel",
+    "Sylus",
+    "Caleb"
+   ],
+   "en": "Xavier & Zayne & Rafayel & Sylus & Caleb",
+   "source_url": "https://prtimes.jp/main/html/rd/p/000000077.000131862.html",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    null,
+    10,
+    15,
+    32,
+    65,
+    72,
+    85,
+    97,
+    107,
+    119,
+    131,
+    140,
+    137,
+    137,
+    130,
+    137,
+    132,
+    124,
+    122,
+    107
+   ],
+   "rev": 2.7898,
+   "rev_month": 2.8404,
+   "rev_ym": {
+    "2025-08": 2.7898
+   },
+   "rev_month_ym": {
+    "2025-08": 2.8404
+   },
+   "cum": 9,
+   "cumtot": 54,
+   "yrank": 5,
+   "ytot": 19,
+   "icons": [
+    "icons/faces/lads/cast-xavier.webp",
+    "icons/faces/lads/cast-zayne.webp",
+    "icons/faces/lads/cast-rafayel.webp",
+    "icons/faces/lads/cast-sylus.webp",
+    "icons/faces/lads/cast-caleb.webp"
+   ],
+   "accent": "#82c2e0",
+   "bar": "#72c2f3"
+  },
+  {
+   "name": "黎明に私を&昔の願いが叶う時",
+   "start": "2025-08-31",
+   "end": "2025-09-07",
+   "year": 2025,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/78/131862-78-6aa9101736cc677d6b7c77d3f7f9feb4-2560x1440.jpg",
+   "agents": [
+    "Zayne"
+   ],
+   "en": "Zayne",
+   "source_url": "https://prtimes.jp/main/html/rd/p/000000078.000131862.html",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    107,
+    36,
+    78,
+    108,
+    144,
+    166,
+    162,
+    162
+   ],
+   "rev": 0.7452,
+   "rev_month": 0.7452,
+   "rev_ym": {
+    "2025-08": 0.0928,
+    "2025-09": 0.6524
+   },
+   "rev_month_ym": {
+    "2025-08": 0.0928,
+    "2025-09": 0.6524
+   },
+   "cum": 40,
+   "cumtot": 54,
+   "yrank": 15,
+   "ytot": 19,
+   "icons": [
+    "icons/faces/lads/cast-zayne.webp"
+   ],
+   "bar": "#cea197"
+  },
+  {
+   "name": "時と世界の境界",
+   "start": "2025-09-25",
+   "end": "2025-10-09",
+   "year": 2025,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/80/131862-80-2f5db52c0843128569fcadf5f57ee425-1920x1080.png",
+   "agents": [
+    "Zayne"
+   ],
+   "en": "Zayne",
+   "source_url": "https://prtimes.jp/main/html/rd/p/000000080.000131862.html",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    160,
+    15,
+    23,
+    44,
+    77,
+    104,
+    133,
+    121,
+    137,
+    156,
+    156,
+    153,
+    149,
+    134,
+    119
+   ],
+   "rev": 1.734,
+   "rev_month": 1.734,
+   "rev_ym": {
+    "2025-09": 1.0667,
+    "2025-10": 0.6673
+   },
+   "rev_month_ym": {
+    "2025-09": 1.0667,
+    "2025-10": 0.6673
+   },
+   "cum": 25,
+   "cumtot": 54,
+   "yrank": 9,
+   "ytot": 19,
+   "icons": [
+    "icons/faces/lads/cast-zayne.webp"
+   ],
+   "accent": "#d0d19e",
+   "bar": "#4a7b8c"
+  },
+  {
+   "name": "星の軌跡から&揺らめく銀河",
+   "start": "2025-10-11",
+   "end": "2025-10-18",
+   "year": 2025,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/81/131862-81-780e632cb932b8456fb381d34c9b6940-2560x1440.jpg",
+   "agents": [
+    "Xavier"
+   ],
+   "en": "Xavier",
+   "source_url": "https://prtimes.jp/main/html/rd/p/000000081.000131862.html",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    null,
+    61,
+    83,
+    124,
+    151,
+    186,
+    166,
+    177
+   ],
+   "rev": 0.5728,
+   "rev_month": 0.6186,
+   "rev_ym": {
+    "2025-10": 0.5728
+   },
+   "rev_month_ym": {
+    "2025-10": 0.6186
+   },
+   "cum": 47,
+   "cumtot": 54,
+   "yrank": 18,
+   "ytot": 19,
+   "icons": [
+    "icons/faces/lads/cast-xavier.webp"
+   ],
+   "bar": "#494294"
+  },
+  {
+   "name": "鼓動が沸くまで",
+   "start": "2025-10-29",
+   "end": "2025-11-18",
+   "year": 2025,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/82/131862-82-145cc7e22b98d0a701c2aa730be59d9f-2560x1440.png",
+   "agents": [
+    "Xavier",
+    "Zayne",
+    "Rafayel",
+    "Sylus",
+    "Caleb"
+   ],
+   "en": "Xavier & Zayne & Rafayel & Sylus & Caleb",
+   "source_url": "https://prtimes.jp/main/html/rd/p/000000082.000131862.html",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    null,
+    13,
+    20,
+    30,
+    60,
+    75,
+    89,
+    102,
+    124,
+    148,
+    154,
+    159,
+    163,
+    151,
+    149,
+    152,
+    71,
+    91,
+    117,
+    89,
+    76
+   ],
+   "rev": 2.5483,
+   "rev_month": 2.6029,
+   "rev_ym": {
+    "2025-10": 0.7212,
+    "2025-11": 1.8271
+   },
+   "rev_month_ym": {
+    "2025-10": 0.7758,
+    "2025-11": 1.8271
+   },
+   "cum": 13,
+   "cumtot": 54,
+   "yrank": 7,
+   "ytot": 19,
+   "icons": [
+    "icons/faces/lads/cast-xavier.webp",
+    "icons/faces/lads/cast-zayne.webp",
+    "icons/faces/lads/cast-rafayel.webp",
+    "icons/faces/lads/cast-sylus.webp",
+    "icons/faces/lads/cast-caleb.webp"
+   ],
+   "accent": "#b84772",
+   "bar": "#4a4591"
+  },
+  {
+   "name": "銀翼の鎮魂地",
+   "start": "2025-12-02",
+   "end": "2025-12-16",
+   "year": 2025,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/88/131862-88-897a1cca730e0e5ea2e6778c1f9ef844-1920x1080.jpg",
+   "agents": [
+    "Sylus"
+   ],
+   "en": "Sylus",
+   "source_url": "https://prtimes.jp/main/html/rd/p/000000088.000131862.html",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    null,
+    17,
+    23,
+    50,
+    81,
+    110,
+    131,
+    143,
+    174,
+    170,
+    78,
+    104,
+    133,
+    127,
+    102
+   ],
+   "rev": 1.6575,
+   "rev_month": 1.6966,
+   "rev_ym": {
+    "2025-12": 1.6575
+   },
+   "rev_month_ym": {
+    "2025-12": 1.6966
+   },
+   "cum": 27,
+   "cumtot": 54,
+   "yrank": 11,
+   "ytot": 19,
+   "icons": [
+    "icons/faces/lads/cast-sylus.webp"
+   ],
+   "accent": "#cc879c",
+   "bar": "#d88d9f"
+  },
+  {
+   "name": "愛、宇宙、詩の王座",
+   "start": "2025-12-31",
+   "end": "2026-01-21",
+   "year": 2025,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/89/131862-89-de0ef4a6ffa66ca889943973862c3b3f-3840x2160.jpg",
+   "agents": [
+    "Xavier",
+    "Zayne",
+    "Rafayel",
+    "Sylus",
+    "Caleb"
+   ],
+   "en": "Xavier & Zayne & Rafayel & Sylus & Caleb",
+   "source_url": "https://prtimes.jp/main/html/rd/p/000000089.000131862.html",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    114,
+    20,
+    43,
+    57,
+    77,
+    89,
+    105,
+    117,
+    130,
+    167,
+    177,
+    175,
+    168,
+    102,
+    127,
+    156,
+    175,
+    166,
+    157,
+    102,
+    86,
+    70
+   ],
+   "rev": 4.6697,
+   "rev_month": 4.6697,
+   "rev_ym": {
+    "2025-12": 0.0842,
+    "2026-01": 4.5856
+   },
+   "rev_month_ym": {
+    "2025-12": 0.0842,
+    "2026-01": 4.5856
+   },
+   "cum": 2,
+   "cumtot": 54,
+   "yrank": 1,
+   "ytot": 19,
+   "icons": [
+    "icons/faces/lads/cast-xavier.webp",
+    "icons/faces/lads/cast-zayne.webp",
+    "icons/faces/lads/cast-rafayel.webp",
+    "icons/faces/lads/cast-sylus.webp",
+    "icons/faces/lads/cast-caleb.webp"
+   ],
+   "accent": "#d7a398",
+   "bar": "#d49591"
+  },
+  {
+   "name": "人の世の情縁",
+   "start": "2026-02-10",
+   "end": "2026-02-27",
+   "year": 2026,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/92/131862-92-34e6bffb8b0768a1310754fe09bd9411-2560x1440.jpg",
+   "agents": [
+    "Xavier",
+    "Zayne",
+    "Rafayel",
+    "Sylus",
+    "Caleb"
+   ],
+   "en": "Xavier & Zayne & Rafayel & Sylus & Caleb",
+   "source_url": "https://prtimes.jp/main/html/rd/p/000000092.000131862.html",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    null,
+    11,
+    14,
+    35,
+    76,
+    107,
+    130,
+    121,
+    135,
+    142,
+    176,
+    175,
+    165,
+    148,
+    133,
+    132,
+    132,
+    109
+   ],
+   "rev": 3.1669,
+   "rev_month": 3.2489,
+   "rev_ym": {
+    "2026-02": 3.1669
+   },
+   "rev_month_ym": {
+    "2026-02": 3.2489
+   },
+   "cum": 6,
+   "cumtot": 54,
+   "yrank": 2,
+   "ytot": 11,
+   "icons": [
+    "icons/faces/lads/cast-xavier.webp",
+    "icons/faces/lads/cast-zayne.webp",
+    "icons/faces/lads/cast-rafayel.webp",
+    "icons/faces/lads/cast-sylus.webp",
+    "icons/faces/lads/cast-caleb.webp"
+   ],
+   "accent": "#d9a996",
+   "bar": "#954641"
+  },
+  {
+   "name": "夕晴れに向かって&心のままに願いへ",
+   "start": "2026-03-01",
+   "end": "2026-03-08",
+   "year": 2026,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/94/131862-94-05af50db45093487620c3271ba80594a-2560x1440.jpg",
+   "agents": [
+    "Rafayel"
+   ],
+   "en": "Rafayel",
+   "source_url": "https://prtimes.jp/main/html/rd/p/000000094.000131862.html",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    null,
+    64,
+    83,
+    125,
+    163,
+    170,
+    165,
+    167
+   ],
+   "rev": 0.8446,
+   "rev_month": 0.9144,
+   "rev_ym": {
+    "2026-03": 0.8446
+   },
+   "rev_month_ym": {
+    "2026-03": 0.9144
+   },
+   "cum": 36,
+   "cumtot": 54,
+   "yrank": 7,
+   "ytot": 11,
+   "icons": [
+    "icons/faces/lads/cast-rafayel.webp"
+   ],
+   "accent": "#ffa870",
+   "bar": "#ffb466"
+  },
+  {
+   "name": "万鬼、跡絶ゆ",
+   "start": "2026-03-28",
+   "end": "2026-04-11",
+   "year": 2026,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/97/131862-97-7a1b79db1ad7308b2d7a1a313985fd7c-1280x720.png",
+   "agents": [
+    "Caleb",
+    "Rafayel"
+   ],
+   "en": "Caleb & Rafayel",
+   "source_url": "https://prtimes.jp/main/html/rd/p/000000097.000131862.html",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    null,
+    17,
+    28,
+    55,
+    93,
+    113,
+    126,
+    163,
+    178,
+    176,
+    98,
+    122,
+    144,
+    153,
+    142
+   ],
+   "rev": 2.2243,
+   "rev_month": 2.3044,
+   "rev_ym": {
+    "2026-03": 1.0512,
+    "2026-04": 1.1731
+   },
+   "rev_month_ym": {
+    "2026-03": 1.1312,
+    "2026-04": 1.1731
+   },
+   "cum": 18,
+   "cumtot": 54,
+   "yrank": 4,
+   "ytot": 11,
+   "icons": [
+    "icons/faces/lads/cast-caleb.webp",
+    "icons/faces/lads/cast-rafayel.webp"
+   ],
+   "accent": "#37a0c8",
+   "bar": "#3a869c"
+  },
+  {
+   "name": "夜照らす長雨&心寄せる住処へ",
+   "start": "2026-04-13",
+   "end": "2026-04-20",
+   "year": 2026,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/98/131862-98-c09015a868cd73a8b115d5eaddb90dd7-2560x1440.png",
+   "agents": [
+    "Sylus"
+   ],
+   "en": "Sylus",
+   "source_url": "https://prtimes.jp/main/html/rd/p/000000098.000131862.html",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    null,
+    52,
+    79,
+    137,
+    180,
+    180,
+    185,
+    170
+   ],
+   "rev": 0.7995,
+   "rev_month": 0.8745,
+   "rev_ym": {
+    "2026-04": 0.7995
+   },
+   "rev_month_ym": {
+    "2026-04": 0.8745
+   },
+   "cum": 38,
+   "cumtot": 54,
+   "yrank": 8,
+   "ytot": 11,
+   "icons": [
+    "icons/faces/lads/cast-sylus.webp"
+   ],
+   "bar": "#734492"
+  },
+  {
+   "name": "浮き沈む渇望",
+   "start": "2026-04-30",
+   "end": "2026-05-15",
+   "year": 2026,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/100/131862-100-7a13e6941741d6759e037dcc3a8e7f1c-2560x1440.jpg",
+   "agents": [
+    "Xavier",
+    "Zayne",
+    "Rafayel",
+    "Sylus",
+    "Caleb"
+   ],
+   "en": "Xavier & Zayne & Rafayel & Sylus & Caleb",
+   "source_url": "https://prtimes.jp/main/html/rd/p/000000100.000131862.html",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    null,
+    15,
+    28,
+    45,
+    61,
+    74,
+    84,
+    91,
+    112,
+    78,
+    89,
+    100,
+    89,
+    89,
+    82,
+    76
+   ],
+   "rev": 3.3896,
+   "rev_month": 3.4466,
+   "rev_ym": {
+    "2026-04": 0.0,
+    "2026-05": 3.3896
+   },
+   "rev_month_ym": {
+    "2026-04": 0.057,
+    "2026-05": 3.3896
+   },
+   "cum": 4,
+   "cumtot": 54,
+   "yrank": 1,
+   "ytot": 11,
+   "icons": [
+    "icons/faces/lads/cast-xavier.webp",
+    "icons/faces/lads/cast-zayne.webp",
+    "icons/faces/lads/cast-rafayel.webp",
+    "icons/faces/lads/cast-sylus.webp",
+    "icons/faces/lads/cast-caleb.webp"
+   ],
+   "accent": "#eb9971",
+   "bar": "#e98d64"
+  },
+  {
+   "name": "この空の全てを&帰らぬ夜",
+   "start": "2026-06-08",
+   "end": "2026-06-15",
+   "year": 2026,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/104/131862-104-cf75011144b4a5b524d0b393d73cdaa4-3840x2160.jpg",
+   "agents": [
+    "Caleb"
+   ],
+   "en": "Caleb",
+   "source_url": "https://prtimes.jp/main/html/rd/p/000000104.000131862.html",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    null,
+    51,
+    79,
+    128,
+    165,
+    196,
+    177,
+    152
+   ],
+   "rev": 0.7818,
+   "rev_month": 0.8555,
+   "rev_ym": {
+    "2026-06": 0.7818
+   },
+   "rev_month_ym": {
+    "2026-06": 0.8555
+   },
+   "cum": 39,
+   "cumtot": 54,
+   "yrank": 9,
+   "ytot": 11,
+   "icons": [
+    "icons/faces/lads/cast-caleb.webp"
+   ],
+   "accent": "#fac075",
+   "bar": "#f79b4c"
+  },
+  {
+   "name": "一幕一会",
+   "start": "2026-06-17",
+   "end": "2026-07-02",
+   "year": 2026,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/105/131862-105-7f9d905b2b0e8df2134509895fcaff9d-2560x1440.jpg",
+   "agents": [
+    "Xavier",
+    "Zayne",
+    "Rafayel",
+    "Sylus",
+    "Caleb"
+   ],
+   "en": "Xavier & Zayne & Rafayel & Sylus & Caleb",
+   "source_url": "https://prtimes.jp/main/html/rd/p/000000105.000131862.html",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    null,
+    13,
+    21,
+    48,
+    84,
+    104,
+    120,
+    120,
+    133,
+    97,
+    119,
+    93,
+    105,
+    108,
+    143,
+    130
+   ],
+   "rev": 2.5475,
+   "rev_month": 2.6075,
+   "rev_ym": {
+    "2026-06": 2.3308,
+    "2026-07": 0.2167
+   },
+   "rev_month_ym": {
+    "2026-06": 2.3908,
+    "2026-07": 0.2167
+   },
+   "cum": 14,
+   "cumtot": 54,
+   "yrank": 3,
+   "ytot": 11,
+   "icons": [
+    "icons/faces/lads/cast-xavier.webp",
+    "icons/faces/lads/cast-zayne.webp",
+    "icons/faces/lads/cast-rafayel.webp",
+    "icons/faces/lads/cast-sylus.webp",
+    "icons/faces/lads/cast-caleb.webp"
+   ],
+   "accent": "#f0a87f",
+   "bar": "#9e4538"
+  },
+  {
+   "name": "破陣子",
+   "start": "2026-08-17",
+   "end": "2026-08-31",
+   "year": 2026,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/110/131862-110-4eec8f9c955d3db43ed2c24435ae81f2-1920x1080.jpg",
+   "agents": [
+    "Rafayel"
+   ],
+   "en": "Rafayel",
+   "source_url": "https://prtimes.jp/main/html/rd/p/000000110.000131862.html",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    null,
+    34,
+    56,
+    107,
+    163,
+    null,
+    null,
+    null,
+    70,
+    91,
+    151,
+    null,
+    null,
+    null,
+    164
+   ],
+   "rev": 0.9663,
+   "rev_month": 1.4034,
+   "rev_ym": {
+    "2026-08": 0.9663
+   },
+   "rev_month_ym": {
+    "2026-08": 1.4034
+   },
+   "cum": 34,
+   "cumtot": 54,
+   "yrank": 6,
+   "ytot": 11,
+   "icons": [
+    "icons/faces/lads/cast-rafayel.webp"
+   ],
+   "accent": "#ca4735",
+   "bar": "#9f4237"
+  },
+  {
+   "name": "戦塵が舞う中&逢える日を胸に",
+   "start": "2026-08-31",
+   "end": "2026-09-07",
+   "year": 2026,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/112/131862-112-9b18443284ecbdf7521d453543162c9c-2560x1440.png",
+   "agents": [
+    "Zayne"
+   ],
+   "en": "Zayne",
+   "source_url": "https://prtimes.jp/main/html/rd/p/000000112.000131862.html",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    164,
+    101,
+    197,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "rev": 0.261,
+   "rev_month": 0.5431,
+   "rev_ym": {
+    "2026-08": 0.0728,
+    "2026-09": 0.1882
+   },
+   "rev_month_ym": {
+    "2026-08": 0.0728,
+    "2026-09": 0.4703
+   },
+   "cum": 54,
+   "cumtot": 54,
+   "yrank": 11,
+   "ytot": 11,
+   "icons": [
+    "icons/faces/lads/cast-zayne.webp"
+   ],
+   "accent": "#ebad85",
+   "bar": "#e1a484"
+  },
+  {
+   "name": "今宵、眠れぬなら",
+   "start": "2026-09-22",
+   "end": "2026-10-10",
+   "year": 2026,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/113/131862-113-c67c24152d744c163f55f00fe4ad1185-2560x1440.jpg",
+   "agents": [
+    "Xavier",
+    "Zayne",
+    "Rafayel",
+    "Sylus",
+    "Caleb"
+   ],
+   "en": "Xavier & Zayne & Rafayel & Sylus & Caleb",
+   "source_url": "https://prtimes.jp/main/html/rd/p/000000113.000131862.html",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    null,
+    12,
+    26,
+    66,
+    101,
+    138,
+    169,
+    189,
+    null,
+    null,
+    null,
+    null,
+    163,
+    170,
+    189,
+    null,
+    null,
+    195,
+    173
+   ],
+   "rev": 1.7713,
+   "rev_month": 2.2413,
+   "rev_ym": {
+    "2026-09": 1.3824,
+    "2026-10": 0.3888
+   },
+   "rev_month_ym": {
+    "2026-09": 1.5092,
+    "2026-10": 0.7321
+   },
+   "cum": 23,
+   "cumtot": 54,
+   "yrank": 5,
+   "ytot": 11,
+   "icons": [
+    "icons/faces/lads/cast-xavier.webp",
+    "icons/faces/lads/cast-zayne.webp",
+    "icons/faces/lads/cast-rafayel.webp",
+    "icons/faces/lads/cast-sylus.webp",
+    "icons/faces/lads/cast-caleb.webp"
+   ],
+   "accent": "#d18762",
+   "bar": "#9b413b"
+  },
+  {
+   "name": "この一瞬に願いを&幾年も光と",
+   "start": "2026-10-11",
+   "end": "2026-10-18",
+   "year": 2026,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/116/131862-116-6de0c334e6fd093375004a6f694335f4-2560x1440.jpg",
+   "agents": [
+    "Xavier"
+   ],
+   "en": "Xavier",
+   "source_url": "https://prtimes.jp/main/html/rd/p/000000116.000131862.html",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    188,
+    105,
+    156,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "rev": 0.2728,
+   "rev_month": 0.58,
+   "rev_ym": {
+    "2026-10": 0.2728
+   },
+   "rev_month_ym": {
+    "2026-10": 0.58
+   },
+   "cum": 52,
+   "cumtot": 54,
+   "yrank": 10,
+   "ytot": 11,
+   "icons": [
+    "icons/faces/lads/cast-xavier.webp"
+   ],
+   "accent": "#3f64c0",
+   "bar": "#404996"
+  }
+ ]
+}

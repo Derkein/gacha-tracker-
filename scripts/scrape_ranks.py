@@ -158,6 +158,7 @@ CN_TRACKED = {
     "uma":      "1544031895",   # 闪耀！优俊少女 (Bilibili's CN edition)
     "stellasora": "6738384520", # 星塔旅人 (CN edition, launched with the rest of the world)
     "czn":      "6751272153",   # 卡厄思梦境 (CN edition, Tencent, launched 2026-05-27)
+    "lads":     "1618911882",   # 恋与深空 (Papergames' CN edition, live since January 2024)
 }
 
 # Global top sellers, games only (category1=998 drops hardware such as Steam Deck).
