@@ -433,8 +433,10 @@ def scrape_official(tag, meta):
     art = getattr(official_banners, "character_art", lambda t: {})(tag)   # per-character art
     first = {}
     for b in sorted(out, key=lambda x: x["start"]):
+        # a standard-pool rate-up (Stella Sora 熟練巡遊者募集, CZN 常設) ranks below new banners
+        # when folding (fold_reruns), but it is only a RERUN if the character had a banner
+        # before — mark_reruns' call. Stella Sora's Nazuna and Nanoha debuted on one.
         b["standard"] = bool(b.get("standard"))
-        b["rerun"] = b["rerun"] or b["standard"]          # a standard-pool rate-up is never a debut
         head = b["name"].split("・")[0]
         if head in art:                                     # the character's own art beats banner art
             b["banner_img"] = art[head]

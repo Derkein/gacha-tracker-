@@ -12,7 +12,7 @@
 <title>Gacha Revenue Tracker</title>
 <meta name="description" content="Estimated gacha banner revenue over time for Zenless Zone Zero, Honkai: Star Rail, Wuthering Waves, Genshin Impact and Arknights: Endfield. Auto-updated from game-i.daa.jp.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>%F0%9F%8E%B0</text></svg>">
-<link rel="stylesheet" href="style.css?v=352">
+<link rel="stylesheet" href="style.css?v=355">
 </head>
 <body>
 <div class="wrap">
@@ -390,6 +390,7 @@
     <p>Below that sit the banners whose openings were closest to this one, with every revenue figure that exists for them. The headline figure there is <b>game-i's Japanese estimate</b> — the only per-banner revenue anyone publishes — so the closing line ("those five earned X to Y") is an <b>association across two markets</b>, not a forecast: a China rank placed next to Japanese revenue, over a handful of runs. A banner can open high on a rerun and earn little, or hold a modest rank for weeks and out-earn a spike.</p>
     <p>The wording changes with how much is actually known: a finished run states what it earned against what similar openings earned, a run a week in says what it is tracking towards, and a run a few days old says plainly that it's too early to call. Everything in it is measured except that last step.</p>
     <p>The forward-looking part — <b>what a run is tracking towards</b> — also appears on the <b>game-i</b> tab, since that is where the yen figure it is guessing at lives. It shows up <b>only while a banner is still running with at least three days left</b>: once a run is over, or within a day or two of over, game-i's own figure is all but final and an estimate of it would add nothing. The comparison itself (where the run sat, and what similar openings earned) stays on finished banners, because that is measurement rather than prediction.</p>
+    <p><b>How the "tracking towards" figure is worked out.</b> It starts from where the run is <b>now</b> — its latest day's rank (on the Qimai tab, its latest day's China dollars) — and runs it forward over the banner's <b>own scheduled length</b>, following how this game's finished banners that stood at a similar level on that same day carried on from there. Days it would spend below #200 add nothing, as on game-i. A run longer than any past one (a 43-day banner against three-week ones) keeps falling past the last covered day at the pace those banners were falling at the end. The range is the spread of where each of those banners' own paths would take it. Tested on every finished banner of every game here, cut off at day 2 / 3 / 5 / 7 and projected to the end, its typical miss is <b>27 / 18 / 9 / 6%</b> — against <b>29 / 23 / 17 / 13%</b> for the simpler read this replaced (what share of its total a typical banner has banked by that day), which ignored both how long the run is and how strong it still is.</p>
 
     <h3>What it is not</h3>
     <p>A rank is not revenue. It says a game out-earned everything below it that day, not by how much — and nothing about Android, which China's App Store has no equivalent of. For money, use the revenue layers; for “did this banner break through”, use this.</p>
@@ -437,6 +438,6 @@
 
 <div class="lightbox" id="lightbox" hidden><img id="lightboxImg" src="" alt=""></div>
 
-<script src="app.js?v=352"></script>
+<script src="app.js?v=355"></script>
 </body>
 </html>
