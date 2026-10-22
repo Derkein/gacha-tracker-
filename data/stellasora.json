@@ -5,13 +5,13 @@
  "unit": "億G",
  "source": "https://stellasora.jp/news/",
  "banners_from": "official",
- "updated": "2026-10-21T17:38:57Z",
+ "updated": "2026-10-22T17:33:38Z",
  "count": 22,
  "now": {
-  "ios": 112,
-  "android": 126,
-  "month": 404,
-  "next_add": 13308233,
+  "ios": 176,
+  "android": 101,
+  "month": 374,
+  "next_add": 8622105,
   "ym": "2026/10",
   "ranks": {
    "prev": [
@@ -70,7 +70,7 @@
     null,
     null,
     113,
-    null,
+    163,
     null,
     null,
     null,
@@ -83,7 +83,7 @@
   }
  },
  "monthly": {
-  "2026-10": 0.5338,
+  "2026-10": 0.6372,
   "2026-09": 0.5061,
   "2026-08": 0.491,
   "2026-07": 0.6192,
@@ -542,9 +542,9 @@
     "2026-02": 0.2052,
     "2026-03": 0.3396
    },
-   "cum": 7,
+   "cum": 8,
    "cumtot": 22,
-   "yrank": 2,
+   "yrank": 3,
    "ytot": 17,
    "icons": [
     "icons/faces/overrides/72aa7e39.webp"
@@ -959,14 +959,14 @@
    "rerun": false,
    "ongoing": false,
    "rev": 0.0,
-   "rev_month": 0.4485,
+   "rev_month": 0.4874,
    "rev_ym": {
     "2026-09": 0.0,
     "2026-10": 0.0
    },
    "rev_month_ym": {
     "2026-09": 0.0415,
-    "2026-10": 0.407
+    "2026-10": 0.4459
    },
    "cum": 22,
    "cumtot": 22,
@@ -994,19 +994,20 @@
    "rank_series": [
     null,
     null,
-    113
+    113,
+    163
    ],
-   "rev": 0.062,
-   "rev_month": 0.1268,
+   "rev": 0.1202,
+   "rev_month": 0.1913,
    "rev_ym": {
-    "2026-10": 0.062
+    "2026-10": 0.1202
    },
    "rev_month_ym": {
-    "2026-10": 0.1268
+    "2026-10": 0.1913
    },
-   "cum": 8,
+   "cum": 7,
    "cumtot": 22,
-   "yrank": 3,
+   "yrank": 2,
    "ytot": 17,
    "icons": [
     "icons/faces/overrides/d7108083.webp"

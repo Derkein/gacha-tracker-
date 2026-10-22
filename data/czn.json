@@ -5,13 +5,13 @@
  "unit": "億G",
  "source": "https://page.onstove.com/chaoszeronightmare/jp",
  "banners_from": "official",
- "updated": "2026-10-21T17:40:14Z",
+ "updated": "2026-10-22T17:34:48Z",
  "count": 18,
  "now": {
-  "ios": 16,
-  "android": 56,
-  "month": 228,
-  "next_add": 61623530,
+  "ios": 30,
+  "android": 31,
+  "month": 204,
+  "next_add": 35696250,
   "ym": "2026/10",
   "ranks": {
    "prev": [
@@ -70,7 +70,7 @@
     null,
     null,
     21,
-    null,
+    29,
     null,
     null,
     null,
@@ -83,7 +83,7 @@
   }
  },
  "monthly": {
-  "2026-10": 1.26,
+  "2026-10": 1.61,
   "2026-09": 1.19,
   "2026-08": 1.76,
   "2026-07": 0.9736,
@@ -427,9 +427,9 @@
    "rev_month_ym": {
     "2026-02": 1.3856
    },
-   "cum": 9,
+   "cum": 10,
    "cumtot": 18,
-   "yrank": 5,
+   "yrank": 6,
    "ytot": 14,
    "icons": [
     "icons/faces/overrides/0e8b8b6c.webp"
@@ -485,9 +485,9 @@
     "2026-02": 0.471,
     "2026-03": 0.6761
    },
-   "cum": 11,
+   "cum": 12,
    "cumtot": 18,
-   "yrank": 7,
+   "yrank": 8,
    "ytot": 14,
    "icons": [
     "icons/faces/czn/2026-02-25-079483.webp"
@@ -727,9 +727,9 @@
     "2026-05": 0.599,
     "2026-06": 0.4203
    },
-   "cum": 10,
+   "cum": 11,
    "cumtot": 18,
-   "yrank": 6,
+   "yrank": 7,
    "ytot": 14,
    "icons": [
     "icons/faces/czn/2026-05-27-4ab984.webp"
@@ -954,9 +954,9 @@
     "2026-08": 0.9678,
     "2026-09": 0.3155
    },
-   "cum": 8,
+   "cum": 9,
    "cumtot": 18,
-   "yrank": 4,
+   "yrank": 5,
    "ytot": 14,
    "icons": [
     "icons/faces/czn/2026-08-19-5b4880.webp"
@@ -1033,14 +1033,14 @@
    "rerun": true,
    "ongoing": false,
    "rev": 0.0,
-   "rev_month": 0.9212,
+   "rev_month": 0.9815,
    "rev_ym": {
     "2026-09": 0.0,
     "2026-10": 0.0
    },
    "rev_month_ym": {
     "2026-09": 0.0246,
-    "2026-10": 0.8967
+    "2026-10": 0.957
    },
    "cum": 18,
    "cumtot": 18,
@@ -1067,19 +1067,20 @@
    "ongoing": true,
    "rank_series": [
     null,
-    21
+    21,
+    29
    ],
-   "rev": 0.3195,
-   "rev_month": 0.3633,
+   "rev": 0.6063,
+   "rev_month": 0.653,
    "rev_ym": {
-    "2026-10": 0.3195
+    "2026-10": 0.6063
    },
    "rev_month_ym": {
-    "2026-10": 0.3633
+    "2026-10": 0.653
    },
-   "cum": 12,
+   "cum": 8,
    "cumtot": 18,
-   "yrank": 8,
+   "yrank": 4,
    "ytot": 14,
    "icons": [
     "icons/faces/czn/2026-10-21-ee0e09.webp"

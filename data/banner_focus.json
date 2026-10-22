@@ -1308,6 +1308,15 @@
    "det": true,
    "name": "心",
    "v": 2
+  },
+  "https://i.mopix.cc/s5hPam.jpg": {
+   "x": 62.5,
+   "y": 34.1,
+   "w": 1280,
+   "h": 719,
+   "det": true,
+   "name": "鎖暝",
+   "v": 2
   }
  },
  "genshin": {
