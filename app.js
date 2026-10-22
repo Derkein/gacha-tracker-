@@ -572,8 +572,7 @@ function qimaiAnalysisBlock(b){
   const fadeLi=slipLine?`<b>Fade:</b> ${slipLine}`:"";
   const place=`<div class="bm-verdict call"><span class="head">Where this run sits on China's chart</span>
     ${compareFactsHTML({st, kind, baseLab, base, ranksOf:p=>(p.st.run||[]).map(x=>x.rank), mine:(st.run||[]).map(x=>x.rank),
-      ongoing:b.ongoing, places, fade:fadeLi, holdRead,
-      note: st.peakDay>1 ? `Compared on the peak, not the opening day — the least reliable reading of a run.` : ""})}
+      ongoing:b.ongoing, places, fade:fadeLi, holdRead})}
     ${revStrip}${rankStrip}
     <span class="after">#1 here is the whole Chinese App Store, not just games, so these ranks sit against Douyin and WeChat as well. The rank is the real store chart; the dollars are Qimai's China-iPhone estimate for this same run — one market, one platform, the tightest read of the tabs. Norms are per-game: a #20 peak is near the bottom for this game's ${kind}s in some years and near the top in others, so the comparison is always against this game alone.</span></div>`;
 
@@ -3711,7 +3710,7 @@ function compareFactsHTML(o){
     li.push(`<b>Near the top:</b> ${dd(topIn(my,20))} in the top 20 and ${dd(topIn(my,50))} in the top 50${D?"":` of its ${st.days}`}, against <b>${_med(bR.map(r=>topIn(r,20)))}</b> and <b>${_med(bR.map(r=>topIn(r,50)))}</b> for ${usual}${o.holdRead?` — ${o.holdRead}`:""}.`);
   }
   if(o.fade) li.push(o.fade);
-  return `<ul class="bm-facts">${li.map(x=>`<li>${x}</li>`).join("")}</ul>${o.note?`<p class="bm-facts-note">${o.note}</p>`:""}`;
+  return `<ul class="bm-facts">${li.map(x=>`<li>${x}</li>`).join("")}</ul>`;
 }
 
 function cohortStrip(items, self, label, caption, title){
@@ -3841,8 +3840,7 @@ function jpAnalysisBlock(b){
   } else if(!b.ongoing) fadeLi+=`${fadeLi?" ":"<b>Fade:</b> "}It never left the chart during the run.`;
   const place=`<div class="bm-verdict call"><span class="head">Where this run sits on game-i's chart</span>
     ${compareFactsHTML({st, kind, baseLab, base, ranksOf:p=>p.b.rank_series||[], mine:b.rank_series||[], ongoing:b.ongoing,
-      places, banked, fade:fadeLi,
-      note: st.peakDay>1 ? `Compared on the peak, not day 1: game-i reads rank at midnight JST, often before a new banner is live, so a first day reads low.` : ""})}
+      places, banked, fade:fadeLi})}
     ${yearStrip}${rankStrip}</div>`;
 
   // While a run is still going, the sharpest comparison is at the SAME elapsed day: what
