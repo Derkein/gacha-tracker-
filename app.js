@@ -533,24 +533,10 @@ function qimaiAnalysisBlock(b){
   const scopes=[];
   if(ver){ const g=cohort.filter(p=>versionOf(p.b)===ver).map(p=>p.st.peak); if(g.length>=2) scopes.push([`${ver}`,_place([...g,pk],pk)]); }
   const yrS=cohort.filter(p=>p.b.year===b.year).map(p=>p.st.peak); if(yrS.length>=2) scopes.push([`${b.year}`,_place([...yrS,pk],pk)]);
-  const scopeLine=scopes.length?` — `+scopes.map(([lab,r])=>`<b>${ordinal(r.place)} of ${r.of}</b> in ${lab}`).join(" · ")+`, among this game's charted ${kind}s`:"";
 
   const sameYear=cohort.filter(p=>p.b.year===b.year);
   const base=sameYear.length>=3?sameYear:cohort;
   const baseLab=sameYear.length>=3?`in ${b.year}`:"across this game's history";
-  const medPeak=_med(base.map(p=>p.st.peak)), medMed=_med(base.map(p=>p.st.median));
-  const ranLine=base.length>=3?` It ran at a median of <span class="fig">#${st.median}</span>${b.ongoing?" so far":""}; the usual ${kind} ${baseLab} peaks at <b>#${medPeak}</b> and runs at a median of <b>#${medMed}</b>.`:"";
-
-  let rankLine="";
-  if(cohort.length>=5){ const r=_place([...cohort.map(p=>p.st.peak),pk],pk);
-    const band=r.place<=r.of/2?`top <b>${Math.max(1,Math.round(100*r.place/r.of))}%</b>`:`bottom <b>${Math.max(1,Math.round(100*(r.of-r.place+1)/r.of))}%</b>`;
-    rankLine=` Among this game's <b>${r.of}</b> charted ${kind}s that is <b>${ordinal(r.place)}</b> — its ${band}.`; }
-
-  let holdLine="";
-  if(cohort.length>=5){ const m20=_med(cohort.map(p=>p.st.top20)),m50=_med(cohort.map(p=>p.st.top50));
-    const hiPeak=pk<=_med(cohort.map(p=>p.st.peak)), held=st.top50>=m50;
-    const read=hiPeak&&held?"it both peaked better and held longer than the usual one":hiPeak&&!held?"it peaked better than most but faded earlier — a short, sharp run":!hiPeak&&held?"it never peaked as high, but it held on longer than most":"it neither climbed as high nor lasted as long as the usual one";
-    holdLine=` It held the <b>top 20</b> for <b>${st.top20}</b> of its ${st.days} days and the <b>top 50</b> for <b>${st.top50}</b>, against <b>${m20}</b> and <b>${m50}</b> for the usual ${kind} — ${read}.`; }
 
   const chkD=Math.min(7,st.days);
   const rkCN=x=>{const r=(x.st.run||[])[chkD-1]; const v=r?r.rank:null; return v==null?OFF_CHART:v;};
@@ -558,13 +544,8 @@ function qimaiAnalysisBlock(b){
   if(chkD>=3&&st.days>=3){ mineRank=rkCN({b,st}); const mineSlip=slipOf(pk,st.peakDay,mineRank,chkD);
     const peerSlips=cohort.filter(q=>q.st.days>=chkD).map(q=>slipOf(q.st.peak,q.st.peakDay,rkCN(q),chkD)).filter(v=>v!=null);
     if(mineSlip!=null&&peerSlips.length>=5){ const medSlip=_med(peerSlips);
-      const word=mineSlip>medSlip*1.3?"<b>falling faster</b> than most":mineSlip<medSlip*0.7?"<b>holding better</b> than most":"sliding at about the usual rate";
-      slipLine=` By day ${chkD} it sat at <b>${mineRank>=OFF_CHART?`${OFF_CHART}+`:`#${mineRank}`}</b>, about <b>${mineSlip.toFixed(1)}</b> places a day off its peak against <b>${medSlip.toFixed(1)}</b> for the usual ${kind} — ${word}.`; } }
-
-  let anchorLine="";
-  const anchor=cohort.filter(p=>qmRev(p)>0).sort((x,y)=>Math.abs(x.st.peak-pk)-Math.abs(y.st.peak-pk)).slice(0,7);
-  if(anchor.length>=5){ const revs=anchor.map(p=>qmRev(p));
-    anchorLine=` ${kind[0].toUpperCase()+kind.slice(1)}s peaking near <b>#${pk}</b> have earned around <span class="fig">${fmtUSD(_med(revs))}</span> in China (${fmtUSD(Math.min(...revs))} to ${fmtUSD(Math.max(...revs))}).`; }
+      const word=mineSlip>medSlip*1.3?"<b>falling faster</b> than most":mineSlip<medSlip*0.7?"<b>holding better</b> than most":"about the usual pace";
+      slipLine=`<b>${mineRank>=OFF_CHART?`${OFF_CHART}+`:`#${mineRank}`}</b> by day ${chkD}, losing about <b>${mineSlip.toFixed(1)}</b> places a day since its peak — ${word} (usual: ${medSlip.toFixed(1)}).`; } }
 
   // two face strips: by China revenue (the money spine) and by peak rank
   let revStrip="", rankStrip="";
@@ -579,9 +560,20 @@ function qimaiAnalysisBlock(b){
     rankStrip=cohortStrip([...yrAll,{b,st}].sort((x,y)=>x.st.peak-y.st.peak),b,x=>`#${x.st.peak}`,
       `The same banners by peak rank, best first — ${n(hi)} peaked higher than this one, ${n(lo)} the same or lower.`,"By peak rank"); }
 
+  const places=[];
+  scopes.forEach(([lab,r],k)=>places.push(`<b>${ordinal(r.place)}</b> of ${r.of}${k?"":` ${kind}s`} in ${lab}`));
+  if(cohort.length>=5){ const r=_place([...cohort.map(p=>p.st.peak),pk],pk); places.push(`<b>${ordinal(r.place)}</b> of ${r.of} all-time`); }
+  // the qualitative read on peak vs staying power, against this game's usual run
+  let holdRead="";
+  if(cohort.length>=5){ const m50=_med(base.map(p=>p.st.top50)), hiPeak=pk<=_med(base.map(p=>p.st.peak)), held=st.top50>=m50;
+    if(!b.ongoing) holdRead=hiPeak&&held?"it both peaked better and held longer"
+      :hiPeak?"it peaked better than most but faded earlier — a short, sharp run"
+      :held?"it never peaked as high, but held on longer than most":"it neither climbed as high nor lasted as long"; }
+  const fadeLi=slipLine?`<b>Fade:</b> ${slipLine}`:"";
   const place=`<div class="bm-verdict call"><span class="head">Where this run sits on China's chart</span>
-    Peaked at <span class="fig">#${pk}</span> on day ${st.peakDay}${scopeLine}.${rankLine}${ranLine}${holdLine}${slipLine}${anchorLine}
-    ${st.peakDay>1?`It opened at <b>#${st.open}</b>, but an opening day is the least reliable reading of a run, so the comparison keys on the peak.`:``}
+    ${compareFactsHTML({st, kind, baseLab, base, ranksOf:p=>(p.st.run||[]).map(x=>x.rank), mine:(st.run||[]).map(x=>x.rank),
+      ongoing:b.ongoing, places, fade:fadeLi, holdRead,
+      note: st.peakDay>1 ? `Compared on the peak, not the opening day — the least reliable reading of a run.` : ""})}
     ${revStrip}${rankStrip}
     <span class="after">#1 here is the whole Chinese App Store, not just games, so these ranks sit against Douyin and WeChat as well. The rank is the real store chart; the dollars are Qimai's China-iPhone estimate for this same run — one market, one platform, the tightest read of the tabs. Norms are per-game: a #20 peak is near the bottom for this game's ${kind}s in some years and near the top in others, so the comparison is always against this game alone.</span></div>`;
 
@@ -637,7 +629,7 @@ function qimaiAnalysisBlock(b){
 
   return `<h3>How this run compares</h3>${place}
     <h3>${nearHdr}</h3>
-    <div class="bm-peerlist">${rows}</div>${dayList}${verdict}`;
+    <div class="bm-peerlist">${rows}</div>${dayList}${b.ongoing?"":verdict}`;
 }
 // Qimai's own monthly game total, and the share denominator used for the 2-source blend.
 function qimaiMonth(ym, tag){ const g=state.qimai&&state.qimai.games&&state.qimai.games[tag||state.tag];
@@ -3168,7 +3160,7 @@ function burnBlock(b){
     </div>
     <div class="bm-cap">At <b>#${pj.rank}</b> on day <b>${D}</b> with <b>${G(b.rev)}</b> banked, and <b>${scheduled-D}</b> days still to run:
       ${projPeersTxt(pj, esc(gameName()))} carried on in a way that puts this one near <b>${G(pj.mid)}</b> — between <b>${G(pj.lo)}</b> and <b>${G(pj.hi)}</b>,
-      depending on which of them it follows. Days it spends below #200 add nothing, as on game-i.</div>`;
+      depending on which of them it follows.</div>`;
   }
   const g=gameBurn();
   if(!g) return stats;
@@ -3230,7 +3222,7 @@ function dailyTable(bd,fmt=G,rankHdr="iOS&nbsp;rank"){
     <td class="l">${d.iso?isoMD(d.iso):dayLabel(d.i)}</td>`
     + (d.noData
       ? `<td colspan="3" class="muted qbu-nodata">no data yet</td>`
-      : `<td>${d.rank==null?'<span class="muted">200+</span>':'#'+d.rank+(d.isPeak?' <span class="muted">peak</span>':'')}</td>`
+      : `<td>${d.rank==null?'<span class="muted">200+</span>':'#'+d.rank}</td>`
         + `<td>${d.add>=0.005?fmt(d.add):'<span class="muted">—</span>'}</td>`
         + `<td>${fmt(d.cum)}</td>`)
     + `</tr>`;
@@ -3695,6 +3687,33 @@ const slipOf = (peak, peakDay, rankNow, day) =>
 // a rank of null means it was below the chart that day, which is worse than any number
 const OFF_CHART = 200;
 
+// "How this run compares" — one reading per line, each set against the usual run of the same
+// kind. A run still going is measured against the usual run's SAME first days: a 3-day run's
+// median rank and top-20 days held against whole three-week runs ("median #16 vs #126") flatter
+// it for no reason. Shared by the game-i and Qimai tabs so the two read alike.
+//   ranksOf(p)  a run's daily closing ranks (null = below the chart); mine = this run's
+//   places      ["<b>3rd</b> of 13 debuts in 2026", …];  banked / fade / holdRead optional lines
+const moneyCmp=(a,b)=>{ const r=a/b; return Math.abs(r-1)<0.08 ? "about the same as"
+  : r>1 ? `<b>${Math.round((r-1)*100)}% more</b> than` : `<b>${Math.round((1-r)*100)}% less</b> than`; };
+function compareFactsHTML(o){
+  const {st, kind, baseLab, base, ranksOf, mine, ongoing}=o;
+  const D=ongoing?st.days:null, cut=rs=>D?rs.slice(0,D):rs;
+  const medR=rs=>_med(rs.map(r=>r==null?OFF_CHART:r));
+  const lab=r=>r>=OFF_CHART?`${OFF_CHART}+`:`#${r}`;
+  const topIn=(rs,lim)=>rs.filter(r=>r!=null && r<=lim).length;
+  const dd=n=>`<b>${n}</b> day${n===1?"":"s"}`;
+  const usual=`the usual ${kind} ${baseLab}${D?` over the same ${D} days`:""}`;
+  const my=cut(mine), bR=base.map(p=>cut(ranksOf(p)));
+  const li=[`<b>Peak:</b> <span class="fig">#${st.peak}</span> on day ${st.peakDay}${o.places.length?` — ${o.places.join(" · ")}`:""}.`];
+  if(o.banked) li.push(o.banked);
+  if(bR.length>=3){
+    li.push(`<b>Typical day:</b> a median of <b>${lab(medR(my))}</b>${D?` over its first ${D} days`:""}, against <b>${lab(_med(bR.map(medR)))}</b> for ${usual}.`);
+    li.push(`<b>Near the top:</b> ${dd(topIn(my,20))} in the top 20 and ${dd(topIn(my,50))} in the top 50${D?"":` of its ${st.days}`}, against <b>${_med(bR.map(r=>topIn(r,20)))}</b> and <b>${_med(bR.map(r=>topIn(r,50)))}</b> for ${usual}${o.holdRead?` — ${o.holdRead}`:""}.`);
+  }
+  if(o.fade) li.push(o.fade);
+  return `<ul class="bm-facts">${li.map(x=>`<li>${x}</li>`).join("")}</ul>${o.note?`<p class="bm-facts-note">${o.note}</p>`:""}`;
+}
+
 function cohortStrip(items, self, label, caption, title){
   if(!items || items.length<3) return "";
   // the rerun badge is the same mark the graph avatars carry -- drawn rather than the
@@ -3730,8 +3749,6 @@ function jpAnalysisBlock(b){
   // banner that went live after the snapshot reads far too low on day 1 -- the peak
   // (usually day 2) is the first honest reading of the same run.
   const ver=hasVersions(state.tag)?versionOf(b):null;
-  // Version and year only. All-time lives in cohortLine, which states it WITH a
-  // percentile -- having both was the same fact twice under two denominators.
   const kindJP = b.rerun ? "rerun" : "debut";
   const kin = peers.filter(p=>!!p.b.rerun===!!b.rerun);
   const scopes=[];
@@ -3739,56 +3756,14 @@ function jpAnalysisBlock(b){
            if(g.length>=2) scopes.push([ver, _place([...g, st.peak], st.peak)]); }
   const yr=kin.filter(p=>p.b.year===b.year).map(p=>p.st.peak);
   if(yr.length>=2) scopes.push([String(b.year), _place([...yr, st.peak], st.peak)]);
-  const scopeLine = scopes.length
-    ? ` \u2014 ` + scopes.map(([lab,r])=>`<b>${ordinal(r.place)} of ${r.of}</b> in ${lab}`).join(" \u00b7 ")
-      + `, among this game's charted ${kindJP}s`
-    : "";
 
   // same-kind, so "the usual debut" really is a median over debuts
   const sameYear=kin.filter(p=>p.b.year===b.year);
   const base=sameYear.length>=3?sameYear:kin;
   const baseLab=sameYear.length>=3?`in ${b.year}`:"across this game's history";
-  const medPeak=_med(base.map(p=>p.st.peak)), medMed=_med(base.map(p=>p.st.median));
-  const medTop20=_med(base.map(p=>p.st.top20)), medTop50=_med(base.map(p=>p.st.top50));
   const fellPeers=base.map(p=>p.st.fellOffDay).filter(v=>v!=null);
 
-  // Both tabs now carry the same set of readings; only the units differ. Same-kind
-  // cohort (a rerun peaks lower by nature), placement as a rank and a percentile,
-  // and what a peak like this has historically been worth.
-  const kind = kindJP, cohort = kin;
-  let cohortLine = "";
-  if(cohort.length>=5){
-    const r=_place([...cohort.map(p=>p.st.peak), st.peak], st.peak);
-    const band = r.place<=r.of/2
-      ? `top <b>${Math.max(1,Math.round(100*r.place/r.of))}%</b>`
-      : `bottom <b>${Math.max(1,Math.round(100*(r.of-r.place+1)/r.of))}%</b>`;
-    cohortLine = ` Among this game's <b>${r.of}</b> charted ${kind}s that is
-      <b>${ordinal(r.place)}</b> \u2014 its ${band}.`;
-  }
-  let anchorLine = "";
-  const anchor = cohort.filter(p=>p.b.rev>0)
-    .sort((x,y)=>Math.abs(x.st.peak-st.peak)-Math.abs(y.st.peak-st.peak)).slice(0,7);
-  if(anchor.length>=5){
-    const revs=anchor.map(p=>p.b.rev);
-    anchorLine = ` ${kind[0].toUpperCase()+kind.slice(1)}s peaking near <b>#${st.peak}</b> have
-      finished around <span class="fig">${G(_med(revs))}</span>
-      (${G(Math.min(...revs))} to ${G(Math.max(...revs))}).`;
-  }
-
-  // the fade: how long it held the top 50, and whether it left the chart early
-  let fade=`It held the <b>top 20</b> for <b>${st.top20}</b> of its ${st.days} days and the
-    <b>top 50</b> for <b>${st.top50}</b>, against <b>${medTop20}</b> and <b>${medTop50}</b>
-    for the usual ${kind} ${baseLab}.`;
-  if(st.fellOffDay!=null){
-    const medFell=fellPeers.length>=3?_med(fellPeers):null;
-    const how=medFell==null ? "." :
-      st.fellOffDay<medFell*0.7 ? ` \u2014 the usual one lasts to day <b>${medFell}</b>, so this faded <b>much faster</b> than normal.`
-      : st.fellOffDay<medFell ? ` \u2014 the usual one lasts to day <b>${medFell}</b>, so this faded <b>faster</b> than normal.`
-      : ` \u2014 the usual one lasts to day <b>${medFell}</b>, so that is <b>no faster</b> than normal.`;
-    fade+=` It dropped off game-i's trackable top 200 on <b>day ${st.fellOffDay}</b> of ${st.days}${how}`;
-  } else if(!b.ongoing){
-    fade+=` It never fell off the chart during the run.`;
-  }
+  const kind = kindJP, cohort = kin;      // same kind: a rerun peaks lower by nature
   // Banked-by-peak only compares like with like when the peaks fall at a similar point:
   // a run that re-spiked to #1 on day 16 has most of its total behind it by then, which
   // says nothing about strength next to a day-2 peak. Say so rather than compare anyway.
@@ -3796,18 +3771,10 @@ function jpAnalysisBlock(b){
   const medPeakDay=_med(base.map(p=>p.st.peakDay));
   const lateBy = medPeakDay ? st.peakDay-medPeakDay : 0;
   const comparable = medPeakDay ? lateBy<=Math.max(2, medPeakDay) : false;
-  const cumLine = !(st.cumPeak>0 && medCum) ? ""
-    : comparable
-      ? ` By that day it had banked <span class="fig">${G(st.cumPeak)}</span>, against <b>${G(medCum)}</b>
-          for the usual ${kind} ${baseLab}.`
-      : ` By that day it had banked <span class="fig">${G(st.cumPeak)}</span>, but its peak came on
-          <b>day ${st.peakDay}</b> against the usual <b>day ${medPeakDay}</b> for a ${kind} ${baseLab} \u2014 late enough
-          that the figure counts most of the run, so it isn't comparable to the <b>${G(medCum)}</b> the
-          usual banner had banked at its own peak.`;
   // The year's banners as faces, ordered by what each had BANKED at its own peak rather
   // than by rank: on this tab the money is the published figure and the rank only the
   // shape of it, so banked-by-peak is the better spine. Runs whose peak came far later
-  // than usual are left out -- their figure counts most of the run (see cumLine).
+  // than usual are left out -- their figure counts most of the run (see `banked`).
   let yearStrip = "";
   const yrJP = peers.filter(p=>p.b.year===b.year && p.st.cumPeak>0
                  && (!medPeakDay || p.st.peakDay-medPeakDay<=Math.max(2, medPeakDay)));
@@ -3851,21 +3818,31 @@ function jpAnalysisBlock(b){
       const medSlip=_med(peerSlips);
       const word = mineSlip > medSlip*1.3 ? "<b>falling faster</b> than most"
         : mineSlip < medSlip*0.7 ? "<b>holding better</b> than most"
-        : "sliding at about the usual rate";
-      slipLine = ` By day ${chkD} it sat at <b>${mineRank>=OFF_CHART?`${OFF_CHART}+`:`#${mineRank}`}</b>,
-        about <b>${mineSlip.toFixed(1)}</b> places a day off its peak against <b>${medSlip.toFixed(1)}</b>
-        for the usual ${kind} \u2014 ${word}.`;
+        : "about the usual pace";
+      slipLine = `<b>${mineRank>=OFF_CHART?`${OFF_CHART}+`:`#${mineRank}`}</b> by day ${chkD}, losing about <b>${mineSlip.toFixed(1)}</b> places a day since its peak — ${word} (usual: ${medSlip.toFixed(1)}).`;
     }
   }
 
-  const ranLineJP = ` It ran at a median of <span class="fig">#${st.median}</span>${b.ongoing?" so far":""};
-    the usual ${kind} ${baseLab} peaks at <b>#${medPeak}</b> and runs at a median of <b>#${medMed}</b>.`;
-  // Same order of readings as the China block, so the two tabs read alike.
+  // one reading per line (compareFactsHTML). No "peaks like this finished around ¥X" line:
+  // a running banner's forecast is the build-up's projection, a finished one's figure is final.
+  const places=[];
+  scopes.forEach(([lab,r],k)=>places.push(`<b>${ordinal(r.place)}</b> of ${r.of}${k?"":` ${kindJP}s`} in ${lab}`));
+  if(cohort.length>=5){ const r=_place([...cohort.map(p=>p.st.peak), st.peak], st.peak);
+    places.push(`<b>${ordinal(r.place)}</b> of ${r.of} all-time`); }
+  const banked = !(st.cumPeak>0 && medCum) ? ""
+    : comparable
+      ? `<b>Banked by its peak:</b> <span class="fig">${G(st.cumPeak)}</span> — ${moneyCmp(st.cumPeak, medCum)} the usual ${kind} ${baseLab} (${G(medCum)}).`
+      : `<b>Banked by its peak:</b> <span class="fig">${G(st.cumPeak)}</span>, but its peak came on day ${st.peakDay} against the usual day ${medPeakDay}, so that counts most of the run — not comparable to the usual ${kind}'s ${G(medCum)} at its own peak.`;
+  let fadeLi="";
+  if(slipLine) fadeLi=`<b>Fade:</b> ${slipLine}`;
+  if(st.fellOffDay!=null){
+    const medFell=fellPeers.length>=3?_med(fellPeers):null;
+    fadeLi+=`${fadeLi?" ":"<b>Fade:</b> "}It left game-i's top 200 on <b>day ${st.fellOffDay}</b>${medFell==null?"":`, against day ${medFell} for the usual ${kind}`}.`;
+  } else if(!b.ongoing) fadeLi+=`${fadeLi?" ":"<b>Fade:</b> "}It never left the chart during the run.`;
   const place=`<div class="bm-verdict call"><span class="head">Where this run sits on game-i's chart</span>
-    Peaked at <span class="fig">#${st.peak}</span> on day ${st.peakDay}${scopeLine}.${cohortLine}${cumLine}${ranLineJP} ${fade}${slipLine}${anchorLine}
-    ${st.peakDay>1?`It opened at <b>#${st.open}</b>, though game-i snapshots rank at midnight JST,
-    so a banner that went live after the snapshot reads low on day 1 \u2014 which is why this
-    compares on the peak.`:``}
+    ${compareFactsHTML({st, kind, baseLab, base, ranksOf:p=>p.b.rank_series||[], mine:b.rank_series||[], ongoing:b.ongoing,
+      places, banked, fade:fadeLi,
+      note: st.peakDay>1 ? `Compared on the peak, not day 1: game-i reads rank at midnight JST, often before a new banner is live, so a first day reads low.` : ""})}
     ${yearStrip}${rankStrip}</div>`;
 
   // While a run is still going, the sharpest comparison is at the SAME elapsed day: what
@@ -3957,7 +3934,7 @@ function jpAnalysisBlock(b){
 
   return `<h3>How this run compares</h3>${place}
     <h3>${onCum?`Banners at a similar total by day ${D}`:`Banners that peaked around #${st.peak}`}</h3>
-    <div class="bm-peerlist">${rows}</div>${dayList}${verdict}`;
+    <div class="bm-peerlist">${rows}</div>${dayList}${b.ongoing?"":verdict}`;
 }
 
 // The comparables and the one judgement call: is a projection still worth making? Once a
@@ -4068,7 +4045,7 @@ function cnAnalysisBlock(b){
         : "sliding at about the usual rate";
       slipLine = ` By day ${chkD} it sat at <b>${mineRank>=OFF_CHART?`${OFF_CHART}+`:`#${mineRank}`}</b>,
         about <b>${mineSlip.toFixed(1)}</b> places a day off its peak against <b>${medSlip.toFixed(1)}</b>
-        for the usual ${kind} — ${word}.`;
+        for the usual ${kind} \u2014 ${word}.`;
     }
   }
 
@@ -4192,9 +4169,9 @@ function cnRankTable(run){
   const md=iso=>`${+iso.slice(5,7)}/${+iso.slice(8,10)}`;
   const shown=cnShown(run), pk=cnPeakIdx(run);
   run=run.map((x,i)=>({...x, rank:shown[i], isPeak:i===pk}));
-  const cell=x=>`<tr${x.isPeak?' class="bm-peakrow" title="Peak — the best rank reached during this day"':""}>
+  const cell=x=>`<tr${x.isPeak?' title="Peak — the best rank reached during this day"':""}>
     <td class="l">${md(x.iso)}</td>
-    <td>${x.rank!=null ? "#"+x.rank+(x.isPeak?' <span class="muted">peak</span>':"")
+    <td>${x.rank!=null ? "#"+x.rank
         : x.depth!=null ? `<span class="muted">${x.depth}+</span>`
         : `<span class="muted">no data</span>`}</td></tr>`;
   // Only two narrow columns, so one full-width table leaves a canyon between the date
