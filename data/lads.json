@@ -5,13 +5,13 @@
  "unit": "億G",
  "source": "https://prtimes.jp/main/html/searchrlp/company_id/131862",
  "banners_from": "official",
- "updated": "2026-10-22T20:21:04Z",
+ "updated": "2026-10-22T22:41:50Z",
  "count": 54,
  "now": {
-  "ios": 152,
-  "android": 122,
+  "ios": 154,
+  "android": 121,
   "month": 189,
-  "next_add": 12739527,
+  "next_add": 12331969,
   "ym": "2026/10",
   "ranks": {
    "prev": [
@@ -161,7 +161,6 @@
    "icons": [
     "icons/faces/lads/cast-rafayel.webp"
    ],
-   "accent": "#9ca8d3",
    "bar": "#d8978d"
   },
   {
@@ -214,7 +213,6 @@
     "icons/faces/lads/cast-zayne.webp",
     "icons/faces/lads/cast-rafayel.webp"
    ],
-   "accent": "#ae515b",
    "bar": "#9f3744"
   },
   {
@@ -298,7 +296,6 @@
    "icons": [
     "icons/faces/lads/cast-rafayel.webp"
    ],
-   "accent": "#e36f6b",
    "bar": "#bf172c"
   },
   {
@@ -349,7 +346,6 @@
     "icons/faces/lads/cast-zayne.webp",
     "icons/faces/lads/cast-rafayel.webp"
    ],
-   "accent": "#c1cf99",
    "bar": "#dedd87"
   },
   {
@@ -398,7 +394,6 @@
    "icons": [
     "icons/faces/lads/cast-rafayel.webp"
    ],
-   "accent": "#7fe0f0",
    "bar": "#3590a1"
   },
   {
@@ -443,7 +438,6 @@
    "icons": [
     "icons/faces/lads/cast-xavier.webp"
    ],
-   "accent": "#e2988d",
    "bar": "#daa28b"
   },
   {
@@ -538,7 +532,6 @@
    "icons": [
     "icons/faces/lads/cast-xavier.webp"
    ],
-   "accent": "#5d5fa2",
    "bar": "#4a508d"
   },
   {
@@ -633,7 +626,6 @@
    "icons": [
     "icons/faces/lads/cast-zayne.webp"
    ],
-   "accent": "#5c79a3",
    "bar": "#415f95"
   },
   {
@@ -689,7 +681,6 @@
     "icons/faces/lads/cast-zayne.webp",
     "icons/faces/lads/cast-rafayel.webp"
    ],
-   "accent": "#a86a57",
    "bar": "#976a5d"
   },
   {
@@ -743,7 +734,6 @@
    "icons": [
     "icons/faces/lads/cast-sylus.webp"
    ],
-   "accent": "#daa296",
    "bar": "#97423f"
   },
   {
@@ -804,7 +794,6 @@
     "icons/faces/lads/cast-rafayel.webp",
     "icons/faces/lads/cast-sylus.webp"
    ],
-   "accent": "#b86047",
    "bar": "#944c42"
   },
   {
@@ -848,7 +837,6 @@
    "icons": [
     "icons/faces/lads/cast-zayne.webp"
    ],
-   "accent": "#e9c386",
    "bar": "#f0ce75"
   },
   {
@@ -893,7 +881,6 @@
    "icons": [
     "icons/faces/lads/cast-rafayel.webp"
    ],
-   "accent": "#a1a7ce",
    "bar": "#8eaad7"
   },
   {
@@ -952,7 +939,6 @@
     "icons/faces/lads/cast-rafayel.webp",
     "icons/faces/lads/cast-sylus.webp"
    ],
-   "accent": "#e9a97a",
    "bar": "#9c473a"
   },
   {
@@ -1038,7 +1024,6 @@
    "icons": [
     "icons/faces/lads/cast-sylus.webp"
    ],
-   "accent": "#a95665",
    "bar": "#a0363d"
   },
   {
@@ -1085,7 +1070,6 @@
    "icons": [
     "icons/faces/lads/cast-zayne.webp"
    ],
-   "accent": "#c64239",
    "bar": "#ac312b"
   },
   {
@@ -1144,7 +1128,6 @@
     "icons/faces/lads/cast-rafayel.webp",
     "icons/faces/lads/cast-sylus.webp"
    ],
-   "accent": "#a76b58",
    "bar": "#905346"
   },
   {
@@ -1193,7 +1176,6 @@
    "icons": [
     "icons/faces/lads/cast-sylus.webp"
    ],
-   "accent": "#ebb384",
    "bar": "#a04936"
   },
   {
@@ -1238,7 +1220,6 @@
    "icons": [
     "icons/faces/lads/cast-xavier.webp"
    ],
-   "accent": "#5869af",
    "bar": "#8b9bda"
   },
   {
@@ -1301,7 +1282,6 @@
     "icons/faces/lads/cast-rafayel.webp",
     "icons/faces/lads/cast-sylus.webp"
    ],
-   "accent": "#b05e4f",
    "bar": "#8f5647"
   },
   {
@@ -1355,7 +1335,6 @@
    "icons": [
     "icons/faces/lads/cast-caleb.webp"
    ],
-   "accent": "#d5a29a",
    "bar": "#d79d8e"
   },
   {
@@ -1415,7 +1394,6 @@
     "icons/faces/lads/cast-sylus.webp",
     "icons/faces/lads/cast-caleb.webp"
    ],
-   "accent": "#fe013f",
    "bar": "#d4022a"
   },
   {
@@ -1457,7 +1435,6 @@
    "icons": [
     "icons/faces/lads/cast-rafayel.webp"
    ],
-   "accent": "#de85b7",
    "bar": "#4b4096"
   },
   {
@@ -1551,7 +1528,6 @@
    "icons": [
     "icons/faces/lads/cast-caleb.webp"
    ],
-   "accent": "#be99c2",
    "bar": "#a292d3"
   },
   {
@@ -1593,7 +1569,6 @@
    "icons": [
     "icons/faces/lads/cast-sylus.webp"
    ],
-   "accent": "#cad897",
    "bar": "#cacd98"
   },
   {
@@ -1656,7 +1631,6 @@
     "icons/faces/lads/cast-sylus.webp",
     "icons/faces/lads/cast-caleb.webp"
    ],
-   "accent": "#ff7770",
    "bar": "#d3a092"
   },
   {
@@ -1702,7 +1676,6 @@
    "icons": [
     "icons/faces/lads/cast-xavier.webp"
    ],
-   "accent": "#af5c50",
    "bar": "#993d3d"
   },
   {
@@ -1744,7 +1717,6 @@
    "icons": [
     "icons/faces/lads/cast-caleb.webp"
    ],
-   "accent": "#d45b2b",
    "bar": "#a25034"
   },
   {
@@ -1795,7 +1767,6 @@
    "icons": [
     "icons/faces/lads/cast-rafayel.webp"
    ],
-   "accent": "#d396a0",
    "bar": "#79c0ec"
   },
   {
@@ -1857,7 +1828,6 @@
     "icons/faces/lads/cast-sylus.webp",
     "icons/faces/lads/cast-caleb.webp"
    ],
-   "accent": "#5e5ca3",
    "bar": "#524f87"
   },
   {
@@ -1908,7 +1878,6 @@
    "icons": [
     "icons/faces/lads/cast-xavier.webp"
    ],
-   "accent": "#8fb1e0",
    "bar": "#47598f"
   },
   {
@@ -1970,7 +1939,6 @@
     "icons/faces/lads/cast-sylus.webp",
     "icons/faces/lads/cast-caleb.webp"
    ],
-   "accent": "#82c2e0",
    "bar": "#72c2f3"
   },
   {
@@ -2064,7 +2032,6 @@
    "icons": [
     "icons/faces/lads/cast-zayne.webp"
    ],
-   "accent": "#d0d19e",
    "bar": "#4a7b8c"
   },
   {
@@ -2170,7 +2137,6 @@
     "icons/faces/lads/cast-sylus.webp",
     "icons/faces/lads/cast-caleb.webp"
    ],
-   "accent": "#b84772",
    "bar": "#4a4591"
   },
   {
@@ -2219,7 +2185,6 @@
    "icons": [
     "icons/faces/lads/cast-sylus.webp"
    ],
-   "accent": "#cc879c",
    "bar": "#d88d9f"
   },
   {
@@ -2285,7 +2250,6 @@
     "icons/faces/lads/cast-sylus.webp",
     "icons/faces/lads/cast-caleb.webp"
    ],
-   "accent": "#d7a398",
    "bar": "#d49591"
   },
   {
@@ -2345,7 +2309,6 @@
     "icons/faces/lads/cast-sylus.webp",
     "icons/faces/lads/cast-caleb.webp"
    ],
-   "accent": "#d9a996",
    "bar": "#954641"
   },
   {
@@ -2387,7 +2350,6 @@
    "icons": [
     "icons/faces/lads/cast-rafayel.webp"
    ],
-   "accent": "#ffa870",
    "bar": "#ffb466"
   },
   {
@@ -2440,7 +2402,6 @@
     "icons/faces/lads/cast-caleb.webp",
     "icons/faces/lads/cast-rafayel.webp"
    ],
-   "accent": "#37a0c8",
    "bar": "#3a869c"
   },
   {
@@ -2541,7 +2502,6 @@
     "icons/faces/lads/cast-sylus.webp",
     "icons/faces/lads/cast-caleb.webp"
    ],
-   "accent": "#eb9971",
    "bar": "#e98d64"
   },
   {
@@ -2583,7 +2543,6 @@
    "icons": [
     "icons/faces/lads/cast-caleb.webp"
    ],
-   "accent": "#fac075",
    "bar": "#f79b4c"
   },
   {
@@ -2643,7 +2602,6 @@
     "icons/faces/lads/cast-sylus.webp",
     "icons/faces/lads/cast-caleb.webp"
    ],
-   "accent": "#f0a87f",
    "bar": "#9e4538"
   },
   {
@@ -2692,7 +2650,6 @@
    "icons": [
     "icons/faces/lads/cast-rafayel.webp"
    ],
-   "accent": "#ca4735",
    "bar": "#9f4237"
   },
   {
@@ -2736,7 +2693,6 @@
    "icons": [
     "icons/faces/lads/cast-zayne.webp"
    ],
-   "accent": "#ebad85",
    "bar": "#e1a484"
   },
   {
@@ -2799,7 +2755,6 @@
     "icons/faces/lads/cast-sylus.webp",
     "icons/faces/lads/cast-caleb.webp"
    ],
-   "accent": "#d18762",
    "bar": "#9b413b"
   },
   {
@@ -2841,7 +2796,6 @@
    "icons": [
     "icons/faces/lads/cast-xavier.webp"
    ],
-   "accent": "#3f64c0",
    "bar": "#404996"
   }
  ]
