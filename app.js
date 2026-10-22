@@ -423,6 +423,7 @@ function qimaiRankInfo(b){
 function qimaiBD(b){
   const qm=bannerQimai(b); if(!qm.daily.length) return null;
   const run=cnRunSeries(b)||[];   // China rank, now aligned to the same China window as the revenue
+  const shown=cnShown(run), pk=cnPeakIdx(run);   // the peak day shows its peak (cnShown)
   const g=state.qimai&&state.qimai.games&&state.qimai.games[state.tag];
   const qFirst=(g&&g.first)||null, qLast=(g&&g.last)||null;   // the China dates Qimai has posted
   const s0=new Date((qm.start||b.start)+"T00:00:00");   // China run start (offset from game-i's)
@@ -434,7 +435,7 @@ function qimaiBD(b){
     // (or start before Qimai's history) — those days have no estimate yet, not a real ¥0.
     const noData = (qLast!=null && iso>qLast) || (qFirst!=null && iso<qFirst);
     if(!noData) cum+=add;                        // a pending day doesn't advance the running total
-    return {i, iso, rank:(run[i]&&run[i].rank!=null)?run[i].rank:null, add, cum, noData}; });
+    return {i, iso, rank:shown[i]!=null?shown[i]:null, isPeak:i===pk, add, cum, noData}; });
   return {days};
 }
 // Front-loading of the REAL daily curve: what share of the run's total landed by day 3,
@@ -596,7 +597,9 @@ function qimaiAnalysisBlock(b){
   // Peers by CHINA TOTAL, not peak rank — for Qimai the money is the spine. On an ongoing
   // run, compare at the same elapsed day (what each had banked by day D); on a finished one,
   // by the final total.
-  const D=qm.daily.length;
+  // days Qimai has POSTED — a running banner's list can end on a day not posted yet (a $0 that
+  // isn't real), which would put this a day ahead of the build-up above it
+  const D=b.ongoing ? qimaiPosted(b).length : qm.daily.length;
   const onCum = b.ongoing && D>=2;
   const sameDay = peers.filter(p=>!p.b.ongoing && qmCumAtDay(p,D)!=null && qmCumAtDay(p,D)>0);
   const near = onCum && sameDay.length>=3
@@ -625,9 +628,9 @@ function qimaiAnalysisBlock(b){
     // the same projection the Qimai build-up shows
     const pj=qimaiProjection(b);
     head="What it is tracking towards";
-    body=`Still running, <b>${D}</b> charted day${D>1?"s":""} in at <span class="fig">${fmtUSD(qm.total)}</span> so far in China-iPhone gross.`
-      + (pj?` Following this game's finished banners that were taking a similar amount on day ${pj.D}, over its own ${pj.L}-day run, puts it on track for about <span class="fig">${fmtUSD(pj.mid)}</span> (${fmtUSD(pj.lo)} to ${fmtUSD(pj.hi)}).`:``)
-      + ` The banners nearest it at this same day went on to finish around ${spread}.`;
+    body=`Still running, day <b>${D}</b> of Qimai data in at <span class="fig">${fmtUSD(qm.total)}</span> so far in China-iPhone gross.`
+      + (pj?` Following this game's finished banners that ${pj.near?`were taking a similar amount on day ${pj.D}`:`ran at least this long`}, over its own ${pj.L}-day run, puts it on track for about <span class="fig">${fmtUSD(pj.mid)}</span> (${fmtUSD(pj.lo)} to ${fmtUSD(pj.hi)}).`:``)
+      + (onCum && sameDay.length>=3 ? ` For context, the runs with the closest total by day ${D} (listed above) finished at ${spread}${pj?" — they are matched on what was banked, the projection on how strong the run still is":""}.` : ` For context, the banners closest to it in China total finished at ${spread}.`);
   }
   const verdict=`<div class="bm-verdict"><span class="head">${head}</span>${body}
     <span class="after">Rank and revenue here both come from China — the real store chart beside Qimai's China-iPhone dollars, over ${near.length} comparable runs — so this stays in <b>one market and one platform</b>. ${ASSOC_NOTE}</span></div>`;
@@ -3058,24 +3061,34 @@ function gameBurn(){
 // this game's finished runs that stood at a similar level on that same day carried on from
 // there: each future day is its latest day x the average of those runs' (day t / day D).
 // Past the last day the peers cover (a 43-day CZN run against 22-day peers) the curve keeps
-// falling at the peers' own late-run pace. Range = the 25th–75th percentile of the
+// falling at the peers' own late-run pace. Range = the 10th–90th percentile of the
 // projections each peer's own path gives.
 //   v      this run's daily values so far (game-i: rank values, Qimai: dollars)
 //   key    its "level" per day for picking peers (game-i: rank, Qimai: dollars); null = off chart
 //   peers  [{v, key}] of FINISHED runs, same units
 //   L      the run's scheduled length in days
-// Backtested on every finished banner of every tracked game, cut at day 2 / 3 / 5 / 7:
-// median error 27 / 18 / 9 / 6 %, against 29 / 23 / 17 / 13 % for the old read
-// ("so far ÷ the share a typical run has banked by day D", which ignores run length and
-// where the run stands now). Returns {mid, lo, hi, n, near} in v's units, or null.
+// Backtested on every finished banner of every tracked game (each left out of its own peers),
+// cut at day 2 / 3 / 5 / 7 / 10 and projected to the end — median miss, game-i: 24 / 15 / 8 /
+// 5 / 4 %, Qimai: 19 / 14 / 8 / 5 / 4 %, against 29 / 23 / 17 / 13 / 10 % and 25 / 18 / 13 /
+// 10 / 8 % for the old read ("so far ÷ the share a typical run has banked by day D", which
+// ignores run length and where the run stands now). The final lands inside the 10–90% range
+// about 70% of the time. Returns {mid, lo, hi, n, near} in v's units, or null.
 const PROJ_MIN_PEERS = 3;
+const PROJ_NEAR = [1.5, 2, 3];  // "a similar level" on day D: within ×1.5, widening to ×2 then ×3 until
+                                // 4 runs qualify (beat any single width in the backtest; CZN days 2–4: 29%)
+const PROJ_EARLY = 0.9;       // days 2–3 ran ~10% high in the backtest (an opening that strong usually
+                              // fades faster than its peers' average); the remaining days are scaled by this
 function projectRun(v, key, peers, L){
   const D=v.length, a0=v[D-1], soFar=v.reduce((a,c)=>a+c,0);
   if(D<2 || D>=L || !(a0>0)) return null;
   const k0=key[D-1];
   const ok=peers.filter(p=>p.v.length>=D && p.v[D-1]>0);
-  let near=k0==null ? [] : ok.filter(p=>p.key[D-1]!=null && p.key[D-1]<=k0*2 && p.key[D-1]>=k0/2);
-  const isNear=near.length>=4; if(!isNear) near=ok;
+  let near=[], width=null;
+  if(k0!=null) for(const f of PROJ_NEAR){
+    near=ok.filter(p=>p.key[D-1]!=null && p.key[D-1]<=k0*f && p.key[D-1]>=k0/f);
+    if(near.length>=4){ width=f; break; }
+  }
+  const isNear=width!=null; if(!isNear) near=ok;
   if(near.length<PROJ_MIN_PEERS) return null;
   // the average path, day D..L-1, as a multiple of day D
   const m=[]; let lastCov=-1;
@@ -3088,11 +3101,12 @@ function projectRun(v, key, peers, L){
   const w=[]; for(let t=Math.max(D+1,lastCov-6); t<=lastCov; t++) if(m[t-1]>0 && m[t]>0) w.push(m[t]/m[t-1]);
   const g=w.length ? Math.min(1, Math.exp(w.reduce((a,c)=>a+Math.log(c),0)/w.length)) : 0;
   for(let t=lastCov+1;t<L;t++) m[t]=m[t-1]*g;
-  const fut=path=>{ let s=0; for(let t=D;t<L;t++) s+=path(t); return s; };
+  const early=D<=3 ? PROJ_EARLY : 1;
+  const fut=path=>{ let s=0; for(let t=D;t<L;t++) s+=path(t); return s*early; };
   const mid=soFar+a0*fut(t=>m[t]);
   const each=near.map(p=>soFar+a0*fut(t=>p.v.length>t ? p.v[t]/p.v[D-1] : m[t])).sort((x,y)=>x-y);
   const q=f=>each[Math.min(each.length-1, Math.floor(each.length*f))];
-  return {mid, lo:Math.min(mid,q(0.25)), hi:Math.max(mid,q(0.75)), n:near.length, near:isNear};
+  return {mid, lo:Math.min(mid,q(0.1)), hi:Math.max(mid,q(0.9)), n:near.length, near:isNear, width};
 }
 // game-i: a run's projected final total (億G). Its daily values are rank values scaled so they
 // add up to game-i's figure so far; peers are this game's finished runs at a similar rank.
@@ -3104,7 +3118,13 @@ function bannerProjection(b){
     .map(o=>({v:o.rank_series.map(rankValue), key:o.rank_series}));
   const p=projectRun(v, s, peers, L); if(!p) return null;
   const k=b.rev/sum;                                            // 億G per rank-value unit, this run
-  return {mid:p.mid*k, lo:p.lo*k, hi:p.hi*k, n:p.n, near:p.near, D:s.length, L, rank:s[s.length-1]};
+  return {mid:p.mid*k, lo:p.lo*k, hi:p.hi*k, n:p.n, near:p.near, width:p.width, D:s.length, L, rank:s[s.length-1]};
+}
+// "the N banners that were …" — the peer group as it was picked: the rank band it came from.
+function projPeersTxt(pj, nm){
+  if(!pj.near) return `the ${pj.n} finished ${nm} banners that ran at least this long`;
+  const lo=Math.max(1,Math.round(pj.rank/pj.width)), hi=Math.min(200,Math.round(pj.rank*pj.width));
+  return `the ${pj.n} finished ${nm} banners that were between #${lo} and #${hi} on day ${pj.D}`;
 }
 // Qimai: the same on its measured China-iPhone dollars (posted days only).
 function qimaiPosted(b){ const bd=qimaiBD(b); return bd ? bd.days.filter(d=>!d.noData).map(d=>d.add) : []; }
@@ -3147,8 +3167,7 @@ function burnBlock(b){
       <div class="bm-stat sum"><span class="l">Tracking towards</span><span class="v">${G(pj.mid)}</span></div>
     </div>
     <div class="bm-cap">At <b>#${pj.rank}</b> on day <b>${D}</b> with <b>${G(b.rev)}</b> banked, and <b>${scheduled-D}</b> days still to run:
-      the ${pj.n} finished ${esc(gameName())} banners that ${pj.near?`were also around #${pj.rank} on day ${D}`:`ran at least this long`}
-      carried on in a way that puts this one near <b>${G(pj.mid)}</b> — between <b>${G(pj.lo)}</b> and <b>${G(pj.hi)}</b>,
+      ${projPeersTxt(pj, esc(gameName()))} carried on in a way that puts this one near <b>${G(pj.mid)}</b> — between <b>${G(pj.lo)}</b> and <b>${G(pj.hi)}</b>,
       depending on which of them it follows. Days it spends below #200 add nothing, as on game-i.</div>`;
   }
   const g=gameBurn();
@@ -3211,7 +3230,7 @@ function dailyTable(bd,fmt=G,rankHdr="iOS&nbsp;rank"){
     <td class="l">${d.iso?isoMD(d.iso):dayLabel(d.i)}</td>`
     + (d.noData
       ? `<td colspan="3" class="muted qbu-nodata">no data yet</td>`
-      : `<td>${d.rank==null?'<span class="muted">200+</span>':'#'+d.rank}</td>`
+      : `<td>${d.rank==null?'<span class="muted">200+</span>':'#'+d.rank+(d.isPeak?' <span class="muted">peak</span>':'')}</td>`
         + `<td>${d.add>=0.005?fmt(d.add):'<span class="muted">—</span>'}</td>`
         + `<td>${fmt(d.cum)}</td>`)
     + `</tr>`;
@@ -3404,8 +3423,22 @@ function cnRunSeries(b){
   }
   return any?out:null;
 }
+// The China rank to DISPLAY each day: the end-of-day rank, except on the run's peak day,
+// which shows the peak itself (Qimai's best reading that day) — so the line, its dots, the
+// daily tables and the hover all put the peak on the day it happened (HSR's Aventurine •
+// Waveflair: 9/13 reads #19, its peak, not the #27 it closed at). Stats keep end-of-day.
+function cnPeakIdx(run){
+  let pi=-1, pv=Infinity;
+  (run||[]).forEach((x,i)=>{ const r=x.best!=null?x.best:x.rank; if(r!=null && r<pv){ pv=r; pi=i; } });
+  return pi;
+}
+function cnShown(run){
+  const pi=cnPeakIdx(run);
+  return (run||[]).map((x,i)=> i===pi ? (x.best!=null?x.best:x.rank) : x.rank);
+}
 function cnRankSVG(run,b){
-  const known=run.map((x,i)=>[i,x.rank]).filter(([,r])=>r!=null);
+  const shown=cnShown(run);
+  const known=run.map((x,i)=>[i,shown[i]]).filter(([,r])=>r!=null);
   if(!known.length) return "";
   const n=run.length, worst=Math.max(...known.map(([,r])=>r));
   const ymax = worst<=10?10 : worst<=20?20 : worst<=30?30 : worst<=50?50 : worst<=100?100 : 200;
@@ -3419,31 +3452,21 @@ function cnRankSVG(run,b){
   const xt=[...new Set([0,Math.round((n-1)/3),Math.round(2*(n-1)/3),n-1])]
     .map(i=>`<text class="axislbl" x="${xOf(i).toFixed(1)}" y="${H-8}" text-anchor="middle">${run[i]&&run[i].iso?isoMD(run[i].iso):dayLabel(i)}</text>`).join("");
   let d="",pen=false;
-  run.forEach((x,i)=>{ if(x.rank==null){pen=false;return;} const px=xOf(i),py=yOf(x.rank);
+  run.forEach((x,i)=>{ const r=shown[i]; if(r==null){pen=false;return;} const px=xOf(i),py=yOf(r);
     d+=`${pen?"L":"M"}${px.toFixed(1)} ${py.toFixed(1)}`; pen=true; });
   const dots=known.map(([i,r])=>`<circle class="rc-dot" cx="${xOf(i).toFixed(1)}" cy="${yOf(r).toFixed(1)}" r="3"/>`).join("");
   // days the chart is known but the game wasn't on it: a tick along the bottom
-  const below=run.map((x,i)=>x.depth!=null&&x.rank==null
+  const below=run.map((x,i)=>x.depth!=null&&shown[i]==null
     ? `<line class="grid" x1="${xOf(i).toFixed(1)}" y1="${(H-MB-3).toFixed(1)}" x2="${xOf(i).toFixed(1)}" y2="${(H-MB).toFixed(1)}"/>`:"").join("");
-  // the peak is the best rank reached at ANY point of a day (Qimai's intraday best) — the same
-  // figure the caption and the placement line use — so it can sit just above that day's
-  // end-of-day point on the line
-  let pi=-1, pv=Infinity;
-  run.forEach((x,i)=>{ const r=x.best!=null?x.best:x.rank; if(r!=null && r<pv){ pv=r; pi=i; } });
-  // When the peak came during a day that then closed lower (Rossweisse: #129 at some point on
-  // 10/22, closed at #168), tie it to that day's point with a dashed stem and date the label,
-  // so it reads as "that day, at its best moment" rather than a stray point.
-  const pDay=run[pi]||{}, intraday=pDay.rank!=null && pDay.rank!==pv;
-  const pdate=pDay.iso?isoMD(pDay.iso):dayLabel(pi);
-  const px=xOf(pi), anchor=px>W*0.75?"end":px<W*0.25?"start":"middle";   // keep a long label on the chart
-  const lblX=anchor==="end"?px+6:anchor==="start"?px-6:px;
-  const peak=(intraday?`<line class="rc-peakstem" x1="${xOf(pi).toFixed(1)}" y1="${yOf(pDay.rank).toFixed(1)}" x2="${xOf(pi).toFixed(1)}" y2="${(yOf(pv)+5).toFixed(1)}"/>`:"")
-    +`<circle class="rc-peak" cx="${xOf(pi).toFixed(1)}" cy="${yOf(pv).toFixed(1)}" r="5"/>`
-    +`<text class="rc-peaklbl" x="${lblX.toFixed(1)}" y="${(yOf(pv)-9).toFixed(1)}" text-anchor="${anchor}">peak #${pv}${intraday?` · ${pdate}, during the day`:""}</text>`;
+  // the peak — the best rank reached at ANY point of a day, the same figure the caption and the
+  // placement line use — is now the plotted point of its own day (cnShown)
+  const pi=cnPeakIdx(run), pv=shown[pi];
+  const peak=`<circle class="rc-peak" cx="${xOf(pi).toFixed(1)}" cy="${yOf(pv).toFixed(1)}" r="5"/>`
+    +`<text class="rc-peaklbl" x="${xOf(pi).toFixed(1)}" y="${(yOf(pv)-9).toFixed(1)}" text-anchor="${xOf(pi)>W*0.8?"end":xOf(pi)<W*0.2?"start":"middle"}">peak #${pv}</text>`;
   // hover targets on every charted day, including the ones the game sat below
-  _cnCtx={days:run.map((x,i)=>({...x, i}))};
+  _cnCtx={days:run.map((x,i)=>({...x, i, isPeak:i===pi}))};
   const hits=run.map((x,i)=>x.depth==null?"":
-    `<circle class="rc-hit" data-cnday="${i}" cx="${xOf(i).toFixed(1)}" cy="${(x.rank!=null?yOf(x.rank):H-MB-6).toFixed(1)}" r="9"/>`).join("");
+    `<circle class="rc-hit" data-cnday="${i}" cx="${xOf(i).toFixed(1)}" cy="${(shown[i]!=null?yOf(shown[i]):H-MB-6).toFixed(1)}" r="9"/>`).join("");
   return `<svg class="rcsvg" viewBox="0 0 ${W} ${H}" role="img" style="--acc:${barColor(b)}">
     ${grid}${below}<path class="rc-line" d="${d}"/>${dots}${peak}${hits}${xt}</svg>`;
 }
@@ -3907,8 +3930,7 @@ function jpAnalysisBlock(b){
     const pj=bannerProjection(b);
     head="Tracking towards";
     body=`Day <b>${pj.D}</b> of ${pj.L}, at <b>#${pj.rank}</b> and <span class="fig">${G(b.rev)}</span> so far${ownST}.
-      Following the ${pj.n} finished ${esc(gameName())} banners that ${pj.near?`stood around #${pj.rank} on day ${pj.D}`:`ran at least this long`}
-      over its own ${pj.L}-day run puts it near <span class="fig">${G(pj.mid)}</span>, somewhere between <b>${G(pj.lo)}</b> and <b>${G(pj.hi)}</b>.${stAside(money)}`;
+      Following ${projPeersTxt(pj, esc(gameName()))} over its own ${pj.L}-day run puts it near <span class="fig">${G(pj.mid)}</span>, somewhere between <b>${G(pj.lo)}</b> and <b>${G(pj.hi)}</b>.${stAside(money)}`;
   } else if(st.charted>=5 || (onCum && st.charted>=2)){
     head="Tracking towards";
     // Each peer's final divided by what it had banked by this same day is the multiple
@@ -4132,6 +4154,13 @@ function cnAnalysisBlock(b){
   } else if(!read || !read.estimable){
     head="Almost done";
     body=`This run ends in <b>${daysLeft}</b> day${daysLeft===1?"":"s"}, so ${ownName}'s own figure — <span class="fig">${ownFig}</span> so far — is all but final${ownST}. No estimate here: the comparison above is the useful part, and the finished number arrives on its own.`;
+  } else if(!ownCN && bannerProjection(b)){
+    // Reading yen: say what the game-i tab says. Its projection runs from where this run is now,
+    // over its own length — the China peers' finishes ignore what it has already banked (Pearl:
+    // "finished at ¥651M–¥1.14B" with ¥1.12B already in), so they stay as context only.
+    const pj=bannerProjection(b);
+    head="What it is tracking towards";
+    body=`Still running, day <b>${pj.D}</b> of ${pj.L}, with game-i at <span class="fig">${G(b.rev)}</span> so far${ownST}. The game-i tab's projection — its latest Japan rank, followed by ${projPeersTxt(pj, esc(gameName()))} — puts it near <span class="fig">${G(pj.mid)}</span> (${G(pj.lo)} to ${G(pj.hi)}). For context, the banners that peaked nearest <b>#${st.peak}</b> in China finished at ${moneySpread(PV)}.${stAside(money)}`;
   } else if(st.charted>=7){
     head="What it is tracking towards";
     body=`Still running, <b>${st.charted}</b> charted day${st.charted>1?"s":""} in, with ${ownName} at <span class="fig">${ownFig}</span> so far${ownST}. Banners that peaked nearest <b>#${st.peak}</b> finished at ${moneySpread(PV)} — if this one follows them it ends around that middle.${stAside(money)}`;
@@ -4161,9 +4190,11 @@ function cnAnalysisBlock(b){
 function cnRankTable(run){
   if(!run||!run.length) return "";
   const md=iso=>`${+iso.slice(5,7)}/${+iso.slice(8,10)}`;
-  const cell=x=>`<tr>
+  const shown=cnShown(run), pk=cnPeakIdx(run);
+  run=run.map((x,i)=>({...x, rank:shown[i], isPeak:i===pk}));
+  const cell=x=>`<tr${x.isPeak?' class="bm-peakrow" title="Peak — the best rank reached during this day"':""}>
     <td class="l">${md(x.iso)}</td>
-    <td>${x.rank!=null ? "#"+x.rank
+    <td>${x.rank!=null ? "#"+x.rank+(x.isPeak?' <span class="muted">peak</span>':"")
         : x.depth!=null ? `<span class="muted">${x.depth}+</span>`
         : `<span class="muted">no data</span>`}</td></tr>`;
   // Only two narrow columns, so one full-width table leaves a canyon between the date
@@ -4492,8 +4523,8 @@ function showCnTip(i,e){
   bmTip.innerHTML=`<div class="body">
     <h4>${dt.toLocaleDateString("en",{month:"short",day:"numeric",year:"numeric"})}</h4>
     <div style="color:var(--muted);font-size:11.5px">Day ${i+1} · China, all apps</div>
-    <dl><dt>End of day</dt><dd><b>${where}</b></dd>
-    ${day.best!=null && day.best!==day.rank ? `<dt>Best that day</dt><dd>#${day.best}</dd>` : ""}
+    <dl>${day.isPeak && day.best!=null && day.best!==day.rank ? `<dt>Peak (during the day)</dt><dd><b>#${day.best}</b></dd><dt>End of day</dt><dd>${where}</dd>`
+      : `<dt>End of day</dt><dd><b>${where}</b></dd>${day.best!=null && day.best!==day.rank ? `<dt>Best that day</dt><dd>#${day.best}</dd>` : ""}`}
     <dt>Chart known</dt><dd>${day.depth} deep</dd>
     <dt>Read from</dt><dd>${esc(CN_SRC_NAME[day.src]||String(day.src||"-"))}</dd></dl></div>`;
   bmTip.hidden=false;
