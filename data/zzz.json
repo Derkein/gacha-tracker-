@@ -5,11 +5,11 @@
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E3%82%BC%E3%83%B3%E3%83%AC%E3%82%B9%E3%82%BE%E3%83%BC%E3%83%B3%E3%82%BC%E3%83%AD",
  "banners_from": "game-i",
- "updated": "2026-10-22T17:30:54Z",
+ "updated": "2026-10-22T19:10:48Z",
  "count": 40,
  "now": {
   "ios": 17,
-  "android": 18,
+  "android": 15,
   "month": 132,
   "next_add": 63411763,
   "ym": "2026/10",
