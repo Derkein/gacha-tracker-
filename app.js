@@ -1125,15 +1125,30 @@ function computeUnlisted(){
       if(!spans.some(([s,e])=>s<=t && t<=e)) uncovered++;
     }
     if(!counted || uncovered/counted<0.4) continue;
-    // a month whose only banners are reruns (nothing new opened in it) says so, and names them
-    const t0=Date.UTC(y,mo-1,1), t1=Date.UTC(y,mo-1,last);
-    const inMonth=real.filter(b=>Date.parse(b.start)<=t1 && Date.parse(b.end)>=t0);
-    const reruns=inMonth.filter(b=>b.rerun), fresh=inMonth.filter(b=>!b.rerun && Date.parse(b.start)>=t0);
-    const onlyRe = reruns.length && !fresh.length;
-    // (the reruns have rows of their own; this row is only the money none of them accounts for)
-    out.push({ name: onlyRe ? `Rest of ${MONTHS[mo-1]} — no new rate-up banner` : "No rate-up banner listed",
-      agents:[onlyRe ? `only reruns ran (${reruns.map(b=>b.name).join(" · ")}, in their own rows) — game-i monthly not attributed to a banner`
-                     : "game-i monthly — not attributed to a banner"],
+    // Name the stretches with no banner, whole (a gap can run on into the next month: Jul 18 –
+    // Aug 4), and for a single one the banners either side of it.
+    const DAY=864e5, covered=t=>spans.some(([s,e])=>s<=t && t<=e), gaps=[];
+    for(let dd=1; dd<=last; dd++){
+      const t=Date.UTC(y,mo-1,dd); if(t>cutoff) break;
+      if(covered(t) || gaps.some(([a,z])=>a<=t && t<=z)) continue;
+      let a=t, z=t;
+      while(a-DAY>=t-60*DAY && !covered(a-DAY)) a-=DAY;
+      while(z+DAY<=cutoff && z+DAY<=t+60*DAY && !covered(z+DAY)) z+=DAY;
+      gaps.push([a,z]);
+    }
+    const md=t=>{ const d=new Date(t); return `${MONTHS[d.getUTCMonth()]} ${d.getUTCDate()}`; };
+    const span=([a,z])=>{ const open=z+DAY>cutoff, A=new Date(a), Z=new Date(z);
+      return open ? `${md(a)} – now` : a===z ? md(a)
+        : A.getUTCMonth()===Z.getUTCMonth() ? `${md(a)}–${Z.getUTCDate()}` : `${md(a)} – ${md(z)}`; };
+    let why=`part of game-i's ${MONTHS[mo-1]} total not attributed to a banner`;
+    if(gaps.length===1){
+      const [a,z]=gaps[0];
+      const prev=real.filter(b=>Date.parse(b.end)<a).sort((p,q)=>Date.parse(q.end)-Date.parse(p.end))[0];
+      const next=real.filter(b=>Date.parse(b.start)>z).sort((p,q)=>Date.parse(p.start)-Date.parse(q.start))[0];
+      if(prev && next) why=`between ${prev.name} (ended ${md(Date.parse(prev.end))}) and ${next.name} (from ${md(Date.parse(next.start))}) · ${why}`;
+    }
+    out.push({ name: gaps.length ? `No banner ${gaps.map(span).join(", ")}` : "No rate-up banner listed",
+      agents:[why],
       rev:+gap.toFixed(2), start:`${ym}-01`, end:`${ym}-${String(last).padStart(2,"0")}`,
       year:y, _synthetic:true, cum:null, cumtot:null, yrank:null, ytot:null });
   }
