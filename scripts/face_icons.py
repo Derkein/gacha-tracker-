@@ -251,10 +251,12 @@ def crop_box(raw, box):
 
 
 # Games whose banners feature a FIXED CAST rather than a new character each time — Love and
-# Deepspace's five leads, any of whom a banner can feature (its scrape names them in `agents`).
-# Each lead's icon is cut once from the official JP site's character art with a hand-picked box
-# (the leads are 3D renders the anime-face cascade doesn't find), and a banner shows the icons
-# of its leads, in the order the notice lists them.
+# Deepspace's five leads, any of whom a banner can feature (its scrape lists them in `leads`).
+# Each banner's icon is cut from its OWN key art, around the face point compute_focus found
+# (data/banner_focus.json — the YOLO head detector handles these 3D renders; the anime-face
+# cascade here doesn't), so consecutive banners of the same lead still look different. A banner
+# with no art or no face point falls back to its leads' portraits, cut once from the official
+# JP site's character art with a hand-picked box.
 _LADS_ART = "https://assets.papegames.com/nikkiweb/papegame/deepspacejp/material/"
 CAST = {"lads": {
     "Xavier":  (_LADS_ART + "ztytdpcn/screen2SXH.jpg", [0.695, 0.37, 0.29]),
@@ -263,25 +265,40 @@ CAST = {"lads": {
     "Sylus":   (_LADS_ART + "20240705/08f0bef2c9df599d8e600f53526d1d04.jpeg", [0.47, 0.37, 0.32]),
     "Caleb":   (_LADS_ART + "20250110/86a8d168a3a9986adaa67be26c3d9463.png",  [0.515, 0.40, 0.32]),
 }}
+CAST_ART_SIDE = 0.26          # icon square as a share of the key art's width, centred on the face
 
 
 def process_cast(tag, data, force=False):
     outdir = ICONS / "faces" / tag
     outdir.mkdir(parents=True, exist_ok=True)
-    rel = {}
-    made = 0
+    portrait = {}
     for name, (url, box) in CAST[tag].items():
         r = f"icons/faces/{tag}/cast-{name.lower()}.webp"
         if force or not (ROOT / r).exists():
             try:
                 crop_box(fetch(url), box).save(ROOT / r, "WEBP", quality=85, method=6)
-                made += 1
             except Exception as e:
                 print(f"  [{tag}] {name}: {e}")
         if (ROOT / r).exists():
-            rel[name] = r
+            portrait[name] = r
+    fp = DATA / "banner_focus.json"
+    focus = (json.loads(fp.read_text(encoding="utf-8")).get(tag, {}) if fp.exists() else {})
+    made, art = 0, {}
     for b in data["banners"]:
-        icons = [rel[a] for a in (b.get("agents") or []) if a in rel]
+        img, pt = b.get("banner_img"), focus.get(b.get("banner_img") or "")
+        if img and pt and pt.get("det"):
+            r = f"icons/faces/{tag}/{b['start']}-{hashlib.md5(img.encode()).hexdigest()[:6]}.webp"
+            if force or not (ROOT / r).exists():
+                try:
+                    raw = art.get(img) or fetch(img); art[img] = raw
+                    crop_box(raw, [pt["x"] / 100, pt["y"] / 100, CAST_ART_SIDE]).save(ROOT / r, "WEBP", quality=85, method=6)
+                    made += 1
+                except Exception as e:
+                    print(f"  [{tag}] {b['name']}: {e}")
+            if (ROOT / r).exists():
+                b["icons"] = [r]
+                continue
+        icons = [portrait[a] for a in (b.get("leads") or b.get("agents") or []) if a in portrait]
         if icons:
             b["icons"] = icons
     return made

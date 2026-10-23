@@ -303,6 +303,73 @@ def _lads_blocks(t, pub, img, src):
     return out
 
 
+# The English names, and the wishes the press releases never announce (reruns, single-★5
+# limited wishes), come from the Fandom wiki's 「Limited Wish Pools」 table: one row per wish
+# with its English name, its dates ("May 22nd, After Update - May 31st, 2026 04:59") and its
+# ★5 memories; each memory's own page names its lead (| Character = …). The wiki is kept by
+# players and runs a few months behind, so it only adds to what the releases give.
+FANDOM_API = "https://loveanddeepspace.fandom.com/api.php"
+_MONTHS = {m: i + 1 for i, m in enumerate(["January", "February", "March", "April", "May", "June", "July",
+                                           "August", "September", "October", "November", "December"])}
+
+
+def _fandom(**p):
+    p["format"] = "json"
+    return _get(FANDOM_API + "?" + urllib.parse.urlencode(p))
+
+
+def _fandom_dates(text):
+    hits = re.findall(r"(January|February|March|April|May|June|July|August|September|October|November|December)"
+                      r"\s+(\d{1,2})(?:st|nd|rd|th)?,?\s*(\d{4})?", text)
+    if len(hits) < 2:
+        return None
+    (m1, d1, y1), (m2, d2, y2) = hits[0], hits[1]
+    if not y2:
+        return None
+    y2 = int(y2)
+    y1 = int(y1) if y1 else (y2 - 1 if _MONTHS[m1] > _MONTHS[m2] else y2)
+    try:
+        return date(y1, _MONTHS[m1], int(d1)), date(y2, _MONTHS[m2], int(d2))
+    except ValueError:
+        return None
+
+
+def _fandom_wishes():
+    """[(start, end, English name, [leads])] from the wiki's limited wish table, oldest first."""
+    w = _fandom(action="parse", page="Wish/Limited Wish Pools", prop="wikitext")["parse"]["wikitext"]["*"]
+    rows = []
+    for r in w.split("\n|-"):
+        sch = re.search(r"<small>(.*?)</small>", r, re.S)
+        f = re.search(r"\[\[File:([^|\]]+)\|[^\]]*?(?:link=([^|\]]+))?\]\]", r)
+        mem = re.findall(r"\{\{Memory Border\|([^|}]+)\|", r)
+        per = _fandom_dates(re.sub(r"<[^>]+>", " ", sch.group(1))) if sch else None
+        if not (per and f and mem):
+            continue
+        name = re.sub(r"^Limited Wish Pool:\s*", "", (f.group(2) or "").strip()) \
+            or re.sub(r"(?i)[ _]banner|\.(png|jpe?g|webp)$", "", f.group(1)).replace("_", " ").strip()
+        rows.append((per[0], per[1], name, mem))
+    # each memory's lead, 50 pages a request
+    titles = sorted({m for *_, ms in rows for m in ms})
+    lead = {}
+    for i in range(0, len(titles), 50):
+        q = _fandom(action="query", prop="revisions", rvprop="content", rvslots="main",
+                    titles="|".join(titles[i:i + 50]), redirects=1)["query"]
+        for p in q.get("pages", {}).values():
+            c = (p.get("revisions") or [{}])[0].get("slots", {}).get("main", {}).get("*", "")
+            m = re.search(r"\|\s*Character\s*=\s*([A-Za-z]+)", c)
+            if m:
+                lead[p["title"]] = m.group(1)
+        for r in q.get("redirects", []):
+            if r["to"] in lead:
+                lead[r["from"]] = lead[r["to"]]
+    out = []
+    for s, e, name, mem in sorted(rows):
+        leads = list(dict.fromkeys(lead[m] for m in mem if lead.get(m) in LADS_LEADS.values()))
+        if leads:
+            out.append((s, e, name, leads))
+    return out
+
+
 def lads():
     feed = _page(PRT_FEED)
     ids = sorted({int(n) for n in re.findall(r"/rd/p/(\d{9})\.000131862\.html", feed)})
@@ -313,6 +380,40 @@ def lads():
         if r and r[0]:
             out += _lads_blocks(r[2], r[0], _url(r[1]), PRT_REL.format(n))
         time.sleep(0.3)
+    try:
+        wishes = _fandom_wishes()
+    except Exception as e:                    # names / extra wishes are a bonus: never fail the list
+        print(f"[lads] Fandom wish table unavailable (non-fatal): {e}", file=sys.stderr)
+        wishes = []
+    seen = set()
+    for s, e, name, leads in wishes:
+        # the same wish as a press-release banner (same start, a shared lead): its English name
+        mine = [b for b in out if abs((date.fromisoformat(b["start"]) - s).days) <= 1
+                and set(b["agents"]) & set(leads) and not b.get("title_en")]
+        if mine:
+            mine[0]["title_en"] = name
+        else:                                 # a wish no release announced: a banner of its own
+            out.append({"name": name, "start": s.isoformat(), "end": e.isoformat(), "year": s.year,
+                        "related": "", "banner_img": None, "standard": False,
+                        "rerun_hint": name.lower() in seen,
+                        "agents": leads, "en": " & ".join(leads), "title_en": name,
+                        "src": "https://loveanddeepspace.fandom.com/wiki/Wish/Limited_Wish_Pools"})
+        seen.add(name.lower())
+    # a rerun the wiki has no row for keeps the English name its first run had (帰らぬ夜 →
+    # No-Return Night)
+    first = {}
+    for b in sorted(out, key=lambda x: x["start"]):
+        if b.get("title_en"):
+            first.setdefault(b["name"], b["title_en"])
+        elif b["name"] in first:
+            b["title_en"] = first[b["name"]]
+    # The site names a Love and Deepspace banner by its WISH (Throne of Eros), never by its leads:
+    # the same five leads run every banner, so "Xavier" says nothing about which one it was. With
+    # no English name yet, the banner goes by its own (Japanese) wish name. `leads` keeps who it
+    # features — for the icons and the character search.
+    for b in out:
+        b["leads"] = b["agents"]
+        b["agents"], b["en"] = ([b["title_en"]], b["title_en"]) if b.get("title_en") else ([], "")
     return _dedupe(out)
 
 

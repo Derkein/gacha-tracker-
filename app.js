@@ -1020,7 +1020,8 @@ function roundTop(peak, tight){
 }
 // ---- character search: match a banner against the active query across its JP name,
 // English agent names and related field; empty query matches everything ----
-function bannerText(b){ return [b.name, b.related, ...(b.agents||[])].filter(Boolean).join(" "); }
+// `leads`: who a Love and Deepspace banner features (it is named by its wish, not by them)
+function bannerText(b){ return [b.name, b.related, ...(b.agents||[]), ...(b.leads||[])].filter(Boolean).join(" "); }
 // normalize for matching: lowercase, drop separators (& / ,), collapse whitespace
 function normSearch(s){ return (s||"").toLowerCase().replace(/[&/,・]/g," ").replace(/\s+/g," ").trim(); }
 // token-AND match so "Miyabi & Harumasa" (label) matches text that stores agents space-joined

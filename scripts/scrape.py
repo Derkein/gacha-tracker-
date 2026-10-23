@@ -473,8 +473,12 @@ def fold_reruns(banners):
         if same:
             same["name"] += "&" + b["name"]
             if b.get("en"):
-                same["agents"] = list(dict.fromkeys((same.get("agents") or [same.get("en") or same["name"]]) + (b.get("agents") or [b["en"]])))
+                # an entry named by its wish (LADS, `leads` set) with no English name yet adds none
+                base = same.get("agents") or ([] if "leads" in same else [same.get("en") or same["name"]])
+                same["agents"] = list(dict.fromkeys(base + (b.get("agents") or [b["en"]])))
                 same["en"] = " & ".join(same["agents"])
+            if b.get("leads"):                      # LADS: who the merged entries feature
+                same["leads"] = list(dict.fromkeys((same.get("leads") or []) + b["leads"]))
             continue
         s, e = D(b["start"]), D(b["end"])
         days = [s + timedelta(days=i) for i in range((e - s).days + 1)]
