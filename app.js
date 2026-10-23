@@ -3,7 +3,7 @@ const GAME_ACCENT = {          // per-game hue (used for bars/dots without a sam
   zzz:"#e0a400", hsr:"#8a7bd8", wuwa:"#2fb6c0", genshin:"#d8a24a", endfield:"#e07b3a", nte:"#d94f8a",
   uma:"#3fb98f", stellasora:"#5aa9e6", czn:"#d2463c", lads:"#b87ee6",
 };
-const state = { revMode:"daily", games:[], tag:null, data:null, reported:null, cn:null, qimai:null, mode:"time", table:false, reverse:false, bracket:0, graphYear:"all", graphDim:"year", matchHigh:true, monthYear:"all", periodSort:"timeline", dataSource:"gamei", search:"", agreeMode:"month", compare:{picks:[], sources:{}, chart:"jp"} };
+const state = { revMode:"daily", games:[], tag:null, data:null, reported:null, cn:null, qimai:null, mode:"time", table:false, reverse:false, bracket:0, graphYear:"all", graphDim:"year", graphUnit:"banner", matchHigh:true, monthYear:"all", periodSort:"timeline", dataSource:"gamei", search:"", agreeMode:"month", compare:{picks:[], sources:{}, chart:"jp"} };
 
 // Major game-version (X.0) launch dates, JST — used to bucket banners into 1.X / 2.X
 // groups. Only version-based games have these; sourced from each game's official
@@ -1827,16 +1827,120 @@ function renderGraph(){
     return `<div class="gyear"><div class="yhead">${esc(k)}</div>${groupSVG(k,items,gmax,state.bracket||0,x0,x1)}</div>`;
   }).join("");
 }
+// ---- graph by MONTH: the same per-year line chart, one point per month — the month's total
+// on the chosen source, the figures By Month shows: game-i's 月次売上予測 (our rebuild where
+// it has none), Qimai's China-iPhone total, Sensor Tower, CN. Hover lists that month's banners.
+function monthVal(ym){
+  const s=state.dataSource;
+  if(s==="st") return (extMonth(ym)||{}).rev||0;
+  if(s==="cn") return cnMid(cnMonth(ym));
+  if(s==="qimai"){ const m=qimaiMonth(ym); return m?m.qtot:0; }
+  const g=(state.data.monthly||{})[ym];
+  return g!=null ? g : (((state.monthly||{})[ym]||{}).ours||0);
+}
+function graphMonths(){
+  const qg=state.qimai&&state.qimai.games&&state.qimai.games[state.tag];
+  return [...new Set([...Object.keys(state.data.monthly||{}), ...Object.keys(state.monthly||{}),
+    ...Object.keys(extGameMonths(state.tag)), ...Object.keys(cnGameMonths(state.tag)),
+    ...Object.keys((qg&&qg.monthly)||{})])].sort();
+}
+// each banner's part of month ym on the chosen source: game-i and Qimai carry their own per-
+// banner month figures; Sensor Tower / CN have none, so — as on By Month — the month total is
+// split by each banner's blended game-i + Qimai share.
+function monthBanners(ym){
+  const bm=(state.monthly||{})[ym], tot=monthVal(ym), s=state.dataSource;
+  const bl=((bm&&bm.banners)||[]).filter(x=>!state.data.banners[x.i]._synthetic);
+  const qg=state.qimai&&state.qimai.games&&state.qimai.games[state.tag];
+  let out;
+  if(s==="gamei") out=bl.map(x=>({b:state.data.banners[x.i], v:x.rev}));
+  else if(s==="qimai") out=bl.map(x=>({b:state.data.banners[x.i],
+    v:((qg&&qg.banners&&qg.banners[x.i]&&qg.banners[x.i].monthly)||{})[ym]||0}));
+  else {
+    const g=(state.data.monthly||{})[ym], base=(g!=null&&g>0)?g:((bm&&bm.ours)||0);
+    const sh=bl.map(x=>{ const b=state.data.banners[x.i];
+      return {b, s:blendShare(giMonthShare(b, ym, x.rev, base), qimaiShare(b, ym))}; });
+    const sum=sh.reduce((a,x)=>a+x.s,0), k=sum>1?1/sum:1;
+    out=sh.map(x=>({b:x.b, v:tot*x.s*k}));
+  }
+  return out.sort((a,c)=>c.v-a.v);
+}
+function monthSVG(label, months, gmax, x0, x1){
+  const usd = state.dataSource==="st" || state.dataSource==="qimai", cnMode = state.dataSource==="cn";
+  const fmt = usd ? fmtUSD : cnMode ? fmtCNY : G;
+  const W=760,H=470,ML=58,MR=16,MT=18,MB=28, pW=W-ML-MR, pH=H-MT-MB, base=MT+pH;
+  const xOf=ym=>ML+((Date.UTC(+ym.slice(0,4), +ym.slice(5,7)-1, 15)-x0)/(x1-x0))*pW;
+  const yOf=v=>MT+(1-v/gmax)*pH;
+  const pts=months.map(ym=>({x:xOf(ym), y:yOf(monthVal(ym)), ym}));
+  const grid=((usd||cnMode)?usdTicks(gmax):ticks(gmax,state.bracket||0)).map(t=>{const y=yOf(t);
+    return `<line class="grid" x1="${ML}" y1="${y.toFixed(1)}" x2="${W-MR}" y2="${y.toFixed(1)}"/>`+
+           `<text class="axislbl" x="${ML-6}" y="${(y+3).toFixed(1)}" text-anchor="end">${fmt(t)}</text>`;}).join("");
+  const xt=xAxisTicks(x0,x1).map(tk=>`<text class="axislbl" x="${(ML+tk.frac*pW).toFixed(1)}" y="${H-8}" text-anchor="middle">${tk.t||""}</text>`).join("");
+  const line=pts.map((p,i)=>(i?"L":"M")+p.x.toFixed(1)+" "+p.y.toFixed(1)).join(" ");
+  const area=`M${pts[0].x.toFixed(1)} ${base} `+pts.map(p=>"L"+p.x.toFixed(1)+" "+p.y.toFixed(1)).join(" ")+` L${pts[pts.length-1].x.toFixed(1)} ${base} Z`;
+  const acc=GAME_ACCENT[state.tag];
+  // a wide transparent hit circle under each dot, so a month is easy to hover
+  const marks=pts.map(p=>{ const a=`data-period="month" data-key="${p.ym}" data-mtip="${p.ym}"`;
+    return `<circle class="mhit" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="16" ${a}/>`+
+      `<circle class="dot mdot" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="6" fill="${acc}" ${a}/>`; }).join("");
+  return `<svg class="gsvg" viewBox="0 0 ${W} ${H}" role="img">
+    ${grid}<path class="area" d="${area}"/><path class="line" d="${line}"/>${marks}${xt}</svg>`;
+}
+function renderMonthGraph(){
+  const money = state.dataSource!=="gamei";
+  const srcLbl = state.dataSource==="st" ? "Sensor Tower" : state.dataSource==="cn" ? "CN" : state.dataSource==="qimai" ? "Qimai" : "game-i";
+  let months=graphMonths().filter(ym=>monthVal(ym)>0);
+  if(state.graphYear!=="all") months=months.filter(ym=>ym.slice(0,4)===state.graphYear);
+  if(!months.length){
+    $("#chart").innerHTML=`<div class="noresults">No ${srcLbl} monthly data to chart for <b>${esc(state.data.name)}</b> in this range.</div>`;
+    return;
+  }
+  const top=Math.max(...months.map(monthVal));
+  const sharedMax = money ? usdTop(top) : roundTop(top, false);
+  const groups={}; months.forEach(ym=>(groups[ym.slice(0,4)]=groups[ym.slice(0,4)]||[]).push(ym));
+  let keys=Object.keys(groups).sort();
+  if(!state.reverse) keys.reverse();
+  $("#chart").innerHTML=keys.map(k=>{
+    const ms=groups[k], peak=Math.max(...ms.map(monthVal));
+    const gmax=state.matchHigh ? (money?usdTop(peak):roundTop(peak,true)) : sharedMax;
+    const sum=ms.reduce((a,ym)=>a+monthVal(ym),0);
+    const fmt = state.dataSource==="st"||state.dataSource==="qimai" ? fmtUSD : state.dataSource==="cn" ? fmtCNY : G;
+    return `<div class="gyear"><div class="yhead">${esc(k)} <span class="yhead-sub">${fmt(sum)}</span></div>${monthSVG(k, ms, gmax, Date.UTC(+k,0,1), Date.UTC(+k+1,0,1))}</div>`;
+  }).join("");
+}
+function showMonthTip(ym, e){
+  const usd = state.dataSource==="st"||state.dataSource==="qimai", fmt = usd ? fmtUSD : state.dataSource==="cn" ? fmtCNY : G;
+  const srcLbl = state.dataSource==="st" ? "Sensor Tower · combined" : state.dataSource==="cn" ? "CN ranking · global"
+    : state.dataSource==="qimai" ? "Qimai · China iPhone" : ((state.data.monthly||{})[ym]!=null ? "game-i monthly · 月次売上予測" : "game-i · from daily ranks");
+  const list=monthBanners(ym), shown=list.slice(0,8);
+  const est = state.dataSource==="st"||state.dataSource==="cn";
+  const rows=shown.map(x=>`<li><span class="dot" style="background:${barColor(x.b)}"></span><span class="mt-nm">${esc(bLabel(x.b))}${x.b.rerun?` <span class="rr">↻</span>`:""}</span><b>${x.v>0?(est?"≈":"")+fmt(x.v):"—"}</b></li>`).join("");
+  tip.innerHTML=`<div class="body"><h4>${MONTHS[+ym.slice(5,7)-1]} ${ym.slice(0,4)}</h4>
+    <dl><dt>${esc(srcLbl)}</dt><dd><b>${fmt(monthVal(ym))}</b></dd></dl>
+    ${list.length?`<ul class="mtip-list">${rows}</ul>${list.length>8?`<div class="mtip-more">+${list.length-8} more</div>`:""}`
+      :`<div class="mtip-more">No listed banner ran this month</div>`}
+    ${est&&list.length?`<div class="mtip-more">Banner figures split the month by each one's game-i + Qimai share — an estimate</div>`:""}
+    <div class="tiphint">▸ Click for the month's breakdown</div></div>`;
+  tip.hidden=false; place(tip,e);
+}
+$("#gUnitWrap").querySelectorAll("[data-gunit]").forEach(btn=>btn.onclick=()=>{
+  if(state.graphUnit===btn.dataset.gunit) return;
+  state.graphUnit=btn.dataset.gunit;
+  $("#gUnitWrap").querySelectorAll("[data-gunit]").forEach(x=>x.classList.toggle("on",x===btn));
+  populateGraphYears();
+  if(!state.table) render();
+});
 function populateGraphYears(){
   if(state.graphDim==="version" && !hasVersions(state.tag)) state.graphDim="year";   // game has no versions
   // the Year/Version filter toggle only appears for version-based games
   const gd=$("#gdim");
-  gd.hidden=!hasVersions(state.tag);
+  gd.hidden=!hasVersions(state.tag) || state.graphUnit==="month";
   gd.querySelectorAll("button").forEach(b=>b.classList.toggle("on",b.dataset.dim===state.graphDim));
   // the "by Version" view button is likewise game-specific
   $("#bVersion").hidden=!hasVersions(state.tag);
   if(state.mode==="version" && !hasVersions(state.tag)) setMode("time");
-  const vals = state.graphDim==="version"
+  if(state.graphUnit==="month") state.graphDim="year";
+  const vals = state.graphUnit==="month" ? [...new Set(graphMonths().map(ym=>ym.slice(0,4)))].sort()
+    : state.graphDim==="version"
     ? [...new Set(state.data.banners.map(versionOf).filter(Boolean))].sort()
     : [...new Set(state.data.banners.map(b=>b.year))].sort().map(String);
   if(state.graphYear!=="all" && !vals.includes(state.graphYear)) state.graphYear="all";
@@ -1863,7 +1967,9 @@ function noResultsHTML(){
 function updateControlVis(){
   const m=state.mode, period=isPeriodMode(m);
   $("#graphControls").hidden = false;
-  $("#gfilter").hidden   = state.table || period || state.mode==="agree";   // Year/Version graph filter: timeline/graph/ranking only (not Sources)
+  $("#gfilter").hidden   = state.table || period || state.mode==="agree";
+  $("#gUnitWrap").hidden = state.table || state.mode!=="graph";            // Graph: by banner or by month
+  $("#gdim").hidden = !hasVersions(state.tag) || (state.mode==="graph" && state.graphUnit==="month");   // months group by year only   // Year/Version graph filter: timeline/graph/ranking only (not Sources)
   $("#bSortWrap").hidden  = state.table || !(period || state.mode==="agree");        // period-card sort dropdown: by-Year/Month/Version only
   $("#agModeWrap").hidden = state.table || state.mode!=="agree";   // Sources month/banner toggle: Sources view only
   // Ranking view: Single revenue (one money source) or a scored ranking (Total revenue /
@@ -1907,7 +2013,7 @@ function render(){
   $("#cnnote").hidden = !(showNote && state.dataSource==="cn");
   if($("#qmnote")) $("#qmnote").hidden = !(showNote && state.dataSource==="qimai");
   if(state.table){ buildTable(); return; }
-  if(state.mode==="graph"){ renderGraph(); return; }
+  if(state.mode==="graph"){ state.graphUnit==="month" ? renderMonthGraph() : renderGraph(); return; }
   if(state.mode==="year"){ renderYearly(); return; }
   if(state.mode==="month"){ renderMonthly(); return; }
   if(state.mode==="version"){ renderVersions(); return; }
@@ -2689,6 +2795,7 @@ function showTip(b,e){
 }
 $("#chart").addEventListener("pointermove",e=>{
   if(e.pointerType==="touch"){ tip.hidden=true; return; }   // touch: a tap opens the full modal instead of a hover card
+  const mo=e.target.closest("[data-mtip]"); if(mo){ showMonthTip(mo.dataset.mtip,e); return; }
   const el=e.target.closest("[data-i]"); if(!el){tip.hidden=true;return;}
   showTip(state.data.banners[+el.dataset.i],e);
 });
