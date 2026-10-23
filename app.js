@@ -3,7 +3,7 @@ const GAME_ACCENT = {          // per-game hue (used for bars/dots without a sam
   zzz:"#e0a400", hsr:"#8a7bd8", wuwa:"#2fb6c0", genshin:"#d8a24a", endfield:"#e07b3a", nte:"#d94f8a",
   uma:"#3fb98f", stellasora:"#5aa9e6", czn:"#d2463c", lads:"#b87ee6",
 };
-const state = { revMode:"daily", games:[], tag:null, data:null, reported:null, cn:null, qimai:null, mode:"time", table:false, reverse:false, bracket:0, graphYear:"all", graphDim:"year", graphUnit:"banner", graphLayout:"separate", graphYearsSel:[], matchHigh:true, monthYear:"all", periodSort:"timeline", dataSource:"gamei", search:"", agreeMode:"month", compare:{picks:[], sources:{}, chart:"jp"} };
+const state = { revMode:"daily", games:[], tag:null, data:null, reported:null, cn:null, qimai:null, mode:"time", table:false, reverse:false, bracket:0, graphDim:"year", graphUnit:"banner", graphLayout:"separate", graphMStyle:"columns", graphYearsSel:[], matchHigh:true, monthYear:"all", periodSort:"timeline", dataSource:"gamei", search:"", agreeMode:"month", compare:{picks:[], sources:{}, chart:"jp"} };
 
 // Major game-version (X.0) launch dates, JST — used to bucket banners into 1.X / 2.X
 // groups. Only version-based games have these; sourced from each game's official
@@ -1043,10 +1043,9 @@ function searchMatch(b){ const q=normSearch(state.search); if(!q) return true;
   const t=normSearch(bannerText(b)); return q.split(" ").every(w=>t.includes(w)); }
 function searching(){ return !!(state.search||"").trim(); }
 function poolBanners(){
-  const b=state.data.banners;
-  if(state.graphYear==="all") return b;
-  if(state.graphDim==="version") return b.filter(x=>versionOf(x)===state.graphYear);
-  return b.filter(x=>String(x.year)===state.graphYear);
+  const b=state.data.banners, sel=state.graphYearsSel||[];
+  if(!sel.length) return b;                       // none picked = every year / version
+  return b.filter(x=>sel.includes(state.graphDim==="version" ? versionOf(x) : String(x.year)));
 }
 
 // ---- avatars ----
@@ -1762,51 +1761,66 @@ const RR_HEAD = "M 0.568 -0.915 L 0.122 -0.689 L 0.226 -1.280 Z";
 
 // ---- graph view (one line chart per year OR per version) ----
 function graphVal(b){ return srcVal(b); }
-function groupSVG(label, items, gmax, step, x0, x1){
+// One chart over one or more SEGMENTS laid side by side — a year / version each ({key, x0, x1,
+// items}). Per year = one segment per chart; Timeline = every chosen year in a row, each given
+// width in proportion to its span, so the chart always fits and the years are marked off.
+function segLayout(segs, ML, pW){
+  const tot=segs.reduce((a,s)=>a+(s.x1-s.x0),0); let acc=0;
+  return segs.map(s=>{ const w=(s.x1-s.x0)/tot*pW, o={...s, px:ML+acc, pw:w}; acc+=w; return o; });
+}
+// segment dividers + labels: one segment keeps its month ticks; several get their year / version
+// names under them and a hairline between
+function segAxis(L, H, MT){
+  if(L.length===1){ const s=L[0];
+    return xAxisTicks(s.x0,s.x1).map(tk=>`<text class="axislbl" x="${(s.px+tk.frac*s.pw).toFixed(1)}" y="${H-8}" text-anchor="middle">${tk.t||""}</text>`).join(""); }
+  return L.map((s,i)=>(i?`<line class="ysep" x1="${s.px.toFixed(1)}" y1="${MT-8}" x2="${s.px.toFixed(1)}" y2="${H-4}"/>`:"")
+    + `<text class="axislbl yl" x="${(s.px+s.pw/2).toFixed(1)}" y="${H-8}" text-anchor="middle">${esc(s.key)}</text>`).join("");
+}
+// an avatar point: the banner/character icon in a ring of its colour (dot when it has no art)
+function avatarPoint(cx, cy, R, b, attrs, gid){
+  const url=(b.icons&&b.icons[0])||b.banner_img, acc=barColor(b);
+  if(!url) return `<circle class="dot${b._synthetic?" syndot":""}" cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="${Math.max(4,R*0.42).toFixed(1)}" fill="${acc}" ${attrs}/>`;
+  const id=`clip_${gid}`;
+  return `<clipPath id="${id}"><circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="${R}"/></clipPath>`+
+    `<image href="${esc(url)}" x="${(cx-R).toFixed(1)}" y="${(cy-R).toFixed(1)}" width="${2*R}" height="${2*R}" `+
+    `preserveAspectRatio="xMidYMid slice" clip-path="url(#${id})" ${attrs}/>`+
+    `<circle class="gring" cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="${R}" fill="none" stroke="${acc}" ${attrs}/>`;
+}
+function groupSVG(segs, gmax, step){
   const usd = state.dataSource==="st" || state.dataSource==="qimai", cnMode = state.dataSource==="cn";
   const fmt = usd ? fmtUSD : cnMode ? fmtCNY : G;
   const W=760,H=470,ML=58,MR=16,MT=18,MB=28, pW=W-ML-MR, pH=H-MT-MB, base=MT+pH;
-  const xOf=d=>ML+((Date.parse(d)-x0)/(x1-x0))*pW;
-  const yOf=v=>MT+(1-v/gmax)*pH;
-  const pts=[...items].sort((a,b)=>a.start.localeCompare(b.start)).map(b=>({x:xOf(b.start),y:yOf(graphVal(b)),b}));
+  const L=segLayout(segs, ML, pW), yOf=v=>MT+(1-v/gmax)*pH;
+  const pts=L.flatMap(s=>s.items.map(b=>({x:s.px+((Date.parse(b.start)-s.x0)/(s.x1-s.x0))*s.pw, y:yOf(graphVal(b)), b})))
+    .sort((a,c)=>a.b.start.localeCompare(c.b.start));
+  // avatars shrink as a timeline gets crowded, never below a readable 7px
+  const R = L.length===1 ? 15 : Math.max(7, Math.min(15, pW/Math.max(1,pts.length)*1.1));
   const grid=((usd||cnMode)?usdTicks(gmax):ticks(gmax,step)).map(t=>{const y=yOf(t);
     return `<line class="grid" x1="${ML}" y1="${y.toFixed(1)}" x2="${W-MR}" y2="${y.toFixed(1)}"/>`+
            `<text class="axislbl" x="${ML-6}" y="${(y+3).toFixed(1)}" text-anchor="end">${fmt(t)}</text>`;}).join("");
-  const xt=xAxisTicks(x0,x1).map(tk=>{const x=ML+tk.frac*pW;
-    return `<text class="axislbl" x="${x.toFixed(1)}" y="${H-8}" text-anchor="middle">${tk.t||""}</text>`;}).join("");
   const line=pts.map((p,i)=>(i?"L":"M")+p.x.toFixed(1)+" "+p.y.toFixed(1)).join(" ");
   const area=`M${pts[0].x.toFixed(1)} ${base} `+pts.map(p=>"L"+p.x.toFixed(1)+" "+p.y.toFixed(1)).join(" ")+` L${pts[pts.length-1].x.toFixed(1)} ${base} Z`;
-  const R=15, gid=String(label).replace(/\W/g,"");
+  const gid=Math.random().toString(36).slice(2,8);
   const marks=pts.map(p=>{
-    const acc=barColor(p.b);
-    const url=(p.b.icons&&p.b.icons[0])||p.b.banner_img;
-    const cx=p.x.toFixed(1), cy=p.y.toFixed(1);
-    // rerun badge, top-right of the avatar: the same ↻ the row/card/peer chips use,
-    // on the 45° diagonal so it clears the ring without covering the face. Carries
-    // data-i like the image and ring, so clicking it opens the banner too.
-    const bx=(p.x+R*0.72).toFixed(1), by=(p.y-R*0.72).toFixed(1);
-    const br=R*0.38;
+    // rerun badge, top-right of the avatar: the same ↻ the row/card/peer chips use, on the 45°
+    // diagonal so it clears the ring without covering the face; it carries data-i too
+    const bx=(p.x+R*0.72).toFixed(1), by=(p.y-R*0.72).toFixed(1), br=R*0.38;
     const rr=p.b.rerun
       ? `<g class="g-rr" data-i="${p.b._i}"><title>Rerun banner</title>`
         + `<circle cx="${bx}" cy="${by}" r="${br.toFixed(2)}"/>`
         + `<g transform="translate(${bx} ${by}) scale(${(br*0.60).toFixed(3)})">`
         + `<path class="rr-arc" d="${RR_ARC}"/><path class="rr-head" d="${RR_HEAD}"/></g></g>` : "";
-    if(url){
-      const id=`clip_${gid}_${p.b._i}`;
-      return `<clipPath id="${id}"><circle cx="${cx}" cy="${cy}" r="${R}"/></clipPath>`+
-        `<image href="${esc(url)}" x="${(p.x-R).toFixed(1)}" y="${(p.y-R).toFixed(1)}" width="${2*R}" height="${2*R}" `+
-        `preserveAspectRatio="xMidYMid slice" clip-path="url(#${id})" data-i="${p.b._i}"/>`+
-        `<circle class="gring" cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="${acc}" data-i="${p.b._i}"/>`+rr;
-    }
-    return `<circle class="dot${p.b._synthetic?" syndot":""}" data-i="${p.b._i}" cx="${cx}" cy="${cy}" r="6" fill="${acc}"/>`+rr;
+    return avatarPoint(p.x, p.y, R, p.b, `data-i="${p.b._i}"`, `${gid}_${p.b._i}`)+rr;
   }).join("");
-  return `<svg class="gsvg" viewBox="0 0 ${W} ${H}" role="img">
-    ${grid}<path class="area" d="${area}"/><path class="line" d="${line}"/>${marks}${xt}</svg>`;
+  return `<svg class="gsvg${L.length>1?" gtl":""}" viewBox="0 0 ${W} ${H}" role="img">
+    ${grid}<path class="area" d="${area}"/><path class="line" d="${line}"/>${marks}${segAxis(L,H,MT)}</svg>`;
 }
+// Per year = a chart per year (or version); Timeline = the chosen ones side by side in ONE chart
+function graphTimeline(){ return state.graphLayout==="together"; }
 function renderGraph(){
   state.data.banners.forEach((x,i)=>x._i=i);
-  const st = state.dataSource==="st", money = state.dataSource!=="gamei";
-  const srcLbl = st ? "Sensor Tower" : state.dataSource==="cn" ? "CN" : state.dataSource==="qimai" ? "Qimai" : "";
+  const money = state.dataSource!=="gamei";
+  const srcLbl = state.dataSource==="st" ? "Sensor Tower" : state.dataSource==="cn" ? "CN" : state.dataSource==="qimai" ? "Qimai" : "";
   let pool = poolBanners();                     // graph ignores the character search entirely
   if(money) pool = pool.filter(b=>graphVal(b)>0);  // money layers: only banners that source actually covers
   if(!pool.length){
@@ -1818,13 +1832,17 @@ function renderGraph(){
   const sharedMax = money ? usdTop(Math.max(...pool.map(graphVal))) : roundTop(Math.max(...pool.map(x=>x.rev)), false);
   const groups={}; pool.forEach(x=>{ const k=groupKey(x); (groups[k]=groups[k]||[]).push(x); });
   let keys=Object.keys(groups).sort();
+  const seg=k=>{ const [x0,x1]=groupRange(k, groups[k]); return {key:k, x0, x1, items:groups[k]}; };
+  if(graphTimeline()){
+    const label = keys.length>1 ? `${keys[0]} – ${keys[keys.length-1]}` : keys[0];
+    $("#chart").innerHTML=`<div class="gyear"><div class="yhead">${esc(label)}</div>${groupSVG(keys.map(seg), sharedMax, state.bracket||0)}</div>`;
+    return;
+  }
   if(!state.reverse) keys.reverse();           // newest group first by default
   $("#chart").innerHTML=keys.map(k=>{
-    const items=groups[k];
-    const peak=Math.max(...items.map(graphVal));
+    const peak=Math.max(...groups[k].map(graphVal));
     const gmax=state.matchHigh ? (money?usdTop(peak):roundTop(peak,true)) : sharedMax;
-    const [x0,x1]=groupRange(k, items);
-    return `<div class="gyear"><div class="yhead">${esc(k)}</div>${groupSVG(k,items,gmax,state.bracket||0,x0,x1)}</div>`;
+    return `<div class="gyear"><div class="yhead">${esc(k)}</div>${groupSVG([seg(k)],gmax,state.bracket||0)}</div>`;
   }).join("");
 }
 // ---- graph by MONTH: the same per-year line chart, one point per month — the month's total
@@ -1871,48 +1889,83 @@ function colPath(x, w, y, base){
   return `M${x.toFixed(1)} ${base} V${(y+r).toFixed(1)} Q${x.toFixed(1)} ${y.toFixed(1)} ${(x+r).toFixed(1)} ${y.toFixed(1)}`
     + ` H${(x+w-r).toFixed(1)} Q${(x+w).toFixed(1)} ${y.toFixed(1)} ${(x+w).toFixed(1)} ${(y+r).toFixed(1)} V${base} Z`;
 }
-// Monthly revenue as columns, the way revenue dashboards draw it. Separate: one Jan–Dec chart
-// per year. Timeline (`tl`): every chosen month side by side on ONE axis, shrunk to fit the
-// width, each year marked off. A whole month slot is the hover / click target.
-function monthSVG(months, gmax, tl){
-  const usd = state.dataSource==="st" || state.dataSource==="qimai", cnMode = state.dataSource==="cn", fmt=monthFmt();
-  const W=760, H=tl?330:300, ML=58, MR=12, MT=22, MB=tl?38:26, pW=W-ML-MR, pH=H-MT-MB, base=MT+pH;
-  const n = tl ? months.length : 12, slot=pW/n, bw=Math.max(2, Math.min(24, slot*0.66));
-  const idx = ym => tl ? months.indexOf(ym) : +ym.slice(5,7)-1;
-  const yOf=v=>MT+(1-v/gmax)*pH, cur=new Date().toISOString().slice(0,7);
-  const grid=((usd||cnMode)?usdTicks(gmax):ticks(gmax,state.bracket||0)).map(t=>{const y=yOf(t);
-    return `<line class="grid" x1="${ML}" y1="${y.toFixed(1)}" x2="${W-MR}" y2="${y.toFixed(1)}"/>`+
-           `<text class="axislbl" x="${ML-8}" y="${(y+3).toFixed(1)}" text-anchor="end">${fmt(t)}</text>`;}).join("");
-  // x labels: Jan–Dec (Separate); on the timeline month initials where they fit, the year under
-  // its months and a hairline where a new year starts
+// the month's banners as stack pieces, biggest at the bottom, in each banner's own colour; what
+// no banner accounts for (game-i's month above its listed banners) is a neutral piece on top
+function monthStack(ym){
+  const tot=monthVal(ym), list=monthBanners(ym).filter(x=>x.v>0);
+  const sum=list.reduce((a,x)=>a+x.v,0), k=sum>tot&&sum>0 ? tot/sum : 1;
+  const parts=list.map(x=>({b:x.b, v:x.v*k}));
+  const rest=tot-parts.reduce((a,x)=>a+x.v,0);
+  if(rest>tot*0.02) parts.push({b:null, v:rest});
+  return parts;
+}
+// x layout shared by both monthly styles: Per year = 12 Jan–Dec slots; Timeline = one slot per
+// chosen month, side by side, shrunk to fit, years labelled under their months
+function monthAxis(months, tl, ML, pW, H, MT){
+  const n=tl?months.length:12, slot=pW/n, idx=ym=>tl?months.indexOf(ym):+ym.slice(5,7)-1;
   let xt="", seps="";
   if(!tl) xt=MONTHS.map((m,i)=>`<text class="axislbl" x="${(ML+(i+.5)*slot).toFixed(1)}" y="${H-8}" text-anchor="middle">${m}</text>`).join("");
   else {
-    const showM=slot>=13;
     months.forEach((ym,i)=>{ const x=ML+(i+.5)*slot;
-      if(showM) xt+=`<text class="axislbl mi" x="${x.toFixed(1)}" y="${H-24}" text-anchor="middle">${MONTHS[+ym.slice(5,7)-1][0]}</text>`;
+      if(slot>=13) xt+=`<text class="axislbl mi" x="${x.toFixed(1)}" y="${H-24}" text-anchor="middle">${MONTHS[+ym.slice(5,7)-1][0]}</text>`;
       if(i && ym.slice(0,4)!==months[i-1].slice(0,4)) seps+=`<line class="ysep" x1="${(ML+i*slot).toFixed(1)}" y1="${MT-8}" x2="${(ML+i*slot).toFixed(1)}" y2="${H-4}"/>`; });
-    const yrs=[...new Set(months.map(ym=>ym.slice(0,4)))];
-    yrs.forEach(y=>{ const ii=months.map((ym,i)=>ym.startsWith(y)?i:-1).filter(i=>i>=0);
-      const x=ML+((ii[0]+ii[ii.length-1])/2+.5)*slot;
-      xt+=`<text class="axislbl yl" x="${x.toFixed(1)}" y="${H-7}" text-anchor="middle">${y}</text>`; });
+    [...new Set(months.map(ym=>ym.slice(0,4)))].forEach(y=>{ const ii=months.map((ym,i)=>ym.startsWith(y)?i:-1).filter(i=>i>=0);
+      xt+=`<text class="axislbl yl" x="${(ML+((ii[0]+ii[ii.length-1])/2+.5)*slot).toFixed(1)}" y="${H-7}" text-anchor="middle">${y}</text>`; });
   }
-  const vals=months.map(monthVal), pk=months[vals.indexOf(Math.max(...vals))], last=months[months.length-1];
-  const cols=months.map(ym=>{ const i=idx(ym), v=monthVal(ym), x=ML+i*slot, y=yOf(v);
-    const a=`data-mtip="${ym}" data-period="month" data-key="${ym}"`;
-    return `<g class="mcol${ym===cur?" partial":""}" ${a}><rect class="mslot" x="${x.toFixed(1)}" y="${MT}" width="${slot.toFixed(1)}" height="${pH}"/>`
-      + `<path class="mbar" d="${colPath(x+(slot-bw)/2, bw, y, base)}"/></g>`; }).join("");
-  // label only the peak and (Separate) the latest month — never every column
-  const lab=ym=>{ const x=ML+(idx(ym)+.5)*slot, y=yOf(monthVal(ym));
-    return `<text class="mlabel${ym===pk?" pk":""}" x="${x.toFixed(1)}" y="${(y-6).toFixed(1)}" text-anchor="middle">${fmt(monthVal(ym))}</text>`; };
-  const labels = lab(pk) + (!tl && last!==pk ? lab(last) : "");
-  return `<svg class="gsvg msvg${tl?" mtl":""}" viewBox="0 0 ${W} ${H}" role="img">
-    ${grid}${seps}${cols}<line class="mbase" x1="${ML}" y1="${base}" x2="${W-MR}" y2="${base}"/>${labels}${xt}</svg>`;
+  return {slot, idx, xt, seps};
 }
-// the years the Monthly graph shows: every year (none picked) or the picked ones
+function monthGrid(gmax, yOf, ML, W, MR){
+  const usd = state.dataSource==="st" || state.dataSource==="qimai", cnMode = state.dataSource==="cn", fmt=monthFmt();
+  return ((usd||cnMode)?usdTicks(gmax):ticks(gmax,state.bracket||0)).map(t=>{const y=yOf(t);
+    return `<line class="grid" x1="${ML}" y1="${y.toFixed(1)}" x2="${W-MR}" y2="${y.toFixed(1)}"/>`+
+           `<text class="axislbl" x="${ML-8}" y="${(y+3).toFixed(1)}" text-anchor="end">${fmt(t)}</text>`;}).join("");
+}
+// COLUMNS: each month a column split into its banners (colours of the banners themselves), the
+// leading banner's icon on top; the current, unfinished month is lighter
+function monthSVG(months, gmax, tl){
+  const fmt=monthFmt(), W=760, H=tl?350:330, ML=58, MR=12, MT=34, MB=tl?38:26, pW=W-ML-MR, pH=H-MT-MB, base=MT+pH;
+  const yOf=v=>MT+(1-v/gmax)*pH, cur=new Date().toISOString().slice(0,7), gid=Math.random().toString(36).slice(2,8);
+  const {slot, idx, xt, seps}=monthAxis(months, tl, ML, pW, H, MT);
+  const bw=Math.max(3, Math.min(26, slot*0.68)), R=Math.min(11, bw*0.5);
+  const vals=months.map(monthVal), pk=months[vals.indexOf(Math.max(...vals))], last=months[months.length-1];
+  let labels="";
+  const cols=months.map(ym=>{
+    const i=idx(ym), x=ML+i*slot+(slot-bw)/2, parts=monthStack(ym), a=`data-mtip="${ym}" data-period="month" data-key="${ym}"`;
+    let y=base, segs="";
+    parts.forEach((p,j)=>{ const h=p.v/gmax*pH, top=y-h, gap=j? 1.5 : 0, isTop=j===parts.length-1;
+      const fill=p.b?barColor(p.b):"var(--muted)";
+      segs += isTop ? `<path class="mseg${p.b?"":" mrest"}" style="fill:${fill}" d="${colPath(x, bw, top, y-gap)}"/>`
+                    : `<rect class="mseg${p.b?"":" mrest"}" style="fill:${fill}" x="${x.toFixed(1)}" y="${top.toFixed(1)}" width="${bw.toFixed(1)}" height="${Math.max(0,h-gap).toFixed(1)}"/>`;
+      y=top; });
+    const lead=parts.find(p=>p.b), cx=x+bw/2, ic = lead && R>=5 ? avatarPoint(cx, y-R-3, R, lead.b, "", `${gid}_${i}`) : "";
+    if(ym===pk || (!tl && ym===last)) labels+=`<text class="mlabel${ym===pk?" pk":""}" x="${cx.toFixed(1)}" y="${(y-(ic?2*R+9:6)).toFixed(1)}" text-anchor="middle">${fmt(monthVal(ym))}</text>`;
+    return `<g class="mcol${ym===cur?" partial":""}" ${a}><rect class="mslot" x="${(ML+i*slot).toFixed(1)}" y="${MT-30}" width="${slot.toFixed(1)}" height="${pH+30}"/>${segs}${ic}</g>`;
+  }).join("");
+  return `<svg class="gsvg msvg${tl?" mtl":""}" viewBox="0 0 ${W} ${H}" role="img">
+    ${monthGrid(gmax,yOf,ML,W,MR)}${seps}${cols}<line class="mbase" x1="${ML}" y1="${base}" x2="${W-MR}" y2="${base}"/>${labels}${xt}</svg>`;
+}
+// POINTS: the banner graph's look — a line through the months, each point the month's leading
+// banner's icon in its colour ring
+function monthPointsSVG(months, gmax, tl){
+  const fmt=monthFmt(), W=760, H=tl?440:430, ML=58, MR=16, MT=24, MB=tl?38:26, pW=W-ML-MR, pH=H-MT-MB, base=MT+pH;
+  const yOf=v=>MT+(1-v/gmax)*pH, gid=Math.random().toString(36).slice(2,8);
+  const {slot, idx, xt, seps}=monthAxis(months, tl, ML, pW, H, MT);
+  const R=Math.max(7, Math.min(15, slot*0.42));
+  const pts=months.map(ym=>({ym, x:ML+(idx(ym)+.5)*slot, y:yOf(monthVal(ym)), lead:monthBanners(ym)[0]}));
+  const line=pts.map((p,i)=>(i?"L":"M")+p.x.toFixed(1)+" "+p.y.toFixed(1)).join(" ");
+  const area=`M${pts[0].x.toFixed(1)} ${base} `+pts.map(p=>"L"+p.x.toFixed(1)+" "+p.y.toFixed(1)).join(" ")+` L${pts[pts.length-1].x.toFixed(1)} ${base} Z`;
+  const pk=pts.reduce((a,c)=>monthVal(c.ym)>monthVal(a.ym)?c:a);
+  const marks=pts.map((p,i)=>{ const a=`data-mtip="${p.ym}" data-period="month" data-key="${p.ym}"`;
+    return `<g class="mpt" ${a}><rect class="mslot" x="${(ML+idx(p.ym)*slot).toFixed(1)}" y="${MT}" width="${slot.toFixed(1)}" height="${pH}"/>`
+      + (p.lead ? avatarPoint(p.x, p.y, R, p.lead.b, "", `${gid}_${i}`) : `<circle class="dot" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="5" fill="var(--accent)"/>`) + `</g>`; }).join("");
+  const lab=`<text class="mlabel pk" x="${pk.x.toFixed(1)}" y="${(pk.y-R-6).toFixed(1)}" text-anchor="middle">${fmt(monthVal(pk.ym))}</text>`;
+  return `<svg class="gsvg msvg${tl?" mtl":""}" viewBox="0 0 ${W} ${H}" role="img">
+    ${monthGrid(gmax,yOf,ML,W,MR)}${seps}<path class="area" d="${area}"/><path class="line" d="${line}"/>${marks}${lab}${xt}</svg>`;
+}
+// the years the graph shows: every one (none picked) or the picked ones
 function monthYearsShown(all){ const p=(state.graphYearsSel||[]).filter(y=>all.includes(y)); return p.length?p:all; }
 function renderMonthGraph(){
-  const money = state.dataSource!=="gamei", fmt=monthFmt();
+  const money = state.dataSource!=="gamei", fmt=monthFmt(), draw = state.graphMStyle==="points" ? monthPointsSVG : monthSVG;
   const srcLbl = state.dataSource==="st" ? "Sensor Tower" : state.dataSource==="cn" ? "CN" : state.dataSource==="qimai" ? "Qimai" : "game-i";
   const all=graphMonths().filter(ym=>monthVal(ym)>0), allYears=[...new Set(all.map(ym=>ym.slice(0,4)))].sort();
   const years=monthYearsShown(allYears), months=all.filter(ym=>years.includes(ym.slice(0,4)));
@@ -1923,16 +1976,16 @@ function renderMonthGraph(){
   const byY={}; months.forEach(ym=>(byY[ym.slice(0,4)]=byY[ym.slice(0,4)]||[]).push(ym));
   const top=Math.max(...months.map(monthVal)), sharedMax = money ? usdTop(top) : roundTop(top, false);
   const sum=ms=>ms.reduce((a,ym)=>a+monthVal(ym),0);
-  if(state.graphLayout==="together"){
+  if(graphTimeline()){
     const ys=Object.keys(byY).sort();
-    $("#chart").innerHTML=`<div class="gyear"><div class="yhead">${ys.length>1?`${ys[0]}–${ys[ys.length-1]}`:ys[0]} <span class="yhead-sub">${fmt(sum(months))}</span></div>`
-      + monthSVG(months, sharedMax, true) + `</div>`;
+    $("#chart").innerHTML=`<div class="gyear"><div class="yhead">${ys.length>1?`${ys[0]} – ${ys[ys.length-1]}`:ys[0]} <span class="yhead-sub">${fmt(sum(months))}</span></div>`
+      + draw(months, sharedMax, true) + `</div>`;
     return;
   }
   let keys=Object.keys(byY).sort(); if(!state.reverse) keys.reverse();
   $("#chart").innerHTML=keys.map(y=>{
     const peak=Math.max(...byY[y].map(monthVal)), gmax=state.matchHigh ? (money?usdTop(peak):roundTop(peak,true)) : sharedMax;
-    return `<div class="gyear"><div class="yhead">${esc(y)} <span class="yhead-sub">${fmt(sum(byY[y]))}</span></div>${monthSVG(byY[y], gmax, false)}</div>`;
+    return `<div class="gyear"><div class="yhead">${esc(y)} <span class="yhead-sub">${fmt(sum(byY[y]))}</span></div>${draw(byY[y], gmax, false)}</div>`;
   }).join("");
 }
 // a banner's tooltip row: its icon, its name with the English one under it, its part of the month
@@ -1970,45 +2023,38 @@ $("#gLayoutWrap").querySelectorAll("[data-glayout]").forEach(btn=>btn.onclick=()
 });
 function populateGraphYears(){
   if(state.graphDim==="version" && !hasVersions(state.tag)) state.graphDim="year";   // game has no versions
-  // the Year/Version filter toggle only appears for version-based games
+  const monthly = state.mode==="graph" && state.graphUnit==="month";
+  // the Year/Version filter toggle only appears for version-based games (months go by year only)
   const gd=$("#gdim");
-  gd.hidden=!hasVersions(state.tag) || state.graphUnit==="month";
+  gd.hidden=!hasVersions(state.tag) || monthly;
   gd.querySelectorAll("button").forEach(b=>b.classList.toggle("on",b.dataset.dim===state.graphDim));
   // the "by Version" view button is likewise game-specific
   $("#bVersion").hidden=!hasVersions(state.tag);
   if(state.mode==="version" && !hasVersions(state.tag)) setMode("time");
-  if(state.graphUnit==="month") state.graphDim="year";
-  const vals = state.graphUnit==="month" ? [...new Set(graphMonths().map(ym=>ym.slice(0,4)))].sort()
+  const vals = monthly ? [...new Set(graphMonths().map(ym=>ym.slice(0,4)))].sort()
     : state.graphDim==="version"
     ? [...new Set(state.data.banners.map(versionOf).filter(Boolean))].sort()
     : [...new Set(state.data.banners.map(b=>b.year))].sort().map(String);
-  $("#gLayoutWrap").hidden = state.graphUnit!=="month";
-  if(state.graphUnit==="month"){
-    // Monthly: pick ANY years (none picked = all); in Together the chips are also the legend
-    const sel=(state.graphYearsSel=(state.graphYearsSel||[]).filter(y=>vals.includes(y)));
-    $("#gyears").innerHTML=`<button data-y="all"${!sel.length?' class="on"':''}>All</button>`+
-      vals.map(v=>`<button data-y="${esc(v)}"${sel.includes(v)?' class="on"':''}>${esc(v)}</button>`).join("");
-    $("#gyears").querySelectorAll("button").forEach(btn=>btn.onclick=()=>{
-      const y=btn.dataset.y, cur=state.graphYearsSel;
-      state.graphYearsSel = y==="all" ? [] : cur.includes(y) ? cur.filter(x=>x!==y) : [...cur, y].sort();
-      if(state.graphYearsSel.length===vals.length) state.graphYearsSel=[];   // every year picked = All
-      populateGraphYears();
-      if(!state.table) render();
-    });
-    return;
-  }
-  if(state.graphYear!=="all" && !vals.includes(state.graphYear)) state.graphYear="all";
-  $("#gyears").innerHTML=`<button data-y="all"${state.graphYear==="all"?' class="on"':''}>All</button>`+
-    vals.map(v=>`<button data-y="${esc(v)}"${state.graphYear===v?' class="on"':''}>${esc(v)}</button>`).join("");
+  // pick ANY years / versions (none picked = all) — one filter for the graph, timeline and ranking
+  const sel=(state.graphYearsSel=(state.graphYearsSel||[]).filter(y=>vals.includes(y)));
+  $("#gyears").innerHTML=`<button data-y="all"${!sel.length?' class="on"':''}>All</button>`+
+    vals.map(v=>`<button data-y="${esc(v)}"${sel.includes(v)?' class="on"':''}>${esc(v)}</button>`).join("");
   $("#gyears").querySelectorAll("button").forEach(btn=>btn.onclick=()=>{
-    state.graphYear=btn.dataset.y;
-    $("#gyears").querySelectorAll("button").forEach(x=>x.classList.toggle("on",x===btn));
+    const y=btn.dataset.y, cur=state.graphYearsSel;
+    state.graphYearsSel = y==="all" ? [] : cur.includes(y) ? cur.filter(x=>x!==y) : [...cur, y].sort();
+    if(state.graphYearsSel.length===vals.length) state.graphYearsSel=[];   // every one picked = All
+    populateGraphYears();
     if(!state.table) render();
   });
 }
 $("#gdim").querySelectorAll("button").forEach(btn=>btn.onclick=()=>{
-  state.graphDim=btn.dataset.dim; state.graphYear="all";
+  state.graphDim=btn.dataset.dim; state.graphYearsSel=[];
   populateGraphYears();
+  if(!state.table) render();
+});
+$("#gMStyleWrap").querySelectorAll("[data-gmstyle]").forEach(btn=>btn.onclick=()=>{
+  state.graphMStyle=btn.dataset.gmstyle;
+  $("#gMStyleWrap").querySelectorAll("[data-gmstyle]").forEach(x=>x.classList.toggle("on",x===btn));
   if(!state.table) render();
 });
 
@@ -2023,6 +2069,8 @@ function updateControlVis(){
   $("#graphControls").hidden = false;
   $("#gfilter").hidden   = state.table || period || state.mode==="agree";
   $("#gUnitWrap").hidden = state.table || state.mode!=="graph";            // Graph: by banner or by month
+  $("#gLayoutWrap").hidden = state.table || state.mode!=="graph";          // Graph: per year or one timeline
+  $("#gMStyleWrap").hidden = state.table || state.mode!=="graph" || state.graphUnit!=="month";   // Monthly: columns or points
   $("#gdim").hidden = !hasVersions(state.tag) || (state.mode==="graph" && state.graphUnit==="month");   // months group by year only   // Year/Version graph filter: timeline/graph/ranking only (not Sources)
   $("#bSortWrap").hidden  = state.table || !(period || state.mode==="agree");        // period-card sort dropdown: by-Year/Month/Version only
   $("#agModeWrap").hidden = state.table || state.mode!=="agree";   // Sources month/banner toggle: Sources view only
@@ -4813,6 +4861,7 @@ function setMode(m){
   [["bTime","time"],["bGraph","graph"],["bRank","rank"],["bYear","year"],["bMonth","month"],["bVersion","version"],["bAgree","agree"]].forEach(([id,mm])=>{
     const el=$("#"+id); el.classList.toggle("on",m===mm); el.setAttribute("aria-selected",m===mm);
   });
+  if(state.data) populateGraphYears();            // the year chips depend on the view (Monthly lists month years)
   updateControlVis();
   updateDirLabel();
   if(!state.table) render();

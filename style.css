@@ -326,12 +326,14 @@ tr.clk{cursor:pointer} tr.clk:hover td{background:var(--track)}
 .msvg .mbase{stroke:var(--base); stroke-width:1}
 .msvg .mslot{fill:transparent}
 .msvg .mcol{cursor:pointer}
-.msvg .mbar{fill:var(--accent); opacity:.85; transition:opacity .12s}
-.msvg .mcol.partial .mbar{opacity:.4}
-.msvg .mcol:hover .mslot{fill:var(--ink); fill-opacity:.05}
-.msvg .mcol:hover .mbar{opacity:1}
-.msvg .ysep{stroke:var(--grid); stroke-width:1}
-.msvg .axislbl.yl{fill:var(--ink2); font-weight:700; font-size:10.5px}
+.msvg .mseg{opacity:.9; transition:opacity .12s}
+.msvg .mseg.mrest{opacity:.35}                 /* the part of the month no banner accounts for */
+.msvg .mcol.partial .mseg{opacity:.45}
+.msvg .mcol:hover .mslot, .msvg .mpt:hover .mslot{fill:var(--ink); fill-opacity:.05}
+.msvg .mcol:hover .mseg{opacity:1}
+.msvg .mpt{cursor:pointer}
+.gsvg .ysep{stroke:var(--grid); stroke-width:1}
+.gsvg .axislbl.yl{fill:var(--ink2); font-weight:700; font-size:10.5px}
 .msvg .mlabel{fill:var(--ink2); font:600 10.5px system-ui,-apple-system,"Segoe UI",sans-serif; pointer-events:none}
 .msvg .mlabel.pk{fill:var(--ink); font-weight:750}
 .tip .mt-so{color:var(--muted); font-size:11px; font-weight:600}
@@ -639,7 +641,7 @@ tr.clk{cursor:pointer} tr.clk:hover td{background:var(--track)}
 
   /* graph: render larger and swipe sideways instead of a tiny strip */
   body[data-view=graph] .gsvg{min-width:560px}
-  body[data-view=graph] .gsvg.mtl{min-width:0}     /* the monthly timeline always fits the width */
+  body[data-view=graph] .gsvg.mtl, body[data-view=graph] .gsvg.gtl{min-width:0}     /* a timeline always fits the width */
   body[data-view=graph] #graphControls::after{
     content:"↔ swipe the chart sideways to see the whole year";
     flex-basis:100%; font-size:11px; color:var(--muted); margin-top:1px}
