@@ -1130,8 +1130,9 @@ function computeUnlisted(){
     const inMonth=real.filter(b=>Date.parse(b.start)<=t1 && Date.parse(b.end)>=t0);
     const reruns=inMonth.filter(b=>b.rerun), fresh=inMonth.filter(b=>!b.rerun && Date.parse(b.start)>=t0);
     const onlyRe = reruns.length && !fresh.length;
-    out.push({ name: onlyRe ? "No new rate-up banner — only reruns" : "No rate-up banner listed",
-      agents:[onlyRe ? "Reruns: "+reruns.map(b=>b.en&&b.en!==b.name?`${b.name} (${b.en})`:b.name).join(" · ")
+    // (the reruns have rows of their own; this row is only the money none of them accounts for)
+    out.push({ name: onlyRe ? `Rest of ${MONTHS[mo-1]} — no new rate-up banner` : "No rate-up banner listed",
+      agents:[onlyRe ? `only reruns ran (${reruns.map(b=>b.name).join(" · ")}, in their own rows) — game-i monthly not attributed to a banner`
                      : "game-i monthly — not attributed to a banner"],
       rev:+gap.toFixed(2), start:`${ym}-01`, end:`${ym}-${String(last).padStart(2,"0")}`,
       year:y, _synthetic:true, cum:null, cumtot:null, yrank:null, ytot:null });

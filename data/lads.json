@@ -162,7 +162,8 @@
    "ytot": 25,
    "icons": [
     "icons/faces/lads/cast-xavier.webp"
-   ]
+   ],
+   "bar": "#8e5548"
   },
   {
    "name": "夜空のさざ波",
@@ -209,7 +210,8 @@
    "ytot": 25,
    "icons": [
     "icons/faces/lads/2024-01-27-79559a.webp"
-   ]
+   ],
+   "bar": "#d8978d"
   },
   {
    "name": "神だけが知る時",
@@ -262,7 +264,8 @@
    "ytot": 25,
    "icons": [
     "icons/faces/lads/2024-02-05-b7c608.webp"
-   ]
+   ],
+   "bar": "#9f3744"
   },
   {
    "name": "夜明け前の光",
@@ -307,7 +310,8 @@
    "ytot": 25,
    "icons": [
     "icons/faces/lads/2024-02-21-fa8887.webp"
-   ]
+   ],
+   "bar": "#47658f"
   },
   {
    "name": "独占する抱擁",
@@ -351,7 +355,8 @@
    "ytot": 25,
    "icons": [
     "icons/faces/lads/2024-03-01-173bb1.webp"
-   ]
+   ],
+   "bar": "#bf172c"
   },
   {
    "name": "まなざしの先に",
@@ -402,7 +407,8 @@
    "ytot": 25,
    "icons": [
     "icons/faces/lads/2024-03-11-f8d2ec.webp"
-   ]
+   ],
+   "bar": "#dedd87"
   },
   {
    "name": "潮汐の響く時",
@@ -453,7 +459,8 @@
    "ytot": 25,
    "icons": [
     "icons/faces/lads/2024-04-03-a4772e.webp"
-   ]
+   ],
+   "bar": "#3590a1"
   },
   {
    "name": "燃えるように熱く",
@@ -500,7 +507,8 @@
    "ytot": 25,
    "icons": [
     "icons/faces/lads/2024-04-19-a96f21.webp"
-   ]
+   ],
+   "bar": "#daa28b"
   },
   {
    "name": "ダブルキス",
@@ -549,7 +557,8 @@
    "ytot": 25,
    "icons": [
     "icons/faces/lads/2024-04-30-db4d71.webp"
-   ]
+   ],
+   "bar": "#9b3c44"
   },
   {
    "name": "銀月の輝く夜",
@@ -600,7 +609,8 @@
    "ytot": 25,
    "icons": [
     "icons/faces/lads/2024-05-13-08194b.webp"
-   ]
+   ],
+   "bar": "#4a508d"
   },
   {
    "name": "朝日を浴びて",
@@ -649,7 +659,8 @@
    "ytot": 25,
    "icons": [
     "icons/faces/lads/2024-05-28-64dbe0.webp"
-   ]
+   ],
+   "bar": "#d3d88d"
   },
   {
    "name": "山に隠る霊跡",
@@ -700,7 +711,8 @@
    "ytot": 25,
    "icons": [
     "icons/faces/lads/2024-06-07-0b1c52.webp"
-   ]
+   ],
+   "bar": "#415f95"
   },
   {
    "name": "双影の重なる時",
@@ -756,7 +768,8 @@
    "ytot": 25,
    "icons": [
     "icons/faces/lads/2024-06-25-e08815.webp"
-   ]
+   ],
+   "bar": "#976a5d"
   },
   {
    "name": "無防備な禁区",
@@ -812,7 +825,8 @@
    "ytot": 25,
    "icons": [
     "icons/faces/lads/2024-07-15-36db78.webp"
-   ]
+   ],
+   "bar": "#97423f"
   },
   {
    "name": "半透明な占有",
@@ -872,7 +886,8 @@
    "ytot": 25,
    "icons": [
     "icons/faces/lads/2024-08-07-bf1164.webp"
-   ]
+   ],
+   "bar": "#944c42"
   },
   {
    "name": "昔の願いが叶う時",
@@ -918,7 +933,8 @@
    "ytot": 25,
    "icons": [
     "icons/faces/lads/2024-08-31-f35e34.webp"
-   ]
+   ],
+   "bar": "#f0ce75"
   },
   {
    "name": "思い込めた絵",
@@ -965,7 +981,8 @@
    "ytot": 25,
    "icons": [
     "icons/faces/lads/2024-09-10-30842c.webp"
-   ]
+   ],
+   "bar": "#8eaad7"
   },
   {
    "name": "絶景をこの目に",
@@ -1023,7 +1040,8 @@
    "ytot": 25,
    "icons": [
     "icons/faces/lads/2024-09-23-c87429.webp"
-   ]
+   ],
+   "bar": "#9c473a"
   },
   {
    "name": "揺らめく銀河",
@@ -1067,7 +1085,8 @@
    "ytot": 25,
    "icons": [
     "icons/faces/lads/2024-10-11-49d773.webp"
-   ]
+   ],
+   "bar": "#5d4591"
   },
   {
    "name": "灼熱の祝福",
@@ -1114,7 +1133,8 @@
    "ytot": 25,
    "icons": [
     "icons/faces/lads/2024-10-20-84810f.webp"
-   ]
+   ],
+   "bar": "#a0363d"
   },
   {
    "name": "流れる音色",
@@ -1163,7 +1183,8 @@
    "ytot": 25,
    "icons": [
     "icons/faces/lads/2024-10-31-93c779.webp"
-   ]
+   ],
+   "bar": "#ac312b"
   },
   {
    "name": "畏まりました、飼育員",
@@ -1221,7 +1242,8 @@
    "ytot": 25,
    "icons": [
     "icons/faces/lads/2024-11-12-ec5810.webp"
-   ]
+   ],
+   "bar": "#905346"
   },
   {
    "name": "竜影の墜つる地",
@@ -1272,7 +1294,8 @@
    "ytot": 25,
    "icons": [
     "icons/faces/lads/2024-12-02-229c94.webp"
-   ]
+   ],
+   "bar": "#a04936"
   },
   {
    "name": "降り敷く銀河の調べ",
@@ -1319,7 +1342,8 @@
    "ytot": 25,
    "icons": [
     "icons/faces/lads/2024-12-18-a23ba9.webp"
-   ]
+   ],
+   "bar": "#8b9bda"
   },
   {
    "name": "高ぶる昨夜の果て",
@@ -1381,7 +1405,8 @@
    "ytot": 25,
    "icons": [
     "icons/faces/lads/2024-12-31-03984f.webp"
-   ]
+   ],
+   "bar": "#8f5647"
   },
   {
    "name": "痛みのシグナル",
@@ -1437,7 +1462,8 @@
    "ytot": 30,
    "icons": [
     "icons/faces/lads/2025-01-22-8a9eb2.webp"
-   ]
+   ],
+   "bar": "#d79d8e"
   },
   {
    "name": "逃げ場なき明日",
@@ -1495,7 +1521,8 @@
    "ytot": 30,
    "icons": [
     "icons/faces/lads/2025-02-10-df6bb7.webp"
-   ]
+   ],
+   "bar": "#d4022a"
   },
   {
    "name": "果てしなき海に沈む&独占する抱擁",
@@ -1540,7 +1567,8 @@
    "ytot": 30,
    "icons": [
     "icons/faces/lads/2025-03-01-25095d.webp"
-   ]
+   ],
+   "bar": "#4b4096"
   },
   {
    "name": "長き縁への願い",
@@ -1586,7 +1614,8 @@
    "ytot": 30,
    "icons": [
     "icons/faces/lads/2025-03-09-03c0ec.webp"
-   ]
+   ],
+   "bar": "#8f4851"
   },
   {
    "name": "潮汐の響く時",
@@ -1631,7 +1660,8 @@
    "ytot": 30,
    "icons": [
     "icons/faces/lads/2025-03-20-a4772e.webp"
-   ]
+   ],
+   "bar": "#3590a1"
   },
   {
    "name": "宇宙が陥落する時",
@@ -1684,7 +1714,8 @@
    "ytot": 30,
    "icons": [
     "icons/faces/lads/2025-03-28-cc552c.webp"
-   ]
+   ],
+   "bar": "#a292d3"
   },
   {
    "name": "心寄せる住処へ",
@@ -1728,7 +1759,8 @@
    "ytot": 30,
    "icons": [
     "icons/faces/lads/2025-04-13-4def25.webp"
-   ]
+   ],
+   "bar": "#cacd98"
   },
   {
    "name": "銀月の輝く夜",
@@ -1773,7 +1805,8 @@
    "ytot": 30,
    "icons": [
     "icons/faces/lads/2025-04-21-08194b.webp"
-   ]
+   ],
+   "bar": "#4a508d"
   },
   {
    "name": "春から花へ捧ぐ",
@@ -1834,7 +1867,8 @@
    "ytot": 30,
    "icons": [
     "icons/faces/lads/2025-04-30-b77e1f.webp"
-   ]
+   ],
+   "bar": "#d3a092"
   },
   {
    "name": "山に隠る霊跡",
@@ -1879,7 +1913,8 @@
    "ytot": 30,
    "icons": [
     "icons/faces/lads/2025-05-19-0b1c52.webp"
-   ]
+   ],
+   "bar": "#415f95"
   },
   {
    "name": "押し寄せる熱",
@@ -1927,7 +1962,8 @@
    "ytot": 30,
    "icons": [
     "icons/faces/lads/2025-05-29-e5f63f.webp"
-   ]
+   ],
+   "bar": "#993d3d"
   },
   {
    "name": "帰らぬ夜",
@@ -1971,7 +2007,8 @@
    "ytot": 30,
    "icons": [
     "icons/faces/lads/2025-06-08-ef18fb.webp"
-   ]
+   ],
+   "bar": "#a25034"
   },
   {
    "name": "海が海に沈む時",
@@ -2024,7 +2061,8 @@
    "ytot": 30,
    "icons": [
     "icons/faces/lads/2025-06-17-4e9fc1.webp"
-   ]
+   ],
+   "bar": "#79c0ec"
   },
   {
    "name": "深空の見届けの下に",
@@ -2084,7 +2122,8 @@
    "ytot": 30,
    "icons": [
     "icons/faces/lads/2025-07-03-430aad.webp"
-   ]
+   ],
+   "bar": "#524f87"
   },
   {
    "name": "堕ちた王冠",
@@ -2137,7 +2176,8 @@
    "ytot": 30,
    "icons": [
     "icons/faces/lads/2025-07-25-62c9bd.webp"
-   ]
+   ],
+   "bar": "#47598f"
   },
   {
    "name": "真夏とあなたと海風",
@@ -2197,7 +2237,8 @@
    "ytot": 30,
    "icons": [
     "icons/faces/lads/2025-08-12-0a4da5.webp"
-   ]
+   ],
+   "bar": "#72c2f3"
   },
   {
    "name": "黎明に私を&昔の願いが叶う時",
@@ -2244,7 +2285,8 @@
    "ytot": 30,
    "icons": [
     "icons/faces/lads/2025-08-31-2127f0.webp"
-   ]
+   ],
+   "bar": "#cea197"
   },
   {
    "name": "熱意の忖度",
@@ -2290,7 +2332,8 @@
    "ytot": 30,
    "icons": [
     "icons/faces/lads/cast-sylus.webp"
-   ]
+   ],
+   "bar": "#8d494e"
   },
   {
    "name": "神だけが知る時",
@@ -2337,7 +2380,8 @@
    "ytot": 30,
    "icons": [
     "icons/faces/lads/2025-09-19-b7c608.webp"
-   ]
+   ],
+   "bar": "#9f3744"
   },
   {
    "name": "時と世界の境界",
@@ -2390,7 +2434,8 @@
    "ytot": 30,
    "icons": [
     "icons/faces/lads/2025-09-25-0900c0.webp"
-   ]
+   ],
+   "bar": "#4a7b8c"
   },
   {
    "name": "星の軌跡から&揺らめく銀河",
@@ -2435,7 +2480,8 @@
    "ytot": 30,
    "icons": [
     "icons/faces/lads/2025-10-11-ff0ae0.webp"
-   ]
+   ],
+   "bar": "#494294"
   },
   {
    "name": "竜影の墜つる地",
@@ -2480,7 +2526,8 @@
    "ytot": 30,
    "icons": [
     "icons/faces/lads/2025-10-20-229c94.webp"
-   ]
+   ],
+   "bar": "#a04936"
   },
   {
    "name": "鼓動が沸くまで",
@@ -2543,7 +2590,8 @@
    "ytot": 30,
    "icons": [
     "icons/faces/lads/2025-10-29-b75386.webp"
-   ]
+   ],
+   "bar": "#4a4591"
   },
   {
    "name": "延々たる夢",
@@ -2588,7 +2636,8 @@
    "ytot": 30,
    "icons": [
     "icons/faces/lads/cast-xavier.webp"
-   ]
+   ],
+   "bar": "#8b564b"
   },
   {
    "name": "甘い疾走",
@@ -2634,7 +2683,8 @@
    "ytot": 30,
    "icons": [
     "icons/faces/lads/cast-rafayel.webp"
-   ]
+   ],
+   "bar": "#da8ba0"
   },
   {
    "name": "銀翼の鎮魂地",
@@ -2685,7 +2735,8 @@
    "ytot": 30,
    "icons": [
     "icons/faces/lads/2025-12-02-48d99d.webp"
-   ]
+   ],
+   "bar": "#d88d9f"
   },
   {
    "name": "夜空のさざ波",
@@ -2730,7 +2781,8 @@
    "ytot": 30,
    "icons": [
     "icons/faces/lads/2025-12-11-79559a.webp"
-   ]
+   ],
+   "bar": "#d8978d"
   },
   {
    "name": "のどかな共謀",
@@ -2776,7 +2828,8 @@
    "ytot": 30,
    "icons": [
     "icons/faces/lads/cast-caleb.webp"
-   ]
+   ],
+   "bar": "#deb387"
   },
   {
    "name": "夜明け前の光",
@@ -2821,7 +2874,8 @@
    "ytot": 30,
    "icons": [
     "icons/faces/lads/2025-12-24-fa8887.webp"
-   ]
+   ],
+   "bar": "#47658f"
   },
   {
    "name": "愛、宇宙、詩の王座",
@@ -2885,7 +2939,8 @@
    "ytot": 30,
    "icons": [
     "icons/faces/lads/2025-12-31-f5025a.webp"
-   ]
+   ],
+   "bar": "#d49591"
   },
   {
    "name": "密やかなキス",
@@ -2933,7 +2988,8 @@
    "ytot": 25,
    "icons": [
     "icons/faces/lads/cast-zayne.webp"
-   ]
+   ],
+   "bar": "#d8b38d"
   },
   {
    "name": "宇宙が陥落する時",
@@ -2978,7 +3034,8 @@
    "ytot": 25,
    "icons": [
     "icons/faces/lads/2026-02-02-cc552c.webp"
-   ]
+   ],
+   "bar": "#a292d3"
   },
   {
    "name": "人の世の情縁",
@@ -3036,7 +3093,8 @@
    "ytot": 25,
    "icons": [
     "icons/faces/lads/2026-02-10-cee83c.webp"
-   ]
+   ],
+   "bar": "#954641"
   },
   {
    "name": "夕晴れに向かって&心のままに願いへ",
@@ -3081,7 +3139,8 @@
    "ytot": 25,
    "icons": [
     "icons/faces/lads/2026-03-01-11f9f4.webp"
-   ]
+   ],
+   "bar": "#ffb466"
   },
   {
    "name": "日常の来処",
@@ -3127,7 +3186,8 @@
    "ytot": 25,
    "icons": [
     "icons/faces/lads/cast-xavier.webp"
-   ]
+   ],
+   "bar": "#a06848"
   },
   {
    "name": "まなざしの先に",
@@ -3175,7 +3235,8 @@
    "ytot": 25,
    "icons": [
     "icons/faces/lads/2026-03-19-f8d2ec.webp"
-   ]
+   ],
+   "bar": "#dedd87"
   },
   {
    "name": "万鬼、跡絶ゆ",
@@ -3229,7 +3290,8 @@
    "ytot": 25,
    "icons": [
     "icons/faces/lads/2026-03-28-677b34.webp"
-   ]
+   ],
+   "bar": "#3a869c"
   },
   {
    "name": "燃えるように熱く",
@@ -3274,7 +3336,8 @@
    "ytot": 25,
    "icons": [
     "icons/faces/lads/2026-04-06-a96f21.webp"
-   ]
+   ],
+   "bar": "#daa28b"
   },
   {
    "name": "夜照らす長雨&心寄せる住処へ",
@@ -3319,7 +3382,8 @@
    "ytot": 25,
    "icons": [
     "icons/faces/lads/2026-04-13-c170eb.webp"
-   ]
+   ],
+   "bar": "#734492"
   },
   {
    "name": "海が海に沈む時",
@@ -3364,7 +3428,8 @@
    "ytot": 25,
    "icons": [
     "icons/faces/lads/2026-04-21-4e9fc1.webp"
-   ]
+   ],
+   "bar": "#79c0ec"
   },
   {
    "name": "浮き沈む渇望",
@@ -3422,7 +3487,8 @@
    "ytot": 25,
    "icons": [
     "icons/faces/lads/2026-04-30-2fea78.webp"
-   ]
+   ],
+   "bar": "#e98d64"
   },
   {
    "name": "堕ちた王冠",
@@ -3467,7 +3533,8 @@
    "ytot": 25,
    "icons": [
     "icons/faces/lads/2026-05-15-62c9bd.webp"
-   ]
+   ],
+   "bar": "#47598f"
   },
   {
    "name": "猫にくびったけ",
@@ -3513,7 +3580,8 @@
    "ytot": 25,
    "icons": [
     "icons/faces/lads/cast-sylus.webp"
-   ]
+   ],
+   "bar": "#e5bb80"
   },
   {
    "name": "双影の重なる時",
@@ -3563,7 +3631,8 @@
    "ytot": 25,
    "icons": [
     "icons/faces/lads/2026-05-31-e08815.webp"
-   ]
+   ],
+   "bar": "#976a5d"
   },
   {
    "name": "この空の全てを&帰らぬ夜",
@@ -3608,7 +3677,8 @@
    "ytot": 25,
    "icons": [
     "icons/faces/lads/2026-06-08-2b4208.webp"
-   ]
+   ],
+   "bar": "#f79b4c"
   },
   {
    "name": "一幕一会",
@@ -3666,7 +3736,8 @@
    "ytot": 25,
    "icons": [
     "icons/faces/lads/2026-06-17-c5a469.webp"
-   ]
+   ],
+   "bar": "#9e4538"
   },
   {
    "name": "時と世界の境界",
@@ -3711,7 +3782,8 @@
    "ytot": 25,
    "icons": [
     "icons/faces/lads/2026-07-02-0900c0.webp"
-   ]
+   ],
+   "bar": "#4a7b8c"
   },
   {
    "name": "絶景をこの目に",
@@ -3760,7 +3832,8 @@
    "ytot": 25,
    "icons": [
     "icons/faces/lads/2026-07-09-c87429.webp"
-   ]
+   ],
+   "bar": "#9c473a"
   },
   {
    "name": "湧き来る夏",
@@ -3806,7 +3879,8 @@
    "ytot": 25,
    "icons": [
     "icons/faces/lads/cast-caleb.webp"
-   ]
+   ],
+   "bar": "#ecbf79"
   },
   {
    "name": "破陣子",
@@ -3857,7 +3931,8 @@
    "ytot": 25,
    "icons": [
     "icons/faces/lads/2026-08-17-cd90c9.webp"
-   ]
+   ],
+   "bar": "#9f4237"
   },
   {
    "name": "戦塵が舞う中&逢える日を胸に",
@@ -3904,7 +3979,8 @@
    "ytot": 25,
    "icons": [
     "icons/faces/lads/2026-08-31-b5a8cd.webp"
-   ]
+   ],
+   "bar": "#e1a484"
   },
   {
    "name": "銀翼の鎮魂地",
@@ -3949,7 +4025,8 @@
    "ytot": 25,
    "icons": [
     "icons/faces/lads/2026-09-08-48d99d.webp"
-   ]
+   ],
+   "bar": "#d88d9f"
   },
   {
    "name": "今宵、眠れぬなら",
@@ -4010,7 +4087,8 @@
    "ytot": 25,
    "icons": [
     "icons/faces/lads/2026-09-22-7e8bc0.webp"
-   ]
+   ],
+   "bar": "#9b413b"
   },
   {
    "name": "この一瞬に願いを&幾年も光と",
@@ -4055,7 +4133,8 @@
    "ytot": 25,
    "icons": [
     "icons/faces/lads/2026-10-11-03393e.webp"
-   ]
+   ],
+   "bar": "#404996"
   },
   {
    "name": "半透明な占有",
@@ -4100,7 +4179,8 @@
    "ytot": 25,
    "icons": [
     "icons/faces/lads/2026-10-19-bf1164.webp"
-   ]
+   ],
+   "bar": "#944c42"
   }
  ]
 }

@@ -24,6 +24,8 @@ _UNVERIFIED.verify_mode = ssl.CERT_NONE
 
 
 def fetch(url):
+    if not url.startswith("http"):                 # art kept in the repo (icons/banner_art/…)
+        return (ROOT / url).read_bytes()
     req = urllib.request.Request(url, headers=UA)
     try:
         return urllib.request.urlopen(req, timeout=35).read()
