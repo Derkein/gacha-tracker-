@@ -5,8 +5,8 @@
  "unit": "億G",
  "source": "https://prtimes.jp/main/html/searchrlp/company_id/131862",
  "banners_from": "official",
- "updated": "2026-10-23T02:49:05Z",
- "count": 79,
+ "updated": "2026-10-23T03:11:53Z",
+ "count": 80,
  "now": {
   "ios": 164,
   "android": 124,
@@ -120,17 +120,17 @@
  },
  "banners": [
   {
-   "name": "Heartstring Symphony",
+   "name": "延々たる夢",
    "start": "2024-01-18",
    "end": "2024-01-26",
    "year": 2024,
    "related": "",
    "banner_img": null,
    "agents": [
-    "Heartstring Symphony"
+    "Everlasting Dream"
    ],
-   "en": "Heartstring Symphony",
-   "title_en": "Heartstring Symphony",
+   "en": "Everlasting Dream",
+   "title_en": "Everlasting Dream",
    "leads": [
     "Xavier"
    ],
@@ -157,7 +157,7 @@
     "2024-01": 1.1357
    },
    "cum": 33,
-   "cumtot": 79,
+   "cumtot": 80,
    "yrank": 15,
    "ytot": 25,
    "icons": [
@@ -165,7 +165,7 @@
    ]
   },
   {
-   "name": "花火のごとき誓い",
+   "name": "夜空のさざ波",
    "start": "2024-01-27",
    "end": "2024-02-04",
    "year": 2024,
@@ -204,7 +204,7 @@
     "2024-02": 0.4952
    },
    "cum": 30,
-   "cumtot": 79,
+   "cumtot": 80,
    "yrank": 13,
    "ytot": 25,
    "bar": "#d8978d",
@@ -258,7 +258,7 @@
     "2024-02": 2.7864
    },
    "cum": 10,
-   "cumtot": 79,
+   "cumtot": 80,
    "yrank": 3,
    "ytot": 25,
    "bar": "#9f3744",
@@ -304,7 +304,7 @@
     "2024-02": 1.3662
    },
    "cum": 28,
-   "cumtot": 79,
+   "cumtot": 80,
    "yrank": 12,
    "ytot": 25,
    "bar": "#47658f",
@@ -349,7 +349,7 @@
     "2024-03": 1.0822
    },
    "cum": 35,
-   "cumtot": 79,
+   "cumtot": 80,
    "yrank": 16,
    "ytot": 25,
    "bar": "#bf172c",
@@ -400,8 +400,8 @@
    "rev_month_ym": {
     "2024-03": 2.4675
    },
-   "cum": 15,
-   "cumtot": 79,
+   "cum": 14,
+   "cumtot": 80,
    "yrank": 6,
    "ytot": 25,
    "bar": "#dedd87",
@@ -453,7 +453,7 @@
     "2024-04": 1.9532
    },
    "cum": 20,
-   "cumtot": 79,
+   "cumtot": 80,
    "yrank": 9,
    "ytot": 25,
    "bar": "#3590a1",
@@ -501,7 +501,7 @@
     "2024-04": 0.828
    },
    "cum": 50,
-   "cumtot": 79,
+   "cumtot": 80,
    "yrank": 18,
    "ytot": 25,
    "bar": "#daa28b",
@@ -551,7 +551,7 @@
     "2024-05": 0.7049
    },
    "cum": 61,
-   "cumtot": 79,
+   "cumtot": 80,
    "yrank": 22,
    "ytot": 25,
    "bar": "#9b3c44",
@@ -603,7 +603,7 @@
     "2024-05": 2.1557
    },
    "cum": 19,
-   "cumtot": 79,
+   "cumtot": 80,
    "yrank": 8,
    "ytot": 25,
    "bar": "#4a508d",
@@ -652,8 +652,8 @@
     "2024-05": 0.4027,
     "2024-06": 0.2476
    },
-   "cum": 69,
-   "cumtot": 79,
+   "cum": 70,
+   "cumtot": 80,
    "yrank": 24,
    "ytot": 25,
    "bar": "#d3d88d",
@@ -669,10 +669,10 @@
    "related": "",
    "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/26/131862-26-84e5e90d76be75c08da608525b3ea850-1920x1080.jpg",
    "agents": [
-    "Trace of Divinity"
+    "Trace Of Divinity"
    ],
-   "en": "Trace of Divinity",
-   "title_en": "Trace of Divinity",
+   "en": "Trace Of Divinity",
+   "title_en": "Trace Of Divinity",
    "leads": [
     "Zayne"
    ],
@@ -705,7 +705,7 @@
     "2024-06": 1.2004
    },
    "cum": 31,
-   "cumtot": 79,
+   "cumtot": 80,
    "yrank": 14,
    "ytot": 25,
    "bar": "#415f95",
@@ -762,7 +762,7 @@
     "2024-07": 0.9575
    },
    "cum": 21,
-   "cumtot": 79,
+   "cumtot": 80,
    "yrank": 10,
    "ytot": 25,
    "bar": "#976a5d",
@@ -818,8 +818,8 @@
     "2024-07": 2.4447,
     "2024-08": 0.1073
    },
-   "cum": 14,
-   "cumtot": 79,
+   "cum": 13,
+   "cumtot": 80,
    "yrank": 5,
    "ytot": 25,
    "bar": "#97423f",
@@ -880,7 +880,7 @@
     "2024-08": 4.8353
    },
    "cum": 1,
-   "cumtot": 79,
+   "cumtot": 80,
    "yrank": 1,
    "ytot": 25,
    "bar": "#944c42",
@@ -927,7 +927,7 @@
     "2024-09": 0.5821
    },
    "cum": 58,
-   "cumtot": 79,
+   "cumtot": 80,
    "yrank": 21,
    "ytot": 25,
    "bar": "#f0ce75",
@@ -975,7 +975,7 @@
     "2024-09": 0.8641
    },
    "cum": 45,
-   "cumtot": 79,
+   "cumtot": 80,
    "yrank": 17,
    "ytot": 25,
    "bar": "#8eaad7",
@@ -1034,7 +1034,7 @@
     "2024-10": 0.7358
    },
    "cum": 16,
-   "cumtot": 79,
+   "cumtot": 80,
    "yrank": 7,
    "ytot": 25,
    "bar": "#9c473a",
@@ -1079,7 +1079,7 @@
     "2024-10": 0.7603
    },
    "cum": 52,
-   "cumtot": 79,
+   "cumtot": 80,
    "yrank": 19,
    "ytot": 25,
    "bar": "#5d4591",
@@ -1127,7 +1127,7 @@
     "2024-10": 0.9182
    },
    "cum": 53,
-   "cumtot": 79,
+   "cumtot": 80,
    "yrank": 20,
    "ytot": 25,
    "bar": "#a0363d",
@@ -1176,8 +1176,8 @@
     "2024-10": 0.053,
     "2024-11": 0.6588
    },
-   "cum": 67,
-   "cumtot": 79,
+   "cum": 68,
+   "cumtot": 80,
    "yrank": 23,
    "ytot": 25,
    "bar": "#ac312b",
@@ -1236,7 +1236,7 @@
     "2024-11": 2.6645
    },
    "cum": 12,
-   "cumtot": 79,
+   "cumtot": 80,
    "yrank": 4,
    "ytot": 25,
    "bar": "#905346",
@@ -1288,7 +1288,7 @@
     "2024-12": 1.7858
    },
    "cum": 24,
-   "cumtot": 79,
+   "cumtot": 80,
    "yrank": 11,
    "ytot": 25,
    "bar": "#a04936",
@@ -1335,8 +1335,8 @@
    "rev_month_ym": {
     "2024-12": 0.6741
    },
-   "cum": 75,
-   "cumtot": 79,
+   "cum": 76,
+   "cumtot": 80,
    "yrank": 25,
    "ytot": 25,
    "bar": "#8b9bda",
@@ -1399,7 +1399,7 @@
     "2025-01": 3.262
    },
    "cum": 4,
-   "cumtot": 79,
+   "cumtot": 80,
    "yrank": 2,
    "ytot": 25,
    "bar": "#8f5647",
@@ -1456,7 +1456,7 @@
     "2025-02": 0.7504
    },
    "cum": 7,
-   "cumtot": 79,
+   "cumtot": 80,
    "yrank": 3,
    "ytot": 30,
    "bar": "#d79d8e",
@@ -1515,7 +1515,7 @@
     "2025-02": 3.9422
    },
    "cum": 3,
-   "cumtot": 79,
+   "cumtot": 80,
    "yrank": 2,
    "ytot": 30,
    "bar": "#d4022a",
@@ -1561,7 +1561,7 @@
     "2025-03": 0.8804
    },
    "cum": 40,
-   "cumtot": 79,
+   "cumtot": 80,
    "yrank": 16,
    "ytot": 30,
    "bar": "#4b4096",
@@ -1608,7 +1608,7 @@
     "2025-03": 1.0601
    },
    "cum": 36,
-   "cumtot": 79,
+   "cumtot": 80,
    "yrank": 13,
    "ytot": 30,
    "bar": "#8f4851",
@@ -1617,12 +1617,13 @@
    ]
   },
   {
-   "name": "When Tides Echo",
+   "name": "潮汐の響く時",
    "start": "2025-03-20",
    "end": "2025-03-27",
    "year": 2025,
    "related": "",
-   "banner_img": null,
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/18/131862-18-370ed6a9181a60a45cc882852022bb54-3840x2160.jpg",
+   "rerun_hint": true,
    "agents": [
     "When Tides Echo"
    ],
@@ -1653,11 +1654,12 @@
     "2025-03": 1.1128
    },
    "cum": 37,
-   "cumtot": 79,
+   "cumtot": 80,
    "yrank": 14,
    "ytot": 30,
+   "bar": "#3590a1",
    "icons": [
-    "icons/faces/lads/cast-rafayel.webp"
+    "icons/faces/lads/2025-03-20-a4772e.webp"
    ]
   },
   {
@@ -1706,7 +1708,7 @@
     "2025-04": 0.9567
    },
    "cum": 18,
-   "cumtot": 79,
+   "cumtot": 80,
    "yrank": 8,
    "ytot": 30,
    "bar": "#a292d3",
@@ -1751,7 +1753,7 @@
     "2025-04": 0.7197
    },
    "cum": 56,
-   "cumtot": 79,
+   "cumtot": 80,
    "yrank": 21,
    "ytot": 30,
    "bar": "#cacd98",
@@ -1760,12 +1762,13 @@
    ]
   },
   {
-   "name": "Shimmering Moonlight",
+   "name": "銀月の輝く夜",
    "start": "2025-04-21",
    "end": "2025-04-28",
    "year": 2025,
    "related": "",
-   "banner_img": null,
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/21/131862-21-a919f1cf78e5b21dd3958f3a0180af9b-3840x2160.jpg",
+   "rerun_hint": true,
    "agents": [
     "Shimmering Moonlight"
    ],
@@ -1796,11 +1799,12 @@
     "2025-04": 1.0463
    },
    "cum": 38,
-   "cumtot": 79,
+   "cumtot": 80,
    "yrank": 15,
    "ytot": 30,
+   "bar": "#4a508d",
    "icons": [
-    "icons/faces/lads/cast-xavier.webp"
+    "icons/faces/lads/2025-04-21-08194b.webp"
    ]
   },
   {
@@ -1857,7 +1861,7 @@
     "2025-05": 2.7054
    },
    "cum": 11,
-   "cumtot": 79,
+   "cumtot": 80,
    "yrank": 6,
    "ytot": 30,
    "bar": "#d3a092",
@@ -1866,12 +1870,13 @@
    ]
   },
   {
-   "name": "Trace Of Divinity",
+   "name": "山に隠る霊跡",
    "start": "2025-05-19",
    "end": "2025-05-26",
    "year": 2025,
    "related": "",
-   "banner_img": null,
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/26/131862-26-84e5e90d76be75c08da608525b3ea850-1920x1080.jpg",
+   "rerun_hint": true,
    "agents": [
     "Trace Of Divinity"
    ],
@@ -1902,11 +1907,12 @@
     "2025-05": 0.8748
    },
    "cum": 42,
-   "cumtot": 79,
+   "cumtot": 80,
    "yrank": 17,
    "ytot": 30,
+   "bar": "#415f95",
    "icons": [
-    "icons/faces/lads/cast-zayne.webp"
+    "icons/faces/lads/2025-05-19-0b1c52.webp"
    ]
   },
   {
@@ -1949,8 +1955,8 @@
     "2025-05": 0.3152,
     "2025-06": 0.3717
    },
-   "cum": 68,
-   "cumtot": 79,
+   "cum": 69,
+   "cumtot": 80,
    "yrank": 27,
    "ytot": 30,
    "bar": "#993d3d",
@@ -1995,7 +2001,7 @@
     "2025-06": 0.7719
    },
    "cum": 51,
-   "cumtot": 79,
+   "cumtot": 80,
    "yrank": 20,
    "ytot": 30,
    "bar": "#a25034",
@@ -2049,7 +2055,7 @@
     "2025-07": 0.0876
    },
    "cum": 27,
-   "cumtot": 79,
+   "cumtot": 80,
    "yrank": 11,
    "ytot": 30,
    "bar": "#79c0ec",
@@ -2110,7 +2116,7 @@
     "2025-07": 2.9019
    },
    "cum": 8,
-   "cumtot": 79,
+   "cumtot": 80,
    "yrank": 4,
    "ytot": 30,
    "bar": "#524f87",
@@ -2164,7 +2170,7 @@
     "2025-08": 0.6513
    },
    "cum": 25,
-   "cumtot": 79,
+   "cumtot": 80,
    "yrank": 9,
    "ytot": 30,
    "bar": "#47598f",
@@ -2225,7 +2231,7 @@
     "2025-08": 2.8404
    },
    "cum": 9,
-   "cumtot": 79,
+   "cumtot": 80,
    "yrank": 5,
    "ytot": 30,
    "bar": "#72c2f3",
@@ -2273,7 +2279,7 @@
     "2025-09": 0.6524
    },
    "cum": 49,
-   "cumtot": 79,
+   "cumtot": 80,
    "yrank": 19,
    "ytot": 30,
    "bar": "#cea197",
@@ -2282,7 +2288,7 @@
    ]
   },
   {
-   "name": "Passionate Appraisal",
+   "name": "熱意の忖度",
    "start": "2025-09-09",
    "end": "2025-09-18",
    "year": 2025,
@@ -2320,7 +2326,7 @@
     "2025-09": 0.7676
    },
    "cum": 60,
-   "cumtot": 79,
+   "cumtot": 80,
    "yrank": 24,
    "ytot": 30,
    "icons": [
@@ -2328,12 +2334,13 @@
    ]
   },
   {
-   "name": "Veiled Whispers",
+   "name": "神だけが知る時",
    "start": "2025-09-19",
    "end": "2025-09-26",
    "year": 2025,
    "related": "",
-   "banner_img": null,
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/14/131862-14-7d8e042c54165620e69b6ccd60dee9fd-3840x2160.jpg",
+   "rerun_hint": true,
    "agents": [
     "Veiled Whispers"
    ],
@@ -2366,13 +2373,12 @@
     "2025-09": 0.6408
    },
    "cum": 57,
-   "cumtot": 79,
+   "cumtot": 80,
    "yrank": 22,
    "ytot": 30,
+   "bar": "#9f3744",
    "icons": [
-    "icons/faces/lads/cast-xavier.webp",
-    "icons/faces/lads/cast-zayne.webp",
-    "icons/faces/lads/cast-rafayel.webp"
+    "icons/faces/lads/2025-09-19-b7c608.webp"
    ]
   },
   {
@@ -2421,7 +2427,7 @@
     "2025-10": 0.6673
    },
    "cum": 26,
-   "cumtot": 79,
+   "cumtot": 80,
    "yrank": 10,
    "ytot": 30,
    "bar": "#4a7b8c",
@@ -2467,7 +2473,7 @@
     "2025-10": 0.6186
    },
    "cum": 59,
-   "cumtot": 79,
+   "cumtot": 80,
    "yrank": 23,
    "ytot": 30,
    "bar": "#494294",
@@ -2476,12 +2482,13 @@
    ]
   },
   {
-   "name": "Where Drakeshadows Fall",
+   "name": "竜影の墜つる地",
    "start": "2025-10-20",
    "end": "2025-10-27",
    "year": 2025,
    "related": "",
-   "banner_img": null,
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/46/131862-46-e7b4e8a7cf1a902cb5d25f7c4da9429b-2560x1440.jpg",
+   "rerun_hint": true,
    "agents": [
     "Where Drakeshadows Fall"
    ],
@@ -2512,11 +2519,12 @@
     "2025-10": 0.8872
    },
    "cum": 44,
-   "cumtot": 79,
+   "cumtot": 80,
    "yrank": 18,
    "ytot": 30,
+   "bar": "#a04936",
    "icons": [
-    "icons/faces/lads/cast-sylus.webp"
+    "icons/faces/lads/2025-10-20-229c94.webp"
    ]
   },
   {
@@ -2575,7 +2583,7 @@
     "2025-11": 1.47
    },
    "cum": 17,
-   "cumtot": 79,
+   "cumtot": 80,
    "yrank": 7,
    "ytot": 30,
    "bar": "#4a4591",
@@ -2584,12 +2592,13 @@
    ]
   },
   {
-   "name": "Everlasting Dream",
+   "name": "延々たる夢",
    "start": "2025-11-13",
    "end": "2025-11-20",
    "year": 2025,
    "related": "",
    "banner_img": null,
+   "rerun_hint": false,
    "agents": [
     "Everlasting Dream"
    ],
@@ -2599,7 +2608,7 @@
     "Xavier"
    ],
    "source_url": "https://loveanddeepspace.fandom.com/wiki/Wish/Limited_Wish_Pools",
-   "rerun": false,
+   "rerun": true,
    "ongoing": false,
    "rank_series": [
     152,
@@ -2620,7 +2629,7 @@
     "2025-11": 0.541
    },
    "cum": 62,
-   "cumtot": 79,
+   "cumtot": 80,
    "yrank": 25,
    "ytot": 30,
    "icons": [
@@ -2628,7 +2637,7 @@
    ]
   },
   {
-   "name": "Sweet Overdrive",
+   "name": "甘い疾走",
    "start": "2025-11-21",
    "end": "2025-11-30",
    "year": 2025,
@@ -2665,8 +2674,8 @@
    "rev_month_ym": {
     "2025-11": 0.619
    },
-   "cum": 77,
-   "cumtot": 79,
+   "cum": 78,
+   "cumtot": 80,
    "yrank": 30,
    "ytot": 30,
    "icons": [
@@ -2717,7 +2726,7 @@
     "2025-12": 1.4041
    },
    "cum": 29,
-   "cumtot": 79,
+   "cumtot": 80,
    "yrank": 12,
    "ytot": 30,
    "bar": "#d88d9f",
@@ -2726,12 +2735,13 @@
    ]
   },
   {
-   "name": "Twilight Serenity",
+   "name": "夜空のさざ波",
    "start": "2025-12-11",
    "end": "2025-12-18",
    "year": 2025,
    "related": "",
-   "banner_img": null,
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/13/131862-13-859414c3ce11dcca69d5e4836fb398d4-1920x1080.jpg",
+   "rerun_hint": true,
    "agents": [
     "Twilight Serenity"
    ],
@@ -2761,16 +2771,17 @@
    "rev_month_ym": {
     "2025-12": 0.3797
    },
-   "cum": 73,
-   "cumtot": 79,
+   "cum": 74,
+   "cumtot": 80,
    "yrank": 29,
    "ytot": 30,
+   "bar": "#d8978d",
    "icons": [
-    "icons/faces/lads/cast-rafayel.webp"
+    "icons/faces/lads/2025-12-11-79559a.webp"
    ]
   },
   {
-   "name": "Indulgent Scheme",
+   "name": "のどかな共謀",
    "start": "2025-12-18",
    "end": "2025-12-27",
    "year": 2025,
@@ -2808,7 +2819,7 @@
     "2025-12": 0.5865
    },
    "cum": 64,
-   "cumtot": 79,
+   "cumtot": 80,
    "yrank": 26,
    "ytot": 30,
    "icons": [
@@ -2816,12 +2827,13 @@
    ]
   },
   {
-   "name": "Before Dawn",
+   "name": "夜明け前の光",
    "start": "2025-12-24",
    "end": "2025-12-31",
    "year": 2025,
    "related": "",
-   "banner_img": null,
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/15/131862-15-3d881c127af5425285c5f4dab7f61f05-1920x1080.jpg",
+   "rerun_hint": true,
    "agents": [
     "Before Dawn"
    ],
@@ -2851,12 +2863,13 @@
    "rev_month_ym": {
     "2025-12": 0.4352
    },
-   "cum": 70,
-   "cumtot": 79,
+   "cum": 71,
+   "cumtot": 80,
    "yrank": 28,
    "ytot": 30,
+   "bar": "#47658f",
    "icons": [
-    "icons/faces/lads/cast-zayne.webp"
+    "icons/faces/lads/2025-12-24-fa8887.webp"
    ]
   },
   {
@@ -2916,7 +2929,7 @@
     "2026-01": 4.5856
    },
    "cum": 2,
-   "cumtot": 79,
+   "cumtot": 80,
    "yrank": 1,
    "ytot": 30,
    "bar": "#d49591",
@@ -2925,15 +2938,17 @@
    ]
   },
   {
-   "name": "窃窃私吻",
+   "name": "密やかなキス",
    "start": "2026-01-23",
    "end": "2026-02-01",
    "year": 2026,
    "related": "",
    "banner_img": null,
-   "agents": [],
-   "en": "",
-   "title_en": null,
+   "agents": [
+    "Secret's Kiss"
+   ],
+   "en": "Secret's Kiss",
+   "title_en": "Secret's Kiss",
    "leads": [
     "Zayne"
    ],
@@ -2963,9 +2978,9 @@
     "2026-02": 0.0853
    },
    "cum": 34,
-   "cumtot": 79,
+   "cumtot": 80,
    "yrank": 7,
-   "ytot": 24,
+   "ytot": 25,
    "icons": [
     "icons/faces/lads/cast-zayne.webp"
    ]
@@ -3008,9 +3023,9 @@
     "2026-02": 0.9473
    },
    "cum": 47,
-   "cumtot": 79,
+   "cumtot": 80,
    "yrank": 12,
-   "ytot": 24,
+   "ytot": 25,
    "bar": "#a292d3",
    "icons": [
     "icons/faces/lads/2026-02-02-cc552c.webp"
@@ -3067,9 +3082,9 @@
     "2026-02": 3.2489
    },
    "cum": 6,
-   "cumtot": 79,
+   "cumtot": 80,
    "yrank": 2,
-   "ytot": 24,
+   "ytot": 25,
    "bar": "#954641",
    "icons": [
     "icons/faces/lads/2026-02-10-cee83c.webp"
@@ -3083,9 +3098,10 @@
    "related": "",
    "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/94/131862-94-05af50db45093487620c3271ba80594a-2560x1440.jpg",
    "agents": [
-    "Duskbright Steps"
+    "Duskbright Steps",
+    "Heartbound Wish"
    ],
-   "en": "Duskbright Steps",
+   "en": "Duskbright Steps & Heartbound Wish",
    "title_en": "Duskbright Steps",
    "leads": [
     "Rafayel"
@@ -3112,16 +3128,16 @@
     "2026-03": 0.9144
    },
    "cum": 43,
-   "cumtot": 79,
+   "cumtot": 80,
    "yrank": 10,
-   "ytot": 24,
+   "ytot": 25,
    "bar": "#ffb466",
    "icons": [
     "icons/faces/lads/2026-03-01-11f9f4.webp"
    ]
   },
   {
-   "name": "Tranquil Moments",
+   "name": "日常の来処",
    "start": "2026-03-09",
    "end": "2026-03-18",
    "year": 2026,
@@ -3158,10 +3174,10 @@
    "rev_month_ym": {
     "2026-03": 0.8928
    },
-   "cum": 72,
-   "cumtot": 79,
-   "yrank": 20,
-   "ytot": 24,
+   "cum": 73,
+   "cumtot": 80,
+   "yrank": 21,
+   "ytot": 25,
    "icons": [
     "icons/faces/lads/cast-xavier.webp"
    ]
@@ -3207,9 +3223,9 @@
     "2026-03": 1.0316
    },
    "cum": 41,
-   "cumtot": 79,
+   "cumtot": 80,
    "yrank": 9,
-   "ytot": 24,
+   "ytot": 25,
    "bar": "#dedd87",
    "icons": [
     "icons/faces/lads/2026-03-19-f8d2ec.webp"
@@ -3262,9 +3278,9 @@
     "2026-04": 0.8124
    },
    "cum": 22,
-   "cumtot": 79,
+   "cumtot": 80,
    "yrank": 4,
-   "ytot": 24,
+   "ytot": 25,
    "bar": "#3a869c",
    "icons": [
     "icons/faces/lads/2026-03-28-677b34.webp"
@@ -3308,9 +3324,9 @@
     "2026-04": 0.4617
    },
    "cum": 65,
-   "cumtot": 79,
+   "cumtot": 80,
    "yrank": 17,
-   "ytot": 24,
+   "ytot": 25,
    "bar": "#daa28b",
    "icons": [
     "icons/faces/lads/2026-04-06-a96f21.webp"
@@ -3354,9 +3370,9 @@
     "2026-04": 0.867
    },
    "cum": 46,
-   "cumtot": 79,
+   "cumtot": 80,
    "yrank": 11,
-   "ytot": 24,
+   "ytot": 25,
    "bar": "#734492",
    "icons": [
     "icons/faces/lads/2026-04-13-c170eb.webp"
@@ -3399,10 +3415,10 @@
    "rev_month_ym": {
     "2026-04": 0.8292
    },
-   "cum": 66,
-   "cumtot": 79,
-   "yrank": 18,
-   "ytot": 24,
+   "cum": 67,
+   "cumtot": 80,
+   "yrank": 19,
+   "ytot": 25,
    "bar": "#79c0ec",
    "icons": [
     "icons/faces/lads/2026-04-21-4e9fc1.webp"
@@ -3459,9 +3475,9 @@
     "2026-05": 3.221
    },
    "cum": 5,
-   "cumtot": 79,
+   "cumtot": 80,
    "yrank": 1,
-   "ytot": 24,
+   "ytot": 25,
    "bar": "#e98d64",
    "icons": [
     "icons/faces/lads/2026-04-30-2fea78.webp"
@@ -3505,16 +3521,16 @@
     "2026-05": 1.1348
    },
    "cum": 32,
-   "cumtot": 79,
+   "cumtot": 80,
    "yrank": 6,
-   "ytot": 24,
+   "ytot": 25,
    "bar": "#47598f",
    "icons": [
     "icons/faces/lads/2026-05-15-62c9bd.webp"
    ]
   },
   {
-   "name": "Kitten Included",
+   "name": "猫にくびったけ",
    "start": "2026-05-22",
    "end": "2026-05-31",
    "year": 2026,
@@ -3552,9 +3568,9 @@
     "2026-05": 1.0537
    },
    "cum": 54,
-   "cumtot": 79,
+   "cumtot": 80,
    "yrank": 14,
-   "ytot": 24,
+   "ytot": 25,
    "icons": [
     "icons/faces/lads/cast-sylus.webp"
    ]
@@ -3601,10 +3617,10 @@
     "2026-05": 0.0805,
     "2026-06": 0.6653
    },
-   "cum": 71,
-   "cumtot": 79,
-   "yrank": 19,
-   "ytot": 24,
+   "cum": 72,
+   "cumtot": 80,
+   "yrank": 20,
+   "ytot": 25,
    "bar": "#976a5d",
    "icons": [
     "icons/faces/lads/2026-05-31-e08815.webp"
@@ -3618,9 +3634,11 @@
    "related": "",
    "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/104/131862-104-cf75011144b4a5b524d0b393d73cdaa4-3840x2160.jpg",
    "agents": [
+    "Your Skyblue",
     "No-Return Night"
    ],
-   "en": "No-Return Night",
+   "en": "Your Skyblue & No-Return Night",
+   "title_en": "Your Skyblue",
    "leads": [
     "Caleb"
    ],
@@ -3646,9 +3664,9 @@
     "2026-06": 0.8481
    },
    "cum": 48,
-   "cumtot": 79,
+   "cumtot": 80,
    "yrank": 13,
-   "ytot": 24,
+   "ytot": 25,
    "bar": "#f79b4c",
    "icons": [
     "icons/faces/lads/2026-06-08-2b4208.webp"
@@ -3661,8 +3679,11 @@
    "year": 2026,
    "related": "",
    "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/105/131862-105-7f9d905b2b0e8df2134509895fcaff9d-2560x1440.jpg",
-   "agents": [],
-   "en": "",
+   "agents": [
+    "Once Upon a Frame"
+   ],
+   "en": "Once Upon a Frame",
+   "title_en": "Once Upon a Frame",
    "leads": [
     "Xavier",
     "Zayne",
@@ -3691,23 +3712,69 @@
     143,
     130
    ],
-   "rev": 2.5475,
-   "rev_month": 2.6075,
+   "rev": 2.4467,
+   "rev_month": 2.5066,
    "rev_ym": {
     "2026-06": 2.3308,
-    "2026-07": 0.2167
+    "2026-07": 0.1159
    },
    "rev_month_ym": {
     "2026-06": 2.3908,
-    "2026-07": 0.2167
+    "2026-07": 0.1159
    },
-   "cum": 13,
-   "cumtot": 79,
+   "cum": 15,
+   "cumtot": 80,
    "yrank": 3,
-   "ytot": 24,
+   "ytot": 25,
    "bar": "#9e4538",
    "icons": [
     "icons/faces/lads/2026-06-17-c5a469.webp"
+   ]
+  },
+  {
+   "name": "時と世界の境界",
+   "start": "2026-07-02",
+   "end": "2026-07-09",
+   "year": 2026,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/80/131862-80-2f5db52c0843128569fcadf5f57ee425-1920x1080.png",
+   "rerun_hint": true,
+   "agents": [
+    "Edge Of Continuum"
+   ],
+   "en": "Edge Of Continuum",
+   "title_en": "Edge Of Continuum",
+   "leads": [
+    "Zayne"
+   ],
+   "source_url": "https://gamerch.com/loveanddeepspace/841087",
+   "rerun": true,
+   "ongoing": false,
+   "rank_series": [
+    130,
+    82,
+    128,
+    189,
+    null,
+    null,
+    null,
+    null
+   ],
+   "rev": 0.4538,
+   "rev_month": 0.6939,
+   "rev_ym": {
+    "2026-07": 0.4538
+   },
+   "rev_month_ym": {
+    "2026-07": 0.6939
+   },
+   "cum": 66,
+   "cumtot": 80,
+   "yrank": 18,
+   "ytot": 25,
+   "bar": "#4a7b8c",
+   "icons": [
+    "icons/faces/lads/2026-07-02-0900c0.webp"
    ]
   },
   {
@@ -3744,32 +3811,34 @@
     194
    ],
    "rev": 0.6904,
-   "rev_month": 0.927,
+   "rev_month": 0.9193,
    "rev_ym": {
     "2026-07": 0.6904
    },
    "rev_month_ym": {
-    "2026-07": 0.927
+    "2026-07": 0.9193
    },
    "cum": 55,
-   "cumtot": 79,
+   "cumtot": 80,
    "yrank": 15,
-   "ytot": 24,
+   "ytot": 25,
    "bar": "#9c473a",
    "icons": [
     "icons/faces/lads/2026-07-09-c87429.webp"
    ]
   },
   {
-   "name": "夏意涌向",
+   "name": "湧き来る夏",
    "start": "2026-08-05",
    "end": "2026-08-14",
    "year": 2026,
    "related": "",
    "banner_img": null,
-   "agents": [],
-   "en": "",
-   "title_en": null,
+   "agents": [
+    "Summer Surge"
+   ],
+   "en": "Summer Surge",
+   "title_en": "Summer Surge",
    "leads": [
     "Caleb"
    ],
@@ -3796,10 +3865,10 @@
    "rev_month_ym": {
     "2026-08": 0.5452
    },
-   "cum": 79,
-   "cumtot": 79,
-   "yrank": 24,
-   "ytot": 24,
+   "cum": 80,
+   "cumtot": 80,
+   "yrank": 25,
+   "ytot": 25,
    "icons": [
     "icons/faces/lads/cast-caleb.webp"
    ]
@@ -3811,8 +3880,11 @@
    "year": 2026,
    "related": "",
    "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/110/131862-110-4eec8f9c955d3db43ed2c24435ae81f2-1920x1080.jpg",
-   "agents": [],
-   "en": "",
+   "agents": [
+    "Po Zhen Zi"
+   ],
+   "en": "Po Zhen Zi",
+   "title_en": "Po Zhen Zi",
    "leads": [
     "Rafayel"
    ],
@@ -3845,9 +3917,9 @@
     "2026-08": 1.4034
    },
    "cum": 39,
-   "cumtot": 79,
+   "cumtot": 80,
    "yrank": 8,
-   "ytot": 24,
+   "ytot": 25,
    "bar": "#9f4237",
    "icons": [
     "icons/faces/lads/2026-08-17-cd90c9.webp"
@@ -3860,8 +3932,12 @@
    "year": 2026,
    "related": "",
    "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/112/131862-112-9b18443284ecbdf7521d453543162c9c-2560x1440.png",
-   "agents": [],
-   "en": "",
+   "agents": [
+    "When Embers Rise",
+    "In Earnest Hope"
+   ],
+   "en": "When Embers Rise & In Earnest Hope",
+   "title_en": "When Embers Rise",
    "leads": [
     "Zayne"
    ],
@@ -3888,10 +3964,10 @@
     "2026-08": 0.0728,
     "2026-09": 0.4703
    },
-   "cum": 76,
-   "cumtot": 79,
-   "yrank": 22,
-   "ytot": 24,
+   "cum": 77,
+   "cumtot": 80,
+   "yrank": 23,
+   "ytot": 25,
    "bar": "#e1a484",
    "icons": [
     "icons/faces/lads/2026-08-31-b5a8cd.webp"
@@ -3934,10 +4010,10 @@
    "rev_month_ym": {
     "2026-09": 0.5937
    },
-   "cum": 78,
-   "cumtot": 79,
-   "yrank": 23,
-   "ytot": 24,
+   "cum": 79,
+   "cumtot": 80,
+   "yrank": 24,
+   "ytot": 25,
    "bar": "#d88d9f",
    "icons": [
     "icons/faces/lads/2026-09-08-48d99d.webp"
@@ -3950,8 +4026,11 @@
    "year": 2026,
    "related": "",
    "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/113/131862-113-c67c24152d744c163f55f00fe4ad1185-2560x1440.jpg",
-   "agents": [],
-   "en": "",
+   "agents": [
+    "A Night That Never Ends"
+   ],
+   "en": "A Night That Never Ends",
+   "title_en": "A Night That Never Ends",
    "leads": [
     "Xavier",
     "Zayne",
@@ -3994,9 +4073,9 @@
     "2026-10": 0.7321
    },
    "cum": 23,
-   "cumtot": 79,
+   "cumtot": 80,
    "yrank": 5,
-   "ytot": 24,
+   "ytot": 25,
    "bar": "#9b413b",
    "icons": [
     "icons/faces/lads/2026-09-22-7e8bc0.webp"
@@ -4009,8 +4088,12 @@
    "year": 2026,
    "related": "",
    "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/116/131862-116-6de0c334e6fd093375004a6f694335f4-2560x1440.jpg",
-   "agents": [],
-   "en": "",
+   "agents": [
+    "Lingering Light",
+    "Lights Evermore"
+   ],
+   "en": "Lingering Light & Lights Evermore",
+   "title_en": "Lingering Light",
    "leads": [
     "Xavier"
    ],
@@ -4035,10 +4118,10 @@
    "rev_month_ym": {
     "2026-10": 0.58
    },
-   "cum": 74,
-   "cumtot": 79,
-   "yrank": 21,
-   "ytot": 24,
+   "cum": 75,
+   "cumtot": 80,
+   "yrank": 22,
+   "ytot": 25,
    "bar": "#404996",
    "icons": [
     "icons/faces/lads/2026-10-11-03393e.webp"
@@ -4082,9 +4165,9 @@
     "2026-10": 0.5279
    },
    "cum": 63,
-   "cumtot": 79,
+   "cumtot": 80,
    "yrank": 16,
-   "ytot": 24,
+   "ytot": 25,
    "bar": "#944c42",
    "icons": [
     "icons/faces/lads/2026-10-19-bf1164.webp"

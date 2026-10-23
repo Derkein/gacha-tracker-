@@ -404,7 +404,7 @@ def _cn_wishes(root):
                        titles="|".join(new[i:i + 10]))["query"]
             for pg in q.get("pages", {}).values():
                 c = (pg.get("revisions") or [{}])[0].get("slots", {}).get("main", {}).get("*", "")
-                g = lambda k: (re.search(r"\|" + k + r"=([^\n|]*)", c) or [None, ""])[1].strip()
+                g = lambda k: re.sub(r"<!--.*?-->", "", (re.search(r"\|" + k + r"=([^\n|]*)", c) or [None, ""])[1]).strip()
                 d = lambda v: re.match(r"\s*(\d{4})-(\d{1,2})-(\d{1,2})", v)
                 ms, me = d(g("开始时间")), d(g("结束时间"))
                 leads = list(dict.fromkeys(re.findall(r"(沈星回|黎深|祁煜|秦彻|夏以昼)·", c)))
@@ -420,6 +420,59 @@ def _cn_wishes(root):
     except Exception as e:
         print(f"[lads] BWIKI refresh skipped (non-fatal): {e}", file=sys.stderr)
     return have
+
+
+# gamerch's JP wiki keeps the in-game Japanese name of EVERY limited wish, with its dates and ★5
+# memories (【カレ・思念名】) — the solo wishes no release announces (猫にくびったけ) and the reruns
+# that run beside a bigger banner (時と世界の境界 2026). Newest first; a row with no year
+# (8/17(月)…) takes the year of the row above it. Kept in the repo like the BWIKI list.
+GAMERCH_WISHES = "https://gamerch.com/loveanddeepspace/841087"
+
+
+def _jp_wishes(root):
+    path = root / "icons" / "names" / "lads_jp_wishes.json"
+    have = json.loads(path.read_text(encoding="utf-8")) if path.exists() else []
+    try:
+        t = html.unescape(re.sub(r"<[^>]+>", "\t", _page(GAMERCH_WISHES)))
+        t = re.sub(r"[ \t]*\t[ \t\n]*", "|", t)
+        t = t[t.find("限定願う開催一覧", t.find("限定願う開催一覧|") + 10):]
+        parts = re.split(r"\|([^|]{1,40}?)\|開催期間\|([^|]+)\|", t)
+        rows, year = [], None
+        for k in range(1, len(parts) - 2, 3):
+            name, per, body = parts[k], parts[k + 1], parts[k + 2]
+            mem = list(dict.fromkeys(re.findall(r"\|((?:セイヤ|レイ|ホムラ|シン|マヒル)・[^|]+)\|★5\|", body)))
+            ds = re.findall(r"(?:(\d{4})/)?(\d{1,2})/(\d{1,2})", per)
+            if "BOX" in name or len(ds) < 2:
+                continue
+            (y1, m1, d1), (y2, m2, d2) = ds[0], ds[1]
+            year = int(y1) if y1 else year
+            if year is None:
+                continue
+            s = date(year, int(m1), int(d1))
+            e = date(int(y2) if y2 else year + (int(m2) < int(m1)), int(m2), int(d2))
+            if (e - s).days > 60:                 # a typo'd month (2025/2/18~12/27 is 12/18~12/27)
+                s = s.replace(month=e.month, year=e.year)
+            rows.append({"name": re.sub(r"\s*\[復刻\]\s*$", "", name).strip(), "start": s.isoformat(),
+                         "end": e.isoformat(),
+                         "rerun": "[復刻]" in name or "【復刻】" in body[:80], "mem": mem,
+                         "leads": list(dict.fromkeys(LADS_LEADS[m.split("・")[0]] for m in mem))})
+        if len(rows) >= len(have):
+            have = sorted(rows, key=lambda w: w["start"])
+            path.write_text(json.dumps(have, ensure_ascii=False, indent=0), encoding="utf-8")
+    except Exception as e:
+        print(f"[lads] gamerch wish list refresh skipped (non-fatal): {e}", file=sys.stderr)
+    return have
+
+
+# English names for wishes the Fandom table doesn't have yet (it stops at May 2026). From the
+# global account's posts (x.com/Love_Deepspace: In Earnest Hope, Lingering Light), Fandom's
+# memory pages (Obtain = Limited Wish Pool: Po Zhen Zi / Once Upon a Frame / Secret's Kiss /
+# Your Skyblue) and the banner schedules at enjoygm.com / ldshop.gg for the rest.
+LADS_EN = {"密やかなキス": "Secret's Kiss", "心のままに願いへ": "Heartbound Wish", "日常の来処": "Tranquil Moments",
+           "猫にくびったけ": "Kitten Included", "この空の全てを": "Your Skyblue", "一幕一会": "Once Upon a Frame",
+           "湧き来る夏": "Summer Surge", "破陣子": "Po Zhen Zi", "戦塵が舞う中": "When Embers Rise",
+           "逢える日を胸に": "In Earnest Hope", "今宵、眠れぬなら": "A Night That Never Ends",
+           "この一瞬に願いを": "Lingering Light", "幾年も光と": "Lights Evermore"}
 
 
 def lads():
@@ -473,6 +526,53 @@ def lads():
                     "standard": False, "rerun_hint": orig is not w, "agents": leads, "en": " & ".join(leads),
                     "title_en": src.get("title_en") if src else None,
                     "src": "https://wiki.biligame.com/lysk/" + urllib.parse.quote(w["title"])})
+    # gamerch: every banner goes by its Japanese wish name. A release already names the wish
+    # (gamerch at times files a 2024 wish under its memory: 沸き立つ灼光 for 灼熱の祝福), so only
+    # the wiki-sourced banners are renamed. A wish nothing else lists becomes a banner of its own,
+    # with its first run's art.
+    root = Path(__file__).resolve().parent.parent
+    jp = _jp_wishes(root)
+    near = lambda a, b: abs((date.fromisoformat(a) - date.fromisoformat(b)).days) <= 1
+    same = lambda g, b: near(g["start"], b["start"]) and (not g["leads"] or set(g["leads"]) & set(b["agents"]))
+    extra = [g for g in jp if g["leads"] and not any(same(g, b) for b in out)]
+    for b in out:
+        hits = sorted((g for g in jp if same(g, b)), key=lambda g: g["rerun"])    # new wish, then rerun
+        if len(hits) > 1 and "&" not in b["name"]:   # a birthday's new wish and its rerun: this half only
+            hits = [g for g in hits if g["name"] == b["name"]] or \
+                   [g for g in hits if g["rerun"] == bool(b.get("rerun_hint"))][:1] or hits[:1]
+        if hits:
+            b["mem"] = [m for g in hits for m in g["mem"]]
+            if "prtimes.jp" not in b["src"]:
+                b["name"] = "&".join(g["name"] for g in hits)
+    for g in extra:
+        src = next((b for b in sorted(out, key=lambda x: x["start"]) if b["name"] == g["name"]
+                    and b["start"] < g["start"]), None)
+        out.append({"name": g["name"], "start": g["start"], "end": g["end"], "year": int(g["start"][:4]),
+                    "related": "", "banner_img": src["banner_img"] if src else None, "standard": False,
+                    "rerun_hint": g["rerun"], "agents": g["leads"], "en": " & ".join(g["leads"]),
+                    "title_en": src.get("title_en") if src else None, "mem": g["mem"], "src": GAMERCH_WISHES})
+    # One wish, one name: runs with the same ★5 memories share the LATEST run's names — a rerun is
+    # announced under the wish's name where the first run used its memory's (花火のごとき誓い →
+    # 夜空のさざ波; Fandom's Heartstring Symphony → Everlasting Dream).
+    runs = {}
+    for b in sorted(out, key=lambda x: x["start"]):
+        if b.get("mem") and "&" not in b["name"]:
+            runs.setdefault(frozenset(b["mem"]), []).append(b)
+    for rs in runs.values():
+        en = next((r["title_en"] for r in reversed(rs) if r.get("title_en")), None)
+        for r in rs:
+            r["name"], r["title_en"] = rs[-1]["name"], en or r.get("title_en")
+    # English: Fandom's name where it has one, else LADS_EN; a pair reads as its halves' names
+    en = dict(LADS_EN)
+    for b in out:
+        if b.get("title_en") and "&" not in b["name"]:
+            en.setdefault(b["name"], b["title_en"])
+    for b in out:
+        halves = b["name"].split("&")
+        if all(h in en for h in halves):
+            b["title_en"] = " & ".join(en[h] for h in halves)
+    for b in out:
+        b.pop("mem", None)
     # a rerun the wiki has no row for keeps the English name its first run had (帰らぬ夜 →
     # No-Return Night)
     first = {}
