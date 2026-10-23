@@ -5,13 +5,13 @@
  "unit": "億G",
  "source": "https://prtimes.jp/main/html/searchrlp/company_id/131862",
  "banners_from": "official",
- "updated": "2026-10-23T00:07:51Z",
- "count": 68,
+ "updated": "2026-10-23T02:49:05Z",
+ "count": 79,
  "now": {
-  "ios": 154,
-  "android": 121,
+  "ios": 164,
+  "android": 124,
   "month": 189,
-  "next_add": 12331969,
+  "next_add": 10481116,
   "ym": "2026/10",
   "ranks": {
    "prev": [
@@ -156,8 +156,8 @@
    "rev_month_ym": {
     "2024-01": 1.1357
    },
-   "cum": 32,
-   "cumtot": 68,
+   "cum": 33,
+   "cumtot": 79,
    "yrank": 15,
    "ytot": 25,
    "icons": [
@@ -204,7 +204,7 @@
     "2024-02": 0.4952
    },
    "cum": 30,
-   "cumtot": 68,
+   "cumtot": 79,
    "yrank": 13,
    "ytot": 25,
    "bar": "#d8978d",
@@ -258,7 +258,7 @@
     "2024-02": 2.7864
    },
    "cum": 10,
-   "cumtot": 68,
+   "cumtot": 79,
    "yrank": 3,
    "ytot": 25,
    "bar": "#9f3744",
@@ -304,7 +304,7 @@
     "2024-02": 1.3662
    },
    "cum": 28,
-   "cumtot": 68,
+   "cumtot": 79,
    "yrank": 12,
    "ytot": 25,
    "bar": "#47658f",
@@ -348,8 +348,8 @@
    "rev_month_ym": {
     "2024-03": 1.0822
    },
-   "cum": 33,
-   "cumtot": 68,
+   "cum": 35,
+   "cumtot": 79,
    "yrank": 16,
    "ytot": 25,
    "bar": "#bf172c",
@@ -401,7 +401,7 @@
     "2024-03": 2.4675
    },
    "cum": 15,
-   "cumtot": 68,
+   "cumtot": 79,
    "yrank": 6,
    "ytot": 25,
    "bar": "#dedd87",
@@ -452,8 +452,8 @@
    "rev_month_ym": {
     "2024-04": 1.9532
    },
-   "cum": 21,
-   "cumtot": 68,
+   "cum": 20,
+   "cumtot": 79,
    "yrank": 9,
    "ytot": 25,
    "bar": "#3590a1",
@@ -500,8 +500,8 @@
    "rev_month_ym": {
     "2024-04": 0.828
    },
-   "cum": 46,
-   "cumtot": 68,
+   "cum": 50,
+   "cumtot": 79,
    "yrank": 18,
    "ytot": 25,
    "bar": "#daa28b",
@@ -550,8 +550,8 @@
     "2024-04": 0.0475,
     "2024-05": 0.7049
    },
-   "cum": 56,
-   "cumtot": 68,
+   "cum": 61,
+   "cumtot": 79,
    "yrank": 22,
    "ytot": 25,
    "bar": "#9b3c44",
@@ -602,8 +602,8 @@
    "rev_month_ym": {
     "2024-05": 2.1557
    },
-   "cum": 20,
-   "cumtot": 68,
+   "cum": 19,
+   "cumtot": 79,
    "yrank": 8,
    "ytot": 25,
    "bar": "#4a508d",
@@ -652,8 +652,8 @@
     "2024-05": 0.4027,
     "2024-06": 0.2476
    },
-   "cum": 61,
-   "cumtot": 68,
+   "cum": 69,
+   "cumtot": 79,
    "yrank": 24,
    "ytot": 25,
    "bar": "#d3d88d",
@@ -705,7 +705,7 @@
     "2024-06": 1.2004
    },
    "cum": 31,
-   "cumtot": 68,
+   "cumtot": 79,
    "yrank": 14,
    "ytot": 25,
    "bar": "#415f95",
@@ -761,8 +761,8 @@
     "2024-06": 0.9661,
     "2024-07": 0.9575
    },
-   "cum": 22,
-   "cumtot": 68,
+   "cum": 21,
+   "cumtot": 79,
    "yrank": 10,
    "ytot": 25,
    "bar": "#976a5d",
@@ -819,7 +819,7 @@
     "2024-08": 0.1073
    },
    "cum": 14,
-   "cumtot": 68,
+   "cumtot": 79,
    "yrank": 5,
    "ytot": 25,
    "bar": "#97423f",
@@ -880,7 +880,7 @@
     "2024-08": 4.8353
    },
    "cum": 1,
-   "cumtot": 68,
+   "cumtot": 79,
    "yrank": 1,
    "ytot": 25,
    "bar": "#944c42",
@@ -926,8 +926,8 @@
     "2024-08": 0.0525,
     "2024-09": 0.5821
    },
-   "cum": 53,
-   "cumtot": 68,
+   "cum": 58,
+   "cumtot": 79,
    "yrank": 21,
    "ytot": 25,
    "bar": "#f0ce75",
@@ -974,8 +974,8 @@
    "rev_month_ym": {
     "2024-09": 0.8641
    },
-   "cum": 42,
-   "cumtot": 68,
+   "cum": 45,
+   "cumtot": 79,
    "yrank": 17,
    "ytot": 25,
    "bar": "#8eaad7",
@@ -1034,7 +1034,7 @@
     "2024-10": 0.7358
    },
    "cum": 16,
-   "cumtot": 68,
+   "cumtot": 79,
    "yrank": 7,
    "ytot": 25,
    "bar": "#9c473a",
@@ -1078,8 +1078,8 @@
    "rev_month_ym": {
     "2024-10": 0.7603
    },
-   "cum": 49,
-   "cumtot": 68,
+   "cum": 52,
+   "cumtot": 79,
    "yrank": 19,
    "ytot": 25,
    "bar": "#5d4591",
@@ -1126,8 +1126,8 @@
    "rev_month_ym": {
     "2024-10": 0.9182
    },
-   "cum": 50,
-   "cumtot": 68,
+   "cum": 53,
+   "cumtot": 79,
    "yrank": 20,
    "ytot": 25,
    "bar": "#a0363d",
@@ -1176,8 +1176,8 @@
     "2024-10": 0.053,
     "2024-11": 0.6588
    },
-   "cum": 59,
-   "cumtot": 68,
+   "cum": 67,
+   "cumtot": 79,
    "yrank": 23,
    "ytot": 25,
    "bar": "#ac312b",
@@ -1236,7 +1236,7 @@
     "2024-11": 2.6645
    },
    "cum": 12,
-   "cumtot": 68,
+   "cumtot": 79,
    "yrank": 4,
    "ytot": 25,
    "bar": "#905346",
@@ -1288,7 +1288,7 @@
     "2024-12": 1.7858
    },
    "cum": 24,
-   "cumtot": 68,
+   "cumtot": 79,
    "yrank": 11,
    "ytot": 25,
    "bar": "#a04936",
@@ -1335,8 +1335,8 @@
    "rev_month_ym": {
     "2024-12": 0.6741
    },
-   "cum": 66,
-   "cumtot": 68,
+   "cum": 75,
+   "cumtot": 79,
    "yrank": 25,
    "ytot": 25,
    "bar": "#8b9bda",
@@ -1398,8 +1398,8 @@
     "2024-12": 0.0912,
     "2025-01": 3.262
    },
-   "cum": 5,
-   "cumtot": 68,
+   "cum": 4,
+   "cumtot": 79,
    "yrank": 2,
    "ytot": 25,
    "bar": "#8f5647",
@@ -1456,7 +1456,7 @@
     "2025-02": 0.7504
    },
    "cum": 7,
-   "cumtot": 68,
+   "cumtot": 79,
    "yrank": 3,
    "ytot": 30,
    "bar": "#d79d8e",
@@ -1515,7 +1515,7 @@
     "2025-02": 3.9422
    },
    "cum": 3,
-   "cumtot": 68,
+   "cumtot": 79,
    "yrank": 2,
    "ytot": 30,
    "bar": "#d4022a",
@@ -1560,8 +1560,8 @@
    "rev_month_ym": {
     "2025-03": 0.8804
    },
-   "cum": 38,
-   "cumtot": 68,
+   "cum": 40,
+   "cumtot": 79,
    "yrank": 16,
    "ytot": 30,
    "bar": "#4b4096",
@@ -1607,8 +1607,8 @@
    "rev_month_ym": {
     "2025-03": 1.0601
    },
-   "cum": 34,
-   "cumtot": 68,
+   "cum": 36,
+   "cumtot": 79,
    "yrank": 13,
    "ytot": 30,
    "bar": "#8f4851",
@@ -1652,8 +1652,8 @@
    "rev_month_ym": {
     "2025-03": 1.1128
    },
-   "cum": 35,
-   "cumtot": 68,
+   "cum": 37,
+   "cumtot": 79,
    "yrank": 14,
    "ytot": 30,
    "icons": [
@@ -1705,8 +1705,8 @@
     "2025-03": 1.2239,
     "2025-04": 0.9567
    },
-   "cum": 19,
-   "cumtot": 68,
+   "cum": 18,
+   "cumtot": 79,
    "yrank": 8,
    "ytot": 30,
    "bar": "#a292d3",
@@ -1750,8 +1750,8 @@
    "rev_month_ym": {
     "2025-04": 0.7197
    },
-   "cum": 51,
-   "cumtot": 68,
+   "cum": 56,
+   "cumtot": 79,
    "yrank": 21,
    "ytot": 30,
    "bar": "#cacd98",
@@ -1795,8 +1795,8 @@
    "rev_month_ym": {
     "2025-04": 1.0463
    },
-   "cum": 36,
-   "cumtot": 68,
+   "cum": 38,
+   "cumtot": 79,
    "yrank": 15,
    "ytot": 30,
    "icons": [
@@ -1857,7 +1857,7 @@
     "2025-05": 2.7054
    },
    "cum": 11,
-   "cumtot": 68,
+   "cumtot": 79,
    "yrank": 6,
    "ytot": 30,
    "bar": "#d3a092",
@@ -1901,8 +1901,8 @@
    "rev_month_ym": {
     "2025-05": 0.8748
    },
-   "cum": 39,
-   "cumtot": 68,
+   "cum": 42,
+   "cumtot": 79,
    "yrank": 17,
    "ytot": 30,
    "icons": [
@@ -1949,8 +1949,8 @@
     "2025-05": 0.3152,
     "2025-06": 0.3717
    },
-   "cum": 60,
-   "cumtot": 68,
+   "cum": 68,
+   "cumtot": 79,
    "yrank": 27,
    "ytot": 30,
    "bar": "#993d3d",
@@ -1994,8 +1994,8 @@
    "rev_month_ym": {
     "2025-06": 0.7719
    },
-   "cum": 47,
-   "cumtot": 68,
+   "cum": 51,
+   "cumtot": 79,
    "yrank": 20,
    "ytot": 30,
    "bar": "#a25034",
@@ -2049,7 +2049,7 @@
     "2025-07": 0.0876
    },
    "cum": 27,
-   "cumtot": 68,
+   "cumtot": 79,
    "yrank": 11,
    "ytot": 30,
    "bar": "#79c0ec",
@@ -2110,7 +2110,7 @@
     "2025-07": 2.9019
    },
    "cum": 8,
-   "cumtot": 68,
+   "cumtot": 79,
    "yrank": 4,
    "ytot": 30,
    "bar": "#524f87",
@@ -2164,7 +2164,7 @@
     "2025-08": 0.6513
    },
    "cum": 25,
-   "cumtot": 68,
+   "cumtot": 79,
    "yrank": 9,
    "ytot": 30,
    "bar": "#47598f",
@@ -2225,7 +2225,7 @@
     "2025-08": 2.8404
    },
    "cum": 9,
-   "cumtot": 68,
+   "cumtot": 79,
    "yrank": 5,
    "ytot": 30,
    "bar": "#72c2f3",
@@ -2272,8 +2272,8 @@
     "2025-08": 0.0928,
     "2025-09": 0.6524
    },
-   "cum": 45,
-   "cumtot": 68,
+   "cum": 49,
+   "cumtot": 79,
    "yrank": 19,
    "ytot": 30,
    "bar": "#cea197",
@@ -2319,8 +2319,8 @@
    "rev_month_ym": {
     "2025-09": 0.7676
    },
-   "cum": 55,
-   "cumtot": 68,
+   "cum": 60,
+   "cumtot": 79,
    "yrank": 24,
    "ytot": 30,
    "icons": [
@@ -2365,8 +2365,8 @@
    "rev_month_ym": {
     "2025-09": 0.6408
    },
-   "cum": 52,
-   "cumtot": 68,
+   "cum": 57,
+   "cumtot": 79,
    "yrank": 22,
    "ytot": 30,
    "icons": [
@@ -2421,7 +2421,7 @@
     "2025-10": 0.6673
    },
    "cum": 26,
-   "cumtot": 68,
+   "cumtot": 79,
    "yrank": 10,
    "ytot": 30,
    "bar": "#4a7b8c",
@@ -2466,8 +2466,8 @@
    "rev_month_ym": {
     "2025-10": 0.6186
    },
-   "cum": 54,
-   "cumtot": 68,
+   "cum": 59,
+   "cumtot": 79,
    "yrank": 23,
    "ytot": 30,
    "bar": "#494294",
@@ -2511,8 +2511,8 @@
    "rev_month_ym": {
     "2025-10": 0.8872
    },
-   "cum": 41,
-   "cumtot": 68,
+   "cum": 44,
+   "cumtot": 79,
    "yrank": 18,
    "ytot": 30,
    "icons": [
@@ -2574,8 +2574,8 @@
     "2025-10": 0.7758,
     "2025-11": 1.47
    },
-   "cum": 18,
-   "cumtot": 68,
+   "cum": 17,
+   "cumtot": 79,
    "yrank": 7,
    "ytot": 30,
    "bar": "#4a4591",
@@ -2619,8 +2619,8 @@
    "rev_month_ym": {
     "2025-11": 0.541
    },
-   "cum": 57,
-   "cumtot": 68,
+   "cum": 62,
+   "cumtot": 79,
    "yrank": 25,
    "ytot": 30,
    "icons": [
@@ -2665,8 +2665,8 @@
    "rev_month_ym": {
     "2025-11": 0.619
    },
-   "cum": 68,
-   "cumtot": 68,
+   "cum": 77,
+   "cumtot": 79,
    "yrank": 30,
    "ytot": 30,
    "icons": [
@@ -2717,7 +2717,7 @@
     "2025-12": 1.4041
    },
    "cum": 29,
-   "cumtot": 68,
+   "cumtot": 79,
    "yrank": 12,
    "ytot": 30,
    "bar": "#d88d9f",
@@ -2761,8 +2761,8 @@
    "rev_month_ym": {
     "2025-12": 0.3797
    },
-   "cum": 64,
-   "cumtot": 68,
+   "cum": 73,
+   "cumtot": 79,
    "yrank": 29,
    "ytot": 30,
    "icons": [
@@ -2807,8 +2807,8 @@
    "rev_month_ym": {
     "2025-12": 0.5865
    },
-   "cum": 58,
-   "cumtot": 68,
+   "cum": 64,
+   "cumtot": 79,
    "yrank": 26,
    "ytot": 30,
    "icons": [
@@ -2851,8 +2851,8 @@
    "rev_month_ym": {
     "2025-12": 0.4352
    },
-   "cum": 62,
-   "cumtot": 68,
+   "cum": 70,
+   "cumtot": 79,
    "yrank": 28,
    "ytot": 30,
    "icons": [
@@ -2916,12 +2916,104 @@
     "2026-01": 4.5856
    },
    "cum": 2,
-   "cumtot": 68,
+   "cumtot": 79,
    "yrank": 1,
    "ytot": 30,
    "bar": "#d49591",
    "icons": [
     "icons/faces/lads/2025-12-31-f5025a.webp"
+   ]
+  },
+  {
+   "name": "窃窃私吻",
+   "start": "2026-01-23",
+   "end": "2026-02-01",
+   "year": 2026,
+   "related": "",
+   "banner_img": null,
+   "agents": [],
+   "en": "",
+   "title_en": null,
+   "leads": [
+    "Zayne"
+   ],
+   "source_url": "https://wiki.biligame.com/lysk/%E3%80%8C%E7%AA%83%E7%AA%83%E7%A7%81%E5%90%BB%E3%80%8D",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    183,
+    79,
+    108,
+    144,
+    172,
+    200,
+    null,
+    null,
+    null,
+    195
+   ],
+   "rev": 1.0856,
+   "rev_month": 1.4576,
+   "rev_ym": {
+    "2026-01": 1.0004,
+    "2026-02": 0.0853
+   },
+   "rev_month_ym": {
+    "2026-01": 1.3723,
+    "2026-02": 0.0853
+   },
+   "cum": 34,
+   "cumtot": 79,
+   "yrank": 7,
+   "ytot": 24,
+   "icons": [
+    "icons/faces/lads/cast-zayne.webp"
+   ]
+  },
+  {
+   "name": "宇宙が陥落する時",
+   "start": "2026-02-02",
+   "end": "2026-02-09",
+   "year": 2026,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/61/131862-61-97b6e45391d093a7f8217dc6021d5d70-2560x1440.jpg",
+   "rerun_hint": true,
+   "agents": [
+    "Fallen Cosmos"
+   ],
+   "en": "Fallen Cosmos",
+   "title_en": "Fallen Cosmos",
+   "leads": [
+    "Caleb"
+   ],
+   "source_url": "https://wiki.biligame.com/lysk/%E3%80%8C%E5%BD%93%E5%AE%87%E5%AE%99%E9%99%B7%E8%90%BD%E3%80%8D2026",
+   "rerun": true,
+   "ongoing": false,
+   "rank_series": [
+    null,
+    60,
+    69,
+    104,
+    146,
+    180,
+    null,
+    175
+   ],
+   "rev": 0.7878,
+   "rev_month": 0.9473,
+   "rev_ym": {
+    "2026-02": 0.7878
+   },
+   "rev_month_ym": {
+    "2026-02": 0.9473
+   },
+   "cum": 47,
+   "cumtot": 79,
+   "yrank": 12,
+   "ytot": 24,
+   "bar": "#a292d3",
+   "icons": [
+    "icons/faces/lads/2026-02-02-cc552c.webp"
    ]
   },
   {
@@ -2975,9 +3067,9 @@
     "2026-02": 3.2489
    },
    "cum": 6,
-   "cumtot": 68,
+   "cumtot": 79,
    "yrank": 2,
-   "ytot": 13,
+   "ytot": 24,
    "bar": "#954641",
    "icons": [
     "icons/faces/lads/2026-02-10-cee83c.webp"
@@ -3019,10 +3111,10 @@
    "rev_month_ym": {
     "2026-03": 0.9144
    },
-   "cum": 40,
-   "cumtot": 68,
-   "yrank": 7,
-   "ytot": 13,
+   "cum": 43,
+   "cumtot": 79,
+   "yrank": 10,
+   "ytot": 24,
    "bar": "#ffb466",
    "icons": [
     "icons/faces/lads/2026-03-01-11f9f4.webp"
@@ -3066,12 +3158,61 @@
    "rev_month_ym": {
     "2026-03": 0.8928
    },
-   "cum": 63,
-   "cumtot": 68,
-   "yrank": 11,
-   "ytot": 13,
+   "cum": 72,
+   "cumtot": 79,
+   "yrank": 20,
+   "ytot": 24,
    "icons": [
     "icons/faces/lads/cast-xavier.webp"
+   ]
+  },
+  {
+   "name": "まなざしの先に",
+   "start": "2026-03-19",
+   "end": "2026-03-27",
+   "year": 2026,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/17/131862-17-5adff5a4a4e5a9ee62c5a386200060a4-3840x2160.jpg",
+   "rerun_hint": true,
+   "agents": [
+    "Lingering Gaze"
+   ],
+   "en": "Lingering Gaze",
+   "title_en": "Lingering Gaze",
+   "leads": [
+    "Xavier",
+    "Zayne",
+    "Rafayel"
+   ],
+   "source_url": "https://wiki.biligame.com/lysk/%E3%80%8C%E7%9C%B8%E5%85%89%E6%98%A0%E7%85%A7%E5%A4%84%E3%80%8D2026",
+   "rerun": true,
+   "ongoing": false,
+   "rank_series": [
+    null,
+    46,
+    78,
+    131,
+    170,
+    191,
+    null,
+    177,
+    172
+   ],
+   "rev": 0.8772,
+   "rev_month": 1.0316,
+   "rev_ym": {
+    "2026-03": 0.8772
+   },
+   "rev_month_ym": {
+    "2026-03": 1.0316
+   },
+   "cum": 41,
+   "cumtot": 79,
+   "yrank": 9,
+   "ytot": 24,
+   "bar": "#dedd87",
+   "icons": [
+    "icons/faces/lads/2026-03-19-f8d2ec.webp"
    ]
   },
   {
@@ -3110,23 +3251,69 @@
     153,
     142
    ],
-   "rev": 2.2243,
-   "rev_month": 2.3044,
+   "rev": 1.8635,
+   "rev_month": 1.9436,
    "rev_ym": {
     "2026-03": 1.0512,
-    "2026-04": 1.1731
+    "2026-04": 0.8124
    },
    "rev_month_ym": {
     "2026-03": 1.1312,
-    "2026-04": 1.1731
+    "2026-04": 0.8124
    },
-   "cum": 17,
-   "cumtot": 68,
+   "cum": 22,
+   "cumtot": 79,
    "yrank": 4,
-   "ytot": 13,
+   "ytot": 24,
    "bar": "#3a869c",
    "icons": [
     "icons/faces/lads/2026-03-28-677b34.webp"
+   ]
+  },
+  {
+   "name": "燃えるように熱く",
+   "start": "2026-04-06",
+   "end": "2026-04-13",
+   "year": 2026,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/19/131862-19-38bb1cdad77f06cb2da6b189c261698f-1920x1080.jpg",
+   "rerun_hint": true,
+   "agents": [
+    "Heating Up"
+   ],
+   "en": "Heating Up",
+   "title_en": "Heating Up",
+   "leads": [
+    "Xavier"
+   ],
+   "source_url": "https://wiki.biligame.com/lysk/%E3%80%8C%E7%87%8E%E7%84%B6%E5%8D%87%E6%B8%A9%E3%80%8D2026",
+   "rerun": true,
+   "ongoing": false,
+   "rank_series": [
+    176,
+    98,
+    122,
+    144,
+    153,
+    142,
+    159,
+    null
+   ],
+   "rev": 0.4542,
+   "rev_month": 0.4617,
+   "rev_ym": {
+    "2026-04": 0.4542
+   },
+   "rev_month_ym": {
+    "2026-04": 0.4617
+   },
+   "cum": 65,
+   "cumtot": 79,
+   "yrank": 17,
+   "ytot": 24,
+   "bar": "#daa28b",
+   "icons": [
+    "icons/faces/lads/2026-04-06-a96f21.webp"
    ]
   },
   {
@@ -3159,20 +3346,66 @@
     170
    ],
    "rev": 0.7995,
-   "rev_month": 0.8745,
+   "rev_month": 0.867,
    "rev_ym": {
     "2026-04": 0.7995
    },
    "rev_month_ym": {
-    "2026-04": 0.8745
+    "2026-04": 0.867
    },
-   "cum": 43,
-   "cumtot": 68,
-   "yrank": 8,
-   "ytot": 13,
+   "cum": 46,
+   "cumtot": 79,
+   "yrank": 11,
+   "ytot": 24,
    "bar": "#734492",
    "icons": [
     "icons/faces/lads/2026-04-13-c170eb.webp"
+   ]
+  },
+  {
+   "name": "海が海に沈む時",
+   "start": "2026-04-21",
+   "end": "2026-04-28",
+   "year": 2026,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/68/131862-68-d505dc8edff7ef809fad8e7735c71d18-1920x1080.jpg",
+   "rerun_hint": true,
+   "agents": [
+    "Submerged Eclipse"
+   ],
+   "en": "Submerged Eclipse",
+   "title_en": "Submerged Eclipse",
+   "leads": [
+    "Rafayel"
+   ],
+   "source_url": "https://wiki.biligame.com/lysk/%E3%80%8C%E5%BD%93%E6%B5%B7%E6%B9%AE%E6%B2%A1%E4%BA%8E%E6%B5%B7%E3%80%8D2026",
+   "rerun": true,
+   "ongoing": false,
+   "rank_series": [
+    null,
+    51,
+    84,
+    150,
+    null,
+    null,
+    null,
+    null
+   ],
+   "rev": 0.4456,
+   "rev_month": 0.8292,
+   "rev_ym": {
+    "2026-04": 0.4456
+   },
+   "rev_month_ym": {
+    "2026-04": 0.8292
+   },
+   "cum": 66,
+   "cumtot": 79,
+   "yrank": 18,
+   "ytot": 24,
+   "bar": "#79c0ec",
+   "icons": [
+    "icons/faces/lads/2026-04-21-4e9fc1.webp"
    ]
   },
   {
@@ -3215,23 +3448,69 @@
     82,
     76
    ],
-   "rev": 3.3896,
-   "rev_month": 3.4466,
+   "rev": 3.221,
+   "rev_month": 3.278,
    "rev_ym": {
     "2026-04": 0.0,
-    "2026-05": 3.3896
+    "2026-05": 3.221
    },
    "rev_month_ym": {
     "2026-04": 0.057,
-    "2026-05": 3.3896
+    "2026-05": 3.221
    },
-   "cum": 4,
-   "cumtot": 68,
+   "cum": 5,
+   "cumtot": 79,
    "yrank": 1,
-   "ytot": 13,
+   "ytot": 24,
    "bar": "#e98d64",
    "icons": [
     "icons/faces/lads/2026-04-30-2fea78.webp"
+   ]
+  },
+  {
+   "name": "堕ちた王冠",
+   "start": "2026-05-15",
+   "end": "2026-05-22",
+   "year": 2026,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/74/131862-74-19d6a29ed1a77e8ae07e1febe020efed-1920x1080.jpg",
+   "rerun_hint": true,
+   "agents": [
+    "Fallen Crown"
+   ],
+   "en": "Fallen Crown",
+   "title_en": "Fallen Crown",
+   "leads": [
+    "Xavier"
+   ],
+   "source_url": "https://wiki.biligame.com/lysk/%E3%80%8C%E6%B2%89%E5%9D%A0%E7%9A%84%E5%86%A0%E5%86%95%E3%80%8D2026",
+   "rerun": true,
+   "ongoing": false,
+   "rank_series": [
+    76,
+    39,
+    76,
+    118,
+    148,
+    173,
+    172,
+    179
+   ],
+   "rev": 1.1348,
+   "rev_month": 1.1348,
+   "rev_ym": {
+    "2026-05": 1.1348
+   },
+   "rev_month_ym": {
+    "2026-05": 1.1348
+   },
+   "cum": 32,
+   "cumtot": 79,
+   "yrank": 6,
+   "ytot": 24,
+   "bar": "#47598f",
+   "icons": [
+    "icons/faces/lads/2026-05-15-62c9bd.webp"
    ]
   },
   {
@@ -3264,20 +3543,71 @@
     null,
     null
    ],
-   "rev": 0.7111,
-   "rev_month": 1.1445,
+   "rev": 0.7008,
+   "rev_month": 1.0537,
    "rev_ym": {
-    "2026-05": 0.7111
+    "2026-05": 0.7008
    },
    "rev_month_ym": {
-    "2026-05": 1.1445
+    "2026-05": 1.0537
    },
-   "cum": 48,
-   "cumtot": 68,
-   "yrank": 10,
-   "ytot": 13,
+   "cum": 54,
+   "cumtot": 79,
+   "yrank": 14,
+   "ytot": 24,
    "icons": [
     "icons/faces/lads/cast-sylus.webp"
+   ]
+  },
+  {
+   "name": "双影の重なる時",
+   "start": "2026-05-31",
+   "end": "2026-06-08",
+   "year": 2026,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/27/131862-27-282ff8088d628eab850f56ec4369b923-1920x1080.jpg",
+   "rerun_hint": true,
+   "agents": [
+    "Entwined Shadows"
+   ],
+   "en": "Entwined Shadows",
+   "title_en": "Entwined Shadows",
+   "leads": [
+    "Xavier",
+    "Zayne",
+    "Rafayel"
+   ],
+   "source_url": "https://wiki.biligame.com/lysk/%E3%80%8C%E5%8F%8C%E5%BD%B1%E4%BA%A4%E5%8F%A0%E6%97%B6%E3%80%8D2026",
+   "rerun": true,
+   "ongoing": false,
+   "rank_series": [
+    null,
+    61,
+    114,
+    151,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "rev": 0.3779,
+   "rev_month": 0.7457,
+   "rev_ym": {
+    "2026-05": 0.0,
+    "2026-06": 0.3779
+   },
+   "rev_month_ym": {
+    "2026-05": 0.0805,
+    "2026-06": 0.6653
+   },
+   "cum": 71,
+   "cumtot": 79,
+   "yrank": 19,
+   "ytot": 24,
+   "bar": "#976a5d",
+   "icons": [
+    "icons/faces/lads/2026-05-31-e08815.webp"
    ]
   },
   {
@@ -3308,17 +3638,17 @@
     152
    ],
    "rev": 0.7818,
-   "rev_month": 0.8555,
+   "rev_month": 0.8481,
    "rev_ym": {
     "2026-06": 0.7818
    },
    "rev_month_ym": {
-    "2026-06": 0.8555
+    "2026-06": 0.8481
    },
-   "cum": 44,
-   "cumtot": 68,
-   "yrank": 9,
-   "ytot": 13,
+   "cum": 48,
+   "cumtot": 79,
+   "yrank": 13,
+   "ytot": 24,
    "bar": "#f79b4c",
    "icons": [
     "icons/faces/lads/2026-06-08-2b4208.webp"
@@ -3372,12 +3702,106 @@
     "2026-07": 0.2167
    },
    "cum": 13,
-   "cumtot": 68,
+   "cumtot": 79,
    "yrank": 3,
-   "ytot": 13,
+   "ytot": 24,
    "bar": "#9e4538",
    "icons": [
     "icons/faces/lads/2026-06-17-c5a469.webp"
+   ]
+  },
+  {
+   "name": "絶景をこの目に",
+   "start": "2026-07-09",
+   "end": "2026-07-17",
+   "year": 2026,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/37/131862-37-e3d40e02e74cbc94562a1c2c21e9a03a-2560x1440.jpg",
+   "rerun_hint": true,
+   "agents": [
+    "Wander In Wonder"
+   ],
+   "en": "Wander In Wonder",
+   "title_en": "Wander In Wonder",
+   "leads": [
+    "Xavier",
+    "Zayne",
+    "Rafayel",
+    "Sylus"
+   ],
+   "source_url": "https://wiki.biligame.com/lysk/%E3%80%8C%E6%AC%B2%E6%8F%BD%E6%97%96%E6%97%8E%E8%89%B2%E3%80%8D2026",
+   "rerun": true,
+   "ongoing": false,
+   "rank_series": [
+    null,
+    75,
+    88,
+    132,
+    152,
+    191,
+    null,
+    null,
+    194
+   ],
+   "rev": 0.6904,
+   "rev_month": 0.927,
+   "rev_ym": {
+    "2026-07": 0.6904
+   },
+   "rev_month_ym": {
+    "2026-07": 0.927
+   },
+   "cum": 55,
+   "cumtot": 79,
+   "yrank": 15,
+   "ytot": 24,
+   "bar": "#9c473a",
+   "icons": [
+    "icons/faces/lads/2026-07-09-c87429.webp"
+   ]
+  },
+  {
+   "name": "夏意涌向",
+   "start": "2026-08-05",
+   "end": "2026-08-14",
+   "year": 2026,
+   "related": "",
+   "banner_img": null,
+   "agents": [],
+   "en": "",
+   "title_en": null,
+   "leads": [
+    "Caleb"
+   ],
+   "source_url": "https://wiki.biligame.com/lysk/%E3%80%8C%E5%A4%8F%E6%84%8F%E6%B6%8C%E5%90%91%E3%80%8D",
+   "rerun": false,
+   "ongoing": false,
+   "rank_series": [
+    null,
+    143,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "rev": 0.0892,
+   "rev_month": 0.5452,
+   "rev_ym": {
+    "2026-08": 0.0892
+   },
+   "rev_month_ym": {
+    "2026-08": 0.5452
+   },
+   "cum": 79,
+   "cumtot": 79,
+   "yrank": 24,
+   "ytot": 24,
+   "icons": [
+    "icons/faces/lads/cast-caleb.webp"
    ]
   },
   {
@@ -3420,10 +3844,10 @@
    "rev_month_ym": {
     "2026-08": 1.4034
    },
-   "cum": 37,
-   "cumtot": 68,
-   "yrank": 6,
-   "ytot": 13,
+   "cum": 39,
+   "cumtot": 79,
+   "yrank": 8,
+   "ytot": 24,
    "bar": "#9f4237",
    "icons": [
     "icons/faces/lads/2026-08-17-cd90c9.webp"
@@ -3464,13 +3888,59 @@
     "2026-08": 0.0728,
     "2026-09": 0.4703
    },
-   "cum": 67,
-   "cumtot": 68,
-   "yrank": 13,
-   "ytot": 13,
+   "cum": 76,
+   "cumtot": 79,
+   "yrank": 22,
+   "ytot": 24,
    "bar": "#e1a484",
    "icons": [
     "icons/faces/lads/2026-08-31-b5a8cd.webp"
+   ]
+  },
+  {
+   "name": "銀翼の鎮魂地",
+   "start": "2026-09-08",
+   "end": "2026-09-15",
+   "year": 2026,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/88/131862-88-897a1cca730e0e5ea2e6778c1f9ef844-1920x1080.jpg",
+   "rerun_hint": true,
+   "agents": [
+    "Where Silverwings Rest"
+   ],
+   "en": "Where Silverwings Rest",
+   "title_en": "Where Silverwings Rest",
+   "leads": [
+    "Sylus"
+   ],
+   "source_url": "https://wiki.biligame.com/lysk/%E3%80%8C%E9%93%B6%E7%BF%BC%E5%AE%89%E9%AD%82%E5%9C%B0%E3%80%8D2026",
+   "rerun": true,
+   "ongoing": false,
+   "rank_series": [
+    null,
+    83,
+    137,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "rev": 0.2255,
+   "rev_month": 0.5937,
+   "rev_ym": {
+    "2026-09": 0.2255
+   },
+   "rev_month_ym": {
+    "2026-09": 0.5937
+   },
+   "cum": 78,
+   "cumtot": 79,
+   "yrank": 23,
+   "ytot": 24,
+   "bar": "#d88d9f",
+   "icons": [
+    "icons/faces/lads/2026-09-08-48d99d.webp"
    ]
   },
   {
@@ -3524,9 +3994,9 @@
     "2026-10": 0.7321
    },
    "cum": 23,
-   "cumtot": 68,
+   "cumtot": 79,
    "yrank": 5,
-   "ytot": 13,
+   "ytot": 24,
    "bar": "#9b413b",
    "icons": [
     "icons/faces/lads/2026-09-22-7e8bc0.webp"
@@ -3565,13 +4035,59 @@
    "rev_month_ym": {
     "2026-10": 0.58
    },
-   "cum": 65,
-   "cumtot": 68,
-   "yrank": 12,
-   "ytot": 13,
+   "cum": 74,
+   "cumtot": 79,
+   "yrank": 21,
+   "ytot": 24,
    "bar": "#404996",
    "icons": [
     "icons/faces/lads/2026-10-11-03393e.webp"
+   ]
+  },
+  {
+   "name": "半透明な占有",
+   "start": "2026-10-19",
+   "end": "2026-10-27",
+   "year": 2026,
+   "related": "",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/31/131862-31-3c89e8c06cb2e4e77ef3d7eb7018bdc5-2560x1440.png",
+   "rerun_hint": true,
+   "agents": [
+    "Misty Invasion"
+   ],
+   "en": "Misty Invasion",
+   "title_en": "Misty Invasion",
+   "leads": [
+    "Xavier",
+    "Zayne",
+    "Rafayel",
+    "Sylus"
+   ],
+   "source_url": "https://wiki.biligame.com/lysk/%E3%80%8C%E5%8D%8A%E9%80%8F%E6%98%8E%E4%BE%B5%E5%8D%A0%E3%80%8D2026",
+   "rerun": true,
+   "ongoing": true,
+   "rank_series": [
+    null,
+    71,
+    94,
+    102,
+    147
+   ],
+   "rev": 0.4727,
+   "rev_month": 0.5279,
+   "rev_ym": {
+    "2026-10": 0.4727
+   },
+   "rev_month_ym": {
+    "2026-10": 0.5279
+   },
+   "cum": 63,
+   "cumtot": 79,
+   "yrank": 16,
+   "ytot": 24,
+   "bar": "#944c42",
+   "icons": [
+    "icons/faces/lads/2026-10-19-bf1164.webp"
    ]
   }
  ]

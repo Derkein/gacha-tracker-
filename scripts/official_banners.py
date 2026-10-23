@@ -370,6 +370,58 @@ def _fandom_wishes():
     return out
 
 
+# The Chinese edition runs the SAME wish calendar as global — every global rerun / single-★5
+# wish the Fandom table lists sits on the same dates there (When Tides Echo 2025-03-20 =
+# 潮声回唱之时, Kitten Included 2026-05-22 = 爱猫及喵) — and the Bilibili wiki (BWIKI) keeps a
+# page per wish (template 游戏活动: 活动类型=许愿, 开始/结束时间, 活动思念, the leads as 祁煜·…).
+# It fills what neither the releases nor the wiki table cover (reruns after May 2026). BWIKI
+# throttles scripts hard (HTTP 567 after a burst), so its list is kept in the repo
+# (icons/names/lads_cn_wishes.json) and only topped up here, gently and never fatally.
+BWIKI_API = "https://wiki.biligame.com/lysk/api.php"
+LADS_CN = {"沈星回": "Xavier", "黎深": "Zayne", "祁煜": "Rafayel", "秦彻": "Sylus", "夏以昼": "Caleb"}
+
+
+def _bwiki(**p):
+    p["format"] = "json"
+    return _get(BWIKI_API + "?" + urllib.parse.urlencode(p), {"User-Agent": "Mozilla/5.0"})
+
+
+def _cn_wishes(root):
+    path = root / "icons" / "names" / "lads_cn_wishes.json"
+    have = json.loads(path.read_text(encoding="utf-8")) if path.exists() else []
+    try:
+        titles, cont = [], {}
+        while True:
+            r = _bwiki(action="query", list="embeddedin", eititle="Template:游戏活动", eilimit=500, **cont)
+            titles += [x["title"] for x in r["query"]["embeddedin"]]
+            if "continue" not in r:
+                break
+            cont = r["continue"]
+        known = {w["title"] for w in have}
+        new = [t for t in titles if t not in known]
+        for i in range(0, len(new), 10):
+            q = _bwiki(action="query", prop="revisions", rvprop="content", rvslots="main",
+                       titles="|".join(new[i:i + 10]))["query"]
+            for pg in q.get("pages", {}).values():
+                c = (pg.get("revisions") or [{}])[0].get("slots", {}).get("main", {}).get("*", "")
+                g = lambda k: (re.search(r"\|" + k + r"=([^\n|]*)", c) or [None, ""])[1].strip()
+                d = lambda v: re.match(r"\s*(\d{4})-(\d{1,2})-(\d{1,2})", v)
+                ms, me = d(g("开始时间")), d(g("结束时间"))
+                leads = list(dict.fromkeys(re.findall(r"(沈星回|黎深|祁煜|秦彻|夏以昼)·", c)))
+                if g("活动类型") != "许愿" or "卡池" not in g("许愿类型") or not (ms and me and leads):
+                    continue
+                s_ = "%04d-%02d-%02d" % tuple(map(int, ms.groups()))
+                e_ = "%04d-%02d-%02d" % tuple(map(int, me.groups()))
+                have.append({"start": s_, "end": e_ if e_ >= s_ else s_[:4] + e_[4:], "title": pg["title"],
+                             "type": g("许愿类型"), "memories": g("活动思念"), "leads": leads})
+            time.sleep(1.0)
+        have.sort(key=lambda w: w["start"])
+        path.write_text(json.dumps(have, ensure_ascii=False, indent=0), encoding="utf-8")
+    except Exception as e:
+        print(f"[lads] BWIKI refresh skipped (non-fatal): {e}", file=sys.stderr)
+    return have
+
+
 def lads():
     feed = _page(PRT_FEED)
     ids = sorted({int(n) for n in re.findall(r"/rd/p/(\d{9})\.000131862\.html", feed)})
@@ -399,6 +451,28 @@ def lads():
                         "agents": leads, "en": " & ".join(leads), "title_en": name,
                         "src": "https://loveanddeepspace.fandom.com/wiki/Wish/Limited_Wish_Pools"})
         seen.add(name.lower())
+    # BWIKI: a wish neither the releases nor the Fandom table cover is a banner of its own. A rerun
+    # (title 「X」2026) is named after its first run's global banner, found by the first run's dates.
+    from pathlib import Path
+    cn = _cn_wishes(Path(__file__).resolve().parent.parent)
+    base = lambda t: re.sub(r"^「|」.*$", "", t)
+    first_cn = {}
+    for w in cn:
+        first_cn.setdefault(base(w["title"]), w)
+    for w in cn:
+        s, e = date.fromisoformat(w["start"]), date.fromisoformat(w["end"])
+        leads = [LADS_CN[x] for x in w["leads"] if x in LADS_CN]
+        if not leads or any(abs((date.fromisoformat(b["start"]) - s).days) <= 1 and set(b["agents"]) & set(leads)
+                            for b in out):
+            continue
+        orig = first_cn[base(w["title"])]
+        src = next((b for b in out if orig is not w and abs((date.fromisoformat(b["start"]) -
+                    date.fromisoformat(orig["start"])).days) <= 1 and set(b["agents"]) & set(leads)), None)
+        out.append({"name": src["name"] if src else base(w["title"]), "start": s.isoformat(), "end": e.isoformat(),
+                    "year": s.year, "related": "", "banner_img": src["banner_img"] if src else None,
+                    "standard": False, "rerun_hint": orig is not w, "agents": leads, "en": " & ".join(leads),
+                    "title_en": src.get("title_en") if src else None,
+                    "src": "https://wiki.biligame.com/lysk/" + urllib.parse.quote(w["title"])})
     # a rerun the wiki has no row for keeps the English name its first run had (帰らぬ夜 →
     # No-Return Night)
     first = {}
