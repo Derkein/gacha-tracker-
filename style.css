@@ -12,6 +12,12 @@
     --grid:#2a2a27; --base:#3a3a36; --border:rgba(255,255,255,.10);
     --track:#242422; --shadow:0 10px 30px rgba(0,0,0,.45); --bar:var(--bar-d); }
 }
+/* Monthly graph, one colour per year — the validated 8-slot categorical palette, stepped per theme
+   (dataviz validate_palette.js on #fdfdfc / #1a1a18: all checks pass; light aqua/yellow/magenta sit
+   under 3:1, so the lines carry direct year labels + the chip legend) */
+:root{ --yr1:#2a78d6; --yr2:#eb6834; --yr3:#1baf7a; --yr4:#eda100; --yr5:#e87ba4; --yr6:#008300; --yr7:#6250d6; --yr8:#e34948; }
+@media (prefers-color-scheme:dark){ :root:not([data-theme=light]){ --yr1:#3987e5; --yr2:#d95926; --yr3:#199e70; --yr4:#c98500; --yr5:#d55181; --yr6:#008300; --yr7:#9085e9; --yr8:#e66767; } }
+:root[data-theme=dark]{ --yr1:#3987e5; --yr2:#d95926; --yr3:#199e70; --yr4:#c98500; --yr5:#d55181; --yr6:#008300; --yr7:#9085e9; --yr8:#e66767; }
 :root[data-theme=light]{ --page:#f6f6f3; --surface:#fdfdfc; --surface2:#f0efea; --ink:#14140f; --ink2:#5a584f; --muted:#8f8c82; --grid:#e4e2da; --base:#cbc9bf; --border:rgba(20,20,15,.10); --track:#eceae2; --bar:var(--bar-l); }
 :root[data-theme=dark]{ --page:#0e0e0d; --surface:#1a1a18; --surface2:#212120; --ink:#f7f7f2; --ink2:#b8b6ac; --muted:#84827a; --grid:#2a2a27; --base:#3a3a36; --border:rgba(255,255,255,.10); --track:#242422; --shadow:0 10px 30px rgba(0,0,0,.45); --bar:var(--bar-d); }
 
@@ -316,20 +322,52 @@ tr.clk{cursor:pointer} tr.clk:hover td{background:var(--track)}
 .gsvg .grid{stroke:var(--grid); stroke-width:1}
 .gsvg .axislbl{fill:var(--muted); font-size:10px; font-family:system-ui,sans-serif}
 .gsvg .area{fill:var(--accent); opacity:.13}
-.gsvg .line{fill:none; stroke:var(--accent); stroke-width:2; stroke-linejoin:round; stroke-linecap:round; opacity:.55}
+.gsvg .area.garea{opacity:1}     /* graph wash: a top-down gradient of the accent (fill set inline) */
+.gsvg .gbase{stroke:var(--base); stroke-width:1}
+.gsvg .line{fill:none; stroke:var(--accent); stroke-width:2; stroke-linejoin:round; stroke-linecap:round; opacity:.8}
 .gsvg .dot{stroke:var(--surface); stroke-width:2; cursor:pointer; transition:r .12s}
 .gsvg .dot:hover{r:7}
 .gsvg image{cursor:pointer}
-/* graph by month: a wide invisible hit area under each month dot; the year's total by its label */
-.gsvg .mhit{fill:transparent; cursor:pointer}
-.gsvg .mhit:hover + .mdot{r:8}
+/* graph by month: smooth 2px lines, a gradient wash (Separate), surface-ringed dots, a month-
+   wide hover column with a crosshair hairline, labels only on the peak / latest / line ends */
+.msvg .mbase{stroke:var(--base); stroke-width:1}
+.msvg .mline{fill:none; stroke-width:2.25; stroke-linejoin:round; stroke-linecap:round}
+.msvg .mdot{stroke:var(--surface); stroke-width:2; pointer-events:none; transition:r .12s}
+.msvg .mhit{fill:transparent; cursor:pointer}
+.msvg .mhit:hover + .mdot{r:7}
+.msvg .mband rect{fill:transparent}
+.msvg .mband[data-mtip], .msvg .mband[data-mband]{cursor:pointer}
+.msvg .mband .xhair{stroke:var(--muted); stroke-width:1; opacity:0; transition:opacity .1s}
+.msvg .mband:hover rect{fill:var(--ink); fill-opacity:.035}
+.msvg .mband:hover .xhair{opacity:.55}
+.msvg .mlabel{fill:var(--ink2); font:600 10.5px system-ui,-apple-system,"Segoe UI",sans-serif; pointer-events:none}
+.msvg .mlabel.pk{fill:var(--ink); font-weight:750}
+.msvg .mlabel.yr{fill:var(--ink); font-weight:750; font-size:11px}
+.msvg .mkey{stroke-width:2.25; stroke-linecap:round}
 .yhead .yhead-sub{margin-left:8px; font-weight:700; letter-spacing:0; text-transform:none; color:var(--ink)}
-/* month tooltip: that month's banners and their part of it */
-.tip .mtip-list{list-style:none; margin:8px 0 0; padding:7px 0 0; border-top:1px solid var(--border); display:grid; gap:3px}
-.tip .mtip-list li{display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:7px}
-.tip .mtip-list .mt-nm{white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:220px}
+.mlegend{display:flex; flex-wrap:wrap; gap:4px 14px; margin:2px 0 6px; font-size:11.5px; color:var(--ink2)}
+.mlegend .mleg{display:inline-flex; align-items:center; gap:6px}
+.mlegend .mleg i{display:inline-block; width:14px; height:2.5px; border-radius:2px}
+.mlegend b{color:var(--ink); font-weight:700}
+#gyears .ykey{display:inline-block; width:10px; height:2.5px; border-radius:2px; margin-right:5px; vertical-align:middle}
+/* month tooltip: the total first, then each banner — icon, name, English name, its part */
+.tip .mtip-tot{display:flex; align-items:baseline; gap:8px; margin:2px 0 0}
+.tip .mtip-tot b{font-size:17px; font-weight:750}
+.tip .mtip-tot span{color:var(--muted); font-size:11px}
+.tip .mtip-list{list-style:none; margin:8px 0 0; padding:8px 0 0; border-top:1px solid var(--border); display:grid; gap:6px}
+.tip .mtip-list li{display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:8px}
+.tip .mt-av{width:26px; height:26px; border-radius:50%; overflow:hidden; background:var(--track); box-shadow:0 0 0 1.5px var(--av-ring,var(--border))}
+.tip .mt-av img{width:100%; height:100%; object-fit:cover; display:block}
+.tip .mt-txt{display:flex; flex-direction:column; min-width:0}
+.tip .mt-nm{white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:210px; font-weight:600}
+.tip .mt-en{white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:210px; color:var(--muted); font-size:11px}
 .tip .mtip-list b{font-variant-numeric:tabular-nums}
-.tip .mtip-more{margin-top:5px; color:var(--muted); font-size:11px}
+.tip .mtip-list.yrs li{grid-template-columns:auto auto auto 1fr}
+.tip .mt-key{width:12px; height:2.5px; border-radius:2px}
+.tip .mt-y{color:var(--ink2); font-variant-numeric:tabular-nums}
+.tip .mt-ics{display:flex; gap:3px; justify-content:flex-end}
+.tip .mt-ics img{width:20px; height:20px; border-radius:50%; object-fit:cover; box-shadow:0 0 0 1.5px var(--av-ring,var(--border))}
+.tip .mtip-more{margin-top:6px; color:var(--muted); font-size:11px}
 /* rerun badge on a graph avatar: same ↻ glyph as the .rr chips, and the same
    muted-on-surface/border palette, drawn as an SVG badge on the ring's 45° corner */
 .gsvg .g-rr{cursor:pointer}

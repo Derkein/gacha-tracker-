@@ -3,7 +3,7 @@ const GAME_ACCENT = {          // per-game hue (used for bars/dots without a sam
   zzz:"#e0a400", hsr:"#8a7bd8", wuwa:"#2fb6c0", genshin:"#d8a24a", endfield:"#e07b3a", nte:"#d94f8a",
   uma:"#3fb98f", stellasora:"#5aa9e6", czn:"#d2463c", lads:"#b87ee6",
 };
-const state = { revMode:"daily", games:[], tag:null, data:null, reported:null, cn:null, qimai:null, mode:"time", table:false, reverse:false, bracket:0, graphYear:"all", graphDim:"year", graphUnit:"banner", matchHigh:true, monthYear:"all", periodSort:"timeline", dataSource:"gamei", search:"", agreeMode:"month", compare:{picks:[], sources:{}, chart:"jp"} };
+const state = { revMode:"daily", games:[], tag:null, data:null, reported:null, cn:null, qimai:null, mode:"time", table:false, reverse:false, bracket:0, graphYear:"all", graphDim:"year", graphUnit:"banner", graphLayout:"separate", graphYearsSel:[], matchHigh:true, monthYear:"all", periodSort:"timeline", dataSource:"gamei", search:"", agreeMode:"month", compare:{picks:[], sources:{}, chart:"jp"} };
 
 // Major game-version (X.0) launch dates, JST — used to bucket banners into 1.X / 2.X
 // groups. Only version-based games have these; sourced from each game's official
@@ -1800,8 +1800,9 @@ function groupSVG(label, items, gmax, step, x0, x1){
     }
     return `<circle class="dot${p.b._synthetic?" syndot":""}" data-i="${p.b._i}" cx="${cx}" cy="${cy}" r="6" fill="${acc}"/>`+rr;
   }).join("");
-  return `<svg class="gsvg" viewBox="0 0 ${W} ${H}" role="img">
-    ${grid}<path class="area" d="${area}"/><path class="line" d="${line}"/>${marks}${xt}</svg>`;
+  return `<svg class="gsvg" viewBox="0 0 ${W} ${H}" role="img"><defs><linearGradient id="ga_${gid}" x1="0" y1="0" x2="0" y2="1">`
+    + `<stop offset="0" style="stop-color:var(--accent);stop-opacity:.30"/><stop offset="1" style="stop-color:var(--accent);stop-opacity:0"/></linearGradient></defs>
+    ${grid}<line class="gbase" x1="${ML}" y1="${base}" x2="${W-MR}" y2="${base}"/><path class="area garea" style="fill:url(#ga_${gid})" d="${area}"/><path class="line" d="${line}"/>${marks}${xt}</svg>`;
 }
 function renderGraph(){
   state.data.banners.forEach((x,i)=>x._i=i);
@@ -1864,68 +1865,147 @@ function monthBanners(ym){
   }
   return out.sort((a,c)=>c.v-a.v);
 }
-function monthSVG(label, months, gmax, x0, x1){
-  const usd = state.dataSource==="st" || state.dataSource==="qimai", cnMode = state.dataSource==="cn";
-  const fmt = usd ? fmtUSD : cnMode ? fmtCNY : G;
-  const W=760,H=470,ML=58,MR=16,MT=18,MB=28, pW=W-ML-MR, pH=H-MT-MB, base=MT+pH;
-  const xOf=ym=>ML+((Date.UTC(+ym.slice(0,4), +ym.slice(5,7)-1, 15)-x0)/(x1-x0))*pW;
-  const yOf=v=>MT+(1-v/gmax)*pH;
-  const pts=months.map(ym=>({x:xOf(ym), y:yOf(monthVal(ym)), ym}));
+// one colour per YEAR, from the validated categorical palette (style.css --yr1…--yr8), keyed to
+// the year itself — so a year keeps its colour whichever other years are switched on
+function yearColor(y){
+  const ys=[...new Set(graphMonths().map(ym=>+ym.slice(0,4)))].sort();
+  return `var(--yr${(Math.max(0, ys.indexOf(+y)) % 8) + 1})`;
+}
+// a smooth line that never overshoots its points (monotone cubic, Fritsch–Carlson)
+function monoPath(p){
+  if(p.length<2) return p.length?`M${p[0].x.toFixed(1)} ${p[0].y.toFixed(1)}`:"";
+  const n=p.length, d=[], m=[];
+  for(let i=0;i<n-1;i++) d.push((p[i+1].y-p[i].y)/(p[i+1].x-p[i].x));
+  m[0]=d[0]; m[n-1]=d[n-2];
+  for(let i=1;i<n-1;i++) m[i] = d[i-1]*d[i]<=0 ? 0 : (d[i-1]+d[i])/2;
+  for(let i=0;i<n-1;i++){ if(d[i]===0){ m[i]=m[i+1]=0; continue; }
+    const a=m[i]/d[i], b=m[i+1]/d[i], s=a*a+b*b;
+    if(s>9){ const t=3/Math.sqrt(s); m[i]=t*a*d[i]; m[i+1]=t*b*d[i]; } }
+  let s=`M${p[0].x.toFixed(1)} ${p[0].y.toFixed(1)}`;
+  for(let i=0;i<n-1;i++){ const h=(p[i+1].x-p[i].x)/3;
+    s+=` C${(p[i].x+h).toFixed(1)} ${(p[i].y+m[i]*h).toFixed(1)} ${(p[i+1].x-h).toFixed(1)} ${(p[i+1].y-m[i+1]*h).toFixed(1)} ${p[i+1].x.toFixed(1)} ${p[i+1].y.toFixed(1)}`; }
+  return s;
+}
+// split a year's points where a month is missing, so a gap isn't drawn as a line
+function runsOf(pts){ const out=[]; let cur=[];
+  pts.forEach((p,i)=>{ if(i && p.mi!==pts[i-1].mi+1){ out.push(cur); cur=[]; } cur.push(p); });
+  if(cur.length) out.push(cur); return out; }
+const monthFmt = () => (state.dataSource==="st"||state.dataSource==="qimai") ? fmtUSD : state.dataSource==="cn" ? fmtCNY : G;
+// Jan–Dec chart. series = [{y, months:[ym…], color}] — one (Separate: the year's own, with its
+// gradient wash and peak / latest labels) or several (Together: a line per year, end-labelled).
+function monthSVG(series, gmax, together){
+  const usd = state.dataSource==="st" || state.dataSource==="qimai", cnMode = state.dataSource==="cn", fmt=monthFmt();
+  const W=760,H=together?440:400,ML=58,MR=together?44:22,MT=24,MB=28, pW=W-ML-MR, pH=H-MT-MB, base=MT+pH;
+  const xOf=mi=>ML+((mi+0.5)/12)*pW, yOf=v=>MT+(1-v/gmax)*pH, uid=Math.random().toString(36).slice(2,8);
   const grid=((usd||cnMode)?usdTicks(gmax):ticks(gmax,state.bracket||0)).map(t=>{const y=yOf(t);
     return `<line class="grid" x1="${ML}" y1="${y.toFixed(1)}" x2="${W-MR}" y2="${y.toFixed(1)}"/>`+
-           `<text class="axislbl" x="${ML-6}" y="${(y+3).toFixed(1)}" text-anchor="end">${fmt(t)}</text>`;}).join("");
-  const xt=xAxisTicks(x0,x1).map(tk=>`<text class="axislbl" x="${(ML+tk.frac*pW).toFixed(1)}" y="${H-8}" text-anchor="middle">${tk.t||""}</text>`).join("");
-  const line=pts.map((p,i)=>(i?"L":"M")+p.x.toFixed(1)+" "+p.y.toFixed(1)).join(" ");
-  const area=`M${pts[0].x.toFixed(1)} ${base} `+pts.map(p=>"L"+p.x.toFixed(1)+" "+p.y.toFixed(1)).join(" ")+` L${pts[pts.length-1].x.toFixed(1)} ${base} Z`;
-  const acc=GAME_ACCENT[state.tag];
-  // a wide transparent hit circle under each dot, so a month is easy to hover
-  const marks=pts.map(p=>{ const a=`data-period="month" data-key="${p.ym}" data-mtip="${p.ym}"`;
-    return `<circle class="mhit" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="16" ${a}/>`+
-      `<circle class="dot mdot" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="6" fill="${acc}" ${a}/>`; }).join("");
-  return `<svg class="gsvg" viewBox="0 0 ${W} ${H}" role="img">
-    ${grid}<path class="area" d="${area}"/><path class="line" d="${line}"/>${marks}${xt}</svg>`;
+           `<text class="axislbl" x="${ML-8}" y="${(y+3).toFixed(1)}" text-anchor="end">${fmt(t)}</text>`;}).join("");
+  const xt=MONTHS.map((m,i)=>`<text class="axislbl" x="${xOf(i).toFixed(1)}" y="${H-8}" text-anchor="middle">${m}</text>`).join("");
+  // crosshair bands: a whole month column is the hover target (Separate: that month's detail;
+  // Together: every chosen year at that month) and shows a hairline while hovered
+  const bands=MONTHS.map((m,i)=>{ const x=ML+(i/12)*pW, ym=!together&&series[0]?`${series[0].y}-${String(i+1).padStart(2,"0")}`:null;
+    const has=ym && series[0].months.includes(ym);
+    const a = together ? `data-mband="${i}" data-years="${series.map(s=>s.y).join(",")}"` : has ? `data-mtip="${ym}" data-period="month" data-key="${ym}"` : "";
+    return `<g class="mband" ${a}><rect x="${x.toFixed(1)}" y="${MT}" width="${(pW/12).toFixed(1)}" height="${pH}"/>`
+      + `<line class="xhair" x1="${xOf(i).toFixed(1)}" y1="${MT}" x2="${xOf(i).toFixed(1)}" y2="${base}"/></g>`; }).join("");
+  let defs="", paths="", dots="", labels="";
+  const ends=[];
+  series.forEach(s=>{
+    const pts=s.months.map(ym=>{ const mi=+ym.slice(5,7)-1, v=monthVal(ym); return {x:xOf(mi), y:yOf(v), v, ym, mi}; });
+    if(!pts.length) return;
+    runsOf(pts).forEach(r=>{
+      const line=monoPath(r);
+      if(!together && r.length>1){
+        defs+=`<linearGradient id="mg${uid}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:${s.color};stop-opacity:.32"/><stop offset="1" style="stop-color:${s.color};stop-opacity:0"/></linearGradient>`;
+        paths+=`<path class="marea" fill="url(#mg${uid})" d="${line} L${r[r.length-1].x.toFixed(1)} ${base} L${r[0].x.toFixed(1)} ${base} Z"/>`;
+      }
+      paths+=`<path class="mline" style="stroke:${s.color}" d="${line}"/>`;
+    });
+    pts.forEach(p=>{ const a=`data-mtip="${p.ym}" data-period="month" data-key="${p.ym}"`;
+      dots+=`<circle class="mhit" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="13" ${a}/>`
+        + `<circle class="mdot" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${together?4:5}" style="fill:${s.color}" ${a}/>`; });
+    if(!together){
+      // label only the peak and the latest month — never every point
+      const pk=pts.reduce((a,c)=>c.v>a.v?c:a), last=pts[pts.length-1];
+      const lab=(p,cls)=>`<text class="mlabel ${cls}" x="${p.x.toFixed(1)}" y="${(p.y-11).toFixed(1)}" text-anchor="middle">${fmt(p.v)}</text>`;
+      labels+=lab(pk,"pk"); if(last!==pk) labels+=lab(last,"last");
+    } else ends.push({y:pts[pts.length-1].y, x:pts[pts.length-1].x, t:String(s.y), c:s.color});
+  });
+  // Together: each line's year at its end; a label that would sit on top of another is
+  // left to the legend chips instead of being nudged off its line
+  ends.sort((a,b)=>a.y-b.y).forEach((e,i,arr)=>{ if(i && Math.abs(e.y-arr[i-1].y)<12 && Math.abs(e.x-arr[i-1].x)<30) return;
+    labels+=`<line class="mkey" x1="${(e.x+7).toFixed(1)}" y1="${e.y.toFixed(1)}" x2="${(e.x+15).toFixed(1)}" y2="${e.y.toFixed(1)}" style="stroke:${e.c}"/>`
+      + `<text class="mlabel yr" x="${(e.x+18).toFixed(1)}" y="${(e.y+3.5).toFixed(1)}">${e.t}</text>`; });
+  return `<svg class="gsvg msvg" viewBox="0 0 ${W} ${H}" role="img"><defs>${defs}</defs>
+    ${grid}<line class="mbase" x1="${ML}" y1="${base}" x2="${W-MR}" y2="${base}"/>${bands}${paths}${labels}${dots}${xt}</svg>`;
 }
+// the years the Monthly graph shows: every year (none picked) or the picked ones
+function monthYearsShown(all){ const p=(state.graphYearsSel||[]).filter(y=>all.includes(y)); return p.length?p:all; }
 function renderMonthGraph(){
-  const money = state.dataSource!=="gamei";
+  const money = state.dataSource!=="gamei", fmt=monthFmt();
   const srcLbl = state.dataSource==="st" ? "Sensor Tower" : state.dataSource==="cn" ? "CN" : state.dataSource==="qimai" ? "Qimai" : "game-i";
-  let months=graphMonths().filter(ym=>monthVal(ym)>0);
-  if(state.graphYear!=="all") months=months.filter(ym=>ym.slice(0,4)===state.graphYear);
+  const all=graphMonths().filter(ym=>monthVal(ym)>0), allYears=[...new Set(all.map(ym=>ym.slice(0,4)))].sort();
+  const years=monthYearsShown(allYears), months=all.filter(ym=>years.includes(ym.slice(0,4)));
   if(!months.length){
     $("#chart").innerHTML=`<div class="noresults">No ${srcLbl} monthly data to chart for <b>${esc(state.data.name)}</b> in this range.</div>`;
     return;
   }
-  const top=Math.max(...months.map(monthVal));
-  const sharedMax = money ? usdTop(top) : roundTop(top, false);
-  const groups={}; months.forEach(ym=>(groups[ym.slice(0,4)]=groups[ym.slice(0,4)]||[]).push(ym));
-  let keys=Object.keys(groups).sort();
-  if(!state.reverse) keys.reverse();
-  $("#chart").innerHTML=keys.map(k=>{
-    const ms=groups[k], peak=Math.max(...ms.map(monthVal));
-    const gmax=state.matchHigh ? (money?usdTop(peak):roundTop(peak,true)) : sharedMax;
-    const sum=ms.reduce((a,ym)=>a+monthVal(ym),0);
-    const fmt = state.dataSource==="st"||state.dataSource==="qimai" ? fmtUSD : state.dataSource==="cn" ? fmtCNY : G;
-    return `<div class="gyear"><div class="yhead">${esc(k)} <span class="yhead-sub">${fmt(sum)}</span></div>${monthSVG(k, ms, gmax, Date.UTC(+k,0,1), Date.UTC(+k+1,0,1))}</div>`;
+  const byY={}; months.forEach(ym=>(byY[ym.slice(0,4)]=byY[ym.slice(0,4)]||[]).push(ym));
+  const top=Math.max(...months.map(monthVal)), sharedMax = money ? usdTop(top) : roundTop(top, false);
+  let keys=Object.keys(byY).sort(); if(!state.reverse) keys.reverse();
+  const sum=ms=>ms.reduce((a,ym)=>a+monthVal(ym),0);
+  if(state.graphLayout==="together"){
+    const series=keys.map(y=>({y, months:byY[y], color:yearColor(y)}));
+    const leg=keys.map(y=>`<span class="mleg"><i style="background:${yearColor(y)}"></i>${y} <b>${fmt(sum(byY[y]))}</b></span>`).join("");
+    $("#chart").innerHTML=`<div class="gyear"><div class="yhead">${keys.length>1?`${keys[keys.length-1]}–${keys[0]}`:keys[0]} · month by month</div>`
+      + `<div class="mlegend">${leg}</div>${monthSVG(series, sharedMax, true)}</div>`;
+    return;
+  }
+  $("#chart").innerHTML=keys.map(y=>{
+    const peak=Math.max(...byY[y].map(monthVal)), gmax=state.matchHigh ? (money?usdTop(peak):roundTop(peak,true)) : sharedMax;
+    return `<div class="gyear"><div class="yhead">${esc(y)} <span class="yhead-sub">${fmt(sum(byY[y]))}</span></div>${monthSVG([{y, months:byY[y], color:"var(--accent)"}], gmax, false)}</div>`;
   }).join("");
 }
+// a banner's tooltip row: its icon, its name with the English one under it, its part of the month
+function monthBannerRow(x, est, fmt){
+  const b=x.b, en=b.agents&&b.agents.length?b.agents.join(" & "):"", ic=(b.icons&&b.icons[0])||"";
+  return `<li><span class="mt-av" style="--av-ring:${barColor(b)}">${ic?`<img src="${esc(ic)}" alt="" referrerpolicy="no-referrer">`:""}</span>`
+    + `<span class="mt-txt"><span class="mt-nm">${esc(bLabel(b))}${b.rerun?` <span class="rr">↻</span>`:""}</span>${en&&en!==bLabel(b)?`<span class="mt-en">${esc(en)}</span>`:""}</span>`
+    + `<b>${x.v>0?(est?"≈":"")+fmt(x.v):"—"}</b></li>`;
+}
 function showMonthTip(ym, e){
-  const usd = state.dataSource==="st"||state.dataSource==="qimai", fmt = usd ? fmtUSD : state.dataSource==="cn" ? fmtCNY : G;
+  const fmt=monthFmt(), est = state.dataSource==="st"||state.dataSource==="cn";
   const srcLbl = state.dataSource==="st" ? "Sensor Tower · combined" : state.dataSource==="cn" ? "CN ranking · global"
     : state.dataSource==="qimai" ? "Qimai · China iPhone" : ((state.data.monthly||{})[ym]!=null ? "game-i monthly · 月次売上予測" : "game-i · from daily ranks");
   const list=monthBanners(ym), shown=list.slice(0,8);
-  const est = state.dataSource==="st"||state.dataSource==="cn";
-  const rows=shown.map(x=>`<li><span class="dot" style="background:${barColor(x.b)}"></span><span class="mt-nm">${esc(bLabel(x.b))}${x.b.rerun?` <span class="rr">↻</span>`:""}</span><b>${x.v>0?(est?"≈":"")+fmt(x.v):"—"}</b></li>`).join("");
   tip.innerHTML=`<div class="body"><h4>${MONTHS[+ym.slice(5,7)-1]} ${ym.slice(0,4)}</h4>
-    <dl><dt>${esc(srcLbl)}</dt><dd><b>${fmt(monthVal(ym))}</b></dd></dl>
-    ${list.length?`<ul class="mtip-list">${rows}</ul>${list.length>8?`<div class="mtip-more">+${list.length-8} more</div>`:""}`
+    <div class="mtip-tot"><b>${fmt(monthVal(ym))}</b><span>${esc(srcLbl)}</span></div>
+    ${list.length?`<ul class="mtip-list">${shown.map(x=>monthBannerRow(x, est, fmt)).join("")}</ul>${list.length>8?`<div class="mtip-more">+${list.length-8} more</div>`:""}`
       :`<div class="mtip-more">No listed banner ran this month</div>`}
     ${est&&list.length?`<div class="mtip-more">Banner figures split the month by each one's game-i + Qimai share — an estimate</div>`:""}
     <div class="tiphint">▸ Click for the month's breakdown</div></div>`;
+  tip.hidden=false; place(tip,e);
+}
+// Together: the crosshair's month across every chosen year — value first, then that month's banners
+function showMonthBandTip(mi, years, e){
+  const fmt=monthFmt();
+  const rows=years.map(y=>{ const ym=`${y}-${String(mi+1).padStart(2,"0")}`, v=monthVal(ym), bl=monthBanners(ym).slice(0,5);
+    const icons=bl.map(x=>{ const ic=(x.b.icons&&x.b.icons[0])||""; return ic?`<img src="${esc(ic)}" alt="" title="${esc(bLabel(x.b))}" referrerpolicy="no-referrer" style="--av-ring:${barColor(x.b)}">`:""; }).join("");
+    return `<li><i class="mt-key" style="background:${yearColor(y)}"></i><span class="mt-y">${y}</span><b>${v>0?fmt(v):"—"}</b><span class="mt-ics">${icons}</span></li>`; }).join("");
+  tip.innerHTML=`<div class="body"><h4>${MONTHS[mi]}</h4><ul class="mtip-list yrs">${rows}</ul>
+    <div class="tiphint">▸ Hover a point for its banners · click to open the month</div></div>`;
   tip.hidden=false; place(tip,e);
 }
 $("#gUnitWrap").querySelectorAll("[data-gunit]").forEach(btn=>btn.onclick=()=>{
   if(state.graphUnit===btn.dataset.gunit) return;
   state.graphUnit=btn.dataset.gunit;
   $("#gUnitWrap").querySelectorAll("[data-gunit]").forEach(x=>x.classList.toggle("on",x===btn));
+  populateGraphYears();
+  if(!state.table) render();
+});
+$("#gLayoutWrap").querySelectorAll("[data-glayout]").forEach(btn=>btn.onclick=()=>{
+  state.graphLayout=btn.dataset.glayout;
+  $("#gLayoutWrap").querySelectorAll("[data-glayout]").forEach(x=>x.classList.toggle("on",x===btn));
   populateGraphYears();
   if(!state.table) render();
 });
@@ -1943,6 +2023,22 @@ function populateGraphYears(){
     : state.graphDim==="version"
     ? [...new Set(state.data.banners.map(versionOf).filter(Boolean))].sort()
     : [...new Set(state.data.banners.map(b=>b.year))].sort().map(String);
+  $("#gLayoutWrap").hidden = state.graphUnit!=="month";
+  if(state.graphUnit==="month"){
+    // Monthly: pick ANY years (none picked = all); in Together the chips are also the legend
+    const sel=(state.graphYearsSel=(state.graphYearsSel||[]).filter(y=>vals.includes(y)));
+    const tog=state.graphLayout==="together";
+    $("#gyears").innerHTML=`<button data-y="all"${!sel.length?' class="on"':''}>All</button>`+
+      vals.map(v=>`<button data-y="${esc(v)}"${sel.includes(v)?' class="on"':''}>${tog?`<i class="ykey" style="background:${yearColor(v)}"></i>`:""}${esc(v)}</button>`).join("");
+    $("#gyears").querySelectorAll("button").forEach(btn=>btn.onclick=()=>{
+      const y=btn.dataset.y, cur=state.graphYearsSel;
+      state.graphYearsSel = y==="all" ? [] : cur.includes(y) ? cur.filter(x=>x!==y) : [...cur, y].sort();
+      if(state.graphYearsSel.length===vals.length) state.graphYearsSel=[];   // every year picked = All
+      populateGraphYears();
+      if(!state.table) render();
+    });
+    return;
+  }
   if(state.graphYear!=="all" && !vals.includes(state.graphYear)) state.graphYear="all";
   $("#gyears").innerHTML=`<button data-y="all"${state.graphYear==="all"?' class="on"':''}>All</button>`+
     vals.map(v=>`<button data-y="${esc(v)}"${state.graphYear===v?' class="on"':''}>${esc(v)}</button>`).join("");
@@ -2796,6 +2892,7 @@ function showTip(b,e){
 $("#chart").addEventListener("pointermove",e=>{
   if(e.pointerType==="touch"){ tip.hidden=true; return; }   // touch: a tap opens the full modal instead of a hover card
   const mo=e.target.closest("[data-mtip]"); if(mo){ showMonthTip(mo.dataset.mtip,e); return; }
+  const mb=e.target.closest("[data-mband]"); if(mb){ showMonthBandTip(+mb.dataset.mband, mb.dataset.years.split(","), e); return; }
   const el=e.target.closest("[data-i]"); if(!el){tip.hidden=true;return;}
   showTip(state.data.banners[+el.dataset.i],e);
 });
