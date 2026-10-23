@@ -51,11 +51,22 @@ function artFit(img){
 // the chart, so the two diverge a lot. Each banner carries both: `rev` (game-i's rule) and
 // `rev_month` (every day of the month shared out). The toggle picks one; everything —
 // bars, ranks, the by-Month split, the other tabs' shares — is rebuilt from it.
+// The choice only matters for a game that spends much of its time below #200: when its daily
+// figures already add up to most of game-i's monthly total (Love and Deepspace, ~87%) the two
+// readings barely differ, so there is no toggle and game-i's daily rule stands.
+const REV_SPLIT_MIN = 0.75;
+function revSplit(data){
+  if(!data || data.banners_from!=="official") return false;
+  const B=data.banners.filter(b=>!b._synthetic), mo=Object.values(data.monthly||{}).reduce((a,v)=>a+v,0);
+  const daily=B.reduce((a,b)=>a+((b._revDaily??b.rev)||0),0);
+  return mo>0 && daily/mo < REV_SPLIT_MIN;
+}
+const revModeOf = data => revSplit(data) ? state.revMode : "daily";
 function applyRevMode(data){
   if(!data || data.banners_from!=="official") return;
-  const B=data.banners.filter(b=>!b._synthetic);
+  const B=data.banners.filter(b=>!b._synthetic), mode=revModeOf(data);
   for(const b of B){ if(b._revDaily===undefined) b._revDaily=b.rev;
-    b.rev = state.revMode==="month" && b.rev_month!=null ? b.rev_month : b._revDaily; }
+    b.rev = mode==="month" && b.rev_month!=null ? b.rev_month : b._revDaily; }
   [...B].sort((x,y)=>y.rev-x.rev).forEach((b,i)=>{ b.cum=i+1; b.cumtot=B.length; });
   for(const y of new Set(B.map(b=>b.year))){
     const yr=B.filter(b=>b.year===y).sort((x,z)=>z.rev-x.rev); yr.forEach((b,i)=>{ b.yrank=i+1; b.ytot=yr.length; }); }
@@ -72,6 +83,9 @@ function grNote(show){
   const daily=B.reduce((a,b)=>a+(b._revDaily??b.rev),0), month=Object.values(mo).reduce((a,v)=>a+v,0);
   const zero=B.filter(b=>!(b._revDaily??b.rev)).length;
   el.querySelectorAll("[data-revmode]").forEach(x=>x.classList.toggle("on",x.dataset.revmode===state.revMode));
+  const split=revSplit(state.data);
+  el.querySelector(".grhead").hidden=!split;
+  if(!split){ $("#grtext").innerHTML = RECON_WARN; return; }
   $("#grtext").innerHTML = RECON_WARN + (state.revMode==="daily"
     ? `${esc(gameName())} spends much of its time <b>below Japan's iOS top&nbsp;200</b>, and game-i only credits a banner on days the game is <b>on</b> the chart — so these banners add up to just <b>${G(daily)}</b> of the <b>${G(month)}</b> game-i counts for the game month by month${zero?`, and ${zero} of them show ¥0 because the game never charted during their run`:""}. game-i's monthly totals keep counting the days below the chart (from its estimated rank there), which is why the two diverge so much. See <b>By Month</b> for the full monthly figures, or switch to <b>Monthly share</b>.${grWhy}`
     : `<b>Monthly share:</b> every day of each month — including the days below the top&nbsp;200, valued from game-i's estimated rank — goes to the banners running that day (split equally, first day +80%, last day −80%), so the banners add up to game-i's full <b>${G(month)}</b>. That accounts for all of the money, but each banner's figure is then <b>our split of game-i's monthly total</b>, not a number game-i itself would show: on game-i, a banner earns nothing on days below the chart.${grWhy}`);
@@ -1111,8 +1125,14 @@ function computeUnlisted(){
       if(!spans.some(([s,e])=>s<=t && t<=e)) uncovered++;
     }
     if(!counted || uncovered/counted<0.4) continue;
-    out.push({ name:"No rate-up banner listed",
-      agents:["game-i monthly — not attributed to a banner"],
+    // a month whose only banners are reruns (nothing new opened in it) says so, and names them
+    const t0=Date.UTC(y,mo-1,1), t1=Date.UTC(y,mo-1,last);
+    const inMonth=real.filter(b=>Date.parse(b.start)<=t1 && Date.parse(b.end)>=t0);
+    const reruns=inMonth.filter(b=>b.rerun), fresh=inMonth.filter(b=>!b.rerun && Date.parse(b.start)>=t0);
+    const onlyRe = reruns.length && !fresh.length;
+    out.push({ name: onlyRe ? "No new rate-up banner — only reruns" : "No rate-up banner listed",
+      agents:[onlyRe ? "Reruns: "+reruns.map(b=>b.en&&b.en!==b.name?`${b.name} (${b.en})`:b.name).join(" · ")
+                     : "game-i monthly — not attributed to a banner"],
       rev:+gap.toFixed(2), start:`${ym}-01`, end:`${ym}-${String(last).padStart(2,"0")}`,
       year:y, _synthetic:true, cum:null, cumtot:null, yrank:null, ytot:null });
   }
@@ -2224,7 +2244,7 @@ function computeMonthly(){
     if(b.rev_ym && b.rev_month_ym){
       // follow the rule b.rev itself is on: applyRevMode swaps it (selectGame), Compare's
       // loadCtx doesn't (so _revDaily is unset there and the split stays on game-i's rule)
-      const per = (b._revDaily!==undefined && state.revMode==="month") ? b.rev_month_ym : b.rev_ym;
+      const per = (b._revDaily!==undefined && revModeOf(state.data)==="month") ? b.rev_month_ym : b.rev_ym;
       for(const ym in per){ const M=byMonth[ym]||(byMonth[ym]={ours:0,banners:[]});
         M.ours+=per[ym];
         M.banners.push({name:(b.agents&&b.agents.length?b.agents.join(" & "):b.name), rev:per[ym], total:b.rev, i:bi}); }
@@ -2423,7 +2443,7 @@ function renderMonthly(){
     const kGi = g!=null ? `<div class="mck gi"><span class="mck-k">game-i monthly</span><span class="mck-v">${G(g)}</span><span class="mck-n">月次売上予測</span></div>` : "";
     // a rebuilt (official-source) game's banner sum follows the Daily / Monthly share toggle:
     // name the rule rather than "from daily ranks", which reads as a mismatch under either
-    const offl = state.data.banners_from==="official", shareMode = offl && state.revMode==="month";
+    const offl = state.data.banners_from==="official", shareMode = offl && revModeOf(state.data)==="month";
     const kRe = `<div class="mck re"><span class="mck-k">${offl?(shareMode?"banners · monthly share":"banners · game-i rule"):"from daily ranks"}</span><span class="mck-v">${G(o)}</span>`
       + `<span class="mck-n">${shareMode?"every day counted":offl?`top-200 days only${diff!=null?` · ${diff>=0?"+":""}${diff.toFixed(0)}%`:""}`:diff!=null?`${diff>=0?"+":""}${diff.toFixed(0)}% vs game-i`:"reconstruction"}</span></div>`;
     const stApprox = st && st.method==="reported_approx";

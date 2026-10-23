@@ -5,7 +5,7 @@
  "unit": "億G",
  "source": "https://prtimes.jp/main/html/searchrlp/company_id/131862",
  "banners_from": "official",
- "updated": "2026-10-23T03:11:53Z",
+ "updated": "2026-10-23T03:34:28Z",
  "count": 80,
  "now": {
   "ios": 164,
@@ -125,7 +125,7 @@
    "end": "2024-01-26",
    "year": 2024,
    "related": "",
-   "banner_img": null,
+   "banner_img": "icons/banner_art/lads-edfe8d0b42.webp",
    "agents": [
     "Everlasting Dream"
    ],
@@ -207,7 +207,6 @@
    "cumtot": 80,
    "yrank": 13,
    "ytot": 25,
-   "bar": "#d8978d",
    "icons": [
     "icons/faces/lads/2024-01-27-79559a.webp"
    ]
@@ -261,7 +260,6 @@
    "cumtot": 80,
    "yrank": 3,
    "ytot": 25,
-   "bar": "#9f3744",
    "icons": [
     "icons/faces/lads/2024-02-05-b7c608.webp"
    ]
@@ -307,7 +305,6 @@
    "cumtot": 80,
    "yrank": 12,
    "ytot": 25,
-   "bar": "#47658f",
    "icons": [
     "icons/faces/lads/2024-02-21-fa8887.webp"
    ]
@@ -352,7 +349,6 @@
    "cumtot": 80,
    "yrank": 16,
    "ytot": 25,
-   "bar": "#bf172c",
    "icons": [
     "icons/faces/lads/2024-03-01-173bb1.webp"
    ]
@@ -404,7 +400,6 @@
    "cumtot": 80,
    "yrank": 6,
    "ytot": 25,
-   "bar": "#dedd87",
    "icons": [
     "icons/faces/lads/2024-03-11-f8d2ec.webp"
    ]
@@ -456,7 +451,6 @@
    "cumtot": 80,
    "yrank": 9,
    "ytot": 25,
-   "bar": "#3590a1",
    "icons": [
     "icons/faces/lads/2024-04-03-a4772e.webp"
    ]
@@ -504,7 +498,6 @@
    "cumtot": 80,
    "yrank": 18,
    "ytot": 25,
-   "bar": "#daa28b",
    "icons": [
     "icons/faces/lads/2024-04-19-a96f21.webp"
    ]
@@ -554,7 +547,6 @@
    "cumtot": 80,
    "yrank": 22,
    "ytot": 25,
-   "bar": "#9b3c44",
    "icons": [
     "icons/faces/lads/2024-04-30-db4d71.webp"
    ]
@@ -606,7 +598,6 @@
    "cumtot": 80,
    "yrank": 8,
    "ytot": 25,
-   "bar": "#4a508d",
    "icons": [
     "icons/faces/lads/2024-05-13-08194b.webp"
    ]
@@ -656,7 +647,6 @@
    "cumtot": 80,
    "yrank": 24,
    "ytot": 25,
-   "bar": "#d3d88d",
    "icons": [
     "icons/faces/lads/2024-05-28-64dbe0.webp"
    ]
@@ -708,7 +698,6 @@
    "cumtot": 80,
    "yrank": 14,
    "ytot": 25,
-   "bar": "#415f95",
    "icons": [
     "icons/faces/lads/2024-06-07-0b1c52.webp"
    ]
@@ -765,7 +754,6 @@
    "cumtot": 80,
    "yrank": 10,
    "ytot": 25,
-   "bar": "#976a5d",
    "icons": [
     "icons/faces/lads/2024-06-25-e08815.webp"
    ]
@@ -822,7 +810,6 @@
    "cumtot": 80,
    "yrank": 5,
    "ytot": 25,
-   "bar": "#97423f",
    "icons": [
     "icons/faces/lads/2024-07-15-36db78.webp"
    ]
@@ -883,7 +870,6 @@
    "cumtot": 80,
    "yrank": 1,
    "ytot": 25,
-   "bar": "#944c42",
    "icons": [
     "icons/faces/lads/2024-08-07-bf1164.webp"
    ]
@@ -930,7 +916,6 @@
    "cumtot": 80,
    "yrank": 21,
    "ytot": 25,
-   "bar": "#f0ce75",
    "icons": [
     "icons/faces/lads/2024-08-31-f35e34.webp"
    ]
@@ -978,7 +963,6 @@
    "cumtot": 80,
    "yrank": 17,
    "ytot": 25,
-   "bar": "#8eaad7",
    "icons": [
     "icons/faces/lads/2024-09-10-30842c.webp"
    ]
@@ -1037,7 +1021,6 @@
    "cumtot": 80,
    "yrank": 7,
    "ytot": 25,
-   "bar": "#9c473a",
    "icons": [
     "icons/faces/lads/2024-09-23-c87429.webp"
    ]
@@ -1082,7 +1065,6 @@
    "cumtot": 80,
    "yrank": 19,
    "ytot": 25,
-   "bar": "#5d4591",
    "icons": [
     "icons/faces/lads/2024-10-11-49d773.webp"
    ]
@@ -1130,7 +1112,6 @@
    "cumtot": 80,
    "yrank": 20,
    "ytot": 25,
-   "bar": "#a0363d",
    "icons": [
     "icons/faces/lads/2024-10-20-84810f.webp"
    ]
@@ -1180,7 +1161,6 @@
    "cumtot": 80,
    "yrank": 23,
    "ytot": 25,
-   "bar": "#ac312b",
    "icons": [
     "icons/faces/lads/2024-10-31-93c779.webp"
    ]
@@ -1239,7 +1219,6 @@
    "cumtot": 80,
    "yrank": 4,
    "ytot": 25,
-   "bar": "#905346",
    "icons": [
     "icons/faces/lads/2024-11-12-ec5810.webp"
    ]
@@ -1291,7 +1270,6 @@
    "cumtot": 80,
    "yrank": 11,
    "ytot": 25,
-   "bar": "#a04936",
    "icons": [
     "icons/faces/lads/2024-12-02-229c94.webp"
    ]
@@ -1339,7 +1317,6 @@
    "cumtot": 80,
    "yrank": 25,
    "ytot": 25,
-   "bar": "#8b9bda",
    "icons": [
     "icons/faces/lads/2024-12-18-a23ba9.webp"
    ]
@@ -1402,7 +1379,6 @@
    "cumtot": 80,
    "yrank": 2,
    "ytot": 25,
-   "bar": "#8f5647",
    "icons": [
     "icons/faces/lads/2024-12-31-03984f.webp"
    ]
@@ -1459,7 +1435,6 @@
    "cumtot": 80,
    "yrank": 3,
    "ytot": 30,
-   "bar": "#d79d8e",
    "icons": [
     "icons/faces/lads/2025-01-22-8a9eb2.webp"
    ]
@@ -1518,7 +1493,6 @@
    "cumtot": 80,
    "yrank": 2,
    "ytot": 30,
-   "bar": "#d4022a",
    "icons": [
     "icons/faces/lads/2025-02-10-df6bb7.webp"
    ]
@@ -1564,7 +1538,6 @@
    "cumtot": 80,
    "yrank": 16,
    "ytot": 30,
-   "bar": "#4b4096",
    "icons": [
     "icons/faces/lads/2025-03-01-25095d.webp"
    ]
@@ -1611,7 +1584,6 @@
    "cumtot": 80,
    "yrank": 13,
    "ytot": 30,
-   "bar": "#8f4851",
    "icons": [
     "icons/faces/lads/2025-03-09-03c0ec.webp"
    ]
@@ -1657,7 +1629,6 @@
    "cumtot": 80,
    "yrank": 14,
    "ytot": 30,
-   "bar": "#3590a1",
    "icons": [
     "icons/faces/lads/2025-03-20-a4772e.webp"
    ]
@@ -1711,7 +1682,6 @@
    "cumtot": 80,
    "yrank": 8,
    "ytot": 30,
-   "bar": "#a292d3",
    "icons": [
     "icons/faces/lads/2025-03-28-cc552c.webp"
    ]
@@ -1756,7 +1726,6 @@
    "cumtot": 80,
    "yrank": 21,
    "ytot": 30,
-   "bar": "#cacd98",
    "icons": [
     "icons/faces/lads/2025-04-13-4def25.webp"
    ]
@@ -1802,7 +1771,6 @@
    "cumtot": 80,
    "yrank": 15,
    "ytot": 30,
-   "bar": "#4a508d",
    "icons": [
     "icons/faces/lads/2025-04-21-08194b.webp"
    ]
@@ -1864,7 +1832,6 @@
    "cumtot": 80,
    "yrank": 6,
    "ytot": 30,
-   "bar": "#d3a092",
    "icons": [
     "icons/faces/lads/2025-04-30-b77e1f.webp"
    ]
@@ -1910,7 +1877,6 @@
    "cumtot": 80,
    "yrank": 17,
    "ytot": 30,
-   "bar": "#415f95",
    "icons": [
     "icons/faces/lads/2025-05-19-0b1c52.webp"
    ]
@@ -1959,7 +1925,6 @@
    "cumtot": 80,
    "yrank": 27,
    "ytot": 30,
-   "bar": "#993d3d",
    "icons": [
     "icons/faces/lads/2025-05-29-e5f63f.webp"
    ]
@@ -2004,7 +1969,6 @@
    "cumtot": 80,
    "yrank": 20,
    "ytot": 30,
-   "bar": "#a25034",
    "icons": [
     "icons/faces/lads/2025-06-08-ef18fb.webp"
    ]
@@ -2058,7 +2022,6 @@
    "cumtot": 80,
    "yrank": 11,
    "ytot": 30,
-   "bar": "#79c0ec",
    "icons": [
     "icons/faces/lads/2025-06-17-4e9fc1.webp"
    ]
@@ -2119,7 +2082,6 @@
    "cumtot": 80,
    "yrank": 4,
    "ytot": 30,
-   "bar": "#524f87",
    "icons": [
     "icons/faces/lads/2025-07-03-430aad.webp"
    ]
@@ -2173,7 +2135,6 @@
    "cumtot": 80,
    "yrank": 9,
    "ytot": 30,
-   "bar": "#47598f",
    "icons": [
     "icons/faces/lads/2025-07-25-62c9bd.webp"
    ]
@@ -2234,7 +2195,6 @@
    "cumtot": 80,
    "yrank": 5,
    "ytot": 30,
-   "bar": "#72c2f3",
    "icons": [
     "icons/faces/lads/2025-08-12-0a4da5.webp"
    ]
@@ -2282,7 +2242,6 @@
    "cumtot": 80,
    "yrank": 19,
    "ytot": 30,
-   "bar": "#cea197",
    "icons": [
     "icons/faces/lads/2025-08-31-2127f0.webp"
    ]
@@ -2293,7 +2252,7 @@
    "end": "2025-09-18",
    "year": 2025,
    "related": "",
-   "banner_img": null,
+   "banner_img": "icons/banner_art/lads-c6d5372be4.webp",
    "agents": [
     "Passionate Appraisal"
    ],
@@ -2376,7 +2335,6 @@
    "cumtot": 80,
    "yrank": 22,
    "ytot": 30,
-   "bar": "#9f3744",
    "icons": [
     "icons/faces/lads/2025-09-19-b7c608.webp"
    ]
@@ -2430,7 +2388,6 @@
    "cumtot": 80,
    "yrank": 10,
    "ytot": 30,
-   "bar": "#4a7b8c",
    "icons": [
     "icons/faces/lads/2025-09-25-0900c0.webp"
    ]
@@ -2476,7 +2433,6 @@
    "cumtot": 80,
    "yrank": 23,
    "ytot": 30,
-   "bar": "#494294",
    "icons": [
     "icons/faces/lads/2025-10-11-ff0ae0.webp"
    ]
@@ -2522,7 +2478,6 @@
    "cumtot": 80,
    "yrank": 18,
    "ytot": 30,
-   "bar": "#a04936",
    "icons": [
     "icons/faces/lads/2025-10-20-229c94.webp"
    ]
@@ -2586,7 +2541,6 @@
    "cumtot": 80,
    "yrank": 7,
    "ytot": 30,
-   "bar": "#4a4591",
    "icons": [
     "icons/faces/lads/2025-10-29-b75386.webp"
    ]
@@ -2597,7 +2551,7 @@
    "end": "2025-11-20",
    "year": 2025,
    "related": "",
-   "banner_img": null,
+   "banner_img": "icons/banner_art/lads-e800bf053a.webp",
    "rerun_hint": false,
    "agents": [
     "Everlasting Dream"
@@ -2642,7 +2596,7 @@
    "end": "2025-11-30",
    "year": 2025,
    "related": "",
-   "banner_img": null,
+   "banner_img": "icons/banner_art/lads-12151b10d4.webp",
    "agents": [
     "Sweet Overdrive"
    ],
@@ -2729,7 +2683,6 @@
    "cumtot": 80,
    "yrank": 12,
    "ytot": 30,
-   "bar": "#d88d9f",
    "icons": [
     "icons/faces/lads/2025-12-02-48d99d.webp"
    ]
@@ -2775,7 +2728,6 @@
    "cumtot": 80,
    "yrank": 29,
    "ytot": 30,
-   "bar": "#d8978d",
    "icons": [
     "icons/faces/lads/2025-12-11-79559a.webp"
    ]
@@ -2786,7 +2738,7 @@
    "end": "2025-12-27",
    "year": 2025,
    "related": "",
-   "banner_img": null,
+   "banner_img": "icons/banner_art/lads-f55d553ae6.webp",
    "agents": [
     "Indulgent Scheme"
    ],
@@ -2867,7 +2819,6 @@
    "cumtot": 80,
    "yrank": 28,
    "ytot": 30,
-   "bar": "#47658f",
    "icons": [
     "icons/faces/lads/2025-12-24-fa8887.webp"
    ]
@@ -2932,7 +2883,6 @@
    "cumtot": 80,
    "yrank": 1,
    "ytot": 30,
-   "bar": "#d49591",
    "icons": [
     "icons/faces/lads/2025-12-31-f5025a.webp"
    ]
@@ -2943,7 +2893,7 @@
    "end": "2026-02-01",
    "year": 2026,
    "related": "",
-   "banner_img": null,
+   "banner_img": "icons/banner_art/lads-1005b28e54.webp",
    "agents": [
     "Secret's Kiss"
    ],
@@ -3026,7 +2976,6 @@
    "cumtot": 80,
    "yrank": 12,
    "ytot": 25,
-   "bar": "#a292d3",
    "icons": [
     "icons/faces/lads/2026-02-02-cc552c.webp"
    ]
@@ -3085,7 +3034,6 @@
    "cumtot": 80,
    "yrank": 2,
    "ytot": 25,
-   "bar": "#954641",
    "icons": [
     "icons/faces/lads/2026-02-10-cee83c.webp"
    ]
@@ -3131,7 +3079,6 @@
    "cumtot": 80,
    "yrank": 10,
    "ytot": 25,
-   "bar": "#ffb466",
    "icons": [
     "icons/faces/lads/2026-03-01-11f9f4.webp"
    ]
@@ -3142,7 +3089,7 @@
    "end": "2026-03-18",
    "year": 2026,
    "related": "",
-   "banner_img": null,
+   "banner_img": "icons/banner_art/lads-b7e48dbb03.webp",
    "agents": [
     "Tranquil Moments"
    ],
@@ -3226,7 +3173,6 @@
    "cumtot": 80,
    "yrank": 9,
    "ytot": 25,
-   "bar": "#dedd87",
    "icons": [
     "icons/faces/lads/2026-03-19-f8d2ec.webp"
    ]
@@ -3281,7 +3227,6 @@
    "cumtot": 80,
    "yrank": 4,
    "ytot": 25,
-   "bar": "#3a869c",
    "icons": [
     "icons/faces/lads/2026-03-28-677b34.webp"
    ]
@@ -3327,7 +3272,6 @@
    "cumtot": 80,
    "yrank": 17,
    "ytot": 25,
-   "bar": "#daa28b",
    "icons": [
     "icons/faces/lads/2026-04-06-a96f21.webp"
    ]
@@ -3373,7 +3317,6 @@
    "cumtot": 80,
    "yrank": 11,
    "ytot": 25,
-   "bar": "#734492",
    "icons": [
     "icons/faces/lads/2026-04-13-c170eb.webp"
    ]
@@ -3419,7 +3362,6 @@
    "cumtot": 80,
    "yrank": 19,
    "ytot": 25,
-   "bar": "#79c0ec",
    "icons": [
     "icons/faces/lads/2026-04-21-4e9fc1.webp"
    ]
@@ -3478,7 +3420,6 @@
    "cumtot": 80,
    "yrank": 1,
    "ytot": 25,
-   "bar": "#e98d64",
    "icons": [
     "icons/faces/lads/2026-04-30-2fea78.webp"
    ]
@@ -3524,7 +3465,6 @@
    "cumtot": 80,
    "yrank": 6,
    "ytot": 25,
-   "bar": "#47598f",
    "icons": [
     "icons/faces/lads/2026-05-15-62c9bd.webp"
    ]
@@ -3535,7 +3475,7 @@
    "end": "2026-05-31",
    "year": 2026,
    "related": "",
-   "banner_img": null,
+   "banner_img": "icons/banner_art/lads-64f3a54bac.webp",
    "agents": [
     "Kitten Included"
    ],
@@ -3621,7 +3561,6 @@
    "cumtot": 80,
    "yrank": 20,
    "ytot": 25,
-   "bar": "#976a5d",
    "icons": [
     "icons/faces/lads/2026-05-31-e08815.webp"
    ]
@@ -3667,7 +3606,6 @@
    "cumtot": 80,
    "yrank": 13,
    "ytot": 25,
-   "bar": "#f79b4c",
    "icons": [
     "icons/faces/lads/2026-06-08-2b4208.webp"
    ]
@@ -3726,7 +3664,6 @@
    "cumtot": 80,
    "yrank": 3,
    "ytot": 25,
-   "bar": "#9e4538",
    "icons": [
     "icons/faces/lads/2026-06-17-c5a469.webp"
    ]
@@ -3772,7 +3709,6 @@
    "cumtot": 80,
    "yrank": 18,
    "ytot": 25,
-   "bar": "#4a7b8c",
    "icons": [
     "icons/faces/lads/2026-07-02-0900c0.webp"
    ]
@@ -3822,7 +3758,6 @@
    "cumtot": 80,
    "yrank": 15,
    "ytot": 25,
-   "bar": "#9c473a",
    "icons": [
     "icons/faces/lads/2026-07-09-c87429.webp"
    ]
@@ -3833,7 +3768,7 @@
    "end": "2026-08-14",
    "year": 2026,
    "related": "",
-   "banner_img": null,
+   "banner_img": "icons/banner_art/lads-5f6910deb3.webp",
    "agents": [
     "Summer Surge"
    ],
@@ -3920,7 +3855,6 @@
    "cumtot": 80,
    "yrank": 8,
    "ytot": 25,
-   "bar": "#9f4237",
    "icons": [
     "icons/faces/lads/2026-08-17-cd90c9.webp"
    ]
@@ -3968,7 +3902,6 @@
    "cumtot": 80,
    "yrank": 23,
    "ytot": 25,
-   "bar": "#e1a484",
    "icons": [
     "icons/faces/lads/2026-08-31-b5a8cd.webp"
    ]
@@ -4014,7 +3947,6 @@
    "cumtot": 80,
    "yrank": 24,
    "ytot": 25,
-   "bar": "#d88d9f",
    "icons": [
     "icons/faces/lads/2026-09-08-48d99d.webp"
    ]
@@ -4076,7 +4008,6 @@
    "cumtot": 80,
    "yrank": 5,
    "ytot": 25,
-   "bar": "#9b413b",
    "icons": [
     "icons/faces/lads/2026-09-22-7e8bc0.webp"
    ]
@@ -4122,7 +4053,6 @@
    "cumtot": 80,
    "yrank": 22,
    "ytot": 25,
-   "bar": "#404996",
    "icons": [
     "icons/faces/lads/2026-10-11-03393e.webp"
    ]
@@ -4168,7 +4098,6 @@
    "cumtot": 80,
    "yrank": 16,
    "ytot": 25,
-   "bar": "#944c42",
    "icons": [
     "icons/faces/lads/2026-10-19-bf1164.webp"
    ]

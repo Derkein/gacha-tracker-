@@ -4806,6 +4806,15 @@
   }
  },
  "lads": {
+  "icons/banner_art/lads-edfe8d0b42.webp": {
+   "x": 50.0,
+   "y": 40.0,
+   "w": 800,
+   "h": 399,
+   "det": false,
+   "name": "延々たる夢",
+   "v": 2
+  },
   "https://prcdn.freetls.fastly.net/release_image/131862/13/131862-13-859414c3ce11dcca69d5e4836fb398d4-1920x1080.jpg": {
    "x": 38.8,
    "y": 19.9,
@@ -5148,6 +5157,15 @@
    "name": "黎明に私を&昔の願いが叶う時",
    "v": 2
   },
+  "icons/banner_art/lads-c6d5372be4.webp": {
+   "x": 50.0,
+   "y": 40.0,
+   "w": 800,
+   "h": 450,
+   "det": false,
+   "name": "熱意の忖度",
+   "v": 2
+  },
   "https://prcdn.freetls.fastly.net/release_image/131862/80/131862-80-2f5db52c0843128569fcadf5f57ee425-1920x1080.png": {
    "x": 67.1,
    "y": 35.9,
@@ -5175,6 +5193,24 @@
    "name": "鼓動が沸くまで",
    "v": 2
   },
+  "icons/banner_art/lads-e800bf053a.webp": {
+   "x": 50.0,
+   "y": 40.0,
+   "w": 800,
+   "h": 450,
+   "det": false,
+   "name": "延々たる夢",
+   "v": 2
+  },
+  "icons/banner_art/lads-12151b10d4.webp": {
+   "x": 50.0,
+   "y": 40.0,
+   "w": 800,
+   "h": 450,
+   "det": false,
+   "name": "甘い疾走",
+   "v": 2
+  },
   "https://prcdn.freetls.fastly.net/release_image/131862/88/131862-88-897a1cca730e0e5ea2e6778c1f9ef844-1920x1080.jpg": {
    "x": 33.4,
    "y": 33.8,
@@ -5184,6 +5220,15 @@
    "name": "銀翼の鎮魂地",
    "v": 2
   },
+  "icons/banner_art/lads-f55d553ae6.webp": {
+   "x": 50.0,
+   "y": 40.0,
+   "w": 800,
+   "h": 450,
+   "det": false,
+   "name": "のどかな共謀",
+   "v": 2
+  },
   "https://prcdn.freetls.fastly.net/release_image/131862/89/131862-89-de0ef4a6ffa66ca889943973862c3b3f-3840x2160.jpg": {
    "x": 11.6,
    "y": 29.2,
@@ -5191,6 +5236,15 @@
    "h": 2160,
    "det": true,
    "name": "愛、宇宙、詩の王座",
+   "v": 2
+  },
+  "icons/banner_art/lads-1005b28e54.webp": {
+   "x": 50.0,
+   "y": 40.0,
+   "w": 800,
+   "h": 450,
+   "det": false,
+   "name": "密やかなキス",
    "v": 2
   },
   "https://prcdn.freetls.fastly.net/release_image/131862/92/131862-92-34e6bffb8b0768a1310754fe09bd9411-2560x1440.jpg": {
@@ -5209,6 +5263,15 @@
    "h": 1440,
    "det": true,
    "name": "夕晴れに向かって&心のままに願いへ",
+   "v": 2
+  },
+  "icons/banner_art/lads-b7e48dbb03.webp": {
+   "x": 50.0,
+   "y": 40.0,
+   "w": 800,
+   "h": 450,
+   "det": false,
+   "name": "日常の来処",
    "v": 2
   },
   "https://prcdn.freetls.fastly.net/release_image/131862/97/131862-97-7a1b79db1ad7308b2d7a1a313985fd7c-1280x720.png": {
@@ -5238,6 +5301,15 @@
    "name": "浮き沈む渇望",
    "v": 2
   },
+  "icons/banner_art/lads-64f3a54bac.webp": {
+   "x": 50.0,
+   "y": 40.0,
+   "w": 800,
+   "h": 450,
+   "det": false,
+   "name": "猫にくびったけ",
+   "v": 2
+  },
   "https://prcdn.freetls.fastly.net/release_image/131862/104/131862-104-cf75011144b4a5b524d0b393d73cdaa4-3840x2160.jpg": {
    "x": 30.3,
    "y": 32.4,
@@ -5254,6 +5326,15 @@
    "h": 1440,
    "det": true,
    "name": "一幕一会",
+   "v": 2
+  },
+  "icons/banner_art/lads-5f6910deb3.webp": {
+   "x": 50.0,
+   "y": 40.0,
+   "w": 800,
+   "h": 450,
+   "det": false,
+   "name": "湧き来る夏",
    "v": 2
   },
   "https://prcdn.freetls.fastly.net/release_image/131862/110/131862-110-4eec8f9c955d3db43ed2c24435ae81f2-1920x1080.jpg": {

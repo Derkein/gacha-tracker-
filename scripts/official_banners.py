@@ -433,7 +433,14 @@ def _jp_wishes(root):
     path = root / "icons" / "names" / "lads_jp_wishes.json"
     have = json.loads(path.read_text(encoding="utf-8")) if path.exists() else []
     try:
-        t = html.unescape(re.sub(r"<[^>]+>", "\t", _page(GAMERCH_WISHES)))
+        raw = _page(GAMERCH_WISHES)
+        # each wish's section opens with its title card (the solo wishes' only art)
+        cards = {}
+        for m in re.finditer(r"<h3[^>]*>\s*([^<]+?)\s*</h3>", raw):
+            img = re.search(r"<img[^>]*data-(?:original|src)=\"(https://cdn\.gamerch\.com/contents/[^\"]+)\"",
+                            raw[m.end():m.end() + 3000])
+            cards.setdefault(re.sub(r"\s*\[復刻\]$", "", html.unescape(m.group(1))), []).append(img and img.group(1))
+        t = html.unescape(re.sub(r"<[^>]+>", "\t", raw))
         t = re.sub(r"[ \t]*\t[ \t\n]*", "|", t)
         t = t[t.find("限定願う開催一覧", t.find("限定願う開催一覧|") + 10):]
         parts = re.split(r"\|([^|]{1,40}?)\|開催期間\|([^|]+)\|", t)
@@ -452,16 +459,42 @@ def _jp_wishes(root):
             e = date(int(y2) if y2 else year + (int(m2) < int(m1)), int(m2), int(d2))
             if (e - s).days > 60:                 # a typo'd month (2025/2/18~12/27 is 12/18~12/27)
                 s = s.replace(month=e.month, year=e.year)
-            rows.append({"name": re.sub(r"\s*\[復刻\]\s*$", "", name).strip(), "start": s.isoformat(),
-                         "end": e.isoformat(),
+            name_ = re.sub(r"\s*\[復刻\]\s*$", "", name).strip()
+            card = cards.get(name_) or [None]
+            rows.append({"name": name_, "start": s.isoformat(), "end": e.isoformat(),
                          "rerun": "[復刻]" in name or "【復刻】" in body[:80], "mem": mem,
-                         "leads": list(dict.fromkeys(LADS_LEADS[m.split("・")[0]] for m in mem))})
+                         "leads": list(dict.fromkeys(LADS_LEADS[m.split("・")[0]] for m in mem)),
+                         "card": card.pop(0) if len(card) > 1 else card[0]})
         if len(rows) >= len(have):
             have = sorted(rows, key=lambda w: w["start"])
             path.write_text(json.dumps(have, ensure_ascii=False, indent=0), encoding="utf-8")
     except Exception as e:
         print(f"[lads] gamerch wish list refresh skipped (non-fatal): {e}", file=sys.stderr)
     return have
+
+
+def _keep_card(root, url):
+    """gamerch's CDN wants its own Referer, so a title card is kept in the repo
+    (icons/banner_art/lads-<hash>.webp) and the banner points at that copy."""
+    import hashlib
+    rel = "icons/banner_art/lads-" + hashlib.md5(url.encode()).hexdigest()[:10] + ".webp"
+    path = root / rel
+    if not path.exists():
+        try:
+            req = urllib.request.Request(url, headers=dict(UA, Referer="https://gamerch.com/"))
+            data = urllib.request.urlopen(req, timeout=30).read()
+            try:
+                import io
+                from PIL import Image
+                Image.open(io.BytesIO(data)).convert("RGB").save(path, "WEBP", quality=85)
+            except ImportError:
+                path = path.with_suffix(url[url.rfind("."):])
+                rel = rel[:rel.rfind(".")] + path.suffix
+                path.write_bytes(data)
+        except Exception as e:
+            print(f"[lads] title card {url} not kept (non-fatal): {e}", file=sys.stderr)
+            return None
+    return rel
 
 
 # English names for wishes the Fandom table doesn't have yet (it stops at May 2026). From the
@@ -542,6 +575,7 @@ def lads():
                    [g for g in hits if g["rerun"] == bool(b.get("rerun_hint"))][:1] or hits[:1]
         if hits:
             b["mem"] = [m for g in hits for m in g["mem"]]
+            b["card"] = hits[0].get("card")
             if "prtimes.jp" not in b["src"]:
                 b["name"] = "&".join(g["name"] for g in hits)
     for g in extra:
@@ -550,7 +584,8 @@ def lads():
         out.append({"name": g["name"], "start": g["start"], "end": g["end"], "year": int(g["start"][:4]),
                     "related": "", "banner_img": src["banner_img"] if src else None, "standard": False,
                     "rerun_hint": g["rerun"], "agents": g["leads"], "en": " & ".join(g["leads"]),
-                    "title_en": src.get("title_en") if src else None, "mem": g["mem"], "src": GAMERCH_WISHES})
+                    "title_en": src.get("title_en") if src else None, "mem": g["mem"], "card": g.get("card"),
+                    "src": GAMERCH_WISHES})
     # One wish, one name: runs with the same ★5 memories share the LATEST run's names — a rerun is
     # announced under the wish's name where the first run used its memory's (花火のごとき誓い →
     # 夜空のさざ波; Fandom's Heartstring Symphony → Everlasting Dream).
@@ -571,8 +606,13 @@ def lads():
         halves = b["name"].split("&")
         if all(h in en for h in halves):
             b["title_en"] = " & ".join(en[h] for h in halves)
+    # a wish no release or rerun lends art to (the solo wishes) shows its gamerch title card
+    arted = {b["name"] for b in out if b["banner_img"]}       # reruns borrow their first run's art
     for b in out:
         b.pop("mem", None)
+        card = b.pop("card", None)
+        if not b["banner_img"] and card and b["name"] not in arted:
+            b["banner_img"] = _keep_card(root, card)
     # a rerun the wiki has no row for keeps the English name its first run had (帰らぬ夜 →
     # No-Return Night)
     first = {}
