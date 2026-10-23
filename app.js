@@ -1137,6 +1137,7 @@ function computeUnlisted(){
       gaps.push([a,z]);
     }
     const md=t=>{ const d=new Date(t); return `${MONTHS[d.getUTCMonth()]} ${d.getUTCDate()}`; };
+    const iso=t=>new Date(t).toISOString().slice(0,10);
     const span=([a,z])=>{ const open=z+DAY>cutoff, A=new Date(a), Z=new Date(z);
       return open ? `${md(a)} – now` : a===z ? md(a)
         : A.getUTCMonth()===Z.getUTCMonth() ? `${md(a)}–${Z.getUTCDate()}` : `${md(a)} – ${md(z)}`; };
@@ -1149,7 +1150,11 @@ function computeUnlisted(){
     }
     out.push({ name: gaps.length ? `No banner ${gaps.map(span).join(", ")}` : "No rate-up banner listed",
       agents:[why],
-      rev:+gap.toFixed(2), start:`${ym}-01`, end:`${ym}-${String(last).padStart(2,"0")}`,
+      // dated to the stretch itself (kept inside the month it belongs to), so the timeline places
+      // it in the gap — after the banner that ended before it, not at the 1st of the month
+      rev:+gap.toFixed(2),
+      start: gaps.length ? iso(Math.max(gaps[0][0], Date.UTC(y,mo-1,1))) : `${ym}-01`,
+      end: gaps.length ? iso(Math.min(gaps[gaps.length-1][1], Date.UTC(y,mo-1,last))) : `${ym}-${String(last).padStart(2,"0")}`,
       year:y, _synthetic:true, cum:null, cumtot:null, yrank:null, ytot:null });
   }
   return out;
