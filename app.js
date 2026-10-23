@@ -2303,8 +2303,8 @@ function bannerContribHTML(x, base, st, ym, cnR){
   // blob. Only the sources the card actually has get a column, so they stay aligned.
   const cells=[];
   cells.push(zero
-    ? {cls:"gi below", k:"game-i", v:"¥0", x:"below&nbsp;#200",
-       tip:"Ran this month but stayed below game-i's trackable top 200 — counted as ~¥0"}
+    ? {cls:"gi below", k:"game-i", v:"¥0", x:"below Japan iOS #200",
+       tip:"Ran this month but stayed below Japan's iOS top 200, which game-i tracks — counted as ~¥0"}
     : {cls:"gi", k:"game-i", v:G(x.rev),
        x:(base>0?(share*100).toFixed(0)+"% of mo":"")+(part?` · of ${G(x.total)}`:""), tip:""});
   const qg=state.qimai&&state.qimai.games&&state.qimai.games[state.tag];
@@ -2349,8 +2349,8 @@ function bannerContribHTML(x, base, st, ym, cnR){
   const det=[];
   if(dd){ det.push(`<span class="mcb-dates">${fmtDayMs(dd.first)}–${fmtDayMs(dd.last)}</span>`);
     det.push(`${dd.days} day${dd.days!==1?"s":""}`);
-    if(dd.below>0) det.push(`<span class="mcb-below">${dd.below}d below&nbsp;#200</span>`);
     if(dd.shared>0) det.push(`<span class="mcb-shr" title="Ran alongside ${esc(dd.withList.map(w=>w.name).join(", "))} on ${dd.shared} of its ${dd.days} days this month">▨ shared ${dd.shared}/${dd.days}d</span>`); }
+  { const bl=Y?belowLine(b, dd, Y, Mo, "mcb-below"):""; if(bl) det.push(bl); }
   const detLine = det.length?`<div class="mcb-det">${det.join(" · ")}</div>`:"";
   return `<div class="mcb mcb-n${cells.length}" data-i="${x.i}" style="--av-ring:${c}">
     <div class="mcb-av">${avatarHTML(b)}</div>
@@ -2732,6 +2732,28 @@ function bannerDays(b, Y, Mo){
   return {days,below,shared,first,last,withList};
 }
 const fmtDayMs=t=>{ const d=new Date(t); return `${_mn[d.getUTCMonth()]} ${d.getUTCDate()}`; };
+// China iOS days below #200 during a banner's run in month Y-Mo (Qimai's end-of-day rank, on
+// days Qimai covered). A China run that leads the global one is counted on the global day it
+// matches, so the month is the same one the banner is listed under. null = no China rank data.
+function cnBelowDays(b, Y, Mo){
+  const run=cnRunSeries(b); if(!run) return null;
+  const shift=(cnLead() && !cnWindow(b)) ? cnLead() : 0;
+  let days=0, below=0;
+  for(const r of run){ if(r.depth==null) continue;
+    const d=new Date(r.iso+"T00:00:00Z"); d.setUTCDate(d.getUTCDate()+shift);
+    if(Y!=null && !(d.getUTCFullYear()===Y && d.getUTCMonth()===Mo-1)) continue;
+    days++; if(r.rank==null || r.rank>200) below++; }
+  return days ? {days, below} : null;
+}
+// "Below #200: Japan iOS 2d · China iOS 0d" — Japan from game-i's ranks, China from Qimai's
+function belowLine(b, dd, Y, Mo, cls){
+  const cn=cnBelowDays(b, Y, Mo), jp=dd?dd.below:0;
+  if(!jp && !(cn&&cn.below)) return "";
+  const parts=[dd?`Japan iOS ${jp}d`:null, cn?`China iOS ${cn.below}d`:null].filter(Boolean);
+  const tip=`Days of this run${Y?" this month":""} outside the overall top 200 — Japan iOS from game-i's daily rank (game-i adds nothing to a banner on those days)`
+    + (cn?`, China iOS from Qimai's end-of-day rank (${cn.days} day${cn.days!==1?"s":""} with China data)`:"; no China rank data for this run");
+  return `<span class="${cls}" title="${esc(tip)}">Below #200: ${parts.join(" · ")}</span>`;
+}
 // Concurrency across a calendar month: solo runs + multi-banner overlaps (by day).
 function monthOverlap(bans, Y, Mo){
   const DAY=864e5, last=new Date(Date.UTC(Y,Mo,0)).getUTCDate();
@@ -2907,13 +2929,13 @@ function openPeriod(kind, key){
     const dd = bannerDays(b, Y, Mo), shrFrac = dd&&dd.days ? dd.shared/dd.days : 0;
     const shSeg = (!zero && shrFrac>0) ? `<span class="pd-shared" style="width:${Math.min(100,Math.round(shrFrac*100))}%" title="Ran alongside ${esc(dd.withList.map(x=>x.name).join(", "))} on ${dd.shared}/${dd.days} days here"></span>`:"";
     const valHTML = zero
-      ? `<span class="pd-val pd-below" title="Ran this period but stayed below game-i's trackable top 200, so game-i attributes ~¥0">¥0 · below&nbsp;#200</span>`
+      ? `<span class="pd-val pd-below" title="Ran this period but stayed below Japan's iOS top 200, which game-i tracks, so game-i attributes ~¥0">¥0 · below Japan iOS #200</span>`
       : `<span class="pd-val">${G(it.rev)}${part}</span>`;
     const meta=[];
     if(dd){ meta.push(`${fmtDayMs(dd.first)}–${fmtDayMs(dd.last)}`); meta.push(`${dd.days} day${dd.days!==1?"s":""}`);
-      if(dd.below>0) meta.push(`<span class="pd-below-d" title="Days below game-i's trackable top 200 (¥0)">${dd.below}d below #200</span>`);
       if(dd.shared>0) meta.push(`<span class="pd-shr-d" title="Ran alongside ${esc(dd.withList.map(x=>x.name).join(", "))}">shared ${dd.shared}/${dd.days}d</span>`); }
     else meta.push(`${per(b.start)} – ${per(b.end)}`);
+    { const bl=belowLine(b, dd, Y, Mo, "pd-below-d"); if(bl) meta.push(bl); }
     return `<div class="pd-row" data-i="${b._i}" style="--bar-l:${bl};--bar-d:${bd};--av-ring:${c}">
       <div class="pd-rk${i<3&&!zero?` m${i+1}`:""}">${i+1}</div>
       <div class="pd-av">${avatarHTML(b)}</div>
