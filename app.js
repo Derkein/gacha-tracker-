@@ -1771,7 +1771,7 @@ function setGraphWide(on){ if(on) document.body.dataset.gwide="1"; else delete d
 // A timeline keeps at least `gap` px per point so its icons stay readable and apart; when that
 // is wider than the screen the chart scrolls sideways inside the graph area (the page doesn't).
 function graphW(tl, n, gap){ const w=graphBox();
-  return Math.max(tl ? 320 : (innerWidth<=760 ? 560 : 320), w, tl&&n ? Math.ceil(n*gap+150) : 0); }
+  return Math.max(tl ? 320 : (innerWidth<=760 ? 560 : 320), w, n ? Math.ceil(n*gap+150) : 0); }
 // a chart wider than the screen: scrollable on its own, opened at the newest end, with the
 // value scale repeated on its right edge so it's never scrolled out of sight
 function gScroll(svg, W){ return W>graphBox()+1 ? `<div class="gscroll">${svg}</div>` : svg; }
@@ -1807,7 +1807,7 @@ function avatarPoint(cx, cy, R, b, attrs, gid){
 // Icons never overlap: walking left to right, an icon that would land on an earlier one slides
 // right just far enough to clear it (order is kept; the line follows the icons).
 function dodgeIcons(pts, R){
-  const gap=2*R+3;
+  const gap=2*R+10;
   for(let i=1;i<pts.length;i++){ const p=pts[i];
     for(let k=i-1;k>=0 && p.x-pts[k].x<gap;k--){ const q=pts[k], dy=Math.abs(p.y-q.y);
       if(dy<gap){ const need=q.x+Math.sqrt(gap*gap-dy*dy); if(p.x<need) p.x=need; } } }
@@ -1819,13 +1819,13 @@ function groupSVG(segs, gmax, step){
   const H=760, ML=62, MT=64, MB=30, pH=H-MT-MB, base=MT+pH, yOf=v=>MT+(1-v/gmax)*pH;
   // lay out, clear overlaps, and if that pushed icons past the right edge widen the chart (it then
   // scrolls inside the graph area) and lay out again
-  let W=graphW(tl, nB, 22), L, pts, R, MR, pW;
+  let W=graphW(tl, nB, 56), L, pts, R, MR, pW;
   for(let pass=0; pass<4; pass++){
     MR = W>graphBox()+1 ? 62 : 22; pW=W-ML-MR; L=segLayout(segs, ML, pW);
     pts=L.flatMap(s=>s.items.map(b=>({x:s.px+((Date.parse(b.start)-s.x0)/(s.x1-s.x0))*s.pw, y:yOf(graphVal(b)), v:graphVal(b), b})))
       .sort((a,c)=>a.b.start.localeCompare(c.b.start) || c.v-a.v);
-    // icons size to the room between banners — up to 24px in a roomy year, never below a readable 9px
-    R = Math.max(9, Math.min(24, pW/Math.max(1,pts.length)*0.62));
+    // icons take ~38% of each banner's room (max 22px) so there's clear space between them
+    R = Math.max(9, Math.min(22, pW/Math.max(1,pts.length)*0.38));
     dodgeIcons(pts, R);
     const over = pts[pts.length-1].x + R - (ML+pW);
     if(over<=1) break;
