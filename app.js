@@ -2989,11 +2989,13 @@ const _mn=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","De
 function bannerDays(b, Y, Mo){
   const s=b.rank_series; if(!s||!s.length) return null;
   const s0=Date.parse(b.start+"T00:00:00Z"), DAY=864e5, all=state.data.banners;
-  let days=0, below=0, shared=0, first=null, last=null; const withMap=new Map();
+  let days=0, below=0, belowJp=0, shared=0, first=null, last=null; const withMap=new Map();
   for(let i=0;i<s.length;i++){ const t=s0+i*DAY, d=new Date(t);
     if(b._runs && !runsOn(b,t)) continue;               // skip a split run's paused gap (those days belong to another banner)
     if(Y!=null && !(d.getUTCFullYear()===Y && d.getUTCMonth()===Mo-1)) continue;
-    days++; if(s[i]==null) below++;                       // below-#200 days = while actually running
+    days++; if(s[i]==null){ below++; if(i) belowJp++; }   // below-#200 days = while actually running
+    // belowJp skips the run's FIRST day: game-i reads the rank at midnight JST, so a banner that
+    // goes live later reads below #200 on its launch day (the methodology notes this)
     const others=all.filter(o=>o!==b && !o._synthetic && o._runs && runsOn(o,t) && !handoff(b,o,t));
     if(others.length){ shared++; others.forEach(o=>withMap.set(o,(withMap.get(o)||0)+1)); }
     if(first==null) first=t; last=t;
@@ -3001,7 +3003,7 @@ function bannerDays(b, Y, Mo){
   if(!days) return null;
   const withList=[...withMap.entries()].sort((a,c)=>c[1]-a[1])
     .map(([o,dd])=>({name:(o.agents&&o.agents.length?o.agents.join(" & "):o.name), days:dd}));
-  return {days,below,shared,first,last,withList};
+  return {days,below,belowJp,shared,first,last,withList};
 }
 const fmtDayMs=t=>{ const d=new Date(t); return `${_mn[d.getUTCMonth()]} ${d.getUTCDate()}`; };
 // China iOS days below #200 during a banner's run in month Y-Mo (Qimai's end-of-day rank, on
@@ -3019,10 +3021,11 @@ function cnBelowDays(b, Y, Mo){
 }
 // "Below #200: Japan iOS 2d · China iOS 0d" — Japan from game-i's ranks, China from Qimai's
 function belowLine(b, dd, Y, Mo, cls){
-  const cn=cnBelowDays(b, Y, Mo), jp=dd?dd.below:0;
-  if(!jp && !(cn&&cn.below)) return "";
-  const parts=[dd?`Japan iOS ${jp}d`:null, cn?`China iOS ${cn.below}d`:null].filter(Boolean);
-  const tip=`Days of this run${Y?" this month":""} outside the overall top 200 — Japan iOS from game-i's daily rank (game-i adds nothing to a banner on those days)`
+  const cn=cnBelowDays(b, Y, Mo), jp=dd?dd.belowJp:0;
+  // only the chart(s) the banner actually fell off — a 0 isn't shown
+  const parts=[jp?`Japan iOS ${jp}d`:null, cn&&cn.below?`China iOS ${cn.below}d`:null].filter(Boolean);
+  if(!parts.length) return "";
+  const tip=`Days of this run${Y?" this month":""} outside the overall top 200 — Japan iOS from game-i's daily rank, launch day not counted (game-i reads the rank at midnight JST, before most banners go live; it adds nothing to a banner on those days)`
     + (cn?`, China iOS from Qimai's end-of-day rank (${cn.days} day${cn.days!==1?"s":""} with China data)`:"; no China rank data for this run");
   return `<span class="${cls}" title="${esc(tip)}">Below #200: ${parts.join(" · ")}</span>`;
 }
