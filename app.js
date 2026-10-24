@@ -1804,16 +1804,38 @@ function avatarPoint(cx, cy, R, b, attrs, gid){
     `preserveAspectRatio="xMidYMid slice" clip-path="url(#${id})" ${attrs}/>`+
     `<circle class="gring" cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="${R}" fill="none" stroke="${acc}" ${attrs}/>`;
 }
+// Icons never overlap: walking left to right, an icon that would land on an earlier one slides
+// right just far enough to clear it (order is kept; the line follows the icons).
+function dodgeIcons(pts, R){
+  const gap=2*R+3;
+  for(let i=1;i<pts.length;i++){ const p=pts[i];
+    for(let k=i-1;k>=0 && p.x-pts[k].x<gap;k--){ const q=pts[k], dy=Math.abs(p.y-q.y);
+      if(dy<gap){ const need=q.x+Math.sqrt(gap*gap-dy*dy); if(p.x<need) p.x=need; } } }
+}
+// a rolling median of the banners around each one (±2): the run of the game without the spikes
+function rollingMedian(vals, h){
+  return vals.map((_,i)=>{ const w=vals.slice(Math.max(0,i-h), i+h+1).sort((a,b)=>a-b); return w[w.length>>1]; });
+}
 function groupSVG(segs, gmax, step){
   const usd = state.dataSource==="st" || state.dataSource==="qimai", cnMode = state.dataSource==="cn";
   const fmt = usd ? fmtUSD : cnMode ? fmtCNY : G;
-  const tl=segs.length>1, nB=segs.reduce((a,x)=>a+x.items.length,0), W=graphW(tl, nB, 22), wide=W>graphBox()+1;
-  const H=tl?620:600, ML=62,MR=wide?62:22,MT=34,MB=30, pW=W-ML-MR, pH=H-MT-MB, base=MT+pH;
-  const L=segLayout(segs, ML, pW), yOf=v=>MT+(1-v/gmax)*pH;
-  const pts=L.flatMap(s=>s.items.map(b=>({x:s.px+((Date.parse(b.start)-s.x0)/(s.x1-s.x0))*s.pw, y:yOf(graphVal(b)), b})))
-    .sort((a,c)=>a.b.start.localeCompare(c.b.start));
-  // icons size to the room between banners — up to 24px in a roomy year, never below a readable 9px
-  const R = Math.max(9, Math.min(24, pW/Math.max(1,pts.length)*0.62));
+  const tl=segs.length>1, nB=segs.reduce((a,x)=>a+x.items.length,0);
+  const H=tl?620:600, ML=62, MT=46, MB=30, pH=H-MT-MB, base=MT+pH, yOf=v=>MT+(1-v/gmax)*pH;
+  // lay out, clear overlaps, and if that pushed icons past the right edge widen the chart (it then
+  // scrolls inside the graph area) and lay out again
+  let W=graphW(tl, nB, 22), L, pts, R, MR, pW;
+  for(let pass=0; pass<4; pass++){
+    MR = W>graphBox()+1 ? 62 : 22; pW=W-ML-MR; L=segLayout(segs, ML, pW);
+    pts=L.flatMap(s=>s.items.map(b=>({x:s.px+((Date.parse(b.start)-s.x0)/(s.x1-s.x0))*s.pw, y:yOf(graphVal(b)), v:graphVal(b), b})))
+      .sort((a,c)=>a.b.start.localeCompare(c.b.start) || c.v-a.v);
+    // icons size to the room between banners — up to 24px in a roomy year, never below a readable 9px
+    R = Math.max(9, Math.min(24, pW/Math.max(1,pts.length)*0.62));
+    dodgeIcons(pts, R);
+    const over = pts[pts.length-1].x + R - (ML+pW);
+    if(over<=1) break;
+    W = Math.ceil(W + over + 12);
+  }
+  const wide=W>graphBox()+1;
   const tv=(usd||cnMode)?usdTicks(gmax):ticks(gmax,step);
   const grid=tv.map(t=>{const y=yOf(t);
     return `<line class="grid" x1="${ML}" y1="${y.toFixed(1)}" x2="${W-MR}" y2="${y.toFixed(1)}"/>`+
@@ -1821,6 +1843,21 @@ function groupSVG(segs, gmax, step){
     + (wide ? rightTicks(tv, yOf, W, MR, fmt) : "");
   const line=pts.map((p,i)=>(i?"L":"M")+p.x.toFixed(1)+" "+p.y.toFixed(1)).join(" ");
   const area=`M${pts[0].x.toFixed(1)} ${base} `+pts.map(p=>"L"+p.x.toFixed(1)+" "+p.y.toFixed(1)).join(" ")+` L${pts[pts.length-1].x.toFixed(1)} ${base} Z`;
+  // context: the average banner (dashed reference line) and the trend (a rolling median)
+  const avg=pts.reduce((a,p)=>a+p.v,0)/pts.length, ya=yOf(avg);
+  const ref=`<line class="gavg" x1="${ML}" y1="${ya.toFixed(1)}" x2="${W-MR}" y2="${ya.toFixed(1)}"/>`
+    + `<text class="gavg-l" x="${ML+6}" y="${(ya-5).toFixed(1)}">avg ${fmt(avg)}</text>`;
+  const med=pts.length>=6 ? rollingMedian(pts.map(p=>p.v), 2) : null;
+  const trend=med ? `<path class="gtrend" d="${pts.map((p,i)=>(i?"L":"M")+p.x.toFixed(1)+" "+yOf(med[i]).toFixed(1)).join(" ")}"/>` : "";
+  // major version launches, marked along the top (not when the chart is already split by version)
+  let vers="";
+  const V=VERSIONS[state.tag];
+  if(V && state.graphDim!=="version") V.slice(1).forEach(([lab,d])=>{ const t=Date.parse(d), s=L.find(s=>t>=s.x0 && t<s.x1);
+    if(!s) return; const x=s.px+((t-s.x0)/(s.x1-s.x0))*s.pw;
+    vers+=`<line class="gver" x1="${x.toFixed(1)}" y1="${MT-14}" x2="${x.toFixed(1)}" y2="${base}"/>`
+      + `<text class="gver-l" x="${(x+4).toFixed(1)}" y="${MT-18}">${esc(lab.replace(".X",".0"))}</text>`; });
+  // values on the three biggest banners only — never on every point
+  const top3=new Set([...pts].sort((a,c)=>c.v-a.v).slice(0,3));
   const gid=Math.random().toString(36).slice(2,8);
   const marks=pts.map(p=>{
     // rerun badge, top-right of the avatar: the same ↻ the row/card/peer chips use, on the 45°
@@ -1831,11 +1868,14 @@ function groupSVG(segs, gmax, step){
         + `<circle cx="${bx}" cy="${by}" r="${br.toFixed(2)}"/>`
         + `<g transform="translate(${bx} ${by}) scale(${(br*0.60).toFixed(3)})">`
         + `<path class="rr-arc" d="${RR_ARC}"/><path class="rr-head" d="${RR_HEAD}"/></g></g>` : "";
-    return avatarPoint(p.x, p.y, R, p.b, `data-i="${p.b._i}"`, `${gid}_${p.b._i}`)+rr;
+    // a hairline down to the axis shows while the banner is hovered
+    return `<g class="gpt"><line class="gguide" x1="${p.x.toFixed(1)}" y1="${(p.y+R).toFixed(1)}" x2="${p.x.toFixed(1)}" y2="${base}"/>`
+      + avatarPoint(p.x, p.y, R, p.b, `data-i="${p.b._i}"`, `${gid}_${p.b._i}`)+rr
+      + (top3.has(p) ? `<text class="gval" x="${p.x.toFixed(1)}" y="${(p.y-R-7).toFixed(1)}" text-anchor="middle">${fmt(p.v)}</text>` : "") + `</g>`;
   }).join("");
   const ax=segAxis(L,H,MT);
   return gScroll(`<svg class="gsvg gpx${L.length>1?" gtl":""}" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img">
-    ${grid}${ax.seps}<path class="area" d="${area}"/><path class="line" d="${line}"/>${marks}${ax.labels}</svg>`, W);
+    ${grid}${ax.seps}${vers}<path class="area" d="${area}"/><path class="line" d="${line}"/>${trend}${ref}${marks}${ax.labels}</svg>`, W);
 }
 // Per year = a chart per year (or version); Timeline = the chosen ones side by side in ONE chart
 function graphTimeline(){ return state.graphLayout==="together"; }
@@ -1856,7 +1896,8 @@ function renderGraph(){
   let keys=Object.keys(groups).sort();
   const seg=k=>{ const [x0,x1]=groupRange(k, groups[k]); return {key:k, x0, x1, items:groups[k]}; };
   const fmt = state.dataSource==="st"||state.dataSource==="qimai" ? fmtUSD : state.dataSource==="cn" ? fmtCNY : G;
-  const tot = items => `<span class="yhead-sub">${fmt(items.reduce((a,b)=>a+(graphVal(b)||0),0))}</span>`;
+  const tot = items => `<span class="yhead-sub">${fmt(items.reduce((a,b)=>a+(graphVal(b)||0),0))}</span>`
+    + `<span class="gkey"><i class="k-trend"></i>trend · median of 5 banners<i class="k-avg"></i>average banner</span>`;
   setGraphWide(graphTimeline() && keys.length>1);
   if(graphTimeline()){
     const label = keys.length>1 ? `${keys[0]} – ${keys[keys.length-1]}` : keys[0];
