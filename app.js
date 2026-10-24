@@ -1816,7 +1816,7 @@ function groupSVG(segs, gmax, step){
   const usd = state.dataSource==="st" || state.dataSource==="qimai", cnMode = state.dataSource==="cn";
   const fmt = usd ? fmtUSD : cnMode ? fmtCNY : G;
   const tl=segs.length>1, nB=segs.reduce((a,x)=>a+x.items.length,0);
-  const H=tl?620:600, ML=62, MT=46, MB=30, pH=H-MT-MB, base=MT+pH, yOf=v=>MT+(1-v/gmax)*pH;
+  const H=760, ML=62, MT=64, MB=30, pH=H-MT-MB, base=MT+pH, yOf=v=>MT+(1-v/gmax)*pH;
   // lay out, clear overlaps, and if that pushed icons past the right edge widen the chart (it then
   // scrolls inside the graph area) and lay out again
   let W=graphW(tl, nB, 22), L, pts, R, MR, pW;
@@ -1848,8 +1848,8 @@ function groupSVG(segs, gmax, step){
   const V=VERSIONS[state.tag];
   if(V && state.graphDim!=="version") V.slice(1).forEach(([lab,d])=>{ const t=Date.parse(d), s=L.find(s=>t>=s.x0 && t<s.x1);
     if(!s) return; const x=s.px+((t-s.x0)/(s.x1-s.x0))*s.pw;
-    vers+=`<line class="gver" x1="${x.toFixed(1)}" y1="${MT-14}" x2="${x.toFixed(1)}" y2="${base}"/>`
-      + `<text class="gver-l" x="${(x+4).toFixed(1)}" y="${MT-18}">${esc(lab.replace(".X",".0"))}</text>`; });
+    vers+=`<line class="gver" x1="${x.toFixed(1)}" y1="${MT-36}" x2="${x.toFixed(1)}" y2="${base}"/>`
+      + `<text class="gver-l" x="${(x+4).toFixed(1)}" y="${MT-40}">${esc(lab.replace(".X",".0"))}</text>`; });
   // values on the three biggest banners only — never on every point
   const top3=new Set([...pts].sort((a,c)=>c.v-a.v).slice(0,3));
   const gid=Math.random().toString(36).slice(2,8);
@@ -1885,7 +1885,10 @@ function renderGraph(){
       : `<div class="loading">No banners to chart.</div>`;
     return;
   }
-  const sharedMax = money ? usdTop(Math.max(...pool.map(graphVal))) : roundTop(Math.max(...pool.map(x=>x.rev)), false);
+  // the axis tops out at the biggest banner shown (its icon and value sit in the margin above);
+  // a chosen bracket still rounds up to it
+  const capTop = v => state.bracket && !money ? roundTop(v, true) : v;
+  const sharedMax = capTop(Math.max(...pool.map(graphVal)));
   const groups={}; pool.forEach(x=>{ const k=groupKey(x); (groups[k]=groups[k]||[]).push(x); });
   let keys=Object.keys(groups).sort();
   const seg=k=>{ const [x0,x1]=groupRange(k, groups[k]); return {key:k, x0, x1, items:groups[k]}; };
@@ -1901,7 +1904,7 @@ function renderGraph(){
   if(!state.reverse) keys.reverse();           // newest group first by default
   $("#chart").innerHTML=keys.map(k=>{
     const peak=Math.max(...groups[k].map(graphVal));
-    const gmax=state.matchHigh ? (money?usdTop(peak):roundTop(peak,true)) : sharedMax;
+    const gmax=state.matchHigh ? capTop(peak) : sharedMax;
     return `<div class="gyear"><div class="yhead">${esc(k)} ${tot(groups[k])}</div>${groupSVG([seg(k)],gmax,state.bracket||0)}</div>`;
   }).join("");
 }
@@ -2019,7 +2022,8 @@ function renderMonthGraph(){
     return;
   }
   const byY={}; months.forEach(ym=>(byY[ym.slice(0,4)]=byY[ym.slice(0,4)]||[]).push(ym));
-  const top=Math.max(...months.map(monthVal)), sharedMax = money ? usdTop(top) : roundTop(top, false);
+  const capTop = v => state.bracket && !money ? roundTop(v, true) : v;   // axis tops out at the biggest month
+  const top=Math.max(...months.map(monthVal)), sharedMax = capTop(top);
   const sum=ms=>ms.reduce((a,ym)=>a+monthVal(ym),0);
   setGraphWide(graphTimeline() && Object.keys(byY).length>1);
   if(graphTimeline()){
@@ -2030,7 +2034,7 @@ function renderMonthGraph(){
   }
   let keys=Object.keys(byY).sort(); if(!state.reverse) keys.reverse();
   $("#chart").innerHTML=keys.map(y=>{
-    const peak=Math.max(...byY[y].map(monthVal)), gmax=state.matchHigh ? (money?usdTop(peak):roundTop(peak,true)) : sharedMax;
+    const peak=Math.max(...byY[y].map(monthVal)), gmax=state.matchHigh ? capTop(peak) : sharedMax;
     return `<div class="gyear"><div class="yhead">${esc(y)} <span class="yhead-sub">${fmt(sum(byY[y]))}</span></div>${draw(byY[y], gmax, false)}</div>`;
   }).join("");
 }
