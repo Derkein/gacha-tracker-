@@ -1980,30 +1980,50 @@ function monthGrid(gmax, yOf, ML, W, MR){
            `<text class="axislbl" x="${ML-8}" y="${(y+3).toFixed(1)}" text-anchor="end">${fmt(t)}</text>`;}).join("")
     + (W>graphBox()+1 ? rightTicks(tv, yOf, W, MR, fmt) : "");
 }
-// COLUMNS: each month a column split into its banners (colours of the banners themselves), the
-// leading banner's icon on top; the current, unfinished month is lighter
+// The month's biggest banner, whichever source is shown: its share of the month on game-i (Japan)
+// and Qimai (China iPhone), averaged where both have it — the blend By Month splits months by
+function monthLead(ym){
+  const bm=(state.monthly||{})[ym], bl=((bm&&bm.banners)||[]).filter(x=>!state.data.banners[x.i]._synthetic);
+  const g=(state.data.monthly||{})[ym], base=(g!=null&&g>0)?g:((bm&&bm.ours)||0);
+  let best=null, bs=-1;
+  bl.forEach(x=>{ const b=state.data.banners[x.i], s=blendShare(giMonthShare(b, ym, x.rev, base), qimaiShare(b, ym));
+    if(s>bs){ bs=s; best=b; } });
+  return best;
+}
+// a column outline with rounded top corners, square on the baseline
+function colPathR(x, w, y, base, r0){
+  const r=Math.min(r0, w/2, Math.max(0, base-y));
+  return `M${x.toFixed(1)} ${base} V${(y+r).toFixed(1)} Q${x.toFixed(1)} ${y.toFixed(1)} ${(x+r).toFixed(1)} ${y.toFixed(1)}`
+    + ` H${(x+w-r).toFixed(1)} Q${(x+w).toFixed(1)} ${y.toFixed(1)} ${(x+w).toFixed(1)} ${(y+r).toFixed(1)} V${base} Z`;
+}
+// COLUMNS: each month one rounded column, split into the banners that ran (their
+// own colours, thin surface gaps between), what no banner accounts for left as a light piece on
+// top; the month's value sits on the column, the month's biggest banner's icon above it
 function monthSVG(months, gmax, tl){
-  const fmt=monthFmt(), W=graphW(tl, months.length, 20), H=tl?500:480, ML=62, MR=W>graphBox()+1?62:18, MT=58, MB=tl?40:28, pW=W-ML-MR, pH=H-MT-MB, base=MT+pH;
+  const fmt=monthFmt(), W=graphW(tl, months.length, 52), H=tl?520:500, ML=62, MR=W>graphBox()+1?62:18, MT=82, MB=tl?40:28, pW=W-ML-MR, pH=H-MT-MB, base=MT+pH;
   const yOf=v=>MT+(1-v/gmax)*pH, cur=new Date().toISOString().slice(0,7), gid=Math.random().toString(36).slice(2,8);
   const {slot, idx, xt, seps}=monthAxis(months, tl, ML, pW, H, MT);
-  // wide columns with little air between them; the icon as big as its column allows
-  const bw=Math.max(4, Math.min(96, slot*0.86)), R=Math.max(6, Math.min(22, bw*0.46));
-  const vals=months.map(monthVal), pk=months[vals.indexOf(Math.max(...vals))], last=months[months.length-1];
-  let labels="";
-  const cols=months.map(ym=>{
-    const i=idx(ym), x=ML+i*slot+(slot-bw)/2, parts=monthStack(ym), a=`data-mtip="${ym}" data-period="month" data-key="${ym}"`;
-    let y=base, segs="";
-    parts.forEach((p,j)=>{ const h=p.v/gmax*pH, top=y-h, gap=j? 1.5 : 0, isTop=j===parts.length-1;
-      const fill=p.b?barColor(p.b):"var(--muted)";
-      segs += isTop ? `<path class="mseg${p.b?"":" mrest"}" style="fill:${fill}" d="${colPath(x, bw, top, y-gap)}"/>`
-                    : `<rect class="mseg${p.b?"":" mrest"}" style="fill:${fill}" x="${x.toFixed(1)}" y="${top.toFixed(1)}" width="${bw.toFixed(1)}" height="${Math.max(0,h-gap).toFixed(1)}"/>`;
+  const bw=Math.max(4, Math.min(96, slot*0.82)), R=Math.max(6, Math.min(20, bw*0.42)), rad=Math.min(7, bw*0.22);
+  const vals=months.map(monthVal), pkV=Math.max(...vals);
+  const cols=months.map((ym,n)=>{
+    const i=idx(ym), x=ML+i*slot+(slot-bw)/2, cx=x+bw/2, parts=monthStack(ym), v=monthVal(ym), topY=yOf(v);
+    const a=`data-mtip="${ym}" data-period="month" data-key="${ym}"`, cid=`mc_${gid}_${n}`;
+    let y=base, segs="", gaps="";
+    parts.forEach((p,j)=>{ const h=p.v/gmax*pH, top=y-h;
+      segs+=`<rect class="mseg${p.b?"":" mrest"}" style="fill:${p.b?barColor(p.b):"var(--muted)"}" x="${x.toFixed(1)}" y="${top.toFixed(1)}" width="${bw.toFixed(1)}" height="${h.toFixed(1)}"/>`;
+      if(j && h>0.5) gaps+=`<line class="mgap" x1="${x.toFixed(1)}" y1="${y.toFixed(1)}" x2="${(x+bw).toFixed(1)}" y2="${y.toFixed(1)}"/>`;
       y=top; });
-    const lead=parts.find(p=>p.b), cx=x+bw/2, ic = lead && R>=5 ? avatarPoint(cx, y-R-3, R, lead.b, "", `${gid}_${i}`) : "";
-    if(ym===pk || (!tl && ym===last)) labels+=`<text class="mlabel${ym===pk?" pk":""}" x="${cx.toFixed(1)}" y="${(y-(ic?2*R+9:6)).toFixed(1)}" text-anchor="middle">${fmt(monthVal(ym))}</text>`;
-    return `<g class="mcol${ym===cur?" partial":""}" ${a}><rect class="mslot" x="${(ML+i*slot).toFixed(1)}" y="${MT-54}" width="${slot.toFixed(1)}" height="${pH+54}"/>${segs}${ic}</g>`;
+    // the value on the column (when it fits the column's width), the icon above it
+    const txt=fmt(v), fits=txt.length*6.4 <= slot-4;
+    const lblY=topY-7, icY=(fits?lblY-14:topY-4)-R-3;
+    const lead=monthLead(ym), ic = lead && R>=6 ? avatarPoint(cx, icY, R, lead, "", `${gid}_i${n}`) : "";
+    return `<g class="mcol${ym===cur?" partial":""}" ${a}><rect class="mslot" x="${(ML+i*slot).toFixed(1)}" y="${MT-78}" width="${slot.toFixed(1)}" height="${pH+78}"/>`
+      + `<clipPath id="${cid}"><path d="${colPathR(x, bw, topY, base, rad)}"/></clipPath><g clip-path="url(#${cid})">${segs}${gaps}</g>`
+      + (fits ? `<text class="mval${v===pkV?" pk":""}" x="${cx.toFixed(1)}" y="${lblY.toFixed(1)}" text-anchor="middle">${txt}</text>` : "")
+      + ic + `</g>`;
   }).join("");
   return gScroll(`<svg class="gsvg gpx msvg${tl?" mtl":""}" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img">
-    ${monthGrid(gmax,yOf,ML,W,MR)}${seps}${cols}<line class="mbase" x1="${ML}" y1="${base}" x2="${W-MR}" y2="${base}"/>${labels}${xt}</svg>`, W);
+    ${monthGrid(gmax,yOf,ML,W,MR)}${seps}${cols}<line class="mbase" x1="${ML}" y1="${base}" x2="${W-MR}" y2="${base}"/>${xt}</svg>`, W);
 }
 // the years the graph shows: every one (none picked) or the picked ones
 function monthYearsShown(all){ const p=(state.graphYearsSel||[]).filter(y=>all.includes(y)); return p.length?p:all; }
@@ -2024,11 +2044,11 @@ function renderMonthGraph(){
   if(graphTimeline()){
     const ys=Object.keys(byY).sort();
     $("#chart").innerHTML=`<div class="gyear"><div class="yhead">${ys.length>1?`${ys[0]} – ${ys[ys.length-1]}`:ys[0]} <span class="yhead-sub">${fmt(sum(months))}</span></div>`
-      + draw(months, sharedMax, true) + `</div>`;
+      + `<div class="mnote">The icon above each month is its <b>biggest banner</b> — by its share of the month on <b>game-i</b> (Japan) and <b>Qimai</b> (China iPhone), averaged where both have it. Each column is split into the banners that ran.</div>` + draw(months, sharedMax, true) + `</div>`;
     scrollGraphsToEnd(); return;
   }
   let keys=Object.keys(byY).sort(); if(!state.reverse) keys.reverse();
-  $("#chart").innerHTML=keys.map(y=>{
+  $("#chart").innerHTML=`<div class="mnote">The icon above each month is its <b>biggest banner</b> — by its share of the month on <b>game-i</b> (Japan) and <b>Qimai</b> (China iPhone), averaged where both have it. Each column is split into the banners that ran.</div>`+keys.map(y=>{
     const peak=Math.max(...byY[y].map(monthVal)), gmax=state.matchHigh ? capTop(peak) : sharedMax;
     return `<div class="gyear"><div class="yhead">${esc(y)} <span class="yhead-sub">${fmt(sum(byY[y]))}</span></div>${draw(byY[y], gmax, false)}</div>`;
   }).join("");
@@ -2037,17 +2057,17 @@ function renderMonthGraph(){
 function monthBannerRow(x, est, fmt){
   const b=x.b, en=b.agents&&b.agents.length?b.agents.join(" & "):"", ic=(b.icons&&b.icons[0])||"";
   return `<li><span class="mt-av" style="--av-ring:${barColor(b)}">${ic?`<img src="${esc(ic)}" alt="" referrerpolicy="no-referrer">`:""}</span>`
-    + `<span class="mt-txt"><span class="mt-nm">${esc(bLabel(b))}${b.rerun?` <span class="rr">↻</span>`:""}</span>${en&&en!==bLabel(b)?`<span class="mt-en">${esc(en)}</span>`:""}</span>`
+    + `<span class="mt-txt"><span class="mt-nm">${esc(bLabel(b))}${b.rerun?` <span class="rr">↻</span>`:""}${x.lead?` <span class="mt-lead" title="The month's biggest banner on game-i + Qimai — the icon on its column">★</span>`:""}</span>${en&&en!==bLabel(b)?`<span class="mt-en">${esc(en)}</span>`:""}</span>`
     + `<b>${x.v>0?(est?"≈":"")+fmt(x.v):"—"}</b></li>`;
 }
 function showMonthTip(ym, e){
   const fmt=monthFmt(), est = state.dataSource==="st"||state.dataSource==="cn";
   const srcLbl = state.dataSource==="st" ? "Sensor Tower · combined" : state.dataSource==="cn" ? "CN ranking · global"
     : state.dataSource==="qimai" ? "Qimai · China iPhone" : ((state.data.monthly||{})[ym]!=null ? "game-i monthly · 月次売上予測" : "game-i · from daily ranks");
-  const list=monthBanners(ym), shown=list.slice(0,8), partial=ym===new Date().toISOString().slice(0,7);
+  const list=monthBanners(ym), shown=list.slice(0,8), partial=ym===new Date().toISOString().slice(0,7), lead=monthLead(ym);
   tip.innerHTML=`<div class="body"><h4>${MONTHS[+ym.slice(5,7)-1]} ${ym.slice(0,4)}${partial?` <span class="mt-so">so far</span>`:""}</h4>
     <div class="mtip-tot"><b>${fmt(monthVal(ym))}</b><span>${esc(srcLbl)}</span></div>
-    ${list.length?`<ul class="mtip-list">${shown.map(x=>monthBannerRow(x, est, fmt)).join("")}</ul>${list.length>8?`<div class="mtip-more">+${list.length-8} more</div>`:""}`
+    ${list.length?`<ul class="mtip-list">${shown.map(x=>monthBannerRow({...x, lead:x.b===lead}, est, fmt)).join("")}</ul>${list.length>8?`<div class="mtip-more">+${list.length-8} more</div>`:""}`
       :`<div class="mtip-more">No listed banner ran this month</div>`}
     ${est&&list.length?`<div class="mtip-more">Banner figures split the month by each one's game-i + Qimai share — an estimate</div>`:""}
     <div class="tiphint">▸ Click for the month's breakdown</div></div>`;
