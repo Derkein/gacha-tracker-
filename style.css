@@ -313,6 +313,18 @@ tr.clk{cursor:pointer} tr.clk:hover td{background:var(--track)}
 .gyear{margin-bottom:18px}
 .gyear .yhead{margin:14px 0 2px}
 .gsvg{width:100%; height:auto; display:block; overflow:visible}
+/* a chart drawn at its true pixel width: 1:1 on screen, so text and icons keep their size */
+.gsvg.gpx{width:100%; max-width:100%}
+.gsvg .ghalo{fill:var(--surface)}           /* surface ring: overlapping icons stay apart */
+.gscroll{overflow-x:auto; overflow-y:hidden; scrollbar-width:thin}   /* a timeline too dense to fit scrolls by itself */
+.gscroll .gsvg.gpx{width:auto; max-width:none}
+html.scrolling .gscroll, .gscroll:hover{scrollbar-color:var(--base) transparent}
+.gsvg.gpx .axislbl{font-size:11.5px}
+.gsvg.gpx .axislbl.yl{font-size:12.5px}
+/* the graph alone uses the screen's width beyond the page column (desktop) */
+@media (min-width:761px){
+  body[data-view=graph] #chartwrap{width:min(calc(100vw - 64px), 1760px); margin-left:calc(50% - min(calc(100vw - 64px), 1760px) / 2)}
+}
 .gsvg .grid{stroke:var(--grid); stroke-width:1}
 .gsvg .axislbl{fill:var(--muted); font-size:10px; font-family:system-ui,sans-serif}
 .gsvg .area{fill:var(--accent); opacity:.13}
