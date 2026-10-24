@@ -316,19 +316,14 @@ tr.clk{cursor:pointer} tr.clk:hover td{background:var(--track)}
 /* a chart drawn at its true pixel width: 1:1 on screen, so text and icons keep their size */
 .gsvg.gpx{width:100%; max-width:100%}
 .gsvg .ghalo{fill:var(--surface)}           /* surface ring: overlapping icons stay apart */
-/* banner graph context: the average banner (dashed — a reference, not a gridline), major
-   version launches along the top, values on the top three,
+/* banner graph context: major version launches along the top, values on the top three,
    and a hairline to the axis under the hovered banner */
-.gsvg .gavg{stroke:var(--ink2); stroke-width:1; stroke-dasharray:4 4; opacity:.55}
-.gsvg .gavg-l{fill:var(--ink2); font:600 11px system-ui,-apple-system,"Segoe UI",sans-serif; opacity:.85}
 .gsvg .gver{stroke:var(--base); stroke-width:1}
 .gsvg .gver-l{fill:var(--muted); font:700 10.5px system-ui,-apple-system,"Segoe UI",sans-serif}
 .gsvg .gval{fill:var(--ink); font:750 11.5px system-ui,-apple-system,"Segoe UI",sans-serif; pointer-events:none}
 .gsvg .gguide{stroke:var(--ink2); stroke-width:1; opacity:0; transition:opacity .1s; pointer-events:none}
 .gsvg .gpt:hover .gguide{opacity:.5}
-.yhead .gkey{margin-left:14px; font-weight:600; letter-spacing:0; text-transform:none; color:var(--muted); display:inline-flex; align-items:center; gap:6px}
-.yhead .gkey i{display:inline-block; width:16px; height:0; margin-left:6px}
-.yhead .gkey .k-avg{border-top:1.5px dashed var(--ink2); opacity:.7}
+
 .gscroll{overflow-x:auto; overflow-y:hidden; scrollbar-width:thin}   /* a timeline too dense to fit scrolls by itself */
 .gscroll .gsvg.gpx{width:auto; max-width:none}
 html.scrolling .gscroll, .gscroll:hover{scrollbar-color:var(--base) transparent}

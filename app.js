@@ -1839,10 +1839,6 @@ function groupSVG(segs, gmax, step){
     + (wide ? rightTicks(tv, yOf, W, MR, fmt) : "");
   const line=pts.map((p,i)=>(i?"L":"M")+p.x.toFixed(1)+" "+p.y.toFixed(1)).join(" ");
   const area=`M${pts[0].x.toFixed(1)} ${base} `+pts.map(p=>"L"+p.x.toFixed(1)+" "+p.y.toFixed(1)).join(" ")+` L${pts[pts.length-1].x.toFixed(1)} ${base} Z`;
-  // context: the average banner (dashed reference line)
-  const avg=pts.reduce((a,p)=>a+p.v,0)/pts.length, ya=yOf(avg);
-  const ref=`<line class="gavg" x1="${ML}" y1="${ya.toFixed(1)}" x2="${W-MR}" y2="${ya.toFixed(1)}"/>`
-    + `<text class="gavg-l" x="${ML+6}" y="${(ya-5).toFixed(1)}">avg ${fmt(avg)}</text>`;
   // major version launches, marked along the top (not when the chart is already split by version)
   let vers="";
   const V=VERSIONS[state.tag];
@@ -1869,7 +1865,7 @@ function groupSVG(segs, gmax, step){
   }).join("");
   const ax=segAxis(L,H,MT);
   return gScroll(`<svg class="gsvg gpx${L.length>1?" gtl":""}" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img">
-    ${grid}${ax.seps}${vers}<path class="area" d="${area}"/><path class="line" d="${line}"/>${ref}${marks}${ax.labels}</svg>`, W);
+    ${grid}${ax.seps}${vers}<path class="area" d="${area}"/><path class="line" d="${line}"/>${marks}${ax.labels}</svg>`, W);
 }
 // Per year = a chart per year (or version); Timeline = the chosen ones side by side in ONE chart
 function graphTimeline(){ return state.graphLayout==="together"; }
@@ -1893,8 +1889,7 @@ function renderGraph(){
   let keys=Object.keys(groups).sort();
   const seg=k=>{ const [x0,x1]=groupRange(k, groups[k]); return {key:k, x0, x1, items:groups[k]}; };
   const fmt = state.dataSource==="st"||state.dataSource==="qimai" ? fmtUSD : state.dataSource==="cn" ? fmtCNY : G;
-  const tot = items => `<span class="yhead-sub">${fmt(items.reduce((a,b)=>a+(graphVal(b)||0),0))}</span>`
-    + `<span class="gkey"><i class="k-avg"></i>average banner</span>`;
+  const tot = items => `<span class="yhead-sub">${fmt(items.reduce((a,b)=>a+(graphVal(b)||0),0))}</span>`;
   setGraphWide(graphTimeline() && keys.length>1);
   if(graphTimeline()){
     const label = keys.length>1 ? `${keys[0]} – ${keys[keys.length-1]}` : keys[0];
