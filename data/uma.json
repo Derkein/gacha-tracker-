@@ -5,13 +5,13 @@
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E3%82%A6%E3%83%9E%E5%A8%98%20%E3%83%97%E3%83%AA%E3%83%86%E3%82%A3%E3%83%BC%E3%83%80%E3%83%BC%E3%83%93%E3%83%BC",
  "banners_from": "game-i",
- "updated": "2026-10-26T18:16:23Z",
+ "updated": "2026-10-26T20:34:55Z",
  "count": 218,
  "now": {
-  "ios": 4,
-  "android": 12,
+  "ios": 6,
+  "android": 11,
   "month": 57,
-  "next_add": 188018648,
+  "next_add": 117372961,
   "ym": "2026/10",
   "ranks": {
    "prev": [
