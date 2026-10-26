@@ -4448,6 +4448,24 @@
    "det": true,
    "name": "「ピックアップ プリティーダービーガチャ・セレクトピックアップ サポートカードガチャ",
    "v": 2
+  },
+  "https://pbs.twimg.com/media/HVhm895aQAEqQQD.jpg": {
+   "x": 65.1,
+   "y": 23.0,
+   "w": 1024,
+   "h": 576,
+   "det": true,
+   "name": "新育成シナリオ開幕 サポートカードガチャ",
+   "v": 2
+  },
+  "https://pbs.twimg.com/media/HVhmpkqaoAAEiUn.jpg": {
+   "x": 52.3,
+   "y": 51.2,
+   "w": 1024,
+   "h": 576,
+   "det": true,
+   "name": "新育成シナリオ開幕 プリティーダービーガチャ",
+   "v": 2
   }
  },
  "stellasora": {
@@ -4647,6 +4665,15 @@
    "h": 1080,
    "det": true,
    "name": "セイナ（原点）",
+   "v": 2
+  },
+  "https://webusstatic.yo-star.com/web-cms-test/upload/content/2026/10/23/mhUl8xno.png": {
+   "x": 10.7,
+   "y": 36.4,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "name": "ホタル",
    "v": 2
   }
  },
@@ -5371,6 +5398,15 @@
    "h": 1440,
    "det": true,
    "name": "この一瞬に願いを&幾年も光と",
+   "v": 2
+  },
+  "icons/banner_art/lads-1433715997.webp": {
+   "x": 50.0,
+   "y": 40.0,
+   "w": 800,
+   "h": 450,
+   "det": false,
+   "name": "香りに揺れる夜",
    "v": 2
   }
  }

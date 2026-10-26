@@ -1339,8 +1339,12 @@
 "start": "2026-10-27",
 "end": "2026-11-05",
 "rerun": false,
-"mem": [],
-"leads": [],
+"mem": [
+"ホムラ・香りに揺れる夜"
+],
+"leads": [
+"Rafayel"
+],
 "card": "https://cdn.gamerch.com/contents/wiki/4793/entry/qd24cIsw.png"
 }
 ]

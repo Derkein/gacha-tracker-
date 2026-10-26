@@ -5,13 +5,13 @@
  "unit": "億G",
  "source": "https://stellasora.jp/news/",
  "banners_from": "official",
- "updated": "2026-10-25T19:11:28Z",
- "count": 22,
+ "updated": "2026-10-26T18:11:45Z",
+ "count": 23,
  "now": {
   "ios": null,
   "android": 78,
-  "month": 352,
-  "next_add": 4911748,
+  "month": 348,
+  "next_add": 4727828,
   "ym": "2026/10",
   "ranks": {
    "prev": [
@@ -83,7 +83,7 @@
   }
  },
  "monthly": {
-  "2026-10": 0.7991,
+  "2026-10": 0.8457,
   "2026-09": 0.5061,
   "2026-08": 0.491,
   "2026-07": 0.6192,
@@ -148,7 +148,7 @@
     "2025-11": 0.4747
    },
    "cum": 1,
-   "cumtot": 22,
+   "cumtot": 23,
    "yrank": 1,
    "ytot": 5,
    "icons": [
@@ -205,7 +205,7 @@
     "2025-11": 0.9818
    },
    "cum": 2,
-   "cumtot": 22,
+   "cumtot": 23,
    "yrank": 2,
    "ytot": 5,
    "icons": [
@@ -262,7 +262,7 @@
     "2025-12": 0.394
    },
    "cum": 3,
-   "cumtot": 22,
+   "cumtot": 23,
    "yrank": 3,
    "ytot": 5,
    "icons": [
@@ -317,7 +317,7 @@
     "2025-12": 0.91
    },
    "cum": 4,
-   "cumtot": 22,
+   "cumtot": 23,
    "yrank": 4,
    "ytot": 5,
    "icons": [
@@ -374,7 +374,7 @@
     "2026-01": 0.5767
    },
    "cum": 6,
-   "cumtot": 22,
+   "cumtot": 23,
    "yrank": 5,
    "ytot": 5,
    "icons": [
@@ -431,9 +431,9 @@
     "2026-02": 0.071
    },
    "cum": 5,
-   "cumtot": 22,
+   "cumtot": 23,
    "yrank": 1,
-   "ytot": 17,
+   "ytot": 18,
    "icons": [
     "icons/faces/stellasora/2026-01-13-6f4568.webp"
    ],
@@ -486,9 +486,9 @@
     "2026-02": 0.6157
    },
    "cum": 9,
-   "cumtot": 22,
+   "cumtot": 23,
    "yrank": 4,
-   "ytot": 17,
+   "ytot": 18,
    "icons": [
     "icons/faces/overrides/92b0eaa8.webp"
    ],
@@ -543,9 +543,9 @@
     "2026-03": 0.3396
    },
    "cum": 8,
-   "cumtot": 22,
+   "cumtot": 23,
    "yrank": 3,
-   "ytot": 17,
+   "ytot": 18,
    "icons": [
     "icons/faces/overrides/72aa7e39.webp"
    ],
@@ -577,9 +577,9 @@
     "2026-04": 0.0636
    },
    "cum": 10,
-   "cumtot": 22,
+   "cumtot": 23,
    "yrank": 5,
-   "ytot": 17,
+   "ytot": 18,
    "icons": [
     "icons/faces/stellasora/2026-03-17-7bf00e.webp"
    ],
@@ -610,9 +610,9 @@
     "2026-04": 0.2625
    },
    "cum": 11,
-   "cumtot": 22,
+   "cumtot": 23,
    "yrank": 6,
-   "ytot": 17,
+   "ytot": 18,
    "icons": [
     "icons/faces/stellasora/2026-03-31-b40fd4.webp"
    ],
@@ -643,9 +643,9 @@
     "2026-05": 0.0913
    },
    "cum": 12,
-   "cumtot": 22,
+   "cumtot": 23,
    "yrank": 7,
-   "ytot": 17,
+   "ytot": 18,
    "icons": [
     "icons/faces/stellasora/2026-04-16-717999.webp"
    ],
@@ -676,9 +676,9 @@
     "2026-05": 0.2969
    },
    "cum": 13,
-   "cumtot": 22,
+   "cumtot": 23,
    "yrank": 8,
-   "ytot": 17,
+   "ytot": 18,
    "icons": [
     "icons/faces/stellasora/2026-04-30-ac1cb1.webp"
    ],
@@ -709,9 +709,9 @@
     "2026-06": 0.019
    },
    "cum": 14,
-   "cumtot": 22,
+   "cumtot": 23,
    "yrank": 9,
-   "ytot": 17,
+   "ytot": 18,
    "icons": [
     "icons/faces/stellasora/2026-05-14-d77878.webp"
    ],
@@ -740,9 +740,9 @@
     "2026-06": 0.2847
    },
    "cum": 15,
-   "cumtot": 22,
+   "cumtot": 23,
    "yrank": 10,
-   "ytot": 17,
+   "ytot": 18,
    "icons": [
     "icons/faces/overrides/739ddd77.webp"
    ],
@@ -774,9 +774,9 @@
     "2026-07": 0.0708
    },
    "cum": 16,
-   "cumtot": 22,
+   "cumtot": 23,
    "yrank": 11,
-   "ytot": 17,
+   "ytot": 18,
    "icons": [
     "icons/faces/overrides/111bb961.webp"
    ],
@@ -808,9 +808,9 @@
     "2026-07": 0.2862
    },
    "cum": 17,
-   "cumtot": 22,
+   "cumtot": 23,
    "yrank": 12,
-   "ytot": 17,
+   "ytot": 18,
    "icons": [
     "icons/faces/stellasora/2026-06-30-4c477d.webp"
    ],
@@ -841,9 +841,9 @@
     "2026-08": 0.1099
    },
    "cum": 18,
-   "cumtot": 22,
+   "cumtot": 23,
    "yrank": 13,
-   "ytot": 17,
+   "ytot": 18,
    "icons": [
     "icons/faces/stellasora/2026-07-21-2fd563.webp"
    ],
@@ -872,9 +872,9 @@
     "2026-08": 0.2181
    },
    "cum": 19,
-   "cumtot": 22,
+   "cumtot": 23,
    "yrank": 14,
-   "ytot": 17,
+   "ytot": 18,
    "icons": [
     "icons/faces/stellasora/2026-08-04-c99aef.webp"
    ],
@@ -905,9 +905,9 @@
     "2026-09": 0.1206
    },
    "cum": 20,
-   "cumtot": 22,
+   "cumtot": 23,
    "yrank": 15,
-   "ytot": 17,
+   "ytot": 18,
    "icons": [
     "icons/faces/stellasora/2026-08-18-9fd7b0.webp"
    ],
@@ -936,9 +936,9 @@
     "2026-09": 0.344
    },
    "cum": 21,
-   "cumtot": 22,
+   "cumtot": 23,
    "yrank": 16,
-   "ytot": 17,
+   "ytot": 18,
    "icons": [
     "icons/faces/stellasora/2026-09-08-8bccd5.webp"
    ],
@@ -959,19 +959,19 @@
    "rerun": false,
    "ongoing": false,
    "rev": 0.0,
-   "rev_month": 0.5094,
+   "rev_month": 0.5127,
    "rev_ym": {
     "2026-09": 0.0,
     "2026-10": 0.0
    },
    "rev_month_ym": {
     "2026-09": 0.0415,
-    "2026-10": 0.4679
+    "2026-10": 0.4712
    },
    "cum": 22,
-   "cumtot": 22,
+   "cumtot": 23,
    "yrank": 17,
-   "ytot": 17,
+   "ytot": 18,
    "icons": [
     "icons/faces/stellasora/2026-09-29-0eb0cd.webp"
    ],
@@ -998,24 +998,57 @@
     163,
     null,
     null,
+    null,
     null
    ],
-   "rev": 0.1261,
-   "rev_month": 0.3312,
+   "rev": 0.127,
+   "rev_month": 0.3481,
    "rev_ym": {
-    "2026-10": 0.1261
+    "2026-10": 0.127
    },
    "rev_month_ym": {
-    "2026-10": 0.3312
+    "2026-10": 0.3481
    },
    "cum": 7,
-   "cumtot": 22,
+   "cumtot": 23,
    "yrank": 2,
-   "ytot": 17,
+   "ytot": 18,
    "icons": [
     "icons/faces/overrides/d7108083.webp"
    ],
    "bar": "#d8918d"
+  },
+  {
+   "name": "ホタル",
+   "start": "2026-10-27",
+   "end": "2026-11-17",
+   "year": 2026,
+   "related": "星の欠片に乗って",
+   "banner_img": "https://webusstatic.yo-star.com/web-cms-test/upload/content/2026/10/23/mhUl8xno.png",
+   "agents": [
+    "Firefly"
+   ],
+   "en": "Firefly",
+   "source_url": "https://stellasora.jp/news/4987",
+   "rerun": true,
+   "ongoing": true,
+   "rev": 0.0,
+   "rev_month": 0.0263,
+   "rev_ym": {
+    "2026-10": 0.0
+   },
+   "rev_month_ym": {
+    "2026-10": 0.0263
+   },
+   "cum": 23,
+   "cumtot": 23,
+   "yrank": 18,
+   "ytot": 18,
+   "icons": [
+    "icons/faces/stellasora/2026-10-27-270209.webp"
+   ],
+   "accent": "#3e6ec1",
+   "bar": "#9ba8ca"
   }
  ]
 }
