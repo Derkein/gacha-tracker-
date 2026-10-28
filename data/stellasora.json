@@ -5,13 +5,13 @@
  "unit": "億G",
  "source": "https://stellasora.jp/news/",
  "banners_from": "official",
- "updated": "2026-10-28T17:30:16Z",
+ "updated": "2026-10-28T20:16:57Z",
  "count": 23,
  "now": {
-  "ios": 195,
-  "android": 121,
+  "ios": null,
+  "android": 141,
   "month": 337,
-  "next_add": 6201334,
+  "next_add": 5704001,
   "ym": "2026/10",
   "ranks": {
    "prev": [
