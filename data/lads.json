@@ -5,7 +5,7 @@
  "unit": "億G",
  "source": "https://prtimes.jp/main/html/searchrlp/company_id/131862",
  "banners_from": "official",
- "updated": "2026-10-29T18:01:39Z",
+ "updated": "2026-10-29T18:28:58Z",
  "count": 81,
  "now": {
   "ios": null,
@@ -4193,9 +4193,11 @@
    "year": 2026,
    "related": "",
    "banner_img": "icons/banner_art/lads-1433715997.webp",
-   "agents": [],
-   "en": "",
-   "title_en": null,
+   "agents": [
+    "Nightly Overflow"
+   ],
+   "en": "Nightly Overflow",
+   "title_en": "Nightly Overflow",
    "leads": [
     "Rafayel"
    ],

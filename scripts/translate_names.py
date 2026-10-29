@@ -200,7 +200,9 @@ def translate_endfield():
     data = json.loads(dfile.read_text(encoding="utf-8"))
     hit = 0
     for b in data["banners"]:
-        toks = [t.strip() for t in re.split(r"[&＆/／]", b["name"]) if t.strip()]
+        # a rerun is titled 再現スカウト「#1」イヴォンヌ: the operator follows the reprise prefix
+        name = re.sub(r"^再現スカウト「[^」]*」", "", b["name"])
+        toks = [t.strip() for t in re.split(r"[&＆/／]", name) if t.strip()]
         agents = [m[t] for t in toks if t in m]
         b["agents"] = agents[:3]
         if agents:

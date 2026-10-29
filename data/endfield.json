@@ -256,9 +256,9 @@
     139
    ],
    "agents": [
-    "Tantan"
+    "Tangtang"
    ],
-   "en": "Tantan",
+   "en": "Tangtang",
    "icons": [
     "icons/faces/endfield/2026-03-12-9a1839.webp"
    ],
@@ -700,11 +700,14 @@
     null,
     null
    ],
-   "agents": [],
+   "agents": [
+    "Yvonne"
+   ],
    "icons": [
     "icons/faces/endfield/2026-09-24-98a47e.webp"
    ],
-   "bar": "#ff5d89"
+   "bar": "#ff5d89",
+   "en": "Yvonne"
   },
   {
    "name": "スー",
@@ -765,12 +768,15 @@
     null,
     169
    ],
-   "agents": [],
+   "agents": [
+    "Tangtang"
+   ],
    "icons": [
     "icons/faces/endfield/2026-10-29-db8e1f.webp"
    ],
    "accent": "#268dd9",
-   "bar": "#0077d6"
+   "bar": "#0077d6",
+   "en": "Tangtang"
   }
  ]
 }
