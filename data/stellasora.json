@@ -5,49 +5,16 @@
  "unit": "億G",
  "source": "https://stellasora.jp/news/",
  "banners_from": "official",
- "updated": "2026-10-30T20:56:44Z",
+ "updated": "2026-10-31T19:18:01Z",
  "count": 23,
  "now": {
   "ios": null,
-  "android": 148,
-  "month": 331,
-  "next_add": 5721280,
-  "ym": "2026/10",
+  "android": 160,
+  "month": 291,
+  "next_add": 7492614,
+  "ym": "2026/11",
   "ranks": {
    "prev": [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null
-   ],
-   "cur": [
     null,
     null,
     null,
@@ -79,10 +46,44 @@
     null,
     null,
     null
+   ],
+   "cur": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
    ]
   }
  },
  "monthly": {
+  "2026-11": 0.0542,
   "2026-10": 1.08,
   "2026-09": 0.5061,
   "2026-08": 0.491,
@@ -1003,15 +1004,18 @@
     172,
     null,
     null,
+    null,
     null
    ],
    "rev": 0.1609,
-   "rev_month": 0.4617,
+   "rev_month": 0.4888,
    "rev_ym": {
-    "2026-10": 0.1609
+    "2026-10": 0.1609,
+    "2026-11": 0.0
    },
    "rev_month_ym": {
-    "2026-10": 0.4617
+    "2026-10": 0.4617,
+    "2026-11": 0.0271
    },
    "cum": 6,
    "cumtot": 23,
@@ -1041,15 +1045,18 @@
     172,
     null,
     null,
+    null,
     null
    ],
    "rev": 0.0279,
-   "rev_month": 0.1245,
+   "rev_month": 0.1516,
    "rev_ym": {
-    "2026-10": 0.0279
+    "2026-10": 0.0279,
+    "2026-11": 0.0
    },
    "rev_month_ym": {
-    "2026-10": 0.1245
+    "2026-10": 0.1245,
+    "2026-11": 0.0271
    },
    "cum": 10,
    "cumtot": 23,
