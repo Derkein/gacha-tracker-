@@ -206,9 +206,15 @@ function extGameMonths(tag){
   tag = tag || state.tag; const out={};
   const rep=state.reported&&state.reported.months;
   if(rep) for(const ym in rep){ const v=rep[ym][tag];
-    if(typeof v==="number") out[ym]={rev:v, method: rep[ym]._approx?"reported_approx":"reported", usonly: !!rep[ym]._usonly}; }
+    if(typeof v==="number") out[ym]={rev:v, method: rep[ym]._approx||rep[ym]._rough?"reported_approx":"reported",
+      usonly: !!rep[ym]._usonly, rough: !!rep[ym]._rough}; }
   return out;
 }
+// A month the report itself flags (data/reported_revenue.json month_notes): its warning, shown
+// only for that month, wherever the month's Sensor Tower figure appears
+function stMonthNote(ym){ const n=state.reported&&state.reported.month_notes; return (n&&n[ym])||null; }
+function stNoteHTML(ym){ const n=stMonthNote(ym);
+  return n ? `<div class="mo-warn">⚠ <b>${esc(n.title)}</b> ${esc(n.text)}</div>` : ""; }
 // {rev, method} for one game+month (defaults to the current game), or null.
 function extMonth(ym, tag){ return extGameMonths(tag)[ym]||null; }
 // Sum external monthly revenue over months matching pred(ym) -> {rev,months,hasApprox} or null.
@@ -268,7 +274,7 @@ function stChip(rev, method, extra){
     ? "gacharevenue / Sensor Tower published monthly report figures summed — combined region, USD"
     : "gacharevenue / Sensor Tower published monthly report figure — combined region (all regions incl. China iOS + separate JP server), USD";
   const tip = base
-    + (approx?". Approximate — region-summed from an older report":"")
+    + (approx?". Approximate — a region-summed older report, or a month the report calls rough":"")
     + (extra?". "+extra:"");
   return `<span class="st-chip${approx?" est":""}" title="${esc(tip)}">ST ${fmtUSD(rev)}${approx?"*":""}</span>`;
 }
@@ -2069,6 +2075,7 @@ function showMonthTip(ym, e){
     <div class="mtip-tot"><b>${fmt(monthVal(ym))}</b><span>${esc(srcLbl)}</span></div>
     ${list.length?`<ul class="mtip-list">${shown.map(x=>monthBannerRow({...x, lead:x.b===lead}, est, fmt)).join("")}</ul>${list.length>8?`<div class="mtip-more">+${list.length-8} more</div>`:""}`
       :`<div class="mtip-more">No listed banner ran this month</div>`}
+    ${state.dataSource==="st"&&stMonthNote(ym)?`<div class="mtip-more">⚠ ${esc(stMonthNote(ym).title)}</div>`:""}
     ${est&&list.length?`<div class="mtip-more">Banner figures split the month by each one's game-i + Qimai share — an estimate</div>`:""}
     <div class="tiphint">▸ Click for the month's breakdown</div></div>`;
   tip.hidden=false; place(tip,e);
@@ -2694,7 +2701,7 @@ function renderMonthly(){
   const lowRank = dtot && dnul/dtot>=0.15 && state.data.banners_from!=="official";
   const hasST = Object.keys(extGameMonths(state.tag)).length>0;
   let html=`<div class="yr-note">Each month shows the source estimates side by side: game-i's published <b>monthly total</b> (月次売上予測), the total we <b>reconstruct from daily ranks</b>, the <b>Qimai</b> China-iPhone total, the <b>CN</b> all-platform figure, and`
-    + (hasST?` the <b>Sensor Tower</b> combined figure (from gacharevenue's published monthly reports). <b>*</b> marks approximate values (region-summed older reports).`:` (no Sensor Tower coverage for this game).`)
+    + (hasST?` the <b>Sensor Tower</b> combined figure (from gacharevenue's published monthly reports). <b>*</b> marks approximate values (region-summed older reports, or a month the report itself calls rough).`:` (no Sensor Tower coverage for this game).`)
     + ` The bar splits the month among the banners that ran; each banner lists its game-i share and an <b>extrapolated combined</b> figure (its blended game-i + Qimai share applied to the Sensor Tower total — a rough estimate, since no per-banner breakdown exists).</div>`
     + `<div class="mo-hint">Tap or hover any character for its daily-rank detail; each card shows the full monthly breakdown, run dates &amp; below-#200 days, and how the banners overlapped.</div>`;
   if(lowRank){
@@ -2739,7 +2746,7 @@ function renderMonthly(){
     const kRe = `<div class="mck re"><span class="mck-k">${offl?(shareMode?"banners · monthly share":"banners · game-i rule"):"from daily ranks"}</span><span class="mck-v">${G(o)}</span>`
       + `<span class="mck-n">${shareMode?"every day counted":offl?`top-200 days only${diff!=null?` · ${diff>=0?"+":""}${diff.toFixed(0)}%`:""}`:diff!=null?`${diff>=0?"+":""}${diff.toFixed(0)}% vs game-i`:"reconstruction"}</span></div>`;
     const stApprox = st && st.method==="reported_approx";
-    const stSub = st ? (st.usonly ? `<span class="usonly-tag" title="Global (US) only — no China figure available for this month, so it's undercounted">global only</span>` : (st.method==="reported"||st.method==="reported_approx" ? "combined · reported" : "combined · reconstructed")) : "";
+    const stSub = st ? st.rough ? `<span class="usonly-tag" title="${esc((stMonthNote(ym)||{}).text||"")}">rough estimate</span>` : (st.usonly ? `<span class="usonly-tag" title="Global (US) only — no China figure available for this month, so it's undercounted">global only</span>` : (st.method==="reported"||st.method==="reported_approx" ? "combined · reported" : "combined · reconstructed")) : "";
     const kSt = st ? `<div class="mck st${st.usonly?" usonly":""}"><span class="mck-k">Sensor Tower${stApprox?" *":""}</span><span class="mck-v">${fmtUSD(st.rev)}</span><span class="mck-n">${stSub}</span></div>` : "";
     // Qimai scorecard: China iPhone gross for the month (daily source, summed)
     const qmR = qimaiMonth(ym);
@@ -2782,7 +2789,7 @@ function renderMonthly(){
     html+=`<div class="mc" data-period="month" data-key="${ym}">
       <div class="mc-hd"><div class="mc-month">${MONTHS[mo-1]||ym} <span class="mc-yr">${y}</span></div>
         <div class="mc-kpis">${kGi}${kRe}${kQm}${kSt}${kCn}</div></div>
-      ${bar}<div class="mc-body">${contribs}${overlap}</div></div>`;
+      ${st?stNoteHTML(ym):""}${bar}<div class="mc-body">${contribs}${overlap}</div></div>`;
   });
   $("#chart").innerHTML=html;
   fitBannerNames($("#chart"));
@@ -3124,6 +3131,7 @@ function openPeriod(kind, key){
         </div>
         <div class="pd-tot pd-tot-st"><span class="pd-tot-v">${fmtUSD(st.rev)}${ap?" *":""}</span><span class="pd-tot-l">combined total</span></div>
       </div>
+      ${stNoteHTML(key)}
       <div class="pd-list">${stRows}</div>`;
     }
     // CN section for the month: the same split against the CN monthly total. The range
@@ -3239,7 +3247,7 @@ function stMonthsHTML(pred){
     return `<div class="pd-mo"><span class="pd-mo-l">${_mn[+mo-1]} ${y}</span>
       <div class="pd-mo-track"><div class="pd-mo-fill" style="width:${w}%"></div></div>
       <span class="pd-mo-v">${fmtUSD(v.rev)}${ap?" *":""}</span></div>`;}).join("");
-  return `<h3 class="pd-h">Sensor Tower — monthly (combined, USD)</h3><div class="pd-mos">${rows}</div>`;
+  return `<h3 class="pd-h">Sensor Tower — monthly (combined, USD)</h3><div class="pd-mos">${rows}</div>${list.map(stNoteHTML).join("")}`;
 }
 // Stylized month calendar: a proper month grid (weeks × weekdays) where each banner is
 // drawn as a continuous colored band spanning the days it ran, Google-Calendar style.
@@ -3629,7 +3637,7 @@ function bannerSTBlock(b){
   const partial = st.partial
     ? `<p class="bm-note"><b>Partial run.</b> Sensor Tower covers <b>${st.covered}</b> of the <b>${st.covered+st.missing}</b> months this banner ran — the total above counts only the covered months and will grow as later reports land.</p>`
     : "";
-  return head+how+headline+partial+`<div class="bm-stmlist">${rows}</div>`;
+  return head+how+headline+partial+[...new Set(st.months.filter(m=>m.contrib!=null).map(m=>m.ym))].map(stNoteHTML).join("")+`<div class="bm-stmlist">${rows}</div>`;
 }
 function gameName(){ const g=(state.games||[]).find(x=>x.game===state.tag); return g?g.name:state.tag; }
 

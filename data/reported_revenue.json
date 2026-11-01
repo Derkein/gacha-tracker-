@@ -624,23 +624,45 @@
   },
   "2026-09": {
    "genshin": 50230000,
-   "hsr": 35735000,
+   "hsr": 33735000,
    "arknights": 18740000,
-   "uma": 17710000,
-   "wuwa": 16250000,
+   "uma": 16710000,
+   "wuwa": 18250000,
    "fgo": 14390000,
    "zzz": 11490000,
    "endfield": 7591000,
-   "nte": 6150000,
+   "nte": 7150000,
    "bluearchive": 2707500,
-   "czn": 1740000,
-   "stellasora": 349000,
-   "lads": 10570000
+   "czn": 1810000,
+   "stellasora": 367000,
+   "lads": 19442500
+  },
+  "2026-10": {
+   "wuwa": 28000000,
+   "genshin": 26000000,
+   "arknights": 20000000,
+   "lads": 17000000,
+   "fgo": 17000000,
+   "zzz": 16000000,
+   "hsr": 15000000,
+   "uma": 9000000,
+   "endfield": 8000000,
+   "czn": 7000000,
+   "nte": 5000000,
+   "bluearchive": 3000000,
+   "stellasora": 1000000,
+   "_rough": true
   }
  },
  "per_game_source": {
   "czn": "Sensor Tower via revenue.ennead.cc (GLOBAL + CN apps, summed)",
   "stellasora": "Sensor Tower via revenue.ennead.cc (JP + GLOBAL + KR + HK + CN apps, summed)",
-  "lads": "Sensor Tower via revenue.ennead.cc (JP + GLOBAL + KR + HK/TW/MO + CN apps, summed; CN = iOS only)"
+  "lads": "Sensor Tower via revenue.ennead.cc (JP + GLOBAL + KR + HK/TW/MO + CN apps, summed; CN = iOS only); from Sep 2026 the published report's COMBINED figure, which includes its CN Android estimate"
+ },
+ "month_notes": {
+  "2026-10": {
+   "title": "October 2026's Sensor Tower figures are rough.",
+   "text": "The report's main data source changed, so this month has no per-app breakdown or download estimates: each game is one rounded total for iOS and Android across all regions, and it can't be split by region. Read it as a general trend only, not a precise figure. The report's publishers are looking at how to continue it and expect to give an update before the end of November."
+  }
  }
 }
