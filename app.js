@@ -214,7 +214,7 @@ function extGameMonths(tag){
 // only for that month, wherever the month's Sensor Tower figure appears
 function stMonthNote(ym){ const n=state.reported&&state.reported.month_notes; return (n&&n[ym])||null; }
 function stNoteHTML(ym){ const n=stMonthNote(ym);
-  return n ? `<div class="mo-warn">⚠ <b>${esc(n.title)}</b> ${esc(n.text)}</div>` : ""; }
+  return n ? `<div class="mo-warn st-note">⚠ <b>${esc(n.title)}</b> ${esc(n.text)}</div>` : ""; }
 // {rev, method} for one game+month (defaults to the current game), or null.
 function extMonth(ym, tag){ return extGameMonths(tag)[ym]||null; }
 // Sum external monthly revenue over months matching pred(ym) -> {rev,months,hasApprox} or null.
