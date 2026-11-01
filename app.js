@@ -51,18 +51,23 @@ function artFit(img){
 // the chart, so the two diverge a lot. Each banner carries both: `rev` (game-i's rule) and
 // `rev_month` (every day of the month shared out). The toggle picks one; everything —
 // bars, ranks, the by-Month split, the other tabs' shares — is rebuilt from it.
-// The choice only matters for a game that spends much of its time below #200: when its daily
-// figures already add up to most of game-i's monthly total (Love and Deepspace, ~87%) the two
-// readings barely differ, so there is no toggle and game-i's daily rule stands.
-const REV_SPLIT_MIN = 0.75;
-function revSplit(data){
-  if(!data || data.banners_from!=="official") return false;
-  const B=data.banners.filter(b=>!b._synthetic), mo=Object.values(data.monthly||{}).reduce((a,v)=>a+v,0);
-  const daily=B.reduce((a,b)=>a+((b._revDaily??b.rev)||0),0);
-  return mo>0 && daily/mo < REV_SPLIT_MIN;
+// Every rebuilt game has the choice. By Month and the Monthly graph set the two figures side by
+// side (the month's total against what its banners earned), so they carry no toggle and always
+// read game-i's daily rule.
+const revSplit = data => !!data && data.banners_from==="official";
+const revBothShown = () => state.mode==="month" || (state.mode==="graph" && state.graphUnit==="month");
+const revModeOf = data => revSplit(data) && !revBothShown() ? state.revMode : "daily";
+// rebuild from the new figures without moving the page: what's on screen stays until the new
+// data replaces it, and the scroll position is put back
+async function rebuildInPlace(){
+  const y=window.scrollY, c=$("#chart");
+  c.style.minHeight=c.offsetHeight+"px";
+  await selectGame(state.tag, true);
+  window.scrollTo({top:y, behavior:"instant"});
+  c.style.minHeight="";
 }
-const revModeOf = data => revSplit(data) ? state.revMode : "daily";
 function applyRevMode(data){
+  state._revApplied=revModeOf(data);
   if(!data || data.banners_from!=="official") return;
   const B=data.banners.filter(b=>!b._synthetic), mode=revModeOf(data);
   for(const b of B){ if(b._revDaily===undefined) b._revDaily=b.rev;
@@ -83,11 +88,18 @@ function grNote(show){
   const daily=B.reduce((a,b)=>a+(b._revDaily??b.rev),0), month=Object.values(mo).reduce((a,v)=>a+v,0);
   const zero=B.filter(b=>!(b._revDaily??b.rev)).length;
   el.querySelectorAll("[data-revmode]").forEach(x=>x.classList.toggle("on",x.dataset.revmode===state.revMode));
-  const split=revSplit(state.data);
-  el.querySelector(".grhead").hidden=!split;
-  if(!split){ $("#grtext").innerHTML = RECON_WARN; return; }
-  $("#grtext").innerHTML = RECON_WARN + (state.revMode==="daily"
-    ? `${esc(gameName())} spends much of its time <b>below Japan's iOS top&nbsp;200</b>, and game-i only credits a banner on days the game is <b>on</b> the chart — so these banners add up to just <b>${G(daily)}</b> of the <b>${G(month)}</b> game-i counts for the game month by month${zero?`, and ${zero} of them show ¥0 because the game never charted during their run`:""}. game-i's monthly totals keep counting the days below the chart (from its estimated rank there), which is why the two diverge so much. See <b>By Month</b> for the full monthly figures, or switch to <b>Monthly share</b>.${grWhy}`
+  const both=revBothShown();
+  el.querySelector(".grhead").hidden=both;
+  // how much of this game's banner time was off the chart — it differs a lot between games
+  const rs=B.flatMap(b=>b.rank_series||[]), offPct=rs.length?Math.round(rs.filter(r=>r==null).length/rs.length*100):0;
+  const dailyTxt=`${esc(gameName())} spent <b>${offPct}% of its banner days below Japan's iOS top&nbsp;200</b>, and game-i only credits a banner on days the game is <b>on</b> the chart — so these banners add up to <b>${G(daily)}</b> of the <b>${G(month)}</b> game-i counts for the game month by month${zero?`, and ${zero} of them show ¥0 because the game never charted during their run`:""}. game-i's monthly totals keep counting the days below the chart (from its estimated rank there), which is why the two differ.`;
+  const graphMonthly = state.mode==="graph";
+  $("#grtext").innerHTML = RECON_WARN + (both
+    ? dailyTxt+(graphMonthly
+        ? ` That difference is the <b>grey piece</b> on top of a column: revenue game-i counts for the month that no banner was credited with.`
+        : ` Each month below shows both: <b>game-i monthly</b> and what its <b>banners</b> earned under game-i's rule.`)+grWhy
+    : state.revMode==="daily"
+    ? `${dailyTxt} See <b>By Month</b> for the full monthly figures, or switch to <b>Monthly share</b>.${grWhy}`
     : `<b>Monthly share:</b> every day of each month — including the days below the top&nbsp;200, valued from game-i's estimated rank — goes to the banners running that day (split equally, first day +80%, last day −80%), so the banners add up to game-i's full <b>${G(month)}</b>. That accounts for all of the money, but each banner's figure is then <b>our split of game-i's monthly total</b>, not a number game-i itself would show: on game-i, a banner earns nothing on days below the chart.${grWhy}`);
 }
 // measure every sheet of a sheet-art game up front, so even a banner's FIRST hover is framed
@@ -864,11 +876,11 @@ function gpShow(tag){
   gpRemember(tag);
 }
 let _loadSeq = 0;
-async function selectGame(tag){
+async function selectGame(tag, quiet){
   state.tag=tag; location.hash=tag;
   gpShow(tag);
   document.documentElement.style.setProperty("--accent", GAME_ACCENT[tag]||"#e0a400");
-  $("#chart").innerHTML=`<div class="loading">Loading ${tag.toUpperCase()}…</div>`;
+  if(!quiet) $("#chart").innerHTML=`<div class="loading">Loading ${tag.toUpperCase()}…</div>`;
   const seq = ++_loadSeq;
   let data;
   try { data = await getJSON(`data/${tag}.json`); }
@@ -895,7 +907,7 @@ async function selectGame(tag){
   state._cnPeers = undefined;              // peer sets are per game
   state._jpPeers = undefined;             // typical first-week share is per game
   populateGraphYears();
-  resetSearch();                         // characters differ per game — clear any active search
+  if(!quiet) resetSearch();              // characters differ per game — clear any active search
   renderStats(); setMode(state.mode);   // setMode wires all mode-dependent control visibility, then renders
 }
 
@@ -2050,11 +2062,11 @@ function renderMonthGraph(){
   if(graphTimeline()){
     const ys=Object.keys(byY).sort();
     $("#chart").innerHTML=`<div class="gyear"><div class="yhead">${ys.length>1?`${ys[0]} – ${ys[ys.length-1]}`:ys[0]} <span class="yhead-sub">${fmt(sum(months))}</span></div>`
-      + `<div class="mnote">The icon above each month is its <b>biggest banner</b> — by its share of the month on <b>game-i</b> (Japan) and <b>Qimai</b> (China iPhone), averaged where both have it. Each column is split into the banners that ran.</div>` + draw(months, sharedMax, true) + `</div>`;
+      + `<div class="mnote">The icon above each month is its <b>biggest banner</b> — by its share of the month on <b>game-i</b> (Japan) and <b>Qimai</b> (China iPhone), averaged where both have it. Each column is split into the banners that ran; the <b>grey piece</b> on top is the part of the month no banner accounts for.</div>` + draw(months, sharedMax, true) + `</div>`;
     scrollGraphsToEnd(); return;
   }
   let keys=Object.keys(byY).sort(); if(!state.reverse) keys.reverse();
-  $("#chart").innerHTML=`<div class="mnote">The icon above each month is its <b>biggest banner</b> — by its share of the month on <b>game-i</b> (Japan) and <b>Qimai</b> (China iPhone), averaged where both have it. Each column is split into the banners that ran.</div>`+keys.map(y=>{
+  $("#chart").innerHTML=`<div class="mnote">The icon above each month is its <b>biggest banner</b> — by its share of the month on <b>game-i</b> (Japan) and <b>Qimai</b> (China iPhone), averaged where both have it. Each column is split into the banners that ran; the <b>grey piece</b> on top is the part of the month no banner accounts for.</div>`+keys.map(y=>{
     const peak=Math.max(...byY[y].map(monthVal)), gmax=state.matchHigh ? capTop(peak) : sharedMax;
     return `<div class="gyear"><div class="yhead">${esc(y)} <span class="yhead-sub">${fmt(sum(byY[y]))}</span></div>${draw(byY[y], gmax, false)}</div>`;
   }).join("");
@@ -2085,6 +2097,7 @@ $("#gUnitWrap").querySelectorAll("[data-gunit]").forEach(btn=>btn.onclick=()=>{
   state.graphUnit=btn.dataset.gunit;
   $("#gUnitWrap").querySelectorAll("[data-gunit]").forEach(x=>x.classList.toggle("on",x===btn));
   populateGraphYears();
+  if(state.data && revModeOf(state.data)!==state._revApplied){ rebuildInPlace(); return; }
   if(!state.table) render();
 });
 $("#gLayoutWrap").querySelectorAll("[data-glayout]").forEach(btn=>btn.onclick=()=>{
@@ -4937,13 +4950,14 @@ function setMode(m){
   });
   if(state.data) populateGraphYears();            // the year chips depend on the view (Monthly lists month years)
   updateControlVis();
+  if(state.data && revModeOf(state.data)!==state._revApplied){ updateDirLabel(); rebuildInPlace(); return; }
   updateDirLabel();
   if(!state.table) render();
 }
 $("#bSort").onchange=function(){ state.periodSort = this.value; updateDirLabel(); if(!state.table) render(); };
 $("#revMode").querySelectorAll("[data-revmode]").forEach(btn=>btn.onclick=()=>{
   if(state.revMode===btn.dataset.revmode) return;
-  state.revMode=btn.dataset.revmode; selectGame(state.tag);   // rebuild every derived view from the new figures
+  state.revMode=btn.dataset.revmode; rebuildInPlace();        // rebuild every derived view from the new figures
 });
 $("#dataSrc").querySelectorAll("[data-src]").forEach(btn=>btn.onclick=()=>{
   state.dataSource=btn.dataset.src;
