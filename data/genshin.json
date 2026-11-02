@@ -5,13 +5,13 @@
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E5%8E%9F%E7%A5%9E",
  "banners_from": "game-i",
- "updated": "2026-11-01T23:04:13Z",
+ "updated": "2026-11-02T17:54:09Z",
  "count": 107,
  "now": {
-  "ios": 107,
-  "android": 59,
-  "month": 157,
-  "next_add": 16000965,
+  "ios": 125,
+  "android": 53,
+  "month": 152,
+  "next_add": 13527672,
   "ym": "2026/11",
   "ranks": {
    "prev": [
@@ -50,7 +50,7 @@
    "cur": [
     199,
     122,
-    null,
+    124,
     null,
     null,
     null,
@@ -83,7 +83,7 @@
   }
  },
  "monthly": {
-  "2026-11": 0.3924,
+  "2026-11": 0.5495,
   "2026-10": 4.24,
   "2026-09": 6.26,
   "2026-08": 6.04,
@@ -4489,7 +4489,7 @@
    "rev": 2.33,
    "yrank": 16,
    "ytot": 18,
-   "cum": 104,
+   "cum": 105,
    "cumtot": 107,
    "year": 2025,
    "related": "",
@@ -5260,16 +5260,16 @@
    "name": "スカーク",
    "start": "2026-10-13",
    "end": "2026-11-03",
-   "rev": 2.3,
+   "rev": 2.45,
    "yrank": 14,
    "ytot": 14,
-   "cum": 105,
+   "cum": 104,
    "cumtot": 107,
    "year": 2026,
    "related": "エスコフィエ",
    "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/10/08/68758aadd6021891543c4b8259e0b999_1160471361709252361.jpg",
    "rerun": true,
-   "ongoing": true,
+   "ongoing": false,
    "rank_series": [
     74,
     43,
@@ -5291,7 +5291,8 @@
     null,
     null,
     199,
-    122
+    122,
+    124
    ],
    "icons": [
     "https://enka.network/ui/UI_AvatarIcon_SkirkNew.png"
