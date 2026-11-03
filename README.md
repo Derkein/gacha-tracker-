@@ -72,6 +72,18 @@ scripts/face_icons.py    # icon-less games: crop a face circle from drip/banner 
 scripts/bar_colors.py    # sample each banner's most prominent color -> tints the chart bars
 ```
 
+### Monthly Journal
+
+`journal.html` is a magazine-style issue for every finished month: the month's chart of games (Japan game-i, China iPhone Qimai), the month's openings, and one feature per game with its banners, their in-month revenue, peak daily ranks and all-time rank, plus short character notes from the story.
+
+```
+scripts/build_journal.py   # runs the tracker's own code headless -> data/journal/YYYY-MM.json + index.json (needs playwright)
+data/journal/notes/YYYY-MM.json   # hand-written copy for an issue: headline, dek, cover lines, letter, per-game headline/dek/body/pull/hero
+data/journal/stories.json         # character notes, keyed "game:Name", with source links
+```
+
+Run `build_journal.py` once a month after the data refresh, then write that month's notes. An issue with no notes file still renders, with sentences written from its numbers.
+
 Character portraits come from auto-updating community sources: circular head-icons from [Enka.Network](https://enka.network/) (ZZZ, Genshin) and [Mar-7th/StarRailRes](https://github.com/Mar-7th/StarRailRes) (Star Rail); for games with no portrait source, a face circle is cropped via anime face detection ([lbpcascade_animeface](https://github.com/nagadomi/lbpcascade_animeface) + OpenCV) from the character's drip/splash art (Fandom wikis) or the banner art. New HoYoverse characters get portraits automatically once Enka lists them; until then the banner art is used.
 
 ## Running it locally

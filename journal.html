@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Same policy as the tracker: no remote scripts, no framing; art may load from any HTTPS CDN. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-wBdtWdXsHnAU2DdByySW4LlXFAScrBvmBgkXtydwJdg='; style-src 'self' 'unsafe-inline'; img-src 'self' https: data:; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<title>Gacha Tracker Monthly</title>
+<meta name="description" content="A monthly journal of gacha revenue: every tracked game's month, its banners, their peak chart ranks and the characters behind them.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>%F0%9F%93%B0</text></svg>">
+<link rel="stylesheet" href="journal.css?v=1">
+</head>
+<body>
+<header class="mast">
+  <div class="mast-in">
+    <a class="mast-back" href="./">← Tracker</a>
+    <div class="mast-title"><a href="journal.html">Gacha Tracker <em>Monthly</em></a></div>
+    <div class="mast-side">
+      <button class="mast-btn" id="archBtn" type="button">Archive</button>
+      <button class="mast-btn theme" id="themeBtn" type="button" aria-label="Color theme"></button>
+    </div>
+  </div>
+  <div class="mast-line" id="mastLine"></div>
+</header>
+<main id="issue" class="issue"><p class="loading">Loading the issue…</p></main>
+<section id="archive" class="archive" hidden></section>
+<footer class="colophon">
+  <p><b>About these numbers.</b> <b>Japan</b> figures are game-i's revenue estimates (App Store + Google Play Japan, in yen).
+  <b>China</b> figures are Qimai's model estimates for China's iPhone App Store (US$). Both are third-party estimates, not official figures,
+  and they measure different stores, so they are never added together. A banner's month figure is its share of that month; peak ranks are the best
+  daily top-grossing position it reached in that month. Months before a game's game-i monthly series use the sum of its banner figures.
+  Full methods on the <a href="./">tracker</a>.</p>
+</footer>
+<script src="journal.js?v=1"></script>
+</body>
+</html>
