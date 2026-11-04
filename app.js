@@ -741,6 +741,22 @@ function showError(err, retry){
     `<button class="ghost" id="retryBtn">Retry</button></div>`;
   $("#retryBtn").onclick = retry;
 }
+// The header's Monthly Journal card: the latest issue's cover art fading into the blurb, linking
+// straight to that issue. Best-effort — without the journal index the card keeps its plain text.
+async function journalCard(){
+  try{
+    const ix=await getJSON("data/journal/index.json"), x=ix.issues&&ix.issues[0], c=x&&x.cover; if(!x) return;
+    const [y,m]=x.ym.split("-"), mon=new Date(+y,+m-1,1).toLocaleString("en",{month:"long"});
+    $("#jrCard").href=`journal.html#${x.ym}`;
+    $("#jrGo").textContent=`Read the ${mon} ${y} issue →`;
+    const src=c&&(c.art||c.img), face=c&&(c.art?c.art_face:c.face), im=$("#jrImg");
+    if(!src) return;
+    if(face) im.style.objectPosition=`${face[0]}% ${face[1]}%`;
+    if(c.art) im.classList.add("splash");
+    im.onload=()=>{ im.hidden=false; im.classList.add("in"); };
+    im.src=src;
+  }catch(e){}
+}
 async function init(){
   let idx;
   try { idx = await getJSON("data/index.json"); }
@@ -757,6 +773,7 @@ async function init(){
   try { state.focus = await getJSON("data/banner_focus.json"); } catch(e){ state.focus=null; }
   // China's own store chart, day by day (the real ranking, not an estimate).
   try { state.cnrank = await getJSON("data/ranks/cn_ios_series.json"); } catch(e){ state.cnrank=null; }
+  journalCard();                              // best-effort: the header's Monthly Journal card
   state.pending = {};   // "pending banners" overlay is disabled (no lagging games tracked)
   state.games = (idx && idx.games) || [];
   if(!state.games.length){                    // empty index (e.g. a failed data refresh) — don't crash

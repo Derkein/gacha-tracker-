@@ -31,6 +31,7 @@ function fmtCNYr(lo, hi){
 }
 // The 总流水 tag: those figures come from a Bilibili chart published weeks after the month
 // closes, so every issue marks them — "added later", or "pending" while the video isn't out.
+const SHOW_ZL = false;                     // CN 总流水 hidden for now (user, 2026-11-04); the data is still built
 const ZL_TIP = "总流水 (global all-platform gross, CN¥) comes from 天天背锅崩坏娘's monthly Bilibili chart, published weeks after the month ends, so it is added to each issue later than everything else. Rank-derived estimates, shown as the author's range.";
 const lateTag = pending => `<span class="late${pending?" pending":""}" title="${esc(ZL_TIP)}"><i></i>${pending?"Pending":"Added later"}</span>`;
 const monthName = ym => MONTHS[+ym.slice(5)-1]+" "+ym.slice(0,4);
@@ -336,8 +337,8 @@ function marketHTML(f){
     return `<div class="mt-tile${k==="zl"?" zl":""}"><span class="mt-k">${label}</span><b>${val}</b>
       <em class="${p==null?"":p>=0?"up":"dn"}">${p==null?"&nbsp;":pctStr(p)+" on "+MONTHS[+prevYm(f.ym).slice(5)-1].slice(0,3)}</em>
       <small>${src}${m?` · ${plural(m.n,"game")}${m.year_n>=2?` · ${ord(m.year_rank)} of ${m.year_n} in ${f.ym.slice(0,4)}`:""}`:""}</small>${extra||""}</div>`; };
-  const zl=mk.zl;
-  const zlTile = zl ? tile("zl",`China 总流水 ${lateTag(false)}`,`all platforms${zl.video?` · <a href="https://www.bilibili.com/video/${esc(zl.video)}" target="_blank" rel="noopener">source video</a>`:""}`,fmtCNYr(zl.lo,zl.hi),zl)
+  const zl=SHOW_ZL?mk.zl:null;
+  const zlTile = !SHOW_ZL ? "" : zl ? tile("zl",`China 总流水 ${lateTag(false)}`,`all platforms${zl.video?` · <a href="https://www.bilibili.com/video/${esc(zl.video)}" target="_blank" rel="noopener">source video</a>`:""}`,fmtCNYr(zl.lo,zl.hi),zl)
     : mk.zl_pending ? `<div class="mt-tile zl"><span class="mt-k">China 总流水 ${lateTag(true)}</span><b class="mu">Not out yet</b><em>&nbsp;</em>
         <small>The Bilibili chart for ${mo} usually lands weeks after the month closes.</small></div>` : "";
   const col=(m,label,fmtv)=>{ if(!m) return "";
@@ -349,7 +350,7 @@ function marketHTML(f){
     <div class="mtiles">${mk.jp?tile("jp","Japan","game-i · App Store + Google Play",fmtG(mk.jp.total),mk.jp):""}${mk.cn?tile("cn","China iPhone","Qimai · App Store",fmtUSD(mk.cn.total),mk.cn):""}${zlTile}</div>
     <div class="mcopy">${marketCopy(f).map(t=>`<p>${rich(t)}</p>`).join("")}</div>
     <div class="mcols">${col(mk.jp,"Japan, game by game")}${col(mk.cn,"China iPhone, game by game")}${zl?col(zl,`China 总流水, game by game ${lateTag(false)}`):""}</div>
-    <p class="mnote">Changes compare the games present in both months, so a launch doesn't count as growth. Japan, China iPhone and 总流水 are different measurements of different stores and are never added together.</p></section>`;
+    <p class="mnote">Changes compare the games present in both months, so a launch doesn't count as growth. Japan${SHOW_ZL?", China iPhone and 总流水 are":" and China iPhone are"} different measurements of different stores and are never added together.</p></section>`;
 }
 const DEBUT_CARDS = 10;
 function debutsHTML(f){
@@ -445,8 +446,8 @@ function statStrip(g, ym){
   if(g.cn) cells.push(`<div><span>China iPhone${g.cn_partial?" (partial)":""}</span><b>${fmtUSD(g.cn)}</b><em class="${pc==null?"":pc>=0?"up":"dn"}">${pc==null?"&nbsp;":pctStr(pc)+" m/m"}</em></div>`);
   if(g.cn_rank) cells.push(`<div><span>China rank</span><b>${ord(g.cn_rank[0])}</b><em>of ${g.cn_rank[1]} games</em></div>`);
   const latest=J.index.issues[0] && J.index.issues[0].ym===ym, zp=pct(g.zl&&(g.zl.lo+g.zl.hi)/2, g.zl_prev&&(g.zl_prev.lo+g.zl_prev.hi)/2);
-  if(g.zl) cells.push(`<div class="zlcell"><span>${esc(g.zl.metric||"总流水")} · all platforms ${lateTag(false)}</span><b>${fmtCNYr(g.zl.lo,g.zl.hi)}</b><em class="${zp==null?"":zp>=0?"up":"dn"}">${zp==null?"&nbsp;":pctStr(zp)+" m/m"}</em></div>`);
-  else if(latest && (f_pending(ym))) cells.push(`<div class="zlcell"><span>总流水 · all platforms ${lateTag(true)}</span><b class="mu">Not out yet</b><em>&nbsp;</em></div>`);
+  if(SHOW_ZL && g.zl) cells.push(`<div class="zlcell"><span>${esc(g.zl.metric||"总流水")} · all platforms ${lateTag(false)}</span><b>${fmtCNYr(g.zl.lo,g.zl.hi)}</b><em class="${zp==null?"":zp>=0?"up":"dn"}">${zp==null?"&nbsp;":pctStr(zp)+" m/m"}</em></div>`);
+  else if(SHOW_ZL && latest && (f_pending(ym))) cells.push(`<div class="zlcell"><span>总流水 · all platforms ${lateTag(true)}</span><b class="mu">Not out yet</b><em>&nbsp;</em></div>`);
   if(g.hist) cells.push(`<div><span>In its history</span><b>${ord(g.hist.rank)}</b><em>of ${g.hist.of} months${hp?" · "+hp.replace(/^its /,""):""}</em></div>`);
   return `<div class="stats">${cells.join("")}</div>`;
 }
