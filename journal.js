@@ -217,6 +217,14 @@ function runSentence(b, G){
   const judge = v.final ? `: ${judgeMark(TIER[v.tier])}` : ", with the run still going";
   return `${MK.b(b)}'s run ${b.ongoing?"so far ":""}ranks ${andList(where)} among ${G} banners${judge}.`;
 }
+// where a game's banner placed in the month's top banners, across every game
+function topPlace(g, b){
+  const f=J.cache[G_YM]&&J.cache[G_YM].facts, t=(f&&f.top)||[]; if(t.length<3) return "";
+  const i=t.findIndex(x=>x.tag===g.tag && x.label===b.label);
+  if(i===0) return `Across every game, ${MK.b(b)} was the ${MK.good("best banner on sale")} in ${MONTHS[+G_YM.slice(5)-1]}${b.new?"":", even against the month's newcomers"}.`;
+  if(i>0) return `Across every game, ${MK.b(b)} placed ${MK.n(ord(i+1))} of all the banners on sale.`;
+  return t.length>=10 ? `${MK.b(b)} didn't make the month's top ${t.length} across every game.` : "";
+}
 function autoBody(g, ym){
   const out=[], p=pct(g.jp,g.jp_prev), hp=histPhrase(g,ym), pm=MONTHS[+prevYm(ym).slice(5)-1];
   if(g.jp){
@@ -231,7 +239,7 @@ function autoBody(g, ym){
   }
   const bs=g.banners.filter(b=>b.rev_month>0||b.cn_month>0);
   if(!bs.length){ if(g.banners.length) out.push(`No banner reached Japan's top 200 this month.`); return out; }
-  out.push([bannerSentence(bs[0],true), headToHead(g), daysEdge(g)].filter(Boolean).join(" "));
+  out.push([bannerSentence(bs[0],true), headToHead(g), daysEdge(g), topPlace(g, bs[0])].filter(Boolean).join(" "));
   if(bs.length>1) out.push(bs.slice(1,3).map(b=>bannerSentence(b,false)).join(" "));
   const runs=g.banners.filter(b=>b.new).map(b=>runSentence(b,SHORT[g.tag])).filter(Boolean);
   if(runs.length) out.push(runs.join(" "));
@@ -240,6 +248,7 @@ function autoBody(g, ym){
 function autoCoverLines(f){
   const lines=[], feat=f.games.filter(g=>FEATURED.includes(g.tag));
   const d=f.debuts[0]; if(d) lines.push(`${d.label} is the month's best opening (${SHORT[d.tag]})`);
+  const tp=(f.top||[])[0]; if(tp && (!d || tp.label!==d.label)) lines.push(`${tp.label} (${SHORT[tp.tag]}) is the best banner on sale${tp.new?"":", carried over from last month"}`);
   const flop=feat.map(g=>[g,flopOf(g)]).find(([g,b])=>b);
   if(flop) lines.push(`${flop[1].label} ${vb(flop[1].label,"underwhelms","underwhelm")} as ${flop[0].banners[0].label} ${vb(flop[0].banners[0].label,"leads","lead")} ${SHORT[flop[0].tag]}`);
   const top=[...f.games].filter(g=>g.jp_rank).sort((a,b)=>a.jp_rank[0]-b.jp_rank[0])[0];
@@ -388,6 +397,20 @@ function debutsHTML(f){
     ${topPairNote(f)}
     ${f.debuts.length>DEBUT_CARDS?`<p class="dmore"><b>Also opened:</b> ${f.debuts.slice(DEBUT_CARDS).map((d,i)=>`<a href="#${f.ym}/${d.tag}">${d.beat?(DEBUT_CARDS+i+1)+". ":""}${esc(d.label)}</a> <span class="mu">(${esc(SHORT[d.tag])}${d.rerun?", rerun":""}, ${fmtG(d.rev_month)})</span>`).join(" · ")}</p>`:""}</section>`;
 }
+// Top banners of the month: every banner on sale that month, new or carried over, by the same
+// head-to-head as the openings — each pair over the same number of days inside the month.
+function topHTML(f){
+  const t=f.top||[]; if(!t.length) return "";
+  const mo=MONTHS[+f.ym.slice(5)-1], nNew=t.filter(b=>b.new&&!b.rerun).length;
+  const firstNew=t.findIndex(b=>b.new&&!b.rerun);
+  const line = !t[0].new ? `A banner carried over from last month, ${t[0].label}, beat every newcomer.`
+    : firstNew===0 ? `A newcomer took the top spot: ${t[0].label}.` : "";
+  return `<section class="debuts topm"><div class="sec-k">Every banner on sale</div><h3 class="sec-h">Top banners of the month</h3>
+    <p class="sec-sub">New or carried over, ranked the same way as the openings, on their days inside ${mo}. ${plural(nNew,"newcomer")} in the top ${t.length}. ${esc(line)}
+      <button class="howbtn" type="button" data-how="top">How the order is decided</button></p>
+    <div class="dgrid">${t.map((d,i)=>openCard(d,i,f,true)).join("")}</div>
+    ${topPairNote(f, f.top_note)}</section>`;
+}
 // The month's banners as ranked cards. Order = median rank across every measure; each measure
 // shows its value, a bar against the month's best, and a star on the banner that won it.
 function bannerCard(b, i, ctx){
@@ -518,6 +541,7 @@ function render(iss, focus){
     <section class="charts"><div class="sec-k">The charts</div><h3 class="sec-h">Who earned the most</h3>
       <div class="chartcols">${rankChart(f,"jp",fmtG,"Japan","game-i · App Store + Google Play, yen")}${rankChart(f,"cn",fmtUSD,"China iPhone","Qimai · App Store, US$")}</div></section>
     ${debutsHTML(f)}
+    ${topHTML(f)}
     <div class="feats">${games.map((g,i)=>featureHTML(g,f,nt,i)).join("")}</div>
     <nav class="issnav">${older?`<a href="#${older.ym}">← ${monthName(older.ym)}</a>`:"<span></span>"}<a href="#archive" class="arch">All issues</a>${newer?`<a href="#${newer.ym}">${monthName(newer.ym)} →</a>`:"<span></span>"}</nav>`;
   $("#archive").hidden=true; $("#issue").hidden=false;
@@ -595,6 +619,10 @@ function howOpen(){
     ${t.html}
     <p class="how-ex">Counting wins, A leads <b>${t.cA}–${t.cB}</b>, but most of A's wins are by a hair. Weighted by size it's <b>A ${t.A.toFixed(2)}, B ${t.B.toFixed(2)}</b>: Banner B, which more than doubled A in China, wins the head-to-head.</p>`;
 }
+function howTop(){
+  return `<p class="how-lead"><b>Top banners of the month</b> use the same head-to-head as the openings, for every banner on sale that month, new or carried over.
+    A carried-over banner is measured on its days <b>inside the month</b> (a banner that ran Sep 24 – Oct 15 is read from Oct 1), so each pair is still compared over the same number of days.</p>`;
+}
 function howMonth(){
   const t=howTable([["Japan","Revenue",620,410,"yen","ratio",1],["China iPhone","Revenue",1.9e6,2.1e6,"usd","ratio",1],["Japan","Peak rank",3,5,"rank","ratio",0],["China","Peak rank",12,11,"rank","ratio",0]], 30);
   return `
@@ -613,7 +641,7 @@ function howMonth(){
 }
 function showHow(kind){
   const d=$("#howDlg");
-  d.querySelector(".how-body").innerHTML = kind==="open" ? howOpen() : howMonth();
+  d.querySelector(".how-body").innerHTML = kind==="open" ? howOpen() : kind==="top" ? howTop() + howOpen() : howMonth();
   d.showModal();
 }
 document.addEventListener("click", e=>{

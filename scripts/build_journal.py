@@ -429,9 +429,17 @@ def build_issue(games, ym, number, series):
     pool = [r for r in debuts if (r["img"] or r.get("art")) and r.get("beat")] or [r for r in debuts if r["img"] or r.get("art")] \
            or [dict(r, tag=g["tag"], game=g["name"]) for g in gm for r in g["banners"] if r["img"]]
     cover = pool[0] if pool else None
+    # the month's top banners across every game, new or not, by the same head-to-head as the
+    # openings — but every banner on its days INSIDE the month (a last-day opener moved into this
+    # month's openings is still measured here from the 1st, like any carry-over)
+    allb = [{**{k: v for k, v in r.items() if k not in ("mranks", "score")}, "tag": g["tag"], "game": g["name"],
+             "w0": r["day0"], "wdays": r["days"]} for g in gm for r in g["banners"]]
+    top_note = duel_order(allb)
+    top = [{k: r[k] for k in ("label", "tag", "game", "new", "rerun", "rev_month", "cn_month", "jp_peak", "cn_peak", "days",
+                              "img", "face", "art", "art_face", "icons", "color", "start", "end", "beat")} for r in allb if r["beat"]][:10]
     for g in gm:                                      # the daily ranks were only needed for the duels
         for r in g["banners"]: r.pop("_jpr", None); r.pop("_cnr", None); r.pop("_snap", None)
-    return {"ym": ym, "number": number, "built": datetime.date.today().isoformat(), "market": market(series, ym), "top_pair": top_pair,
+    return {"ym": ym, "number": number, "built": datetime.date.today().isoformat(), "top": top, "market": market(series, ym), "top_pair": top_pair, "top_note": top_note,
             "cover": cover and {k: cover[k] for k in ("label", "tag", "game", "img", "face", "art", "art_face", "color", "rev_month", "rerun")},
             "debuts": [{k: r[k] for k in ("label", "tag", "game", "rev_month", "cn_month", "jp_peak", "cn_peak", "days", "rev_total", "rerun", "ongoing", "img", "face", "art", "art_face", "icons", "color", "start", "beat")} for r in debuts],
             "games": order}
