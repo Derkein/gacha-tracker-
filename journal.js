@@ -250,7 +250,7 @@ const DEBUT_CARDS = 10;
 function debutsHTML(f){
   if(!f.debuts.length) return "";
   return `<section class="debuts"><div class="sec-k">New this month</div><h3 class="sec-h">The month's openings</h3>
-    <p class="sec-sub">Every banner that started in ${MONTHS[+f.ym.slice(5)-1]}, ranked on its whole run${f.debuts.some(d=>d.ongoing)?" so far":""}: the median of its places on Japan and China revenue and peak rank.</p>
+    <p class="sec-sub"><button class="howbtn" type="button" data-how="run">How the order is decided</button></p>
     <div class="dgrid">${f.debuts.slice(0,DEBUT_CARDS).map((d,i)=>`<a class="dcard" href="#${f.ym}/${d.tag}" style="--acc:${d.color||GAME_ACCENT[d.tag]}">
       <div class="dart">${img(d.img,"","",{face:d.face})}<span class="dno">${i+1}</span></div>
       <div class="dtx"><span class="dg">${esc(SHORT[d.tag])}${d.rerun?" · rerun":""}</span><b>${esc(d.label)}</b>
@@ -295,11 +295,12 @@ function cardCtx(list, extra){
 function bannerList(g){
   if(!g.banners.length) return "";
   const ctx=cardCtx(g.banners);
-  return `<div class="blist-hd"><span>The month's banners</span><small>ranked across Japan and China revenue and peak ranks · ★ = best on that measure</small></div>
+  return `<div class="blist-hd"><span>The month's banners</span><small>★ = best on that measure · <button class="howbtn" type="button" data-how="month">How the order is decided</button></small></div>
   <ol class="blist">${g.banners.map((b,i)=>bannerCard(b,i,ctx)).join("")}</ol>`;
 }
 // Top of the month: every banner running in the month, from every game, on the same rule — so
 // the month's new arrivals can be read against everything else that was on sale.
+const SHOW_TOP = false;                    // hidden for now (user, 2026-11-03); the data is still built
 function topHTML(f){
   const t=f.top||[]; if(!t.length) return "";
   const nNew=t.filter(b=>b.new&&!b.rerun).length, bestNew=t.findIndex(b=>b.new&&!b.rerun);
@@ -386,7 +387,7 @@ function render(iss, focus){
     <section class="charts"><div class="sec-k">The charts</div><h3 class="sec-h">Who earned the most</h3>
       <div class="chartcols">${rankChart(f,"jp",fmtG,"Japan","game-i · App Store + Google Play, yen")}${rankChart(f,"cn",fmtUSD,"China iPhone","Qimai · App Store, US$")}</div></section>
     ${debutsHTML(f)}
-    ${topHTML(f)}
+    ${SHOW_TOP?topHTML(f):""}
     <div class="feats">${f.games.map((g,i)=>featureHTML(g,f,nt,i)).join("")}</div>
     <nav class="issnav">${older?`<a href="#${older.ym}">← ${monthName(older.ym)}</a>`:"<span></span>"}<a href="#archive" class="arch">All issues</a>${newer?`<a href="#${newer.ym}">${monthName(newer.ym)} →</a>`:"<span></span>"}</nav>`;
   $("#archive").hidden=true; $("#issue").hidden=false;
@@ -414,6 +415,35 @@ async function route(){
   try{ render(await loadIssue(pick.ym), focus); }
   catch(e){ $("#issue").innerHTML=`<p class="loading">Couldn't load this issue (${esc(e.message)}).</p>`; }
 }
+// "How the order is decided": one dialog, two flavours — a game's banners (inside the month)
+// and the month's openings (whole run). Delegated, since the page's CSP allows no inline handlers.
+const HOW = {
+  month: ["the month", "Revenue and peak ranks count only the days the banner ran inside this month."],
+  run:   ["the whole run", "Openings are compared on each banner's whole run so far, since one that opens on the 28th has only a few days in the month."],
+};
+function showHow(kind){
+  const [scope, note]=HOW[kind]||HOW.month, d=$("#howDlg");
+  d.querySelector(".how-body").innerHTML=`
+    <p>Each banner is ranked on four measures over ${scope}, and its place is the <b>median</b> of those four ranks:</p>
+    <p class="how-f">place = median of the ranks on<br>Japan revenue · China revenue · Japan peak · China peak</p>
+    <ul>
+      <li><b>Japan revenue</b>: game-i's estimate, App Store + Google Play Japan.</li>
+      <li><b>China revenue</b>: Qimai's estimate, China's iPhone App Store.</li>
+      <li><b>Peaks</b>: the best daily top-grossing rank reached (a lower number is better).</li>
+      <li>Rank 1 is the best on each measure. With four ranks, the median is the average of the middle two.</li>
+      <li>A measure no banner has (China for a game not released there) is left out. A banner missing a value goes last on that measure.</li>
+      <li>Ties go to the better average rank, then to Japan revenue.</li>
+    </ul>
+    <p>${note}</p>
+    <p class="how-ex"><b>Example, Star Rail, September 2026.</b> Aventurine • Waveflair won Japan revenue, but Pearl won China revenue and both peaks:
+      Pearl's ranks 2, 1, 1, 1 have a median of <b>1</b>; Aventurine's 1, 2, 2, 2 have a median of <b>2</b>. Pearl places first.</p>`;
+  d.showModal();
+}
+document.addEventListener("click", e=>{
+  const b=e.target.closest(".howbtn"); if(b){ showHow(b.dataset.how); return; }
+  if(e.target.id==="howDlg" || e.target.closest(".how-x")) $("#howDlg").close();   // backdrop or ✕
+});
+
 async function init(){
   applyTheme(_theme);
   $("#themeBtn").onclick=()=>applyTheme(THEMES[(THEMES.indexOf(_theme)+1)%3]);

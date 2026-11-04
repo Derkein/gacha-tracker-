@@ -132,6 +132,21 @@ img.broken{visibility:hidden}
 .dmore{font-family:var(--sans); font-size:13px; color:var(--ink2); margin:14px 0 0; line-height:1.7}
 .dmore a{text-decoration:none; color:var(--ink)} .dmore a:hover{text-decoration:underline}
 
+/* "How the order is decided" link + dialog */
+.howbtn{border:0; background:none; padding:0; font:inherit; font-family:var(--sans); font-size:12px; font-style:normal; font-weight:600;
+  color:var(--ink2); text-decoration:underline; text-underline-offset:2px; cursor:pointer}
+.howbtn::before{content:"ⓘ "; text-decoration:none}
+.howbtn:hover{color:var(--ink)}
+.how{border:0; padding:0; border-radius:6px; max-width:min(560px, calc(100vw - 32px)); background:var(--paper); color:var(--ink); box-shadow:var(--shadow)}
+.how::backdrop{background:rgba(0,0,0,.5)}
+.how-in{padding:20px 22px 18px; position:relative; font-family:var(--sans); font-size:14px; line-height:1.55}
+.how h3{font-family:var(--serif); font-size:24px; margin:0 28px 10px 0}
+.how-x{position:absolute; top:12px; right:12px; border:0; background:none; color:var(--muted); font-size:16px; cursor:pointer}
+.how-x:hover{color:var(--ink)}
+.how ul{margin:8px 0; padding-left:18px} .how li{margin:3px 0}
+.how-f{font-family:var(--serif); font-size:16px; background:var(--paper2); border-left:3px solid var(--ink2); padding:8px 12px; border-radius:3px}
+.how-ex{color:var(--ink2); border-top:1px solid var(--rule); padding-top:10px}
+
 /* top of the month: the cross-game ranking, a tighter version of the banner cards */
 .topm .blist{gap:8px}
 .bc.compact{grid-template-columns:42px 150px minmax(0,1fr)}

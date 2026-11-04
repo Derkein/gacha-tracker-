@@ -9,7 +9,7 @@
 <title>Gacha Tracker Monthly</title>
 <meta name="description" content="A monthly journal of gacha revenue: every tracked game's month, its banners, their peak chart ranks and the characters behind them.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>%F0%9F%93%B0</text></svg>">
-<link rel="stylesheet" href="journal.css?v=7">
+<link rel="stylesheet" href="journal.css?v=9">
 </head>
 <body>
 <header class="mast">
@@ -25,6 +25,10 @@
 </header>
 <main id="issue" class="issue"><p class="loading">Loading the issue…</p></main>
 <section id="archive" class="archive" hidden></section>
+<dialog id="howDlg" class="how" aria-labelledby="howTitle">
+  <div class="how-in"><button class="how-x" type="button" aria-label="Close">✕</button>
+    <h3 id="howTitle">How the order is decided</h3><div class="how-body"></div></div>
+</dialog>
 <footer class="colophon">
   <p><b>About these numbers.</b> <b>Japan</b> figures are game-i's revenue estimates (App Store + Google Play Japan, in yen).
   <b>China</b> figures are Qimai's model estimates for China's iPhone App Store (US$). Both are third-party estimates, not official figures,
@@ -32,6 +36,6 @@
   daily top-grossing position it reached in that month. Months before a game's game-i monthly series use the sum of its banner figures.
   Full methods on the <a href="./">tracker</a>.</p>
 </footer>
-<script src="journal.js?v=8"></script>
+<script src="journal.js?v=10"></script>
 </body>
 </html>
