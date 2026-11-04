@@ -143,6 +143,10 @@ def days_in(ym):
     y, m = map(int, ym.split("-"))
     nxt = datetime.date(y + (m == 12), m % 12 + 1, 1)
     return (nxt - datetime.date(y, m, 1)).days
+THIS_YM = datetime.date.today().strftime("%Y-%m")
+def next_ym(ym):
+    y, m = map(int, ym.split("-"))
+    return f"{y + (m == 12)}-{m % 12 + 1:02d}"
 def prev_ym(ym):
     y, m = map(int, ym.split("-"))
     return f"{y - (m == 1)}-{(m - 2) % 12 + 1:02d}"
@@ -255,7 +259,14 @@ def game_month(G, ym):
         if not b: continue
         jpk, jpd = jp_peak(b, ym); cnk, cnd = cn_peak(b, ym)
         jpa, _ = jp_peak(b); cna, _ = cn_peak(b)
-        rows.append({"label": label(b), "name": b["name"], "rerun": b["rerun"], "new": ym_of(b["start"]) == ym,
+        # a banner that opened on a month's last day or two (Hsin, Sep 30) is that month's carry-over
+        # in the NEXT issue instead: it counts as the next month's opening, measured from its first day
+        first = ym_of(b["start"]); moved = month_days(b, first) < MIN_DUEL_DAYS and next_ym(first) < THIS_YM
+        open_ym = next_ym(first) if moved else first
+        d0 = max(0, (month_start(ym) - datetime.date.fromisoformat(b["start"])).days); dm = month_days(b, ym)
+        from_start = moved and ym == open_ym
+        rows.append({"label": label(b), "name": b["name"], "rerun": b["rerun"], "new": ym == open_ym,
+                     "w0": 0 if from_start else d0, "wdays": d0 + dm if from_start else dm,
                      "start": b["start"], "end": b["end"], "ongoing": b["ongoing"], "version": b["version"],
                      "rev_month": round(rev, 4), "rev_total": b["rev"], "cn_month": round(b["qm"]["monthly"].get(ym, 0)),
                      "cn_total": round(b["qm"]["total"]), "jp_peak": jpk, "jp_peak_day": jpd, "cn_peak": cnk, "cn_peak_day": cnd,
@@ -308,7 +319,7 @@ NO_CHINA = set()         # games with no Qimai data at all (not sold in China)
 def entity(r, n):
     """The banner's Compare snapshot cut to n days, starting at its first day INSIDE the month
     (day 1 for an opening; a carry-over starts mid-run, so its in-month days are compared)."""
-    s, o = r["_snap"], r["day0"]; cut = lambda a: a[o:o + n] if a else None
+    s, o = r["_snap"], r["w0"]; cut = lambda a: a[o:o + n] if a else None
     gi = s["gi"][o:o + n]; base = gi[0]["cum"] - gi[0]["add"] if gi else 0
     e = {"label": r["label"], "name": r["label"], "rev": r["rev_total"], "scheduled": r["run_days"],
          "ongoing": r["ongoing"], "runDays": n, "jp": s["jp"][o:o + n],
@@ -323,19 +334,19 @@ def duel_order(rows):
     """Sort rows in place by head-to-heads won (ties: their own head-to-head, then Japan revenue per
     day). Writes r["beat"] = [wins, opponents]. Banners with fewer than MIN_DUEL_DAYS days in the
     month go last, unranked: a day of data isn't enough to judge an opening."""
-    late = [r for r in rows if r["days"] < MIN_DUEL_DAYS]
+    late = [r for r in rows if r["wdays"] < MIN_DUEL_DAYS]
     for r in late: r["beat"] = None
-    rows[:] = [r for r in rows if r["days"] >= MIN_DUEL_DAYS]
+    rows[:] = [r for r in rows if r["wdays"] >= MIN_DUEL_DAYS]
     k = len(rows)
     pairs = [(i, j) for i in range(k) for j in range(i + 1, k)]
-    out = SITE["pg"].evaluate(H2H, [[entity(rows[i], min(rows[i]["days"], rows[j]["days"])),
-                                     entity(rows[j], min(rows[i]["days"], rows[j]["days"]))] for i, j in pairs]) if pairs else []
+    out = SITE["pg"].evaluate(H2H, [[entity(rows[i], min(rows[i]["wdays"], rows[j]["wdays"])),
+                                     entity(rows[j], min(rows[i]["wdays"], rows[j]["wdays"]))] for i, j in pairs]) if pairs else []
     res = {}
     for (i, j), R in zip(pairs, out):
         if R["overall"] in (0, 1): win = "a" if R["overall"] == 0 else "b"
         else:
-            n = min(rows[i]["days"], rows[j]["days"])
-            tot = lambda r: sum(r["jp_daily"][r["day0"]:r["day0"] + n]) * 1e8 + sum(r["cn_daily"][r["day0"]:r["day0"] + n]) * USD_JPY
+            n = min(rows[i]["wdays"], rows[j]["wdays"])
+            tot = lambda r: sum(r["jp_daily"][r["w0"]:r["w0"] + n]) * 1e8 + sum(r["cn_daily"][r["w0"]:r["w0"] + n]) * USD_JPY
             win = "a" if tot(rows[i]) >= tot(rows[j]) else "b"
         res[(i, j)] = win
     wins = [0] * k
@@ -349,9 +360,9 @@ def duel_order(rows):
     for i in range(k): rows[i]["beat"] = [wins[i], k - 1]
     note = None
     if k >= 2:                      # #1 vs #2 over their shared window, for the note under the grid
-        a, b = rows[order[0]], rows[order[1]]; n = min(a["days"], b["days"])
+        a, b = rows[order[0]], rows[order[1]]; n = min(a["wdays"], b["wdays"])
         w = lambda r: {"label": r["label"], "tag": r["tag"], "days": r["days"], "new": r["new"],
-                       "jp": round(sum(r["jp_daily"][r["day0"]:r["day0"] + n]), 4), "cn": round(sum(r["cn_daily"][r["day0"]:r["day0"] + n]))}
+                       "jp": round(sum(r["jp_daily"][r["w0"]:r["w0"] + n]), 4), "cn": round(sum(r["cn_daily"][r["w0"]:r["w0"] + n]))}
         note = {"n": n, "a": w(a), "b": w(b)}
     rows[:] = [rows[i] for i in order] + late
     return note
@@ -414,19 +425,13 @@ def build_issue(games, ym, number, series):
     # equal numbers of days, so a late opener isn't measured against a rival's longer run
     top_pair = duel_order(new)
     debuts = new
-    # cover star: the best-ranked new banner with art, from the six featured games when one opened
-    pool = [r for r in debuts if r["img"]] or [dict(r, tag=g["tag"], game=g["name"]) for g in gm for r in g["banners"] if r["img"]]
-    cover = next((r for r in pool if r["tag"] in FEATURED), pool[0] if pool else None)
-    # the month's top banners across every game, new or not, by the same head-to-head as the
-    # openings: each pair over the same number of days inside the month
-    allb = [{**{k: v for k, v in r.items() if k not in ("mranks", "score")}, "tag": g["tag"], "game": g["name"]}
-            for g in gm for r in g["banners"]]
-    top_note = duel_order(allb)
-    top = [{k: r[k] for k in ("label", "tag", "game", "new", "rerun", "rev_month", "cn_month", "jp_peak", "cn_peak", "days",
-                              "img", "face", "art", "art_face", "icons", "color", "start", "end", "beat")} for r in allb if r["beat"]][:10]
+    # cover star: the month's #1 opening (with art), whatever game it's from
+    pool = [r for r in debuts if (r["img"] or r.get("art")) and r.get("beat")] or [r for r in debuts if r["img"] or r.get("art")] \
+           or [dict(r, tag=g["tag"], game=g["name"]) for g in gm for r in g["banners"] if r["img"]]
+    cover = pool[0] if pool else None
     for g in gm:                                      # the daily ranks were only needed for the duels
         for r in g["banners"]: r.pop("_jpr", None); r.pop("_cnr", None); r.pop("_snap", None)
-    return {"ym": ym, "number": number, "built": datetime.date.today().isoformat(), "top": top, "market": market(series, ym), "top_pair": top_pair, "top_note": top_note,
+    return {"ym": ym, "number": number, "built": datetime.date.today().isoformat(), "market": market(series, ym), "top_pair": top_pair,
             "cover": cover and {k: cover[k] for k in ("label", "tag", "game", "img", "face", "art", "art_face", "color", "rev_month", "rerun")},
             "debuts": [{k: r[k] for k in ("label", "tag", "game", "rev_month", "cn_month", "jp_peak", "cn_peak", "days", "rev_total", "rerun", "ongoing", "img", "face", "art", "art_face", "icons", "color", "start", "beat")} for r in debuts],
             "games": order}
