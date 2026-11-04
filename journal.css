@@ -132,22 +132,16 @@ img.broken{visibility:hidden}
 .dmore{font-family:var(--sans); font-size:13px; color:var(--ink2); margin:14px 0 0; line-height:1.7}
 .dmore a{text-decoration:none; color:var(--ink)} .dmore a:hover{text-decoration:underline}
 
-/* rich copy: figures, changes, names, rank badges and verdict highlights inside the prose */
-.copy, .mcopy{--acc2:var(--acc,#d9a400)}
-.fig{font-weight:700; font-variant-numeric:tabular-nums; white-space:nowrap;
-  background:linear-gradient(transparent 64%, color-mix(in srgb, var(--acc2) 30%, transparent) 64%)}
-.dlt{font-family:var(--sans); font-size:.86em; font-weight:700; white-space:nowrap; font-variant-numeric:tabular-nums}
-.dlt i{font-style:normal; font-size:.78em; margin-right:2px; vertical-align:.08em}
-.dlt.u{color:var(--up)} .dlt.d{color:var(--dn)}
-.bn{color:color-mix(in srgb, var(--bc) 58%, var(--ink)); font-weight:700}
-.gn{color:color-mix(in srgb, var(--gc) 62%, var(--ink)); font-weight:700}
-.rkp{display:inline-block; font-family:var(--sans); font-size:.8em; font-weight:700; line-height:1.35; padding:0 6px; border-radius:4px;
-  background:var(--paper2); box-shadow:inset 0 0 0 1px var(--rule); white-space:nowrap; vertical-align:.06em}
-mark.good, mark.bad{color:inherit; padding:0 3px; border-radius:2px; -webkit-box-decoration-break:clone; box-decoration-break:clone}
-mark.good{background:color-mix(in srgb, var(--up) 20%, transparent)}
-mark.bad{background:color-mix(in srgb, var(--dn) 20%, transparent)}
-.copy p:first-child{font-size:18.5px}
-.mcopy p:first-child{font-size:20px}
+/* rich copy, kept quiet: figures and names a touch heavier, colour only on changes and verdicts */
+.fig{font-weight:600; font-variant-numeric:tabular-nums; white-space:nowrap}
+.dlt{font-weight:600; white-space:nowrap; font-variant-numeric:tabular-nums}
+.dlt i{font-style:normal; font-size:.7em; margin-right:2px; vertical-align:.1em}
+.dlt.u{color:color-mix(in srgb, var(--up) 80%, var(--ink))} .dlt.d{color:color-mix(in srgb, var(--dn) 80%, var(--ink))}
+.bn, .gn{font-weight:600}
+.rkp{font-weight:600; white-space:nowrap}
+mark.good, mark.bad{background:none; padding:0}
+mark.good{color:color-mix(in srgb, var(--up) 70%, var(--ink))}
+mark.bad{color:color-mix(in srgb, var(--dn) 70%, var(--ink))}
 
 /* the month in totals */
 .mtiles{display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr)); gap:12px; margin-top:12px}
