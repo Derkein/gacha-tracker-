@@ -123,27 +123,6 @@ img.broken{visibility:hidden}
   font-size:22px; font-style:italic; line-height:1.3; text-align:center}
 
 
-/* "From the story": a full-width band — portrait | note, with a story image across the bottom */
-.story{display:grid; grid-template-columns:minmax(200px,300px) minmax(0,1fr); margin:22px 0 4px; min-height:400px; border-radius:4px; overflow:hidden;
-  background:linear-gradient(135deg, color-mix(in srgb, var(--acc) 16%, var(--paper)) 0%, var(--paper) 70%);
-  border-top:4px solid var(--acc); box-shadow:0 1px 0 var(--rule)}
-.story.noport{grid-template-columns:minmax(0,1fr)}
-.story:has(.story-scene){grid-template-columns:minmax(200px,300px) minmax(0,1fr) minmax(0,.95fr)}
-.story.noport:has(.story-scene){grid-template-columns:minmax(0,1fr) minmax(0,.95fr)}
-.story-port{margin:0; position:relative; min-height:400px; align-self:stretch}
-.story-port img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block}
-.story-port.whole img{object-fit:contain; object-position:center bottom; padding:14px 6px 0; filter:drop-shadow(0 8px 18px rgba(0,0,0,.22))}
-.story-tx{padding:22px 26px 18px; align-self:center}
-.story-k{font-family:var(--sans); font-size:10.5px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); font-weight:700}
-.story h4{font-size:clamp(28px,3.4vw,40px); margin:.1em 0 0; line-height:1.05; letter-spacing:-.015em}
-.story-t{margin:4px 0 10px; font-style:italic; color:var(--ink2); font-size:15px}
-.story-tx p:not(.story-t):not(.story-src){font-size:17px; margin:.5em 0}
-.story-src{font-family:var(--sans); font-size:11px; color:var(--muted); margin:10px 0 0}
-.story-scene{margin:0; position:relative; min-height:260px}
-.story-scene img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 30%; display:block}
-.story-scene figcaption{position:absolute; left:0; right:0; bottom:0; padding:18px 14px 8px; font-family:var(--sans); font-size:11.5px;
-  color:#fff; background:linear-gradient(0deg, rgba(0,0,0,.6), transparent)}
-
 /* the smaller games: art beside the copy instead of a full-width hero */
 .brief-k{margin-top:64px}
 .feat.brief{margin-top:30px; border-top-width:1px; border-top-color:var(--rule)}
@@ -152,6 +131,34 @@ img.broken{visibility:hidden}
 .feat.brief .feat-art img{max-height:220px}
 .dmore{font-family:var(--sans); font-size:13px; color:var(--ink2); margin:14px 0 0; line-height:1.7}
 .dmore a{text-decoration:none; color:var(--ink)} .dmore a:hover{text-decoration:underline}
+
+/* top of the month: the cross-game ranking, a tighter version of the banner cards */
+.topm .blist{gap:8px}
+.bc.compact{grid-template-columns:42px 150px minmax(0,1fr)}
+.bc.compact .bc-art{min-height:92px}
+.bc.compact .bc-body{padding:9px 14px; gap:7px}
+.bc.compact .bc-nm b{font-size:17px}
+.bc-nm a{text-decoration:none} .bc-nm a:hover{text-decoration:underline}
+.chip.game{background:color-mix(in srgb, var(--gacc) 20%, var(--paper2)); color:var(--ink)}
+
+/* what's next: the announced (latest issue) or actual (older issues) next banners */
+.next{margin:22px 0 0; padding:14px 16px 14px; background:var(--paper); border-radius:4px; border-top:3px solid var(--acc); box-shadow:0 1px 0 var(--rule); font-family:var(--sans)}
+.next-k{font-size:10.5px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); font-weight:700; margin-bottom:10px}
+.next-in{display:grid; grid-template-columns:minmax(0,260px) minmax(0,1fr); gap:18px; align-items:start}
+.next-in:not(:has(.next-art)){grid-template-columns:minmax(0,1fr)}
+.next-art{position:relative; aspect-ratio:16/9; border-radius:3px; overflow:hidden; background:var(--paper2)}
+.next-art img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block}
+.next-art.icon{aspect-ratio:1; max-width:120px}
+.next-tx h5{font-family:var(--serif); font-size:26px; margin:0; line-height:1.1}
+.next-when{margin:3px 0 8px; font-size:12.5px; color:var(--ink2); font-weight:600}
+.next-tx p{font-family:var(--serif); font-size:16.5px; margin:.45em 0}
+.next-tx .next-when,.next-tx .next-src{font-family:var(--sans)}
+.next-q{font-style:italic; color:var(--ink); border-left:3px solid var(--acc); padding-left:10px}
+.next-src{font-size:11px !important; color:var(--muted)}
+.next-list{display:grid; grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr)); gap:12px}
+.next-b{display:grid; grid-template-columns:120px minmax(0,1fr); gap:10px; align-items:center}
+.next-b b{font-family:var(--serif); font-size:17px; display:block}
+.next-b small{font-size:11.5px; color:var(--muted)}
 
 /* the month's banners: ranked cards */
 .blist-hd{display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 12px; margin:26px 0 10px; padding-top:10px; border-top:2px solid var(--rule2); font-family:var(--sans)}
@@ -224,7 +231,6 @@ img.broken{visibility:hidden}
   .rchart li{grid-template-columns:20px 22px minmax(60px,1fr) 60px auto 46px}
   .bc{grid-template-columns:38px minmax(0,1fr)} .bc-art{grid-column:1/-1; grid-row:1; min-height:140px}
   .bc-pos{font-size:24px} .bc-m{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .story,.story:has(.story-scene),.story.noport:has(.story-scene){grid-template-columns:minmax(0,1fr)}
-  .story-port{min-height:340px} .story-scene{min-height:220px}
-  .story-tx{padding:16px 16px 14px}
+  .bc.compact{grid-template-columns:38px minmax(0,1fr)} .bc.compact .bc-art{min-height:110px}
+  .next-in{grid-template-columns:minmax(0,1fr)}
 }

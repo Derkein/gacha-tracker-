@@ -41,6 +41,8 @@ async (tag) => {
       face: (() => { const f = typeof cmpFace === "function" && cmpFace(tag, b.name, b.banner_img); return f ? [f.x, f.y] : null; })(),
       jp: b.rank_series || [],
       cn: cn.map(d => [d.iso, d.rank, d.best]),
+      jpd: (() => { const bd = dailyBreakdown(b); return bd ? bd.days.map(d => Math.round(d.add * 1e4) / 1e4) : []; })(),
+      qmd: (qm.daily || []).map(v => Math.round(v || 0)),
       qm: { total: qm.total || 0, monthly: Object.fromEntries((qm.months || []).map(m => [m.ym, m.rev])), start: qm.start || null },
       qmRank: (typeof qimaiRankInfo === "function" && qimaiRankInfo(b)) || null };
   });
@@ -87,6 +89,18 @@ def prev_ym(ym):
     y, m = map(int, ym.split("-"))
     return f"{y - (m == 1)}-{(m - 2) % 12 + 1:02d}"
 def label(b): return " & ".join(b["agents"]) if b["agents"] else (b["en"] or b["name"])
+
+def month_start(ym): return datetime.date.fromisoformat(ym + "-01")
+def run_end(b):
+    """Last day the run counts for: its end date, or today while it is still running."""
+    e = datetime.date.fromisoformat(b["end"]) if b.get("end") else datetime.date.today()
+    return min(e, datetime.date.today())
+def run_days(b): return (run_end(b) - datetime.date.fromisoformat(b["start"])).days + 1
+def month_days(b, ym):
+    """How many days of month ym the banner actually ran (a Sep 28 opener has 3 September days)."""
+    a = max(datetime.date.fromisoformat(b["start"]), month_start(ym))
+    z = min(run_end(b), month_start(ym) + datetime.timedelta(days=days_in(ym) - 1))
+    return max(0, (z - a).days + 1)
 
 def jp_peak(b, ym=None):
     """Best (lowest) Japan iOS grossing rank on the run's days — inside month ym if given."""
@@ -155,6 +169,8 @@ def game_month(G, ym):
                      "jp_peak_run": jpa, "cn_peak_run": cna,
                      "alltime": [b["rank"], G["count"]], "year_rank": [b["yrank"], b["ytot"]] if b["yrank"] else None,
                      "cn_alltime": [b["qmRank"]["rank"], b["qmRank"]["of"]] if b["qmRank"] else None,
+                     "days": month_days(b, ym), "run_days": run_days(b), "day0": max(0, (month_start(ym) - datetime.date.fromisoformat(b["start"])).days),
+                     "jp_daily": b["jpd"], "cn_daily": b["qmd"],
                      "img": b["img"], "face": b["face"], "icons": b["icons"], "color": b["color"], "agents": b["agents"]})
     if not rows and not jp and not cn: return None
     used = combined_order(rows, MONTH_KEYS)
@@ -167,7 +183,13 @@ def game_month(G, ym):
         low_since = next((k for k in sorted(gi, reverse=True) if k < ym and gi[k] <= jp), None)
         hist = {"rank": ordered.index(jp) + 1, "of": len(ordered), "best_since": best_since, "low_since": low_since,
                 "first": min(gi)}
-    return {"tag": G["tag"], "name": NAMES.get(G["tag"], G["tag"]), "jpname": G["jpname"],
+    # what came next: the first banners to open after this month (the latest issue gets the
+    # announced ones from data/journal/upcoming.json instead, since the data has no future banners)
+    m_end = (month_start(ym) + datetime.timedelta(days=days_in(ym) - 1)).isoformat()
+    nxt = [{"label": label(b), "start": b["start"], "end": b["end"], "rerun": b["rerun"], "img": b["img"], "face": b["face"],
+            "icons": b["icons"], "color": b["color"]}
+           for b in sorted(G["banners"], key=lambda b: b["start"]) if b["start"] > m_end][:2]
+    return {"tag": G["tag"], "name": NAMES.get(G["tag"], G["tag"]), "jpname": G["jpname"], "next": nxt,
             "icon": f"icons/games/{G['tag']}.png", "jp": jp, "jp_src": jp_src, "jp_prev": pj,
             "cn": cn, "cn_prev": pcn, "cn_partial": bool(G["qimaiLast"] and G["qimaiLast"][:7] == ym and int(G["qimaiLast"][8:]) < days_in(ym)),
             "hist": hist, "measures": used, "banners": rows}
@@ -189,7 +211,13 @@ def build_issue(games, ym, number):
     # cover star: the best-ranked new banner with art, from the six featured games when one opened
     pool = [r for r in debuts if r["img"]] or [dict(r, tag=g["tag"], game=g["name"]) for g in gm for r in g["banners"] if r["img"]]
     cover = next((r for r in pool if r["tag"] in FEATURED), pool[0] if pool else None)
-    return {"ym": ym, "number": number, "built": datetime.date.today().isoformat(),
+    # the month's top banners across every game, by the same median-of-every-measure rule
+    allb = [{**{k: v for k, v in r.items() if k not in ("mranks", "score", "jp_daily", "cn_daily")}, "tag": g["tag"], "game": g["name"]}
+            for g in gm for r in g["banners"]]
+    combined_order(allb, MONTH_KEYS)
+    top = [{k: r[k] for k in ("label", "tag", "game", "new", "rerun", "rev_month", "cn_month", "jp_peak", "cn_peak", "days",
+                              "img", "face", "icons", "color", "start", "end", "score", "mranks")} for r in allb[:10]]
+    return {"ym": ym, "number": number, "built": datetime.date.today().isoformat(), "top": top,
             "cover": cover and {k: cover[k] for k in ("label", "tag", "game", "img", "face", "color", "rev_month", "rerun")},
             "debuts": [{k: r[k] for k in ("label", "tag", "game", "rev_total", "jp_peak_run", "cn_peak_run", "rerun", "ongoing", "img", "face", "icons", "color", "start", "score")} for r in debuts],
             "games": order}

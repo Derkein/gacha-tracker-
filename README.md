@@ -74,18 +74,18 @@ scripts/bar_colors.py    # sample each banner's most prominent color -> tints th
 
 ### Monthly Journal
 
-`journal.html` is a magazine-style issue for every finished month: the month's chart of games (Japan game-i, China iPhone Qimai), the month's openings, and one feature per game with its banners, their in-month revenue, peak daily ranks and all-time rank, plus short character notes from the story.
+`journal.html` is a magazine-style issue for every finished month: the month's chart of games (Japan game-i, China iPhone Qimai), the month's openings, the top 10 banners across every game, and one feature per game with its banners as ranked cards and what came next.
+
+A banner's place is the median of its ranks on Japan revenue, China revenue, Japan peak and China peak, never Japan revenue alone. The copy is written from the numbers, including how many days each banner had in the month (a banner that opened on the 28th is compared on its own first days). Every image is cropped around its face point from `data/banner_focus.json`.
 
 ```
-scripts/build_journal.py   # runs the tracker's own code headless -> data/journal/YYYY-MM.json + index.json (needs playwright)
-data/journal/notes/YYYY-MM.json   # hand-written copy for an issue: headline, dek, cover lines, letter, per-game headline/dek/body/pull/hero
-data/journal/stories.json         # character notes, keyed "game:Name", with source links and optional art {portrait, scene, scene_caption}
-scripts/journal_art.py     # fetches each story's art once (headless Chromium) -> assets/journal/*.webp + data/journal/art.json
+scripts/build_journal.py        # runs the tracker's own code headless -> data/journal/YYYY-MM.json + index.json (needs playwright)
+data/journal/upcoming.json      # announced next banners for the latest issue (the data has no future banners), with sources
+data/journal/themes.json        # optional character-themed headline lines, keyed "game:Name"
+data/journal/notes/YYYY-MM.json # optional hand-written copy that overrides the written-from-data copy
 ```
 
-Every banner image in an issue is cropped around its face point from `data/banner_focus.json`, so tall character sheets (CZN) and wide promos both keep the face in frame.
-
-Run `build_journal.py` once a month after the data refresh, then write that month's notes. An issue with no notes file still renders, with sentences written from its numbers.
+Run `build_journal.py` once a month after the data refresh, then add that month's `upcoming.json` entry.
 
 Character portraits come from auto-updating community sources: circular head-icons from [Enka.Network](https://enka.network/) (ZZZ, Genshin) and [Mar-7th/StarRailRes](https://github.com/Mar-7th/StarRailRes) (Star Rail); for games with no portrait source, a face circle is cropped via anime face detection ([lbpcascade_animeface](https://github.com/nagadomi/lbpcascade_animeface) + OpenCV) from the character's drip/splash art (Fandom wikis) or the banner art. New HoYoverse characters get portraits automatically once Enka lists them; until then the banner art is used.
 

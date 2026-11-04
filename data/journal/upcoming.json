@@ -1,0 +1,60 @@
+{
+ "2026-10": {
+  "hsr": {
+   "name": "Aeon ★ Aha",
+   "when": "Version 4.7 · from November 11",
+   "text": [
+    "Star Rail's first playable Aeon. Aha, the Aeon of Elation, joins as a 5★ Quantum character on the Path of Elation, in the human form of Nihilux, the comic author from the Planarcadia story. A Star Lotto outfit draw comes with her."
+   ],
+   "question": "A god of fun on a gacha banner: will Aha top the chart, or treat the whole thing as a joke? Pearl's #1 in Japan is the bar.",
+   "src": ["https://www.siliconera.com/aha-joins-honkai-star-rail-when-patch-4-7-debuts-in-november/",
+           "https://www.gosugamers.net/news/79173-honkai-star-rail-reveals-aeon-aha-as-next-playable-character-for-version-4-7"]
+  },
+  "genshin": {
+   "name": "Mitya",
+   "when": "Version 7.2, phase 1 · from November 4",
+   "img": "https://enka.network/ui/UI_AvatarIcon_Mitya.png", "icon": true,
+   "text": [
+    "A new 5★ Electro character, sharing the phase with a Furina rerun. Zibai and Linnea reruns follow on November 24, according to banner guides that cover the 7.2 livestream."
+   ],
+   "question": "Genshin was 4th in Japan in October with ¥424M. Can a brand-new 5★ drag it back up, or is it the reruns doing the work again?",
+   "src": ["https://www.gamsgo.com/blog/genshin-upcoming-banners", "https://www.enjoygm.com/blog/genshin-impact/2026-banners"]
+  },
+  "zzz": {
+   "name": "Severian",
+   "when": "Version 3.3, second half · after Phoenix ends on November 11",
+   "text": [
+    "Seth Lowell's long-awaited brother: an S-Rank Wind Attack agent from Public Security's Metropolitan Order Division, arriving with his W-Engine, Incarcerating Grip."
+   ],
+   "question": "Phoenix won October's four-way opening week in both markets. Can the brother fans waited years for beat her, or does he land in her shadow?",
+   "src": ["https://www.gosugamers.net/news/79151-zenless-zone-zero-teases-s-rank-agents-phoenix-and-severian-for-version-3-3",
+           "https://www.mmobomb.com/news/pubsec-krampus-team-up-rescue-mission-to-roscaelifer-zenless-zone-zero-version-3-3-update"]
+  },
+  "wuwa": {
+   "name": "Version 3.8",
+   "when": "Not dated yet · Suoming runs until November 11",
+   "text": [
+    "Kuro hasn't announced 3.8's date or its headliner. Third-party guides expect it around mid-November."
+   ],
+   "question": "Wuthering Waves doubled its month in October. Can it hold that with nobody confirmed to follow Suoming?",
+   "src": ["https://www.gamsgo.com/blog/wuthering-waves-3-8-banner"]
+  },
+  "endfield": {
+   "name": "Next operator: not announced",
+   "when": "Tangtang's rerun runs until November 19",
+   "text": [
+    "We couldn't find an official announcement of the next operator yet."
+   ],
+   "question": "Si gave Endfield one of its best China runs. Will the next operator keep China interested, or was Si the exception?"
+  },
+  "nte": {
+   "name": "Version 1.5",
+   "when": "Around November 11",
+   "text": [
+    "Reportedly two new S-Rank characters from the Bureau of Anomaly Control's ETD-6 division, one named Elyms. That comes from a livestream recap; Hotta hasn't confirmed it in anything we found."
+   ],
+   "question": "Akane Rin sits 9th of NTE's 10 banners in Japan so far. NTE needs a hit, not another middling launch.",
+   "src": ["https://www.enjoygm.com/blog/neverness-to-everness/nte-1-5-summary"]
+  }
+ }
+}

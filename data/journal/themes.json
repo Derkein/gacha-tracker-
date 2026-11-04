@@ -1,0 +1,12 @@
+{
+ "hsr:Pearl": {"good": ["Pearl gleams brightest", "Pearl, polished: {Gp} jewel of the month"], "bad": ["Pearl loses her lustre"],
+               "flop": ["Pearl loses her lustre; {L} takes the shine"]},
+ "hsr:Aventurine • Waveflair": {"good": ["Aventurine • Waveflair hits the jackpot"], "bad": ["Aventurine • Waveflair goes bust"],
+               "flop": ["Aventurine's gamble doesn't pay; {L} takes the pot", "House wins: Aventurine • Waveflair goes bust as {L} [L:cashes|cash] in"]},
+ "hsr:Mortenax Blade": {"good": ["Mortenax Blade cuts deep"], "bad": ["Mortenax Blade loses its edge"], "flop": ["Mortenax Blade loses its edge; {L} [L:wins|win]"]},
+ "zzz:Phoenix": {"good": ["Phoenix rises", "Phoenix sets the chart on fire"], "bad": ["Phoenix crashes and burns"], "flop": ["Phoenix crashes and burns; {L} [L:wins|win]"]},
+ "nte:Akane Rin": {"good": ["Akane Rin hits the high notes"], "bad": ["Akane Rin plays to a half-empty room"], "flop": ["Akane Rin plays to a half-empty room; {L} [L:steals|steal] the stage"]},
+ "endfield:Si": {"good": ["Si paints the town", "Si's masterpiece"], "bad": ["Si's canvas stays blank"], "flop": ["Si's canvas stays blank; {L} [L:wins|win]"]},
+ "wuwa:Suoming": {"good": ["Suoming seals the deal"], "bad": ["Suoming's seal breaks"], "flop": ["Suoming's seal breaks; {L} [L:takes|take] over"]},
+ "genshin:Skirk": {"good": ["Skirk cuts through"], "bad": ["Skirk freezes over"], "flop": ["Skirk freezes over; {L} [L:wins|win]"]}
+}
