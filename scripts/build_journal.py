@@ -130,7 +130,6 @@ def month_total(G, ym):
 # A banner's standing is the MEDIAN of its ranks across every source's measures, not Japan revenue
 # alone: a banner that wins China revenue and both peak ranks beats one that only edged Japan.
 MONTH_KEYS = [("rev_month", False), ("cn_month", False), ("jp_peak", True), ("cn_peak", True)]   # (field, lower is better)
-RUN_KEYS = [("rev_total", False), ("cn_total", False), ("jp_peak_run", True), ("cn_peak_run", True)]
 
 def combined_order(rows, keys):
     """Rank rows on each measure (ties share a rank; no value = last), then sort by the median rank,
@@ -204,9 +203,9 @@ def build_issue(games, ym, number):
     order = sorted(gm, key=lambda g: (g["tag"] not in FEATURED, -(g["jp"] or 0)))
     new = [{**{k: v for k, v in r.items() if k not in ("mranks", "score")}, "tag": g["tag"], "game": g["name"]}
            for g in gm for r in g["banners"] if r["new"]]
-    # a banner opening on the month's last days barely shows up in the month, so new banners are
-    # ranked on their own run — the same median-of-every-measure rule as within a game
-    combined_order(new, RUN_KEYS)
+    # new banners are ranked on what they did inside this month (user rule), the same
+    # median-of-every-measure rule as within a game
+    combined_order(new, MONTH_KEYS)
     debuts = new
     # cover star: the best-ranked new banner with art, from the six featured games when one opened
     pool = [r for r in debuts if r["img"]] or [dict(r, tag=g["tag"], game=g["name"]) for g in gm for r in g["banners"] if r["img"]]
@@ -219,7 +218,7 @@ def build_issue(games, ym, number):
                               "img", "face", "icons", "color", "start", "end", "score", "mranks")} for r in allb[:10]]
     return {"ym": ym, "number": number, "built": datetime.date.today().isoformat(), "top": top,
             "cover": cover and {k: cover[k] for k in ("label", "tag", "game", "img", "face", "color", "rev_month", "rerun")},
-            "debuts": [{k: r[k] for k in ("label", "tag", "game", "rev_total", "jp_peak_run", "cn_peak_run", "rerun", "ongoing", "img", "face", "icons", "color", "start", "score")} for r in debuts],
+            "debuts": [{k: r[k] for k in ("label", "tag", "game", "rev_month", "cn_month", "jp_peak", "cn_peak", "days", "rev_total", "rerun", "ongoing", "img", "face", "icons", "color", "start", "score")} for r in debuts],
             "games": order}
 
 def main():

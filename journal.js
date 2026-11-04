@@ -250,12 +250,12 @@ const DEBUT_CARDS = 10;
 function debutsHTML(f){
   if(!f.debuts.length) return "";
   return `<section class="debuts"><div class="sec-k">New this month</div><h3 class="sec-h">The month's openings</h3>
-    <p class="sec-sub"><button class="howbtn" type="button" data-how="run">How the order is decided</button></p>
+    <p class="sec-sub"><button class="howbtn" type="button" data-how="month">How the order is decided</button></p>
     <div class="dgrid">${f.debuts.slice(0,DEBUT_CARDS).map((d,i)=>`<a class="dcard" href="#${f.ym}/${d.tag}" style="--acc:${d.color||GAME_ACCENT[d.tag]}">
       <div class="dart">${img(d.img,"","",{face:d.face})}<span class="dno">${i+1}</span></div>
       <div class="dtx"><span class="dg">${esc(SHORT[d.tag])}${d.rerun?" · rerun":""}</span><b>${esc(d.label)}</b>
-      <span class="dm">${fmtG(d.rev_total)} · peak ${rk(d.jp_peak_run)} JP${d.cn_peak_run?` · ${rk(d.cn_peak_run)} CN`:""}</span></div></a>`).join("")}</div>
-    ${f.debuts.length>DEBUT_CARDS?`<p class="dmore"><b>Also opened:</b> ${f.debuts.slice(DEBUT_CARDS).map((d,i)=>`<a href="#${f.ym}/${d.tag}">${DEBUT_CARDS+i+1}. ${esc(d.label)}</a> <span class="mu">(${esc(SHORT[d.tag])}${d.rerun?", rerun":""}, ${fmtG(d.rev_total)})</span>`).join(" · ")}</p>`:""}</section>`;
+      <span class="dm">${fmtG(d.rev_month)}${d.cn_month>0?` · ${fmtUSD(d.cn_month)}`:""} · peak ${rk(d.jp_peak)} JP${d.cn_peak?` · ${rk(d.cn_peak)} CN`:""} · ${plural(d.days,"day")}</span></div></a>`).join("")}</div>
+    ${f.debuts.length>DEBUT_CARDS?`<p class="dmore"><b>Also opened:</b> ${f.debuts.slice(DEBUT_CARDS).map((d,i)=>`<a href="#${f.ym}/${d.tag}">${DEBUT_CARDS+i+1}. ${esc(d.label)}</a> <span class="mu">(${esc(SHORT[d.tag])}${d.rerun?", rerun":""}, ${fmtG(d.rev_month)})</span>`).join(" · ")}</p>`:""}</section>`;
 }
 // The month's banners as ranked cards. Order = median rank across every measure; each measure
 // shows its value, a bar against the month's best, and a star on the banner that won it.
@@ -415,11 +415,10 @@ async function route(){
   try{ render(await loadIssue(pick.ym), focus); }
   catch(e){ $("#issue").innerHTML=`<p class="loading">Couldn't load this issue (${esc(e.message)}).</p>`; }
 }
-// "How the order is decided": one dialog, two flavours — a game's banners (inside the month)
-// and the month's openings (whole run). Delegated, since the page's CSP allows no inline handlers.
+// "How the order is decided": one dialog, used by the openings and every game's banner list
+// (both ranked on the month itself). Delegated, since the page's CSP allows no inline handlers.
 const HOW = {
-  month: ["the month", "Revenue and peak ranks count only the days the banner ran inside this month."],
-  run:   ["the whole run", "Openings are compared on each banner's whole run so far, since one that opens on the 28th has only a few days in the month."],
+  month: ["the month", "Revenue and peak ranks count only the days the banner ran inside this month, for the game's banners and for the month's openings alike. A banner that opened late in the month has fewer days to work with; the copy says how many."],
 };
 function showHow(kind){
   const [scope, note]=HOW[kind]||HOW.month, d=$("#howDlg");
