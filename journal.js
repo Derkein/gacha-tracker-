@@ -368,10 +368,13 @@ function debutsHTML(f){
   return `<section class="debuts"><div class="sec-k">New this month</div><h3 class="sec-h">The month's openings</h3>
     <p class="sec-sub"><button class="howbtn" type="button" data-how="open">How the order is decided</button></p>
     <div class="dgrid">${f.debuts.slice(0,DEBUT_CARDS).map((d,i)=>`<a class="dcard${d.beat?"":" late"}" href="#${f.ym}/${d.tag}" style="--acc:${d.color||GAME_ACCENT[d.tag]}">
-      <div class="dart${frame(d)}">${pic(d,"",{},"zoom")}<span class="dno">${d.beat?i+1:"–"}</span></div>
+      <div class="dart${frame(d)}">${pic(d,"",{},"zoom")}<span class="dno${d.beat&&i<3?" m"+(i+1):""}">${d.beat?i+1:"–"}</span></div>
       <div class="dtx"><span class="dg">${esc(SHORT[d.tag])}${d.rerun?" · rerun":""}</span><b>${esc(d.label)}</b>
-      <span class="dm">${fmtG(d.rev_month)}${d.cn_month>0?` · ${fmtUSD(d.cn_month)}`:""} · peak ${rk(d.jp_peak)} JP${d.cn_peak?` · ${rk(d.cn_peak)} CN`:""} · ${plural(d.days,"day")}</span>
-      <span class="dpd">${d.days?`${fmtG(d.rev_month/d.days)}/day${d.cn_month>0?` · ${fmtUSD(d.cn_month/d.days)}/day`:""}`:""}</span>
+      <div class="dstats">
+        <div><span>Japan</span><strong>${d.rev_month>0?fmtG(d.rev_month):"—"}</strong><small>${d.days&&d.rev_month>0?fmtG(d.rev_month/d.days)+"/day":"&nbsp;"}</small></div>
+        <div><span>China iPhone</span><strong>${d.cn_month>0?fmtUSD(d.cn_month):"—"}</strong><small>${d.days&&d.cn_month>0?fmtUSD(d.cn_month/d.days)+"/day":"&nbsp;"}</small></div>
+      </div>
+      <div class="dpills"><span class="pk${d.jp_peak<=10?" t1":d.jp_peak<=50?" t2":""}">${rk(d.jp_peak)} JP</span>${d.cn_peak?`<span class="pk${d.cn_peak<=10?" t1":d.cn_peak<=50?" t2":""}">${rk(d.cn_peak)} CN</span>`:""}<span class="dd">${plural(d.days,"day")}</span></div>
       <span class="drec">${d.beat?`Won ${d.beat[0]} of ${d.beat[1]} head-to-heads`:`Too new to rank: ${plural(d.days,"day")} in ${MONTHS[+f.ym.slice(5)-1]}`}</span></div></a>`).join("")}</div>
     ${topPairNote(f)}
     ${f.debuts.length>DEBUT_CARDS?`<p class="dmore"><b>Also opened:</b> ${f.debuts.slice(DEBUT_CARDS).map((d,i)=>`<a href="#${f.ym}/${d.tag}">${d.beat?(DEBUT_CARDS+i+1)+". ":""}${esc(d.label)}</a> <span class="mu">(${esc(SHORT[d.tag])}${d.rerun?", rerun":""}, ${fmtG(d.rev_month)})</span>`).join(" · ")}</p>`:""}</section>`;
@@ -391,7 +394,7 @@ function bannerCard(b, i, ctx){
   const pctl=b.alltime&&b.alltime[1]>1?(1-(b.alltime[0]-1)/(b.alltime[1]-1))*100:null;
   const daysTxt=b.days?` · ${plural(b.days,"day")} in ${mo}${b.rev_month>0&&b.days?` · ${fmtG(b.rev_month/b.days)}/day`:""}`:"";
   return `<li class="bc${ctx.compact?" compact":""}" style="--acc:${b.color}">
-    <div class="bc-pos">${i+1}</div>
+    <div class="bc-pos"><span class="${i<3?"m"+(i+1):""}">${i+1}</span></div>
     <div class="bc-art${frame(b)}">${pic(b,b.label,{ty:0.42},"zoom")}</div>
     <div class="bc-body">
       <div class="bc-hd"><span class="bav">${b.icons&&b.icons[0]?img(b.icons[0]):img(b.img,"","",{face:b.face,ty:0.5})}</span>

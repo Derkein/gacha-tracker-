@@ -94,11 +94,23 @@ img.broken{visibility:hidden}
 .dcard:hover{transform:translateY(-2px)}
 .dart{position:relative; aspect-ratio:16/9; background:var(--paper2)}
 .dart img{width:100%; height:100%; object-fit:cover; display:block}
-.dno{position:absolute; left:8px; top:6px; font-size:26px; font-weight:700; color:#fff; text-shadow:0 1px 8px rgba(0,0,0,.6)}
+/* rank badge: a square plate so the number never melts into the art; podium in gold, silver, bronze */
+.dno{position:absolute; left:8px; top:8px; min-width:32px; height:32px; padding:0 6px; border-radius:7px; display:flex; align-items:center; justify-content:center;
+  font-size:19px; font-weight:700; line-height:1; color:#fff; background:rgba(14,14,16,.78); box-shadow:0 2px 8px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.14)}
+.dno.m1, .bc-pos .m1{background:linear-gradient(145deg,#ffe58a,#e2a917 55%,#b07a06); color:#3a2600; box-shadow:0 2px 8px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.45)}
+.dno.m2, .bc-pos .m2{background:linear-gradient(145deg,#f4f6f8,#b9c0c8 55%,#8a929b); color:#22272c; box-shadow:0 2px 8px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.5)}
+.dno.m3, .bc-pos .m3{background:linear-gradient(145deg,#f3c39a,#c27a43 55%,#8e5326); color:#2c1606; box-shadow:0 2px 8px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.35)}
 .dtx{padding:9px 11px 11px; display:flex; flex-direction:column; gap:1px}
 .dtx .dg{font-family:var(--sans); font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted)}
 .dtx b{font-size:17px; line-height:1.2}
-.dtx .dm{font-family:var(--sans); font-size:12px; color:var(--ink2)}
+.dstats{display:grid; grid-template-columns:1fr 1fr; gap:8px; margin:7px 0 6px; padding:7px 0; border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); font-family:var(--sans)}
+.dstats div{display:flex; flex-direction:column; min-width:0}
+.dstats span{font-size:9.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted)}
+.dstats strong{font-size:16px; font-variant-numeric:tabular-nums; line-height:1.25; white-space:nowrap}
+.dstats small{font-size:11px; color:var(--ink2); font-variant-numeric:tabular-nums; white-space:nowrap}
+.dpills{display:flex; flex-wrap:wrap; align-items:center; gap:5px; font-family:var(--sans); font-size:11.5px; font-weight:700}
+.dpills .pk{padding:1px 7px}
+.dpills .dd{color:var(--muted); font-weight:600; margin-left:auto}
 
 /* ---- game features ---- */
 .feat{margin-top:56px; padding-top:14px; border-top:3px solid var(--rule2)}
@@ -203,7 +215,7 @@ mark.bad{color:color-mix(in srgb, var(--dn) 70%, var(--ink))}
 .how-t td:first-child{font-weight:600; color:var(--ink2); white-space:nowrap}
 .how-t td{padding:3px 8px}
 .how-t td.w{font-weight:700; color:color-mix(in srgb, var(--up) 70%, var(--ink))}
-.drec{font-family:var(--sans); font-size:11px; color:var(--muted); margin-top:2px}
+.drec{font-family:var(--sans); font-size:11px; color:var(--muted); margin-top:6px}
 .dpd{font-family:var(--sans); font-size:11.5px; color:var(--ink2)}
 .dnote{font-size:15.5px; color:var(--ink2); margin:14px 0 0; max-width:820px}
 .how-t td small{font-family:var(--sans); font-size:10px; font-weight:600; opacity:.75}
@@ -246,7 +258,8 @@ mark.bad{color:color-mix(in srgb, var(--dn) 70%, var(--ink))}
   box-shadow:0 1px 0 var(--rule); border-left:4px solid var(--acc); transition:transform .15s, box-shadow .15s}
 .bc:hover{transform:translateY(-1px); box-shadow:var(--shadow)}
 .bc-pos{display:flex; align-items:center; justify-content:center; font-family:var(--serif); font-size:30px; font-weight:700; color:var(--muted)}
-.bc:first-child .bc-pos{color:var(--acc)}
+.bc-pos span{min-width:34px; height:34px; display:flex; align-items:center; justify-content:center; border-radius:8px; font-size:21px}
+.bc-pos span.m1, .bc-pos span.m2, .bc-pos span.m3{font-family:var(--sans)}
 .bc-art{position:relative; min-height:118px; background:var(--paper2)}
 .bc-art img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block}
 .bc-body{padding:12px 16px; display:flex; flex-direction:column; gap:10px; min-width:0}
