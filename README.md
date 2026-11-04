@@ -79,8 +79,11 @@ scripts/bar_colors.py    # sample each banner's most prominent color -> tints th
 ```
 scripts/build_journal.py   # runs the tracker's own code headless -> data/journal/YYYY-MM.json + index.json (needs playwright)
 data/journal/notes/YYYY-MM.json   # hand-written copy for an issue: headline, dek, cover lines, letter, per-game headline/dek/body/pull/hero
-data/journal/stories.json         # character notes, keyed "game:Name", with source links
+data/journal/stories.json         # character notes, keyed "game:Name", with source links and optional art {portrait, scene, scene_caption}
+scripts/journal_art.py     # fetches each story's art once (headless Chromium) -> assets/journal/*.webp + data/journal/art.json
 ```
+
+Every banner image in an issue is cropped around its face point from `data/banner_focus.json`, so tall character sheets (CZN) and wide promos both keep the face in frame.
 
 Run `build_journal.py` once a month after the data refresh, then write that month's notes. An issue with no notes file still renders, with sentences written from its numbers.
 

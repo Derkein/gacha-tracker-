@@ -12,7 +12,7 @@ const FEATURED = ["genshin","hsr","zzz","wuwa","endfield","nte"];
 const MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 const $ = s => document.querySelector(s);
 const esc = s => String(s==null?"":s).replace(/[&<>"'`]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;","`":"&#96;"}[c]));
-const J = { index:null, stories:{}, cache:{} };
+const J = { index:null, stories:{}, art:{}, cache:{} };
 
 // ---- formatting (same rules as the tracker's fmtG / fmtUSD) ----
 function fmtG(oku){ if(!(oku>0)) return "¥0"; const m=oku*100;
@@ -105,7 +105,26 @@ function autoCoverLines(f){
 }
 
 // ---- pieces ----
-const img = (src, cls, alt) => src ? `<img class="${cls||""}" src="${esc(src)}" alt="${esc(alt||"")}" loading="lazy" referrerpolicy="no-referrer">` : "";
+// o.face = [x%, y%] of the face in the art (from banner_focus.json); o.tx/o.ty = where in the
+// frame the face should land (o.txm on phones). Without a face point the crop stays centred.
+const img = (src, cls, alt, o) => src ? `<img class="${cls||""}" src="${esc(src)}" alt="${esc(alt||"")}" loading="lazy" referrerpolicy="no-referrer"${
+  o&&o.face?` data-fx="${o.face[0]}" data-fy="${o.face[1]}"${o.tx!=null?` data-tx="${o.tx}"`:""}${o.ty!=null?` data-ty="${o.ty}"`:""}${o.txm!=null?` data-txm="${o.txm}"`:""}`:""}>` : "";
+// Place an object-fit:cover crop so the face sits at (tx,ty) of the frame, clamped so the art
+// still covers it. Works for wide banners and for tall character sheets (CZN) alike.
+function fitFace(im){
+  const fx=parseFloat(im.dataset.fx), fy=parseFloat(im.dataset.fy);
+  const iw=im.naturalWidth, ih=im.naturalHeight, cw=im.clientWidth, ch=im.clientHeight;
+  if(isNaN(fx)||!iw||!cw||!ch) return;
+  const s=Math.max(cw/iw, ch/ih), dw=iw*s, dh=ih*s;
+  const tx=parseFloat((innerWidth<760&&im.dataset.txm)||im.dataset.tx||"0.5")*cw, ty=parseFloat(im.dataset.ty||"0.38")*ch;
+  const ox=Math.min(0, Math.max(cw-dw, tx-fx/100*dw)), oy=Math.min(0, Math.max(ch-dh, ty-fy/100*dh));
+  im.style.objectPosition=`${ox.toFixed(1)}px ${oy.toFixed(1)}px`;
+}
+const fitAll = () => document.querySelectorAll("img[data-fx]").forEach(i=>{ if(i.complete) fitFace(i); });
+document.addEventListener("load", e=>{ if(e.target.tagName==="IMG" && e.target.dataset.fx) fitFace(e.target); }, true);
+let _fitT; addEventListener("resize", ()=>{ clearTimeout(_fitT); _fitT=setTimeout(fitAll, 120); });
+// a story image: the local copy scripts/journal_art.py made, else the source URL
+const artSrc = u => u ? ((J.art[u]&&J.art[u].file)||u) : "";
 // a dead CDN link hides itself (delegated: the page's CSP allows no inline handlers)
 document.addEventListener("error", e=>{ if(e.target.tagName==="IMG") e.target.classList.add("broken"); }, true);
 function rankChart(f, key, fmt, title, sub){
@@ -124,7 +143,7 @@ function debutsHTML(f){
   return `<section class="debuts"><div class="sec-k">New this month</div><h3 class="sec-h">The month's openings</h3>
     <p class="sec-sub">Every banner that started in ${MONTHS[+f.ym.slice(5)-1]}, by its whole run's Japan revenue${f.debuts.some(d=>d.ongoing)?" so far":""}.</p>
     <div class="dgrid">${f.debuts.slice(0,DEBUT_CARDS).map((d,i)=>`<a class="dcard" href="#${f.ym}/${d.tag}" style="--acc:${d.color||GAME_ACCENT[d.tag]}">
-      <div class="dart">${img(d.img,"","")}<span class="dno">${i+1}</span></div>
+      <div class="dart">${img(d.img,"","",{face:d.face})}<span class="dno">${i+1}</span></div>
       <div class="dtx"><span class="dg">${esc(SHORT[d.tag])}${d.rerun?" · rerun":""}</span><b>${esc(d.label)}</b>
       <span class="dm">${fmtG(d.rev_total)} · peak ${rk(d.jp_peak_run)} JP${d.cn_peak_run?` · ${rk(d.cn_peak_run)} CN`:""}</span></div></a>`).join("")}</div>
     ${f.debuts.length>DEBUT_CARDS?`<p class="dmore"><b>Also opened:</b> ${f.debuts.slice(DEBUT_CARDS).map((d,i)=>`<a href="#${f.ym}/${d.tag}">${DEBUT_CARDS+i+1}. ${esc(d.label)}</a> <span class="mu">(${esc(SHORT[d.tag])}${d.rerun?", rerun":""}, ${fmtG(d.rev_total)})</span>`).join(" · ")}</p>`:""}</section>`;
@@ -135,21 +154,30 @@ function bannerTable(g){
   return `<table class="btab"><thead><tr><th class="l">Banner</th><th>Japan</th>${hasCN?"<th>China iPhone</th>":""}
     <th title="Best daily top-grossing rank this month">Peak JP</th>${hasCN?'<th title="Best daily top-grossing rank this month">Peak CN</th>':""}
     <th title="Whole-run Japan revenue, ranked against every banner of the game">All-time</th></tr></thead><tbody>${g.banners.map(b=>`
-    <tr style="--acc:${b.color}"><td class="l"><div class="bcell"><span class="bav">${b.icons[0]?img(b.icons[0]):img(b.img)}</span>
+    <tr style="--acc:${b.color}"><td class="l"><div class="bcell"><span class="bav">${b.icons[0]?img(b.icons[0]):img(b.img,"","",{face:b.face,ty:0.5})}</span>
       <span class="bnm"><b>${esc(b.label)}</b><small>${b.new?(b.rerun?"rerun · ":"new · "):""}${dayStr(b.start)} – ${dayStr(b.end)}</small></span></div></td>
       <td>${b.rev_month>0?fmtG(b.rev_month):'<span class="mu">below #200</span>'}</td>
       ${hasCN?`<td>${b.cn_month>0?fmtUSD(b.cn_month):'<span class="mu">—</span>'}</td>`:""}
       <td>${rk(b.jp_peak)}</td>${hasCN?`<td>${rk(b.cn_peak)}</td>`:""}
       <td>${b.alltime?`${b.alltime[0]}<span class="mu"> / ${b.alltime[1]}</span>`:"—"}</td></tr>`).join("")}</tbody></table>`;
 }
+// "From the story": a full-width band per new character — a portrait (the whole render, or the
+// banner art cropped to the face when no render was found), the note, and a story image below.
 function storyCards(g, ym){
   const seen=new Set(), out=[];
   g.banners.forEach(b=>{ (b.agents.length?b.agents:[b.label]).forEach(n=>{
     const s=J.stories[`${g.tag}:${n}`]; if(!s || seen.has(n) || !(b.new || s.months&&s.months.includes(ym))) return; seen.add(n);
-    out.push(`<aside class="story" style="--acc:${b.color}"><div class="story-k">From the story</div>
-      <div class="story-hd">${b.icons[0]?img(b.icons[0],"story-av"):""}<div><h5>${esc(n)}</h5>${s.title?`<p class="story-t">${esc(s.title)}</p>`:""}</div></div>
-      ${(Array.isArray(s.text)?s.text:[s.text]).map(t=>`<p>${esc(t)}</p>`).join("")}
-      ${s.src&&s.src.length?`<p class="story-src">Sources: ${s.src.map((u,i)=>`<a href="${esc(u)}" target="_blank" rel="noopener">${i+1}</a>`).join(" · ")}</p>`:""}</aside>`); }); });
+    const a=s.art||{}, txt=Array.isArray(s.text)?s.text:[s.text];
+    const port = a.portrait ? `<figure class="story-port whole">${img(artSrc(a.portrait),"",n)}</figure>`
+      : b.img ? `<figure class="story-port">${img(b.img,"",n,{face:b.face,ty:0.3})}</figure>` : "";
+    out.push(`<section class="story${port?"":" noport"}" style="--acc:${b.color}">
+      ${port}
+      <div class="story-tx"><div class="story-k">From the story</div>
+        <h4>${esc(n)}</h4>${s.title?`<p class="story-t">${esc(s.title)}</p>`:""}
+        ${txt.map(t=>`<p>${esc(t)}</p>`).join("")}
+        ${s.src&&s.src.length?`<p class="story-src">Sources: ${s.src.map((u,i)=>`<a href="${esc(u)}" target="_blank" rel="noopener">${i+1}</a>`).join(" · ")}</p>`:""}</div>
+      ${a.scene?`<figure class="story-scene">${img(artSrc(a.scene),"",a.scene_caption||n)}${a.scene_caption?`<figcaption>${esc(a.scene_caption)}</figcaption>`:""}</figure>`:""}
+    </section>`); }); });
   return out.join("");
 }
 function statStrip(g, ym){
@@ -175,9 +203,10 @@ function featureHTML(g, f, notes, n){
   <article class="feat${brief?" brief":""}" id="g-${g.tag}" style="--acc:${acc};--gacc:${GAME_ACCENT[g.tag]}">
     <header class="feat-hd"><img class="feat-ic" src="${g.icon}" alt=""><div><div class="feat-k">${esc(g.name)}${kicker?` <span>· ${kicker}</span>`:""}</div>
       <h3>${esc(w.headline||autoHeadline(g))}</h3>${w.dek?`<p class="dek">${w.dek}</p>`:""}</div></header>
-    ${top&&top.img?`<figure class="feat-art">${img(top.img,"",top.label)}<figcaption>${esc(top.label)}${top.rerun?" (rerun)":""} · ${dayStr(top.start)} – ${dayStr(top.end)}</figcaption></figure>`:""}
+    ${top&&top.img?`<figure class="feat-art">${img(top.img,"",top.label,{face:top.face,ty:0.4})}<figcaption>${esc(top.label)}${top.rerun?" (rerun)":""} · ${dayStr(top.start)} – ${dayStr(top.end)}</figcaption></figure>`:""}
     ${statStrip(g, f.ym)}
-    <div class="feat-body"><div class="copy">${body}${w.pull?`<blockquote>${esc(w.pull)}</blockquote>`:""}</div>${storyCards(g, f.ym)}</div>
+    <div class="copy">${body}${w.pull?`<blockquote>${esc(w.pull)}</blockquote>`:""}</div>
+    ${storyCards(g, f.ym)}
     ${bannerTable(g)}
   </article>`;
 }
@@ -195,7 +224,7 @@ function render(iss, focus){
   const letter=(nt.letter||[]).map(t=>`<p>${t}</p>`).join("");
   $("#issue").innerHTML=`
     <section class="cover" style="--acc:${c.color||"#888"}">
-      <div class="cover-art">${img(c.img,"",c.label)}</div>
+      <div class="cover-art">${img(c.img,"",c.label,{face:c.face,tx:0.7,txm:0.5,ty:0.3})}</div>
       <div class="cover-tx">
         <div class="cover-k">The ${monthName(f.ym)} issue</div>
         <h2>${esc(head)}</h2>
@@ -212,6 +241,7 @@ function render(iss, focus){
     <div class="feats">${f.games.map((g,i)=>featureHTML(g,f,nt,i)).join("")}</div>
     <nav class="issnav">${older?`<a href="#${older.ym}">← ${monthName(older.ym)}</a>`:"<span></span>"}<a href="#archive" class="arch">All issues</a>${newer?`<a href="#${newer.ym}">${monthName(newer.ym)} →</a>`:"<span></span>"}</nav>`;
   $("#archive").hidden=true; $("#issue").hidden=false;
+  requestAnimationFrame(fitAll);            // art already in cache won't wait for a load event
   if(focus){ const el=document.getElementById("g-"+focus); if(el){ el.scrollIntoView({block:"start"}); return; } }
   scrollTo(0,0);
 }
@@ -219,9 +249,10 @@ function renderArchive(){
   const by={}; J.index.issues.forEach(x=>(by[x.ym.slice(0,4)]=by[x.ym.slice(0,4)]||[]).push(x));
   $("#archive").innerHTML=`<h2 class="arch-h">Every issue</h2>${Object.keys(by).sort().reverse().map(y=>`
     <h3 class="arch-y">${y}</h3><div class="agrid">${by[y].map(x=>`<a class="acard" href="#${x.ym}" style="--acc:${(x.cover&&x.cover.color)||"#888"}">
-      <div class="aart">${img(x.cover&&x.cover.img,"","")}</div><div class="atx"><span>No. ${x.number} · ${MONTHS[+x.ym.slice(5)-1]}</span>
+      <div class="aart">${img(x.cover&&x.cover.img,"","",{face:x.cover&&x.cover.face,ty:0.32})}</div><div class="atx"><span>No. ${x.number} · ${MONTHS[+x.ym.slice(5)-1]}</span>
       <b>${esc(x.headline||(x.cover?x.cover.label:monthName(x.ym)))}</b></div></a>`).join("")}</div>`).join("")}`;
   $("#issue").hidden=true; $("#archive").hidden=false;
+  requestAnimationFrame(fitAll);
   document.title="Archive · Gacha Tracker Monthly";
   $("#mastLine").innerHTML=`<span>${J.index.issues.length} issues</span><span>${monShort(J.index.issues.at(-1).ym)} – ${monShort(J.index.issues[0].ym)}</span>`;
   scrollTo(0,0);
@@ -241,6 +272,7 @@ async function init(){
   try{ J.index=await getJSON("data/journal/index.json"); }
   catch(e){ $("#issue").innerHTML=`<p class="loading">Couldn't load the journal index.</p>`; return; }
   try{ J.stories=await getJSON("data/journal/stories.json"); }catch(e){ J.stories={}; }
+  try{ J.art=await getJSON("data/journal/art.json"); }catch(e){ J.art={}; }
   addEventListener("hashchange", route);
   route();
 }

@@ -37,6 +37,8 @@ async (tag) => {
       rerun: !!b.rerun, ongoing: !!b.ongoing, start: b.start, end: b.end, rev: b.rev,
       rank: b._rank, year: b.year, yrank: b.yrank, ytot: b.ytot, version: ver(b),
       img: b.banner_img || "", icons: b.icons || [], color: barColor(b),
+      // the art's face point (the Compare collage's own lookup: manual override, else the detector's)
+      face: (() => { const f = typeof cmpFace === "function" && cmpFace(tag, b.name, b.banner_img); return f ? [f.x, f.y] : null; })(),
       jp: b.rank_series || [],
       cn: cn.map(d => [d.iso, d.rank, d.best]),
       qm: { total: qm.total || 0, monthly: Object.fromEntries((qm.months || []).map(m => [m.ym, m.rev])), start: qm.start || null },
@@ -130,7 +132,7 @@ def game_month(G, ym):
                      "jp_peak_run": jpa, "cn_peak_run": cna,
                      "alltime": [b["rank"], G["count"]], "year_rank": [b["yrank"], b["ytot"]] if b["yrank"] else None,
                      "cn_alltime": [b["qmRank"]["rank"], b["qmRank"]["of"]] if b["qmRank"] else None,
-                     "img": b["img"], "icons": b["icons"], "color": b["color"], "agents": b["agents"]})
+                     "img": b["img"], "face": b["face"], "icons": b["icons"], "color": b["color"], "agents": b["agents"]})
     if not rows and not jp and not cn: return None
     rows.sort(key=lambda r: (-(r["rev_month"] or 0), -(r["cn_month"] or 0)))
     # how this month sits in the game's own history (Japan, game-i months only)
@@ -162,8 +164,8 @@ def build_issue(games, ym, number):
     # a banner opening on the month's last days barely shows up; rank new banners by their own run
     debuts = sorted(new, key=lambda r: -(r["rev_total"] or 0))
     return {"ym": ym, "number": number, "built": datetime.date.today().isoformat(),
-            "cover": cover and {k: cover[k] for k in ("label", "tag", "game", "img", "color", "rev_month", "rerun")},
-            "debuts": [{k: r[k] for k in ("label", "tag", "game", "rev_total", "jp_peak_run", "cn_peak_run", "rerun", "ongoing", "img", "icons", "color", "start")} for r in debuts],
+            "cover": cover and {k: cover[k] for k in ("label", "tag", "game", "img", "face", "color", "rev_month", "rerun")},
+            "debuts": [{k: r[k] for k in ("label", "tag", "game", "rev_total", "jp_peak_run", "cn_peak_run", "rerun", "ongoing", "img", "face", "icons", "color", "start")} for r in debuts],
             "games": order}
 
 def main():

@@ -9,6 +9,10 @@
     "tag": "zzz",
     "game": "Zenless Zone Zero",
     "img": "https://upload-os-bbs.hoyolab.com/upload/2026/10/18/9659add7d811b06d707308cdcdcce493_5855896606787464047.png",
+    "face": [
+     26.1,
+     27.2
+    ],
     "color": "#e84012",
     "rev_month": 2.6772,
     "rerun": false
@@ -36,6 +40,10 @@
     "tag": "hsr",
     "game": "Honkai: Star Rail",
     "img": "https://upload-os-bbs.hoyolab.com/upload/community/2026/09/10/f91926920b2123d9146adefd2b0fe1d4_6249783087489241155.png",
+    "face": [
+     22,
+     30
+    ],
     "color": "#4a4ad8",
     "rev_month": 6.41,
     "rerun": false
@@ -63,6 +71,10 @@
     "tag": "hsr",
     "game": "Honkai: Star Rail",
     "img": "https://upload-os-bbs.hoyolab.com/upload/community/2026/08/25/8e66e6e1dfa735fc70fdd4a6c2eb8c6f_7362219746973488405.png",
+    "face": [
+     74,
+     24
+    ],
     "color": "#4fc8a0",
     "rev_month": 6.45,
     "rerun": false
@@ -90,6 +102,10 @@
     "tag": "genshin",
     "game": "Genshin Impact",
     "img": "https://upload-os-bbs.hoyolab.com/upload/2026/06/29/0/781da55472dc1186e3e8d2d93140cf70_7777178998231754007.jpeg",
+    "face": [
+     54.7,
+     30.8
+    ],
     "color": "#7fc8e0",
     "rev_month": 11.51,
     "rerun": false
@@ -117,6 +133,10 @@
     "tag": "hsr",
     "game": "Honkai: Star Rail",
     "img": "https://upload-os-bbs.hoyolab.com/upload/2026/05/28/8c6a586a70cbfda33e3c292437767e27_4773141744358845314.png",
+    "face": [
+     24.6,
+     29.8
+    ],
     "color": "#f0503f",
     "rev_month": 11.42,
     "rerun": false
@@ -144,6 +164,10 @@
     "tag": "hsr",
     "game": "Honkai: Star Rail",
     "img": "https://upload-os-bbs.hoyolab.com/upload/2026/05/06/e2a7174ff666b28fc67a51ffb10af7a2_528218712884697264.png",
+    "face": [
+     28.6,
+     38.8
+    ],
     "color": "#b9b9b9",
     "rev_month": 10.36,
     "rerun": false
@@ -171,6 +195,10 @@
     "tag": "hsr",
     "game": "Honkai: Star Rail",
     "img": "https://upload-os-bbs.hoyolab.com/upload/2026/04/21/8c07b0f887f8bde4ac76b1298471193e_6821004034996987174.png",
+    "face": [
+     27.6,
+     31.4
+    ],
     "color": "#f0d24b",
     "rev_month": 15.5386,
     "rerun": false
@@ -198,6 +226,10 @@
     "tag": "hsr",
     "game": "Honkai: Star Rail",
     "img": "https://upload-os-bbs.hoyolab.com/upload/2026/03/02/e27b9833ce320d3f7c470e5807f0aa42_2757735735473312822.png",
+    "face": [
+     28.3,
+     56.5
+    ],
     "color": "#f0503f",
     "rev_month": 15.89,
     "rerun": false
@@ -224,6 +256,10 @@
     "tag": "wuwa",
     "game": "Wuthering Waves",
     "img": "https://i.mopix.cc/YaWroI.jpg",
+    "face": [
+     69.9,
+     38.6
+    ],
     "color": "#e88fb8",
     "rev_month": 10.98,
     "rerun": false
@@ -250,6 +286,10 @@
     "tag": "genshin",
     "game": "Genshin Impact",
     "img": "https://pbs.twimg.com/media/G-blMLpXMAAPNmR.jpg",
+    "face": [
+     48.5,
+     23.1
+    ],
     "color": "#f0684a",
     "rev_month": 15.8104,
     "rerun": false
@@ -276,6 +316,10 @@
     "tag": "zzz",
     "game": "Zenless Zone Zero",
     "img": "https://pbs.twimg.com/media/G8fXNxcXIAE6Xp-.jpg",
+    "face": [
+     28,
+     36.9
+    ],
     "color": "#f0b02e",
     "rev_month": 8.2906,
     "rerun": false
@@ -301,6 +345,10 @@
     "tag": "hsr",
     "game": "Honkai: Star Rail",
     "img": "https://upload-os-bbs.hoyolab.com/upload/2025/10/28/ee015367a081b9889b32878ba9d8e78e_7222742705258423855.jpg",
+    "face": [
+     72.3,
+     45.6
+    ],
     "color": "#5fc7e8",
     "rev_month": 19.51,
     "rerun": false
@@ -326,6 +374,10 @@
     "tag": "hsr",
     "game": "Honkai: Star Rail",
     "img": "https://upload-os-bbs.hoyolab.com/upload/2025/10/10/f696aa5387278dc4f1d991f94e8ffe92_7545657641864917271.png",
+    "face": [
+     55.2,
+     40.1
+    ],
     "color": "#b9b9b9",
     "rev_month": 4.9939,
     "rerun": false
@@ -351,6 +403,10 @@
     "tag": "hsr",
     "game": "Honkai: Star Rail",
     "img": "https://upload-os-bbs.hoyolab.com/upload/2025/09/22/b48cea6bd934735b1c268e4455002366_5391058018832163727.png",
+    "face": [
+     55.9,
+     39.4
+    ],
     "color": "#5fc7e8",
     "rev_month": 11.2065,
     "rerun": false
@@ -374,6 +430,10 @@
     "tag": "hsr",
     "game": "Honkai: Star Rail",
     "img": "https://upload-os-bbs.hoyolab.com/upload/2025/08/11/82cdd59cd0d4a563d26c277493040746_3234602174256542058.png",
+    "face": [
+     58.9,
+     39.6
+    ],
     "color": "#b9b9b9",
     "rev_month": 8.5846,
     "rerun": false
@@ -397,6 +457,10 @@
     "tag": "hsr",
     "game": "Honkai: Star Rail",
     "img": "https://upload-os-bbs.hoyolab.com/upload/2025/06/30/0f55744e64638a293c4e712c213fb7a3_6818180084291571132.png",
+    "face": [
+     64.5,
+     40.1
+    ],
     "color": "#b9b9b9",
     "rev_month": 22.18,
     "rerun": false
@@ -420,6 +484,10 @@
     "tag": "zzz",
     "game": "Zenless Zone Zero",
     "img": "https://upload-os-bbs.hoyolab.com/upload/2025/05/31/0/b68c1b88a12a4d3e3ec45c55af13f562_53862237629036960.jpeg",
+    "face": [
+     70.1,
+     26.1
+    ],
     "color": "#e0b83a",
     "rev_month": 11.52,
     "rerun": false
@@ -443,6 +511,10 @@
     "tag": "hsr",
     "game": "Honkai: Star Rail",
     "img": "https://upload-os-bbs.hoyolab.com/upload/2025/05/19/c2c1c6671c0757f60d07067902a16740_5706429163957003333.png",
+    "face": [
+     59,
+     38.8
+    ],
     "color": "#4fc8a0",
     "rev_month": 12.2961,
     "rerun": false
@@ -466,6 +538,10 @@
     "tag": "hsr",
     "game": "Honkai: Star Rail",
     "img": "https://upload-os-bbs.hoyolab.com/upload/2025/04/07/27447deda57308e280d513cab1dd160b_6414601962120357039.png",
+    "face": [
+     62.2,
+     40.4
+    ],
     "color": "#4a4ad8",
     "rev_month": 24.6,
     "rerun": false
@@ -489,6 +565,10 @@
     "tag": "hsr",
     "game": "Honkai: Star Rail",
     "img": "https://upload-os-bbs.hoyolab.com/upload/2025/03/17/167aa3c663e94c7b5d33617551616b5b_7624999381991197609.png",
+    "face": [
+     83.9,
+     39.7
+    ],
     "color": "#f0d24b",
     "rev_month": 7.515,
     "rerun": false
@@ -512,6 +592,10 @@
     "tag": "hsr",
     "game": "Honkai: Star Rail",
     "img": "https://upload-os-bbs.hoyolab.com/upload/2025/01/26/ff04dc2750320f22838e7c99be88b854_8183225600223947491.png",
+    "face": [
+     65.1,
+     39.9
+    ],
     "color": "#c56af0",
     "rev_month": 9.73,
     "rerun": false
@@ -535,6 +619,10 @@
     "tag": "genshin",
     "game": "Genshin Impact",
     "img": "https://upload-os-bbs.hoyolab.com/upload/2024/12/27/0/42cec471ee55ebcd3dac4c9cc39c33a4_3081370112186905576.jpeg",
+    "face": [
+     47.5,
+     25.3
+    ],
     "color": "#f0684a",
     "rev_month": 20.58,
     "rerun": false
@@ -558,6 +646,10 @@
     "tag": "zzz",
     "game": "Zenless Zone Zero",
     "img": "https://upload-os-bbs.hoyolab.com/upload/2024/12/16/77bc086606152db4e9ac4a5a41581c73_1873391038276700699.png",
+    "face": [
+     70.6,
+     30.8
+    ],
     "color": "#4f8fe0",
     "rev_month": 13.05,
     "rerun": false
@@ -581,6 +673,10 @@
     "tag": "hsr",
     "game": "Honkai: Star Rail",
     "img": "https://upload-os-bbs.hoyolab.com/upload/2024/11/11/238774211f9f12c3b626b6f63d2fff60_7129866645847237397.jpg",
+    "face": [
+     82.4,
+     42.2
+    ],
     "color": "#c56af0",
     "rev_month": 7.8004,
     "rerun": true
@@ -604,6 +700,10 @@
     "tag": "hsr",
     "game": "Honkai: Star Rail",
     "img": "https://upload-os-bbs.hoyolab.com/upload/2024/09/27/3351d21fc2220a64f7abdf9cedcd8c5d_6375580495504659476.jpg",
+    "face": [
+     49.2,
+     37
+    ],
     "color": "#f0503f",
     "rev_month": 10.37,
     "rerun": false
@@ -627,6 +727,10 @@
     "tag": "hsr",
     "game": "Honkai: Star Rail",
     "img": "https://upload-os-bbs.hoyolab.com/upload/2024/08/29/7d99e8bde818d13a54bdf0a7eada8d3f_1801706652461444902.jpg",
+    "face": [
+     49.9,
+     35.8
+    ],
     "color": "#4fc8a0",
     "rev_month": 18.5112,
     "rerun": false
@@ -650,6 +754,10 @@
     "tag": "zzz",
     "game": "Zenless Zone Zero",
     "img": "https://upload-os-bbs.hoyolab.com/upload/2024/08/12/e2fb82fce9aebbc008a3caa7ce347859_6557508229557722076.png",
+    "face": [
+     79.5,
+     35.6
+    ],
     "color": "#6f7ce0",
     "rev_month": 9.1263,
     "rerun": false
@@ -673,6 +781,10 @@
     "tag": "zzz",
     "game": "Zenless Zone Zero",
     "img": "https://upload-os-bbs.hoyolab.com/upload/2024/07/03/6bba29d65ca1eedb223a9d9c94b33941_5499962239353471418.jpg",
+    "face": [
+     75.1,
+     33.2
+    ],
     "color": "#5cc4ea",
     "rev_month": 20.41,
     "rerun": false
@@ -696,6 +808,10 @@
     "tag": "hsr",
     "game": "Honkai: Star Rail",
     "img": "https://upload-os-bbs.hoyolab.com/upload/2024/06/17/7d918c34d914905c841ff3fb60db6a37_3527533942708609984.jpg",
+    "face": [
+     57.3,
+     33.8
+    ],
     "color": "#f0503f",
     "rev_month": 20.2837,
     "rerun": false
@@ -718,6 +834,10 @@
     "tag": "hsr",
     "game": "Honkai: Star Rail",
     "img": "https://upload-os-bbs.hoyolab.com/upload/2024/05/06/1b55e350ac3b526dda835d2b0c4ed716_174149695325607706.jpg",
+    "face": [
+     53.7,
+     27.5
+    ],
     "color": "#b9b9b9",
     "rev_month": 19.22,
     "rerun": false
@@ -740,6 +860,10 @@
     "tag": "hsr",
     "game": "Honkai: Star Rail",
     "img": "https://upload-os-bbs.hoyolab.com/upload/2024/04/16/231b619075ed159939e5a23bb0c8e5c7_8114377701622392138.jpg",
+    "face": [
+     47.7,
+     27.3
+    ],
     "color": "#f0d24b",
     "rev_month": 15.0702,
     "rerun": false
@@ -761,6 +885,10 @@
     "tag": "hsr",
     "game": "Honkai: Star Rail",
     "img": "https://upload-os-bbs.hoyolab.com/upload/2024/03/26/d3cfcc45510d72563d39c9101d919dbb_5639048768455787790.png",
+    "face": [
+     46,
+     27.6
+    ],
     "color": "#c56af0",
     "rev_month": 19.5214,
     "rerun": false
@@ -782,6 +910,10 @@
     "tag": "hsr",
     "game": "Honkai: Star Rail",
     "img": "https://upload-os-bbs.hoyolab.com/upload/2024/02/05/a474e1ad0bdb9c70bb7f2e810d66ca22_8185363732810897994.jpg",
+    "face": [
+     44,
+     35.9
+    ],
     "color": "#4fc8a0",
     "rev_month": 14.28,
     "rerun": false
@@ -803,6 +935,10 @@
     "tag": "genshin",
     "game": "Genshin Impact",
     "img": "https://img.gamewith.jp/img/original_6f88961e07a3956f3239879e2099b633.jpg",
+    "face": [
+     51.5,
+     29.5
+    ],
     "color": "#b57fd4",
     "rev_month": 13.38,
     "rerun": true
@@ -824,6 +960,10 @@
     "tag": "genshin",
     "game": "Genshin Impact",
     "img": "https://fastcdn.hoyoverse.com/content-v2/hk4e/114014/40958bf8aaf8d02564ce7aace9f67964_8283254283739051781.jpg",
+    "face": [
+     70.8,
+     32.3
+    ],
     "color": "#e0b23c",
     "rev_month": 11.8303,
     "rerun": false
@@ -844,6 +984,10 @@
     "tag": "genshin",
     "game": "Genshin Impact",
     "img": "https://fastcdn.hoyoverse.com/content-v2/hk4e/113512/d86e3ecbcfc9b4c0421d742d1f59d702_990398834884337294.jpg",
+    "face": [
+     26.5,
+     46
+    ],
     "color": "#4a90d9",
     "rev_month": 20.19,
     "rerun": false
@@ -864,6 +1008,10 @@
     "tag": "hsr",
     "game": "Honkai: Star Rail",
     "img": "https://static.wikia.nocookie.net/houkai-star-rail/images/e/e0/Gentle_Eclipse_of_the_Moon_2023-10-11.png",
+    "face": [
+     62.6,
+     18
+    ],
     "color": "#5fc7e8",
     "rev_month": 18.63,
     "rerun": false
@@ -884,6 +1032,10 @@
     "tag": "hsr",
     "game": "Honkai: Star Rail",
     "img": "https://static.wikia.nocookie.net/houkai-star-rail/images/2/21/Foreseen%2C_Foreknown%2C_Foretold_2023-09-20.png",
+    "face": [
+     64.8,
+     20
+    ],
     "color": "#4a4ad8",
     "rev_month": 15.2899,
     "rerun": false
@@ -904,6 +1056,10 @@
     "tag": "hsr",
     "game": "Honkai: Star Rail",
     "img": "https://static.wikia.nocookie.net/houkai-star-rail/images/0/0b/Nessun_Dorma_2023-08-09.png",
+    "face": [
+     63,
+     14.5
+    ],
     "color": "#c56af0",
     "rev_month": 23.52,
     "rerun": false
@@ -924,6 +1080,10 @@
     "tag": "hsr",
     "game": "Honkai: Star Rail",
     "img": "https://static.wikia.nocookie.net/houkai-star-rail/images/5/57/A_Lost_Soul_2023-07-19.png",
+    "face": [
+     65.4,
+     11.5
+    ],
     "color": "#4fc8a0",
     "rev_month": 12.9688,
     "rerun": false
@@ -944,6 +1104,10 @@
     "tag": "hsr",
     "game": "Honkai: Star Rail",
     "img": "https://static.wikia.nocookie.net/houkai-star-rail/images/c/ce/Contract_Zero_2023-06-07.png",
+    "face": [
+     72.1,
+     35
+    ],
     "color": "#4a4ad8",
     "rev_month": 17.23,
     "rerun": false
@@ -964,6 +1128,10 @@
     "tag": "hsr",
     "game": "Honkai: Star Rail",
     "img": "https://static.wikia.nocookie.net/houkai-star-rail/images/2/2f/Swirl_of_Heavenly_Spear_2023-05-17.png",
+    "face": [
+     29.7,
+     59.8
+    ],
     "color": "#c56af0",
     "rev_month": 16.6662,
     "rerun": false
@@ -984,6 +1152,10 @@
     "tag": "genshin",
     "game": "Genshin Impact",
     "img": "https://paimon.moe/images/banners/The%20Moongrass'%20Enlightenment%202.png",
+    "face": [
+     46.8,
+     21
+    ],
     "color": "#84c23c",
     "rev_month": 11.4479,
     "rerun": true
@@ -1004,6 +1176,10 @@
     "tag": "genshin",
     "game": "Genshin Impact",
     "img": "https://paimon.moe/images/banners/Auric%20Blaze%201.png",
+    "face": [
+     52.4,
+     19.9
+    ],
     "color": "#f0684a",
     "rev_month": 7.15,
     "rerun": false
@@ -1023,6 +1199,10 @@
     "tag": "genshin",
     "game": "Genshin Impact",
     "img": "https://paimon.moe/images/banners/Moment%20of%20Bloom%203.png",
+    "face": [
+     64.3,
+     26.5
+    ],
     "color": "#f0684a",
     "rev_month": 18.83,
     "rerun": true
@@ -1042,6 +1222,10 @@
     "tag": "genshin",
     "game": "Genshin Impact",
     "img": "https://paimon.moe/images/events/caution_in_confidence_1.jpg",
+    "face": [
+     55.4,
+     19
+    ],
     "color": "#84c23c",
     "rev_month": 11.4943,
     "rerun": false
@@ -1061,6 +1245,10 @@
     "tag": "genshin",
     "game": "Genshin Impact",
     "img": "https://paimon.moe/images/banners/From%20Ashes%20Reborn%201.png",
+    "face": [
+     53.4,
+     20.9
+    ],
     "color": "#57c69a",
     "rev_month": 14.79,
     "rerun": false
@@ -1080,6 +1268,10 @@
     "tag": "genshin",
     "game": "Genshin Impact",
     "img": "https://paimon.moe/images/banners/The%20Moongrass'%20Enlightenment%201.png",
+    "face": [
+     49.3,
+     24.5
+    ],
     "color": "#84c23c",
     "rev_month": 17.39,
     "rerun": false
@@ -1099,6 +1291,10 @@
     "tag": "genshin",
     "game": "Genshin Impact",
     "img": "https://img.gamewith.jp/article/thumbnail/rectangle/367009.png",
+    "face": [
+     72.1,
+     26.2
+    ],
     "color": "#4a90d9",
     "rev_month": 7.1504,
     "rerun": false
@@ -1118,6 +1314,10 @@
     "tag": "genshin",
     "game": "Genshin Impact",
     "img": "https://paimon.moe/images/events/adrift_in_the_harbor_3.jpg",
+    "face": [
+     53.7,
+     19.6
+    ],
     "color": "#7fc8e0",
     "rev_month": 14.8,
     "rerun": true
@@ -1137,6 +1337,10 @@
     "tag": "genshin",
     "game": "Genshin Impact",
     "img": "https://paimon.moe/images/banners/Tapestry%20of%20Golden%20Flames%202.png",
+    "face": [
+     52.1,
+     31.5
+    ],
     "color": "#f0684a",
     "rev_month": 14.35,
     "rerun": true
@@ -1156,6 +1360,10 @@
     "tag": "genshin",
     "game": "Genshin Impact",
     "img": "https://paimon.moe/images/banners/Leaves%20in%20the%20Wind%202.png",
+    "face": [
+     54.1,
+     23.2
+    ],
     "color": "#57c69a",
     "rev_month": 21.3015,
     "rerun": true
@@ -1175,6 +1383,10 @@
     "tag": "genshin",
     "game": "Genshin Impact",
     "img": "https://paimon.moe/images/events/onis_royale_2.jpg",
+    "face": [
+     47,
+     22.9
+    ],
     "color": "#e0b23c",
     "rev_month": 5.8763,
     "rerun": true
@@ -1194,6 +1406,10 @@
     "tag": "genshin",
     "game": "Genshin Impact",
     "img": "https://paimon.moe/images/banners/Discerner%20of%20Enigmas%201.png",
+    "face": [
+     50.1,
+     22.7
+    ],
     "color": "#4a90d9",
     "rev_month": 0.8317,
     "rerun": false
@@ -1213,6 +1429,10 @@
     "tag": "genshin",
     "game": "Genshin Impact",
     "img": "https://paimon.moe/images/banners/The%20Herons%20Court%202.png",
+    "face": [
+     53.7,
+     28.4
+    ],
     "color": "#7fc8e0",
     "rev_month": 16.3546,
     "rerun": true
@@ -1232,6 +1452,10 @@
     "tag": "genshin",
     "game": "Genshin Impact",
     "img": "https://paimon.moe/images/banners/Reign%20of%20Serenity%202.png",
+    "face": [
+     57.5,
+     18.9
+    ],
     "color": "#b57fd4",
     "rev_month": 20.27,
     "rerun": true
@@ -1251,6 +1475,10 @@
     "tag": "genshin",
     "game": "Genshin Impact",
     "img": "https://gamenoshirase.com/wp-content/uploads/2022/02/k-0005_chara_029.jpg",
+    "face": [
+     52.7,
+     25.8
+    ],
     "color": "#b57fd4",
     "rev_month": 14.4891,
     "rerun": false
@@ -1270,6 +1498,10 @@
     "tag": "genshin",
     "game": "Genshin Impact",
     "img": "https://paimon.moe/images/banners/The%20Transcendent%20One%20Returns%201.png",
+    "face": [
+     55.8,
+     25.9
+    ],
     "color": "#7fc8e0",
     "rev_month": 23.47,
     "rerun": false
@@ -1289,6 +1521,10 @@
     "tag": "genshin",
     "game": "Genshin Impact",
     "img": "https://gamenoshirase.com/wp-content/uploads/2021/12/k-0005_chara_024.jpg",
+    "face": [
+     47.5,
+     27.4
+    ],
     "color": "#e0b23c",
     "rev_month": 9.75,
     "rerun": false
@@ -1308,6 +1544,10 @@
     "tag": "genshin",
     "game": "Genshin Impact",
     "img": "https://gamenoshirase.com/wp-content/uploads/2021/10/k-0005_chara_021.jpg",
+    "face": [
+     62.6,
+     29.6
+    ],
     "color": "#f0684a",
     "rev_month": 24.68,
     "rerun": true
@@ -1327,6 +1567,10 @@
     "tag": "genshin",
     "game": "Genshin Impact",
     "img": "https://gamenoshirase.com/wp-content/uploads/2021/10/k-0005_chara_020.jpg",
+    "face": [
+     54.2,
+     26.2
+    ],
     "color": "#4a90d9",
     "rev_month": 13.3924,
     "rerun": true
@@ -1346,6 +1590,10 @@
     "tag": "genshin",
     "game": "Genshin Impact",
     "img": "https://gamenoshirase.com/wp-content/uploads/2021/08/k-0005_chara_018.jpg",
+    "face": [
+     57.2,
+     22.5
+    ],
     "color": "#b57fd4",
     "rev_month": 21.02,
     "rerun": false
@@ -1365,6 +1613,10 @@
     "tag": "genshin",
     "game": "Genshin Impact",
     "img": "https://gamenoshirase.com/wp-content/uploads/2021/08/k-0005_chara_017.jpg",
+    "face": [
+     52,
+     33.7
+    ],
     "color": "#f0684a",
     "rev_month": 11.98,
     "rerun": false
@@ -1384,6 +1636,10 @@
     "tag": "genshin",
     "game": "Genshin Impact",
     "img": "https://gamenoshirase.com/wp-content/uploads/2021/07/k-0005_chara_016.jpg",
+    "face": [
+     54.2,
+     25.4
+    ],
     "color": "#7fc8e0",
     "rev_month": 8.0868,
     "rerun": false
@@ -1403,6 +1659,10 @@
     "tag": "genshin",
     "game": "Genshin Impact",
     "img": "https://gamenoshirase.com/wp-content/uploads/2021/06/k-0005_chara_014.jpg",
+    "face": [
+     55,
+     32
+    ],
     "color": "#f0684a",
     "rev_month": 10.13,
     "rerun": true
@@ -1422,6 +1682,10 @@
     "tag": "genshin",
     "game": "Genshin Impact",
     "img": "https://gamenoshirase.com/wp-content/uploads/2021/05/k-0005_chara_013.jpg",
+    "face": [
+     56.9,
+     31.4
+    ],
     "color": "#7fc8e0",
     "rev_month": 10.2035,
     "rerun": false
@@ -1441,6 +1705,10 @@
     "tag": "genshin",
     "game": "Genshin Impact",
     "img": "https://gamenoshirase.com/wp-content/uploads/2021/04/k-0005_chara_011.jpg",
+    "face": [
+     53,
+     22.4
+    ],
     "color": "#4a90d9",
     "rev_month": 11.58,
     "rerun": true
@@ -1460,6 +1728,10 @@
     "tag": "genshin",
     "game": "Genshin Impact",
     "img": "https://gamenoshirase.com/wp-content/uploads/2021/04/k-0005_chara_009.jpg",
+    "face": [
+     62.6,
+     32.1
+    ],
     "color": "#f0684a",
     "rev_month": 12.67,
     "rerun": false
@@ -1479,6 +1751,10 @@
     "tag": "genshin",
     "game": "Genshin Impact",
     "img": "https://gamenoshirase.com/wp-content/uploads/2021/04/k-0005_chara_007.jpg",
+    "face": [
+     48.2,
+     26.8
+    ],
     "color": "#57c69a",
     "rev_month": 10.64,
     "rerun": false
@@ -1497,6 +1773,10 @@
     "tag": "genshin",
     "game": "Genshin Impact",
     "img": "https://gamenoshirase.com/wp-content/uploads/2021/04/k-0005_chara_006.jpg",
+    "face": [
+     53,
+     23.2
+    ],
     "color": "#7fc8e0",
     "rev_month": 19.7908,
     "rerun": false
@@ -1515,6 +1795,10 @@
     "tag": "genshin",
     "game": "Genshin Impact",
     "img": "https://gamenoshirase.com/wp-content/uploads/2021/04/k-0005_chara_004.jpg",
+    "face": [
+     52.2,
+     17.6
+    ],
     "color": "#e0b23c",
     "rev_month": 18.06,
     "rerun": false
@@ -1533,6 +1817,10 @@
     "tag": "genshin",
     "game": "Genshin Impact",
     "img": "https://paimon.moe/images/banners/Farewell%20of%20Snezhnaya%201.png",
+    "face": [
+     62.6,
+     18.7
+    ],
     "color": "#4a90d9",
     "rev_month": 14.9165,
     "rerun": false
@@ -1551,6 +1839,10 @@
     "tag": "genshin",
     "game": "Genshin Impact",
     "img": "https://gamenoshirase.com/wp-content/uploads/2021/04/k-0005_chara_002.jpg",
+    "face": [
+     56.9,
+     22.2
+    ],
     "color": "#f0684a",
     "rev_month": 15.2802,
     "rerun": false
@@ -1569,6 +1861,10 @@
     "tag": "genshin",
     "game": "Genshin Impact",
     "img": "https://gamenoshirase.com/wp-content/uploads/2021/04/k-0005_chara_001.jpg",
+    "face": [
+     43,
+     26.6
+    ],
     "color": "#57c69a",
     "rev_month": 1.4211,
     "rerun": false
