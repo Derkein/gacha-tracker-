@@ -229,9 +229,22 @@ def duel(a, b):
         if x and (not y or (x < y if low else x > y)): sa += 1; per[k] = "a"
         elif y and (not x or (y < x if low else y > x)): sb += 1; per[k] = "b"
         else: per[k] = "="
-    win = "a" if sa > sb else "b" if sb > sa else ("a" if wa["jp"] >= wb["jp"] else "b")
-    return {"n": n, "a": wa, "b": wb, "per": per, "score": [sa, sb], "win": win}
+    win = "a" if sa > sb else "b" if sb > sa else None
+    how = None
+    if win is None:
+        # 2-2. A banner with no China data at all (its game isn't sold there) only picks up its two
+        # points in Japan, so it doesn't get the tie for free: it must out-earn the other in Japan by
+        # NO_CN_EDGE over the window, otherwise the banner measured in both markets wins.
+        noa, nob = not (wa["cn"] or wa["cn_peak"]), not (wb["cn"] or wb["cn_peak"])
+        if noa != nob:
+            lone, full = ("a", "b") if noa else ("b", "a")
+            wl, wf = (wa, wb) if noa else (wb, wa)
+            win = lone if wl["jp"] >= NO_CN_EDGE * wf["jp"] else full; how = "nocn"
+        else:
+            win = "a" if wa["jp"] >= wb["jp"] else "b"; how = "jp"
+    return {"n": n, "a": wa, "b": wb, "per": per, "score": [sa, sb], "win": win, "how": how}
 
+NO_CN_EDGE = 1.5         # a China-less banner wins a 2-2 only with 1.5x the other's Japan revenue
 MIN_DUEL_DAYS = 3        # fewer days in the month than this: listed as too new to rank, not ranked
 
 def duel_order(rows):
@@ -263,7 +276,7 @@ def duel_order(rows):
         i, j = pair; d = res[(min(i, j), max(i, j))]
         if d:
             a, b = (rows[i], rows[j]) if i < j else (rows[j], rows[i])
-            ex = {"n": d["n"], "per": d["per"], "score": d["score"], "win": d["win"],
+            ex = {"n": d["n"], "per": d["per"], "score": d["score"], "win": d["win"], "how": d["how"],
                   "a": {"label": a["label"], "tag": a["tag"], "days": a["days"], **d["a"]},
                   "b": {"label": b["label"], "tag": b["tag"], "days": b["days"], **d["b"]}}
     rows[:] = [rows[i] for i in order] + late

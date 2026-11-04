@@ -540,7 +540,7 @@ function howOpen(){
       ${esc(x.a.label)} had ${plural(x.a.days,"day")} in the month and ${esc(x.b.label)} ${x.b.days}, so both are read at <b>day ${x.n}</b>:</p>
     <table class="how-t"><tr><th></th><th>${esc(x.a.label)}</th><th>${esc(x.b.label)}</th></tr>
       ${Object.keys(W).filter(k=>x.per[k]).map(k=>`<tr><td>${W[k]}</td><td class="${x.per[k]==="a"?"w":""}">${val(k,x.a[k])}</td><td class="${x.per[k]==="b"?"w":""}">${val(k,x.b[k])}</td></tr>`).join("")}</table>
-    <p class="how-ex">${x.score[0]}–${x.score[1]}${x.score[0]===x.score[1]?", so Japan revenue decides":""}: <b>${esc(x.win==="a"?x.a.label:x.b.label)}</b> wins the head-to-head.</p>` : "";
+    <p class="how-ex">${x.score[0]}–${x.score[1]}${x.how==="nocn"?", and one side has no China data, so the 1.5× Japan rule decides":x.score[0]===x.score[1]?", so Japan revenue decides":""}: <b>${esc(x.win==="a"?x.a.label:x.b.label)}</b> wins the head-to-head.</p>` : "";
   return `
     <p>Openings start on different days, so comparing whole months isn't fair: one that opened on the 21st has had fewer days than one from the 15th.
       Every opening is played <b>head to head</b> against every other one, over the <b>same number of days</b>:</p>
@@ -548,7 +548,8 @@ function howOpen(){
     ${MEDIAN_RULES}
     <ul>
       <li>Both banners are measured over their own first days up to that window, so each pair gets its own window.</li>
-      <li>A 2–2 split goes to Japan revenue over the window. A missing value (China for a game not released there) loses that measure.</li>
+      <li>A missing value loses that measure. A 2–2 split goes to Japan revenue over the window.</li>
+      <li><b>No China data, no free tie.</b> A banner from a game not sold in China (Umamusume) can only score in Japan, so it wins a 2–2 only if it made at least <b>1.5×</b> the other banner's Japan revenue over the window. Otherwise the banner measured in both markets wins.</li>
       <li>The order is the number of head-to-heads won. Two banners on the same count are split by their own head-to-head.</li>
       <li>A banner with fewer than 3 days in the month is listed as too new to rank: a day or two of data is too little to judge.</li>
     </ul>
