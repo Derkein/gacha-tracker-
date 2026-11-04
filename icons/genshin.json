@@ -609,16 +609,6 @@
   "accent": "#7fc8e0",
   "en": "Sandrone"
  },
- "ミティヤ": {
-  "icon": "https://enka.network/ui/UI_AvatarIcon_Mitya.png",
-  "accent": "#b57fd4",
-  "en": "ミティヤ"
- },
- "バレリー": {
-  "icon": "https://enka.network/ui/UI_AvatarIcon_Valeriy.png",
-  "accent": "#b57fd4",
-  "en": "バレリー"
- },
  "ヴォジャニーツァ": {
   "icon": "https://enka.network/ui/UI_AvatarIcon_Vodyanitsa.png",
   "accent": "#4a90d9",
