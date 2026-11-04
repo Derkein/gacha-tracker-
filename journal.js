@@ -22,6 +22,17 @@ function fmtUSD(v){ if(!(v>0)) return "$0";
   if(v>=1e9) return "$"+(v/1e9).toFixed(2)+"B"; if(v>=1e8) return "$"+Math.round(v/1e6)+"M";
   if(v>=1e7) return "$"+(v/1e6).toFixed(1)+"M"; if(v>=1e6) return "$"+(v/1e6).toFixed(2)+"M";
   if(v>=1e3) return "$"+Math.round(v/1e3)+"K"; return "$"+Math.round(v); }
+// CN¥ ranges, compact like the tracker's by-Month cells: "CN¥4.57–5.34B", "CN¥191–228M"
+function fmtCNYr(lo, hi){
+  const band=v=> v>=1e9?["B",1e9,2] : v>=1e6?["M",1e6,0] : ["K",1e3,0];
+  const [ua,da,pa]=band(lo); if(hi==null||hi===lo) return "CN¥"+(lo/da).toFixed(pa)+ua;
+  const [ub,db,pb]=band(hi);
+  return ua===ub ? `CN¥${(lo/da).toFixed(pa)}–${(hi/db).toFixed(pb)}${ub}` : `CN¥${(lo/da).toFixed(pa)}${ua}–${(hi/db).toFixed(pb)}${ub}`;
+}
+// The 总流水 tag: those figures come from a Bilibili chart published weeks after the month
+// closes, so every issue marks them — "added later", or "pending" while the video isn't out.
+const ZL_TIP = "总流水 (global all-platform gross, CN¥) comes from 天天背锅崩坏娘's monthly Bilibili chart, published weeks after the month ends, so it is added to each issue later than everything else. Rank-derived estimates, shown as the author's range.";
+const lateTag = pending => `<span class="late${pending?" pending":""}" title="${esc(ZL_TIP)}"><i></i>${pending?"Pending":"Added later"}</span>`;
 const monthName = ym => MONTHS[+ym.slice(5)-1]+" "+ym.slice(0,4);
 const monShort = ym => MONTHS[+ym.slice(5)-1].slice(0,3)+" "+ym.slice(0,4);
 const dayStr = iso => iso ? MONTHS[+iso.slice(5,7)-1].slice(0,3)+" "+(+iso.slice(8)) : "";
@@ -246,6 +257,67 @@ function rankChart(f, key, fmt, title, sub){
       <span class="bar"><i style="width:${(g[key]/max*100).toFixed(1)}%"></i></span>
       <span class="val">${fmt(g[key])}</span><span class="chg ${p==null?"":p>=0?"up":"dn"}">${pctStr(p)}</span></li>`; }).join("")}</ol></div>`;
 }
+// ---- the month in totals: every tracked game added up, per source, plus Japan vs China ----
+const pctOf = m => m && m.same_prev>0 ? (m.same/m.same_prev-1)*100 : null;
+function yearPhrase(m, ym){
+  if(!m || m.year_n<3) return "";
+  const y=ym.slice(0,4);
+  if(m.year_rank===1) return `its best month of ${y} so far`;
+  if(m.year_rank===m.year_n) return `its worst month of ${y} so far`;
+  return `${ord(m.year_rank)} of ${m.year_n} months in ${y}`;
+}
+function marketCopy(f){
+  const mk=f.market||{}, jp=mk.jp, cn=mk.cn, mo=MONTHS[+f.ym.slice(5)-1], out=[];
+  const pj=pctOf(jp), pc=pctOf(cn);
+  if(jp){
+    const red=jp.down.length, n=jp.same_n;
+    let s = red===n ? `Every single game ended ${mo} in the red in Japan.`
+      : red>n/2 ? `${red} of ${n} games ended ${mo} in the red in Japan.`
+      : red===n/2 ? `Half the games went backwards in Japan: ${red} of ${n}.`
+      : red ? `${red} of ${n} games lost ground in Japan; ${jp.up.length} grew.` : `Every game grew in Japan.`;
+    const yp=yearPhrase(jp,f.ym);
+    s+=` Japan took ${fmtG(jp.total)} from the tracked games${pj!=null?`, ${pj>=0?"up":"down"} ${Math.abs(pj).toFixed(0)}% on the month`:""}${yp?`: ${yp}`:""}.`;
+    out.push(s);
+  }
+  if(cn){
+    const yp=yearPhrase(cn,f.ym);
+    out.push(`China's iPhone store added ${fmtUSD(cn.total)}${pc!=null?`, ${pc>=0?"up":"down"} ${Math.abs(pc).toFixed(0)}%`:""}, with ${cn.down.length} of ${cn.same_n} games down${yp?`: ${yp}`:""}.`);
+  }
+  if(pj!=null && pc!=null){
+    if(pj>=0 && pc<0) out.push(`The markets split: Japan spent more while China pulled back.`);
+    else if(pj<0 && pc>=0) out.push(`The markets split: China spent more while Japan pulled back.`);
+    else if(pj<=-10 && pc<=-10) out.push(pick("both-down",[`Both markets fell hard. Nobody was spending.`, `A cold month in both markets.`, `Japan and China both closed their wallets.`]));
+    else if(pj<0 && pc<0) out.push(`Both markets slipped.`);
+    else if(pj>=10 && pc>=10) out.push(pick("both-up",[`Both markets boomed.`, `Wallets open in both markets.`]));
+    else out.push(`Both markets grew a little.`);
+  }
+  const mv=(m,dir)=>{ const t=m&&m[dir][0]; return t?`${SHORT[t]} (${pctStr(m.chg[t]*100)})`:null; };
+  const ups=mv(jp,"up"), dns=mv(jp,"down");
+  if(ups||dns) out.push(`In Japan, ${[ups&&`${ups} led the risers`, dns&&`${dns} the fallers`].filter(Boolean).join(" and ")}.`);
+  return out;
+}
+function marketHTML(f){
+  const mk=f.market||{}; if(!mk.jp && !mk.cn) return "";
+  const mo=MONTHS[+f.ym.slice(5)-1];
+  const tile=(k,label,src,val,m,extra)=>{ const p=pctOf(m);
+    return `<div class="mt-tile${k==="zl"?" zl":""}"><span class="mt-k">${label}</span><b>${val}</b>
+      <em class="${p==null?"":p>=0?"up":"dn"}">${p==null?"&nbsp;":pctStr(p)+" on "+MONTHS[+prevYm(f.ym).slice(5)-1].slice(0,3)}</em>
+      <small>${src}${m?` · ${plural(m.n,"game")}${m.year_n>=2?` · ${ord(m.year_rank)} of ${m.year_n} in ${f.ym.slice(0,4)}`:""}`:""}</small>${extra||""}</div>`; };
+  const zl=mk.zl;
+  const zlTile = zl ? tile("zl",`China 总流水 ${lateTag(false)}`,`all platforms${zl.video?` · <a href="https://www.bilibili.com/video/${esc(zl.video)}" target="_blank" rel="noopener">source video</a>`:""}`,fmtCNYr(zl.lo,zl.hi),zl)
+    : mk.zl_pending ? `<div class="mt-tile zl"><span class="mt-k">China 总流水 ${lateTag(true)}</span><b class="mu">Not out yet</b><em>&nbsp;</em>
+        <small>The Bilibili chart for ${mo} usually lands weeks after the month closes.</small></div>` : "";
+  const col=(m,label,fmtv)=>{ if(!m) return "";
+    const rows=Object.entries(m.chg).sort((a,b)=>b[1]-a[1]);
+    const mx=Math.max(...rows.map(r=>Math.abs(r[1])),0.01);
+    return `<div class="mcol"><h4>${label}</h4><ol class="mchg">${rows.map(([t,c])=>`<li class="${c>=0?"up":"dn"}" style="--gacc:${GAME_ACCENT[t]}">
+      <span class="nm">${esc(SHORT[t])}</span><span class="cbar"><i style="width:${(Math.abs(c)/mx*50).toFixed(1)}%"></i></span><span class="cv">${pctStr(c*100)}</span></li>`).join("")}</ol></div>`; };
+  return `<section class="market"><div class="sec-k">The month in totals</div><h3 class="sec-h">Every tracked gacha, added up</h3>
+    <div class="mtiles">${mk.jp?tile("jp","Japan","game-i · App Store + Google Play",fmtG(mk.jp.total),mk.jp):""}${mk.cn?tile("cn","China iPhone","Qimai · App Store",fmtUSD(mk.cn.total),mk.cn):""}${zlTile}</div>
+    <div class="mcopy">${marketCopy(f).map(t=>`<p>${esc(t)}</p>`).join("")}</div>
+    <div class="mcols">${col(mk.jp,"Japan, game by game")}${col(mk.cn,"China iPhone, game by game")}${zl?col(zl,`China 总流水, game by game ${lateTag(false)}`):""}</div>
+    <p class="mnote">Changes compare the games present in both months, so a launch doesn't count as growth. Japan, China iPhone and 总流水 are different measurements of different stores and are never added together.</p></section>`;
+}
 const DEBUT_CARDS = 10;
 function debutsHTML(f){
   if(!f.debuts.length) return "";
@@ -329,6 +401,7 @@ function nextHTML(g, f){
       <div class="next-art">${img(b.img,"",b.label,{face:b.face,ty:0.42})}</div>
       <div><b>${esc(b.label)}</b><small>${b.rerun?"Rerun · ":""}from ${dayStr(b.start)}${b.start.slice(0,4)!==f.ym.slice(0,4)?" "+b.start.slice(0,4):""}</small></div></div>`).join("")}</div></aside>`;
 }
+const f_pending = ym => !!(J.cache[ym] && J.cache[ym].facts.market && J.cache[ym].facts.market.zl_pending);
 function statStrip(g, ym){
   const p=pct(g.jp,g.jp_prev), pc=pct(g.cn,g.cn_prev), hp=histPhrase(g,ym);
   const cells=[];
@@ -336,6 +409,9 @@ function statStrip(g, ym){
   if(g.jp_rank) cells.push(`<div><span>Japan rank</span><b>${ord(g.jp_rank[0])}</b><em>of ${g.jp_rank[1]} games</em></div>`);
   if(g.cn) cells.push(`<div><span>China iPhone${g.cn_partial?" (partial)":""}</span><b>${fmtUSD(g.cn)}</b><em class="${pc==null?"":pc>=0?"up":"dn"}">${pc==null?"&nbsp;":pctStr(pc)+" m/m"}</em></div>`);
   if(g.cn_rank) cells.push(`<div><span>China rank</span><b>${ord(g.cn_rank[0])}</b><em>of ${g.cn_rank[1]} games</em></div>`);
+  const latest=J.index.issues[0] && J.index.issues[0].ym===ym, zp=pct(g.zl&&(g.zl.lo+g.zl.hi)/2, g.zl_prev&&(g.zl_prev.lo+g.zl_prev.hi)/2);
+  if(g.zl) cells.push(`<div class="zlcell"><span>${esc(g.zl.metric||"总流水")} · all platforms ${lateTag(false)}</span><b>${fmtCNYr(g.zl.lo,g.zl.hi)}</b><em class="${zp==null?"":zp>=0?"up":"dn"}">${zp==null?"&nbsp;":pctStr(zp)+" m/m"}</em></div>`);
+  else if(latest && (f_pending(ym))) cells.push(`<div class="zlcell"><span>总流水 · all platforms ${lateTag(true)}</span><b class="mu">Not out yet</b><em>&nbsp;</em></div>`);
   if(g.hist) cells.push(`<div><span>In its history</span><b>${ord(g.hist.rank)}</b><em>of ${g.hist.of} months${hp?" · "+hp.replace(/^its /,""):""}</em></div>`);
   return `<div class="stats">${cells.join("")}</div>`;
 }
@@ -384,6 +460,7 @@ function render(iss, focus){
     </section>
     <nav class="toc"><span class="toc-k">In this issue</span>${toc}</nav>
     ${letter?`<section class="letter"><div class="sec-k">From the editor</div>${letter}</section>`:""}
+    ${marketHTML(f)}
     <section class="charts"><div class="sec-k">The charts</div><h3 class="sec-h">Who earned the most</h3>
       <div class="chartcols">${rankChart(f,"jp",fmtG,"Japan","game-i · App Store + Google Play, yen")}${rankChart(f,"cn",fmtUSD,"China iPhone","Qimai · App Store, US$")}</div></section>
     ${debutsHTML(f)}

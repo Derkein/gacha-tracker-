@@ -132,6 +132,36 @@ img.broken{visibility:hidden}
 .dmore{font-family:var(--sans); font-size:13px; color:var(--ink2); margin:14px 0 0; line-height:1.7}
 .dmore a{text-decoration:none; color:var(--ink)} .dmore a:hover{text-decoration:underline}
 
+/* the month in totals */
+.mtiles{display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr)); gap:12px; margin-top:12px}
+.mt-tile{background:var(--paper); border-radius:4px; padding:14px 16px; box-shadow:0 1px 0 var(--rule); display:flex; flex-direction:column; gap:2px; font-family:var(--sans)}
+.mt-k{font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); font-weight:700; display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+.mt-tile b{font-family:var(--serif); font-size:34px; line-height:1.1; font-variant-numeric:tabular-nums}
+.mt-tile em{font-style:normal; font-size:13px; font-weight:600; color:var(--ink2)} .mt-tile em.up{color:var(--up)} .mt-tile em.dn{color:var(--dn)}
+.mt-tile small{font-size:11.5px; color:var(--muted)} .mt-tile small a{color:inherit}
+.mt-tile.zl{border-top:3px dashed color-mix(in srgb, #d9a400 70%, transparent)}
+.mcopy{max-width:780px; margin-top:14px} .mcopy p{font-size:18px; margin:.45em 0}
+.mcols{display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr)); gap:14px 32px; margin-top:16px}
+.mcol h4{font-size:17px; margin:0 0 6px; display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+.mchg{list-style:none; margin:0; padding:0; font-family:var(--sans); font-size:13px}
+.mchg li{display:grid; grid-template-columns:minmax(90px,1.1fr) 1.4fr 58px; align-items:center; gap:8px; padding:4px 0; border-bottom:1px solid var(--rule)}
+.mchg .nm{font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.mchg .cbar{position:relative; height:8px; background:var(--paper2); border-radius:2px}
+.mchg .cbar::after{content:""; position:absolute; left:50%; top:-2px; bottom:-2px; width:1px; background:var(--muted)}
+.mchg .cbar i{position:absolute; top:0; bottom:0; border-radius:2px}
+.mchg li.up .cbar i{left:50%; background:var(--up)} .mchg li.dn .cbar i{right:50%; background:var(--dn)}
+.mchg .cv{text-align:right; font-variant-numeric:tabular-nums; font-weight:700} .mchg li.up .cv{color:var(--up)} .mchg li.dn .cv{color:var(--dn)}
+.mnote{font-family:var(--sans); font-size:11.5px; color:var(--muted); margin:12px 0 0}
+
+/* "added later" tag for the 总流水 figures, with a blinking dot */
+.late{display:inline-flex; align-items:center; gap:5px; font-family:var(--sans); font-size:9.5px; letter-spacing:.1em; text-transform:uppercase; font-weight:700;
+  padding:2px 7px 2px 6px; border-radius:999px; background:color-mix(in srgb, #d9a400 18%, transparent); color:#b88a00; cursor:help; white-space:nowrap}
+.late i{width:6px; height:6px; border-radius:50%; background:#d9a400; animation:lateBlink 1.4s ease-in-out infinite}
+.late.pending{background:color-mix(in srgb, var(--dn) 16%, transparent); color:var(--dn)} .late.pending i{background:var(--dn)}
+@keyframes lateBlink{0%,100%{opacity:1} 50%{opacity:.15}}
+@media (prefers-reduced-motion:reduce){ .late i{animation:none} }
+.stats .zlcell span{display:flex; align-items:center; gap:6px; flex-wrap:wrap}
+
 /* "How the order is decided" link + dialog */
 .howbtn{border:0; background:none; padding:0; font:inherit; font-family:var(--sans); font-size:12px; font-style:normal; font-weight:600;
   color:var(--ink2); text-decoration:underline; text-underline-offset:2px; cursor:pointer}

@@ -23,6 +23,20 @@ NAMES = {"genshin": "Genshin Impact", "hsr": "Honkai: Star Rail", "zzz": "Zenles
          "lads": "Love and Deepspace"}
 # the six the audience follows lead every issue; the rest follow in revenue order
 FEATURED = ["genshin", "hsr", "zzz", "wuwa", "endfield", "nte"]
+# The CN 总流水 layer (天天背锅崩坏娘's monthly Bilibili chart, global all-platform CN¥ ranges) as
+# the site stores it. It is published weeks after the month closes, so the page flags it.
+ZL = {}; ZL_VIDEO = {}
+def load_zl():
+    d = json.loads((ROOT / "data" / "cn_monthly.json").read_text(encoding="utf-8"))
+    raw = json.loads((ROOT / "data" / "cn_revenue.json").read_text(encoding="utf-8"))
+    ZL.update({t: g.get("monthly", {}) for t, g in d["games"].items()})
+    ZL_VIDEO.update({ym: e.get("bvid") for ym, e in raw.get("episodes_done", {}).items()})
+def zl_of(tag, ym):
+    r = ZL.get(tag, {}).get(ym)
+    if not r: return None
+    hi = r["rev_max_cny"] if r.get("rev_max_cny") is not None else r["rev_min_cny"]
+    return {"lo": r["rev_min_cny"], "hi": hi, "metric": r.get("metric_cn"), "conf": r.get("confidence"),
+            "mihoyo": bool(r.get("excludes_mihoyo_payment_center"))}
 
 EXTRACT = r"""
 async (tag) => {
@@ -188,12 +202,57 @@ def game_month(G, ym):
     nxt = [{"label": label(b), "start": b["start"], "end": b["end"], "rerun": b["rerun"], "img": b["img"], "face": b["face"],
             "icons": b["icons"], "color": b["color"]}
            for b in sorted(G["banners"], key=lambda b: b["start"]) if b["start"] > m_end][:2]
-    return {"tag": G["tag"], "name": NAMES.get(G["tag"], G["tag"]), "jpname": G["jpname"], "next": nxt,
+    zl, zlp = zl_of(G["tag"], ym), zl_of(G["tag"], prev_ym(ym))
+    return {"tag": G["tag"], "name": NAMES.get(G["tag"], G["tag"]), "jpname": G["jpname"], "next": nxt, "zl": zl, "zl_prev": zlp,
             "icon": f"icons/games/{G['tag']}.png", "jp": jp, "jp_src": jp_src, "jp_prev": pj,
             "cn": cn, "cn_prev": pcn, "cn_partial": bool(G["qimaiLast"] and G["qimaiLast"][:7] == ym and int(G["qimaiLast"][8:]) < days_in(ym)),
             "hist": hist, "measures": used, "banners": rows}
 
-def build_issue(games, ym, number):
+def market_series(games):
+    """{ym: {"jp": {tag: oku}, "cn": {tag: usd}, "zl": {tag: cny midpoint}}} for every month any source covers."""
+    out = {}
+    for t, G in games.items():
+        for ym in set(G["giMonthly"]) | set(G["monthly"]):
+            v, _ = month_total(G, ym)
+            if v: out.setdefault(ym, {}).setdefault("jp", {})[t] = v
+        for ym, q in G["qimai"].items():
+            if q.get("qtot"): out.setdefault(ym, {}).setdefault("cn", {})[t] = q["qtot"]
+        for ym in ZL.get(t, {}):
+            z = zl_of(t, ym)
+            if z: out.setdefault(ym, {}).setdefault("zl", {})[t] = (z["lo"] + z["hi"]) / 2
+    return out
+
+def market(series, ym):
+    """The month's totals per source: total, change on last month over the games present in both
+    (so a launch doesn't read as growth), games up / down, the biggest movers, and where the
+    month ranks among this year's months so far."""
+    out = {}
+    pm = prev_ym(ym)
+    for key in ("jp", "cn", "zl"):
+        cur = (series.get(ym) or {}).get(key) or {}
+        if not cur:
+            out[key] = None; continue
+        prev = (series.get(pm) or {}).get(key) or {}
+        common = [t for t in cur if t in prev]
+        chg = {t: cur[t] / prev[t] - 1 for t in common if prev[t] > 0}
+        yr = {m: sum(((series.get(m) or {}).get(key) or {}).values()) for m in series
+              if m[:4] == ym[:4] and m <= ym and ((series.get(m) or {}).get(key))}
+        total = sum(cur.values())
+        ranked = sorted(yr.values(), reverse=True)
+        out[key] = {"total": total, "n": len(cur),
+                    "same": sum(cur[t] for t in common), "same_prev": sum(prev[t] for t in common), "same_n": len(common),
+                    "down": sorted([t for t in chg if chg[t] < 0], key=lambda t: chg[t]),
+                    "up": sorted([t for t in chg if chg[t] > 0], key=lambda t: -chg[t]),
+                    "chg": {t: round(v, 4) for t, v in chg.items()},
+                    "year_rank": ranked.index(total) + 1, "year_n": len(ranked)}
+    if out.get("zl"):
+        lo = sum(z["lo"] for z in (zl_of(t, ym) for t in ZL) if z); hi = sum(z["hi"] for z in (zl_of(t, ym) for t in ZL) if z)
+        out["zl"].update({"lo": lo, "hi": hi, "video": ZL_VIDEO.get(ym)})
+    latest_zl = max((m for t in ZL for m in ZL[t]), default=None)
+    out["zl_pending"] = out.get("zl") is None and latest_zl is not None and ym > latest_zl
+    return out
+
+def build_issue(games, ym, number, series):
     gm = [x for x in (game_month(G, ym) for G in games.values()) if x]
     if not gm: return None
     def rank_by(key):
@@ -216,7 +275,7 @@ def build_issue(games, ym, number):
     combined_order(allb, MONTH_KEYS)
     top = [{k: r[k] for k in ("label", "tag", "game", "new", "rerun", "rev_month", "cn_month", "jp_peak", "cn_peak", "days",
                               "img", "face", "icons", "color", "start", "end", "score", "mranks")} for r in allb[:10]]
-    return {"ym": ym, "number": number, "built": datetime.date.today().isoformat(), "top": top,
+    return {"ym": ym, "number": number, "built": datetime.date.today().isoformat(), "top": top, "market": market(series, ym),
             "cover": cover and {k: cover[k] for k in ("label", "tag", "game", "img", "face", "color", "rev_month", "rerun")},
             "debuts": [{k: r[k] for k in ("label", "tag", "game", "rev_month", "cn_month", "jp_peak", "cn_peak", "days", "rev_total", "rerun", "ongoing", "img", "face", "icons", "color", "start", "score")} for r in debuts],
             "games": order}
@@ -229,6 +288,7 @@ def main():
         try: s.reconfigure(encoding="utf-8", errors="replace")
         except Exception: pass
     games = extract()
+    load_zl(); series = market_series(games)
     this = datetime.date.today().strftime("%Y-%m")
     months = sorted({ym for G in games.values() for ym in list(G["monthly"]) + [k for k, v in G["giMonthly"].items() if v]
                      if ym < this})
@@ -239,7 +299,7 @@ def main():
         if a.month and ym != a.month and f.exists():
             iss = json.loads(f.read_text(encoding="utf-8"))
         else:
-            iss = build_issue(games, ym, n)
+            iss = build_issue(games, ym, n, series)
             if not iss: continue
             f.write_text(json.dumps(iss, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
         notes = OUT / "notes" / f"{ym}.json"

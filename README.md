@@ -76,6 +76,8 @@ scripts/bar_colors.py    # sample each banner's most prominent color -> tints th
 
 `journal.html` is a magazine-style issue for every finished month: the month's chart of games (Japan game-i, China iPhone Qimai), the month's openings, the top 10 banners across every game, and one feature per game with its banners as ranked cards and what came next.
 
+Each issue opens with the month in totals: every tracked game added up per source (Japan game-i, China iPhone Qimai, and the CN 总流水 all-platform chart from `data/cn_monthly.json`), how many games fell, where the month ranks in its year, and Japan against China game by game. The 总流水 figures carry a blinking "Added later" tag on every issue, or "Pending" until the month's Bilibili chart is out, because that chart is published weeks after the month ends.
+
 A banner's place is the median of its ranks on Japan revenue, China revenue, Japan peak and China peak, never Japan revenue alone. The copy is written from the numbers, including how many days each banner had in the month (a banner that opened on the 28th is compared on its own first days). Every image is cropped around its face point from `data/banner_focus.json`.
 
 ```
