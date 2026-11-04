@@ -96,16 +96,27 @@ H2H = r"""
 (pairs) => {
   state.compare = state.compare || { picks: [], sources: {} };
   state.compare.sources = { gamei: true, qimai: true, st: false, cn: false, jp: true, cnrank: true };
-  return pairs.map(([a, b]) => { const R = buildComparison([a, b]), E = [a, b], pts = [...R.points];
-    // the tracker only scores a measure both sides have; here a China measure the other side can't
-    // have because its game isn't sold in China counts as lost (missing value loses)
+  // Margin-weighted scoring (the tracker's Compare counts 1 point per measure won; here a win is
+  // worth more the bigger it is, with diminishing returns): revenue and rank measures score the log
+  // of the ratio, a 2x lead or more = the full point; day counts score the gap against a third of
+  // the window. A China measure the other side can't have (game not sold in China) is a full point.
+  const LN2 = Math.log(2);
+  const ratioW = (a, b) => { const lo = Math.min(a, b), hi = Math.max(a, b); return hi <= 0 ? 0 : lo <= 0 ? 1 : Math.min(1, Math.log(hi / lo) / LN2); };
+  const COUNT = /_(top1|top3|top10|drop)$/;
+  return pairs.map(([a, b]) => { const R = buildComparison([a, b]), E = [a, b], pts = [0, 0];
     for (const r of R.rows) {
-      if (r.unscored || r.scored || !(r.src === "qimai" || r.src === "cnrank")) continue;
-      const has = r.cells.map(c => c.v != null);
-      if (has[0] !== has[1] && E[has[0] ? 1 : 0].noChina) pts[has[0] ? 0 : 1]++;
+      if (r.unscored) continue;
+      const v = r.cells.map(c => c.v);
+      if (v[0] == null || v[1] == null) {
+        if ((r.src === "qimai" || r.src === "cnrank") && (v[0] != null) !== (v[1] != null) && E[v[0] != null ? 1 : 0].noChina) pts[v[0] != null ? 0 : 1] += 1;
+        continue;
+      }
+      if (v[0] === v[1]) continue;
+      const w = r.better === "high" ? (v[0] > v[1] ? 0 : 1) : (v[0] < v[1] ? 0 : 1);
+      pts[w] += COUNT.test(r.metric) ? Math.min(1, Math.abs(v[0] - v[1]) / Math.max(1, (r.k || 1) / 3)) : ratioW(v[0], v[1]);
     }
-    const overall = pts[0] > pts[1] ? 0 : pts[1] > pts[0] ? 1 : "even";
-    return { points: pts, overall }; });
+    const overall = Math.abs(pts[0] - pts[1]) < 1e-9 ? "even" : pts[0] > pts[1] ? 0 : 1;
+    return { points: pts.map(x => Math.round(x * 100) / 100), overall }; });
 }
 """
 SITE = {}
@@ -196,6 +207,42 @@ def combined_order(rows, keys):
     rows.sort(key=lambda r: (r["score"], r.pop("_mean"), -(r[keys[0][0]] or 0)))
     return used
 
+import math
+def ratio_w(x, y):
+    lo, hi = min(x, y), max(x, y)
+    return 0 if hi <= 0 else 1 if lo <= 0 else min(1, math.log(hi / lo) / math.log(2))
+
+def mw_order(rows, keys):
+    """A game's banners ranked head to head on the month's four figures (Japan and China revenue,
+    Japan and China peak), each win worth more the bigger it is: the log of the ratio, a 2x lead
+    or more = a full point. A missing value loses the measure in full; a measure no banner has is
+    left out. Order = head-to-heads won, then their own head-to-head, then points."""
+    used = [(k, low) for k, low in keys if any(r[k] for r in rows)]
+    k = len(rows); res = {}; pts_tot = [0.0] * k
+    for i in range(k):
+        for j in range(i + 1, k):
+            a, b = rows[i], rows[j]; pa = pb = 0.0
+            for key, low in used:
+                x, y = a[key], b[key]
+                if not x and not y: continue
+                if not y: pa += 1; continue
+                if not x: pb += 1; continue
+                if x == y: continue
+                w = ratio_w(x, y)
+                if (x < y) == low: pa += w
+                else: pb += w
+            pts_tot[i] += pa; pts_tot[j] += pb
+            res[(i, j)] = "a" if pa > pb + 1e-9 else "b" if pb > pa + 1e-9 else ("a" if (a["rev_month"] or 0) >= (b["rev_month"] or 0) else "b")
+    wins = [0] * k
+    for (i, j), w in res.items(): wins[i if w == "a" else j] += 1
+    def cmp(i, j):
+        if wins[i] != wins[j]: return wins[j] - wins[i]
+        w = res.get((min(i, j), max(i, j)))
+        return (-1 if (w == "a") == (i < j) else 1) if w else 0
+    order = sorted(range(k), key=functools.cmp_to_key(cmp))
+    for i in range(k): rows[i]["beat"] = [wins[i], k - 1]
+    rows[:] = [rows[i] for i in order]
+
 def game_month(G, ym):
     by_i = {b["i"]: b for b in G["banners"]}
     jp, jp_src = month_total(G, ym)
@@ -222,7 +269,8 @@ def game_month(G, ym):
                      "img": b["img"], "face": b["face"], "icons": b["icons"], "color": b["color"], "agents": b["agents"],
                      **dict(zip(("art", "art_face"), splash_of(G["tag"], b["icons"])))})
     if not rows and not jp and not cn: return None
-    used = combined_order(rows, MONTH_KEYS)
+    used = combined_order(rows, MONTH_KEYS)        # per-measure ranks (the stars and the copy)
+    mw_order(rows, MONTH_KEYS)                      # the order itself: margin-weighted head to head
     # how this month sits in the game's own history (Japan, game-i months only)
     gi = {k: v for k, v in G["giMonthly"].items() if v and k <= ym}
     hist = None
@@ -295,7 +343,13 @@ def duel_order(rows):
         return 0
     order = sorted(range(k), key=functools.cmp_to_key(cmp))
     for i in range(k): rows[i]["beat"] = [wins[i], k - 1]
+    note = None
+    if k >= 2:                      # #1 vs #2 over their shared window, for the note under the grid
+        a, b = rows[order[0]], rows[order[1]]; n = min(a["days"], b["days"])
+        w = lambda r: {"label": r["label"], "tag": r["tag"], "days": r["days"], "jp": round(sum(r["jp_daily"][:n]), 4), "cn": round(sum(r["cn_daily"][:n]))}
+        note = {"n": n, "a": w(a), "b": w(b)}
     rows[:] = [rows[i] for i in order] + late
+    return note
 
 def market_series(games):
     """{ym: {"jp": {tag: oku}, "cn": {tag: usd}, "zl": {tag: cny midpoint}}} for every month any source covers."""
@@ -353,7 +407,7 @@ def build_issue(games, ym, number, series):
            for g in gm for r in g["banners"] if r["new"]]
     # new banners are ranked on what they did inside this month (user rule), head to head over
     # equal numbers of days, so a late opener isn't measured against a rival's longer run
-    duel_order(new)
+    top_pair = duel_order(new)
     debuts = new
     # cover star: the best-ranked new banner with art, from the six featured games when one opened
     pool = [r for r in debuts if r["img"]] or [dict(r, tag=g["tag"], game=g["name"]) for g in gm for r in g["banners"] if r["img"]]
@@ -366,7 +420,7 @@ def build_issue(games, ym, number, series):
                               "img", "face", "art", "art_face", "icons", "color", "start", "end", "score", "mranks")} for r in allb[:10]]
     for g in gm:                                      # the daily ranks were only needed for the duels
         for r in g["banners"]: r.pop("_jpr", None); r.pop("_cnr", None); r.pop("_snap", None)
-    return {"ym": ym, "number": number, "built": datetime.date.today().isoformat(), "top": top, "market": market(series, ym),
+    return {"ym": ym, "number": number, "built": datetime.date.today().isoformat(), "top": top, "market": market(series, ym), "top_pair": top_pair,
             "cover": cover and {k: cover[k] for k in ("label", "tag", "game", "img", "face", "art", "art_face", "color", "rev_month", "rerun")},
             "debuts": [{k: r[k] for k in ("label", "tag", "game", "rev_month", "cn_month", "jp_peak", "cn_peak", "days", "rev_total", "rerun", "ongoing", "img", "face", "art", "art_face", "icons", "color", "start", "beat")} for r in debuts],
             "games": order}

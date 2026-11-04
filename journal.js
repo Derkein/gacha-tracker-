@@ -352,6 +352,16 @@ function marketHTML(f){
     <div class="mcols">${col(mk.jp,"Japan, game by game")}${col(mk.cn,"China iPhone, game by game")}${zl?col(zl,`China 总流水, game by game ${lateTag(false)}`):""}</div>
     <p class="mnote">Changes compare the games present in both months, so a launch doesn't count as growth. Japan${SHOW_ZL?", China iPhone and 总流水 are":" and China iPhone are"} different measurements of different stores and are never added together.</p></section>`;
 }
+// #1 vs #2 over their shared window, so a big lead the runner-up held in one market is said out loud
+function topPairNote(f){
+  const t=f.top_pair; if(!t) return "";
+  const {a,b,n}=t, x=(p,q)=>q>0?p/q:Infinity, fx=r=>r===Infinity?"":` by ${r.toFixed(1)}×`;
+  const jp = a.jp>=b.jp ? [a,b,x(a.jp,b.jp)] : [b,a,x(b.jp,a.jp)], cn = a.cn>=b.cn ? [a,b,x(a.cn,b.cn)] : [b,a,x(b.cn,a.cn)];
+  const parts=[`${MK.b(jp[0])} took Japan${fx(jp[2])} (${MK.n(fmtG(jp[0].jp))} to ${fmtG(jp[1].jp)})`];
+  if(a.cn>0||b.cn>0) parts.push(`${MK.b(cn[0])} took China${fx(cn[2])} (${MK.n(fmtUSD(cn[0].cn))} to ${fmtUSD(cn[1].cn)})`);
+  const split = jp[0]!==cn[0] && (a.cn>0||b.cn>0);
+  return `<p class="dnote">${rich(`Over the same first ${plural(n,"day")}, ${parts.join(", while ")}. ${split?`Weighted by the size of each lead, ${a.label} comes out ahead.`:`${a.label} led in both markets.`}`)}</p>`;
+}
 const DEBUT_CARDS = 10;
 function debutsHTML(f){
   if(!f.debuts.length) return "";
@@ -361,7 +371,9 @@ function debutsHTML(f){
       <div class="dart${frame(d)}">${pic(d,"",{},"zoom")}<span class="dno">${d.beat?i+1:"–"}</span></div>
       <div class="dtx"><span class="dg">${esc(SHORT[d.tag])}${d.rerun?" · rerun":""}</span><b>${esc(d.label)}</b>
       <span class="dm">${fmtG(d.rev_month)}${d.cn_month>0?` · ${fmtUSD(d.cn_month)}`:""} · peak ${rk(d.jp_peak)} JP${d.cn_peak?` · ${rk(d.cn_peak)} CN`:""} · ${plural(d.days,"day")}</span>
+      <span class="dpd">${d.days?`${fmtG(d.rev_month/d.days)}/day${d.cn_month>0?` · ${fmtUSD(d.cn_month/d.days)}/day`:""}`:""}</span>
       <span class="drec">${d.beat?`Won ${d.beat[0]} of ${d.beat[1]} head-to-heads`:`Too new to rank: ${plural(d.days,"day")} in ${MONTHS[+f.ym.slice(5)-1]}`}</span></div></a>`).join("")}</div>
+    ${topPairNote(f)}
     ${f.debuts.length>DEBUT_CARDS?`<p class="dmore"><b>Also opened:</b> ${f.debuts.slice(DEBUT_CARDS).map((d,i)=>`<a href="#${f.ym}/${d.tag}">${d.beat?(DEBUT_CARDS+i+1)+". ":""}${esc(d.label)}</a> <span class="mu">(${esc(SHORT[d.tag])}${d.rerun?", rerun":""}, ${fmtG(d.rev_month)})</span>`).join(" · ")}</p>`:""}</section>`;
 }
 // The month's banners as ranked cards. Order = median rank across every measure; each measure
@@ -536,8 +548,25 @@ async function route(){
 }
 // "How the order is decided": one dialog, used by the openings and every game's banner list
 // (both ranked on the month itself). Delegated, since the page's CSP allows no inline handlers.
-// "How the order is decided": two rules. A game's banners (and the month in each game) use the
-// median of four ranks inside the month; the month's openings go head to head over equal days.
+// "How the order is decided": both rankings are margin-weighted head-to-heads — a game's banners
+// on the month's four figures, the month's openings on Compare's measures over equal days.
+
+// The margin weight both rankings use: the log of the ratio, a 2× lead or more = a full point;
+// day counts score the gap against a third of the window.
+const mwRatio = (a,b) => { const lo=Math.min(a,b), hi=Math.max(a,b); return hi<=0?0 : lo<=0?1 : Math.min(1, Math.log(hi/lo)/Math.LN2); };
+const MARGIN_RULE = `<li><b>Bigger wins count more.</b> Each measure is worth up to one point, scaled by how big the win is: revenue and ranks use the ratio between the two (a <b>2× lead or more</b> is the full point, a 10% lead is about 0.14), and day counts use the gap against the window. One big win isn't outweighed by several hairline ones.</li>`;
+function howTable(rows, n){
+  const fmt={yen:v=>fmtG(v/100), usd:fmtUSD, rank:v=>"#"+v, days:v=>String(v), d:v=>v.toFixed(1)+"d", txt:v=>v};
+  let A=0, B=0, cA=0, cB=0;
+  const body=rows.map(([g,l,a,b,f,kind,hi])=>{
+    let w=null, pt=0;
+    if(kind!=="draw" && a!==b){ w = hi ? (a>b?"a":"b") : (a<b?"a":"b");
+      pt = kind==="count" ? Math.min(1, Math.abs(a-b)/Math.max(1,n/3)) : mwRatio(a,b);
+      if(w==="a"){ A+=pt; cA++; } else { B+=pt; cB++; } }
+    const cell=(v,side)=>`<td class="${w===side?"w":""}">${fmt[f](v)}${w===side?` <small>+${pt.toFixed(2)}</small>`:""}</td>`;
+    return `<tr><td>${g}</td><td>${l}</td>${cell(a,"a")}${cell(b,"b")}</tr>`; }).join("");
+  return {html:`<table class="how-t"><tr><th></th><th></th><th>Banner A</th><th>Banner B</th></tr>${body}</table>`, A, B, cA, cB};
+}
 const MEDIAN_RULES = `
     <ul>
       <li><b>Japan revenue</b>: game-i's estimate, App Store + Google Play Japan.</li>
@@ -545,44 +574,42 @@ const MEDIAN_RULES = `
       <li><b>Peaks</b>: the best daily top-grossing rank reached (a lower number is better).</li>
     </ul>`;
 function howOpen(){
-  // a made-up pair, so the explanation never depends on one month's data
-  const ex=[["Japan revenue (game-i)","Total","¥310M","¥265M","a"],["","Best-rank day","¥64M","¥61M","a"],["","First week","¥240M","¥205M","a"],
-    ["China iPhone (Qimai)","Total","$1.4M","$2.2M","b"],["","Best-rank day","$260K","$410K","b"],["","First week","$1.1M","$1.7M","b"],
-    ["Japan chart","Peak rank","#4","#9","a"],["","Days at #1","0","0","="],["","Days in top 3","2","0","a"],["","Days in top 10","6","3","a"],
-    ["","Median rank","#14","#27","a"],["","Left the top 200","no drop","no drop","="],["","Rank decay","6.1d","3.8d","a"],
-    ["China chart","Peak rank","#12","#6","b"],["","Days at #1","0","0","="],["","Days in top 3","0","0","="],["","Days in top 10","0","4","b"],
-    ["","Median rank","#31","#17","b"],["","Left the top 200","no drop","no drop","="],["","Rank decay","4.2d","5.0d","b"]];
-  const pa=ex.filter(r=>r[4]==="a").length, pb=ex.filter(r=>r[4]==="b").length;
+  // made up: B crushes China, A edges most Japan measures — counting wins and weighing them disagree
+  const t=howTable([["Japan revenue","Total",310,295,"yen","ratio",1],["","Best-rank day",64,61,"yen","ratio",1],["","First week",240,232,"yen","ratio",1],
+    ["China iPhone","Total",1.1e6,2.4e6,"usd","ratio",1],["","Best-rank day",2.1e5,4.7e5,"usd","ratio",1],["","First week",8e5,1.8e6,"usd","ratio",1],
+    ["Japan chart","Peak rank",8,9,"rank","ratio",0],["","Days in top 10",5,4,"days","count",1],["","Median rank",18,20,"rank","ratio",0],["","Rank decay",5.0,4.6,"d","ratio",1],
+    ["China chart","Peak rank",14,5,"rank","ratio",0],["","Days in top 3",0,1,"days","count",1],["","Days in top 10",0,5,"days","count",1],["","Median rank",35,16,"rank","ratio",0],["","Rank decay",5.5,4.0,"d","ratio",1]], 11);
   return `
     <p>Openings start on different days, so comparing whole months isn't fair: one that opened on the 21st has had fewer days than one from the 15th.
-      Every opening is played <b>head to head</b> against every other one, over the <b>same number of days</b>, using the same head-to-head as the tracker's <b>Compare</b>:</p>
-    <p class="how-f">window = the shorter of the two runs inside the month<br>winner = the side that wins more of the Compare measures over that window</p>
+      Every opening is played <b>head to head</b> against every other one, over the <b>same number of days</b>, on the measures of the tracker's <b>Compare</b>:</p>
+    <p class="how-f">window = the shorter of the two runs inside the month<br>winner = more points over that window, each measure weighted by the size of the win</p>
     <ul>
       <li><b>Revenue</b>: game-i (Japan) and Qimai (China iPhone): the total, the revenue on the best-rank day, and the first week.</li>
       <li><b>Japan and China chart</b>: peak rank, days at #1, in the top 3 and in the top 10, median rank, the day it left the top 200, and how fast the rank decayed after the peak.</li>
-      <li>Each measure is a point for the better side; a draw gives no point. Sensor Tower and the CN monthly figures aren't used: they only exist for whole months.</li>
-      <li>A game not sold in China counts as $0 and below #200 there, so it loses the China measures.</li>
-      <li>An even score goes to the bigger combined revenue over the window: Japan yen plus China iPhone dollars at ¥150 per $1.</li>
+      ${MARGIN_RULE}
+      <li>A game not sold in China counts as $0 and below #200 there, so it loses the China measures in full. Sensor Tower and the CN monthly figures aren't used: they only exist for whole months.</li>
+      <li>An even score goes to the bigger combined revenue over the window (Japan yen + China iPhone dollars at ¥150 per $1).</li>
       <li>The order is the number of head-to-heads won. A banner with fewer than 3 days in the month is listed as too new to rank.</li>
     </ul>
-    <p class="how-ex"><b>Example (made up).</b> Banner A opened on the 10th and ran 21 days in the month; Banner B opened on the 20th and ran 11. Both are read at <b>day 11</b>:</p>
-    <table class="how-t"><tr><th></th><th></th><th>Banner A</th><th>Banner B</th></tr>
-      ${ex.map(([g,l,a,b,w])=>`<tr><td>${g}</td><td>${l}</td><td class="${w==="a"?"w":""}">${a}</td><td class="${w==="b"?"w":""}">${b}</td></tr>`).join("")}</table>
-    <p class="how-ex"><b>Banner A ${pa}, Banner B ${pb}.</b> ${pa===pb?"Even, so combined revenue decides.":`${pa>pb?"Banner A":"Banner B"} wins the head-to-head: B took the China measures, but A took more of them in Japan.`}</p>`;
+    <p class="how-ex"><b>Example (made up).</b> Banner A opened on the 10th, Banner B on the 20th, so both are read at <b>day 11</b>. Draws (days at #1, the top-200 drop) are left out:</p>
+    ${t.html}
+    <p class="how-ex">Counting wins, A leads <b>${t.cA}–${t.cB}</b>, but most of A's wins are by a hair. Weighted by size it's <b>A ${t.A.toFixed(2)}, B ${t.B.toFixed(2)}</b>: Banner B, which more than doubled A in China, wins the head-to-head.</p>`;
 }
 function howMonth(){
+  const t=howTable([["Japan","Revenue",620,410,"yen","ratio",1],["China iPhone","Revenue",1.9e6,2.1e6,"usd","ratio",1],["Japan","Peak rank",3,5,"rank","ratio",0],["China","Peak rank",12,11,"rank","ratio",0]], 30);
   return `
-    <p>Inside each game, the month's banners are ranked on four measures over the days they ran <b>inside this month</b>, and each banner's place is the <b>median</b> of its four ranks:</p>
-    <p class="how-f">place = median of the ranks on<br>Japan revenue · China revenue · Japan peak · China peak</p>
+    <p>Inside each game, the month's banners are played <b>head to head</b> against each other on four figures from the days they ran <b>inside this month</b>:</p>
+    <p class="how-f">winner = more points on<br>Japan revenue · China revenue · Japan peak · China peak, each weighted by the size of the win</p>
     ${MEDIAN_RULES}
     <ul>
-      <li>Rank 1 is the best on each measure. With four ranks, the median is the average of the middle two.</li>
-      <li>A measure no banner has (China for a game not released there) is left out. A banner missing a value goes last on that measure.</li>
-      <li>Ties go to the better average rank, then to Japan revenue.</li>
+      ${MARGIN_RULE}
+      <li>A missing value loses that measure in full; a measure no banner has (China for a game not released there) is left out.</li>
+      <li>The order is the number of head-to-heads won. ★ marks the best banner on each single measure.</li>
       <li>A banner that opened late in the month has fewer days here; the copy says how many.</li>
     </ul>
-    <p class="how-ex"><b>Example (made up).</b> Banner A won Japan revenue, but Banner B won China revenue and both peaks:
-      B's ranks 2, 1, 1, 1 have a median of <b>1</b>; A's 1, 2, 2, 2 have a median of <b>2</b>. Banner B places first.</p>`;
+    <p class="how-ex"><b>Example (made up).</b> Banner A and Banner B ran in the same month:</p>
+    ${t.html}
+    <p class="how-ex">Two wins each, but A's are big (1.5× in Japan, #3 against #5) and B's are slim: <b>A ${t.A.toFixed(2)}, B ${t.B.toFixed(2)}</b>, so Banner A places first.</p>`;
 }
 function showHow(kind){
   const d=$("#howDlg");

@@ -1,5 +1,5 @@
 {
- "built": "2026-11-03",
+ "built": "2026-11-04",
  "issues": [
   {
    "ym": "2026-10",
@@ -110,18 +110,18 @@
    "ym": "2026-07",
    "number": 71,
    "cover": {
-    "label": "Sandrone",
-    "tag": "genshin",
-    "game": "Genshin Impact",
-    "img": "https://upload-os-bbs.hoyolab.com/upload/2026/06/29/0/781da55472dc1186e3e8d2d93140cf70_7777178998231754007.jpeg",
+    "label": "Remielle",
+    "tag": "zzz",
+    "game": "Zenless Zone Zero",
+    "img": "https://upload-os-bbs.hoyolab.com/upload/2026/07/26/d0c9ef750515b09470a0e1628cc8c5d8_3043520861090809467.jpg",
     "face": [
-     54.7,
-     30.8
+     25.8,
+     26.6
     ],
     "art": null,
     "art_face": null,
-    "color": "#7fc8e0",
-    "rev_month": 11.51,
+    "color": "#e87ba0",
+    "rev_month": 5.3798,
     "rerun": false
    },
    "headline": null,
@@ -970,18 +970,21 @@
    "ym": "2024-04",
    "number": 44,
    "cover": {
-    "label": "Arlecchino & Lyney",
-    "tag": "genshin",
-    "game": "Genshin Impact",
-    "img": "https://img.gamewith.jp/img/e6f781ecc8eae3afd81ad8b7a48ab0c0.jpeg",
+    "label": "Aventurine",
+    "tag": "hsr",
+    "game": "Honkai: Star Rail",
+    "img": "https://upload-os-bbs.hoyolab.com/upload/2024/04/16/231b619075ed159939e5a23bb0c8e5c7_8114377701622392138.jpg",
     "face": [
-     72.4,
-     34.3
+     47.7,
+     27.3
     ],
-    "art": null,
-    "art_face": null,
-    "color": "#f0684a",
-    "rev_month": 8.5278,
+    "art": "assets/journal/hsr/1304.webp",
+    "art_face": [
+     57.1,
+     32.0
+    ],
+    "color": "#f0d24b",
+    "rev_month": 15.0702,
     "rerun": false
    },
    "headline": null,
@@ -1252,21 +1255,21 @@
    "ym": "2023-06",
    "number": 34,
    "cover": {
-    "label": "Luocha",
+    "label": "Silver Wolf",
     "tag": "hsr",
     "game": "Honkai: Star Rail",
-    "img": "https://static.wikia.nocookie.net/houkai-star-rail/images/6/65/Laic_Pursuit_2023-06-28.png",
+    "img": "https://static.wikia.nocookie.net/houkai-star-rail/images/c/ce/Contract_Zero_2023-06-07.png",
     "face": [
-     64.8,
-     23.4
+     72.1,
+     35
     ],
-    "art": "assets/journal/hsr/1203.webp",
+    "art": "assets/journal/hsr/1006.webp",
     "art_face": [
-     50.6,
-     24.4
+     59.5,
+     37.4
     ],
-    "color": "#f0d24b",
-    "rev_month": 8.542,
+    "color": "#4a4ad8",
+    "rev_month": 17.23,
     "rerun": false
    },
    "headline": null,
