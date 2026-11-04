@@ -199,7 +199,9 @@ mark.bad{color:color-mix(in srgb, var(--dn) 70%, var(--ink))}
 .how-ex + .how-ex, .how-t + .how-ex{border-top:0; padding-top:0}
 .how-t{width:100%; border-collapse:collapse; font-size:13px; font-variant-numeric:tabular-nums; margin:6px 0 8px}
 .how-t th, .how-t td{padding:4px 8px; border-bottom:1px solid var(--rule); text-align:right}
-.how-t th:first-child, .how-t td:first-child{text-align:left; color:var(--muted)}
+.how-t th:first-child, .how-t td:first-child, .how-t td:nth-child(2){text-align:left; color:var(--muted)}
+.how-t td:first-child{font-weight:600; color:var(--ink2); white-space:nowrap}
+.how-t td{padding:3px 8px}
 .how-t td.w{font-weight:700; color:color-mix(in srgb, var(--up) 70%, var(--ink))}
 .drec{font-family:var(--sans); font-size:11px; color:var(--muted); margin-top:2px}
 .dcard.late{opacity:.7}

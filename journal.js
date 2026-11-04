@@ -544,27 +544,30 @@ const MEDIAN_RULES = `
       <li><b>Peaks</b>: the best daily top-grossing rank reached (a lower number is better).</li>
     </ul>`;
 function howOpen(){
-  const f=J.cache[G_YM]&&J.cache[G_YM].facts, x=f&&f.duel;
-  const W={jp:"Japan revenue", cn:"China revenue", jp_peak:"Japan peak", cn_peak:"China peak"};
-  const val=(k,v)=>v==null||v===0?"—":k==="jp"?fmtG(v):k==="cn"?fmtUSD(v):"#"+v;
-  const ex = x ? `<p class="how-ex"><b>Example, ${MONTHS[+G_YM.slice(5)-1]} ${G_YM.slice(0,4)}: ${esc(x.a.label)} against ${esc(x.b.label)}.</b>
-      ${esc(x.a.label)} had ${plural(x.a.days,"day")} in the month and ${esc(x.b.label)} ${x.b.days}, so both are read at <b>day ${x.n}</b>:</p>
-    <table class="how-t"><tr><th></th><th>${esc(x.a.label)}</th><th>${esc(x.b.label)}</th></tr>
-      ${Object.keys(W).filter(k=>x.per[k]).map(k=>`<tr><td>${W[k]}</td><td class="${x.per[k]==="a"?"w":""}">${val(k,x.a[k])}</td><td class="${x.per[k]==="b"?"w":""}">${val(k,x.b[k])}</td></tr>`).join("")}</table>
-    <p class="how-ex">${x.score[0]}–${x.score[1]}${x.how==="total"?`, so combined revenue decides: ${fmtG(x.a.total/1e8)} against ${fmtG(x.b.total/1e8)}`:""}: <b>${esc(x.win==="a"?x.a.label:x.b.label)}</b> wins the head-to-head.</p>` : "";
+  // a made-up pair, so the explanation never depends on one month's data
+  const ex=[["Japan revenue (game-i)","Total","¥310M","¥265M","a"],["","Best-rank day","¥64M","¥61M","a"],["","First week","¥240M","¥205M","a"],
+    ["China iPhone (Qimai)","Total","$1.4M","$2.2M","b"],["","Best-rank day","$260K","$410K","b"],["","First week","$1.1M","$1.7M","b"],
+    ["Japan chart","Peak rank","#4","#9","a"],["","Days at #1","0","0","="],["","Days in top 3","2","0","a"],["","Days in top 10","6","3","a"],
+    ["","Median rank","#14","#27","a"],["","Left the top 200","no drop","no drop","="],["","Rank decay","6.1d","3.8d","a"],
+    ["China chart","Peak rank","#12","#6","b"],["","Days at #1","0","0","="],["","Days in top 3","0","0","="],["","Days in top 10","0","4","b"],
+    ["","Median rank","#31","#17","b"],["","Left the top 200","no drop","no drop","="],["","Rank decay","4.2d","5.0d","b"]];
+  const pa=ex.filter(r=>r[4]==="a").length, pb=ex.filter(r=>r[4]==="b").length;
   return `
     <p>Openings start on different days, so comparing whole months isn't fair: one that opened on the 21st has had fewer days than one from the 15th.
-      Every opening is played <b>head to head</b> against every other one, over the <b>same number of days</b>:</p>
-    <p class="how-f">window = the shorter of the two runs inside the month<br>winner = better on more of: Japan revenue · China revenue · Japan peak · China peak</p>
-    ${MEDIAN_RULES}
+      Every opening is played <b>head to head</b> against every other one, over the <b>same number of days</b>, using the same head-to-head as the tracker's <b>Compare</b>:</p>
+    <p class="how-f">window = the shorter of the two runs inside the month<br>winner = the side that wins more of the Compare measures over that window</p>
     <ul>
-      <li>Both banners are measured over their own first days up to that window, so each pair gets its own window.</li>
-      <li>A missing value loses that measure.</li>
-      <li><b>A 2–2 split goes to the bigger combined revenue</b> over the window: Japan yen plus China iPhone dollars at ¥150 per $1. A big China number counts by its size, and a banner from a game not sold in China (Umamusume) has to beat the other banner's two markets with Japan alone.</li>
-      <li>The order is the number of head-to-heads won. Two banners on the same count are split by their own head-to-head.</li>
-      <li>A banner with fewer than 3 days in the month is listed as too new to rank: a day or two of data is too little to judge.</li>
+      <li><b>Revenue</b>: game-i (Japan) and Qimai (China iPhone): the total, the revenue on the best-rank day, and the first week.</li>
+      <li><b>Japan and China chart</b>: peak rank, days at #1, in the top 3 and in the top 10, median rank, the day it left the top 200, and how fast the rank decayed after the peak.</li>
+      <li>Each measure is a point for the better side; a draw gives no point. Sensor Tower and the CN monthly figures aren't used: they only exist for whole months.</li>
+      <li>A game not sold in China counts as $0 and below #200 there, so it loses the China measures.</li>
+      <li>An even score goes to the bigger combined revenue over the window: Japan yen plus China iPhone dollars at ¥150 per $1.</li>
+      <li>The order is the number of head-to-heads won. A banner with fewer than 3 days in the month is listed as too new to rank.</li>
     </ul>
-    ${ex}`;
+    <p class="how-ex"><b>Example (made up).</b> Banner A opened on the 10th and ran 21 days in the month; Banner B opened on the 20th and ran 11. Both are read at <b>day 11</b>:</p>
+    <table class="how-t"><tr><th></th><th></th><th>Banner A</th><th>Banner B</th></tr>
+      ${ex.map(([g,l,a,b,w])=>`<tr><td>${g}</td><td>${l}</td><td class="${w==="a"?"w":""}">${a}</td><td class="${w==="b"?"w":""}">${b}</td></tr>`).join("")}</table>
+    <p class="how-ex"><b>Banner A ${pa}, Banner B ${pb}.</b> ${pa===pb?"Even, so combined revenue decides.":`${pa>pb?"Banner A":"Banner B"} wins the head-to-head: B took the China measures, but A took more of them in Japan.`}</p>`;
 }
 function howMonth(){
   return `
@@ -577,8 +580,8 @@ function howMonth(){
       <li>Ties go to the better average rank, then to Japan revenue.</li>
       <li>A banner that opened late in the month has fewer days here; the copy says how many.</li>
     </ul>
-    <p class="how-ex"><b>Example, Star Rail, September 2026.</b> Aventurine • Waveflair won Japan revenue, but Pearl won China revenue and both peaks:
-      Pearl's ranks 2, 1, 1, 1 have a median of <b>1</b>; Aventurine's 1, 2, 2, 2 have a median of <b>2</b>. Pearl places first.</p>`;
+    <p class="how-ex"><b>Example (made up).</b> Banner A won Japan revenue, but Banner B won China revenue and both peaks:
+      B's ranks 2, 1, 1, 1 have a median of <b>1</b>; A's 1, 2, 2, 2 have a median of <b>2</b>. Banner B places first.</p>`;
 }
 function showHow(kind){
   const d=$("#howDlg");

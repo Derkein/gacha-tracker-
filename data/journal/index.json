@@ -110,18 +110,18 @@
    "ym": "2026-07",
    "number": 71,
    "cover": {
-    "label": "Remielle",
-    "tag": "zzz",
-    "game": "Zenless Zone Zero",
-    "img": "https://upload-os-bbs.hoyolab.com/upload/2026/07/26/d0c9ef750515b09470a0e1628cc8c5d8_3043520861090809467.jpg",
+    "label": "Sandrone",
+    "tag": "genshin",
+    "game": "Genshin Impact",
+    "img": "https://upload-os-bbs.hoyolab.com/upload/2026/06/29/0/781da55472dc1186e3e8d2d93140cf70_7777178998231754007.jpeg",
     "face": [
-     25.8,
-     26.6
+     54.7,
+     30.8
     ],
     "art": null,
     "art_face": null,
-    "color": "#e87ba0",
-    "rev_month": 5.3798,
+    "color": "#7fc8e0",
+    "rev_month": 11.51,
     "rerun": false
    },
    "headline": null,
@@ -350,21 +350,18 @@
    "ym": "2025-12",
    "number": 64,
    "cover": {
-    "label": "The Dahlia",
-    "tag": "hsr",
-    "game": "Honkai: Star Rail",
-    "img": "https://upload-os-bbs.hoyolab.com/upload/2025/12/15/c782cb4cac1d58238b7100a66acc66ca_3494724903666133436.png",
+    "label": "Durin",
+    "tag": "genshin",
+    "game": "Genshin Impact",
+    "img": "https://pbs.twimg.com/media/G7DR9lxXwAAsdoT.jpg",
     "face": [
-     81.7,
-     40.9
-    ],
-    "art": "assets/journal/hsr/1321.webp",
-    "art_face": [
      45.4,
-     31.2
+     24.1
     ],
-    "color": "#f0503f",
-    "rev_month": 7.059,
+    "art": null,
+    "art_face": null,
+    "color": "#f0684a",
+    "rev_month": 4.19,
     "rerun": false
    },
    "headline": null,

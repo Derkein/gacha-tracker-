@@ -66,7 +66,13 @@ async (tag) => {
       jpd: (() => { const bd = dailyBreakdown(b); return bd ? bd.days.map(d => Math.round(d.add * 1e4) / 1e4) : []; })(),
       qmd: (qm.daily || []).map(v => Math.round(v || 0)),
       qm: { total: qm.total || 0, monthly: Object.fromEntries((qm.months || []).map(m => [m.ym, m.rev])), start: qm.start || null },
-      qmRank: (typeof qimaiRankInfo === "function" && qimaiRankInfo(b)) || null };
+      qmRank: (typeof qimaiRankInfo === "function" && qimaiRankInfo(b)) || null,
+      // the day-indexed series the tracker's Compare (bannerSnapshot -> buildComparison) works on
+      snap: (() => { const cnRun = onRunDays(b, cnRunSeries(b)); const bd = dailyBreakdown(b); let c = 0;
+        return { jp: onRunDays(b, (b.rank_series || []).slice()),
+          cn: cnRun ? cnRun.map(x => x.rank) : null, cnKnown: cnRun ? cnRun.map(x => x.depth != null) : null, cnBest: cnRun ? cnRun.map(x => x.best) : null,
+          gi: bd ? onRunDays(b, bd.days).map(d => ({ add: d.add, cum: (c += d.add) })) : [],
+          qmDaily: onRunDays(b, (qm.daily || []).slice()), hasQm: !!qm.hasData }; })() };
   });
   const monthly = {};
   for (const ym in state.monthly) monthly[ym] = { ours: state.monthly[ym].ours, banners: state.monthly[ym].banners.map(x => [x.i, x.rev]) };
@@ -84,22 +90,41 @@ def serve():
     threading.Thread(target=srv.serve_forever, daemon=True).start()
     return srv
 
-def extract():
+# The tracker's head-to-head, run on two banners cut to their days inside the month. Sensor Tower
+# and the CN monthly layer are off: they're whole-run monthly figures (and ST isn't used on the site).
+H2H = r"""
+(pairs) => {
+  state.compare = state.compare || { picks: [], sources: {} };
+  state.compare.sources = { gamei: true, qimai: true, st: false, cn: false, jp: true, cnrank: true };
+  return pairs.map(([a, b]) => { const R = buildComparison([a, b]), E = [a, b], pts = [...R.points];
+    // the tracker only scores a measure both sides have; here a China measure the other side can't
+    // have because its game isn't sold in China counts as lost (missing value loses)
+    for (const r of R.rows) {
+      if (r.unscored || r.scored || !(r.src === "qimai" || r.src === "cnrank")) continue;
+      const has = r.cells.map(c => c.v != null);
+      if (has[0] !== has[1] && E[has[0] ? 1 : 0].noChina) pts[has[0] ? 0 : 1]++;
+    }
+    const overall = pts[0] > pts[1] ? 0 : pts[1] > pts[0] ? 1 : "even";
+    return { points: pts, overall }; });
+}
+"""
+SITE = {}
+
+def open_site():
     from playwright.sync_api import sync_playwright
-    srv = serve()
-    url = f"http://127.0.0.1:{srv.server_address[1]}/index.html"
-    games = {}
-    with sync_playwright() as pw:
-        br = pw.chromium.launch()
-        pg = br.new_page()
-        pg.goto(url, wait_until="networkidle")
-        pg.wait_for_function("typeof state!=='undefined' && state.data && state.data.banners && state.qimai!==undefined")
-        tags = pg.evaluate("state.games.map(g=>g.game)")
-        for t in tags:
-            games[t] = pg.evaluate(EXTRACT, t)
-            print(f"  {t}: {games[t]['count']} banners", file=sys.stderr)
-        br.close()
-    srv.shutdown()
+    srv = serve(); pw = sync_playwright().start(); br = pw.chromium.launch(); pg = br.new_page()
+    pg.goto(f"http://127.0.0.1:{srv.server_address[1]}/index.html", wait_until="networkidle")
+    pg.wait_for_function("typeof state!=='undefined' && state.data && state.data.banners && state.qimai!==undefined")
+    SITE.update(srv=srv, pw=pw, br=br, pg=pg)
+
+def close_site():
+    SITE["br"].close(); SITE["pw"].stop(); SITE["srv"].shutdown()
+
+def extract():
+    pg = SITE["pg"]; games = {}
+    for t in pg.evaluate("state.games.map(g=>g.game)"):
+        games[t] = pg.evaluate(EXTRACT, t)
+        print(f"  {t}: {games[t]['count']} banners", file=sys.stderr)
     return games
 
 def ym_of(d): return d[:7]
@@ -193,7 +218,7 @@ def game_month(G, ym):
                      "days": month_days(b, ym), "run_days": run_days(b), "day0": max(0, (month_start(ym) - datetime.date.fromisoformat(b["start"])).days),
                      "jp_daily": b["jpd"], "cn_daily": b["qmd"],
                      # daily chart ranks, for the openings' equal-window head-to-heads (not written out)
-                     "_jpr": b["jp"], "_cnr": [bst if bst is not None else r for _, r, bst in b["cn"]],
+                     "_snap": b["snap"],
                      "img": b["img"], "face": b["face"], "icons": b["icons"], "color": b["color"], "agents": b["agents"],
                      **dict(zip(("art", "art_face"), splash_of(G["tag"], b["icons"])))})
     if not rows and not jp and not cn: return None
@@ -220,73 +245,57 @@ def game_month(G, ym):
             "cn": cn, "cn_prev": pcn, "cn_partial": bool(G["qimaiLast"] and G["qimaiLast"][:7] == ym and int(G["qimaiLast"][8:]) < days_in(ym)),
             "hist": hist, "measures": used, "banners": rows}
 
-# The month's openings are compared fairly on time: each PAIR is measured over the same number of
-# days — the shorter of the two runs inside the month (Phoenix had 11 October days, Si 17, so both
-# are read at day 11). Within the pair, the banner better on more of the four measures wins (a
-# 2-2 split goes to Japan revenue over the window). Banners are then ordered by head-to-heads won.
-WKEYS = [("jp", False), ("cn", False), ("jp_peak", True), ("cn_peak", True)]
-def window(r, n):
-    jr = [x for x in r["_jpr"][:n] if x and x > 0]; cr = [x for x in r["_cnr"][:n] if x]
-    return {"jp": round(sum(r["jp_daily"][:n]), 4), "cn": round(sum(r["cn_daily"][:n])),
-            "jp_peak": min(jr) if jr else None, "cn_peak": min(cr) if cr else None}
-def duel(a, b):
-    n = min(a["days"], b["days"])
-    if n < 1: return None
-    wa, wb = window(a, n), window(b, n); sa = sb = 0; per = {}
-    for k, low in WKEYS:
-        x, y = wa[k], wb[k]
-        if not x and not y: continue
-        if x and (not y or (x < y if low else x > y)): sa += 1; per[k] = "a"
-        elif y and (not x or (y < x if low else y > x)): sb += 1; per[k] = "b"
-        else: per[k] = "="
-    win = "a" if sa > sb else "b" if sb > sa else None
-    how = None
-    if win is None:
-        # 2-2: the bigger combined revenue over the window wins — Japan yen plus China iPhone dollars
-        # at USD_JPY — so a China figure counts by its size, and a banner with no China data (a
-        # game not sold there) has to out-earn the other's two markets with Japan alone.
-        ta, tb = wa["jp"] * 1e8 + wa["cn"] * USD_JPY, wb["jp"] * 1e8 + wb["cn"] * USD_JPY
-        win = "a" if ta >= tb else "b"; how = "total"
-        wa["total"], wb["total"] = round(ta), round(tb)
-    return {"n": n, "a": wa, "b": wb, "per": per, "score": [sa, sb], "win": win, "how": how}
-
-USD_JPY = 150            # fixed rate for the 2-2 tie-break only (Japan yen + China iPhone dollars)
+# The month's openings are compared fairly on time, with the tracker's own head-to-head: each PAIR
+# is cut to the same number of days — the shorter of the two runs inside the month (Phoenix had 11
+# October days, Si 17, so both are read at day 11) — and scored by buildComparison on every measure
+# the tracker's Compare uses (game-i and Qimai revenue: total, best-rank day, first week; Japan and
+# China rank: peak, days at #1 / top 3 / top 10, median, day it left the top 200, decay). The side
+# with more points wins; an even result goes to the bigger combined revenue over the window (Japan
+# yen + China iPhone dollars at USD_JPY). A game not sold in China counts as $0 and below #200 there.
+# Banners are then ordered by head-to-heads won.
+USD_JPY = 150            # fixed rate for the even-result tie-break only
 MIN_DUEL_DAYS = 3        # fewer days in the month than this: listed as too new to rank, not ranked
+NO_CHINA = set()         # games with no Qimai data at all (not sold in China)
+
+def entity(r, n):
+    s = r["_snap"]; e = {"label": r["label"], "name": r["label"], "rev": r["rev_total"], "scheduled": r["run_days"],
+                         "ongoing": r["ongoing"], "runDays": n, "jp": s["jp"][:n], "gi": s["gi"][:n],
+                         "qmDaily": s["qmDaily"][:n], "hasQm": s["hasQm"],
+                         "cn": s["cn"][:n] if s["cn"] else None, "cnKnown": s["cnKnown"][:n] if s["cnKnown"] else None,
+                         "cnBest": s["cnBest"][:n] if s["cnBest"] else None}
+    if r["tag"] in NO_CHINA:
+        e.update(cn=[None] * n, cnKnown=[True] * n, cnBest=[None] * n, qmDaily=[0] * n, hasQm=True, noChina=True)
+    return e
 
 def duel_order(rows):
     """Sort rows in place by head-to-heads won (ties: their own head-to-head, then Japan revenue per
-    day). Writes r["beat"] = [wins, opponents] and returns the duel between the top two, for the
-    explanation. Banners with fewer than MIN_DUEL_DAYS days in the month (opened on the last day or
-    two) go last, unranked: a day of data isn't enough to judge an opening."""
+    day). Writes r["beat"] = [wins, opponents]. Banners with fewer than MIN_DUEL_DAYS days in the
+    month go last, unranked: a day of data isn't enough to judge an opening."""
     late = [r for r in rows if r["days"] < MIN_DUEL_DAYS]
     for r in late: r["beat"] = None
     rows[:] = [r for r in rows if r["days"] >= MIN_DUEL_DAYS]
-    k = len(rows); res = {}
-    for i in range(k):
-        for j in range(i + 1, k): res[(i, j)] = duel(rows[i], rows[j])
+    k = len(rows)
+    pairs = [(i, j) for i in range(k) for j in range(i + 1, k)]
+    out = SITE["pg"].evaluate(H2H, [[entity(rows[i], min(rows[i]["days"], rows[j]["days"])),
+                                     entity(rows[j], min(rows[i]["days"], rows[j]["days"]))] for i, j in pairs]) if pairs else []
+    res = {}
+    for (i, j), R in zip(pairs, out):
+        if R["overall"] in (0, 1): win = "a" if R["overall"] == 0 else "b"
+        else:
+            n = min(rows[i]["days"], rows[j]["days"])
+            tot = lambda r: sum(r["jp_daily"][:n]) * 1e8 + sum(r["cn_daily"][:n]) * USD_JPY
+            win = "a" if tot(rows[i]) >= tot(rows[j]) else "b"
+        res[(i, j)] = win
     wins = [0] * k
-    for (i, j), d in res.items():
-        if d: wins[i if d["win"] == "a" else j] += 1
+    for (i, j), w in res.items(): wins[i if w == "a" else j] += 1
     def cmp(i, j):
         if wins[i] != wins[j]: return wins[j] - wins[i]
-        d = res.get((min(i, j), max(i, j)))
-        if d: return -1 if (d["win"] == "a") == (i < j) else 1
-        return -1 if rows[i]["rev_month"] / max(rows[i]["days"], 1) >= rows[j]["rev_month"] / max(rows[j]["days"], 1) else 1
+        w = res.get((min(i, j), max(i, j)))
+        if w: return -1 if (w == "a") == (i < j) else 1
+        return 0
     order = sorted(range(k), key=functools.cmp_to_key(cmp))
     for i in range(k): rows[i]["beat"] = [wins[i], k - 1]
-    ex = None
-    # the explanation's example: the two best openings from the six featured games, if two opened
-    feat = [i for i in order if rows[i]["tag"] in FEATURED]
-    pair = feat[:2] if len(feat) >= 2 else order[:2]
-    if len(pair) == 2:
-        i, j = pair; d = res[(min(i, j), max(i, j))]
-        if d:
-            a, b = (rows[i], rows[j]) if i < j else (rows[j], rows[i])
-            ex = {"n": d["n"], "per": d["per"], "score": d["score"], "win": d["win"], "how": d["how"],
-                  "a": {"label": a["label"], "tag": a["tag"], "days": a["days"], **d["a"]},
-                  "b": {"label": b["label"], "tag": b["tag"], "days": b["days"], **d["b"]}}
     rows[:] = [rows[i] for i in order] + late
-    return ex
 
 def market_series(games):
     """{ym: {"jp": {tag: oku}, "cn": {tag: usd}, "zl": {tag: cny midpoint}}} for every month any source covers."""
@@ -344,20 +353,20 @@ def build_issue(games, ym, number, series):
            for g in gm for r in g["banners"] if r["new"]]
     # new banners are ranked on what they did inside this month (user rule), head to head over
     # equal numbers of days, so a late opener isn't measured against a rival's longer run
-    duel_ex = duel_order(new)
+    duel_order(new)
     debuts = new
     # cover star: the best-ranked new banner with art, from the six featured games when one opened
     pool = [r for r in debuts if r["img"]] or [dict(r, tag=g["tag"], game=g["name"]) for g in gm for r in g["banners"] if r["img"]]
     cover = next((r for r in pool if r["tag"] in FEATURED), pool[0] if pool else None)
     # the month's top banners across every game, by the same median-of-every-measure rule
-    allb = [{**{k: v for k, v in r.items() if k not in ("mranks", "score", "jp_daily", "cn_daily", "_jpr", "_cnr")}, "tag": g["tag"], "game": g["name"]}
+    allb = [{**{k: v for k, v in r.items() if k not in ("mranks", "score", "jp_daily", "cn_daily", "_jpr", "_cnr", "_snap")}, "tag": g["tag"], "game": g["name"]}
             for g in gm for r in g["banners"]]
     combined_order(allb, MONTH_KEYS)
     top = [{k: r[k] for k in ("label", "tag", "game", "new", "rerun", "rev_month", "cn_month", "jp_peak", "cn_peak", "days",
                               "img", "face", "art", "art_face", "icons", "color", "start", "end", "score", "mranks")} for r in allb[:10]]
     for g in gm:                                      # the daily ranks were only needed for the duels
-        for r in g["banners"]: r.pop("_jpr", None); r.pop("_cnr", None)
-    return {"ym": ym, "number": number, "built": datetime.date.today().isoformat(), "top": top, "market": market(series, ym), "duel": duel_ex,
+        for r in g["banners"]: r.pop("_jpr", None); r.pop("_cnr", None); r.pop("_snap", None)
+    return {"ym": ym, "number": number, "built": datetime.date.today().isoformat(), "top": top, "market": market(series, ym),
             "cover": cover and {k: cover[k] for k in ("label", "tag", "game", "img", "face", "art", "art_face", "color", "rev_month", "rerun")},
             "debuts": [{k: r[k] for k in ("label", "tag", "game", "rev_month", "cn_month", "jp_peak", "cn_peak", "days", "rev_total", "rerun", "ongoing", "img", "face", "art", "art_face", "icons", "color", "start", "beat")} for r in debuts],
             "games": order}
@@ -369,7 +378,9 @@ def main():
     for s in (sys.stdout, sys.stderr):
         try: s.reconfigure(encoding="utf-8", errors="replace")
         except Exception: pass
+    open_site()
     games = extract()
+    NO_CHINA.update(t for t, G in games.items() if not G["qimai"])
     load_zl(); series = market_series(games)
     hp = OUT / "hsr_art.json"
     if hp.exists(): HSR_ART.update(json.loads(hp.read_text(encoding="utf-8")))
@@ -392,6 +403,7 @@ def main():
                       "games": [g["tag"] for g in iss["games"]], "written": notes.exists()})
     (OUT / "index.json").write_text(json.dumps({"built": datetime.date.today().isoformat(), "issues": index[::-1]},
                                                ensure_ascii=False, indent=1), encoding="utf-8")
+    close_site()
     print(f"{len(index)} issues -> {OUT}")
 
 if __name__ == "__main__":
