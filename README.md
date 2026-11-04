@@ -78,13 +78,14 @@ scripts/bar_colors.py    # sample each banner's most prominent color -> tints th
 
 Each issue opens with the month in totals: every tracked game added up per source (Japan game-i, China iPhone Qimai, and the CN 总流水 all-platform chart from `data/cn_monthly.json`), how many games fell, where the month ranks in its year, and Japan against China game by game. The 总流水 figures carry a blinking "Added later" tag on every issue, or "Pending" until the month's Bilibili chart is out, because that chart is published weeks after the month ends.
 
-A banner's place is the median of its ranks on Japan revenue, China revenue, Japan peak and China peak, never Japan revenue alone. The month's openings are compared head to head instead, each pair over the same number of days (the shorter of the two runs inside the month), and ranked by head-to-heads won. Openers with fewer than 3 days in the month are listed as too new to rank. The copy is written from the numbers, including how many days each banner had in the month (a banner that opened on the 28th is compared on its own first days). Every image is cropped around its face point from `data/banner_focus.json`.
+A banner's place is the median of its ranks on Japan revenue, China revenue, Japan peak and China peak, never Japan revenue alone. The month's openings are compared head to head instead, each pair over the same number of days (the shorter of the two runs inside the month), and ranked by head-to-heads won. Openers with fewer than 3 days in the month are listed as too new to rank. A 2–2 split goes to the bigger combined revenue over the window (Japan yen + China iPhone dollars at ¥150), so a game not sold in China has to beat both markets with Japan alone. The copy is written from the numbers, including how many days each banner had in the month (a banner that opened on the 28th is compared on its own first days). Every image is cropped around its face point from `data/banner_focus.json`.
 
 ```
 scripts/build_journal.py        # runs the tracker's own code headless -> data/journal/YYYY-MM.json + index.json (needs playwright)
 data/journal/upcoming.json      # announced next banners for the latest issue (the data has no future banners), with sources
 data/journal/themes.json        # optional character-themed headline lines, keyed "game:Name"
 data/journal/notes/YYYY-MM.json # optional hand-written copy that overrides the written-from-data copy
+scripts/journal_hsr_art.py      # Star Rail splash art from StarRailRes -> assets/journal/hsr/<id>.webp + face points (run with .focusenv)
 ```
 
 Run `build_journal.py` once a month after the data refresh, then add that month's `upcoming.json` entry.

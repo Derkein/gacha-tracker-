@@ -132,6 +132,15 @@ img.broken{visibility:hidden}
 .dmore{font-family:var(--sans); font-size:13px; color:var(--ink2); margin:14px 0 0; line-height:1.7}
 .dmore a{text-decoration:none; color:var(--ink)} .dmore a:hover{text-decoration:underline}
 
+/* Star Rail splash cut-outs: the character on a backdrop in the banner's colour */
+.has-splash{background:radial-gradient(ellipse at 62% 38%, color-mix(in srgb, var(--acc) 55%, #fff 8%) 0%, color-mix(in srgb, var(--acc) 30%, #0d0d10) 55%, #0b0b0e 100%); overflow:hidden}
+.cover-art.has-splash img.splash.whole{object-fit:contain; object-position:right center; padding:3% 2% 0 38%}
+.feat-art.has-splash{border-radius:3px}
+.feat-art.has-splash img.splash.whole{object-fit:contain; object-position:center; height:460px; padding:8px 0}
+.dart, .bc-art, .aart{overflow:hidden}
+img.splash{filter:drop-shadow(0 6px 18px rgba(0,0,0,.35)); background:none !important}
+@media (max-width:760px){ .cover-art.has-splash img.splash.whole{object-position:center top; padding:4% 4% 38% 4%} }
+
 /* rich copy, kept quiet: figures and names a touch heavier, colour only on changes and verdicts */
 .fig{font-weight:600; font-variant-numeric:tabular-nums; white-space:nowrap}
 .dlt{font-weight:600; white-space:nowrap; font-variant-numeric:tabular-nums}

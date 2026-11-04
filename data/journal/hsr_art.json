@@ -1,0 +1,562 @@
+{
+ "1005": {
+  "file": "assets/journal/hsr/1005.webp",
+  "w": 1100,
+  "h": 1070,
+  "face": [
+   50.2,
+   31.1
+  ],
+  "det": true
+ },
+ "1006": {
+  "file": "assets/journal/hsr/1006.webp",
+  "w": 1100,
+  "h": 1116,
+  "face": [
+   59.5,
+   37.4
+  ],
+  "det": true
+ },
+ "1014": {
+  "file": "assets/journal/hsr/1014.webp",
+  "w": 1100,
+  "h": 807,
+  "face": [
+   48.3,
+   25.6
+  ],
+  "det": true
+ },
+ "1102": {
+  "file": "assets/journal/hsr/1102.webp",
+  "w": 1100,
+  "h": 959,
+  "face": [
+   36.1,
+   57.3
+  ],
+  "det": true
+ },
+ "1112": {
+  "file": "assets/journal/hsr/1112.webp",
+  "w": 1100,
+  "h": 1029,
+  "face": [
+   53.7,
+   23.6
+  ],
+  "det": true
+ },
+ "1203": {
+  "file": "assets/journal/hsr/1203.webp",
+  "w": 1100,
+  "h": 887,
+  "face": [
+   50.6,
+   24.4
+  ],
+  "det": true
+ },
+ "1204": {
+  "file": "assets/journal/hsr/1204.webp",
+  "w": 1100,
+  "h": 981,
+  "face": [
+   56.6,
+   53.4
+  ],
+  "det": true
+ },
+ "1205": {
+  "file": "assets/journal/hsr/1205.webp",
+  "w": 1100,
+  "h": 1128,
+  "face": [
+   50.1,
+   13.4
+  ],
+  "det": true
+ },
+ "1208": {
+  "file": "assets/journal/hsr/1208.webp",
+  "w": 1100,
+  "h": 1032,
+  "face": [
+   46.5,
+   32.1
+  ],
+  "det": true
+ },
+ "1212": {
+  "file": "assets/journal/hsr/1212.webp",
+  "w": 1100,
+  "h": 1054,
+  "face": [
+   50.3,
+   24.3
+  ],
+  "det": true
+ },
+ "1213": {
+  "file": "assets/journal/hsr/1213.webp",
+  "w": 1100,
+  "h": 1199,
+  "face": [
+   61.4,
+   30.7
+  ],
+  "det": true
+ },
+ "1217": {
+  "file": "assets/journal/hsr/1217.webp",
+  "w": 1100,
+  "h": 979,
+  "face": [
+   46.6,
+   33.9
+  ],
+  "det": true
+ },
+ "1218": {
+  "file": "assets/journal/hsr/1218.webp",
+  "w": 1100,
+  "h": 814,
+  "face": [
+   46.4,
+   31.5
+  ],
+  "det": true
+ },
+ "1220": {
+  "file": "assets/journal/hsr/1220.webp",
+  "w": 1100,
+  "h": 1068,
+  "face": [
+   54.4,
+   41.8
+  ],
+  "det": true
+ },
+ "1221": {
+  "file": "assets/journal/hsr/1221.webp",
+  "w": 1100,
+  "h": 1045,
+  "face": [
+   51.5,
+   43.2
+  ],
+  "det": true
+ },
+ "1222": {
+  "file": "assets/journal/hsr/1222.webp",
+  "w": 1100,
+  "h": 1084,
+  "face": [
+   70.5,
+   18.8
+  ],
+  "det": true
+ },
+ "1225": {
+  "file": "assets/journal/hsr/1225.webp",
+  "w": 1100,
+  "h": 1157,
+  "face": [
+   33.6,
+   45.4
+  ],
+  "det": true
+ },
+ "1302": {
+  "file": "assets/journal/hsr/1302.webp",
+  "w": 1100,
+  "h": 1022,
+  "face": [
+   32.4,
+   29.4
+  ],
+  "det": true
+ },
+ "1303": {
+  "file": "assets/journal/hsr/1303.webp",
+  "w": 1100,
+  "h": 1083,
+  "face": [
+   52.1,
+   36.2
+  ],
+  "det": true
+ },
+ "1304": {
+  "file": "assets/journal/hsr/1304.webp",
+  "w": 1100,
+  "h": 969,
+  "face": [
+   57.1,
+   32.0
+  ],
+  "det": true
+ },
+ "1305": {
+  "file": "assets/journal/hsr/1305.webp",
+  "w": 1100,
+  "h": 1228,
+  "face": [
+   46.7,
+   24.3
+  ],
+  "det": true
+ },
+ "1306": {
+  "file": "assets/journal/hsr/1306.webp",
+  "w": 1100,
+  "h": 1216,
+  "face": [
+   48.3,
+   36.0
+  ],
+  "det": true
+ },
+ "1307": {
+  "file": "assets/journal/hsr/1307.webp",
+  "w": 1100,
+  "h": 885,
+  "face": [
+   39.6,
+   26.8
+  ],
+  "det": true
+ },
+ "1308": {
+  "file": "assets/journal/hsr/1308.webp",
+  "w": 1100,
+  "h": 1232,
+  "face": [
+   50.5,
+   23.5
+  ],
+  "det": true
+ },
+ "1309": {
+  "file": "assets/journal/hsr/1309.webp",
+  "w": 1100,
+  "h": 1078,
+  "face": [
+   50.7,
+   25.9
+  ],
+  "det": true
+ },
+ "1310": {
+  "file": "assets/journal/hsr/1310.webp",
+  "w": 1100,
+  "h": 1199,
+  "face": [
+   44.5,
+   47.1
+  ],
+  "det": true
+ },
+ "1313": {
+  "file": "assets/journal/hsr/1313.webp",
+  "w": 1100,
+  "h": 1134,
+  "face": [
+   48.9,
+   29.1
+  ],
+  "det": true
+ },
+ "1314": {
+  "file": "assets/journal/hsr/1314.webp",
+  "w": 1100,
+  "h": 1342,
+  "face": [
+   53.8,
+   27.8
+  ],
+  "det": true
+ },
+ "1315": {
+  "file": "assets/journal/hsr/1315.webp",
+  "w": 1100,
+  "h": 1105,
+  "face": [
+   51.1,
+   37.0
+  ],
+  "det": true
+ },
+ "1317": {
+  "file": "assets/journal/hsr/1317.webp",
+  "w": 1100,
+  "h": 1285,
+  "face": [
+   67.8,
+   50.6
+  ],
+  "det": true
+ },
+ "1321": {
+  "file": "assets/journal/hsr/1321.webp",
+  "w": 1100,
+  "h": 1044,
+  "face": [
+   45.4,
+   31.2
+  ],
+  "det": true
+ },
+ "1401": {
+  "file": "assets/journal/hsr/1401.webp",
+  "w": 1100,
+  "h": 1068,
+  "face": [
+   49.5,
+   41.3
+  ],
+  "det": true
+ },
+ "1402": {
+  "file": "assets/journal/hsr/1402.webp",
+  "w": 1100,
+  "h": 998,
+  "face": [
+   62.4,
+   15.8
+  ],
+  "det": true
+ },
+ "1403": {
+  "file": "assets/journal/hsr/1403.webp",
+  "w": 1100,
+  "h": 970,
+  "face": [
+   39.5,
+   42.0
+  ],
+  "det": true
+ },
+ "1404": {
+  "file": "assets/journal/hsr/1404.webp",
+  "w": 1100,
+  "h": 902,
+  "face": [
+   53.3,
+   48.8
+  ],
+  "det": true
+ },
+ "1405": {
+  "file": "assets/journal/hsr/1405.webp",
+  "w": 1100,
+  "h": 1152,
+  "face": [
+   61.4,
+   33.2
+  ],
+  "det": true
+ },
+ "1406": {
+  "file": "assets/journal/hsr/1406.webp",
+  "w": 1100,
+  "h": 964,
+  "face": [
+   45.9,
+   39.7
+  ],
+  "det": true
+ },
+ "1407": {
+  "file": "assets/journal/hsr/1407.webp",
+  "w": 1100,
+  "h": 1032,
+  "face": [
+   46.8,
+   35.6
+  ],
+  "det": true
+ },
+ "1408": {
+  "file": "assets/journal/hsr/1408.webp",
+  "w": 1100,
+  "h": 1059,
+  "face": [
+   46.9,
+   34.2
+  ],
+  "det": true
+ },
+ "1409": {
+  "file": "assets/journal/hsr/1409.webp",
+  "w": 1100,
+  "h": 961,
+  "face": [
+   64.7,
+   21.4
+  ],
+  "det": true
+ },
+ "1410": {
+  "file": "assets/journal/hsr/1410.webp",
+  "w": 1100,
+  "h": 1103,
+  "face": [
+   29.8,
+   35.9
+  ],
+  "det": true
+ },
+ "1412": {
+  "file": "assets/journal/hsr/1412.webp",
+  "w": 1100,
+  "h": 1114,
+  "face": [
+   55.8,
+   31.6
+  ],
+  "det": true
+ },
+ "1413": {
+  "file": "assets/journal/hsr/1413.webp",
+  "w": 1100,
+  "h": 1084,
+  "face": [
+   43.9,
+   32.9
+  ],
+  "det": true
+ },
+ "1414": {
+  "file": "assets/journal/hsr/1414.webp",
+  "w": 1100,
+  "h": 936,
+  "face": [
+   47.7,
+   35.4
+  ],
+  "det": true
+ },
+ "1415": {
+  "file": "assets/journal/hsr/1415.webp",
+  "w": 1100,
+  "h": 990,
+  "face": [
+   51.0,
+   55.6
+  ],
+  "det": true
+ },
+ "1501": {
+  "file": "assets/journal/hsr/1501.webp",
+  "w": 1100,
+  "h": 1264,
+  "face": [
+   53.1,
+   54.5
+  ],
+  "det": true
+ },
+ "1502": {
+  "file": "assets/journal/hsr/1502.webp",
+  "w": 1100,
+  "h": 959,
+  "face": [
+   44.3,
+   41.7
+  ],
+  "det": true
+ },
+ "1503": {
+  "file": "assets/journal/hsr/1503.webp",
+  "w": 1100,
+  "h": 891,
+  "face": [
+   52.5,
+   46.9
+  ],
+  "det": true
+ },
+ "1504": {
+  "file": "assets/journal/hsr/1504.webp",
+  "w": 1100,
+  "h": 1131,
+  "face": [
+   52.5,
+   31.9
+  ],
+  "det": true
+ },
+ "1505": {
+  "file": "assets/journal/hsr/1505.webp",
+  "w": 1100,
+  "h": 1127,
+  "face": [
+   53.6,
+   34.8
+  ],
+  "det": true
+ },
+ "1506": {
+  "file": "assets/journal/hsr/1506.webp",
+  "w": 1100,
+  "h": 994,
+  "face": [
+   48.9,
+   39.0
+  ],
+  "det": true
+ },
+ "1507": {
+  "file": "assets/journal/hsr/1507.webp",
+  "w": 1100,
+  "h": 1325,
+  "face": [
+   43.5,
+   35.4
+  ],
+  "det": true
+ },
+ "1508": {
+  "file": "assets/journal/hsr/1508.webp",
+  "w": 1100,
+  "h": 1088,
+  "face": [
+   50.6,
+   42.0
+  ],
+  "det": true
+ },
+ "1510": {
+  "file": "assets/journal/hsr/1510.webp",
+  "w": 1100,
+  "h": 980,
+  "face": [
+   43.6,
+   36.7
+  ],
+  "det": true
+ },
+ "1512": {
+  "file": "assets/journal/hsr/1512.webp",
+  "w": 1100,
+  "h": 1001,
+  "face": [
+   49.5,
+   31.7
+  ],
+  "det": true
+ },
+ "1513": {
+  "file": "assets/journal/hsr/1513.webp",
+  "w": 1100,
+  "h": 1085,
+  "face": [
+   47.8,
+   39.3
+  ],
+  "det": true
+ }
+}

@@ -252,9 +252,18 @@ function autoCoverLines(f){
 // o.face = [x%, y%] of the face in the art (from banner_focus.json); o.tx/o.ty = where in the
 // frame the face should land (o.txm on phones). Without a face point the crop stays centred.
 const img = (src, cls, alt, o) => src ? `<img class="${cls||""}" src="${esc(src)}" alt="${esc(alt||"")}" loading="lazy" referrerpolicy="no-referrer"${
-  o&&o.face?` data-fx="${o.face[0]}" data-fy="${o.face[1]}"${o.tx!=null?` data-tx="${o.tx}"`:""}${o.ty!=null?` data-ty="${o.ty}"`:""}${o.txm!=null?` data-txm="${o.txm}"`:""}`:""}>` : "";
+  o&&o.face?` data-fx="${o.face[0]}" data-fy="${o.face[1]}"${o.tx!=null?` data-tx="${o.tx}"`:""}${o.ty!=null?` data-ty="${o.ty}"`:""}${o.txm!=null?` data-txm="${o.txm}"`:""}${o.z?` data-z="${o.z}"`:""}`:""}>` : "";
 // Place an object-fit:cover crop so the face sits at (tx,ty) of the frame, clamped so the art
 // still covers it. Works for wide banners and for tall character sheets (CZN) alike.
+// A banner's picture: the Star Rail splash when there is one (a cut-out on a transparent
+// background), else its banner art. mode "whole" shows the whole splash (cover, feature),
+// "zoom" crops in on the face (cards). Returns the <img>; frame() adds the backdrop class.
+function pic(b, alt, o, mode){
+  if(b && b.art) return mode==="whole" ? img(b.art, "splash whole", alt)
+    : img(b.art, "splash", alt, {face:b.art_face, ty:(o&&o.ty)||0.38, tx:o&&o.tx, z:(o&&o.z)||1.7});
+  return b && b.img ? img(b.img, "", alt, {face:b.face, ...(o||{})}) : "";
+}
+const frame = b => b && b.art ? " has-splash" : "";
 function fitFace(im){
   const fx=parseFloat(im.dataset.fx), fy=parseFloat(im.dataset.fy);
   const iw=im.naturalWidth, ih=im.naturalHeight, cw=im.clientWidth, ch=im.clientHeight;
@@ -263,6 +272,8 @@ function fitFace(im){
   const tx=parseFloat((innerWidth<760&&im.dataset.txm)||im.dataset.tx||"0.5")*cw, ty=parseFloat(im.dataset.ty||"0.38")*ch;
   const ox=Math.min(0, Math.max(cw-dw, tx-fx/100*dw)), oy=Math.min(0, Math.max(ch-dh, ty-fy/100*dh));
   im.style.objectPosition=`${ox.toFixed(1)}px ${oy.toFixed(1)}px`;
+  const z=parseFloat(im.dataset.z||"1");                     // splash cut-outs: zoom in on the face
+  if(z>1){ im.style.transformOrigin=`${(ox+fx/100*dw).toFixed(1)}px ${(oy+fy/100*dh).toFixed(1)}px`; im.style.transform=`scale(${z})`; }
 }
 const fitAll = () => document.querySelectorAll("img[data-fx]").forEach(i=>{ if(i.complete) fitFace(i); });
 document.addEventListener("load", e=>{ if(e.target.tagName==="IMG" && e.target.dataset.fx) fitFace(e.target); }, true);
@@ -346,7 +357,7 @@ function debutsHTML(f){
   return `<section class="debuts"><div class="sec-k">New this month</div><h3 class="sec-h">The month's openings</h3>
     <p class="sec-sub"><button class="howbtn" type="button" data-how="open">How the order is decided</button></p>
     <div class="dgrid">${f.debuts.slice(0,DEBUT_CARDS).map((d,i)=>`<a class="dcard${d.beat?"":" late"}" href="#${f.ym}/${d.tag}" style="--acc:${d.color||GAME_ACCENT[d.tag]}">
-      <div class="dart">${img(d.img,"","",{face:d.face})}<span class="dno">${d.beat?i+1:"–"}</span></div>
+      <div class="dart${frame(d)}">${pic(d,"",{},"zoom")}<span class="dno">${d.beat?i+1:"–"}</span></div>
       <div class="dtx"><span class="dg">${esc(SHORT[d.tag])}${d.rerun?" · rerun":""}</span><b>${esc(d.label)}</b>
       <span class="dm">${fmtG(d.rev_month)}${d.cn_month>0?` · ${fmtUSD(d.cn_month)}`:""} · peak ${rk(d.jp_peak)} JP${d.cn_peak?` · ${rk(d.cn_peak)} CN`:""} · ${plural(d.days,"day")}</span>
       <span class="drec">${d.beat?`Won ${d.beat[0]} of ${d.beat[1]} head-to-heads`:`Too new to rank: ${plural(d.days,"day")} in ${MONTHS[+f.ym.slice(5)-1]}`}</span></div></a>`).join("")}</div>
@@ -368,7 +379,7 @@ function bannerCard(b, i, ctx){
   const daysTxt=b.days?` · ${plural(b.days,"day")} in ${mo}${b.rev_month>0&&b.days?` · ${fmtG(b.rev_month/b.days)}/day`:""}`:"";
   return `<li class="bc${ctx.compact?" compact":""}" style="--acc:${b.color}">
     <div class="bc-pos">${i+1}</div>
-    <div class="bc-art">${b.img?img(b.img,"",b.label,{face:b.face,ty:0.42}):""}</div>
+    <div class="bc-art${frame(b)}">${pic(b,b.label,{ty:0.42},"zoom")}</div>
     <div class="bc-body">
       <div class="bc-hd"><span class="bav">${b.icons&&b.icons[0]?img(b.icons[0]):img(b.img,"","",{face:b.face,ty:0.5})}</span>
         <div class="bc-nm"><b>${ctx.game?`<a href="#${G_YM}/${b.tag}">${esc(b.label)}</a>`:esc(b.label)}</b><small>${dayStr(b.start)} – ${dayStr(b.end)}${daysTxt}</small></div><div class="chips">${chips}</div></div>
@@ -422,7 +433,7 @@ function nextHTML(g, f){
   const nx=(g.next||[]); if(!nx.length) return "";
   return `<aside class="next" style="--acc:${GAME_ACCENT[g.tag]}"><div class="next-k">What came next</div>
     <div class="next-list">${nx.map(b=>`<div class="next-b" style="--acc:${b.color}">
-      <div class="next-art">${img(b.img,"",b.label,{face:b.face,ty:0.42})}</div>
+      <div class="next-art${frame(b)}">${pic(b,b.label,{ty:0.42},"zoom")}</div>
       <div><b>${esc(b.label)}</b><small>${b.rerun?"Rerun · ":""}from ${dayStr(b.start)}${b.start.slice(0,4)!==f.ym.slice(0,4)?" "+b.start.slice(0,4):""}</small></div></div>`).join("")}</div></aside>`;
 }
 const f_pending = ym => !!(J.cache[ym] && J.cache[ym].facts.market && J.cache[ym].facts.market.zl_pending);
@@ -442,7 +453,7 @@ function statStrip(g, ym){
 function featureHTML(g, f, notes, n){
   const w=(notes&&notes.games&&notes.games[g.tag])||{};
   // the hero art: the banner the notes name ("hero"), else the month's top earner with art
-  const top=(w.hero&&g.banners.find(b=>b.label===w.hero&&b.img))||g.banners.find(b=>b.img)||g.banners[0];
+  const top=(w.hero&&g.banners.find(b=>b.label===w.hero&&b.img))||g.banners.find(b=>b.img||b.art)||g.banners[0];
   const acc=(top&&top.color)||GAME_ACCENT[g.tag];
   // notes are hand-written HTML (trusted); the fallback copy is built from data, so it's escaped
   const body=(w.body&&w.body.length?w.body:autoBody(g,f.ym).map(rich)).map(t=>`<p>${t}</p>`).join("");
@@ -451,7 +462,7 @@ function featureHTML(g, f, notes, n){
   return `<article class="feat${brief?" brief":""}" id="g-${g.tag}" style="--acc:${acc};--gacc:${GAME_ACCENT[g.tag]}">
     <header class="feat-hd"><img class="feat-ic" src="${g.icon}" alt=""><div><div class="feat-k">${esc(g.name)}${kicker?` <span>· ${kicker}</span>`:""}</div>
       <h3>${esc(w.headline||autoHeadline(g))}</h3>${w.dek?`<p class="dek">${w.dek}</p>`:autoDek(g,f.ym)?`<p class="dek">${esc(autoDek(g,f.ym))}</p>`:""}</div></header>
-    ${top&&top.img?`<figure class="feat-art">${img(top.img,"",top.label,{face:top.face,ty:0.4})}<figcaption>${esc(top.label)}${top.rerun?" (rerun)":""} · ${dayStr(top.start)} – ${dayStr(top.end)}</figcaption></figure>`:""}
+    ${top&&(top.img||top.art)?`<figure class="feat-art${frame(top)}">${pic(top,top.label,{ty:0.4},"whole")}<figcaption>${esc(top.label)}${top.rerun?" (rerun)":""} · ${dayStr(top.start)} – ${dayStr(top.end)}</figcaption></figure>`:""}
     ${statStrip(g, f.ym)}
     <div class="copy">${body}${w.pull?`<blockquote>${esc(w.pull)}</blockquote>`:""}</div>
     ${SHOW_NEXT?nextHTML(g, f):""}
@@ -479,7 +490,7 @@ function render(iss, focus){
   const letter=(nt.letter||[]).map(t=>`<p>${t}</p>`).join("");
   $("#issue").innerHTML=`
     <section class="cover" style="--acc:${c.color||"#888"}">
-      <div class="cover-art">${img(c.img,"",c.label,{face:c.face,tx:0.7,txm:0.5,ty:0.3})}</div>
+      <div class="cover-art${frame(c)}">${pic(c,c.label,{tx:0.7,txm:0.5,ty:0.3},"whole")}</div>
       <div class="cover-tx">
         <div class="cover-k">The ${monthName(f.ym)} issue</div>
         <h2>${esc(head)}</h2>
@@ -506,7 +517,7 @@ function renderArchive(){
   const by={}; J.index.issues.forEach(x=>(by[x.ym.slice(0,4)]=by[x.ym.slice(0,4)]||[]).push(x));
   $("#archive").innerHTML=`<h2 class="arch-h">Every issue</h2>${Object.keys(by).sort().reverse().map(y=>`
     <h3 class="arch-y">${y}</h3><div class="agrid">${by[y].map(x=>`<a class="acard" href="#${x.ym}" style="--acc:${(x.cover&&x.cover.color)||"#888"}">
-      <div class="aart">${img(x.cover&&x.cover.img,"","",{face:x.cover&&x.cover.face,ty:0.32})}</div><div class="atx"><span>No. ${x.number} · ${MONTHS[+x.ym.slice(5)-1]}</span>
+      <div class="aart${frame(x.cover)}">${pic(x.cover,"",{ty:0.34,z:1.5},"zoom")}</div><div class="atx"><span>No. ${x.number} · ${MONTHS[+x.ym.slice(5)-1]}</span>
       <b>${esc(x.headline||(x.cover?x.cover.label:monthName(x.ym)))}</b></div></a>`).join("")}</div>`).join("")}`;
   $("#issue").hidden=true; $("#archive").hidden=false;
   requestAnimationFrame(fitAll);
@@ -540,7 +551,7 @@ function howOpen(){
       ${esc(x.a.label)} had ${plural(x.a.days,"day")} in the month and ${esc(x.b.label)} ${x.b.days}, so both are read at <b>day ${x.n}</b>:</p>
     <table class="how-t"><tr><th></th><th>${esc(x.a.label)}</th><th>${esc(x.b.label)}</th></tr>
       ${Object.keys(W).filter(k=>x.per[k]).map(k=>`<tr><td>${W[k]}</td><td class="${x.per[k]==="a"?"w":""}">${val(k,x.a[k])}</td><td class="${x.per[k]==="b"?"w":""}">${val(k,x.b[k])}</td></tr>`).join("")}</table>
-    <p class="how-ex">${x.score[0]}–${x.score[1]}${x.how==="nocn"?", and one side has no China data, so the 1.5× Japan rule decides":x.score[0]===x.score[1]?", so Japan revenue decides":""}: <b>${esc(x.win==="a"?x.a.label:x.b.label)}</b> wins the head-to-head.</p>` : "";
+    <p class="how-ex">${x.score[0]}–${x.score[1]}${x.how==="total"?`, so combined revenue decides: ${fmtG(x.a.total/1e8)} against ${fmtG(x.b.total/1e8)}`:""}: <b>${esc(x.win==="a"?x.a.label:x.b.label)}</b> wins the head-to-head.</p>` : "";
   return `
     <p>Openings start on different days, so comparing whole months isn't fair: one that opened on the 21st has had fewer days than one from the 15th.
       Every opening is played <b>head to head</b> against every other one, over the <b>same number of days</b>:</p>
@@ -548,8 +559,8 @@ function howOpen(){
     ${MEDIAN_RULES}
     <ul>
       <li>Both banners are measured over their own first days up to that window, so each pair gets its own window.</li>
-      <li>A missing value loses that measure. A 2–2 split goes to Japan revenue over the window.</li>
-      <li><b>No China data, no free tie.</b> A banner from a game not sold in China (Umamusume) can only score in Japan, so it wins a 2–2 only if it made at least <b>1.5×</b> the other banner's Japan revenue over the window. Otherwise the banner measured in both markets wins.</li>
+      <li>A missing value loses that measure.</li>
+      <li><b>A 2–2 split goes to the bigger combined revenue</b> over the window: Japan yen plus China iPhone dollars at ¥150 per $1. A big China number counts by its size, and a banner from a game not sold in China (Umamusume) has to beat the other banner's two markets with Japan alone.</li>
       <li>The order is the number of head-to-heads won. Two banners on the same count are split by their own head-to-head.</li>
       <li>A banner with fewer than 3 days in the month is listed as too new to rank: a day or two of data is too little to judge.</li>
     </ul>

@@ -13,7 +13,7 @@ Writes data/journal/YYYY-MM.json and data/journal/index.json. The written part o
 (headline, letter, per-game copy, character stories) lives in data/journal/notes/YYYY-MM.json
 and data/journal/stories.json and is never touched by this script.
 """
-import argparse, datetime, functools, http.server, json, pathlib, sys, threading
+import argparse, datetime, functools, re, http.server, json, pathlib, sys, threading
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 OUT = ROOT / "data" / "journal"
@@ -31,6 +31,14 @@ def load_zl():
     raw = json.loads((ROOT / "data" / "cn_revenue.json").read_text(encoding="utf-8"))
     ZL.update({t: g.get("monthly", {}) for t, g in d["games"].items()})
     ZL_VIDEO.update({ym: e.get("bvid") for ym, e in raw.get("episodes_done", {}).items()})
+# Star Rail splash art (scripts/journal_hsr_art.py): StarRailRes character id -> local webp + face
+HSR_ART = {}
+_SRR_ICON = re.compile(r"StarRailRes/master/icon/character/(\d+)\.png")
+def splash_of(tag, icons):
+    if tag != "hsr" or not icons: return None, None
+    m = _SRR_ICON.search(icons[0]); a = m and HSR_ART.get(m.group(1))
+    return (a["file"], a["face"]) if a else (None, None)
+
 def zl_of(tag, ym):
     r = ZL.get(tag, {}).get(ym)
     if not r: return None
@@ -186,7 +194,8 @@ def game_month(G, ym):
                      "jp_daily": b["jpd"], "cn_daily": b["qmd"],
                      # daily chart ranks, for the openings' equal-window head-to-heads (not written out)
                      "_jpr": b["jp"], "_cnr": [bst if bst is not None else r for _, r, bst in b["cn"]],
-                     "img": b["img"], "face": b["face"], "icons": b["icons"], "color": b["color"], "agents": b["agents"]})
+                     "img": b["img"], "face": b["face"], "icons": b["icons"], "color": b["color"], "agents": b["agents"],
+                     **dict(zip(("art", "art_face"), splash_of(G["tag"], b["icons"])))})
     if not rows and not jp and not cn: return None
     used = combined_order(rows, MONTH_KEYS)
     # how this month sits in the game's own history (Japan, game-i months only)
@@ -202,6 +211,7 @@ def game_month(G, ym):
     # announced ones from data/journal/upcoming.json instead, since the data has no future banners)
     m_end = (month_start(ym) + datetime.timedelta(days=days_in(ym) - 1)).isoformat()
     nxt = [{"label": label(b), "start": b["start"], "end": b["end"], "rerun": b["rerun"], "img": b["img"], "face": b["face"],
+            **dict(zip(("art", "art_face"), splash_of(G["tag"], b["icons"]))),
             "icons": b["icons"], "color": b["color"]}
            for b in sorted(G["banners"], key=lambda b: b["start"]) if b["start"] > m_end][:2]
     zl, zlp = zl_of(G["tag"], ym), zl_of(G["tag"], prev_ym(ym))
@@ -232,19 +242,15 @@ def duel(a, b):
     win = "a" if sa > sb else "b" if sb > sa else None
     how = None
     if win is None:
-        # 2-2. A banner with no China data at all (its game isn't sold there) only picks up its two
-        # points in Japan, so it doesn't get the tie for free: it must out-earn the other in Japan by
-        # NO_CN_EDGE over the window, otherwise the banner measured in both markets wins.
-        noa, nob = not (wa["cn"] or wa["cn_peak"]), not (wb["cn"] or wb["cn_peak"])
-        if noa != nob:
-            lone, full = ("a", "b") if noa else ("b", "a")
-            wl, wf = (wa, wb) if noa else (wb, wa)
-            win = lone if wl["jp"] >= NO_CN_EDGE * wf["jp"] else full; how = "nocn"
-        else:
-            win = "a" if wa["jp"] >= wb["jp"] else "b"; how = "jp"
+        # 2-2: the bigger combined revenue over the window wins — Japan yen plus China iPhone dollars
+        # at USD_JPY — so a China figure counts by its size, and a banner with no China data (a
+        # game not sold there) has to out-earn the other's two markets with Japan alone.
+        ta, tb = wa["jp"] * 1e8 + wa["cn"] * USD_JPY, wb["jp"] * 1e8 + wb["cn"] * USD_JPY
+        win = "a" if ta >= tb else "b"; how = "total"
+        wa["total"], wb["total"] = round(ta), round(tb)
     return {"n": n, "a": wa, "b": wb, "per": per, "score": [sa, sb], "win": win, "how": how}
 
-NO_CN_EDGE = 1.5         # a China-less banner wins a 2-2 only with 1.5x the other's Japan revenue
+USD_JPY = 150            # fixed rate for the 2-2 tie-break only (Japan yen + China iPhone dollars)
 MIN_DUEL_DAYS = 3        # fewer days in the month than this: listed as too new to rank, not ranked
 
 def duel_order(rows):
@@ -348,12 +354,12 @@ def build_issue(games, ym, number, series):
             for g in gm for r in g["banners"]]
     combined_order(allb, MONTH_KEYS)
     top = [{k: r[k] for k in ("label", "tag", "game", "new", "rerun", "rev_month", "cn_month", "jp_peak", "cn_peak", "days",
-                              "img", "face", "icons", "color", "start", "end", "score", "mranks")} for r in allb[:10]]
+                              "img", "face", "art", "art_face", "icons", "color", "start", "end", "score", "mranks")} for r in allb[:10]]
     for g in gm:                                      # the daily ranks were only needed for the duels
         for r in g["banners"]: r.pop("_jpr", None); r.pop("_cnr", None)
     return {"ym": ym, "number": number, "built": datetime.date.today().isoformat(), "top": top, "market": market(series, ym), "duel": duel_ex,
-            "cover": cover and {k: cover[k] for k in ("label", "tag", "game", "img", "face", "color", "rev_month", "rerun")},
-            "debuts": [{k: r[k] for k in ("label", "tag", "game", "rev_month", "cn_month", "jp_peak", "cn_peak", "days", "rev_total", "rerun", "ongoing", "img", "face", "icons", "color", "start", "beat")} for r in debuts],
+            "cover": cover and {k: cover[k] for k in ("label", "tag", "game", "img", "face", "art", "art_face", "color", "rev_month", "rerun")},
+            "debuts": [{k: r[k] for k in ("label", "tag", "game", "rev_month", "cn_month", "jp_peak", "cn_peak", "days", "rev_total", "rerun", "ongoing", "img", "face", "art", "art_face", "icons", "color", "start", "beat")} for r in debuts],
             "games": order}
 
 def main():
@@ -365,6 +371,8 @@ def main():
         except Exception: pass
     games = extract()
     load_zl(); series = market_series(games)
+    hp = OUT / "hsr_art.json"
+    if hp.exists(): HSR_ART.update(json.loads(hp.read_text(encoding="utf-8")))
     this = datetime.date.today().strftime("%Y-%m")
     months = sorted({ym for G in games.values() for ym in list(G["monthly"]) + [k for k, v in G["giMonthly"].items() if v]
                      if ym < this})

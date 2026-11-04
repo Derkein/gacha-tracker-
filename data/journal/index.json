@@ -13,6 +13,8 @@
      26.1,
      27.2
     ],
+    "art": null,
+    "art_face": null,
     "color": "#e84012",
     "rev_month": 2.6772,
     "rerun": false
@@ -43,6 +45,11 @@
     "face": [
      81.2,
      31.5
+    ],
+    "art": "assets/journal/hsr/1503.webp",
+    "art_face": [
+     52.5,
+     46.9
     ],
     "color": "#5fc7e8",
     "rev_month": 6.3289,
@@ -75,6 +82,11 @@
      74,
      24
     ],
+    "art": "assets/journal/hsr/1512.webp",
+    "art_face": [
+     49.5,
+     31.7
+    ],
     "color": "#4fc8a0",
     "rev_month": 6.45,
     "rerun": false
@@ -106,6 +118,8 @@
      25.8,
      26.6
     ],
+    "art": null,
+    "art_face": null,
     "color": "#e87ba0",
     "rev_month": 5.3798,
     "rerun": false
@@ -136,6 +150,11 @@
     "face": [
      24.6,
      29.8
+    ],
+    "art": "assets/journal/hsr/1507.webp",
+    "art_face": [
+     43.5,
+     35.4
     ],
     "color": "#f0503f",
     "rev_month": 11.42,
@@ -168,6 +187,11 @@
      28.6,
      38.8
     ],
+    "art": "assets/journal/hsr/1505.webp",
+    "art_face": [
+     53.6,
+     34.8
+    ],
     "color": "#b9b9b9",
     "rev_month": 10.36,
     "rerun": false
@@ -198,6 +222,11 @@
     "face": [
      27.6,
      31.4
+    ],
+    "art": "assets/journal/hsr/1506.webp",
+    "art_face": [
+     48.9,
+     39.0
     ],
     "color": "#f0d24b",
     "rev_month": 15.5386,
@@ -230,6 +259,11 @@
      28.3,
      56.5
     ],
+    "art": "assets/journal/hsr/1501.webp",
+    "art_face": [
+     53.1,
+     54.5
+    ],
     "color": "#f0503f",
     "rev_month": 15.89,
     "rerun": false
@@ -260,6 +294,8 @@
      69.9,
      38.6
     ],
+    "art": null,
+    "art_face": null,
     "color": "#e88fb8",
     "rev_month": 10.98,
     "rerun": false
@@ -290,6 +326,8 @@
      48.5,
      23.1
     ],
+    "art": null,
+    "art_face": null,
     "color": "#f0684a",
     "rev_month": 15.8104,
     "rerun": false
@@ -320,6 +358,11 @@
      81.7,
      40.9
     ],
+    "art": "assets/journal/hsr/1321.webp",
+    "art_face": [
+     45.4,
+     31.2
+    ],
     "color": "#f0503f",
     "rev_month": 7.059,
     "rerun": false
@@ -349,6 +392,11 @@
      72.3,
      45.6
     ],
+    "art": "assets/journal/hsr/1415.webp",
+    "art_face": [
+     51.0,
+     55.6
+    ],
     "color": "#5fc7e8",
     "rev_month": 19.51,
     "rerun": false
@@ -370,16 +418,18 @@
    "ym": "2025-10",
    "number": 62,
    "cover": {
-    "label": "Dan Heng • Permansor Terrae",
-    "tag": "hsr",
-    "game": "Honkai: Star Rail",
-    "img": "https://upload-os-bbs.hoyolab.com/upload/2025/10/10/f696aa5387278dc4f1d991f94e8ffe92_7545657641864917271.png",
+    "label": "Nefer",
+    "tag": "genshin",
+    "game": "Genshin Impact",
+    "img": "https://upload-os-bbs.hoyolab.com/upload/2025/10/17/521613c0dab0b4018fc68d926affaa6a_3857502028067489407.jpg",
     "face": [
-     55.2,
-     40.1
+     85.5,
+     60.2
     ],
-    "color": "#b9b9b9",
-    "rev_month": 4.9939,
+    "art": null,
+    "art_face": null,
+    "color": "#84c23c",
+    "rev_month": 2.8663,
     "rerun": false
    },
    "headline": null,
@@ -406,6 +456,11 @@
     "face": [
      55.9,
      39.4
+    ],
+    "art": "assets/journal/hsr/1413.webp",
+    "art_face": [
+     43.9,
+     32.9
     ],
     "color": "#5fc7e8",
     "rev_month": 11.2065,
@@ -434,6 +489,11 @@
      58.9,
      39.6
     ],
+    "art": "assets/journal/hsr/1410.webp",
+    "art_face": [
+     29.8,
+     35.9
+    ],
     "color": "#b9b9b9",
     "rev_month": 8.5846,
     "rerun": false
@@ -461,6 +521,11 @@
      64.5,
      40.1
     ],
+    "art": "assets/journal/hsr/1408.webp",
+    "art_face": [
+     46.9,
+     34.2
+    ],
     "color": "#b9b9b9",
     "rev_month": 22.18,
     "rerun": false
@@ -480,16 +545,18 @@
    "ym": "2025-06",
    "number": 58,
    "cover": {
-    "label": "Yixuan",
-    "tag": "zzz",
-    "game": "Zenless Zone Zero",
-    "img": "https://upload-os-bbs.hoyolab.com/upload/2025/05/31/0/b68c1b88a12a4d3e3ec45c55af13f562_53862237629036960.jpeg",
+    "label": "Skirk",
+    "tag": "genshin",
+    "game": "Genshin Impact",
+    "img": "https://upload-os-bbs.hoyolab.com/upload/2025/06/13/e82471d6437baa04dcfed78eb2fc02a3_4986421211168343162.jpg",
     "face": [
-     70.1,
-     26.1
+     47,
+     20.4
     ],
-    "color": "#e0b83a",
-    "rev_month": 11.52,
+    "art": null,
+    "art_face": null,
+    "color": "#7fc8e0",
+    "rev_month": 7.3652,
     "rerun": false
    },
    "headline": null,
@@ -514,6 +581,11 @@
     "face": [
      59,
      38.8
+    ],
+    "art": "assets/journal/hsr/1409.webp",
+    "art_face": [
+     64.7,
+     21.4
     ],
     "color": "#4fc8a0",
     "rev_month": 12.2961,
@@ -542,6 +614,11 @@
      62.2,
      40.4
     ],
+    "art": "assets/journal/hsr/1407.webp",
+    "art_face": [
+     46.8,
+     35.6
+    ],
     "color": "#4a4ad8",
     "rev_month": 24.6,
     "rerun": false
@@ -568,6 +645,11 @@
     "face": [
      83.9,
      39.7
+    ],
+    "art": "assets/journal/hsr/1404.webp",
+    "art_face": [
+     53.3,
+     48.8
     ],
     "color": "#f0d24b",
     "rev_month": 7.515,
@@ -596,6 +678,11 @@
      73.2,
      40.4
     ],
+    "art": "assets/journal/hsr/1403.webp",
+    "art_face": [
+     39.5,
+     42.0
+    ],
     "color": "#4a4ad8",
     "rev_month": 5.1614,
     "rerun": false
@@ -623,6 +710,8 @@
      47.5,
      25.3
     ],
+    "art": null,
+    "art_face": null,
     "color": "#f0684a",
     "rev_month": 20.58,
     "rerun": false
@@ -650,6 +739,8 @@
      70.6,
      30.8
     ],
+    "art": null,
+    "art_face": null,
     "color": "#4f8fe0",
     "rev_month": 13.05,
     "rerun": false
@@ -669,17 +760,19 @@
    "ym": "2024-11",
    "number": 51,
    "cover": {
-    "label": "Acheron & Aventurine",
-    "tag": "hsr",
-    "game": "Honkai: Star Rail",
-    "img": "https://upload-os-bbs.hoyolab.com/upload/2024/11/11/238774211f9f12c3b626b6f63d2fff60_7129866645847237397.jpg",
+    "label": "Chasca & Lyney",
+    "tag": "genshin",
+    "game": "Genshin Impact",
+    "img": "https://upload-os-bbs.hoyolab.com/upload/2024/11/15/0/6c6332e9c76b4392043f56c34a2fabcf_7620603469069275850.jpeg",
     "face": [
-     82.4,
-     42.2
+     49.4,
+     27.7
     ],
-    "color": "#c56af0",
-    "rev_month": 7.8004,
-    "rerun": true
+    "art": null,
+    "art_face": null,
+    "color": "#57c69a",
+    "rev_month": 2.5848,
+    "rerun": false
    },
    "headline": null,
    "games": [
@@ -704,6 +797,8 @@
      53.4,
      27.6
     ],
+    "art": null,
+    "art_face": null,
     "color": "#e0b23c",
     "rev_month": 8.12,
     "rerun": false
@@ -730,6 +825,11 @@
     "face": [
      49.9,
      35.8
+    ],
+    "art": "assets/journal/hsr/1220.webp",
+    "art_face": [
+     54.4,
+     41.8
     ],
     "color": "#4fc8a0",
     "rev_month": 18.5112,
@@ -758,6 +858,11 @@
      82.2,
      38.8
     ],
+    "art": "assets/journal/hsr/1218.webp",
+    "art_face": [
+     46.4,
+     31.5
+    ],
     "color": "#f0503f",
     "rev_month": 8.3477,
     "rerun": false
@@ -785,6 +890,8 @@
      75.1,
      33.2
     ],
+    "art": null,
+    "art_face": null,
     "color": "#5cc4ea",
     "rev_month": 20.41,
     "rerun": false
@@ -812,6 +919,11 @@
      57.3,
      33.8
     ],
+    "art": "assets/journal/hsr/1310.webp",
+    "art_face": [
+     44.5,
+     47.1
+    ],
     "color": "#f0503f",
     "rev_month": 20.2837,
     "rerun": false
@@ -837,6 +949,11 @@
     "face": [
      53.7,
      27.5
+    ],
+    "art": "assets/journal/hsr/1309.webp",
+    "art_face": [
+     50.7,
+     25.9
     ],
     "color": "#b9b9b9",
     "rev_month": 19.22,
@@ -864,6 +981,8 @@
      72.4,
      34.3
     ],
+    "art": null,
+    "art_face": null,
     "color": "#f0684a",
     "rev_month": 8.5278,
     "rerun": false
@@ -888,6 +1007,11 @@
     "face": [
      46,
      27.6
+    ],
+    "art": "assets/journal/hsr/1308.webp",
+    "art_face": [
+     50.5,
+     23.5
     ],
     "color": "#c56af0",
     "rev_month": 19.5214,
@@ -914,6 +1038,11 @@
      44,
      35.9
     ],
+    "art": "assets/journal/hsr/1307.webp",
+    "art_face": [
+     39.6,
+     26.8
+    ],
     "color": "#4fc8a0",
     "rev_month": 14.28,
     "rerun": false
@@ -939,6 +1068,8 @@
      51.5,
      29.5
     ],
+    "art": null,
+    "art_face": null,
     "color": "#b57fd4",
     "rev_month": 13.38,
     "rerun": true
@@ -956,16 +1087,18 @@
    "ym": "2023-12",
    "number": 40,
    "cover": {
-    "label": "Ruan Mei & Blade",
-    "tag": "hsr",
-    "game": "Honkai: Star Rail",
-    "img": "https://img.gamewith.jp/img/3e16693a0bf742ea4eb2142d8e017531.png",
+    "label": "Navia & Kamisato Ayaka",
+    "tag": "genshin",
+    "game": "Genshin Impact",
+    "img": "https://fastcdn.hoyoverse.com/content-v2/hk4e/114014/40958bf8aaf8d02564ce7aace9f67964_8283254283739051781.jpg",
     "face": [
-     63.5,
-     30
+     70.8,
+     32.3
     ],
-    "color": "#5fc7e8",
-    "rev_month": 9.8835,
+    "art": null,
+    "art_face": null,
+    "color": "#e0b23c",
+    "rev_month": 11.8303,
     "rerun": false
    },
    "headline": null,
@@ -988,6 +1121,8 @@
      26.5,
      46
     ],
+    "art": null,
+    "art_face": null,
     "color": "#4a90d9",
     "rev_month": 20.19,
     "rerun": false
@@ -1011,6 +1146,11 @@
     "face": [
      62.6,
      18
+    ],
+    "art": "assets/journal/hsr/1212.webp",
+    "art_face": [
+     50.3,
+     24.3
     ],
     "color": "#5fc7e8",
     "rev_month": 18.63,
@@ -1036,6 +1176,11 @@
      64.8,
      20
     ],
+    "art": "assets/journal/hsr/1208.webp",
+    "art_face": [
+     46.5,
+     32.1
+    ],
     "color": "#4a4ad8",
     "rev_month": 15.2899,
     "rerun": false
@@ -1059,6 +1204,11 @@
     "face": [
      63,
      14.5
+    ],
+    "art": "assets/journal/hsr/1005.webp",
+    "art_face": [
+     50.2,
+     31.1
     ],
     "color": "#c56af0",
     "rev_month": 23.52,
@@ -1084,6 +1234,11 @@
      65.4,
      11.5
     ],
+    "art": "assets/journal/hsr/1205.webp",
+    "art_face": [
+     50.1,
+     13.4
+    ],
     "color": "#4fc8a0",
     "rev_month": 12.9688,
     "rerun": false
@@ -1107,6 +1262,11 @@
     "face": [
      64.8,
      23.4
+    ],
+    "art": "assets/journal/hsr/1203.webp",
+    "art_face": [
+     50.6,
+     24.4
     ],
     "color": "#f0d24b",
     "rev_month": 8.542,
@@ -1132,6 +1292,11 @@
      29.7,
      59.8
     ],
+    "art": "assets/journal/hsr/1204.webp",
+    "art_face": [
+     56.6,
+     53.4
+    ],
     "color": "#c56af0",
     "rev_month": 16.6662,
     "rerun": false
@@ -1156,6 +1321,8 @@
      46.8,
      21
     ],
+    "art": null,
+    "art_face": null,
     "color": "#84c23c",
     "rev_month": 11.4479,
     "rerun": true
@@ -1180,6 +1347,8 @@
      54.5,
      23
     ],
+    "art": null,
+    "art_face": null,
     "color": "#7fc8e0",
     "rev_month": 5.815,
     "rerun": true
@@ -1203,6 +1372,8 @@
      64.3,
      26.5
     ],
+    "art": null,
+    "art_face": null,
     "color": "#f0684a",
     "rev_month": 18.83,
     "rerun": true
@@ -1226,6 +1397,8 @@
      55.4,
      19
     ],
+    "art": null,
+    "art_face": null,
     "color": "#84c23c",
     "rev_month": 11.4943,
     "rerun": false
@@ -1249,6 +1422,8 @@
      53.4,
      20.9
     ],
+    "art": null,
+    "art_face": null,
     "color": "#57c69a",
     "rev_month": 14.79,
     "rerun": false
@@ -1272,6 +1447,8 @@
      49.3,
      24.5
     ],
+    "art": null,
+    "art_face": null,
     "color": "#84c23c",
     "rev_month": 17.39,
     "rerun": false
@@ -1295,6 +1472,8 @@
      72.1,
      26.2
     ],
+    "art": null,
+    "art_face": null,
     "color": "#4a90d9",
     "rev_month": 7.1504,
     "rerun": false
@@ -1318,6 +1497,8 @@
      54.3,
      27.1
     ],
+    "art": null,
+    "art_face": null,
     "color": "#b57fd4",
     "rev_month": 8.7938,
     "rerun": false
@@ -1341,6 +1522,8 @@
      49.6,
      25.2
     ],
+    "art": null,
+    "art_face": null,
     "color": "#84c23c",
     "rev_month": 8.3791,
     "rerun": false
@@ -1364,6 +1547,8 @@
      54.1,
      23.2
     ],
+    "art": null,
+    "art_face": null,
     "color": "#57c69a",
     "rev_month": 21.3015,
     "rerun": true
@@ -1387,6 +1572,8 @@
      47,
      22.9
     ],
+    "art": null,
+    "art_face": null,
     "color": "#e0b23c",
     "rev_month": 5.8763,
     "rerun": true
@@ -1410,6 +1597,8 @@
      50.1,
      22.7
     ],
+    "art": null,
+    "art_face": null,
     "color": "#4a90d9",
     "rev_month": 0.8317,
     "rerun": false
@@ -1433,6 +1622,8 @@
      53.7,
      28.4
     ],
+    "art": null,
+    "art_face": null,
     "color": "#7fc8e0",
     "rev_month": 16.3546,
     "rerun": true
@@ -1456,6 +1647,8 @@
      57.5,
      18.9
     ],
+    "art": null,
+    "art_face": null,
     "color": "#b57fd4",
     "rev_month": 20.27,
     "rerun": true
@@ -1479,6 +1672,8 @@
      52.7,
      25.8
     ],
+    "art": null,
+    "art_face": null,
     "color": "#b57fd4",
     "rev_month": 14.4891,
     "rerun": false
@@ -1502,6 +1697,8 @@
      53.7,
      19.5
     ],
+    "art": null,
+    "art_face": null,
     "color": "#7fc8e0",
     "rev_month": 15.1567,
     "rerun": true
@@ -1525,6 +1722,8 @@
      47.5,
      27.4
     ],
+    "art": null,
+    "art_face": null,
     "color": "#e0b23c",
     "rev_month": 9.75,
     "rerun": false
@@ -1548,6 +1747,8 @@
      62.6,
      29.6
     ],
+    "art": null,
+    "art_face": null,
     "color": "#f0684a",
     "rev_month": 24.68,
     "rerun": true
@@ -1571,6 +1772,8 @@
      54.2,
      26.2
     ],
+    "art": null,
+    "art_face": null,
     "color": "#4a90d9",
     "rev_month": 13.3924,
     "rerun": true
@@ -1594,6 +1797,8 @@
      57.2,
      22.5
     ],
+    "art": null,
+    "art_face": null,
     "color": "#b57fd4",
     "rev_month": 21.02,
     "rerun": false
@@ -1617,6 +1822,8 @@
      52,
      33.7
     ],
+    "art": null,
+    "art_face": null,
     "color": "#f0684a",
     "rev_month": 11.98,
     "rerun": false
@@ -1640,6 +1847,8 @@
      54.2,
      25.4
     ],
+    "art": null,
+    "art_face": null,
     "color": "#7fc8e0",
     "rev_month": 8.0868,
     "rerun": false
@@ -1663,6 +1872,8 @@
      55,
      32
     ],
+    "art": null,
+    "art_face": null,
     "color": "#f0684a",
     "rev_month": 10.13,
     "rerun": true
@@ -1686,6 +1897,8 @@
      56.9,
      31.4
     ],
+    "art": null,
+    "art_face": null,
     "color": "#7fc8e0",
     "rev_month": 10.2035,
     "rerun": false
@@ -1709,6 +1922,8 @@
      51.8,
      21.1
     ],
+    "art": null,
+    "art_face": null,
     "color": "#e0b23c",
     "rev_month": 3.9356,
     "rerun": true
@@ -1732,6 +1947,8 @@
      62.6,
      32.1
     ],
+    "art": null,
+    "art_face": null,
     "color": "#f0684a",
     "rev_month": 12.67,
     "rerun": false
@@ -1755,6 +1972,8 @@
      48.2,
      26.8
     ],
+    "art": null,
+    "art_face": null,
     "color": "#57c69a",
     "rev_month": 10.64,
     "rerun": false
@@ -1777,6 +1996,8 @@
      53,
      23.2
     ],
+    "art": null,
+    "art_face": null,
     "color": "#7fc8e0",
     "rev_month": 19.7908,
     "rerun": false
@@ -1799,6 +2020,8 @@
      52.2,
      17.6
     ],
+    "art": null,
+    "art_face": null,
     "color": "#e0b23c",
     "rev_month": 18.06,
     "rerun": false
@@ -1821,6 +2044,8 @@
      62.6,
      18.7
     ],
+    "art": null,
+    "art_face": null,
     "color": "#4a90d9",
     "rev_month": 14.9165,
     "rerun": false
@@ -1843,6 +2068,8 @@
      56.9,
      22.2
     ],
+    "art": null,
+    "art_face": null,
     "color": "#f0684a",
     "rev_month": 15.2802,
     "rerun": false
@@ -1865,6 +2092,8 @@
      43,
      26.6
     ],
+    "art": null,
+    "art_face": null,
     "color": "#57c69a",
     "rev_month": 1.4211,
     "rerun": false
