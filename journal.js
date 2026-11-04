@@ -76,6 +76,28 @@ function histPhrase(g, ym){
 }
 // Banners arrive ranked by the median of their ranks on every measure (build_journal.py), so
 // banners[0] is the month's real leader even when another banner edged it on Japan revenue.
+// Rich copy. Sentences are built as plain text with marked spans, escaped as a whole, then the
+// marks turn into styled elements — so banner names from the data stay escaped while figures,
+// changes, names, ranks and verdicts get their own look.
+const MK = {
+  n: v => `\u0001${v}\u0002`,                              // a figure (bold, accent underline)
+  c: (p, t) => `\u0003${p>=0?"u":"d"}${t}\u0004`,          // a change: ▲ green / ▼ red
+  b: b => `\u0005${b.color||""}|${b.label}\u0006`,         // a banner, in its own colour
+  g: (tag, t) => `\u0007${tag}|${t||SHORT[tag]}\u0008`,    // a game, in its accent
+  r: v => `\u000e${v}\u000f`,                              // a chart rank badge
+  good: t => `\u0010${t}\u0011`, bad: t => `\u0012${t}\u0013`,   // verdict highlights
+};
+const judgeMark = t => !t ? "" : /worst|weakest|underwhelming|bottom/.test(t) ? MK.bad(t) : /best|strongest|top third/.test(t) ? MK.good(t) : t;
+function rich(t){
+  return esc(t)
+    .replace(/\u0001(.*?)\u0002/g, '<b class="fig">$1</b>')
+    .replace(/\u0003([ud])(.*?)\u0004/g, (_, d, v) => `<span class="dlt ${d}"><i>${d==="u"?"▲":"▼"}</i>${v.replace(/^[+−-]/,"")}</span>`)   // the arrow carries the sign
+    .replace(/\u0005([^|\u0006]*)\|(.*?)\u0006/g, '<b class="bn" style="--bc:$1">$2</b>')
+    .replace(/\u0007([a-z]+)\|(.*?)\u0008/g, (_, tag, v) => `<span class="gn" style="--gc:${GAME_ACCENT[tag]||"var(--ink)"}">${v}</span>`)
+    .replace(/\u000e(.*?)\u000f/g, '<span class="rkp">$1</span>')
+    .replace(/\u0010(.*?)\u0011/g, '<mark class="good">$1</mark>')
+    .replace(/\u0012(.*?)\u0013/g, '<mark class="bad">$1</mark>');
+}
 const MEASURE = { rev_month:"Japan revenue", cn_month:"China revenue", jp_peak:"Japan peak rank", cn_peak:"China peak rank" };
 const poss = n => n+(/s$/.test(n)?"'":"'s");                        // Wuthering Waves' / Genshin's
 const vb = (lbl, one, many) => / & /.test(lbl) ? many : one;          // "Lucy & Rebecca post", "Pearl posts"
@@ -151,57 +173,57 @@ function autoDek(g, ym){
 }
 function bannerSentence(b, lead){
   const when = b.new ? `opened on ${dayStr(b.start)}${b.rerun?" (a rerun)":""} and ` : (b.rerun?"(rerun) ":"");
-  const amt = b.rev_month>0 ? `${lead?"led the month with":"took"} ${fmtG(b.rev_month)} in Japan` : "stayed below Japan's top 200";
-  const pk = [b.jp_peak?`#${b.jp_peak} in Japan`:null, b.cn_peak?`#${b.cn_peak} on China's iPhone chart`:null].filter(Boolean);
-  const cn = b.cn_month>0 ? ` and ${fmtUSD(b.cn_month)} in China` : "";
-  return `${b.label} ${when}${amt}${cn}${pk.length?`, peaking at ${pk.join(" and ")}`:""}.`;
+  const amt = b.rev_month>0 ? `${lead?"led the month with":"took"} ${MK.n(fmtG(b.rev_month))} in Japan` : "stayed below Japan's top 200";
+  const pk = [b.jp_peak?`${MK.r("#"+b.jp_peak)} in Japan`:null, b.cn_peak?`${MK.r("#"+b.cn_peak)} on China's iPhone chart`:null].filter(Boolean);
+  const cn = b.cn_month>0 ? ` and ${MK.n(fmtUSD(b.cn_month))} in China` : "";
+  return `${MK.b(b)} ${when}${amt}${cn}${pk.length?`, peaking at ${pk.join(" and ")}`:""}.`;
 }
 function headToHead(g){
   const [a,b]=g.banners; if(!a||!b||!a.mranks) return "";
   const ms=(g.measures||[]).filter(k=>a.mranks[k]!==b.mranks[k]);
   const won=ms.filter(k=>a.mranks[k]<b.mranks[k]).map(k=>MEASURE[k]), lost=ms.filter(k=>a.mranks[k]>b.mranks[k]).map(k=>MEASURE[k]);
   if(!won.length) return "";
-  if(!lost.length) return `It finished ahead of ${b.label} on every measure.`;
-  return `It beat ${b.label} on ${andList(won)}; only ${andList(lost)} went ${b.label}'s way.`;
+  if(!lost.length) return `It finished ahead of ${MK.b(b)} on ${MK.good("every measure")}.`;
+  return `It beat ${MK.b(b)} on ${andList(won)}; only ${andList(lost)} went ${MK.b(b)}'s way.`;
 }
 // The month's leader vs the runner-up, counting how many days each actually had in the month:
 // a banner that opened on the 28th and still won has to be read against a full-month rival.
 const sum = a => a.reduce((x,y)=>x+(y||0),0);
 function daysEdge(g){
   const [a,b]=g.banners; if(!a||!b||!a.days||!b.days||!(a.rev_month>0)||!(b.rev_month>0)) return "";
-  const perDay=x=>fmtG(x.rev_month/x.days);
+  const perDay=x=>MK.n(fmtG(x.rev_month/x.days));
   if(a.days <= b.days*0.6){
     const N=a.days, out=[];
     if(a.day0===0 && !b.ongoing && b.rev_total>0 && a.rev_month>=b.rev_total*0.6){
       const r=a.rev_month/b.rev_total;
-      out.push(`${a.label} needed only ${plural(N,"day")} to make ${r>=1?"more than":Math.round(r*100)+"% of"} what ${b.label} made in its entire ${b.run_days}-day run.`);
-    } else out.push(`${a.label} did it in ${plural(N,"day")}, against ${poss(b.label)} ${b.days}: ${perDay(a)} a day to ${perDay(b)}.`);
+      out.push(`${MK.b(a)} needed only ${MK.n(plural(N,"day"))} to make ${MK.good(r>=1?"more than":Math.round(r*100)+"% of")} what ${MK.b(b)} made in its entire ${MK.n(b.run_days+"-day")} run.`);
+    } else out.push(`${MK.b(a)} did it in ${MK.n(plural(N,"day"))}, against ${MK.b(b)}'s ${MK.n(b.days)}: ${perDay(a)} a day to ${perDay(b)}.`);
     if(a.day0===0 && b.jp_daily && b.jp_daily.length>=N){
       const w=sum(b.jp_daily.slice(0,N)), wc=b.cn_daily&&b.cn_daily.length>=N?sum(b.cn_daily.slice(0,N)):0;
-      if(w>0) out.push(`Over its own first ${plural(N,"day")}, ${b.label} had only ${fmtG(w)}${wc>0?` and ${fmtUSD(wc)}`:""}, against ${fmtG(a.rev_month)}${a.cn_month>0?` and ${fmtUSD(a.cn_month)}`:""}.`);
+      if(w>0) out.push(`Over its own first ${plural(N,"day")}, ${MK.b(b)} had only ${MK.n(fmtG(w))}${wc>0?` and ${MK.n(fmtUSD(wc))}`:""}, against ${MK.n(fmtG(a.rev_month))}${a.cn_month>0?` and ${MK.n(fmtUSD(a.cn_month))}`:""}.`);
     }
     return out.join(" ");
   }
   if(b.days <= a.days*0.6 && b.rev_month/b.days > a.rev_month/a.days)
-    return `Per day, though, ${b.label} was faster: ${perDay(b)} a day over ${plural(b.days,"day")}, against ${poss(a.label)} ${perDay(a)} over ${a.days}.`;
+    return `Per day, though, ${MK.b(b)} was ${MK.good("faster")}: ${perDay(b)} a day over ${plural(b.days,"day")}, against ${MK.b(a)}'s ${perDay(a)} over ${a.days}.`;
   return "";
 }
 function runSentence(b, G){
   const v=verdict(b); if(!v) return "";
-  const where=[b.alltime&&`${ord(b.alltime[0])} of ${b.alltime[1]} in Japan`, b.cn_alltime&&`${ord(b.cn_alltime[0])} of ${b.cn_alltime[1]} in China`].filter(Boolean);
-  const judge = v.final ? `: ${TIER[v.tier]}` : ", with the run still going";
-  return `${b.label}'s run ${b.ongoing?"so far ":""}ranks ${andList(where)} among ${G} banners${judge}.`;
+  const where=[b.alltime&&`${MK.n(ord(b.alltime[0]))} of ${b.alltime[1]} in Japan`, b.cn_alltime&&`${MK.n(ord(b.cn_alltime[0]))} of ${b.cn_alltime[1]} in China`].filter(Boolean);
+  const judge = v.final ? `: ${judgeMark(TIER[v.tier])}` : ", with the run still going";
+  return `${MK.b(b)}'s run ${b.ongoing?"so far ":""}ranks ${andList(where)} among ${G} banners${judge}.`;
 }
 function autoBody(g, ym){
-  const out=[], p=pct(g.jp,g.jp_prev), hp=histPhrase(g,ym);
+  const out=[], p=pct(g.jp,g.jp_prev), hp=histPhrase(g,ym), pm=MONTHS[+prevYm(ym).slice(5)-1];
   if(g.jp){
-    let s=`${g.name} took ${fmtG(g.jp)} in Japan in ${MONTHS[+ym.slice(5)-1]}`;
-    if(p!=null) s+=`, ${p>=0?"up":"down"} ${Math.abs(p).toFixed(0)}% on ${MONTHS[+prevYm(ym).slice(5)-1]}`;
-    if(hp) s+=` — ${hp}`;
-    if(g.jp_rank && g.jp_rank[1]>1) s+=`. That made it ${g.jp_rank[0]===1?"the top earner":"No. "+g.jp_rank[0]} of the ${g.jp_rank[1]} games tracked`;
+    let s=`${MK.g(g.tag,g.name)} took ${MK.n(fmtG(g.jp))} in Japan in ${MONTHS[+ym.slice(5)-1]}`;
+    if(p!=null) s+=`, ${MK.c(p, `${p>=0?"up":"down"} ${Math.abs(p).toFixed(0)}%`)} on ${pm}`;
+    if(hp) s+=` — ${judgeMark(hp)}`;
+    if(g.jp_rank && g.jp_rank[1]>1) s+=`. That made it ${g.jp_rank[0]===1?MK.good("the top earner"):"No. "+MK.n(g.jp_rank[0])} of the ${g.jp_rank[1]} games tracked`;
     s+=".";
     if(g.cn){ const pc=pct(g.cn,g.cn_prev);
-      s+=` On China's iPhone store it made ${fmtUSD(g.cn)}${pc!=null?` (${pctStr(pc)})`:""}${g.cn_rank&&g.cn_rank[1]>1?`, No. ${g.cn_rank[0]} of ${g.cn_rank[1]}`:""}.`; }
+      s+=` On China's iPhone store it made ${MK.n(fmtUSD(g.cn))}${pc!=null?` (${MK.c(pc,pctStr(pc))})`:""}${g.cn_rank&&g.cn_rank[1]>1?`, No. ${MK.n(g.cn_rank[0])} of ${g.cn_rank[1]}`:""}.`; }
     out.push(s);
   }
   const bs=g.banners.filter(b=>b.rev_month>0||b.cn_month>0);
@@ -268,30 +290,30 @@ function yearPhrase(m, ym){
 }
 function marketCopy(f){
   const mk=f.market||{}, jp=mk.jp, cn=mk.cn, mo=MONTHS[+f.ym.slice(5)-1], out=[];
-  const pj=pctOf(jp), pc=pctOf(cn);
+  const pj=pctOf(jp), pc=pctOf(cn), chg=p=>MK.c(p, `${p>=0?"up":"down"} ${Math.abs(p).toFixed(0)}%`);
   if(jp){
     const red=jp.down.length, n=jp.same_n;
-    let s = red===n ? `Every single game ended ${mo} in the red in Japan.`
-      : red>n/2 ? `${red} of ${n} games ended ${mo} in the red in Japan.`
-      : red===n/2 ? `Half the games went backwards in Japan: ${red} of ${n}.`
-      : red ? `${red} of ${n} games lost ground in Japan; ${jp.up.length} grew.` : `Every game grew in Japan.`;
+    let s = red===n ? `${MK.bad("Every single game")} ended ${mo} in the red in Japan.`
+      : red>n/2 ? `${MK.bad(`${red} of ${n} games`)} ended ${mo} in the red in Japan.`
+      : red===n/2 ? `Half the games went backwards in Japan: ${MK.n(`${red} of ${n}`)}.`
+      : red ? `${MK.n(`${red} of ${n}`)} games lost ground in Japan; ${MK.n(jp.up.length)} grew.` : `${MK.good("Every game grew")} in Japan.`;
     const yp=yearPhrase(jp,f.ym);
-    s+=` Japan took ${fmtG(jp.total)} from the tracked games${pj!=null?`, ${pj>=0?"up":"down"} ${Math.abs(pj).toFixed(0)}% on the month`:""}${yp?`: ${yp}`:""}.`;
+    s+=` Japan took ${MK.n(fmtG(jp.total))} from the tracked games${pj!=null?`, ${chg(pj)} on the month`:""}${yp?`: ${judgeMark(yp)}`:""}.`;
     out.push(s);
   }
   if(cn){
     const yp=yearPhrase(cn,f.ym);
-    out.push(`China's iPhone store added ${fmtUSD(cn.total)}${pc!=null?`, ${pc>=0?"up":"down"} ${Math.abs(pc).toFixed(0)}%`:""}, with ${cn.down.length} of ${cn.same_n} games down${yp?`: ${yp}`:""}.`);
+    out.push(`China's iPhone store added ${MK.n(fmtUSD(cn.total))}${pc!=null?`, ${chg(pc)}`:""}, with ${MK.n(`${cn.down.length} of ${cn.same_n}`)} games down${yp?`: ${judgeMark(yp)}`:""}.`);
   }
   if(pj!=null && pc!=null){
-    if(pj>=0 && pc<0) out.push(`The markets split: Japan spent more while China pulled back.`);
-    else if(pj<0 && pc>=0) out.push(`The markets split: China spent more while Japan pulled back.`);
-    else if(pj<=-10 && pc<=-10) out.push(pick("both-down",[`Both markets fell hard. Nobody was spending.`, `A cold month in both markets.`, `Japan and China both closed their wallets.`]));
+    if(pj>=0 && pc<0) out.push(`The markets split: Japan spent ${MK.good("more")} while China ${MK.bad("pulled back")}.`);
+    else if(pj<0 && pc>=0) out.push(`The markets split: China spent ${MK.good("more")} while Japan ${MK.bad("pulled back")}.`);
+    else if(pj<=-10 && pc<=-10) out.push(MK.bad(pick("both-down",[`Both markets fell hard. Nobody was spending.`, `A cold month in both markets.`, `Japan and China both closed their wallets.`])));
     else if(pj<0 && pc<0) out.push(`Both markets slipped.`);
-    else if(pj>=10 && pc>=10) out.push(pick("both-up",[`Both markets boomed.`, `Wallets open in both markets.`]));
+    else if(pj>=10 && pc>=10) out.push(MK.good(pick("both-up",[`Both markets boomed.`, `Wallets open in both markets.`])));
     else out.push(`Both markets grew a little.`);
   }
-  const mv=(m,dir)=>{ const t=m&&m[dir][0]; return t?`${SHORT[t]} (${pctStr(m.chg[t]*100)})`:null; };
+  const mv=(m,dir)=>{ const t=m&&m[dir][0]; return t?`${MK.g(t)} ${MK.c(m.chg[t], pctStr(m.chg[t]*100))}`:null; };
   const ups=mv(jp,"up"), dns=mv(jp,"down");
   if(ups||dns) out.push(`In Japan, ${[ups&&`${ups} led the risers`, dns&&`${dns} the fallers`].filter(Boolean).join(" and ")}.`);
   return out;
@@ -314,7 +336,7 @@ function marketHTML(f){
       <span class="nm">${esc(SHORT[t])}</span><span class="cbar"><i style="width:${(Math.abs(c)/mx*50).toFixed(1)}%"></i></span><span class="cv">${pctStr(c*100)}</span></li>`).join("")}</ol></div>`; };
   return `<section class="market"><div class="sec-k">The month in totals</div><h3 class="sec-h">Every tracked gacha, added up</h3>
     <div class="mtiles">${mk.jp?tile("jp","Japan","game-i · App Store + Google Play",fmtG(mk.jp.total),mk.jp):""}${mk.cn?tile("cn","China iPhone","Qimai · App Store",fmtUSD(mk.cn.total),mk.cn):""}${zlTile}</div>
-    <div class="mcopy">${marketCopy(f).map(t=>`<p>${esc(t)}</p>`).join("")}</div>
+    <div class="mcopy">${marketCopy(f).map(t=>`<p>${rich(t)}</p>`).join("")}</div>
     <div class="mcols">${col(mk.jp,"Japan, game by game")}${col(mk.cn,"China iPhone, game by game")}${zl?col(zl,`China 总流水, game by game ${lateTag(false)}`):""}</div>
     <p class="mnote">Changes compare the games present in both months, so a launch doesn't count as growth. Japan, China iPhone and 总流水 are different measurements of different stores and are never added together.</p></section>`;
 }
@@ -386,6 +408,7 @@ function topHTML(f){
 }
 // What's next: for the latest issue, the announced next banner (upcoming.json); for older
 // issues, the banners that actually came next.
+const SHOW_NEXT = false;                   // hidden for now (user, 2026-11-04)
 function nextHTML(g, f){
   const latest=J.index.issues[0] && J.index.issues[0].ym===f.ym;
   const u=latest && J.upcoming[f.ym] && J.upcoming[f.ym][g.tag];
@@ -421,21 +444,26 @@ function featureHTML(g, f, notes, n){
   const top=(w.hero&&g.banners.find(b=>b.label===w.hero&&b.img))||g.banners.find(b=>b.img)||g.banners[0];
   const acc=(top&&top.color)||GAME_ACCENT[g.tag];
   // notes are hand-written HTML (trusted); the fallback copy is built from data, so it's escaped
-  const body=(w.body&&w.body.length?w.body:autoBody(g,f.ym).map(esc)).map(t=>`<p>${t}</p>`).join("");
+  const body=(w.body&&w.body.length?w.body:autoBody(g,f.ym).map(rich)).map(t=>`<p>${t}</p>`).join("");
   const kicker=[g.jp_rank?`No. ${g.jp_rank[0]} in Japan`:null, g.cn_rank?`No. ${g.cn_rank[0]} in China`:null].filter(Boolean).join(" · ");
   const brief=!FEATURED.includes(g.tag);
-  return `${brief&&n===f.games.findIndex(x=>!FEATURED.includes(x.tag))?`<div class="sec-k brief-k">In brief · the other games</div>`:""}
-  <article class="feat${brief?" brief":""}" id="g-${g.tag}" style="--acc:${acc};--gacc:${GAME_ACCENT[g.tag]}">
+  return `<article class="feat${brief?" brief":""}" id="g-${g.tag}" style="--acc:${acc};--gacc:${GAME_ACCENT[g.tag]}">
     <header class="feat-hd"><img class="feat-ic" src="${g.icon}" alt=""><div><div class="feat-k">${esc(g.name)}${kicker?` <span>· ${kicker}</span>`:""}</div>
       <h3>${esc(w.headline||autoHeadline(g))}</h3>${w.dek?`<p class="dek">${w.dek}</p>`:autoDek(g,f.ym)?`<p class="dek">${esc(autoDek(g,f.ym))}</p>`:""}</div></header>
     ${top&&top.img?`<figure class="feat-art">${img(top.img,"",top.label,{face:top.face,ty:0.4})}<figcaption>${esc(top.label)}${top.rerun?" (rerun)":""} · ${dayStr(top.start)} – ${dayStr(top.end)}</figcaption></figure>`:""}
     ${statStrip(g, f.ym)}
     <div class="copy">${body}${w.pull?`<blockquote>${esc(w.pull)}</blockquote>`:""}</div>
-    ${nextHTML(g, f)}
+    ${SHOW_NEXT?nextHTML(g, f):""}
     ${bannerList(g)}
   </article>`;
 }
 
+// Games run in the order of their best entry in the month's openings; games with no new banner
+// that month follow, by Japan revenue.
+function gameOrder(f){
+  const at=t=>{ const i=f.debuts.findIndex(d=>d.tag===t); return i<0?Infinity:i; };
+  return [...f.games].sort((a,b)=>at(a.tag)-at(b.tag) || (b.jp||0)-(a.jp||0));
+}
 function render(iss, focus){
   const {facts:f, notes}=iss, nt=notes||{}; G_YM=f.ym;
   document.title=`${monthName(f.ym)} · Gacha Tracker Monthly`;
@@ -445,7 +473,8 @@ function render(iss, focus){
   const c=f.cover||{};
   const lines=nt.coverlines||autoCoverLines(f);
   const head=nt.headline||(c.label?`${c.label} leads the month's openings`:monthName(f.ym));
-  const toc=f.games.map(g=>`<a href="#${f.ym}/${g.tag}" style="--acc:${GAME_ACCENT[g.tag]}"><img src="${g.icon}" alt=""><span>${esc(SHORT[g.tag])}</span></a>`).join("");
+  const games=gameOrder(f);
+  const toc=games.map(g=>`<a href="#${f.ym}/${g.tag}" style="--acc:${GAME_ACCENT[g.tag]}"><img src="${g.icon}" alt=""><span>${esc(SHORT[g.tag])}</span></a>`).join("");
   const letter=(nt.letter||[]).map(t=>`<p>${t}</p>`).join("");
   $("#issue").innerHTML=`
     <section class="cover" style="--acc:${c.color||"#888"}">
@@ -465,7 +494,7 @@ function render(iss, focus){
       <div class="chartcols">${rankChart(f,"jp",fmtG,"Japan","game-i · App Store + Google Play, yen")}${rankChart(f,"cn",fmtUSD,"China iPhone","Qimai · App Store, US$")}</div></section>
     ${debutsHTML(f)}
     ${SHOW_TOP?topHTML(f):""}
-    <div class="feats">${f.games.map((g,i)=>featureHTML(g,f,nt,i)).join("")}</div>
+    <div class="feats">${games.map((g,i)=>featureHTML(g,f,nt,i)).join("")}</div>
     <nav class="issnav">${older?`<a href="#${older.ym}">← ${monthName(older.ym)}</a>`:"<span></span>"}<a href="#archive" class="arch">All issues</a>${newer?`<a href="#${newer.ym}">${monthName(newer.ym)} →</a>`:"<span></span>"}</nav>`;
   $("#archive").hidden=true; $("#issue").hidden=false;
   requestAnimationFrame(fitAll);            // art already in cache won't wait for a load event
