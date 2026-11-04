@@ -5,13 +5,13 @@
  "unit": "億G",
  "source": "https://prtimes.jp/main/html/searchrlp/company_id/131862",
  "banners_from": "official",
- "updated": "2026-11-03T22:05:37Z",
+ "updated": "2026-11-04T18:05:06Z",
  "count": 81,
  "now": {
   "ios": null,
   "android": null,
-  "month": 358,
-  "next_add": 3855408,
+  "month": 351,
+  "next_add": 3663415,
   "ym": "2026/11",
   "ranks": {
    "prev": [
@@ -83,7 +83,7 @@
   }
  },
  "monthly": {
-  "2026-11": 0.1472,
+  "2026-11": 0.1846,
   "2026-10": 2.3,
   "2026-09": 2.84,
   "2026-08": 2.27,
@@ -4204,7 +4204,7 @@
    ],
    "source_url": "https://wiki.biligame.com/lysk/%E3%80%8C%E9%A6%A5%E5%A4%9C%E8%BD%BB%E6%BC%BE%E3%80%8D",
    "rerun": false,
-   "ongoing": true,
+   "ongoing": false,
    "rank_series": [
     196,
     133,
@@ -4214,17 +4214,18 @@
     null,
     null,
     null,
+    null,
     null
    ],
    "rev": 0.224,
-   "rev_month": 0.4754,
+   "rev_month": 0.5128,
    "rev_ym": {
     "2026-10": 0.224,
     "2026-11": 0.0
    },
    "rev_month_ym": {
     "2026-10": 0.3282,
-    "2026-11": 0.1472
+    "2026-11": 0.1846
    },
    "cum": 80,
    "cumtot": 81,
