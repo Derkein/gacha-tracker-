@@ -30,6 +30,8 @@ const pctStr = p => p==null ? "" : (p>=0?"+":"−")+Math.abs(p).toFixed(Math.abs
 const plural = (n,w) => `${n} ${w}${n===1?"":"s"}`;
 const rk = r => r==null ? "—" : "#"+r;
 function monthsBetween(a,b){ return (+b.slice(0,4)-+a.slice(0,4))*12 + (+b.slice(5)-+a.slice(5)); }
+const nextYm = ym => { let y=+ym.slice(0,4), m=+ym.slice(5)+1; if(m>12){m=1;y++;} return y+"-"+String(m).padStart(2,"0"); };
+let G_YM = "";                                    // the issue being rendered (for month-relative labels)
 const prevYm = ym => { let y=+ym.slice(0,4), m=+ym.slice(5)-1; if(!m){m=12;y--;} return y+"-"+String(m).padStart(2,"0"); };
 
 async function getJSON(u){ const r=await fetch(u,{cache:"no-cache"}); if(!r.ok) throw new Error(u+" "+r.status); return r.json(); }
@@ -59,13 +61,50 @@ function histPhrase(g, ym){
   if(!h.low_since && h.of>=4) return "its weakest month on record";
   return "";
 }
+// Banners arrive ranked by the median of their ranks on every measure (build_journal.py), so
+// banners[0] is the month's real leader even when another banner edged it on Japan revenue.
+const MEASURE = { rev_month:"Japan revenue", cn_month:"China revenue", jp_peak:"Japan peak rank", cn_peak:"China peak rank" };
+const poss = n => n+(/s$/.test(n)?"'":"'s");                        // Wuthering Waves' / Genshin's
+const vb = (lbl, one, many) => / & /.test(lbl) ? many : one;          // "Lucy & Rebecca post", "Pearl posts"
+// still running when the month closed (ongoing = running TODAY, which only fits the latest issue)
+const runsOn = (b, ym) => b.end > ym+"-31";
+const andList = a => a.length<2 ? (a[0]||"") : a.slice(0,-1).join(", ")+" and "+a.at(-1);
+// Where a banner's whole run sits in its game's history, as the median of its Japan and China
+// percentiles (0 = best ever, 1 = worst). Ongoing runs are still growing: only good news is final.
+function verdict(b){
+  const ps=[b.alltime,b.cn_alltime].filter(x=>x&&x[1]>=6).map(([r,n])=>(r-1)/(n-1));
+  if(!ps.length) return null;
+  const v=ps.length===2?(ps[0]+ps[1])/2:ps[0];
+  const tier = v<=.15?"top": v<=.34?"strong": v>=.85?"bottom": v>=.66?"weak":"mid";
+  return {v, tier, final:!b.ongoing || v<=.34};          // b.ongoing: still running today, so its run isn't final
+}
+const weakRun = b => { const v=verdict(b); return v && v.final && (v.tier==="weak"||v.tier==="bottom"); };
+const TIER = { top:"one of the game's strongest runs", strong:"in the top third of the game's banners", mid:"around the middle of the pack",
+  weak:"an underwhelming run, in the game's bottom third", bottom:"one of the game's weakest runs" };
+// the month's other new (non-rerun) banners, and the first of them whose finished run was weak
+// (a banner that opened in the month's last days belongs to next month's story, not this one's)
+const rivals = g => g.banners.slice(1).filter(b=>b.new && !b.rerun && (+b.start.slice(8)<=20 || b.rev_month>=b.rev_total/2));
+const flopOf = g => rivals(g).find(weakRun);
 function autoHeadline(g){
-  const top=g.banners[0]; if(!top) return `${g.name}'s month`;
-  const p=pct(g.jp,g.jp_prev);
-  if(g.jp_rank && g.jp_rank[0]===1) return `${top.label} puts ${SHORT[g.tag]} on top`;
-  if(top.new && !top.rerun) return p!=null&&p>15 ? `${top.label} lifts ${SHORT[g.tag]}` : `${top.label} arrives`;
-  if(top.rerun) return `The ${top.label} rerun leads`;
-  return p!=null&&p<-15 ? `A quieter month, led by ${top.label}` : `${top.label} carries the month`;
+  const lead=g.banners[0]; if(!lead) return `${g.name}'s month`;
+  const fl=flopOf(g), nb=rivals(g)[0], p=pct(g.jp,g.jp_prev), v=verdict(lead), G=SHORT[g.tag];
+  if(fl) return lead.new ? `${lead.label} ${vb(lead.label,"steals","steal")} the show as ${fl.label} ${vb(fl.label,"underwhelms","underwhelm")}`
+                         : `${lead.label} still ${vb(lead.label,"runs","run")} the show as ${fl.label} ${vb(fl.label,"underwhelms","underwhelm")}`;
+  if(nb && !lead.new) return `${lead.label} ${vb(lead.label,"outpaces","outpace")} newcomer ${nb.label}`;
+  if(lead.new && !lead.rerun){
+    if(v&&v.tier==="top") return `${lead.label} ${vb(lead.label,"posts","post")} one of ${poss(G)} best runs`;
+    if(weakRun(lead)) return `${lead.label} ${vb(lead.label,"disappoints","disappoint")}`;
+    if(p!=null&&p>25) return `${lead.label} ${vb(lead.label,"lifts","lift")} ${G}`;
+    return `${lead.label} ${vb(lead.label,"leads","lead")} ${poss(G)} month`;
+  }
+  if(lead.rerun) return `The ${lead.label} rerun leads ${poss(G)} month`;
+  return p!=null&&p<-25 ? `A quiet month for ${G}, led by ${lead.label}` : `${lead.label} ${vb(lead.label,"carries","carry")} ${G}`;
+}
+function autoDek(g, ym){
+  const parts=[], p=pct(g.jp,g.jp_prev), pc=pct(g.cn,g.cn_prev), hp=histPhrase(g,ym);
+  if(g.jp && p!=null) parts.push(`Japan ${p>=0?"up":"down"} ${Math.abs(p).toFixed(0)}% to ${fmtG(g.jp)}${hp?`, ${hp}`:""}`);
+  if(g.cn && pc!=null) parts.push(`China ${pc>=0?"up":"down"} ${Math.abs(pc).toFixed(0)}%`);
+  return parts.length ? parts.join("; ")+"." : "";
 }
 function bannerSentence(b, lead){
   const when = b.new ? `opened on ${dayStr(b.start)}${b.rerun?" (a rerun)":""} and ` : (b.rerun?"(rerun) ":"");
@@ -73,6 +112,20 @@ function bannerSentence(b, lead){
   const pk = [b.jp_peak?`#${b.jp_peak} in Japan`:null, b.cn_peak?`#${b.cn_peak} on China's iPhone chart`:null].filter(Boolean);
   const cn = b.cn_month>0 ? ` and ${fmtUSD(b.cn_month)} in China` : "";
   return `${b.label} ${when}${amt}${cn}${pk.length?`, peaking at ${pk.join(" and ")}`:""}.`;
+}
+function headToHead(g){
+  const [a,b]=g.banners; if(!a||!b||!a.mranks) return "";
+  const ms=(g.measures||[]).filter(k=>a.mranks[k]!==b.mranks[k]);
+  const won=ms.filter(k=>a.mranks[k]<b.mranks[k]).map(k=>MEASURE[k]), lost=ms.filter(k=>a.mranks[k]>b.mranks[k]).map(k=>MEASURE[k]);
+  if(!won.length) return "";
+  if(!lost.length) return `It finished ahead of ${b.label} on every measure.`;
+  return `It beat ${b.label} on ${andList(won)}; only ${andList(lost)} went ${b.label}'s way.`;
+}
+function runSentence(b, G){
+  const v=verdict(b); if(!v) return "";
+  const where=[b.alltime&&`${ord(b.alltime[0])} of ${b.alltime[1]} in Japan`, b.cn_alltime&&`${ord(b.cn_alltime[0])} of ${b.cn_alltime[1]} in China`].filter(Boolean);
+  const judge = v.final ? `: ${TIER[v.tier]}` : ", with the run still going";
+  return `${b.label}'s run ${b.ongoing?"so far ":""}ranks ${andList(where)} among ${G} banners${judge}.`;
 }
 function autoBody(g, ym){
   const out=[], p=pct(g.jp,g.jp_prev), hp=histPhrase(g,ym);
@@ -87,20 +140,24 @@ function autoBody(g, ym){
     out.push(s);
   }
   const bs=g.banners.filter(b=>b.rev_month>0||b.cn_month>0);
-  if(bs.length){
-    out.push(bs.slice(0,3).map((b,i)=>bannerSentence(b,i===0)).join(" "));
-    const nb=bs.find(b=>b.new && b.alltime && b.alltime[1]>=5);
-    if(nb) out.push(`${nb.label}'s run ${nb.ongoing?"so far ":""}ranks No. ${nb.alltime[0]} of the ${nb.alltime[1]} ${SHORT[g.tag]} banners tracked in Japan${nb.cn_alltime?` and No. ${nb.cn_alltime[0]} of ${nb.cn_alltime[1]} in China`:""}${nb.ongoing?"; it was still running at the end of the month":""}.`);
-  } else if(g.banners.length) out.push(`No banner reached Japan's top 200 this month.`);
+  if(!bs.length){ if(g.banners.length) out.push(`No banner reached Japan's top 200 this month.`); return out; }
+  out.push([bannerSentence(bs[0],true), headToHead(g)].filter(Boolean).join(" "));
+  if(bs.length>1) out.push(bs.slice(1,3).map(b=>bannerSentence(b,false)).join(" "));
+  const runs=g.banners.filter(b=>b.new).map(b=>runSentence(b,SHORT[g.tag])).filter(Boolean);
+  if(runs.length) out.push(runs.join(" "));
   return out;
 }
 function autoCoverLines(f){
-  const lines=[];
+  const lines=[], feat=f.games.filter(g=>FEATURED.includes(g.tag));
+  const d=f.debuts[0]; if(d) lines.push(`${d.label} is the month's best opening (${SHORT[d.tag]})`);
+  const flop=feat.map(g=>[g,flopOf(g)]).find(([g,b])=>b);
+  if(flop) lines.push(`${flop[1].label} ${vb(flop[1].label,"underwhelms","underwhelm")} as ${flop[0].banners[0].label} ${vb(flop[0].banners[0].label,"leads","lead")} ${SHORT[flop[0].tag]}`);
   const top=[...f.games].filter(g=>g.jp_rank).sort((a,b)=>a.jp_rank[0]-b.jp_rank[0])[0];
   if(top) lines.push(`${SHORT[top.tag]} tops Japan with ${fmtG(top.jp)}`);
+  const sw=feat.filter(g=>pct(g.jp,g.jp_prev)!=null).sort((a,b)=>Math.abs(pct(b.jp,b.jp_prev))-Math.abs(pct(a.jp,a.jp_prev)))[0];
+  if(sw && Math.abs(pct(sw.jp,sw.jp_prev))>=20 && sw!==top) lines.push(`${SHORT[sw.tag]} ${pct(sw.jp,sw.jp_prev)>0?"up":"down"} ${Math.abs(pct(sw.jp,sw.jp_prev)).toFixed(0)}% in Japan`);
   const cn=[...f.games].filter(g=>g.cn_rank).sort((a,b)=>a.cn_rank[0]-b.cn_rank[0])[0];
   if(cn && f.games.filter(g=>g.cn).length>1) lines.push(`${SHORT[cn.tag]} leads China's iPhone store`);
-  f.debuts.slice(0,2).forEach(d=>lines.push(`${d.label}: ${d.rerun?"the rerun":"the debut"}, peaking at ${rk(d.jp_peak_run)} in Japan`));
   return lines.slice(0,4);
 }
 
@@ -141,25 +198,42 @@ const DEBUT_CARDS = 10;
 function debutsHTML(f){
   if(!f.debuts.length) return "";
   return `<section class="debuts"><div class="sec-k">New this month</div><h3 class="sec-h">The month's openings</h3>
-    <p class="sec-sub">Every banner that started in ${MONTHS[+f.ym.slice(5)-1]}, by its whole run's Japan revenue${f.debuts.some(d=>d.ongoing)?" so far":""}.</p>
+    <p class="sec-sub">Every banner that started in ${MONTHS[+f.ym.slice(5)-1]}, ranked on its whole run${f.debuts.some(d=>d.ongoing)?" so far":""}: the median of its places on Japan and China revenue and peak rank.</p>
     <div class="dgrid">${f.debuts.slice(0,DEBUT_CARDS).map((d,i)=>`<a class="dcard" href="#${f.ym}/${d.tag}" style="--acc:${d.color||GAME_ACCENT[d.tag]}">
       <div class="dart">${img(d.img,"","",{face:d.face})}<span class="dno">${i+1}</span></div>
       <div class="dtx"><span class="dg">${esc(SHORT[d.tag])}${d.rerun?" · rerun":""}</span><b>${esc(d.label)}</b>
       <span class="dm">${fmtG(d.rev_total)} · peak ${rk(d.jp_peak_run)} JP${d.cn_peak_run?` · ${rk(d.cn_peak_run)} CN`:""}</span></div></a>`).join("")}</div>
     ${f.debuts.length>DEBUT_CARDS?`<p class="dmore"><b>Also opened:</b> ${f.debuts.slice(DEBUT_CARDS).map((d,i)=>`<a href="#${f.ym}/${d.tag}">${DEBUT_CARDS+i+1}. ${esc(d.label)}</a> <span class="mu">(${esc(SHORT[d.tag])}${d.rerun?", rerun":""}, ${fmtG(d.rev_total)})</span>`).join(" · ")}</p>`:""}</section>`;
 }
-function bannerTable(g){
+// The month's banners as ranked cards. Order = median rank across every measure; each measure
+// shows its value, a bar against the month's best, and a star on the banner that won it.
+function bannerList(g){
   if(!g.banners.length) return "";
-  const hasCN=g.banners.some(b=>b.cn_month>0||b.cn_peak);
-  return `<table class="btab"><thead><tr><th class="l">Banner</th><th>Japan</th>${hasCN?"<th>China iPhone</th>":""}
-    <th title="Best daily top-grossing rank this month">Peak JP</th>${hasCN?'<th title="Best daily top-grossing rank this month">Peak CN</th>':""}
-    <th title="Whole-run Japan revenue, ranked against every banner of the game">All-time</th></tr></thead><tbody>${g.banners.map(b=>`
-    <tr style="--acc:${b.color}"><td class="l"><div class="bcell"><span class="bav">${b.icons[0]?img(b.icons[0]):img(b.img,"","",{face:b.face,ty:0.5})}</span>
-      <span class="bnm"><b>${esc(b.label)}</b><small>${b.new?(b.rerun?"rerun · ":"new · "):""}${dayStr(b.start)} – ${dayStr(b.end)}</small></span></div></td>
-      <td>${b.rev_month>0?fmtG(b.rev_month):'<span class="mu">below #200</span>'}</td>
-      ${hasCN?`<td>${b.cn_month>0?fmtUSD(b.cn_month):'<span class="mu">—</span>'}</td>`:""}
-      <td>${rk(b.jp_peak)}</td>${hasCN?`<td>${rk(b.cn_peak)}</td>`:""}
-      <td>${b.alltime?`${b.alltime[0]}<span class="mu"> / ${b.alltime[1]}</span>`:"—"}</td></tr>`).join("")}</tbody></table>`;
+  const many=g.banners.length>1, mx=k=>Math.max(0,...g.banners.map(b=>b[k]||0));
+  const maxJ=mx("rev_month"), maxC=mx("cn_month"), hasCN=g.banners.some(b=>b.cn_month>0||b.cn_peak);
+  const bar=(v,m)=>`<i class="bc-bar"><i style="width:${m>0&&v>0?Math.max(2,v/m*100).toFixed(1):0}%"></i></i>`;
+  const tier=r=>r==null?"":r<=10?" t1":r<=50?" t2":"";
+  return `<div class="blist-hd"><span>The month's banners</span><small>ranked across Japan and China revenue and peak ranks · ★ = best on that measure</small></div>
+  <ol class="blist">${g.banners.map((b,i)=>{ const v=verdict(b);
+    const win=k=>many && b.mranks && b.mranks[k]===1 && b[k] ? " win" : "";
+    const cell=(k,label,val,extra)=>`<div class="m${win(k)}"><span class="k">${label}</span><b>${val}</b>${extra||""}</div>`;
+    const chips=[b.new&&!b.rerun?`<span class="chip new">New</span>`:"", b.rerun?`<span class="chip">Rerun</span>`:"", runsOn(b,G_YM)?`<span class="chip live">Runs into ${MONTHS[+nextYm(G_YM).slice(5)-1].slice(0,3)}</span>`:"",
+      v&&v.final&&v.tier==="top"?`<span class="chip good">Top run</span>`:"", v&&v.final&&v.tier==="bottom"?`<span class="chip bad">Weak run</span>`:""].join("");
+    const pctl=b.alltime&&b.alltime[1]>1?(1-(b.alltime[0]-1)/(b.alltime[1]-1))*100:null;
+    return `<li class="bc" style="--acc:${b.color}">
+      <div class="bc-pos">${i+1}</div>
+      <div class="bc-art">${b.img?img(b.img,"",b.label,{face:b.face,ty:0.42}):""}</div>
+      <div class="bc-body">
+        <div class="bc-hd"><span class="bav">${b.icons[0]?img(b.icons[0]):img(b.img,"","",{face:b.face,ty:0.5})}</span>
+          <div class="bc-nm"><b>${esc(b.label)}</b><small>${dayStr(b.start)} – ${dayStr(b.end)}</small></div><div class="chips">${chips}</div></div>
+        <div class="bc-m">
+          ${cell("rev_month","Japan",b.rev_month>0?fmtG(b.rev_month):'<span class="mu">below #200</span>',bar(b.rev_month,maxJ))}
+          ${hasCN?cell("cn_month","China iPhone",b.cn_month>0?fmtUSD(b.cn_month):'<span class="mu">—</span>',bar(b.cn_month,maxC)):""}
+          ${cell("jp_peak","Peak JP",`<span class="pk${tier(b.jp_peak)}">${rk(b.jp_peak)}</span>`)}
+          ${hasCN?cell("cn_peak","Peak CN",`<span class="pk${tier(b.cn_peak)}">${rk(b.cn_peak)}</span>`):""}
+          <div class="m"><span class="k">All-time${b.ongoing?" (so far)":""}</span><b>${b.alltime?`${ord(b.alltime[0])}<small> of ${b.alltime[1]}</small>`:"—"}</b>${pctl!=null?`<i class="bc-bar pct"><i style="width:${pctl.toFixed(1)}%"></i></i>`:""}</div>
+        </div>
+      </div></li>`; }).join("")}</ol>`;
 }
 // "From the story": a full-width band per new character — a portrait (the whole render, or the
 // banner art cropped to the face when no render was found), the note, and a story image below.
@@ -202,24 +276,24 @@ function featureHTML(g, f, notes, n){
   return `${brief&&n===f.games.findIndex(x=>!FEATURED.includes(x.tag))?`<div class="sec-k brief-k">In brief · the other games</div>`:""}
   <article class="feat${brief?" brief":""}" id="g-${g.tag}" style="--acc:${acc};--gacc:${GAME_ACCENT[g.tag]}">
     <header class="feat-hd"><img class="feat-ic" src="${g.icon}" alt=""><div><div class="feat-k">${esc(g.name)}${kicker?` <span>· ${kicker}</span>`:""}</div>
-      <h3>${esc(w.headline||autoHeadline(g))}</h3>${w.dek?`<p class="dek">${w.dek}</p>`:""}</div></header>
+      <h3>${esc(w.headline||autoHeadline(g))}</h3>${w.dek?`<p class="dek">${w.dek}</p>`:autoDek(g,f.ym)?`<p class="dek">${esc(autoDek(g,f.ym))}</p>`:""}</div></header>
     ${top&&top.img?`<figure class="feat-art">${img(top.img,"",top.label,{face:top.face,ty:0.4})}<figcaption>${esc(top.label)}${top.rerun?" (rerun)":""} · ${dayStr(top.start)} – ${dayStr(top.end)}</figcaption></figure>`:""}
     ${statStrip(g, f.ym)}
     <div class="copy">${body}${w.pull?`<blockquote>${esc(w.pull)}</blockquote>`:""}</div>
     ${storyCards(g, f.ym)}
-    ${bannerTable(g)}
+    ${bannerList(g)}
   </article>`;
 }
 
 function render(iss, focus){
-  const {facts:f, notes}=iss, nt=notes||{};
+  const {facts:f, notes}=iss, nt=notes||{}; G_YM=f.ym;
   document.title=`${monthName(f.ym)} · Gacha Tracker Monthly`;
   $("#mastLine").innerHTML=`<span>No. ${f.number}</span><span>${monthName(f.ym)}</span><span>${plural(f.games.length,"game")} · ${plural(f.games.reduce((a,g)=>a+g.banners.length,0),"banner")}</span>`;
   const idx=J.index.issues, at=idx.findIndex(x=>x.ym===f.ym);
   const newer=idx[at-1], older=idx[at+1];
   const c=f.cover||{};
   const lines=nt.coverlines||autoCoverLines(f);
-  const head=nt.headline||(c.label?`${c.label} takes the cover`:monthName(f.ym));
+  const head=nt.headline||(c.label?`${c.label} leads the month's openings`:monthName(f.ym));
   const toc=f.games.map(g=>`<a href="#${f.ym}/${g.tag}" style="--acc:${GAME_ACCENT[g.tag]}"><img src="${g.icon}" alt=""><span>${esc(SHORT[g.tag])}</span></a>`).join("");
   const letter=(nt.letter||[]).map(t=>`<p>${t}</p>`).join("");
   $("#issue").innerHTML=`

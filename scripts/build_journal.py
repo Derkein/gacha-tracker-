@@ -113,6 +113,29 @@ def month_total(G, ym):
     m = G["monthly"].get(ym)
     return (m["ours"], "banners") if m and m["ours"] > 0 else (None, None)
 
+# A banner's standing is the MEDIAN of its ranks across every source's measures, not Japan revenue
+# alone: a banner that wins China revenue and both peak ranks beats one that only edged Japan.
+MONTH_KEYS = [("rev_month", False), ("cn_month", False), ("jp_peak", True), ("cn_peak", True)]   # (field, lower is better)
+RUN_KEYS = [("rev_total", False), ("cn_total", False), ("jp_peak_run", True), ("cn_peak_run", True)]
+
+def combined_order(rows, keys):
+    """Rank rows on each measure (ties share a rank; no value = last), then sort by the median rank,
+    the mean rank, and Japan revenue. Measures nobody has a value for (e.g. China for a game not
+    released there) are left out. Writes r["mranks"] {field: rank} and r["score"] (the median)."""
+    used = []
+    for k, low in keys:
+        have = [r[k] for r in rows if r[k]]
+        if not have: continue
+        used.append(k)
+        for r in rows:
+            v = r[k]
+            r.setdefault("mranks", {})[k] = (1 + sum(1 for x in have if (x < v if low else x > v))) if v else len(have) + 1
+    for r in rows:
+        rk = sorted(r.get("mranks", {}).get(k, 1) for k in used) or [1]
+        n = len(rk); r["score"] = (rk[(n - 1) // 2] + rk[n // 2]) / 2; r["_mean"] = sum(rk) / n
+    rows.sort(key=lambda r: (r["score"], r.pop("_mean"), -(r[keys[0][0]] or 0)))
+    return used
+
 def game_month(G, ym):
     by_i = {b["i"]: b for b in G["banners"]}
     jp, jp_src = month_total(G, ym)
@@ -134,7 +157,7 @@ def game_month(G, ym):
                      "cn_alltime": [b["qmRank"]["rank"], b["qmRank"]["of"]] if b["qmRank"] else None,
                      "img": b["img"], "face": b["face"], "icons": b["icons"], "color": b["color"], "agents": b["agents"]})
     if not rows and not jp and not cn: return None
-    rows.sort(key=lambda r: (-(r["rev_month"] or 0), -(r["cn_month"] or 0)))
+    used = combined_order(rows, MONTH_KEYS)
     # how this month sits in the game's own history (Japan, game-i months only)
     gi = {k: v for k, v in G["giMonthly"].items() if v and k <= ym}
     hist = None
@@ -147,7 +170,7 @@ def game_month(G, ym):
     return {"tag": G["tag"], "name": NAMES.get(G["tag"], G["tag"]), "jpname": G["jpname"],
             "icon": f"icons/games/{G['tag']}.png", "jp": jp, "jp_src": jp_src, "jp_prev": pj,
             "cn": cn, "cn_prev": pcn, "cn_partial": bool(G["qimaiLast"] and G["qimaiLast"][:7] == ym and int(G["qimaiLast"][8:]) < days_in(ym)),
-            "hist": hist, "banners": rows}
+            "hist": hist, "measures": used, "banners": rows}
 
 def build_issue(games, ym, number):
     gm = [x for x in (game_month(G, ym) for G in games.values()) if x]
@@ -157,15 +180,18 @@ def build_issue(games, ym, number):
         for n, g in enumerate(have, 1): g[f"{key}_rank"] = [n, len(have)]
     rank_by("jp"); rank_by("cn")
     order = sorted(gm, key=lambda g: (g["tag"] not in FEATURED, -(g["jp"] or 0)))
-    new = [dict(r, tag=g["tag"], game=g["name"]) for g in gm for r in g["banners"] if r["new"]]
-    # cover star: the month's biggest new banner with art, from the six featured games when one opened
-    cover = max(new or [dict(r, tag=g["tag"], game=g["name"]) for g in gm for r in g["banners"]] or [None],
-                key=lambda r: (r is not None and r["img"] != "", r is not None and r["tag"] in FEATURED, r and (r["rev_month"] or 0)), default=None)
-    # a banner opening on the month's last days barely shows up; rank new banners by their own run
-    debuts = sorted(new, key=lambda r: -(r["rev_total"] or 0))
+    new = [{**{k: v for k, v in r.items() if k not in ("mranks", "score")}, "tag": g["tag"], "game": g["name"]}
+           for g in gm for r in g["banners"] if r["new"]]
+    # a banner opening on the month's last days barely shows up in the month, so new banners are
+    # ranked on their own run — the same median-of-every-measure rule as within a game
+    combined_order(new, RUN_KEYS)
+    debuts = new
+    # cover star: the best-ranked new banner with art, from the six featured games when one opened
+    pool = [r for r in debuts if r["img"]] or [dict(r, tag=g["tag"], game=g["name"]) for g in gm for r in g["banners"] if r["img"]]
+    cover = next((r for r in pool if r["tag"] in FEATURED), pool[0] if pool else None)
     return {"ym": ym, "number": number, "built": datetime.date.today().isoformat(),
             "cover": cover and {k: cover[k] for k in ("label", "tag", "game", "img", "face", "color", "rev_month", "rerun")},
-            "debuts": [{k: r[k] for k in ("label", "tag", "game", "rev_total", "jp_peak_run", "cn_peak_run", "rerun", "ongoing", "img", "face", "icons", "color", "start")} for r in debuts],
+            "debuts": [{k: r[k] for k in ("label", "tag", "game", "rev_total", "jp_peak_run", "cn_peak_run", "rerun", "ongoing", "img", "face", "icons", "color", "start", "score")} for r in debuts],
             "games": order}
 
 def main():

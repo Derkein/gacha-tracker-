@@ -17,7 +17,7 @@
     "rev_month": 2.6772,
     "rerun": false
    },
-   "headline": "Phoenix wins a four-way opening week",
+   "headline": null,
    "games": [
     "wuwa",
     "hsr",
@@ -30,22 +30,22 @@
     "lads",
     "stellasora"
    ],
-   "written": true
+   "written": false
   },
   {
    "ym": "2026-09",
    "number": 73,
    "cover": {
-    "label": "Aventurine • Waveflair",
+    "label": "Pearl",
     "tag": "hsr",
     "game": "Honkai: Star Rail",
-    "img": "https://upload-os-bbs.hoyolab.com/upload/community/2026/09/10/f91926920b2123d9146adefd2b0fe1d4_6249783087489241155.png",
+    "img": "https://upload-os-bbs.hoyolab.com/upload/community/2026/09/24/19928dfb7377e84345549522d58698e6_1998860226783311983.png",
     "face": [
-     22,
-     30
+     81.2,
+     31.5
     ],
-    "color": "#4a4ad8",
-    "rev_month": 6.41,
+    "color": "#5fc7e8",
+    "rev_month": 6.3289,
     "rerun": false
    },
    "headline": null,
@@ -98,16 +98,16 @@
    "ym": "2026-07",
    "number": 71,
    "cover": {
-    "label": "Sandrone",
-    "tag": "genshin",
-    "game": "Genshin Impact",
-    "img": "https://upload-os-bbs.hoyolab.com/upload/2026/06/29/0/781da55472dc1186e3e8d2d93140cf70_7777178998231754007.jpeg",
+    "label": "Remielle",
+    "tag": "zzz",
+    "game": "Zenless Zone Zero",
+    "img": "https://upload-os-bbs.hoyolab.com/upload/2026/07/26/d0c9ef750515b09470a0e1628cc8c5d8_3043520861090809467.jpg",
     "face": [
-     54.7,
-     30.8
+     25.8,
+     26.6
     ],
-    "color": "#7fc8e0",
-    "rev_month": 11.51,
+    "color": "#e87ba0",
+    "rev_month": 5.3798,
     "rerun": false
    },
    "headline": null,
@@ -370,16 +370,16 @@
    "ym": "2025-10",
    "number": 62,
    "cover": {
-    "label": "Dan Heng • Permansor Terrae",
-    "tag": "hsr",
-    "game": "Honkai: Star Rail",
-    "img": "https://upload-os-bbs.hoyolab.com/upload/2025/10/10/f696aa5387278dc4f1d991f94e8ffe92_7545657641864917271.png",
+    "label": "Nefer",
+    "tag": "genshin",
+    "game": "Genshin Impact",
+    "img": "https://upload-os-bbs.hoyolab.com/upload/2025/10/17/521613c0dab0b4018fc68d926affaa6a_3857502028067489407.jpg",
     "face": [
-     55.2,
-     40.1
+     85.5,
+     60.2
     ],
-    "color": "#b9b9b9",
-    "rev_month": 4.9939,
+    "color": "#84c23c",
+    "rev_month": 2.8663,
     "rerun": false
    },
    "headline": null,
@@ -480,16 +480,16 @@
    "ym": "2025-06",
    "number": 58,
    "cover": {
-    "label": "Yixuan",
-    "tag": "zzz",
-    "game": "Zenless Zone Zero",
-    "img": "https://upload-os-bbs.hoyolab.com/upload/2025/05/31/0/b68c1b88a12a4d3e3ec45c55af13f562_53862237629036960.jpeg",
+    "label": "Skirk",
+    "tag": "genshin",
+    "game": "Genshin Impact",
+    "img": "https://upload-os-bbs.hoyolab.com/upload/2025/06/13/e82471d6437baa04dcfed78eb2fc02a3_4986421211168343162.jpg",
     "face": [
-     70.1,
-     26.1
+     47,
+     20.4
     ],
-    "color": "#e0b83a",
-    "rev_month": 11.52,
+    "color": "#7fc8e0",
+    "rev_month": 7.3652,
     "rerun": false
    },
    "headline": null,
@@ -588,16 +588,16 @@
    "ym": "2025-02",
    "number": 54,
    "cover": {
-    "label": "Aglaea",
+    "label": "Tribbie",
     "tag": "hsr",
     "game": "Honkai: Star Rail",
-    "img": "https://upload-os-bbs.hoyolab.com/upload/2025/01/26/ff04dc2750320f22838e7c99be88b854_8183225600223947491.png",
+    "img": "https://cdn.wikiwiki.jp/to/w/star-rail/%E8%B7%B3%E8%BA%8D/::attach/3.1.1%E3%82%AC%E3%83%81%E3%83%A31.webp",
     "face": [
-     65.1,
-     39.9
+     73.2,
+     40.4
     ],
-    "color": "#c56af0",
-    "rev_month": 9.73,
+    "color": "#4a4ad8",
+    "rev_month": 5.1614,
     "rerun": false
    },
    "headline": null,
@@ -696,16 +696,16 @@
    "ym": "2024-10",
    "number": 50,
    "cover": {
-    "label": "Lingsha",
-    "tag": "hsr",
-    "game": "Honkai: Star Rail",
-    "img": "https://upload-os-bbs.hoyolab.com/upload/2024/09/27/3351d21fc2220a64f7abdf9cedcd8c5d_6375580495504659476.jpg",
+    "label": "Xilonen & Chiori",
+    "tag": "genshin",
+    "game": "Genshin Impact",
+    "img": "https://upload-os-bbs.hoyolab.com/upload/2024/10/06/0/d999ca2ad59413c9e525e0e67b558131_1246210284913203565.jpeg",
     "face": [
-     49.2,
-     37
+     53.4,
+     27.6
     ],
-    "color": "#f0503f",
-    "rev_month": 10.37,
+    "color": "#e0b23c",
+    "rev_month": 8.12,
     "rerun": false
    },
    "headline": null,
@@ -750,16 +750,16 @@
    "ym": "2024-08",
    "number": 48,
    "cover": {
-    "label": "Qingyi",
-    "tag": "zzz",
-    "game": "Zenless Zone Zero",
-    "img": "https://upload-os-bbs.hoyolab.com/upload/2024/08/12/e2fb82fce9aebbc008a3caa7ce347859_6557508229557722076.png",
+    "label": "Jiaoqiu",
+    "tag": "hsr",
+    "game": "Honkai: Star Rail",
+    "img": "https://upload-os-bbs.hoyolab.com/upload/2024/08/19/3574c24ca2ecc4fb715db5a023ff815a_4410476124873270409.jpg",
     "face": [
-     79.5,
-     35.6
+     82.2,
+     38.8
     ],
-    "color": "#6f7ce0",
-    "rev_month": 9.1263,
+    "color": "#f0503f",
+    "rev_month": 8.3477,
     "rerun": false
    },
    "headline": null,
@@ -856,16 +856,16 @@
    "ym": "2024-04",
    "number": 44,
    "cover": {
-    "label": "Aventurine",
-    "tag": "hsr",
-    "game": "Honkai: Star Rail",
-    "img": "https://upload-os-bbs.hoyolab.com/upload/2024/04/16/231b619075ed159939e5a23bb0c8e5c7_8114377701622392138.jpg",
+    "label": "Arlecchino & Lyney",
+    "tag": "genshin",
+    "game": "Genshin Impact",
+    "img": "https://img.gamewith.jp/img/e6f781ecc8eae3afd81ad8b7a48ab0c0.jpeg",
     "face": [
-     47.7,
-     27.3
+     72.4,
+     34.3
     ],
-    "color": "#f0d24b",
-    "rev_month": 15.0702,
+    "color": "#f0684a",
+    "rev_month": 8.5278,
     "rerun": false
    },
    "headline": null,
@@ -906,16 +906,16 @@
    "ym": "2024-02",
    "number": 42,
    "cover": {
-    "label": "Black Swan & Dan Heng • Imbibitor Lunae",
+    "label": "Sparkle & Jing Yuan",
     "tag": "hsr",
     "game": "Honkai: Star Rail",
-    "img": "https://upload-os-bbs.hoyolab.com/upload/2024/02/05/a474e1ad0bdb9c70bb7f2e810d66ca22_8185363732810897994.jpg",
+    "img": "https://img.gamewith.jp/img/dfb05a076c6da648091b7fd81bab36a1.png",
     "face": [
-     44,
-     35.9
+     60,
+     37
     ],
-    "color": "#4fc8a0",
-    "rev_month": 14.28,
+    "color": "#4a4ad8",
+    "rev_month": 0.3705,
     "rerun": false
    },
    "headline": null,
@@ -1052,16 +1052,16 @@
    "ym": "2023-08",
    "number": 36,
    "cover": {
-    "label": "Kafka",
+    "label": "Dan Heng • Imbibitor Lunae",
     "tag": "hsr",
     "game": "Honkai: Star Rail",
-    "img": "https://static.wikia.nocookie.net/houkai-star-rail/images/0/0b/Nessun_Dorma_2023-08-09.png",
+    "img": "https://static.wikia.nocookie.net/houkai-star-rail/images/e/ee/Epochal_Spectrum_2023-08-30.png",
     "face": [
-     63,
-     14.5
+     69.9,
+     22.6
     ],
-    "color": "#c56af0",
-    "rev_month": 23.52,
+    "color": "#f0d24b",
+    "rev_month": 5.5783,
     "rerun": false
    },
    "headline": null,
@@ -1148,17 +1148,17 @@
    "ym": "2023-04",
    "number": 32,
    "cover": {
-    "label": "Nahida & Nilou",
-    "tag": "genshin",
-    "game": "Genshin Impact",
-    "img": "https://paimon.moe/images/banners/The%20Moongrass'%20Enlightenment%202.png",
+    "label": "Seele",
+    "tag": "hsr",
+    "game": "Honkai: Star Rail",
+    "img": "https://static.wikia.nocookie.net/houkai-star-rail/images/e/e4/Butterfly_on_Swordtip_2023-04-26.jpg",
     "face": [
-     46.8,
-     21
+     57.1,
+     50.2
     ],
-    "color": "#84c23c",
-    "rev_month": 11.4479,
-    "rerun": true
+    "color": "#4a4ad8",
+    "rev_month": 7.8615,
+    "rerun": false
    },
    "headline": null,
    "games": [
@@ -1172,17 +1172,17 @@
    "ym": "2023-03",
    "number": 31,
    "cover": {
-    "label": "Dehya & Cyno",
+    "label": "Shenhe",
     "tag": "genshin",
     "game": "Genshin Impact",
-    "img": "https://paimon.moe/images/banners/Auric%20Blaze%201.png",
+    "img": "https://paimon.moe/images/banners/The%20Transcendent%20One%20Returns%202.png",
     "face": [
-     52.4,
-     19.9
+     54.5,
+     23
     ],
-    "color": "#f0684a",
-    "rev_month": 7.15,
-    "rerun": false
+    "color": "#7fc8e0",
+    "rev_month": 5.815,
+    "rerun": true
    },
    "headline": null,
    "games": [
@@ -1310,17 +1310,17 @@
    "ym": "2022-09",
    "number": 25,
    "cover": {
-    "label": "Ganyu",
+    "label": "Cyno & Venti",
     "tag": "genshin",
     "game": "Genshin Impact",
-    "img": "https://paimon.moe/images/events/adrift_in_the_harbor_3.jpg",
+    "img": "https://paimon.moe/images/events/twilight_arbiter_1.jpg",
     "face": [
-     53.7,
-     19.6
+     54.3,
+     27.1
     ],
-    "color": "#7fc8e0",
-    "rev_month": 14.8,
-    "rerun": true
+    "color": "#b57fd4",
+    "rev_month": 8.7938,
+    "rerun": false
    },
    "headline": null,
    "games": [
@@ -1333,17 +1333,17 @@
    "ym": "2022-08",
    "number": 24,
    "cover": {
-    "label": "Yoimiya",
+    "label": "Tighnari & Zhongli",
     "tag": "genshin",
     "game": "Genshin Impact",
-    "img": "https://paimon.moe/images/banners/Tapestry%20of%20Golden%20Flames%202.png",
+    "img": "https://paimon.moe/images/events/viridescent_vigil_1.jpg",
     "face": [
-     52.1,
-     31.5
+     49.6,
+     25.2
     ],
-    "color": "#f0684a",
-    "rev_month": 14.35,
-    "rerun": true
+    "color": "#84c23c",
+    "rev_month": 8.3791,
+    "rerun": false
    },
    "headline": null,
    "games": [
@@ -1448,17 +1448,17 @@
    "ym": "2022-03",
    "number": 19,
    "cover": {
-    "label": "Raiden Shogun & Sangonomiya Kokomi",
+    "label": "Kamisato Ayato & Venti",
     "tag": "genshin",
     "game": "Genshin Impact",
-    "img": "https://paimon.moe/images/banners/Reign%20of%20Serenity%202.png",
+    "img": "https://paimon.moe/images/banners/Azure%20Excursion%201.png",
     "face": [
-     57.5,
-     18.9
+     51.6,
+     20.1
     ],
-    "color": "#b57fd4",
-    "rev_month": 20.27,
-    "rerun": true
+    "color": "#4a90d9",
+    "rev_month": 6.8874,
+    "rerun": false
    },
    "headline": null,
    "games": [
@@ -1494,17 +1494,17 @@
    "ym": "2022-01",
    "number": 17,
    "cover": {
-    "label": "Shenhe & Xiao",
+    "label": "Ganyu & Zhongli",
     "tag": "genshin",
     "game": "Genshin Impact",
-    "img": "https://paimon.moe/images/banners/The%20Transcendent%20One%20Returns%201.png",
+    "img": "https://paimon.moe/images/banners/Adrift%20in%20the%20Harbor%202.png",
     "face": [
-     55.8,
-     25.9
+     53.7,
+     19.5
     ],
     "color": "#7fc8e0",
-    "rev_month": 23.47,
-    "rerun": false
+    "rev_month": 15.1567,
+    "rerun": true
    },
    "headline": null,
    "games": [
@@ -1701,16 +1701,16 @@
    "ym": "2021-04",
    "number": 8,
    "cover": {
-    "label": "Tartaglia",
+    "label": "Zhongli",
     "tag": "genshin",
     "game": "Genshin Impact",
-    "img": "https://gamenoshirase.com/wp-content/uploads/2021/04/k-0005_chara_011.jpg",
+    "img": "https://paimon.moe/images/banners/Gentry%20of%20Hermitage%202.png",
     "face": [
-     53,
-     22.4
+     51.8,
+     21.1
     ],
-    "color": "#4a90d9",
-    "rev_month": 11.58,
+    "color": "#e0b23c",
+    "rev_month": 3.9356,
     "rerun": true
    },
    "headline": null,
