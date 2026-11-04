@@ -217,6 +217,14 @@ function runSentence(b, G){
   const judge = v.final ? `: ${judgeMark(TIER[v.tier])}` : ", with the run still going";
   return `${MK.b(b)}'s run ${b.ongoing?"so far ":""}ranks ${andList(where)} among ${G} banners${judge}.`;
 }
+// where a game's banner placed in the month's top banners, across every game
+function topPlace(g, b){
+  const f=J.cache[G_YM]&&J.cache[G_YM].facts, t=(f&&f.top)||[]; if(t.length<3) return "";
+  const i=t.findIndex(x=>x.tag===g.tag && x.label===b.label);
+  if(i===0) return `Across every game, ${MK.b(b)} was the ${MK.good("best banner on sale")} in ${MONTHS[+G_YM.slice(5)-1]}${b.new?"":", even against the month's newcomers"}.`;
+  if(i>0) return `Across every game, ${MK.b(b)} placed ${MK.n(ord(i+1))} of all the banners on sale.`;
+  return t.length>=10 ? `${MK.b(b)} didn't make the month's top ${t.length} across every game.` : "";
+}
 function autoBody(g, ym){
   const out=[], p=pct(g.jp,g.jp_prev), hp=histPhrase(g,ym), pm=MONTHS[+prevYm(ym).slice(5)-1];
   if(g.jp){
@@ -231,7 +239,7 @@ function autoBody(g, ym){
   }
   const bs=g.banners.filter(b=>b.rev_month>0||b.cn_month>0);
   if(!bs.length){ if(g.banners.length) out.push(`No banner reached Japan's top 200 this month.`); return out; }
-  out.push([bannerSentence(bs[0],true), headToHead(g), daysEdge(g)].filter(Boolean).join(" "));
+  out.push([bannerSentence(bs[0],true), headToHead(g), daysEdge(g), topPlace(g, bs[0])].filter(Boolean).join(" "));
   if(bs.length>1) out.push(bs.slice(1,3).map(b=>bannerSentence(b,false)).join(" "));
   const runs=g.banners.filter(b=>b.new).map(b=>runSentence(b,SHORT[g.tag])).filter(Boolean);
   if(runs.length) out.push(runs.join(" "));
@@ -240,6 +248,7 @@ function autoBody(g, ym){
 function autoCoverLines(f){
   const lines=[], feat=f.games.filter(g=>FEATURED.includes(g.tag));
   const d=f.debuts[0]; if(d) lines.push(`${d.label} is the month's best opening (${SHORT[d.tag]})`);
+  const tp=(f.top||[])[0]; if(tp && (!d || tp.label!==d.label)) lines.push(`${tp.label} (${SHORT[tp.tag]}) is the best banner on sale${tp.new?"":", carried over from last month"}`);
   const flop=feat.map(g=>[g,flopOf(g)]).find(([g,b])=>b);
   if(flop) lines.push(`${flop[1].label} ${vb(flop[1].label,"underwhelms","underwhelm")} as ${flop[0].banners[0].label} ${vb(flop[0].banners[0].label,"leads","lead")} ${SHORT[flop[0].tag]}`);
   const top=[...f.games].filter(g=>g.jp_rank).sort((a,b)=>a.jp_rank[0]-b.jp_rank[0])[0];
@@ -355,31 +364,52 @@ function marketHTML(f){
     <p class="mnote">Changes compare the games present in both months, so a launch doesn't count as growth. Japan${SHOW_ZL?", China iPhone and 总流水 are":" and China iPhone are"} different measurements of different stores and are never added together.</p></section>`;
 }
 // #1 vs #2 over their shared window, so a big lead the runner-up held in one market is said out loud
-function topPairNote(f){
-  const t=f.top_pair; if(!t) return "";
+function topPairNote(f, t){
+  t = t===undefined ? f.top_pair : t; if(!t) return "";
   const {a,b,n}=t, x=(p,q)=>q>0?p/q:Infinity, fx=r=>r===Infinity?"":` by ${r.toFixed(1)}×`;
   const jp = a.jp>=b.jp ? [a,b,x(a.jp,b.jp)] : [b,a,x(b.jp,a.jp)], cn = a.cn>=b.cn ? [a,b,x(a.cn,b.cn)] : [b,a,x(b.cn,a.cn)];
-  const parts=[`${MK.b(jp[0])} took Japan${fx(jp[2])} (${MK.n(fmtG(jp[0].jp))} to ${fmtG(jp[1].jp)})`];
-  if(a.cn>0||b.cn>0) parts.push(`${MK.b(cn[0])} took China${fx(cn[2])} (${MK.n(fmtUSD(cn[0].cn))} to ${fmtUSD(cn[1].cn)})`);
-  const split = jp[0]!==cn[0] && (a.cn>0||b.cn>0);
-  return `<p class="dnote">${rich(`Over the same first ${plural(n,"day")}, ${parts.join(", while ")}. ${split?`Weighted by the size of each lead, ${a.label} comes out ahead.`:`${a.label} led in both markets.`}`)}</p>`;
+  const hasCN=a.cn>0||b.cn>0, split = hasCN && jp[0]!==cn[0];
+  const span0 = a.new && b.new ? `the same first ${plural(n,"day")}` : `the same ${plural(n,"day")} in the month`;
+  if(!split) return `<p class="dnote">${rich(`Over ${span0}, ${MK.b(jp[0])} beat ${MK.b(jp[1])} in ${hasCN?"both markets":"Japan"}: Japan${fx(jp[2])} (${MK.n(fmtG(jp[0].jp))} to ${fmtG(jp[1].jp)})${hasCN?` and China${fx(cn[2])} (${MK.n(fmtUSD(cn[0].cn))} to ${fmtUSD(cn[1].cn)})`:""}.`)}</p>`;
+  const parts=[`${MK.b(jp[0])} took Japan${fx(jp[2])} (${MK.n(fmtG(jp[0].jp))} to ${fmtG(jp[1].jp)})`,
+               `${MK.b(cn[0])} took China${fx(cn[2])} (${MK.n(fmtUSD(cn[0].cn))} to ${fmtUSD(cn[1].cn)})`];
+  return `<p class="dnote">${rich(`Over ${span0}, ${parts.join(", while ")}. Weighted by the size of each lead, ${a.label} comes out ahead.`)}</p>`;
 }
 const DEBUT_CARDS = 10;
-function debutsHTML(f){
-  if(!f.debuts.length) return "";
-  return `<section class="debuts"><div class="sec-k">New this month</div><h3 class="sec-h">The month's openings</h3>
-    <p class="sec-sub"><button class="howbtn" type="button" data-how="open">How the order is decided</button></p>
-    <div class="dgrid">${f.debuts.slice(0,DEBUT_CARDS).map((d,i)=>`<a class="dcard${d.beat?"":" late"}" href="#${f.ym}/${d.tag}" style="--acc:${d.color||GAME_ACCENT[d.tag]}">
-      <div class="dart${frame(d)}">${pic(d,"",{},"zoom")}<span class="dno${d.beat&&i<3?" m"+(i+1):""}">${d.beat?i+1:"–"}</span></div>
-      <div class="dtx"><span class="dg">${esc(SHORT[d.tag])}${d.rerun?" · rerun":""}</span><b>${esc(d.label)}</b>
+function openCard(d, i, f, showOld){
+  const mo=MONTHS[+f.ym.slice(5)-1];
+  const tag = showOld && !d.new ? ` · from ${dayStr(d.start)}` : d.rerun ? " · rerun" : "";
+  return `<a class="dcard${d.beat?"":" late"}" href="#${f.ym}/${d.tag}" style="--acc:${d.color||GAME_ACCENT[d.tag]}">
+      <div class="dart${frame(d)}">${pic(d,"",{},"zoom")}<span class="dno${d.beat&&i<3?" m"+(i+1):""}">${d.beat?i+1:"–"}</span>${showOld&&d.new&&!d.rerun?`<span class="dnew">New</span>`:""}</div>
+      <div class="dtx"><span class="dg">${esc(SHORT[d.tag])}${tag}</span><b>${esc(d.label)}</b>
       <div class="dstats">
         <div><span>Japan</span><strong>${d.rev_month>0?fmtG(d.rev_month):"—"}</strong><small>${d.days&&d.rev_month>0?fmtG(d.rev_month/d.days)+"/day":"&nbsp;"}</small></div>
         <div><span>China iPhone</span><strong>${d.cn_month>0?fmtUSD(d.cn_month):"—"}</strong><small>${d.days&&d.cn_month>0?fmtUSD(d.cn_month/d.days)+"/day":"&nbsp;"}</small></div>
       </div>
-      <div class="dpills"><span class="pk${d.jp_peak<=10?" t1":d.jp_peak<=50?" t2":""}">${rk(d.jp_peak)} JP</span>${d.cn_peak?`<span class="pk${d.cn_peak<=10?" t1":d.cn_peak<=50?" t2":""}">${rk(d.cn_peak)} CN</span>`:""}<span class="dd">${plural(d.days,"day")}</span></div>
-      <span class="drec">${d.beat?`Won ${d.beat[0]} of ${d.beat[1]} head-to-heads`:`Too new to rank: ${plural(d.days,"day")} in ${MONTHS[+f.ym.slice(5)-1]}`}</span></div></a>`).join("")}</div>
+      <div class="dpills"><span class="pk${d.jp_peak<=10?" t1":d.jp_peak<=50?" t2":""}">${rk(d.jp_peak)} JP</span>${d.cn_peak?`<span class="pk${d.cn_peak<=10?" t1":d.cn_peak<=50?" t2":""}">${rk(d.cn_peak)} CN</span>`:""}<span class="dd">${plural(d.days,"day")}${showOld?" in "+mo.slice(0,3):""}</span></div>
+      <span class="drec">${d.beat?`Won ${d.beat[0]} of ${d.beat[1]} head-to-heads`:`Too new to rank: ${plural(d.days,"day")} in ${mo}`}</span></div></a>`;
+}
+function debutsHTML(f){
+  if(!f.debuts.length) return "";
+  return `<section class="debuts"><div class="sec-k">New this month</div><h3 class="sec-h">The month's openings</h3>
+    <p class="sec-sub"><button class="howbtn" type="button" data-how="open">How the order is decided</button></p>
+    <div class="dgrid">${f.debuts.slice(0,DEBUT_CARDS).map((d,i)=>openCard(d,i,f)).join("")}</div>
     ${topPairNote(f)}
     ${f.debuts.length>DEBUT_CARDS?`<p class="dmore"><b>Also opened:</b> ${f.debuts.slice(DEBUT_CARDS).map((d,i)=>`<a href="#${f.ym}/${d.tag}">${d.beat?(DEBUT_CARDS+i+1)+". ":""}${esc(d.label)}</a> <span class="mu">(${esc(SHORT[d.tag])}${d.rerun?", rerun":""}, ${fmtG(d.rev_month)})</span>`).join(" · ")}</p>`:""}</section>`;
+}
+// Top banners of the month: every banner on sale that month, new or carried over, by the same
+// head-to-head as the openings — each pair over the same number of days inside the month.
+function topHTML(f){
+  const t=f.top||[]; if(!t.length) return "";
+  const mo=MONTHS[+f.ym.slice(5)-1], nNew=t.filter(b=>b.new&&!b.rerun).length;
+  const firstNew=t.findIndex(b=>b.new&&!b.rerun);
+  const line = !t[0].new ? `A banner carried over from last month, ${t[0].label}, beat every newcomer.`
+    : firstNew===0 ? `A newcomer took the top spot: ${t[0].label}.` : "";
+  return `<section class="debuts topm"><div class="sec-k">Every banner on sale</div><h3 class="sec-h">Top banners of the month</h3>
+    <p class="sec-sub">New or carried over, ranked the same way as the openings, on their days inside ${mo}. ${plural(nNew,"newcomer")} in the top ${t.length}. ${esc(line)}
+      <button class="howbtn" type="button" data-how="top">How the order is decided</button></p>
+    <div class="dgrid">${t.map((d,i)=>openCard(d,i,f,true)).join("")}</div>
+    ${topPairNote(f, f.top_note)}</section>`;
 }
 // The month's banners as ranked cards. Order = median rank across every measure; each measure
 // shows its value, a bar against the month's best, and a star on the banner that won it.
@@ -424,18 +454,6 @@ function bannerList(g){
 }
 // Top of the month: every banner running in the month, from every game, on the same rule — so
 // the month's new arrivals can be read against everything else that was on sale.
-const SHOW_TOP = false;                    // hidden for now (user, 2026-11-03); the data is still built
-function topHTML(f){
-  const t=f.top||[]; if(!t.length) return "";
-  const nNew=t.filter(b=>b.new&&!b.rerun).length, bestNew=t.findIndex(b=>b.new&&!b.rerun);
-  const debut=f.debuts.find(d=>!d.rerun);
-  const verdictLine = bestNew===0 ? `A newcomer took the top spot: ${t[0].label}.`
-    : bestNew>0 ? `The best newcomer, ${t[bestNew].label}, placed ${ord(bestNew+1)}; ${t[0].label} ${t[0].new?"":"(not new) "}topped the month.`
-    : debut ? `No new banner made the top ${t.length}${debut?`; the best opening, ${debut.label}, missed the cut`:""}.` : "";
-  return `<section class="topm"><div class="sec-k">Top of the month</div><h3 class="sec-h">Every banner on sale, ranked</h3>
-    <p class="sec-sub">All banners running in ${MONTHS[+f.ym.slice(5)-1]}, from every game, by the median of their places on Japan and China revenue and peak rank within the month. ${plural(nNew,"new banner")} in the top ${t.length}. ${esc(verdictLine)}</p>
-    <ol class="blist">${t.map((b,i)=>bannerCard(b,i,cardCtx(t,{game:true,compact:true}))).join("")}</ol></section>`;
-}
 // What's next: for the latest issue, the announced next banner (upcoming.json); for older
 // issues, the banners that actually came next.
 const SHOW_NEXT = false;                   // hidden for now (user, 2026-11-04)
@@ -523,7 +541,7 @@ function render(iss, focus){
     <section class="charts"><div class="sec-k">The charts</div><h3 class="sec-h">Who earned the most</h3>
       <div class="chartcols">${rankChart(f,"jp",fmtG,"Japan","game-i · App Store + Google Play, yen")}${rankChart(f,"cn",fmtUSD,"China iPhone","Qimai · App Store, US$")}</div></section>
     ${debutsHTML(f)}
-    ${SHOW_TOP?topHTML(f):""}
+    ${topHTML(f)}
     <div class="feats">${games.map((g,i)=>featureHTML(g,f,nt,i)).join("")}</div>
     <nav class="issnav">${older?`<a href="#${older.ym}">← ${monthName(older.ym)}</a>`:"<span></span>"}<a href="#archive" class="arch">All issues</a>${newer?`<a href="#${newer.ym}">${monthName(newer.ym)} →</a>`:"<span></span>"}</nav>`;
   $("#archive").hidden=true; $("#issue").hidden=false;
@@ -600,6 +618,10 @@ function howOpen(){
     ${t.html}
     <p class="how-ex">Counting wins, A leads <b>${t.cA}–${t.cB}</b>, but most of A's wins are by a hair. Weighted by size it's <b>A ${t.A.toFixed(2)}, B ${t.B.toFixed(2)}</b>: Banner B, which more than doubled A in China, wins the head-to-head.</p>`;
 }
+function howTop(){
+  return `<p class="how-lead"><b>Top banners of the month</b> use the same head-to-head as the openings, for every banner on sale that month, new or carried over.
+    A carried-over banner is measured on its days <b>inside the month</b> (a banner that ran Sep 24 – Oct 15 is read from Oct 1), so each pair is still compared over the same number of days.</p>`;
+}
 function howMonth(){
   const t=howTable([["Japan","Revenue",620,410,"yen","ratio",1],["China iPhone","Revenue",1.9e6,2.1e6,"usd","ratio",1],["Japan","Peak rank",3,5,"rank","ratio",0],["China","Peak rank",12,11,"rank","ratio",0]], 30);
   return `
@@ -618,7 +640,7 @@ function howMonth(){
 }
 function showHow(kind){
   const d=$("#howDlg");
-  d.querySelector(".how-body").innerHTML = kind==="open" ? howOpen() : howMonth();
+  d.querySelector(".how-body").innerHTML = kind==="open" ? howOpen() : kind==="top" ? howTop() + howOpen() : howMonth();
   d.showModal();
 }
 document.addEventListener("click", e=>{
