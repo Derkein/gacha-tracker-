@@ -344,12 +344,13 @@ const DEBUT_CARDS = 10;
 function debutsHTML(f){
   if(!f.debuts.length) return "";
   return `<section class="debuts"><div class="sec-k">New this month</div><h3 class="sec-h">The month's openings</h3>
-    <p class="sec-sub"><button class="howbtn" type="button" data-how="month">How the order is decided</button></p>
-    <div class="dgrid">${f.debuts.slice(0,DEBUT_CARDS).map((d,i)=>`<a class="dcard" href="#${f.ym}/${d.tag}" style="--acc:${d.color||GAME_ACCENT[d.tag]}">
-      <div class="dart">${img(d.img,"","",{face:d.face})}<span class="dno">${i+1}</span></div>
+    <p class="sec-sub"><button class="howbtn" type="button" data-how="open">How the order is decided</button></p>
+    <div class="dgrid">${f.debuts.slice(0,DEBUT_CARDS).map((d,i)=>`<a class="dcard${d.beat?"":" late"}" href="#${f.ym}/${d.tag}" style="--acc:${d.color||GAME_ACCENT[d.tag]}">
+      <div class="dart">${img(d.img,"","",{face:d.face})}<span class="dno">${d.beat?i+1:"–"}</span></div>
       <div class="dtx"><span class="dg">${esc(SHORT[d.tag])}${d.rerun?" · rerun":""}</span><b>${esc(d.label)}</b>
-      <span class="dm">${fmtG(d.rev_month)}${d.cn_month>0?` · ${fmtUSD(d.cn_month)}`:""} · peak ${rk(d.jp_peak)} JP${d.cn_peak?` · ${rk(d.cn_peak)} CN`:""} · ${plural(d.days,"day")}</span></div></a>`).join("")}</div>
-    ${f.debuts.length>DEBUT_CARDS?`<p class="dmore"><b>Also opened:</b> ${f.debuts.slice(DEBUT_CARDS).map((d,i)=>`<a href="#${f.ym}/${d.tag}">${DEBUT_CARDS+i+1}. ${esc(d.label)}</a> <span class="mu">(${esc(SHORT[d.tag])}${d.rerun?", rerun":""}, ${fmtG(d.rev_month)})</span>`).join(" · ")}</p>`:""}</section>`;
+      <span class="dm">${fmtG(d.rev_month)}${d.cn_month>0?` · ${fmtUSD(d.cn_month)}`:""} · peak ${rk(d.jp_peak)} JP${d.cn_peak?` · ${rk(d.cn_peak)} CN`:""} · ${plural(d.days,"day")}</span>
+      <span class="drec">${d.beat?`Won ${d.beat[0]} of ${d.beat[1]} head-to-heads`:`Too new to rank: ${plural(d.days,"day")} in ${MONTHS[+f.ym.slice(5)-1]}`}</span></div></a>`).join("")}</div>
+    ${f.debuts.length>DEBUT_CARDS?`<p class="dmore"><b>Also opened:</b> ${f.debuts.slice(DEBUT_CARDS).map((d,i)=>`<a href="#${f.ym}/${d.tag}">${d.beat?(DEBUT_CARDS+i+1)+". ":""}${esc(d.label)}</a> <span class="mu">(${esc(SHORT[d.tag])}${d.rerun?", rerun":""}, ${fmtG(d.rev_month)})</span>`).join(" · ")}</p>`:""}</section>`;
 }
 // The month's banners as ranked cards. Order = median rank across every measure; each measure
 // shows its value, a bar against the month's best, and a star on the banner that won it.
@@ -523,25 +524,53 @@ async function route(){
 }
 // "How the order is decided": one dialog, used by the openings and every game's banner list
 // (both ranked on the month itself). Delegated, since the page's CSP allows no inline handlers.
-const HOW = {
-  month: ["the month", "Revenue and peak ranks count only the days the banner ran inside this month, for the game's banners and for the month's openings alike. A banner that opened late in the month has fewer days to work with; the copy says how many."],
-};
-function showHow(kind){
-  const [scope, note]=HOW[kind]||HOW.month, d=$("#howDlg");
-  d.querySelector(".how-body").innerHTML=`
-    <p>Each banner is ranked on four measures over ${scope}, and its place is the <b>median</b> of those four ranks:</p>
-    <p class="how-f">place = median of the ranks on<br>Japan revenue · China revenue · Japan peak · China peak</p>
+// "How the order is decided": two rules. A game's banners (and the month in each game) use the
+// median of four ranks inside the month; the month's openings go head to head over equal days.
+const MEDIAN_RULES = `
     <ul>
       <li><b>Japan revenue</b>: game-i's estimate, App Store + Google Play Japan.</li>
       <li><b>China revenue</b>: Qimai's estimate, China's iPhone App Store.</li>
       <li><b>Peaks</b>: the best daily top-grossing rank reached (a lower number is better).</li>
+    </ul>`;
+function howOpen(){
+  const f=J.cache[G_YM]&&J.cache[G_YM].facts, x=f&&f.duel;
+  const W={jp:"Japan revenue", cn:"China revenue", jp_peak:"Japan peak", cn_peak:"China peak"};
+  const val=(k,v)=>v==null||v===0?"—":k==="jp"?fmtG(v):k==="cn"?fmtUSD(v):"#"+v;
+  const ex = x ? `<p class="how-ex"><b>Example, ${MONTHS[+G_YM.slice(5)-1]} ${G_YM.slice(0,4)}: ${esc(x.a.label)} against ${esc(x.b.label)}.</b>
+      ${esc(x.a.label)} had ${plural(x.a.days,"day")} in the month and ${esc(x.b.label)} ${x.b.days}, so both are read at <b>day ${x.n}</b>:</p>
+    <table class="how-t"><tr><th></th><th>${esc(x.a.label)}</th><th>${esc(x.b.label)}</th></tr>
+      ${Object.keys(W).filter(k=>x.per[k]).map(k=>`<tr><td>${W[k]}</td><td class="${x.per[k]==="a"?"w":""}">${val(k,x.a[k])}</td><td class="${x.per[k]==="b"?"w":""}">${val(k,x.b[k])}</td></tr>`).join("")}</table>
+    <p class="how-ex">${x.score[0]}–${x.score[1]}${x.score[0]===x.score[1]?", so Japan revenue decides":""}: <b>${esc(x.win==="a"?x.a.label:x.b.label)}</b> wins the head-to-head.</p>` : "";
+  return `
+    <p>Openings start on different days, so comparing whole months isn't fair: one that opened on the 21st has had fewer days than one from the 15th.
+      Every opening is played <b>head to head</b> against every other one, over the <b>same number of days</b>:</p>
+    <p class="how-f">window = the shorter of the two runs inside the month<br>winner = better on more of: Japan revenue · China revenue · Japan peak · China peak</p>
+    ${MEDIAN_RULES}
+    <ul>
+      <li>Both banners are measured over their own first days up to that window, so each pair gets its own window.</li>
+      <li>A 2–2 split goes to Japan revenue over the window. A missing value (China for a game not released there) loses that measure.</li>
+      <li>The order is the number of head-to-heads won. Two banners on the same count are split by their own head-to-head.</li>
+      <li>A banner with fewer than 3 days in the month is listed as too new to rank: a day or two of data is too little to judge.</li>
+    </ul>
+    ${ex}`;
+}
+function howMonth(){
+  return `
+    <p>Inside each game, the month's banners are ranked on four measures over the days they ran <b>inside this month</b>, and each banner's place is the <b>median</b> of its four ranks:</p>
+    <p class="how-f">place = median of the ranks on<br>Japan revenue · China revenue · Japan peak · China peak</p>
+    ${MEDIAN_RULES}
+    <ul>
       <li>Rank 1 is the best on each measure. With four ranks, the median is the average of the middle two.</li>
       <li>A measure no banner has (China for a game not released there) is left out. A banner missing a value goes last on that measure.</li>
       <li>Ties go to the better average rank, then to Japan revenue.</li>
+      <li>A banner that opened late in the month has fewer days here; the copy says how many.</li>
     </ul>
-    <p>${note}</p>
     <p class="how-ex"><b>Example, Star Rail, September 2026.</b> Aventurine • Waveflair won Japan revenue, but Pearl won China revenue and both peaks:
       Pearl's ranks 2, 1, 1, 1 have a median of <b>1</b>; Aventurine's 1, 2, 2, 2 have a median of <b>2</b>. Pearl places first.</p>`;
+}
+function showHow(kind){
+  const d=$("#howDlg");
+  d.querySelector(".how-body").innerHTML = kind==="open" ? howOpen() : howMonth();
   d.showModal();
 }
 document.addEventListener("click", e=>{

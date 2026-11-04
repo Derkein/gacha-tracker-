@@ -184,6 +184,8 @@ def game_month(G, ym):
                      "cn_alltime": [b["qmRank"]["rank"], b["qmRank"]["of"]] if b["qmRank"] else None,
                      "days": month_days(b, ym), "run_days": run_days(b), "day0": max(0, (month_start(ym) - datetime.date.fromisoformat(b["start"])).days),
                      "jp_daily": b["jpd"], "cn_daily": b["qmd"],
+                     # daily chart ranks, for the openings' equal-window head-to-heads (not written out)
+                     "_jpr": b["jp"], "_cnr": [bst if bst is not None else r for _, r, bst in b["cn"]],
                      "img": b["img"], "face": b["face"], "icons": b["icons"], "color": b["color"], "agents": b["agents"]})
     if not rows and not jp and not cn: return None
     used = combined_order(rows, MONTH_KEYS)
@@ -207,6 +209,65 @@ def game_month(G, ym):
             "icon": f"icons/games/{G['tag']}.png", "jp": jp, "jp_src": jp_src, "jp_prev": pj,
             "cn": cn, "cn_prev": pcn, "cn_partial": bool(G["qimaiLast"] and G["qimaiLast"][:7] == ym and int(G["qimaiLast"][8:]) < days_in(ym)),
             "hist": hist, "measures": used, "banners": rows}
+
+# The month's openings are compared fairly on time: each PAIR is measured over the same number of
+# days — the shorter of the two runs inside the month (Phoenix had 11 October days, Si 17, so both
+# are read at day 11). Within the pair, the banner better on more of the four measures wins (a
+# 2-2 split goes to Japan revenue over the window). Banners are then ordered by head-to-heads won.
+WKEYS = [("jp", False), ("cn", False), ("jp_peak", True), ("cn_peak", True)]
+def window(r, n):
+    jr = [x for x in r["_jpr"][:n] if x and x > 0]; cr = [x for x in r["_cnr"][:n] if x]
+    return {"jp": round(sum(r["jp_daily"][:n]), 4), "cn": round(sum(r["cn_daily"][:n])),
+            "jp_peak": min(jr) if jr else None, "cn_peak": min(cr) if cr else None}
+def duel(a, b):
+    n = min(a["days"], b["days"])
+    if n < 1: return None
+    wa, wb = window(a, n), window(b, n); sa = sb = 0; per = {}
+    for k, low in WKEYS:
+        x, y = wa[k], wb[k]
+        if not x and not y: continue
+        if x and (not y or (x < y if low else x > y)): sa += 1; per[k] = "a"
+        elif y and (not x or (y < x if low else y > x)): sb += 1; per[k] = "b"
+        else: per[k] = "="
+    win = "a" if sa > sb else "b" if sb > sa else ("a" if wa["jp"] >= wb["jp"] else "b")
+    return {"n": n, "a": wa, "b": wb, "per": per, "score": [sa, sb], "win": win}
+
+MIN_DUEL_DAYS = 3        # fewer days in the month than this: listed as too new to rank, not ranked
+
+def duel_order(rows):
+    """Sort rows in place by head-to-heads won (ties: their own head-to-head, then Japan revenue per
+    day). Writes r["beat"] = [wins, opponents] and returns the duel between the top two, for the
+    explanation. Banners with fewer than MIN_DUEL_DAYS days in the month (opened on the last day or
+    two) go last, unranked: a day of data isn't enough to judge an opening."""
+    late = [r for r in rows if r["days"] < MIN_DUEL_DAYS]
+    for r in late: r["beat"] = None
+    rows[:] = [r for r in rows if r["days"] >= MIN_DUEL_DAYS]
+    k = len(rows); res = {}
+    for i in range(k):
+        for j in range(i + 1, k): res[(i, j)] = duel(rows[i], rows[j])
+    wins = [0] * k
+    for (i, j), d in res.items():
+        if d: wins[i if d["win"] == "a" else j] += 1
+    def cmp(i, j):
+        if wins[i] != wins[j]: return wins[j] - wins[i]
+        d = res.get((min(i, j), max(i, j)))
+        if d: return -1 if (d["win"] == "a") == (i < j) else 1
+        return -1 if rows[i]["rev_month"] / max(rows[i]["days"], 1) >= rows[j]["rev_month"] / max(rows[j]["days"], 1) else 1
+    order = sorted(range(k), key=functools.cmp_to_key(cmp))
+    for i in range(k): rows[i]["beat"] = [wins[i], k - 1]
+    ex = None
+    # the explanation's example: the two best openings from the six featured games, if two opened
+    feat = [i for i in order if rows[i]["tag"] in FEATURED]
+    pair = feat[:2] if len(feat) >= 2 else order[:2]
+    if len(pair) == 2:
+        i, j = pair; d = res[(min(i, j), max(i, j))]
+        if d:
+            a, b = (rows[i], rows[j]) if i < j else (rows[j], rows[i])
+            ex = {"n": d["n"], "per": d["per"], "score": d["score"], "win": d["win"],
+                  "a": {"label": a["label"], "tag": a["tag"], "days": a["days"], **d["a"]},
+                  "b": {"label": b["label"], "tag": b["tag"], "days": b["days"], **d["b"]}}
+    rows[:] = [rows[i] for i in order] + late
+    return ex
 
 def market_series(games):
     """{ym: {"jp": {tag: oku}, "cn": {tag: usd}, "zl": {tag: cny midpoint}}} for every month any source covers."""
@@ -262,22 +323,24 @@ def build_issue(games, ym, number, series):
     order = sorted(gm, key=lambda g: (g["tag"] not in FEATURED, -(g["jp"] or 0)))
     new = [{**{k: v for k, v in r.items() if k not in ("mranks", "score")}, "tag": g["tag"], "game": g["name"]}
            for g in gm for r in g["banners"] if r["new"]]
-    # new banners are ranked on what they did inside this month (user rule), the same
-    # median-of-every-measure rule as within a game
-    combined_order(new, MONTH_KEYS)
+    # new banners are ranked on what they did inside this month (user rule), head to head over
+    # equal numbers of days, so a late opener isn't measured against a rival's longer run
+    duel_ex = duel_order(new)
     debuts = new
     # cover star: the best-ranked new banner with art, from the six featured games when one opened
     pool = [r for r in debuts if r["img"]] or [dict(r, tag=g["tag"], game=g["name"]) for g in gm for r in g["banners"] if r["img"]]
     cover = next((r for r in pool if r["tag"] in FEATURED), pool[0] if pool else None)
     # the month's top banners across every game, by the same median-of-every-measure rule
-    allb = [{**{k: v for k, v in r.items() if k not in ("mranks", "score", "jp_daily", "cn_daily")}, "tag": g["tag"], "game": g["name"]}
+    allb = [{**{k: v for k, v in r.items() if k not in ("mranks", "score", "jp_daily", "cn_daily", "_jpr", "_cnr")}, "tag": g["tag"], "game": g["name"]}
             for g in gm for r in g["banners"]]
     combined_order(allb, MONTH_KEYS)
     top = [{k: r[k] for k in ("label", "tag", "game", "new", "rerun", "rev_month", "cn_month", "jp_peak", "cn_peak", "days",
                               "img", "face", "icons", "color", "start", "end", "score", "mranks")} for r in allb[:10]]
-    return {"ym": ym, "number": number, "built": datetime.date.today().isoformat(), "top": top, "market": market(series, ym),
+    for g in gm:                                      # the daily ranks were only needed for the duels
+        for r in g["banners"]: r.pop("_jpr", None); r.pop("_cnr", None)
+    return {"ym": ym, "number": number, "built": datetime.date.today().isoformat(), "top": top, "market": market(series, ym), "duel": duel_ex,
             "cover": cover and {k: cover[k] for k in ("label", "tag", "game", "img", "face", "color", "rev_month", "rerun")},
-            "debuts": [{k: r[k] for k in ("label", "tag", "game", "rev_month", "cn_month", "jp_peak", "cn_peak", "days", "rev_total", "rerun", "ongoing", "img", "face", "icons", "color", "start", "score")} for r in debuts],
+            "debuts": [{k: r[k] for k in ("label", "tag", "game", "rev_month", "cn_month", "jp_peak", "cn_peak", "days", "rev_total", "rerun", "ongoing", "img", "face", "icons", "color", "start", "beat")} for r in debuts],
             "games": order}
 
 def main():
