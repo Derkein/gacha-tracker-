@@ -107,19 +107,18 @@ const runsOn = (b, ym) => b.end > ym+"-31";
 const andList = a => a.length<2 ? (a[0]||"") : a.slice(0,-1).join(", ")+" and "+a.at(-1);
 // Where a banner's whole run sits in its game's history, as the median of its Japan and China
 // percentiles (0 = best ever, 1 = worst). Ongoing runs are still growing: only good news is final.
-// How the banner's MONTH sits among every banner-month the game had so far (Japan and China), as
-// the median of the two percentiles (0 = best ever, 1 = worst). The month is closed, so the figure is
-// final, but a banner with only a few days in the month isn't called weak for it.
+// Where a banner's whole run sits in its game's history, as the median of its Japan and China
+// percentiles (0 = best ever, 1 = worst). Ongoing runs are still growing: only good news is final.
 function verdict(b){
-  const ps=[b.m_rank,b.cn_m_rank].filter(x=>x&&x[1]>=6).map(([r,n])=>(r-1)/(n-1));
+  const ps=[b.alltime,b.cn_alltime].filter(x=>x&&x[1]>=6).map(([r,n])=>(r-1)/(n-1));
   if(!ps.length) return null;
   const v=ps.length===2?(ps[0]+ps[1])/2:ps[0];
   const tier = v<=.15?"top": v<=.34?"strong": v>=.85?"bottom": v>=.66?"weak":"mid";
-  return {v, tier, final: v<=.34 || (b.days||0)>=10};
+  return {v, tier, final:!b.ongoing || v<=.34};          // b.ongoing: still running today, so its run isn't final
 }
 const weakRun = b => { const v=verdict(b); return v && v.final && (v.tier==="weak"||v.tier==="bottom"); };
-const TIER = { top:"one of the game's strongest banner-months", strong:"in the top third of the game's banner-months", mid:"around the middle of the pack",
-  weak:"an underwhelming month, in the game's bottom third", bottom:"one of the game's weakest banner-months" };
+const TIER = { top:"one of the game's strongest runs", strong:"in the top third of the game's banners", mid:"around the middle of the pack",
+  weak:"an underwhelming run, in the game's bottom third", bottom:"one of the game's weakest runs" };
 // the month's other new (non-rerun) banners, and the first of them whose finished run was weak
 // (a banner that opened in the month's last days belongs to next month's story, not this one's)
 const rivals = g => g.banners.slice(1).filter(b=>b.new && !b.rerun && (+b.start.slice(8)<=20 || b.rev_month>=b.rev_total/2));
@@ -214,9 +213,9 @@ function daysEdge(g){
 }
 function runSentence(b, G){
   const v=verdict(b); if(!v) return "";
-  const where=[b.m_rank&&`${MK.n(ord(b.m_rank[0]))} of ${b.m_rank[1]} in Japan`, b.cn_m_rank&&`${MK.n(ord(b.cn_m_rank[0]))} of ${b.cn_m_rank[1]} in China`].filter(Boolean);
-  const judge = v.final ? `: ${judgeMark(TIER[v.tier])}` : `, with only ${plural(b.days,"day")} in the month`;
-  return `${MK.b(b)}'s ${MONTHS[+G_YM.slice(5)-1]} ranks ${andList(where)} among ${G} banner-months so far${judge}.`;
+  const where=[b.alltime&&`${MK.n(ord(b.alltime[0]))} of ${b.alltime[1]} in Japan`, b.cn_alltime&&`${MK.n(ord(b.cn_alltime[0]))} of ${b.cn_alltime[1]} in China`].filter(Boolean);
+  const judge = v.final ? `: ${judgeMark(TIER[v.tier])}` : ", with the run still going";
+  return `${MK.b(b)}'s run ${b.ongoing?"so far ":""}ranks ${andList(where)} among ${G} banners${judge}.`;
 }
 function autoBody(g, ym){
   const out=[], p=pct(g.jp,g.jp_prev), hp=histPhrase(g,ym), pm=MONTHS[+prevYm(ym).slice(5)-1];
@@ -393,8 +392,8 @@ function bannerCard(b, i, ctx){
   const nx=MONTHS[+nextYm(G_YM).slice(5)-1].slice(0,3), mo=MONTHS[+G_YM.slice(5)-1].slice(0,3);
   const chips=[ctx.game?`<span class="chip game" style="--gacc:${GAME_ACCENT[b.tag]}">${esc(SHORT[b.tag])}</span>`:"",
     b.new&&!b.rerun?`<span class="chip new">New</span>`:"", b.rerun?`<span class="chip">Rerun</span>`:"", runsOn(b,G_YM)?`<span class="chip live">Runs into ${nx}</span>`:"",
-    v&&v.final&&v.tier==="top"?`<span class="chip good">Top month</span>`:"", v&&v.final&&v.tier==="bottom"?`<span class="chip bad">Weak month</span>`:""].join("");
-  const pctl=b.m_rank&&b.m_rank[1]>1?(1-(b.m_rank[0]-1)/(b.m_rank[1]-1))*100:null;
+    v&&v.final&&v.tier==="top"?`<span class="chip good">Top run</span>`:"", v&&v.final&&v.tier==="bottom"?`<span class="chip bad">Weak run</span>`:""].join("");
+  const pctl=b.alltime&&b.alltime[1]>1?(1-(b.alltime[0]-1)/(b.alltime[1]-1))*100:null;
   const daysTxt=b.days?` · ${plural(b.days,"day")} in ${mo}${b.rev_month>0&&b.days?` · ${fmtG(b.rev_month/b.days)}/day`:""}`:"";
   return `<li class="bc${ctx.compact?" compact":""}" style="--acc:${b.color}">
     <div class="bc-pos"><span class="${i<3?"m"+(i+1):""}">${i+1}</span></div>
@@ -407,7 +406,7 @@ function bannerCard(b, i, ctx){
         ${ctx.hasCN?cell("cn_month","China iPhone",b.cn_month>0?fmtUSD(b.cn_month):'<span class="mu">—</span>',bar(b.cn_month,ctx.maxC)):""}
         ${cell("jp_peak","Peak JP",`<span class="pk${tier(b.jp_peak)}">${rk(b.jp_peak)}</span>`)}
         ${ctx.hasCN?cell("cn_peak","Peak CN",`<span class="pk${tier(b.cn_peak)}">${rk(b.cn_peak)}</span>`):""}
-        ${ctx.game?"":`<div class="m" title="This month's Japan revenue against every banner-month of the game so far"><span class="k">Banner-months</span><b>${b.m_rank?`${ord(b.m_rank[0])}<small> of ${b.m_rank[1]}</small>`:"—"}</b>${pctl!=null?`<i class="bc-bar pct"><i style="width:${pctl.toFixed(1)}%"></i></i>`:""}</div>`}
+        ${ctx.game?"":`<div class="m"><span class="k">All-time${b.ongoing?" (so far)":""}</span><b>${b.alltime?`${ord(b.alltime[0])}<small> of ${b.alltime[1]}</small>`:"—"}</b>${pctl!=null?`<i class="bc-bar pct"><i style="width:${pctl.toFixed(1)}%"></i></i>`:""}</div>`}
       </div>
     </div></li>`;
 }

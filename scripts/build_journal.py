@@ -243,20 +243,12 @@ def mw_order(rows, keys):
     for i in range(k): rows[i]["beat"] = [wins[i], k - 1]
     rows[:] = [rows[i] for i in order]
 
-def month_rank(pool, v):
-    """[rank, of] of a banner's month figure among the game's banner-months so far (None if it earned nothing)."""
-    if not v or v <= 0 or len(pool) < 2: return None
-    return [1 + sum(1 for x in pool if x > v), len(pool)]
-
 def game_month(G, ym):
     by_i = {b["i"]: b for b in G["banners"]}
     jp, jp_src = month_total(G, ym)
     pj, _ = month_total(G, prev_ym(ym))
     q = G["qimai"].get(ym) or {}; pq = G["qimai"].get(prev_ym(ym)) or {}
     cn = q.get("qtot") or None; pcn = pq.get("qtot") or None
-    # every banner-month the game had up to and including this one (Japan game-i, China Qimai)
-    jp_bm = [r for m, M in G["monthly"].items() if m <= ym for _, r in M["banners"] if r > 0]
-    cn_bm = [v for bb in G["banners"] for m, v in bb["qm"]["monthly"].items() if m <= ym and v > 0]
     rows = []
     for i, rev in (G["monthly"].get(ym) or {}).get("banners", []):
         b = by_i.get(i)
@@ -270,8 +262,6 @@ def game_month(G, ym):
                      "jp_peak_run": jpa, "cn_peak_run": cna,
                      "alltime": [b["rank"], G["count"]], "year_rank": [b["yrank"], b["ytot"]] if b["yrank"] else None,
                      "cn_alltime": [b["qmRank"]["rank"], b["qmRank"]["of"]] if b["qmRank"] else None,
-                     # the issue is monthly: this month's figure against every banner-month of the game so far
-                     "m_rank": month_rank(jp_bm, rev), "cn_m_rank": month_rank(cn_bm, b["qm"]["monthly"].get(ym, 0)),
                      "days": month_days(b, ym), "run_days": run_days(b), "day0": max(0, (month_start(ym) - datetime.date.fromisoformat(b["start"])).days),
                      "jp_daily": b["jpd"], "cn_daily": b["qmd"],
                      # daily chart ranks, for the openings' equal-window head-to-heads (not written out)
