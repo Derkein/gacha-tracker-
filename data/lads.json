@@ -5,13 +5,13 @@
  "unit": "億G",
  "source": "https://prtimes.jp/main/html/searchrlp/company_id/131862",
  "banners_from": "official",
- "updated": "2026-11-04T23:49:05Z",
- "count": 81,
+ "updated": "2026-11-05T18:40:17Z",
+ "count": 82,
  "now": {
   "ios": null,
   "android": null,
-  "month": 351,
-  "next_add": 4562575,
+  "month": 349,
+  "next_add": 2605812,
   "ym": "2026/11",
   "ranks": {
    "prev": [
@@ -83,7 +83,7 @@
   }
  },
  "monthly": {
-  "2026-11": 0.1846,
+  "2026-11": 0.2117,
   "2026-10": 2.3,
   "2026-09": 2.84,
   "2026-08": 2.27,
@@ -158,7 +158,7 @@
     "2024-01": 1.1357
    },
    "cum": 33,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 15,
    "ytot": 25,
    "icons": [
@@ -206,7 +206,7 @@
     "2024-02": 0.4952
    },
    "cum": 30,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 13,
    "ytot": 25,
    "icons": [
@@ -260,7 +260,7 @@
     "2024-02": 2.7864
    },
    "cum": 10,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 3,
    "ytot": 25,
    "icons": [
@@ -306,7 +306,7 @@
     "2024-02": 1.3662
    },
    "cum": 28,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 12,
    "ytot": 25,
    "icons": [
@@ -351,7 +351,7 @@
     "2024-03": 1.0822
    },
    "cum": 35,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 16,
    "ytot": 25,
    "icons": [
@@ -403,7 +403,7 @@
     "2024-03": 2.4675
    },
    "cum": 14,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 6,
    "ytot": 25,
    "icons": [
@@ -455,7 +455,7 @@
     "2024-04": 1.9532
    },
    "cum": 20,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 9,
    "ytot": 25,
    "icons": [
@@ -503,7 +503,7 @@
     "2024-04": 0.828
    },
    "cum": 50,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 18,
    "ytot": 25,
    "icons": [
@@ -553,7 +553,7 @@
     "2024-05": 0.7049
    },
    "cum": 61,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 22,
    "ytot": 25,
    "icons": [
@@ -605,7 +605,7 @@
     "2024-05": 2.1557
    },
    "cum": 19,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 8,
    "ytot": 25,
    "icons": [
@@ -655,7 +655,7 @@
     "2024-06": 0.2476
    },
    "cum": 70,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 24,
    "ytot": 25,
    "icons": [
@@ -707,7 +707,7 @@
     "2024-06": 1.2004
    },
    "cum": 31,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 14,
    "ytot": 25,
    "icons": [
@@ -764,7 +764,7 @@
     "2024-07": 0.9575
    },
    "cum": 21,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 10,
    "ytot": 25,
    "icons": [
@@ -821,7 +821,7 @@
     "2024-08": 0.1073
    },
    "cum": 13,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 5,
    "ytot": 25,
    "icons": [
@@ -882,7 +882,7 @@
     "2024-08": 4.8353
    },
    "cum": 1,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 1,
    "ytot": 25,
    "icons": [
@@ -929,7 +929,7 @@
     "2024-09": 0.5821
    },
    "cum": 58,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 21,
    "ytot": 25,
    "icons": [
@@ -977,7 +977,7 @@
     "2024-09": 0.8641
    },
    "cum": 45,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 17,
    "ytot": 25,
    "icons": [
@@ -1036,7 +1036,7 @@
     "2024-10": 0.7358
    },
    "cum": 16,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 7,
    "ytot": 25,
    "icons": [
@@ -1081,7 +1081,7 @@
     "2024-10": 0.7603
    },
    "cum": 52,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 19,
    "ytot": 25,
    "icons": [
@@ -1129,7 +1129,7 @@
     "2024-10": 0.9182
    },
    "cum": 53,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 20,
    "ytot": 25,
    "icons": [
@@ -1179,7 +1179,7 @@
     "2024-11": 0.6588
    },
    "cum": 68,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 23,
    "ytot": 25,
    "icons": [
@@ -1238,7 +1238,7 @@
     "2024-11": 2.6645
    },
    "cum": 12,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 4,
    "ytot": 25,
    "icons": [
@@ -1290,7 +1290,7 @@
     "2024-12": 1.7858
    },
    "cum": 24,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 11,
    "ytot": 25,
    "icons": [
@@ -1338,7 +1338,7 @@
     "2024-12": 0.6741
    },
    "cum": 75,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 25,
    "ytot": 25,
    "icons": [
@@ -1401,7 +1401,7 @@
     "2025-01": 3.262
    },
    "cum": 4,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 2,
    "ytot": 25,
    "icons": [
@@ -1458,7 +1458,7 @@
     "2025-02": 0.7504
    },
    "cum": 7,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 3,
    "ytot": 30,
    "icons": [
@@ -1517,7 +1517,7 @@
     "2025-02": 3.9422
    },
    "cum": 3,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 2,
    "ytot": 30,
    "icons": [
@@ -1563,7 +1563,7 @@
     "2025-03": 0.8804
    },
    "cum": 40,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 16,
    "ytot": 30,
    "icons": [
@@ -1610,7 +1610,7 @@
     "2025-03": 1.0601
    },
    "cum": 36,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 13,
    "ytot": 30,
    "icons": [
@@ -1656,7 +1656,7 @@
     "2025-03": 1.1128
    },
    "cum": 37,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 14,
    "ytot": 30,
    "icons": [
@@ -1710,7 +1710,7 @@
     "2025-04": 0.9567
    },
    "cum": 18,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 8,
    "ytot": 30,
    "icons": [
@@ -1755,7 +1755,7 @@
     "2025-04": 0.7197
    },
    "cum": 56,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 21,
    "ytot": 30,
    "icons": [
@@ -1801,7 +1801,7 @@
     "2025-04": 1.0463
    },
    "cum": 38,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 15,
    "ytot": 30,
    "icons": [
@@ -1863,7 +1863,7 @@
     "2025-05": 2.7054
    },
    "cum": 11,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 6,
    "ytot": 30,
    "icons": [
@@ -1909,7 +1909,7 @@
     "2025-05": 0.8748
    },
    "cum": 42,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 17,
    "ytot": 30,
    "icons": [
@@ -1958,7 +1958,7 @@
     "2025-06": 0.3717
    },
    "cum": 69,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 27,
    "ytot": 30,
    "icons": [
@@ -2003,7 +2003,7 @@
     "2025-06": 0.7719
    },
    "cum": 51,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 20,
    "ytot": 30,
    "icons": [
@@ -2057,7 +2057,7 @@
     "2025-07": 0.0876
    },
    "cum": 27,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 11,
    "ytot": 30,
    "icons": [
@@ -2118,7 +2118,7 @@
     "2025-07": 2.9019
    },
    "cum": 8,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 4,
    "ytot": 30,
    "icons": [
@@ -2172,7 +2172,7 @@
     "2025-08": 0.6513
    },
    "cum": 25,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 9,
    "ytot": 30,
    "icons": [
@@ -2233,7 +2233,7 @@
     "2025-08": 2.8404
    },
    "cum": 9,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 5,
    "ytot": 30,
    "icons": [
@@ -2281,7 +2281,7 @@
     "2025-09": 0.6524
    },
    "cum": 49,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 19,
    "ytot": 30,
    "icons": [
@@ -2328,7 +2328,7 @@
     "2025-09": 0.7676
    },
    "cum": 60,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 24,
    "ytot": 30,
    "icons": [
@@ -2376,7 +2376,7 @@
     "2025-09": 0.6408
    },
    "cum": 57,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 22,
    "ytot": 30,
    "icons": [
@@ -2430,7 +2430,7 @@
     "2025-10": 0.6673
    },
    "cum": 26,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 10,
    "ytot": 30,
    "icons": [
@@ -2476,7 +2476,7 @@
     "2025-10": 0.6186
    },
    "cum": 59,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 23,
    "ytot": 30,
    "icons": [
@@ -2522,7 +2522,7 @@
     "2025-10": 0.8872
    },
    "cum": 44,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 18,
    "ytot": 30,
    "icons": [
@@ -2586,7 +2586,7 @@
     "2025-11": 1.47
    },
    "cum": 17,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 7,
    "ytot": 30,
    "icons": [
@@ -2632,7 +2632,7 @@
     "2025-11": 0.541
    },
    "cum": 62,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 25,
    "ytot": 30,
    "icons": [
@@ -2679,7 +2679,7 @@
     "2025-11": 0.619
    },
    "cum": 78,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 30,
    "ytot": 30,
    "icons": [
@@ -2731,7 +2731,7 @@
     "2025-12": 1.4041
    },
    "cum": 29,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 12,
    "ytot": 30,
    "icons": [
@@ -2777,7 +2777,7 @@
     "2025-12": 0.3797
    },
    "cum": 74,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 29,
    "ytot": 30,
    "icons": [
@@ -2824,7 +2824,7 @@
     "2025-12": 0.5865
    },
    "cum": 64,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 26,
    "ytot": 30,
    "icons": [
@@ -2870,7 +2870,7 @@
     "2025-12": 0.4352
    },
    "cum": 71,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 28,
    "ytot": 30,
    "icons": [
@@ -2935,7 +2935,7 @@
     "2026-01": 4.5856
    },
    "cum": 2,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 1,
    "ytot": 30,
    "icons": [
@@ -2984,9 +2984,9 @@
     "2026-02": 0.0853
    },
    "cum": 34,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 7,
-   "ytot": 26,
+   "ytot": 27,
    "icons": [
     "icons/faces/lads/cast-zayne.webp"
    ],
@@ -3030,9 +3030,9 @@
     "2026-02": 0.9473
    },
    "cum": 47,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 12,
-   "ytot": 26,
+   "ytot": 27,
    "icons": [
     "icons/faces/lads/2026-02-02-cc552c.webp"
    ],
@@ -3089,9 +3089,9 @@
     "2026-02": 3.2489
    },
    "cum": 6,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 2,
-   "ytot": 26,
+   "ytot": 27,
    "icons": [
     "icons/faces/lads/2026-02-10-cee83c.webp"
    ],
@@ -3135,9 +3135,9 @@
     "2026-03": 0.9144
    },
    "cum": 43,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 10,
-   "ytot": 26,
+   "ytot": 27,
    "icons": [
     "icons/faces/lads/2026-03-01-11f9f4.webp"
    ],
@@ -3182,9 +3182,9 @@
     "2026-03": 0.8928
    },
    "cum": 73,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 21,
-   "ytot": 26,
+   "ytot": 27,
    "icons": [
     "icons/faces/lads/cast-xavier.webp"
    ],
@@ -3231,9 +3231,9 @@
     "2026-03": 1.0316
    },
    "cum": 41,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 9,
-   "ytot": 26,
+   "ytot": 27,
    "icons": [
     "icons/faces/lads/2026-03-19-f8d2ec.webp"
    ],
@@ -3286,9 +3286,9 @@
     "2026-04": 0.8124
    },
    "cum": 22,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 4,
-   "ytot": 26,
+   "ytot": 27,
    "icons": [
     "icons/faces/lads/2026-03-28-677b34.webp"
    ],
@@ -3332,9 +3332,9 @@
     "2026-04": 0.4617
    },
    "cum": 65,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 17,
-   "ytot": 26,
+   "ytot": 27,
    "icons": [
     "icons/faces/lads/2026-04-06-a96f21.webp"
    ],
@@ -3378,9 +3378,9 @@
     "2026-04": 0.867
    },
    "cum": 46,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 11,
-   "ytot": 26,
+   "ytot": 27,
    "icons": [
     "icons/faces/lads/2026-04-13-c170eb.webp"
    ],
@@ -3424,9 +3424,9 @@
     "2026-04": 0.8292
    },
    "cum": 67,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 19,
-   "ytot": 26,
+   "ytot": 27,
    "icons": [
     "icons/faces/lads/2026-04-21-4e9fc1.webp"
    ],
@@ -3483,9 +3483,9 @@
     "2026-05": 3.221
    },
    "cum": 5,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 1,
-   "ytot": 26,
+   "ytot": 27,
    "icons": [
     "icons/faces/lads/2026-04-30-2fea78.webp"
    ],
@@ -3529,9 +3529,9 @@
     "2026-05": 1.1348
    },
    "cum": 32,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 6,
-   "ytot": 26,
+   "ytot": 27,
    "icons": [
     "icons/faces/lads/2026-05-15-62c9bd.webp"
    ],
@@ -3576,9 +3576,9 @@
     "2026-05": 1.0537
    },
    "cum": 54,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 14,
-   "ytot": 26,
+   "ytot": 27,
    "icons": [
     "icons/faces/lads/cast-sylus.webp"
    ],
@@ -3627,9 +3627,9 @@
     "2026-06": 0.6653
    },
    "cum": 72,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 20,
-   "ytot": 26,
+   "ytot": 27,
    "icons": [
     "icons/faces/lads/2026-05-31-e08815.webp"
    ],
@@ -3673,9 +3673,9 @@
     "2026-06": 0.8481
    },
    "cum": 48,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 13,
-   "ytot": 26,
+   "ytot": 27,
    "icons": [
     "icons/faces/lads/2026-06-08-2b4208.webp"
    ],
@@ -3732,9 +3732,9 @@
     "2026-07": 0.1159
    },
    "cum": 15,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 3,
-   "ytot": 26,
+   "ytot": 27,
    "icons": [
     "icons/faces/lads/2026-06-17-c5a469.webp"
    ],
@@ -3778,9 +3778,9 @@
     "2026-07": 0.6939
    },
    "cum": 66,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 18,
-   "ytot": 26,
+   "ytot": 27,
    "icons": [
     "icons/faces/lads/2026-07-02-0900c0.webp"
    ],
@@ -3828,9 +3828,9 @@
     "2026-07": 0.9193
    },
    "cum": 55,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 15,
-   "ytot": 26,
+   "ytot": 27,
    "icons": [
     "icons/faces/lads/2026-07-09-c87429.webp"
    ],
@@ -3875,9 +3875,9 @@
     "2026-08": 0.5452
    },
    "cum": 81,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 26,
-   "ytot": 26,
+   "ytot": 27,
    "icons": [
     "icons/faces/lads/cast-caleb.webp"
    ],
@@ -3927,9 +3927,9 @@
     "2026-08": 1.4034
    },
    "cum": 39,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 8,
-   "ytot": 26,
+   "ytot": 27,
    "icons": [
     "icons/faces/lads/2026-08-17-cd90c9.webp"
    ],
@@ -3975,9 +3975,9 @@
     "2026-09": 0.4703
    },
    "cum": 77,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 23,
-   "ytot": 26,
+   "ytot": 27,
    "icons": [
     "icons/faces/lads/2026-08-31-b5a8cd.webp"
    ],
@@ -4021,9 +4021,9 @@
     "2026-09": 0.5937
    },
    "cum": 79,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 24,
-   "ytot": 26,
+   "ytot": 27,
    "icons": [
     "icons/faces/lads/2026-09-08-48d99d.webp"
    ],
@@ -4083,9 +4083,9 @@
     "2026-10": 0.7054
    },
    "cum": 23,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 5,
-   "ytot": 26,
+   "ytot": 27,
    "icons": [
     "icons/faces/lads/2026-09-22-7e8bc0.webp"
    ],
@@ -4129,9 +4129,9 @@
     "2026-10": 0.5589
    },
    "cum": 76,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 22,
-   "ytot": 26,
+   "ytot": 27,
    "icons": [
     "icons/faces/lads/2026-10-11-03393e.webp"
    ],
@@ -4179,9 +4179,9 @@
     "2026-10": 0.7075
    },
    "cum": 63,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 16,
-   "ytot": 26,
+   "ytot": 27,
    "icons": [
     "icons/faces/lads/2026-10-19-bf1164.webp"
    ],
@@ -4218,23 +4218,64 @@
     null
    ],
    "rev": 0.224,
-   "rev_month": 0.5128,
+   "rev_month": 0.5058,
    "rev_ym": {
     "2026-10": 0.224,
     "2026-11": 0.0
    },
    "rev_month_ym": {
     "2026-10": 0.3282,
-    "2026-11": 0.1846
+    "2026-11": 0.1777
    },
    "cum": 80,
-   "cumtot": 81,
+   "cumtot": 82,
    "yrank": 25,
-   "ytot": 26,
+   "ytot": 27,
    "icons": [
     "icons/faces/lads/cast-rafayel.webp"
    ],
    "bar": "#423c9b"
+  },
+  {
+   "name": "異常夢の再起動",
+   "start": "2026-11-06",
+   "end": "2026-11-24",
+   "year": 2026,
+   "related": "",
+   "banner_img": "icons/banner_art/lads-256caf9754.webp",
+   "agents": [],
+   "en": "",
+   "title_en": null,
+   "leads": [
+    "Xavier",
+    "Zayne",
+    "Rafayel",
+    "Sylus",
+    "Caleb"
+   ],
+   "source_url": "https://wiki.biligame.com/lysk/%E3%80%8C%E5%BE%85%E5%BC%82%E6%A2%A6%E9%87%8D%E5%90%AF%E3%80%8D",
+   "rerun": false,
+   "ongoing": true,
+   "rev": 0.0,
+   "rev_month": 0.034,
+   "rev_ym": {
+    "2026-11": 0.0
+   },
+   "rev_month_ym": {
+    "2026-11": 0.034
+   },
+   "cum": 82,
+   "cumtot": 82,
+   "yrank": 27,
+   "ytot": 27,
+   "icons": [
+    "icons/faces/lads/cast-xavier.webp",
+    "icons/faces/lads/cast-zayne.webp",
+    "icons/faces/lads/cast-rafayel.webp",
+    "icons/faces/lads/cast-sylus.webp",
+    "icons/faces/lads/cast-caleb.webp"
+   ],
+   "bar": "#5d587e"
   }
  ]
 }

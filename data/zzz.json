@@ -5,13 +5,13 @@
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E3%82%BC%E3%83%B3%E3%83%AC%E3%82%B9%E3%82%BE%E3%83%BC%E3%83%B3%E3%82%BC%E3%83%AD",
  "banners_from": "game-i",
- "updated": "2026-11-04T23:42:03Z",
+ "updated": "2026-11-05T18:32:14Z",
  "count": 40,
  "now": {
-  "ios": 172,
-  "android": 57,
-  "month": 150,
-  "next_add": 8649903,
+  "ios": 187,
+  "android": 61,
+  "month": 154,
+  "next_add": 6631800,
   "ym": "2026/11",
   "ranks": {
    "prev": [
@@ -53,7 +53,7 @@
     126,
     152,
     182,
-    null,
+    197,
     null,
     null,
     null,
@@ -83,7 +83,7 @@
   }
  },
  "monthly": {
-  "2026-11": 0.7836,
+  "2026-11": 0.8412,
   "2026-10": 4.14,
   "2026-09": 3.78,
   "2026-08": 9.21,
@@ -1979,7 +1979,7 @@
    "name": "フィオニー",
    "start": "2026-10-21",
    "end": "2026-11-11",
-   "rev": 3.24,
+   "rev": 3.3,
    "yrank": 6,
    "ytot": 14,
    "cum": 22,
@@ -2005,7 +2005,8 @@
     118,
     126,
     152,
-    182
+    182,
+    197
    ],
    "icons": [
     "https://enka.network/ui/zzz/IconRoleCircle1641.png"

@@ -2282,6 +2282,15 @@
    "det": true,
    "name": "スカーク",
    "v": 2
+  },
+  "https://upload-os-bbs.hoyolab.com/upload/2026/10/30/7f2bd1fc0e725de26a2a146a7ef70bb2_715388470165993024.jpg": {
+   "x": 49.4,
+   "y": 20.8,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "name": "ミティヤ",
+   "v": 2
   }
  },
  "endfield": {
@@ -5416,6 +5425,15 @@
    "h": 450,
    "det": false,
    "name": "香りに揺れる夜",
+   "v": 2
+  },
+  "icons/banner_art/lads-256caf9754.webp": {
+   "x": 50.0,
+   "y": 40.0,
+   "w": 800,
+   "h": 450,
+   "det": false,
+   "name": "異常夢の再起動",
    "v": 2
   }
  }
