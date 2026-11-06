@@ -5,11 +5,11 @@
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E3%82%A2%E3%83%BC%E3%82%AF%E3%83%8A%E3%82%A4%E3%83%84%EF%BC%9A%E3%82%A8%E3%83%B3%E3%83%89%E3%83%95%E3%82%A3%E3%83%BC%E3%83%AB%E3%83%89",
  "banners_from": "game-i",
- "updated": "2026-11-06T18:14:47Z",
+ "updated": "2026-11-06T19:25:40Z",
  "count": 16,
  "now": {
   "ios": 98,
-  "android": 47,
+  "android": 42,
   "month": 179,
   "next_add": 13126973,
   "ym": "2026/11",
@@ -814,12 +814,11 @@
    "agents": [
     "Argent Flow"
    ],
+   "en": "Argent Flow",
    "icons": [
     "icons/faces/endfield/2026-11-05-64f0a8.webp"
    ],
-   "accent": "#cdc0a2",
-   "bar": "#dcc989",
-   "en": "Argent Flow"
+   "bar": "#dcc989"
   }
  ]
 }
