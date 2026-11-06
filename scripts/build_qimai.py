@@ -220,6 +220,38 @@ for tag in GAMES:
         bdaily[nxt][0] = bdaily[nxt].get(0,0.0) + excess       # lump into the incoming's day 1
         btotal[nxt] += excess; bmonthly[nxt][gmo] += excess    # keep it in the same (real) month
 
+    # ---- mid-run launch reattribution -----------------------------------------------------
+    # When a banner opens in the MIDDLE of another's run (Endfield's Minho, 11/5, inside the
+    # Tangtang rerun scout), the split above follows game-i's reconstructed daily revenue. But
+    # game-i doesn't split shared days: it credits every running banner with the whole day (both
+    # read the game's rank, #64), and the two figures only differ because each banner's game-i
+    # total is spread over its own run. So the rerun got 59% of Minho's launch money. Instead the
+    # running banner keeps its own pre-launch TREND (the handoff baseline) and the newcomer gets
+    # the rest of each shared day. Banners that start together are untouched.
+    moved_total = 0.0
+    for nb in binfo:
+        n_idx = nb["idx"]
+        if n_idx not in btotal: continue
+        for ib in binfo:
+            i_idx = ib["idx"]
+            if i_idx == n_idx or i_idx not in btotal: continue
+            off = (nb["cn0"] - ib["cn0"]).days          # newcomer's start, as the incumbent's run-day
+            if off < 2 or off >= ib["len"]: continue     # must open after the incumbent, inside its run
+            base = handoff_baseline([bdaily[i_idx].get(off-k, 0.0) for k in range(4,0,-1)])
+            if not base: continue                        # no pre-launch history to keep it at
+            for j in range(off, ib["len"]):
+                jn = j - off
+                if jn >= nb["len"] + nb["ext"]: break
+                have = bdaily[i_idx].get(j, 0.0)
+                move = have - min(have, base)
+                if move <= 0: continue
+                gmo = ym(ib["cn0"] + datetime.timedelta(days=j+lead))
+                bdaily[i_idx][j] -= move; btotal[i_idx] -= move; bmonthly[i_idx][gmo] -= move
+                bdaily[n_idx][jn] = bdaily[n_idx].get(jn, 0.0) + move
+                btotal[n_idx] += move; bmonthly[n_idx][gmo] += move
+                moved_total += move
+    if moved_total: print(f"{tag}: mid-run launches: moved ${moved_total:,.0f} from running banners to the newcomers", file=sys.stderr)
+
     monthly = {}
     for m,v in gm.items():
         qt,at = round(v["qtot"]), round(v["attr"])
