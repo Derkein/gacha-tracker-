@@ -2428,6 +2428,15 @@
    "det": true,
    "name": "再現スカウト「#1」タンタン",
    "v": 2
+  },
+  "https://pbs.twimg.com/media/HWRdc-1bYAAoz5G.jpg": {
+   "x": 29.7,
+   "y": 31.3,
+   "w": 1200,
+   "h": 675,
+   "det": true,
+   "name": "ミンホ",
+   "v": 2
   }
  },
  "nte": {
@@ -5427,12 +5436,12 @@
    "name": "香りに揺れる夜",
    "v": 2
   },
-  "icons/banner_art/lads-256caf9754.webp": {
-   "x": 50.0,
-   "y": 40.0,
-   "w": 800,
-   "h": 450,
-   "det": false,
+  "https://prcdn.freetls.fastly.net/release_image/131862/118/131862-118-579c8f22220cf7c10cf96dc24a726b80-2560x1440.jpg": {
+   "x": 10.1,
+   "y": 30.8,
+   "w": 2560,
+   "h": 1440,
+   "det": true,
    "name": "異常夢の再起動",
    "v": 2
   }

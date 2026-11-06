@@ -5,13 +5,13 @@
  "unit": "億G",
  "source": "https://prtimes.jp/main/html/searchrlp/company_id/131862",
  "banners_from": "official",
- "updated": "2026-11-05T22:14:54Z",
+ "updated": "2026-11-06T18:19:37Z",
  "count": 82,
  "now": {
-  "ios": null,
+  "ios": 36,
   "android": null,
-  "month": 349,
-  "next_add": 2265867,
+  "month": 221,
+  "next_add": 29066780,
   "ym": "2026/11",
   "ranks": {
    "prev": [
@@ -54,7 +54,7 @@
     null,
     null,
     null,
-    null,
+    39,
     null,
     null,
     null,
@@ -83,7 +83,7 @@
   }
  },
  "monthly": {
-  "2026-11": 0.2117,
+  "2026-11": 0.4842,
   "2026-10": 2.3,
   "2026-09": 2.84,
   "2026-08": 2.27,
@@ -3874,9 +3874,9 @@
    "rev_month_ym": {
     "2026-08": 0.5452
    },
-   "cum": 81,
+   "cum": 82,
    "cumtot": 82,
-   "yrank": 26,
+   "yrank": 27,
    "ytot": 27,
    "icons": [
     "icons/faces/lads/cast-caleb.webp"
@@ -4218,14 +4218,14 @@
     null
    ],
    "rev": 0.224,
-   "rev_month": 0.5058,
+   "rev_month": 0.5576,
    "rev_ym": {
     "2026-10": 0.224,
     "2026-11": 0.0
    },
    "rev_month_ym": {
     "2026-10": 0.3282,
-    "2026-11": 0.1777
+    "2026-11": 0.2294
    },
    "cum": 80,
    "cumtot": 82,
@@ -4242,7 +4242,7 @@
    "end": "2026-11-24",
    "year": 2026,
    "related": "",
-   "banner_img": "icons/banner_art/lads-256caf9754.webp",
+   "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/118/131862-118-579c8f22220cf7c10cf96dc24a726b80-2560x1440.jpg",
    "agents": [],
    "en": "",
    "title_en": null,
@@ -4253,29 +4253,29 @@
     "Sylus",
     "Caleb"
    ],
-   "source_url": "https://wiki.biligame.com/lysk/%E3%80%8C%E5%BE%85%E5%BC%82%E6%A2%A6%E9%87%8D%E5%90%AF%E3%80%8D",
+   "source_url": "https://prtimes.jp/main/html/rd/p/000000118.000131862.html",
    "rerun": false,
    "ongoing": true,
-   "rev": 0.0,
-   "rev_month": 0.034,
+   "rank_series": [
+    null,
+    39
+   ],
+   "rev": 0.2109,
+   "rev_month": 0.2548,
    "rev_ym": {
-    "2026-11": 0.0
+    "2026-11": 0.2109
    },
    "rev_month_ym": {
-    "2026-11": 0.034
+    "2026-11": 0.2548
    },
-   "cum": 82,
+   "cum": 81,
    "cumtot": 82,
-   "yrank": 27,
+   "yrank": 26,
    "ytot": 27,
    "icons": [
-    "icons/faces/lads/cast-xavier.webp",
-    "icons/faces/lads/cast-zayne.webp",
-    "icons/faces/lads/cast-rafayel.webp",
-    "icons/faces/lads/cast-sylus.webp",
-    "icons/faces/lads/cast-caleb.webp"
+    "icons/faces/lads/2026-11-06-0a039c.webp"
    ],
-   "bar": "#5d587e"
+   "bar": "#37579f"
   }
  ]
 }

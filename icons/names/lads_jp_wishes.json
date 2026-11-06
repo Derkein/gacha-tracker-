@@ -1352,8 +1352,20 @@
 "start": "2026-11-06",
 "end": "2026-11-24",
 "rerun": false,
-"mem": [],
-"leads": [],
+"mem": [
+"シン・リダイレクト逆理",
+"セイヤ・誤謬プログラム",
+"ホムラ・沈溺バインド",
+"マヒル・築夢プロトコル",
+"レイ・レガシー自我"
+],
+"leads": [
+"Sylus",
+"Xavier",
+"Rafayel",
+"Caleb",
+"Zayne"
+],
 "card": "https://cdn.gamerch.com/contents/wiki/4793/entry/XGBiHhd5.png"
 }
 ]
