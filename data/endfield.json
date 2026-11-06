@@ -811,12 +811,15 @@
     64,
     93
    ],
-   "agents": [],
+   "agents": [
+    "Argent Flow"
+   ],
    "icons": [
     "icons/faces/endfield/2026-11-05-64f0a8.webp"
    ],
    "accent": "#cdc0a2",
-   "bar": "#dcc989"
+   "bar": "#dcc989",
+   "en": "Argent Flow"
   }
  ]
 }
