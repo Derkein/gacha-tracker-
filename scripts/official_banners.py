@@ -506,7 +506,8 @@ LADS_EN = {"密やかなキス": "Secret's Kiss", "心のままに願いへ": "H
            "湧き来る夏": "Summer Surge", "破陣子": "Po Zhen Zi", "戦塵が舞う中": "When Embers Rise",
            "逢える日を胸に": "In Earnest Hope", "今宵、眠れぬなら": "A Night That Never Ends",
            "この一瞬に願いを": "Lingering Light", "幾年も光と": "Lights Evermore",
-           "香りに揺れる夜": "Nightly Overflow"}     # from its title card
+           "香りに揺れる夜": "Nightly Overflow",      # from its title card
+           "異常夢の再起動": "Rebooting Dreams"}    # x.com/Love_Deepspace event announcement
 
 
 def lads():

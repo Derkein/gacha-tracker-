@@ -4243,8 +4243,10 @@
    "year": 2026,
    "related": "",
    "banner_img": "https://prcdn.freetls.fastly.net/release_image/131862/118/131862-118-579c8f22220cf7c10cf96dc24a726b80-2560x1440.jpg",
-   "agents": [],
-   "en": "",
+   "agents": [
+    "Rebooting Dreams"
+   ],
+   "en": "Rebooting Dreams",
    "title_en": null,
    "leads": [
     "Xavier",
