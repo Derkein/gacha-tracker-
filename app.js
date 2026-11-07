@@ -1457,7 +1457,7 @@ function shortListing(b){
 // chart; known false = no data that day
 function chartSeries(b, kind){
   if(kind==="jp"){
-    const r=(onRunDays(b, b.rank_series||[])||[]).slice(0,CHART_WINDOW);
+    const r=(onRunDays(b, jpOwn(b))||[]).slice(0,CHART_WINDOW);
     return r.length && r.some(v=>v!=null) ? {ranks:r, known:r.map(()=>true), from:1} : null;
   }
   const run=onRunDays(b, cnRunSeries(b)); if(!run) return null;
@@ -2439,7 +2439,7 @@ function bannerAgreement(tag){
     const s=bannerST(b);    const st = s.hasData ? s.total : null;
     const c=bannerCN(b);    const cnHi=c.hi==null?c.lo:c.hi;
     const cn = c.hasData ? (c.lo+cnHi)/2 : null;
-    const js=(b.rank_series||[]).filter(x=>x!=null); const jr = js.length ? Math.min(...js) : null;
+    const js=jpOwn(b).filter(x=>x!=null); const jr = js.length ? Math.min(...js) : null;
     const cr0=cnRunSeries(b); const crs=cr0?cr0.map(x=>x.rank).filter(x=>x!=null):[];
     const cr = crs.length?Math.min(...crs):null;
     return {b, gi, qm, st, cn, cnRaw:(c.hasData?{lo:c.lo,hi:cnHi,metric:(c.mixed?"":"")}:null), jr, cr};
@@ -3356,7 +3356,7 @@ const isoMD=iso=>{const [,m,d]=iso.split("-"); return `${+m}/${+d}`;};
 // A banner's daily iOS top-grossing rank, drawn with #1 at the top. Gaps in the
 // line are days the app sat below the trackable ~top 200 (game-i counts as ¥0).
 function rankCurveSVG(b){
-  const s=b.rank_series||[]; const n=s.length;
+  const s=jpOwn(b); const n=s.length;
   const known=s.map((v,i)=>[i,v]).filter(([,v])=>v!=null);
   if(known.length<1) return "";
   const worst=Math.max(...known.map(([,v])=>v));
@@ -3564,10 +3564,11 @@ function dailyBreakdown(b){
   if(sum<=0) return null;
   const all=state.data.banners, DAY=864e5, s0=Date.parse(b.start);
   let cum=0;
+  const own=jpOwn(b), tn=takerName(midRunTaker(b));
   const days=s.map((rank,i)=>{ const add=b.rev*raw[i]/sum; cum+=add;
     const t=s0+i*DAY;
     const shared=all.some(o=>o!==b && !o._synthetic && o._runs && runsOn(o,t) && runsOn(b,t));
-    return {i,rank,add,cum,shared}; });
+    return {i,rank:own[i],add,cum,shared,other:own[i]==null&&rank!=null?tn:null}; });
   return {days};
 }
 function buildupSVG(bd,b,fmt=G,hitAttr="day"){
@@ -3765,6 +3766,27 @@ function cnRunEnd(b){
   const d=new Date(e+"T00:00:00"); d.setDate(d.getDate()-1);
   return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
 }
+// The banner that opens INSIDE this one's run (not a same-day start, not a handover), if any.
+// From its first day the game's chart rank is that newcomer's launch, not this banner's: game-i
+// and the China chart both list the GAME's rank on every banner running that day, so Endfield's
+// Tangtang rerun "peaked" at #43 / #64 on Argent Flow's launch. Used by cnRunSeries and jpOwn.
+function midRunTaker(b){
+  if(b._taker!==undefined) return b._taker;
+  const t=(state.data.banners||[]).filter(o=>o!==b && !o._synthetic && !o.pending && o.start>b.start && o.start<b.end)
+    .sort((x,y)=>x.start<y.start?-1:x.start>y.start?1:0)[0]||null;
+  return (b._taker=t);
+}
+const takerName=t=>t?((t.agents&&t.agents.length)?t.agents.join(" & "):(t.en||t.name)):null;
+// Japan's chart rank as this banner's OWN: rank_series with the days after a mid-run launch
+// blanked. Rank stats (peaks, top-10 days, Compare's rank measures) use this; the revenue
+// reconstruction keeps the full rank_series, since game-i's total covers those days.
+function jpOwn(b){
+  if(b._jpOwn) return b._jpOwn;
+  const s=b.rank_series||[], t=midRunTaker(b);
+  if(!t) return (b._jpOwn=s);
+  const k=Math.round((Date.parse(t.start)-Date.parse(b.start))/864e5);
+  return (b._jpOwn=s.map((v,i)=>i>=k?null:v));
+}
 function cnRunSeries(b){
   const R=state.cnrank; if(!R||!R.games||!R.days) return null;
   const g=R.games[state.tag]; if(!g) return null;
@@ -3779,9 +3801,7 @@ function cnRunSeries(b){
   // China chart from its first day: Endfield's Tangtang rerun "peaked" at #43, but #43 was Argent
   // Flow's launch on 11/5. From then on the running banner has no chart rank of its own (the day
   // keeps its revenue, which build_qimai holds at the pre-launch trend). Same rule as the Qimai split.
-  const taker=win?null:(state.data.banners||[]).filter(o=>o!==b && !o._synthetic && !o.pending && o.start>b.start && o.start<b.end)
-    .sort((x,y)=>x.start<y.start?-1:x.start>y.start?1:0)[0];
-  const takerName=taker?((taker.agents&&taker.agents.length)?taker.agents.join(" & "):(taker.en||taker.name)):null;
+  const taker=win?null:midRunTaker(b), tName=takerName(taker);
   while(d<=end&&d<=today){
     const k=iso(d), day=cnCovered(state.tag,k) ? (R.days[k]||[200,"qimai"]) : null;
     if(day) any=true;
@@ -3797,7 +3817,7 @@ function cnRunSeries(b){
     let best=taken?null:(bst[k]!=null?bst[k]:rank);
     if(best!=null && prev!=null && best===prev && rank!==best) best=rank;
     out.push({iso:k, rank, best:best!=null&&rank!=null?Math.min(best,rank):best, raw:bst[k]!=null?bst[k]:null,
-              depth:day?day[0]:null, src:day?day[1]:null, byOther:taken?takerName:null});
+              depth:day?day[0]:null, src:day?day[1]:null, byOther:taken?tName:null});
     d.setDate(d.getDate()+1);
   }
   return any?out:null;
@@ -3983,12 +4003,12 @@ const placeVal = {
   qimai: x => { const q=bannerQimai(x); return q.hasData ? q.total : null; },
   st:    x => { const s=bannerST(x); return s.hasData ? s.total : null; },
   cn:    x => { const c=bannerCN(x); return c.hasData ? cnMid({lo:c.lo, hi:c.hi}) : null; },
-  jpPeak:x => rankKey(x.rank_series||[]),
+  jpPeak:x => rankKey(jpOwn(x)),
   cnPeak:x => { const s=cnRunStats(x); return s && !s.none ? rankKey(s.run.map(d=>d.best)) : null; },
 };
 function jpRunStats(b){
   if(b._jpStats!==undefined) return b._jpStats;
-  const s=b.rank_series||[];
+  const s=jpOwn(b);
   const known=s.map((v,i)=>[i,v]).filter(([,v])=>v!=null);
   if(!known.length) return (b._jpStats=null);
   const ranks=known.map(([,v])=>v), sorted=[...ranks].sort((a,c)=>a-c);
@@ -4194,7 +4214,7 @@ function jpAnalysisBlock(b){
 
   // where it sat at a fixed early checkpoint, and how fast it got there from its peak
   const chkD = Math.min(7, st.days);
-  const rkJP = x => { const r=(x.b.rank_series||[])[chkD-1]; return r==null?OFF_CHART:r; };
+  const rkJP = x => { const r=jpOwn(x.b)[chkD-1]; return r==null?OFF_CHART:r; };
   let slipLine = "", mineRank = null;
   if(chkD>=3 && st.days>=3){
     mineRank = rkJP({b, st});
@@ -4227,7 +4247,7 @@ function jpAnalysisBlock(b){
     fadeLi+=`${fadeLi?" ":"<b>Fade:</b> "}It left game-i's top 200 on <b>day ${st.fellOffDay}</b>${medFell==null?"":`, against day ${medFell} for the usual ${kind}`}.`;
   } else if(!b.ongoing) fadeLi+=`${fadeLi?" ":"<b>Fade:</b> "}It never left the chart during the run.`;
   const place=`<div class="bm-verdict call"><span class="head">Where this run sits on game-i's chart</span>
-    ${compareFactsHTML({st, kind, baseLab, base, ranksOf:p=>p.b.rank_series||[], mine:b.rank_series||[], ongoing:b.ongoing,
+    ${compareFactsHTML({st, kind, baseLab, base, ranksOf:p=>jpOwn(p.b), mine:jpOwn(b), ongoing:b.ongoing,
       places, banked, fade:fadeLi})}
     ${yearStrip}${rankStrip}</div>`;
 
@@ -4799,7 +4819,7 @@ function openBanner(b, keepStack){
          ${b.icons&&b.icons[0]?`<img class="bm-art sq" src="${esc(b.icons[0])}" alt="" referrerpolicy="no-referrer" data-fb="remove">`:""}
          <div class="bm-htext">${title}</div></div>`;
 
-  const s=b.rank_series||[]; const known=s.filter(v=>v!=null);
+  const s=jpOwn(b); const known=s.filter(v=>v!=null);
   let curve;
   if(known.length){
     const first=s.find(v=>v!=null), last=[...s].reverse().find(v=>v!=null), best=Math.min(...known);
@@ -5151,7 +5171,7 @@ function entityMetrics(entity){
 function bannerSnapshot(ctx,i){
   const b=ctx.data.banners[i]; if(!b) return null;
   // series are cut to the days the banner actually ran (a paused run skips its gap)
-  const jp=onRunDays(b, (b.rank_series||[]).slice());
+  const jp=onRunDays(b, jpOwn(b).slice());
   const cnRun=onRunDays(b, cnRunSeries(b)); const cn=cnRun?cnRun.map(x=>x.rank):null;
   // whether the China chart was actually recorded that day (depth known). A null rank on a
   // recorded day = genuinely below #200; a null on an unrecorded day = data not fetched yet.

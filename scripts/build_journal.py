@@ -61,7 +61,7 @@ async (tag) => {
       img: b.banner_img || "", icons: b.icons || [], color: barColor(b),
       // the art's face point (the Compare collage's own lookup: manual override, else the detector's)
       face: (() => { const f = typeof cmpFace === "function" && cmpFace(tag, b.name, b.banner_img); return f ? [f.x, f.y] : null; })(),
-      jp: b.rank_series || [],
+      jp: jpOwn(b),                       // the banner's own Japan chart days (a mid-run launch takes the rest)
       cn: cn.map(d => [d.iso, d.rank, d.best]),
       jpd: (() => { const bd = dailyBreakdown(b); return bd ? bd.days.map(d => Math.round(d.add * 1e4) / 1e4) : []; })(),
       qmd: (qm.daily || []).map(v => Math.round(v || 0)),
@@ -69,7 +69,7 @@ async (tag) => {
       qmRank: (typeof qimaiRankInfo === "function" && qimaiRankInfo(b)) || null,
       // the day-indexed series the tracker's Compare (bannerSnapshot -> buildComparison) works on
       snap: (() => { const cnRun = onRunDays(b, cnRunSeries(b)); const bd = dailyBreakdown(b); let c = 0;
-        return { jp: onRunDays(b, (b.rank_series || []).slice()),
+        return { jp: onRunDays(b, jpOwn(b).slice()),
           cn: cnRun ? cnRun.map(x => x.rank) : null, cnKnown: cnRun ? cnRun.map(x => x.depth != null) : null, cnBest: cnRun ? cnRun.map(x => x.best) : null,
           gi: bd ? onRunDays(b, bd.days).map(d => ({ add: d.add, cum: (c += d.add) })) : [],
           qmDaily: onRunDays(b, (qm.daily || []).slice()), hasQm: !!qm.hasData }; })() };
