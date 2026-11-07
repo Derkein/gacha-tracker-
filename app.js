@@ -467,7 +467,7 @@ function qimaiBD(b){
     // (or start before Qimai's history) — those days have no estimate yet, not a real ¥0.
     const noData = (qLast!=null && iso>qLast) || (qFirst!=null && iso<qFirst);
     if(!noData) cum+=add;                        // a pending day doesn't advance the running total
-    return {i, iso, rank:shown[i]!=null?shown[i]:null, isPeak:i===pk, add, cum, noData}; });
+    return {i, iso, rank:shown[i]!=null?shown[i]:null, isPeak:i===pk, add, cum, noData, other:run[i]?run[i].byOther:null}; });
   return {days};
 }
 // Front-loading of the REAL daily curve: what share of the run's total landed by day 3,
@@ -583,11 +583,13 @@ function qimaiAnalysisBlock(b){
   let revStrip="", rankStrip="";
   // By PEAK China-iPhone day (biggest single day), not total — the "similar total by day"
   // list below already covers the total, so this strip reads the height of the spike instead.
-  const yrRev=peers.filter(p=>p.b.year===b.year && !p.b.ongoing && qmPeak(p)>0);
+  // the strips show every banner of the year, running ones included (a concurrent banner belongs
+  // next to this one); the placement lines above still compare against finished runs only
+  const yrRev=peers.filter(p=>p.b.year===b.year && qmPeak(p)>0);
   if(yrRev.length>=2 && qm.peak>0){ const hi=yrRev.filter(p=>qmPeak(p)>qm.peak).length, lo=yrRev.length-hi;
     revStrip=cohortStrip([...yrRev,{b,st}].sort((x,y)=>qmPeak(y)-qmPeak(x)),b,x=>fmtUSD(qmPeak(x)),
       `This game's <b>${yrRev.length+1}</b> banners in ${b.year} by their biggest single China-iPhone day — ${n(hi)} had a bigger day than this one, ${n(lo)} the same or smaller.`,"By China iOS revenue at peak"); }
-  const yrAll=peers.filter(p=>p.b.year===b.year && !p.b.ongoing);
+  const yrAll=peers.filter(p=>p.b.year===b.year);
   if(yrAll.length>=2){ const hi=yrAll.filter(p=>p.st.peak<pk).length, lo=yrAll.length-hi;
     rankStrip=cohortStrip([...yrAll,{b,st}].sort((x,y)=>x.st.peak-y.st.peak),b,x=>`#${x.st.peak}`,
       `The same banners by peak rank, best first — ${n(hi)} peaked higher than this one, ${n(lo)} the same or lower.`,"By peak rank"); }
@@ -3598,7 +3600,7 @@ function dailyTable(bd,fmt=G,rankHdr="iOS&nbsp;rank"){
     <td class="l">${d.iso?isoMD(d.iso):dayLabel(d.i)}</td>`
     + (d.noData
       ? `<td colspan="3" class="muted qbu-nodata">no data yet</td>`
-      : `<td>${d.rank==null?'<span class="muted">200+</span>':'#'+d.rank}</td>`
+      : `<td>${d.rank==null?(d.other?`<span class="muted" title="${esc(d.other)} launched mid-run: the game's chart rank from this day is its launch">→ ${esc(d.other)}</span>`:'<span class="muted">200+</span>'):'#'+d.rank}</td>`
         + `<td>${d.add>=0.005?fmt(d.add):'<span class="muted">—</span>'}</td>`
         + `<td>${fmt(d.cum)}</td>`)
     + `</tr>`;
@@ -3773,20 +3775,29 @@ function cnRunSeries(b){
   const win=cnWindow(b); if(win&&win.none) return null;   // never ran in China
   const d=new Date((win?win.start:b.start)+"T00:00:00"), end=new Date((win?win.end:cnRunEnd(b))+"T00:00:00"), today=new Date();
   if(lead && !win){ d.setDate(d.getDate()-lead); end.setDate(end.getDate()-lead); }
+  // A banner that opens INSIDE this run (not a same-day start, not a handover) takes the game's
+  // China chart from its first day: Endfield's Tangtang rerun "peaked" at #43, but #43 was Argent
+  // Flow's launch on 11/5. From then on the running banner has no chart rank of its own (the day
+  // keeps its revenue, which build_qimai holds at the pre-launch trend). Same rule as the Qimai split.
+  const taker=win?null:(state.data.banners||[]).filter(o=>o!==b && !o._synthetic && !o.pending && o.start>b.start && o.start<b.end)
+    .sort((x,y)=>x.start<y.start?-1:x.start>y.start?1:0)[0];
+  const takerName=taker?((taker.agents&&taker.agents.length)?taker.agents.join(" & "):(taker.en||taker.name)):null;
   while(d<=end&&d<=today){
     const k=iso(d), day=cnCovered(state.tag,k) ? (R.days[k]||[200,"qimai"]) : null;
     if(day) any=true;
-    const rank=g[k]!=null?g[k]:null;
+    const gl=new Date(d); gl.setDate(gl.getDate()+(win?0:lead));      // the day on the global calendar
+    const taken=taker && iso(gl)>=taker.start;
+    const rank=!taken&&g[k]!=null?g[k]:null;
     // best = the day's intraday best; falls back to the end-of-day rank where Qimai has no separate best.
     // Qimai's day starts with a 00:00 reading, which is just the PREVIOUS day's close — so on a
     // falling day the "best" is only yesterday carried over (Si: closed 10/15 at #13, opened 10/16
     // at #13, closed it at #27 — the 16th never reached #13 on its own). Such a carry-over is
     // dropped and the day falls back to its end-of-day rank, so a peak is never counted twice.
     const pv=new Date(d); pv.setDate(pv.getDate()-1); const prev=g[iso(pv)];
-    let best=bst[k]!=null?bst[k]:rank;
+    let best=taken?null:(bst[k]!=null?bst[k]:rank);
     if(best!=null && prev!=null && best===prev && rank!==best) best=rank;
     out.push({iso:k, rank, best:best!=null&&rank!=null?Math.min(best,rank):best, raw:bst[k]!=null?bst[k]:null,
-              depth:day?day[0]:null, src:day?day[1]:null});
+              depth:day?day[0]:null, src:day?day[1]:null, byOther:taken?takerName:null});
     d.setDate(d.getDate()+1);
   }
   return any?out:null;
@@ -3824,7 +3835,7 @@ function cnRankSVG(run,b){
     d+=`${pen?"L":"M"}${px.toFixed(1)} ${py.toFixed(1)}`; pen=true; });
   const dots=known.map(([i,r])=>`<circle class="rc-dot" cx="${xOf(i).toFixed(1)}" cy="${yOf(r).toFixed(1)}" r="3"/>`).join("");
   // days the chart is known but the game wasn't on it: a tick along the bottom
-  const below=run.map((x,i)=>x.depth!=null&&shown[i]==null
+  const below=run.map((x,i)=>x.depth!=null&&shown[i]==null&&!x.byOther
     ? `<line class="grid" x1="${xOf(i).toFixed(1)}" y1="${(H-MB-3).toFixed(1)}" x2="${xOf(i).toFixed(1)}" y2="${(H-MB).toFixed(1)}"/>`:"").join("");
   // the peak — the best rank reached at ANY point of a day, the same figure the caption and the
   // placement line use — is now the plotted point of its own day (cnShown)
