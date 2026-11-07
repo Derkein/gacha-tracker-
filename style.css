@@ -165,6 +165,7 @@ a{color:inherit}
 .controls{display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:14px}
 .seg{display:inline-flex; background:var(--track); border:1px solid var(--border); border-radius:10px; padding:3px}
 .seg button{border:0; background:transparent; color:var(--ink2); font:inherit; font-size:13px; font-weight:650; padding:6px 15px; border-radius:7px; cursor:pointer}
+.bms-sub::before{content:" · "}
 .seg button.on{background:var(--surface); color:var(--ink); box-shadow:0 1px 3px rgba(0,0,0,.16)}
 .ghost{border:1px solid var(--border); background:transparent; color:var(--ink2); font:inherit; font-size:13px; font-weight:650; padding:7px 13px; border-radius:9px; cursor:pointer}
 .ghost.on{color:var(--accent); border-color:var(--accent)}
@@ -653,17 +654,32 @@ html.scrolling .gscroll, .gscroll:hover{scrollbar-color:var(--base) transparent}
   /* header */
   .site-hd{gap:6px 16px; margin-bottom:14px}
   .site-hd p{font-size:12.5px}
-  .updated{margin-left:0; width:100%; text-align:left; white-space:normal}
+  /* the sources line and the theme button share one row (the button sat alone on its own row) */
+  .hd-side{margin-left:0; width:100%; flex-direction:row-reverse; align-items:center; justify-content:space-between; gap:12px}
+  .updated{margin-left:0; flex:1 1 auto; text-align:left; white-space:normal}
+  .themebtn{flex:none}
 
   /* stat tiles: two equal columns (minmax(0,…) lets the nowrap text ellipsize
      instead of forcing one column wider) */
   .tiles{grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:8px; margin:12px 0 16px}
   .tile{padding:11px 13px; min-width:0}
   .tile .v{font-size:19px}
+  .tile .n{white-space:normal; line-height:1.35}   /* "Android #31 · monthly sales #84" wraps, not "monthly sal…" */
 
   /* controls: roomier tap targets, hint on its own line */
   .controls{gap:8px; margin-bottom:12px}
   .seg{flex-wrap:wrap}                    /* 5 view tabs wrap instead of overflowing */
+  /* the two main switches as even grids, not ragged wrapped rows: the 7 views as 4 + 3,
+     the 4 sources as 2 × 2 */
+  .seg[aria-label="View"]{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); width:100%}
+  #dataSrc{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); width:100%}
+  .seg[aria-label="View"] button,#dataSrc button{padding:8px 4px; text-align:center; white-space:nowrap}
+  /* banner modal's source tabs: 2 × 2, the source name over its market/currency, instead of
+     four 3-line columns ("Sensor / Tower · / combined / $") */
+  #bmSrc{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); width:100%}
+  #bmSrc button{padding:7px 4px; text-align:center; line-height:1.2}
+  #bmSrc .bms-sub{display:block; font-size:10.5px; font-weight:600; color:var(--muted)}
+  #bmSrc .bms-sub::before{content:none}
   .seg button{padding:8px 14px}
   .ghost{padding:8px 13px}
   .hint{margin-left:0; width:100%; font-size:11.5px}
@@ -674,7 +690,7 @@ html.scrolling .gscroll, .gscroll:hover{scrollbar-color:var(--base) transparent}
   .chart{min-width:0}
   .axis{display:none}
   .row{grid-template-columns:38px 40px 1fr; gap:9px; padding:6px 0}
-  .rk .rk-tot{font-size:8.5px} .rk .rk-new{font-size:8px}
+  .rk .rk-tot{font-size:9.5px} .rk .rk-new{font-size:9px}
   .row + .row{border-top:1px solid var(--grid)}
   .av{width:40px; height:40px}
   .av img,.av .mono{width:40px; height:40px}
@@ -689,7 +705,7 @@ html.scrolling .gscroll, .gscroll:hover{scrollbar-color:var(--base) transparent}
   body[data-view=graph] .gsvg{min-width:560px}
   body[data-view=graph] .gsvg.mtl, body[data-view=graph] .gsvg.gtl{min-width:0}     /* a timeline always fits the width */
   body[data-view=graph] #graphControls::after{
-    content:"↔ swipe the chart sideways to see the whole year";
+    content:"↔ swipe the chart sideways to see the rest";
     flex-basis:100%; font-size:11px; color:var(--muted); margin-top:1px}
 
   /* modals: use nearly the full screen, bigger close target */
@@ -763,8 +779,12 @@ html.scrolling .gscroll, .gscroll:hover{scrollbar-color:var(--base) transparent}
   body[data-view="month"] .mc{margin:0}
 }
 /* by-Year / by-Version: with the "vs" tile gone, let the two remaining KPI tiles fill the width */
-.yc-kpis{flex:1 1 auto; justify-content:flex-end}
-.yc-kpis .mck{flex:1 1 0; min-width:150px; max-width:270px}
+/* by-Year / by-Version: the year on its own line, then the four source tiles (game-i, Qimai,
+   Sensor Tower, CN) as an even grid across the card — four in a row on desktop, 2 × 2 on a phone */
+.mc-kpis.yc-kpis{display:grid; grid-template-columns:repeat(auto-fit,minmax(175px,1fr)); flex:1 1 100%; width:100%}
+.mc-kpis.yc-kpis .mck{min-width:0; max-width:none}
+.mc-kpis.yc-kpis .mck-n{white-space:normal; line-height:1.35; overflow:visible}
+.mc-kpis.yc-kpis .mck-n .chg{white-space:nowrap}
 .mc-hd{display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:10px 16px}
 .mc-month{font-size:19px; font-weight:800; letter-spacing:-.02em; white-space:nowrap; display:inline-flex; align-items:center; gap:9px}
 .mc-month::before{content:""; width:4px; height:17px; border-radius:2px; background:var(--accent); flex:none}
@@ -907,6 +927,14 @@ html.scrolling .gscroll, .gscroll:hover{scrollbar-color:var(--base) transparent}
 .yc-lg{display:inline-flex; align-items:center; gap:5px; font-size:11px; color:var(--ink2); font-weight:600}
 .yc-lg.muted{color:var(--muted)}
 .yc-lg-dot{width:8px; height:8px; border-radius:2px; flex:none}
+/* phone: the four source tiles as a 2×2 grid spanning the card (they stacked one per row,
+   pushed right by the desktop flex-end), and the sub-line may wrap so its change badge shows */
+@media (max-width:560px){
+  .yc{padding:12px 12px}
+  .mc-kpis.yc-kpis{grid-template-columns:1fr 1fr}
+  .yc-kpis .mck-v{font-size:15.5px}
+  .yc-prog{font-size:10px}
+}
 .mck-v.up{color:#1f9d57} .mck-v.down{color:#d64b45} .mck-v.flat{color:var(--muted)}
 @media (prefers-color-scheme:dark){ .mck-v.up{color:#46c684} .mck-v.down{color:#f0736c} }
 :root[data-theme=dark] .mck-v.up{color:#46c684} :root[data-theme=dark] .mck-v.down{color:#f0736c}
@@ -1398,6 +1426,10 @@ body[data-agmode="banner"] .ag-row{grid-template-columns:206px 1fr 196px}
   .cmp-mrow{grid-template-columns:minmax(84px,1.2fr) repeat(var(--cols),minmax(0,1fr))}
   .cmp-lab-t{font-size:11px}
   .cmp-mh-nm{font-size:10.5px}
+  /* the winner's ✓ rides in the cell's top-right corner: inline it pushed "¥9.23M ✓" past a
+     ~95px column and out of the card */
+  .cmp-cell.w{padding-right:11px}
+  .cmp-tick{position:absolute; top:2px; right:3px; margin:0; font-size:9.5px}
 }
 
 /* daily-vs-monthly note (official-source games) */

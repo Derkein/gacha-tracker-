@@ -670,6 +670,45 @@ function qimaiMonth(ym, tag){ const g=state.qimai&&state.qimai.games&&state.qima
 // Sum Qimai China month totals (qtot) over months matching pred(ym) -> USD.
 function qimaiSum(pred, tag){ const g=state.qimai&&state.qimai.games&&state.qimai.games[tag||state.tag];
   const mm=(g&&g.monthly)||{}; let s=0; for(const ym in mm) if(pred(ym)) s+=mm[ym].qtot||0; return s; }
+// Same sum with its month count -> {rev, months} or null, for period-over-period changes.
+function qimaiSpan(pred, tag){ const g=state.qimai&&state.qimai.games&&state.qimai.games[tag||state.tag];
+  const mm=(g&&g.monthly)||{}; let rev=0, months=0;
+  for(const ym in mm) if(pred(ym) && mm[ym].qtot>0){ rev+=mm[ym].qtot; months++; }
+  return months?{rev,months}:null; }
+// Change vs the previous period, only when that period has comparable coverage (at least
+// 60% as many months) so a full year never reads against a 1-month stub. null = no badge.
+function spanChg(cur, prev, val){ val=val||(x=>x.rev);
+  if(!cur||!prev||!(val(prev)>0)||prev.months<cur.months*0.6) return null;
+  return (val(cur)-val(prev))/val(prev)*100; }
+// The period still in progress (this year, the current version) would read against a whole
+// previous period: 10 months of 2026 vs all of 2025 is "down 41%" before the year is over.
+// So it compares like for like instead — its complete months (the running month is left out)
+// against the same number of months at the start of the previous period (Jan–Oct 2025) —
+// for every source, month by month, counting only month pairs where that source has both.
+// Returns {label, gi, qm, st, cn} changes in %, or null when there's nothing to pair.
+function likeForLike(curMonths, prevMonths, prevName, yearMode){
+  const nowYm=(state.data.updated||"").slice(0,7);
+  const done=curMonths.filter(ym=>ym<nowYm), n=done.length;
+  if(!n || prevMonths.length<n) return null;
+  const prev=prevMonths.slice(0,n), gi=state.data.monthly||{};
+  const pct=get=>{ let a=0,b=0,k=0;
+    done.forEach((ym,i)=>{ const x=get(ym), y=get(prev[i]); if(x!=null&&y!=null&&y>0){ a+=x; b+=y; k++; } });
+    return (k>=Math.ceil(n/2) && b>0) ? (a-b)/b*100 : null; };
+  const mo=ym=>MONTHS[+ym.slice(5,7)-1];
+  const label = yearMode ? (n===1?`${mo(prev[0])} ${prevName}`:`${mo(prev[0])}–${mo(prev[n-1])} ${prevName}`)
+                         : `first ${n} mo of ${prevName}`;
+  return {label,
+    gi: pct(ym=>gi[ym]!=null?gi[ym]:null),
+    qm: pct(ym=>{ const r=qimaiMonth(ym); return r&&r.qtot>0?r.qtot:null; }),
+    st: pct(ym=>{ const r=extMonth(ym); return r?r.rev:null; }),
+    cn: pct(ym=>{ const r=cnMonth(ym); return r?cnMid(r):null; })};
+}
+// Every month from the game's first banner to now, for grouping months into versions.
+function allYms(){ const bs=state.data.banners; if(!bs.length) return [];
+  const first=bs.reduce((a,b)=>b.start<a?b.start:a, bs[0].start).slice(0,7), last=(state.data.updated||"").slice(0,7);
+  const out=[]; let [y,m]=first.split("-").map(Number);
+  for(let ym=first; ym<=last; ){ out.push(ym); m++; if(m>12){m=1;y++;} ym=`${y}-${String(m).padStart(2,"0")}`; }
+  return out; }
 // The share this banner had of its game's Qimai China month (0..1), or null if no data.
 function qimaiShare(b, ym){ const g=state.qimai&&state.qimai.games&&state.qimai.games[state.tag];
   const e=g&&g.banners&&g.banners[b._i], m=g&&g.monthly&&g.monthly[ym];
@@ -1853,7 +1892,9 @@ function groupSVG(segs, gmax, step){
   const usd = state.dataSource==="st" || state.dataSource==="qimai", cnMode = state.dataSource==="cn";
   const fmt = usd ? fmtUSD : cnMode ? fmtCNY : G;
   const tl=segs.length>1, nB=segs.reduce((a,x)=>a+x.items.length,0);
-  const H=760, ML=62, MT=64, MB=30, pH=H-MT-MB, base=MT+pH, yOf=v=>MT+(1-v/gmax)*pH;
+  // a phone gets a shorter chart: 760px tall filled the whole screen, so the axis, the icons and
+  // the swipe never fit in one view
+  const H=innerWidth<=640?470:760, ML=62, MT=64, MB=30, pH=H-MT-MB, base=MT+pH, yOf=v=>MT+(1-v/gmax)*pH;
   // lay out, clear overlaps, and if that pushed icons past the right edge widen the chart (it then
   // scrolls inside the graph area) and lay out again
   let W=graphW(tl, nB, 56), L, pts, R, MR, pW;
@@ -2847,16 +2888,20 @@ function fitBannerNames(root){
 // the change vs the previous period, and a magnitude bar. data-period/key wire the
 // click-through dialog (banners of that period, ranked).
 function periodCard(o){
-  const giChgHTML = (o.chg!=null)
-    ? ` · <span class="chg ${o.chg>=0?"up":"down"}">${o.chg>=0?"▲":"▼"}${Math.abs(o.chg).toFixed(0)}% vs ${esc(o.chgVs)}</span>` : "";
+  const chgB = c => c!=null ? ` · <span class="chg ${c>=0?"up":"down"}"${o.lflNote?` title="${esc(o.lflNote)}"`:""}>${c>=0?"▲":"▼"}${Math.abs(c).toFixed(0)}% vs ${esc(o.chgVs)}</span>` : "";
+  const giChgHTML = chgB(o.chg);
   const kGi=`<div class="mck"><span class="mck-k">game-i total</span><span class="mck-v">${G(o.rev)}</span>`
     +`<span class="mck-n">${o.cnt} banner${o.cnt!==1?"s":""} · ${o.pct.toFixed(0)}% of all-time${giChgHTML}</span></div>`;
-  const stChgHTML = (o.st && o.stChg!=null)
-    ? ` · <span class="chg ${o.stChg>=0?"up":"down"}">${o.stChg>=0?"▲":"▼"}${Math.abs(o.stChg).toFixed(0)}% vs ${esc(o.chgVs)}</span>` : "";
+  const stChgHTML = o.st ? chgB(o.stChg) : "";
   const kSt=o.st?`<div class="mck st"><span class="mck-k">Sensor Tower${o.st.hasApprox?" *":""}</span><span class="mck-v">${fmtUSD(o.st.rev)}</span>`
     +`<span class="mck-n">${o.st.months} mo${o.st.hasApprox?" · approx":""}${stChgHTML}</span></div>`
     :`<div class="mck ghost"><span class="mck-k">Sensor Tower</span><span class="mck-v">—</span><span class="mck-n">no coverage</span></div>`;
-  const kQm=o.qm>0?`<div class="mck qm"><span class="mck-k">Qimai · CN iPhone</span><span class="mck-v">${fmtUSD(o.qm)}</span><span class="mck-n">China iOS · gross</span></div>`:"";
+  const kQm=o.qm?`<div class="mck qm"><span class="mck-k">Qimai · CN iPhone</span><span class="mck-v">${fmtUSD(o.qm.rev)}</span>`
+    +`<span class="mck-n">${o.qm.months} mo · China iOS${chgB(o.qmChg)}</span></div>`:"";
+  // CN ranking (the monthly 收入/流水 video): a range summed month by month; its change reads
+  // midpoint to midpoint. A span crossing the 收入→流水 switch adds net to gross, so it says so.
+  const kCn=o.cn?`<div class="mck cn"><span class="mck-k">CN ranking${o.cn.mixed?" *":""}</span><span class="mck-v" title="${esc(fmtCNYRange(o.cn.lo,o.cn.hi))}">${fmtCNYRangeC(o.cn.lo,o.cn.hi)}</span>`
+    +`<span class="mck-n"${o.cn.mixed?` title="Sums months before and after the ranking switched from 总收入 (net) to 总流水 (gross), so it mixes the two"`:""}>${o.cn.months} mo${o.cn.mixed?" · mixed 收入/流水":" · all platforms"}${chgB(o.cnChg)}</span></div>`:"";
   // magnitude bar (width = size vs the biggest period) whose fill is split into one
   // colored segment per banner — the same composition read as a by-Month card, so the
   // bar shows both how big the period was and which banners made it up.
@@ -2874,7 +2919,7 @@ function periodCard(o){
       `<span class="yc-lg"><span class="yc-lg-dot" style="background:${barColor(b)}"></span>${esc(bnm(b))}</span>`).join("")}${bans.length>6?`<span class="yc-lg muted">+${bans.length-6} more</span>`:""}</div>` : "";
   return `<div class="yc" data-period="${o.kind}" data-key="${esc(String(o.key))}">
     <div class="yc-hd"><div class="yc-label">${esc(o.label)}${o.prog?`<span class="yc-prog">in progress</span>`:""}</div>
-      <div class="mc-kpis yc-kpis">${kGi}${kQm}${kSt}</div></div>
+      <div class="mc-kpis yc-kpis">${kGi}${kQm}${kSt}${kCn}</div></div>
     <div class="yc-track">${fill}</div>${legend}</div>`;
 }
 // banner display name (agents joined, else banner name) — shared by cards & bars
@@ -2900,15 +2945,22 @@ function renderYearly(){
   if(searching()){ order=order.filter(y=>(bansBy[y]||[]).some(searchMatch));
     if(!order.length){ $("#chart").innerHTML=noResultsHTML(); return; } }
   const head=`<div class="yr-head"><b>${esc(state.data.name)}</b> — ${G(total)} total across ${years.length} year${years.length>1?"s":""}</div>`
-    + `<div class="yr-note">Each year shows game-i's tracked total and the Sensor Tower combined sum. Sensor Tower coverage runs from late 2021 (older, region-summed months are marked <b>*</b>), and the current year is in progress, so the first and latest years are partial. <b>Click a card</b> for that year's banners.</div>`;
+    + `<div class="yr-note">Each year shows game-i's tracked total (Japan), Qimai's China iPhone total, the Sensor Tower combined sum and the CN ranking's figure (a range). Each change compares against the year before; the year in progress compares its complete months with the same months of last year. Sensor Tower's older, region-summed months are marked <b>*</b>; the current year is in progress, so the first and latest years are partial. <b>Click a card</b> for that year's banners.</div>`;
   const rows=order.map(y=>{
     const rev=byYear[y], prev=byYear[y-1];
     const yoy = prev!=null ? (rev-prev)/prev*100 : null;
     const stCur=extSum(ym=>ym.slice(0,4)===String(y)), stPrev=extSum(ym=>ym.slice(0,4)===String(y-1));
     // only compare when the previous period has comparable coverage (avoids a full year vs a 1-month stub)
     const stChg = (stCur&&stPrev&&stPrev.rev>0&&stPrev.months>=stCur.months*0.6) ? (stCur.rev-stPrev.rev)/stPrev.rev*100 : null;
+    const inY=yy=>ym=>ym.slice(0,4)===String(yy);
+    const qmCur=qimaiSpan(inY(y)), cnCur=cnSum(inY(y));
+    const yms=yy=>Array.from({length:12},(_,k)=>`${yy}-${String(k+1).padStart(2,"0")}`);
+    const L = y===nowYear && byYear[y-1]!=null ? likeForLike(yms(y), yms(y-1), String(y-1), true) : null;
+    const c = {chg:yoy, chgVs:String(y-1), stChg, qmChg:spanChg(qmCur, qimaiSpan(inY(y-1))), cnChg:spanChg(cnCur, cnSum(inY(y-1)), cnMid)};
+    if(L) Object.assign(c, {chg:L.gi!=null?L.gi:null, chgVs:L.label, stChg:L.st, qmChg:L.qm, cnChg:L.cn,
+      lflNote:`The year isn't over, so this compares its complete months with the same months of ${y-1}, not with all of ${y-1}.`});
     return periodCard({label:String(y), prog:y===nowYear, rev, pct: total?rev/total*100:0, cnt:cnt[y],
-      chg:yoy, chgVs:String(y-1), st:stCur, stChg, qm:qimaiSum(ym=>ym.slice(0,4)===String(y)), w:Math.max(2,rev/max*100), kind:"year", key:y, bans:bansBy[y]});
+      ...c, st:stCur, qm:qmCur, cn:cnCur, w:Math.max(2,rev/max*100), kind:"year", key:y, bans:bansBy[y]});
   }).join("");
   $("#chart").innerHTML=head+rows;
 }
@@ -2933,14 +2985,21 @@ function renderVersions(){
   if(searching()){ order=order.filter(v=>(bansBy[v]||[]).some(searchMatch));
     if(!order.length){ $("#chart").innerHTML=noResultsHTML(); return; } }
   const head=`<div class="yr-head"><b>${esc(state.data.name)}</b> — ${G(total)} across ${vers.length} version${vers.length>1?"s":""}</div>`
-    + `<div class="yr-note">Grouped by major game version (1.X = all of v1.x, etc.). Sensor Tower months are mapped to versions by date (approximate). The first and latest versions may be partial. <b>Click a card</b> for that version's banners.</div>`;
+    + `<div class="yr-note">Grouped by major game version (1.X = all of v1.x, etc.). Qimai, Sensor Tower and CN ranking months are mapped to versions by date (approximate); each change compares against the version before, and the version still running against the same number of months at the start of the last one. The first and latest versions may be partial. <b>Click a card</b> for that version's banners.</div>`;
+  const months=allYms();
   const rows=order.map(v=>{
     const i=vers.indexOf(v), rev=byV[v], prev=i>0?byV[vers[i-1]]:null;
     const chg = prev!=null ? (rev-prev)/prev*100 : null;
     const stCur=extSum(ym=>versionOfYm(ym)===v), stPrev=i>0?extSum(ym=>versionOfYm(ym)===vers[i-1]):null;
     const stChg = (stCur&&stPrev&&stPrev.rev>0&&stPrev.months>=stCur.months*0.6) ? (stCur.rev-stPrev.rev)/stPrev.rev*100 : null;
+    const inV=vv=>ym=>versionOfYm(ym)===vv, pv=i>0?vers[i-1]:null;
+    const qmCur=qimaiSpan(inV(v)), cnCur=cnSum(inV(v));
+    const L = v===cur && pv ? likeForLike(months.filter(inV(v)), months.filter(inV(pv)), pv, false) : null;
+    const c = {chg, chgVs:vers[i-1]||"", stChg, qmChg:pv?spanChg(qmCur, qimaiSpan(inV(pv))):null, cnChg:pv?spanChg(cnCur, cnSum(inV(pv)), cnMid):null};
+    if(L) Object.assign(c, {chg:L.gi, chgVs:L.label, stChg:L.st, qmChg:L.qm, cnChg:L.cn,
+      lflNote:`${v} is still running, so this compares its complete months with the same number of months at the start of ${pv}.`});
     return periodCard({label:v, prog:v===cur, rev, pct: total?rev/total*100:0, cnt:cnt[v],
-      chg, chgVs:vers[i-1]||"", st:stCur, stChg, qm:qimaiSum(ym=>versionOfYm(ym)===v), w:Math.max(2,rev/max*100), kind:"version", key:v, bans:bansBy[v]});
+      ...c, st:stCur, qm:qmCur, cn:cnCur, w:Math.max(2,rev/max*100), kind:"version", key:v, bans:bansBy[v]});
   }).join("");
   $("#chart").innerHTML=head+rows;
 }
@@ -4880,10 +4939,10 @@ function openBanner(b, keepStack){
   const hasCN = !!(state.cn && state.cn.games && state.cn.games[state.tag])
              || !!(state.cnrank && state.cnrank.games && state.cnrank.games[state.tag]);
   const toggle=`<div class="seg bm-seg" id="bmSrc" role="tablist" aria-label="Data source for this banner">
-    <button data-bmsrc="gamei" class="${active==="gamei"?"on":""}" aria-selected="${active==="gamei"}" title="game-i's JP per-banner revenue estimate">game-i · JP ¥</button>`
-    + (hasQM?`<button data-bmsrc="qimai" class="${active==="qimai"?"on":""}" aria-selected="${active==="qimai"}" title="China iPhone App Store gross revenue (USD), Qimai's daily estimate">Qimai · CN iPhone $</button>`:"")
-    + `<button data-bmsrc="st" class="${active==="st"?"on":""}" aria-selected="${active==="st"}" title="Assumed combined worldwide revenue from the Sensor Tower monthly reports">Sensor Tower · combined $</button>`
-    + (hasCN?`<button data-bmsrc="cn" class="${active==="cn"?"on":""}" aria-selected="${active==="cn"}" title="China's own store chart day by day, plus the assumed global all-platform revenue from the CN monthly ranking">CN chart · CN¥</button>`:"")
+    <button data-bmsrc="gamei" class="${active==="gamei"?"on":""}" aria-selected="${active==="gamei"}" title="game-i's JP per-banner revenue estimate">game-i<span class="bms-sub">JP ¥</span></button>`
+    + (hasQM?`<button data-bmsrc="qimai" class="${active==="qimai"?"on":""}" aria-selected="${active==="qimai"}" title="China iPhone App Store gross revenue (USD), Qimai's daily estimate">Qimai<span class="bms-sub">CN iPhone $</span></button>`:"")
+    + `<button data-bmsrc="st" class="${active==="st"?"on":""}" aria-selected="${active==="st"}" title="Assumed combined worldwide revenue from the Sensor Tower monthly reports">Sensor Tower<span class="bms-sub">combined $</span></button>`
+    + (hasCN?`<button data-bmsrc="cn" class="${active==="cn"?"on":""}" aria-selected="${active==="cn"}" title="China's own store chart day by day, plus the assumed global all-platform revenue from the CN monthly ranking">CN chart<span class="bms-sub">CN¥</span></button>`:"")
     + `</div>`;
   $("#bmBody").innerHTML=backBar+head+toggle
     +`<div id="bmGamei"${active!=="gamei"?" hidden":""}>${gameiHTML}</div>`
