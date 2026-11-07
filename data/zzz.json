@@ -5,13 +5,13 @@
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E3%82%BC%E3%83%B3%E3%83%AC%E3%82%B9%E3%82%BE%E3%83%BC%E3%83%B3%E3%82%BC%E3%83%AD",
  "banners_from": "game-i",
- "updated": "2026-11-06T21:37:57Z",
+ "updated": "2026-11-07T16:31:29Z",
  "count": 40,
  "now": {
-  "ios": 195,
+  "ios": 199,
   "android": 58,
-  "month": 159,
-  "next_add": 5948218,
+  "month": 169,
+  "next_add": 4916615,
   "ym": "2026/11",
   "ranks": {
    "prev": [
@@ -55,7 +55,7 @@
     182,
     197,
     null,
-    null,
+    199,
     null,
     null,
     null,
@@ -83,7 +83,7 @@
   }
  },
  "monthly": {
-  "2026-11": 0.8965,
+  "2026-11": 0.9522,
   "2026-10": 4.14,
   "2026-09": 3.78,
   "2026-08": 9.21,
@@ -1449,9 +1449,9 @@
    "start": "2026-03-04",
    "end": "2026-03-23",
    "rev": 3.37,
-   "yrank": 5,
+   "yrank": 6,
    "ytot": 14,
-   "cum": 21,
+   "cum": 22,
    "cumtot": 40,
    "year": 2026,
    "related": "浮波柚葉",
@@ -1979,10 +1979,10 @@
    "name": "フィオニー",
    "start": "2026-10-21",
    "end": "2026-11-11",
-   "rev": 3.36,
-   "yrank": 6,
+   "rev": 3.41,
+   "yrank": 5,
    "ytot": 14,
-   "cum": 22,
+   "cum": 21,
    "cumtot": 40,
    "year": 2026,
    "related": "ヴェリナ",
@@ -2007,7 +2007,8 @@
     152,
     182,
     197,
-    null
+    null,
+    199
    ],
    "icons": [
     "https://enka.network/ui/zzz/IconRoleCircle1641.png"

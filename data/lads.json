@@ -5,13 +5,13 @@
  "unit": "億G",
  "source": "https://prtimes.jp/main/html/searchrlp/company_id/131862",
  "banners_from": "official",
- "updated": "2026-11-06T21:45:38Z",
+ "updated": "2026-11-07T16:39:39Z",
  "count": 82,
  "now": {
-  "ios": 34,
-  "android": 197,
-  "month": 221,
-  "next_add": 29990297,
+  "ios": 51,
+  "android": 172,
+  "month": 197,
+  "next_add": 17412408,
   "ym": "2026/11",
   "ranks": {
    "prev": [
@@ -55,7 +55,7 @@
     null,
     null,
     39,
-    null,
+    51,
     null,
     null,
     null,
@@ -83,7 +83,7 @@
   }
  },
  "monthly": {
-  "2026-11": 0.4842,
+  "2026-11": 0.6814,
   "2026-10": 2.3,
   "2026-09": 2.84,
   "2026-08": 2.27,
@@ -1337,7 +1337,7 @@
    "rev_month_ym": {
     "2024-12": 0.6741
    },
-   "cum": 75,
+   "cum": 76,
    "cumtot": 82,
    "yrank": 25,
    "ytot": 25,
@@ -2678,7 +2678,7 @@
    "rev_month_ym": {
     "2025-11": 0.619
    },
-   "cum": 78,
+   "cum": 79,
    "cumtot": 82,
    "yrank": 30,
    "ytot": 30,
@@ -2776,7 +2776,7 @@
    "rev_month_ym": {
     "2025-12": 0.3797
    },
-   "cum": 74,
+   "cum": 75,
    "cumtot": 82,
    "yrank": 29,
    "ytot": 30,
@@ -3181,9 +3181,9 @@
    "rev_month_ym": {
     "2026-03": 0.8928
    },
-   "cum": 73,
+   "cum": 74,
    "cumtot": 82,
-   "yrank": 21,
+   "yrank": 22,
    "ytot": 27,
    "icons": [
     "icons/faces/lads/cast-xavier.webp"
@@ -3626,9 +3626,9 @@
     "2026-05": 0.0805,
     "2026-06": 0.6653
    },
-   "cum": 72,
+   "cum": 73,
    "cumtot": 82,
-   "yrank": 20,
+   "yrank": 21,
    "ytot": 27,
    "icons": [
     "icons/faces/lads/2026-05-31-e08815.webp"
@@ -3974,9 +3974,9 @@
     "2026-08": 0.0728,
     "2026-09": 0.4703
    },
-   "cum": 77,
+   "cum": 78,
    "cumtot": 82,
-   "yrank": 23,
+   "yrank": 24,
    "ytot": 27,
    "icons": [
     "icons/faces/lads/2026-08-31-b5a8cd.webp"
@@ -4020,9 +4020,9 @@
    "rev_month_ym": {
     "2026-09": 0.5937
    },
-   "cum": 79,
+   "cum": 80,
    "cumtot": 82,
-   "yrank": 24,
+   "yrank": 25,
    "ytot": 27,
    "icons": [
     "icons/faces/lads/2026-09-08-48d99d.webp"
@@ -4128,9 +4128,9 @@
    "rev_month_ym": {
     "2026-10": 0.5589
    },
-   "cum": 76,
+   "cum": 77,
    "cumtot": 82,
-   "yrank": 22,
+   "yrank": 23,
    "ytot": 27,
    "icons": [
     "icons/faces/lads/2026-10-11-03393e.webp"
@@ -4218,18 +4218,18 @@
     null
    ],
    "rev": 0.224,
-   "rev_month": 0.5576,
+   "rev_month": 0.5665,
    "rev_ym": {
     "2026-10": 0.224,
     "2026-11": 0.0
    },
    "rev_month_ym": {
     "2026-10": 0.3282,
-    "2026-11": 0.2294
+    "2026-11": 0.2383
    },
-   "cum": 80,
+   "cum": 81,
    "cumtot": 82,
-   "yrank": 25,
+   "yrank": 26,
    "ytot": 27,
    "icons": [
     "icons/faces/lads/cast-rafayel.webp"
@@ -4258,19 +4258,20 @@
    "ongoing": true,
    "rank_series": [
     null,
-    39
+    39,
+    51
    ],
-   "rev": 0.2109,
-   "rev_month": 0.2548,
+   "rev": 0.3974,
+   "rev_month": 0.4431,
    "rev_ym": {
-    "2026-11": 0.2109
+    "2026-11": 0.3974
    },
    "rev_month_ym": {
-    "2026-11": 0.2548
+    "2026-11": 0.4431
    },
-   "cum": 81,
+   "cum": 72,
    "cumtot": 82,
-   "yrank": 26,
+   "yrank": 20,
    "ytot": 27,
    "icons": [
     "icons/faces/lads/2026-11-06-0a039c.webp"
