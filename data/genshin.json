@@ -5,11 +5,11 @@
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E5%8E%9F%E7%A5%9E",
  "banners_from": "game-i",
- "updated": "2026-11-07T19:23:16Z",
+ "updated": "2026-11-07T19:38:11Z",
  "count": 108,
  "now": {
   "ios": 64,
-  "android": 12,
+  "android": 11,
   "month": 47,
   "next_add": 14940343,
   "ym": "2026/11",
@@ -5325,11 +5325,13 @@
     44,
     64
    ],
-   "icons": [],
+   "icons": [
+    "https://enka.network/ui/UI_AvatarIcon_Mitya.png"
+   ],
    "agents": [
     "Mitya"
    ],
-   "accent": null,
+   "accent": "#b57fd4",
    "en": "Mitya",
    "bar": "#8f89dc"
   }
