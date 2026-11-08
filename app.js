@@ -3623,11 +3623,17 @@ function dailyBreakdown(b){
   if(sum<=0) return null;
   const all=state.data.banners, DAY=864e5, s0=Date.parse(b.start);
   let cum=0;
-  const own=jpOwn(b), tn=takerName(midRunTaker(b));
+  const own=jpOwn(b), tk=midRunTaker(b);
   const days=s.map((rank,i)=>{ const add=b.rev*raw[i]/sum; cum+=add;
     const t=s0+i*DAY;
     const shared=all.some(o=>o!==b && !o._synthetic && o._runs && runsOn(o,t) && runsOn(b,t));
-    return {i,rank:own[i],add,cum,shared,other:own[i]==null&&rank!=null?tn:null}; });
+    // A banner taken off the store for part of its window (game-i lists it as two
+    // periods -- HSR paused Himeko Nova for Rin & Gilgamesh's first days) earns nothing
+    // on those days, but the chart rank isn't "below #200": it belongs to whoever ran.
+    const paused = b._runs && b._runs.length>1 && !runsOn(b,t);
+    const by = paused ? (all.find(o=>o!==b && !o._synthetic && o._runs && runsOn(o,t))||tk)
+             : (own[i]==null&&rank!=null ? tk : null);
+    return {i,rank:own[i],add,cum,shared,paused,other:by?takerName(by):null,otherShort:by?shortTaker(by):null}; });
   return {days};
 }
 function buildupSVG(bd,b,fmt=G,hitAttr="day"){
@@ -3660,7 +3666,10 @@ function dailyTable(bd,fmt=G,rankHdr="iOS&nbsp;rank"){
     <td class="l">${d.iso?isoMD(d.iso):dayLabel(d.i)}</td>`
     + (d.noData
       ? `<td colspan="3" class="muted qbu-nodata">no data yet</td>`
-      : `<td>${d.rank==null?(d.other?`<span class="muted" title="${esc(d.other)} launched mid-run: the game's chart rank from this day is its launch">→ ${esc(d.other)}</span>`:'<span class="muted">200+</span>'):'#'+d.rank}</td>`
+      : `<td class="rk">${d.rank!=null?'#'+d.rank
+          : d.paused&&d.other?`<span class="muted" title="Banner paused: ${esc(d.other)} ran alone on this day, so the chart rank was theirs and this banner earned nothing">paused · ${esc(d.otherShort)}</span>`
+          : d.other?`<span class="muted" title="${esc(d.other)} launched mid-run: the game's chart rank from this day is its launch">→ ${esc(d.otherShort)}</span>`
+          : '<span class="muted">200+</span>'}</td>`
         + `<td>${d.add>=0.005?fmt(d.add):'<span class="muted">—</span>'}</td>`
         + `<td>${fmt(d.cum)}</td>`)
     + `</tr>`;
@@ -3836,6 +3845,9 @@ function midRunTaker(b){
   return (b._taker=t);
 }
 const takerName=t=>t?((t.agents&&t.agents.length)?t.agents.join(" & "):(t.en||t.name)):null;
+// table-cell form: the headliner only ("Rin Tohsaka" for Rin & Gilgamesh); the full
+// name rides in the cell's tooltip
+const shortTaker=t=>t?((t.agents&&t.agents.length)?t.agents[0]:(t.en||t.name)):null;
 // Japan's chart rank as this banner's OWN: rank_series with the days after a mid-run launch
 // blanked. Rank stats (peaks, top-10 days, Compare's rank measures) use this; the revenue
 // reconstruction keeps the full rank_series, since game-i's total covers those days.
@@ -4981,8 +4993,14 @@ function showBmTip(dayIdx,e){
   const day=_bmCtx&&_bmCtx.days[dayIdx]; if(!day){ bmTip.hidden=true; return; }
   const d=new Date(_bmCtx.start+"T00:00:00"); d.setDate(d.getDate()+day.i);
   const dateStr=d.toLocaleDateString("en",{month:"short",day:"numeric",year:"numeric"});
-  const rank = day.rank==null ? `<span style="color:var(--muted)">below top 200</span>` : `#${day.rank}`;
-  const add  = day.rank==null ? "¥0" : (day.add>=0.005 ? "+"+G(day.add) : "≈¥0");
+  // same three states as the daily table: own rank, someone else's day (paused, or a
+  // banner that launched mid-run), or genuinely below the chart
+  const mu=t=>`<span style="color:var(--muted)">${t}</span>`;
+  const rank = day.rank!=null ? `#${day.rank}`
+    : day.paused&&day.other ? mu(`paused — ${esc(day.other)} ran alone`)
+    : day.other ? mu(`shared — rank is ${esc(day.other)}'s`)
+    : mu("below top 200");
+  const add  = day.add>=0.005 ? "+"+G(day.add) : (day.rank==null ? "¥0" : "≈¥0");
   bmTip.innerHTML=`<div class="body">
     <h4>${dateStr}</h4>
     <div style="color:var(--muted);font-size:11.5px">Day ${day.i+1} of ${_bmCtx.scheduled}</div>
