@@ -143,18 +143,21 @@
    "ym": "2026-06",
    "number": 70,
    "cover": {
-    "label": "Once Upon a Frame",
-    "tag": "lads",
-    "game": "Love and Deepspace",
-    "img": "https://prcdn.freetls.fastly.net/release_image/131862/105/131862-105-7f9d905b2b0e8df2134509895fcaff9d-2560x1440.jpg",
+    "label": "Mortenax Blade",
+    "tag": "hsr",
+    "game": "Honkai: Star Rail",
+    "img": "https://upload-os-bbs.hoyolab.com/upload/2026/05/28/8c6a586a70cbfda33e3c292437767e27_4773141744358845314.png",
     "face": [
-     10.3,
-     38
+     24.6,
+     29.8
     ],
-    "art": null,
-    "art_face": null,
-    "color": "#9e4538",
-    "rev_month": 2.3308,
+    "art": "assets/journal/hsr/1507.webp",
+    "art_face": [
+     43.5,
+     35.4
+    ],
+    "color": "#f0503f",
+    "rev_month": 11.42,
     "rerun": false
    },
    "headline": null,
@@ -347,18 +350,18 @@
    "ym": "2025-12",
    "number": 64,
    "cover": {
-    "label": "Durin",
-    "tag": "genshin",
-    "game": "Genshin Impact",
-    "img": "https://pbs.twimg.com/media/G7DR9lxXwAAsdoT.jpg",
+    "label": "Where Silverwings Rest",
+    "tag": "lads",
+    "game": "Love and Deepspace",
+    "img": "https://prcdn.freetls.fastly.net/release_image/131862/88/131862-88-897a1cca730e0e5ea2e6778c1f9ef844-1920x1080.jpg",
     "face": [
-     45.4,
-     24.1
+     33.4,
+     33.8
     ],
     "art": null,
     "art_face": null,
-    "color": "#f0684a",
-    "rev_month": 4.19,
+    "color": "#d88d9f",
+    "rev_month": 1.3649,
     "rerun": false
    },
    "headline": null,
@@ -475,18 +478,21 @@
    "ym": "2025-08",
    "number": 60,
    "cover": {
-    "label": "You And Midsummer",
-    "tag": "lads",
-    "game": "Love and Deepspace",
-    "img": "https://prcdn.freetls.fastly.net/release_image/131862/77/131862-77-cb38a9d4b87bff4be14474e89de658fa-3840x2160.jpg",
+    "label": "Hysilens",
+    "tag": "hsr",
+    "game": "Honkai: Star Rail",
+    "img": "https://upload-os-bbs.hoyolab.com/upload/2025/08/11/82cdd59cd0d4a563d26c277493040746_3234602174256542058.png",
     "face": [
-     11.1,
-     36.7
+     58.9,
+     39.6
     ],
-    "art": null,
-    "art_face": null,
-    "color": "#72c2f3",
-    "rev_month": 2.7898,
+    "art": "assets/journal/hsr/1410.webp",
+    "art_face": [
+     29.8,
+     35.9
+    ],
+    "color": "#b9b9b9",
+    "rev_month": 8.8016,
     "rerun": false
    },
    "headline": null,
@@ -629,21 +635,18 @@
    "ym": "2025-03",
    "number": 55,
    "cover": {
-    "label": "Mydei",
-    "tag": "hsr",
-    "game": "Honkai: Star Rail",
-    "img": "https://upload-os-bbs.hoyolab.com/upload/2025/03/17/167aa3c663e94c7b5d33617551616b5b_7624999381991197609.png",
+    "label": "Fallen Cosmos",
+    "tag": "lads",
+    "game": "Love and Deepspace",
+    "img": "https://prcdn.freetls.fastly.net/release_image/131862/61/131862-61-97b6e45391d093a7f8217dc6021d5d70-2560x1440.jpg",
     "face": [
-     83.9,
-     39.7
+     34.9,
+     27
     ],
-    "art": "assets/journal/hsr/1404.webp",
-    "art_face": [
-     53.3,
-     48.8
-    ],
-    "color": "#f0d24b",
-    "rev_month": 7.5108,
+    "art": null,
+    "art_face": null,
+    "color": "#a292d3",
+    "rev_month": 1.2239,
     "rerun": false
    },
    "headline": null,
@@ -751,18 +754,18 @@
    "ym": "2024-11",
    "number": 51,
    "cover": {
-    "label": "Chasca & Lyney",
-    "tag": "genshin",
-    "game": "Genshin Impact",
-    "img": "https://upload-os-bbs.hoyolab.com/upload/2024/11/15/0/6c6332e9c76b4392043f56c34a2fabcf_7620603469069275850.jpeg",
+    "label": "Yes, Cat Caretaker",
+    "tag": "lads",
+    "game": "Love and Deepspace",
+    "img": "https://prcdn.freetls.fastly.net/release_image/131862/43/131862-43-d871c9b7c12b1a63d3d9ad3986ffbb86-1920x1080.png",
     "face": [
-     49.4,
-     27.7
+     13,
+     46.7
     ],
     "art": null,
     "art_face": null,
-    "color": "#57c69a",
-    "rev_month": 2.6646,
+    "color": "#905346",
+    "rev_month": 2.6147,
     "rerun": false
    },
    "headline": null,
@@ -964,21 +967,18 @@
    "ym": "2024-04",
    "number": 44,
    "cover": {
-    "label": "Aventurine",
-    "tag": "hsr",
-    "game": "Honkai: Star Rail",
-    "img": "https://upload-os-bbs.hoyolab.com/upload/2024/04/16/231b619075ed159939e5a23bb0c8e5c7_8114377701622392138.jpg",
+    "label": "Arlecchino & Lyney",
+    "tag": "genshin",
+    "game": "Genshin Impact",
+    "img": "https://img.gamewith.jp/img/e6f781ecc8eae3afd81ad8b7a48ab0c0.jpeg",
     "face": [
-     47.7,
-     27.3
+     72.4,
+     34.3
     ],
-    "art": "assets/journal/hsr/1304.webp",
-    "art_face": [
-     57.1,
-     32.0
-    ],
-    "color": "#f0d24b",
-    "rev_month": 15.0598,
+    "art": null,
+    "art_face": null,
+    "color": "#f0684a",
+    "rev_month": 8.7102,
     "rerun": false
    },
    "headline": null,
@@ -1159,18 +1159,21 @@
    "ym": "2023-09",
    "number": 37,
    "cover": {
-    "label": "Neuvillette & Hu Tao",
-    "tag": "genshin",
-    "game": "Genshin Impact",
-    "img": "https://img.gamewith.jp/img/c1743bbe32c711b80833624445aceb30.jpeg",
+    "label": "Dan Heng • Imbibitor Lunae",
+    "tag": "hsr",
+    "game": "Honkai: Star Rail",
+    "img": "https://static.wikia.nocookie.net/houkai-star-rail/images/e/ee/Epochal_Spectrum_2023-08-30.png",
     "face": [
-     29.9,
-     30.5
+     69.9,
+     22.6
     ],
-    "art": null,
-    "art_face": null,
-    "color": "#4a90d9",
-    "rev_month": 9.4526,
+    "art": "assets/journal/hsr/1213.webp",
+    "art_face": [
+     61.4,
+     30.7
+    ],
+    "color": "#f0d24b",
+    "rev_month": 10.2832,
     "rerun": false
    },
    "headline": null,
@@ -1827,18 +1830,18 @@
    "ym": "2021-07",
    "number": 11,
    "cover": {
-    "label": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
-    "tag": "uma",
-    "game": "Umamusume: Pretty Derby",
-    "img": "https://pbs.twimg.com/media/E6tTjLuUcA4Vbd1.jpg",
+    "label": "Kamisato Ayaka",
+    "tag": "genshin",
+    "game": "Genshin Impact",
+    "img": "https://gamenoshirase.com/wp-content/uploads/2021/07/k-0005_chara_016.jpg",
     "face": [
-     31.9,
-     42.9
+     54.2,
+     25.4
     ],
     "art": null,
     "art_face": null,
-    "color": "#3fb98f",
-    "rev_month": 36.71,
+    "color": "#7fc8e0",
+    "rev_month": 8.3105,
     "rerun": false
    },
    "headline": null,
@@ -1877,18 +1880,18 @@
    "ym": "2021-05",
    "number": 9,
    "cover": {
-    "label": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
-    "tag": "uma",
-    "game": "Umamusume: Pretty Derby",
-    "img": "https://pbs.twimg.com/media/E0rET_yVgAMwjip.jpg",
+    "label": "Eula",
+    "tag": "genshin",
+    "game": "Genshin Impact",
+    "img": "https://gamenoshirase.com/wp-content/uploads/2021/05/k-0005_chara_013.jpg",
     "face": [
-     27.6,
-     49.2
+     56.9,
+     31.4
     ],
     "art": null,
     "art_face": null,
-    "color": "#3fb98f",
-    "rev_month": 55.0,
+    "color": "#7fc8e0",
+    "rev_month": 10.1977,
     "rerun": false
    },
    "headline": null,

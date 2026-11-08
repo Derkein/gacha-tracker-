@@ -90,19 +90,52 @@ def serve():
 # The tracker's head-to-head, run on two banners cut to their days inside the month. Sensor Tower
 # and the CN monthly layer are off: they're whole-run monthly figures (and ST isn't used on the site).
 H2H = r"""
-(pairs) => {
+async (pairs) => {
   state.compare = state.compare || { picks: [], sources: {} };
   state.compare.sources = { gamei: true, qimai: true, st: false, cn: false, jp: true, cnrank: true };
   // Margin-weighted scoring (the tracker's Compare counts 1 point per measure won; here a win is
   // worth more the bigger it is, with diminishing returns): revenue and rank measures score the log
-  // of the ratio, a 2x lead or more = the full point; day counts score the gap against a third of
-  // the window. A China measure the other side can't have (game not sold in China) is a full point.
-  // A staying-power rank measure won on days another banner's launch lifted the rank is worth less:
-  // the point shrinks by the share of compared days that were lifted (r.boosted, cell.pen).
+  // of the ratio, a 2x lead or more = the full point. A China measure the other side can't have
+  // (game not sold in China) is a full point. Rank days another banner's launch lifted already
+  // count at the banner's own pace (cmpSeries / deBoost on the site).
+  //
+  // Day counts (days at #1, in the top 3 / top 10, the day it left the top 200) score by RARITY:
+  // the share of comparable banners that sit between the two -- every tracked banner that started
+  // within a year either side of the pair, cut to the same number of days. One day at China's #1
+  // against none is nearly a full point (3% of 2025-26 banners got there), four days in the top 10
+  // against one is worth what separates them. A flat "days / a third of the window" scored those
+  // the same as any other day.
   const LN2 = Math.log(2);
   const ratioW = (a, b) => { const lo = Math.min(a, b), hi = Math.max(a, b); return hi <= 0 ? 0 : lo <= 0 ? 1 : Math.min(1, Math.log(hi / lo) / LN2); };
   const COUNT = /_(top1|top3|top10|drop)$/;
+  if (!window._cntRuns) {                 // every banner's series, once, from every game
+    const runs = [];
+    for (const g of state.games) {
+      const ctx = await loadCtx(g.game);
+      withCtx(ctx, () => { for (const b of ctx.data.banners) { if (b._synthetic || b.pending) continue;
+        try { const x = cmpSeries(b); runs.push({ t: Date.parse(b.start), x }); } catch (e) {} } });
+    }
+    window._cntRuns = runs; window._cntCache = {};
+  }
+  // the reference values of one count measure at window k
+  const ref = (metric, k) => {
+    const key = metric + "|" + k; if (window._cntCache[key]) return window._cntCache[key];
+    const cn = metric.startsWith("cnr_"), f = metric.split("_")[1], out = [];
+    for (const r of window._cntRuns) { const x = r.x, arr = cn ? x.cn : x.jp; if (!arr || arr.length < k) continue;
+      const st = cn ? cmpRankStats(arr, k, x.cnKnown, x.cnBest, 0, x.cnBoost) : cmpRankStats(arr, k, null, null, 1, x.jpBoost);
+      if (st.none) continue;
+      out.push({ t: r.t, v: f === "drop" ? (st.droppedOut ? st.heldDays : k + 1) : st[f] }); }
+    return (window._cntCache[key] = out);
+  };
+  const DAY = 864e5, YEAR = 365 * DAY;
+  const rarity = (metric, k, lo, hi, mid) => {
+    let R = ref(metric, k).filter(r => Math.abs(r.t - mid) <= YEAR);
+    if (R.length < 30) R = ref(metric, k);
+    if (!R.length) return Math.min(1, (hi - lo) / Math.max(1, k / 3));
+    return R.filter(r => r.v >= lo && r.v < hi).length / R.length;
+  };
   return pairs.map(([a, b]) => { const R = buildComparison([a, b]), E = [a, b], pts = [0, 0];
+    const mid = (Date.parse(a.start) + Date.parse(b.start)) / 2;
     for (const r of R.rows) {
       if (r.unscored) continue;
       const v = r.cells.map(c => c.v);
@@ -112,8 +145,7 @@ H2H = r"""
       }
       if (v[0] === v[1]) continue;
       const w = r.better === "high" ? (v[0] > v[1] ? 0 : 1) : (v[0] < v[1] ? 0 : 1);
-      const pen = r.boosted ? (r.cells[w].pen || 0) : 0;
-      pts[w] += (1 - pen) * (COUNT.test(r.metric) ? Math.min(1, Math.abs(v[0] - v[1]) / Math.max(1, (r.k || 1) / 3)) : ratioW(v[0], v[1]));
+      pts[w] += COUNT.test(r.metric) ? rarity(r.metric, r.k || 1, Math.min(v[0], v[1]), Math.max(v[0], v[1]), mid) : ratioW(v[0], v[1]);
     }
     const overall = Math.abs(pts[0] - pts[1]) < 1e-9 ? "even" : pts[0] > pts[1] ? 0 : 1;
     return { points: pts.map(x => Math.round(x * 100) / 100), overall }; });
@@ -326,7 +358,7 @@ def entity(r, n):
          "gi": [{"add": d["add"], "cum": d["cum"] - base} for d in gi],     # the running total restarts at the window
          "qmDaily": s["qmDaily"][o:o + n], "hasQm": s["hasQm"],
          "cn": cut(s["cn"]), "cnKnown": cut(s["cnKnown"]), "cnBest": cut(s["cnBest"]),
-         "jpBoost": cut(s.get("jpBoost")), "cnBoost": cut(s.get("cnBoost"))}
+         "jpBoost": cut(s.get("jpBoost")), "cnBoost": cut(s.get("cnBoost")), "start": r["start"]}
     if r["tag"] in NO_CHINA:
         e.update(cn=[None] * n, cnKnown=[True] * n, cnBest=[None] * n, cnBoost=None, qmDaily=[0] * n, hasQm=True, noChina=True)
     return e

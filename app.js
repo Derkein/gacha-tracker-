@@ -4021,8 +4021,11 @@ function jpOwn(b){
   if(b._jpOwn) return b._jpOwn;
   const s=b.rank_series||[], t=midRunTaker(b);
   if(!t) return (b._jpOwn=s);
+  // Japan's reading is game-i's midnight one, so the newcomer's first day still shows the rank
+  // from before it went live (Twilight Serenity's 12/11: #170, Where Silverwings Rest's own slide);
+  // the lift starts the day after
   const k=Math.round((Date.parse(t.start)-Date.parse(b.start))/864e5);
-  return (b._jpOwn=s.map((v,i)=>i>=k?null:v));
+  return (b._jpOwn=s.map((v,i)=>i>k?null:v));
 }
 function cnRunSeries(b){
   const R=state.cnrank; if(!R||!R.games||!R.days) return null;
@@ -5457,6 +5460,25 @@ function entityMetrics(entity){
 // run skips its gap). jp / cn carry the game's rank on days a banner that opened mid-run lifted
 // it, flagged in jpBoost / cnBoost: those days stay this banner's, but buildComparison keeps them
 // out of its peak and shrinks a staying-power point it wins on them.
+// A rank another banner's launch lifted counts at what THIS banner was on course for: the pace of
+// its own last three charted days (Theil–Sen on log rank, never improving), or the real rank if
+// that's worse — so the penalty is the size of the lift, not a flat cut. Where Silverwings Rest
+// (China) slid #32 → #34 → #35, Twilight Serenity's launch put the game at #20–31; those days
+// count as #37–46. Past #200 the day counts as off the chart.
+function deBoost(arr, boost){
+  if(!arr || !boost) return arr;
+  const out=arr.slice(), own=[];
+  for(let i=0;i<arr.length;i++){
+    if(!boost[i]){ if(arr[i]!=null) own.push([i,arr[i]]); continue; }
+    const tail=own.slice(-3); if(!tail.length || arr[i]==null) continue;   // no own history: keep it
+    const sl=[]; for(let a=0;a<tail.length;a++) for(let c=a+1;c<tail.length;c++)
+      sl.push((Math.log(tail[c][1])-Math.log(tail[a][1]))/(tail[c][0]-tail[a][0]));
+    const g=sl.length ? Math.max(0,_med(sl)) : 0, [li,lv]=tail[tail.length-1];
+    const eff=Math.max(arr[i], lv*Math.exp(g*(i-li)));
+    out[i]= eff>200 ? null : Math.round(eff);
+  }
+  return out;
+}
 function cmpSeries(b){
   const s=b.rank_series||[], own=jpOwn(b);
   const cnRun=onRunDays(b, cnRunSeries(b));
@@ -5464,8 +5486,10 @@ function cmpSeries(b){
   // recorded day = genuinely below #200; a null on an unrecorded day = data not fetched yet.
   const bd=dailyBreakdown(b); let c=0;
   const qm=bannerQimai(b);
-  return { jp:onRunDays(b, s.slice()), jpBoost:onRunDays(b, s.map((v,i)=>v!=null && own[i]==null)),
-    cn:cnRun?cnRun.map(x=>x.byOther ? x.game : x.rank):null, cnBoost:cnRun?cnRun.map(x=>!!x.byOther && x.game!=null):null,
+  const jpRaw=onRunDays(b, s.slice()), jpBoost=onRunDays(b, s.map((v,i)=>v!=null && own[i]==null));
+  const cnRaw=cnRun?cnRun.map(x=>x.byOther ? x.game : x.rank):null, cnBoost=cnRun?cnRun.map(x=>!!x.byOther && x.game!=null):null;
+  return { jp:deBoost(jpRaw, jpBoost), jpBoost, jpLifted:jpRaw,
+    cn:deBoost(cnRaw, cnBoost), cnBoost, cnLifted:cnRaw,
     cnKnown:cnRun?cnRun.map(x=>x.depth!=null):null,
     cnBest:cnRun?cnRun.map(x=>x.best):null,                       // best rank reached each day (none on a lifted day)
     gi:bd?onRunDays(b, bd.days).map(d=>({add:d.add, cum:(c+=d.add)})):[],
@@ -5473,7 +5497,7 @@ function cmpSeries(b){
 }
 function bannerSnapshot(ctx,i){
   const b=ctx.data.banners[i]; if(!b) return null;
-  const {jp, jpBoost, cn, cnBoost, cnKnown, cnBest, gi, qmDaily, hasQm}=cmpSeries(b);
+  const {jp, jpBoost, jpLifted, cn, cnBoost, cnLifted, cnKnown, cnBest, gi, qmDaily, hasQm}=cmpSeries(b);
   const qm={hasData:hasQm};
   const st=bannerST(b); const cnv=bannerCN(b);
   return {
@@ -5482,7 +5506,7 @@ function bannerSnapshot(ctx,i){
     game:ctx.name, art:b.banner_img||"", icon:(b.icons&&b.icons[0])||"", accent:barColor(b), face:cmpFace(ctx.tag, b.name, b.banner_img),
     start:b.start, end:b.end, ongoing:!!b.ongoing, rerun:!!b.rerun,
     scheduled:runLength(b),
-    rev:b.rev||0, jp, jpBoost, cn, cnBoost, cnKnown, cnBest, gi, qmDaily, hasQm:!!qm.hasData,
+    rev:b.rev||0, jp, jpBoost, jpLifted, cn, cnBoost, cnLifted, cnKnown, cnBest, gi, qmDaily, hasQm:!!qm.hasData,
     stTotal: st.hasData?st.total:null,
     cnLo: cnv.hasData?cnv.lo:null, cnHi: cnv.hasData?(cnv.hi==null?cnv.lo:cnv.hi):null,
     runDays: Math.max(jp.length, cn?cn.length:0, qmDaily.length, gi.length),
@@ -5660,11 +5684,9 @@ function buildComparison(E){
   const kQM=E.every(e=>e.hasQm)?minLen(e=>e.qmDaily):0;
   const kJP=minLen(e=>e.jp);
   const kCN=E.every(e=>e.cn)?minLen(e=>e.cn):0;
+  // days another banner's launch lifted are already counted at this banner's own pace (deBoost),
+  // and never set its peak, #1 or top 3
   const sJP=E.map(e=>cmpRankStats(e.jp,kJP,null,null,1,e.jpBoost)), sCN=E.map(e=>cmpRankStats(e.cn,kCN,e.cnKnown,e.cnBest,0,e.cnBoost));
-  // share of the compared days a side's rank was lifted by another banner's launch: a staying-power
-  // point it wins is worth that much less (peak / #1 / top 3 never use those days at all)
-  const boostPen=(m,k)=>E.map(e=>{ const b=(e[m]||[]).slice(0,k); return k>0 ? b.filter(Boolean).length/k : 0; });
-  const penJP=boostPen("jpBoost",kJP), penCN=boostPen("cnBoost",kCN);
   const rows=[];
   const rk=v=>v==null?"—":v>200?">#200":"#"+Math.round(v);
   const dOnly=v=>v==null?"—":Math.round(v)+"d";
@@ -5698,25 +5720,25 @@ function buildComparison(E){
   // the day it fell ("day D"), "no drop" if it held the whole window, or "—" if never charted.
   const dropCells=(stats,k)=>stats.map(s=> s.none ? {v:null,disp:null}
     : s.droppedOut ? {v:s.heldDays, disp:`day ${s.dropDay}`} : {v:k+1, disp:"no drop"});
-  if(en.jp && kJP>0){ const jf=(f)=>cellsFrom((e,i)=>sJP[i].none?null:f(sJP[i])).map((c,i)=>Object.assign(c,{pen:penJP[i]}));
+  if(en.jp && kJP>0){ const jf=(f)=>cellsFrom((e,i)=>sJP[i].none?null:f(sJP[i]));
     push({group:"Japan rank",src:"jp",metric:"jp_peak",label:"Peak rank",k:kJP,better:"low",fmt:rk,cells:jf(s=>s.peak)});
     push({group:"Japan rank",src:"jp",metric:"jp_top1",label:"Days at #1",k:kJP,better:"high",fmt:dOnly,note:"days it held the top spot",cells:jf(s=>s.top1)});
     push({group:"Japan rank",src:"jp",metric:"jp_top3",label:"Days in top 3",k:kJP,better:"high",fmt:dOnly,cells:jf(s=>s.top3)});
-    push({group:"Japan rank",src:"jp",metric:"jp_med",boosted:true,label:"Median rank",k:kJP,better:"low",fmt:rk,note:"from day 2 — launch day skipped; days off the chart count as below #200",cells:jf(s=>s.med)});
-    push({group:"Japan rank",src:"jp",metric:"jp_top10",boosted:true,label:"Days in top 10",k:kJP,better:"high",fmt:dOnly,note:"staying power",cells:jf(s=>s.top10)});
-    push({group:"Japan rank",src:"jp",metric:"jp_drop",boosted:true,label:"Dropped from top 200",k:kJP,better:"high",note:"day it fell off — later (or no drop) is better",cells:dropCells(sJP,kJP)});
+    push({group:"Japan rank",src:"jp",metric:"jp_med",label:"Median rank",k:kJP,better:"low",fmt:rk,note:"from day 2 — launch day skipped; days off the chart count as below #200",cells:jf(s=>s.med)});
+    push({group:"Japan rank",src:"jp",metric:"jp_top10",label:"Days in top 10",k:kJP,better:"high",fmt:dOnly,note:"staying power",cells:jf(s=>s.top10)});
+    push({group:"Japan rank",src:"jp",metric:"jp_drop",label:"Dropped from top 200",k:kJP,better:"high",note:"day it fell off — later (or no drop) is better",cells:dropCells(sJP,kJP)});
     if(kJP>=5 && E.every((e,i)=>!sJP[i].none && sJP[i].charted>=3 && sJP[i].dbl!=null))
-      push({group:"Japan rank",src:"jp",metric:"jp_decay",boosted:true,label:"Rank decay",k:kJP,better:"high",fmt:dec,note:"days for its rank to double after the peak — longer is a slower decay",cells:jf(s=>s.dbl===Infinity?999:s.dbl)});
+      push({group:"Japan rank",src:"jp",metric:"jp_decay",label:"Rank decay",k:kJP,better:"high",fmt:dec,note:"days for its rank to double after the peak — longer is a slower decay",cells:jf(s=>s.dbl===Infinity?999:s.dbl)});
   }
-  if(en.cnrank && kCN>0){ const cf=(f)=>cellsFrom((e,i)=>sCN[i].none?null:f(sCN[i])).map((c,i)=>Object.assign(c,{pen:penCN[i]}));
+  if(en.cnrank && kCN>0){ const cf=(f)=>cellsFrom((e,i)=>sCN[i].none?null:f(sCN[i]));
     push({group:"China rank",src:"cnrank",metric:"cnr_peak",label:"Peak rank",k:kCN,better:"low",fmt:rk,note:"best rank reached at any point of a day",cells:cf(s=>s.peak)});
     push({group:"China rank",src:"cnrank",metric:"cnr_top1",label:"Days at #1",k:kCN,better:"high",fmt:dOnly,note:"days it held the top spot",cells:cf(s=>s.top1)});
     push({group:"China rank",src:"cnrank",metric:"cnr_top3",label:"Days in top 3",k:kCN,better:"high",fmt:dOnly,cells:cf(s=>s.top3)});
-    push({group:"China rank",src:"cnrank",metric:"cnr_med",boosted:true,label:"Median rank",k:kCN,better:"low",fmt:rk,note:"end-of-day rank, from launch day; days off the chart count as below #200",cells:cf(s=>s.med)});
-    push({group:"China rank",src:"cnrank",metric:"cnr_top10",boosted:true,label:"Days in top 10",k:kCN,better:"high",fmt:dOnly,note:"staying power",cells:cf(s=>s.top10)});
-    push({group:"China rank",src:"cnrank",metric:"cnr_drop",boosted:true,label:"Dropped from top 200",k:kCN,better:"high",note:"day it fell off — later (or no drop) is better",cells:dropCells(sCN,kCN)});
+    push({group:"China rank",src:"cnrank",metric:"cnr_med",label:"Median rank",k:kCN,better:"low",fmt:rk,note:"end-of-day rank, from launch day; days off the chart count as below #200",cells:cf(s=>s.med)});
+    push({group:"China rank",src:"cnrank",metric:"cnr_top10",label:"Days in top 10",k:kCN,better:"high",fmt:dOnly,note:"staying power",cells:cf(s=>s.top10)});
+    push({group:"China rank",src:"cnrank",metric:"cnr_drop",label:"Dropped from top 200",k:kCN,better:"high",note:"day it fell off — later (or no drop) is better",cells:dropCells(sCN,kCN)});
     if(kCN>=5 && E.every((e,i)=>!sCN[i].none && sCN[i].charted>=3 && sCN[i].dbl!=null))
-      push({group:"China rank",src:"cnrank",metric:"cnr_decay",boosted:true,label:"Rank decay",k:kCN,better:"high",fmt:dec,note:"days for its rank to double after the peak — longer is a slower decay",cells:cf(s=>s.dbl===Infinity?999:s.dbl)});
+      push({group:"China rank",src:"cnrank",metric:"cnr_decay",label:"Rank decay",k:kCN,better:"high",fmt:dec,note:"days for its rank to double after the peak — longer is a slower decay",cells:cf(s=>s.dbl===Infinity?999:s.dbl)});
   }
   // score each row: single best side wins a point; a tie for best awards none. Also record how
   // close the win was (relative gap between best and runner-up), so the read-out can flag slim leads.
@@ -5727,7 +5749,7 @@ function buildComparison(E){
     if(!r.scored){ r.winner=null; continue; }
     const best = r.better==="high" ? Math.max(...have) : Math.min(...have);
     const idxs=[]; vs.forEach((v,i)=>{ if(v!=null && v===best) idxs.push(i); });
-    if(idxs.length===1){ r.winner=idxs[0]; points[idxs[0]]+=1-(r.boosted ? (r.cells[idxs[0]].pen||0) : 0); W[r.metric]=idxs[0];
+    if(idxs.length===1){ r.winner=idxs[0]; points[idxs[0]]++; W[r.metric]=idxs[0];
       const srt=[...have].sort((a,b)=> r.better==="high"?b-a:a-b), den=Math.max(Math.abs(srt[0]),Math.abs(srt[1]),1e-9);
       r.margin = margin[r.metric] = Math.abs(srt[0]-srt[1])/den;
     } else { r.winner="tie"; W[r.metric]="tie"; }
@@ -6161,7 +6183,8 @@ function cmpChartSVG(E,R){
     else { let cum=0; pts=(e.qmDaily||[]).slice(0,k).map(v=>(cum+=(v||0))); }
     // a rank lifted by another banner's launch is drawn hollow: on the line, but not its own
     const boost = kind==="jp" ? (e.jpBoost||[]).slice(0,k) : kind==="cn" ? (e.cnBoost||[]).slice(0,k) : [];
-    return {name:e.name||e.label, accent:e.dispAccent||e.accent, pts, boost};
+    const lifted = kind==="jp" ? (e.jpLifted||[]) : kind==="cn" ? (e.cnLifted||[]) : [];
+    return {name:e.name||e.label, accent:e.dispAccent||e.accent, pts, boost, lifted};
   });
   const W=720,H=250,ML=52,MR=14,MT=14,MB=26,pW=W-ML-MR,pH=H-MT-MB, n=k;
   const xOf=i=> n>1?ML+(i/(n-1))*pW:ML+pW/2;
@@ -6183,7 +6206,7 @@ function cmpChartSVG(E,R){
   const lines=series.map(s=>{ let d="",pen=false;
     s.pts.forEach((v,i)=>{ if(v==null){pen=false;return;} const x=xOf(i),y=yOf(v); d+=`${pen?"L":"M"}${x.toFixed(1)} ${y.toFixed(1)}`; pen=true; });
     const dots=s.pts.map((v,i)=>v==null?"":s.boost[i]
-      ? `<circle cx="${xOf(i).toFixed(1)}" cy="${yOf(v).toFixed(1)}" r="2.6" fill="var(--surface)" stroke="${s.accent}" stroke-width="1.4"><title>lifted by another banner's launch</title></circle>`
+      ? `<circle cx="${xOf(i).toFixed(1)}" cy="${yOf(v).toFixed(1)}" r="2.6" fill="var(--surface)" stroke="${s.accent}" stroke-width="1.4"><title>another banner's launch lifted the game to #${s.lifted[i]}; counted as #${v}, this banner's own pace</title></circle>`
       : `<circle cx="${xOf(i).toFixed(1)}" cy="${yOf(v).toFixed(1)}" r="2.4" fill="${s.accent}"/>`).join("");
     return `<path d="${d}" fill="none" stroke="${s.accent}" stroke-width="2.2" stroke-linejoin="round"/>${dots}`;
   }).join("");
@@ -6309,7 +6332,7 @@ function renderCompareResult(){
   }
   // a side whose rank was lifted by another banner opening mid-run: say why its points are fractional
   const lifted=E.map((e,i)=>({e, n:Math.max(((e.jpBoost||[]).slice(0,R.kJP)).filter(Boolean).length, ((e.cnBoost||[]).slice(0,R.kCN)).filter(Boolean).length)})).filter(x=>x.n>0);
-  if(R.decided && lifted.length) verdict += ` <span class="cmp-liftnote">${lifted.map(x=>`${esc(x.e.name||x.e.label)}'s rank was lifted by another banner's launch on ${x.n} of the compared days`).join("; ")} — those days count toward staying power at a reduced weight, never toward its peak.</span>`;
+  if(R.decided && lifted.length) verdict += ` <span class="cmp-liftnote">${lifted.map(x=>`${esc(x.e.name||x.e.label)}'s rank was lifted by another banner's launch on ${x.n} of the compared days`).join("; ")} — those days count at the rank it was on course for before that launch, and never toward its peak.</span>`;
   const tldr=cmpTLDR(R,E);
 
   // ---- charts ----
