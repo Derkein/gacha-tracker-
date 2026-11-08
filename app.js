@@ -4187,8 +4187,9 @@ function cohortStrip(items, self, label, caption, title){
   const rr = `<svg class="bm-rr" viewBox="-1.6 -1.6 3.2 3.2" aria-hidden="true"><circle r="1.5"/>`
     + `<path class="rr-arc" d="${RR_ARC}"/><path class="rr-head" d="${RR_HEAD}"/></svg>`;
   const chip=x=>{
-    const me = x.b._i===self._i;
-    return `<span class="bm-cav${me?" me":""}" data-i="${x.b._i}" style="--av-ring:${barColor(x.b)}"
+    const me = x.b._i===self._i, ic=x.b.icons||[];
+    const multi = ic[2]?" trio":ic[1]?" duo":"";
+    return `<span class="bm-cav${me?" me":""}${multi}" data-i="${x.b._i}" style="--av-ring:${barColor(x.b)}"
       title="${esc(peerName(x.b))} — ${label(x)}${x.b.rerun?" · rerun":""}"
       ><span class="pic">${avatarHTML(x.b)}${x.b.rerun?rr:""}</span><span class="lb">${label(x)}</span></span>`;
   };

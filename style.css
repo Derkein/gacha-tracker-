@@ -1192,9 +1192,14 @@ body[data-agmode="banner"] .ag-row{grid-template-columns:206px 1fr 196px}
 .bm-cav img,.bm-cav .mono{width:44px; height:44px; border-radius:50%; object-fit:cover; flex:none;
   box-shadow:0 0 0 1.5px var(--surface),0 0 0 3px var(--border); background:var(--track)}
 .bm-cav .mono{display:flex; align-items:center; justify-content:center; font-size:17px; font-weight:800; color:var(--muted)}
-/* avatarHTML emits up to three images for a multi-character banner; only the
-   headliner belongs in a strip this small (same as .bm-peer does) */
-.bm-cav img.extra{display:none}
+/* a multi-character banner shows its co-leads as pips, the same mark the timeline
+   avatars carry (.av img.extra), scaled a touch for the strip; the chip gets extra
+   right margin so a pip never sits on the next face */
+.bm-cav .pic img.extra{display:block; position:absolute; width:22px; height:22px; bottom:-4px; right:-10px;
+  box-shadow:0 0 0 2px var(--surface),0 0 0 3px var(--av-ring,var(--border))}
+.bm-cav .pic img.extra.e2{right:-21px; opacity:.96}
+.bm-cav.duo{margin-right:8px}
+.bm-cav.trio{margin-right:19px}
 .bm-cav .lb{font-size:11px; color:var(--muted); font-variant-numeric:tabular-nums; white-space:nowrap}
 .bm-cav.me img,.bm-cav.me .mono{box-shadow:0 0 0 2px var(--surface),0 0 0 4px var(--av-ring)}
 .bm-cav.me .lb{color:var(--ink); font-weight:800}
