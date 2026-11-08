@@ -5,13 +5,13 @@
  "unit": "億G",
  "source": "https://prtimes.jp/main/html/searchrlp/company_id/131862",
  "banners_from": "official",
- "updated": "2026-11-08T05:45:00Z",
+ "updated": "2026-11-08T17:17:36Z",
  "count": 82,
  "now": {
-  "ios": 71,
-  "android": 109,
-  "month": 197,
-  "next_add": 14019464,
+  "ios": 89,
+  "android": 111,
+  "month": 189,
+  "next_add": 11757955,
   "ym": "2026/11",
   "ranks": {
    "prev": [
@@ -56,7 +56,7 @@
     null,
     39,
     51,
-    null,
+    85,
     null,
     null,
     null,
@@ -83,7 +83,7 @@
   }
  },
  "monthly": {
-  "2026-11": 0.6814,
+  "2026-11": 0.8048,
   "2026-10": 2.3,
   "2026-09": 2.84,
   "2026-08": 2.27,
@@ -654,7 +654,7 @@
     "2024-05": 0.4027,
     "2024-06": 0.2476
    },
-   "cum": 70,
+   "cum": 71,
    "cumtot": 82,
    "yrank": 24,
    "ytot": 25,
@@ -1178,7 +1178,7 @@
     "2024-10": 0.053,
     "2024-11": 0.6588
    },
-   "cum": 68,
+   "cum": 69,
    "cumtot": 82,
    "yrank": 23,
    "ytot": 25,
@@ -1957,7 +1957,7 @@
     "2025-05": 0.3152,
     "2025-06": 0.3717
    },
-   "cum": 69,
+   "cum": 70,
    "cumtot": 82,
    "yrank": 27,
    "ytot": 30,
@@ -2823,7 +2823,7 @@
    "rev_month_ym": {
     "2025-12": 0.5865
    },
-   "cum": 64,
+   "cum": 65,
    "cumtot": 82,
    "yrank": 26,
    "ytot": 30,
@@ -2869,7 +2869,7 @@
    "rev_month_ym": {
     "2025-12": 0.4352
    },
-   "cum": 71,
+   "cum": 72,
    "cumtot": 82,
    "yrank": 28,
    "ytot": 30,
@@ -3331,9 +3331,9 @@
    "rev_month_ym": {
     "2026-04": 0.4617
    },
-   "cum": 65,
+   "cum": 66,
    "cumtot": 82,
-   "yrank": 17,
+   "yrank": 18,
    "ytot": 27,
    "icons": [
     "icons/faces/lads/2026-04-06-a96f21.webp"
@@ -3423,9 +3423,9 @@
    "rev_month_ym": {
     "2026-04": 0.8292
    },
-   "cum": 67,
+   "cum": 68,
    "cumtot": 82,
-   "yrank": 19,
+   "yrank": 20,
    "ytot": 27,
    "icons": [
     "icons/faces/lads/2026-04-21-4e9fc1.webp"
@@ -3777,9 +3777,9 @@
    "rev_month_ym": {
     "2026-07": 0.6939
    },
-   "cum": 66,
+   "cum": 67,
    "cumtot": 82,
-   "yrank": 18,
+   "yrank": 19,
    "ytot": 27,
    "icons": [
     "icons/faces/lads/2026-07-02-0900c0.webp"
@@ -4178,9 +4178,9 @@
    "rev_month_ym": {
     "2026-10": 0.7075
    },
-   "cum": 63,
+   "cum": 64,
    "cumtot": 82,
-   "yrank": 16,
+   "yrank": 17,
    "ytot": 27,
    "icons": [
     "icons/faces/lads/2026-10-19-bf1164.webp"
@@ -4218,14 +4218,14 @@
     null
    ],
    "rev": 0.224,
-   "rev_month": 0.5665,
+   "rev_month": 0.5653,
    "rev_ym": {
     "2026-10": 0.224,
     "2026-11": 0.0
    },
    "rev_month_ym": {
     "2026-10": 0.3282,
-    "2026-11": 0.2383
+    "2026-11": 0.2371
    },
    "cum": 81,
    "cumtot": 82,
@@ -4261,19 +4261,20 @@
    "rank_series": [
     null,
     39,
-    51
+    51,
+    85
    ],
-   "rev": 0.3974,
-   "rev_month": 0.4431,
+   "rev": 0.5222,
+   "rev_month": 0.5677,
    "rev_ym": {
-    "2026-11": 0.3974
+    "2026-11": 0.5222
    },
    "rev_month_ym": {
-    "2026-11": 0.4431
+    "2026-11": 0.5677
    },
-   "cum": 72,
+   "cum": 63,
    "cumtot": 82,
-   "yrank": 20,
+   "yrank": 16,
    "ytot": 27,
    "icons": [
     "icons/faces/lads/2026-11-06-0a039c.webp"
