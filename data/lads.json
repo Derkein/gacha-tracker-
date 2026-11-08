@@ -5,13 +5,13 @@
  "unit": "億G",
  "source": "https://prtimes.jp/main/html/searchrlp/company_id/131862",
  "banners_from": "official",
- "updated": "2026-11-07T20:26:40Z",
+ "updated": "2026-11-08T00:01:39Z",
  "count": 82,
  "now": {
-  "ios": 56,
-  "android": 135,
+  "ios": 59,
+  "android": 136,
   "month": 197,
-  "next_add": 16639961,
+  "next_add": 16192856,
   "ym": "2026/11",
   "ranks": {
    "prev": [
@@ -4247,7 +4247,7 @@
     "Rebooting Dreams"
    ],
    "en": "Rebooting Dreams",
-   "title_en": null,
+   "title_en": "Rebooting Dreams",
    "leads": [
     "Xavier",
     "Zayne",
