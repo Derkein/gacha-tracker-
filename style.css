@@ -840,6 +840,12 @@ html.scrolling .gscroll, .gscroll:hover{scrollbar-color:var(--base) transparent}
 @media (prefers-color-scheme:dark){ .mck.st{border-color:rgba(79,198,218,.4)} .mck.st .mck-v{color:#4fc6da} }
 :root[data-theme=dark] .mck.st{border-color:rgba(79,198,218,.4)} :root[data-theme=dark] .mck.st .mck-v{color:#4fc6da}
 .mck.qm{border-color:rgba(31,158,87,.42)} .mck.qm .mck-v{color:#1f9e57}
+/* game-i + Qimai, in US$ */
+.mck.bo{border-color:rgba(107,91,210,.42)} .mck.bo .mck-v{color:#6b5bd2} .mc-kpis .mck.bo{--kpi-a:#6b5bd2}
+@media (prefers-color-scheme:dark){ .mck.bo{border-color:rgba(169,155,255,.4)} .mck.bo .mck-v{color:#a99bff} .mc-kpis .mck.bo{--kpi-a:#a99bff} }
+:root[data-theme=dark] .mck.bo{border-color:rgba(169,155,255,.4)} :root[data-theme=dark] .mck.bo .mck-v{color:#a99bff} :root[data-theme=dark] .mc-kpis .mck.bo{--kpi-a:#a99bff}
+:root[data-theme=light] .mck.bo{border-color:rgba(107,91,210,.42)} :root[data-theme=light] .mck.bo .mck-v{color:#6b5bd2} :root[data-theme=light] .mc-kpis .mck.bo{--kpi-a:#6b5bd2}
+.bm-both b{color:var(--ink)}
 @media (prefers-color-scheme:dark){ .mck.qm{border-color:rgba(79,208,138,.4)} .mck.qm .mck-v{color:#4fd08a} }
 :root[data-theme=dark] .mck.qm{border-color:rgba(79,208,138,.4)} :root[data-theme=dark] .mck.qm .mck-v{color:#4fd08a}
 .mc-stack{display:flex; height:12px; border-radius:7px; overflow:hidden; margin:13px 0 4px; background:var(--track)}

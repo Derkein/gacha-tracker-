@@ -109,6 +109,10 @@ img.broken{visibility:hidden}
 .dstats div{display:flex; flex-direction:column; min-width:0}
 .dstats span{font-size:9.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted)}
 .dstats strong{font-size:16px; font-variant-numeric:tabular-nums; line-height:1.25; white-space:nowrap}
+.dboth{display:grid; grid-template-columns:auto 1fr; align-items:baseline; column-gap:8px; margin:-1px 0 6px; padding:0 0 6px; border-bottom:1px solid var(--rule); font-family:var(--sans)}
+.dboth span{grid-column:1/-1; font-size:9.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted)}
+.dboth strong{font-size:16px; font-variant-numeric:tabular-nums; white-space:nowrap}
+.dboth small{font-size:11px; color:var(--ink2); font-variant-numeric:tabular-nums; white-space:nowrap}
 .dstats small{font-size:11px; color:var(--ink2); font-variant-numeric:tabular-nums; white-space:nowrap}
 .dpills{display:flex; flex-wrap:wrap; align-items:center; gap:5px; font-family:var(--sans); font-size:11.5px; font-weight:700}
 .dpills .pk{padding:1px 7px}

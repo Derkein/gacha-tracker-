@@ -28,6 +28,16 @@ function fmtUSD(v){ if(!(v>0)) return "$0";
   if(v>=1e9) return "$"+(v/1e9).toFixed(2)+"B"; if(v>=1e8) return "$"+Math.round(v/1e6)+"M";
   if(v>=1e7) return "$"+(v/1e6).toFixed(1)+"M"; if(v>=1e6) return "$"+(v/1e6).toFixed(2)+"M";
   if(v>=1e3) return "$"+Math.round(v/1e3)+"K"; return "$"+Math.round(v); }
+// Japan + China iPhone as one figure, ALWAYS in US$ (whatever the toggle says): game-i's yen at
+// the day's rate + Qimai's dollars. The rate is read when the page opens, so it follows the
+// daily refresh of data/fx.json. null without a rate.
+const jpUSD = oku => (oku>0 && fxRate("JPY")) ? oku*1e8/fxRate("JPY") : 0;
+const bothUSD = (oku, usd) => fxRate("JPY") && (oku>0 || usd>0) ? jpUSD(oku)+(usd||0) : null;
+function fxLine(cny){ const f=J.fx; if(!f || !f.per_usd) return "";
+  const d=f.date?`${dayStr(f.date)} ${f.date.slice(0,4)}`:"";
+  const src=/European Central Bank/.test(f.source||"") ? "ECB reference rate" : (f.source||"").replace(/ \(.*\)$/,"");
+  return `$1 = ¥${f.per_usd.JPY}${cny?` = CN¥${f.per_usd.CNY}`:""} (${src}${d?", "+d:""})`; }
+const BOTH_TIP = () => `Japan + China iPhone: game-i's yen converted at ${fxLine()}, plus Qimai's China iPhone dollars. One rate for every date, the latest daily one.`;
 // CN¥ ranges, compact like the tracker's by-Month cells: "CN¥4.57–5.34B", "CN¥191–228M"
 function fmtCNYr(lo, hi){
   if(usdOn()){ const a=fmtUSD(lo/fxRate("CNY")); if(hi==null||hi===lo) return a; const b=fmtUSD(hi/fxRate("CNY"));
@@ -303,15 +313,26 @@ document.addEventListener("load", e=>{ if(e.target.tagName==="IMG" && e.target.d
 let _fitT; addEventListener("resize", ()=>{ clearTimeout(_fitT); _fitT=setTimeout(fitAll, 120); });
 // a dead CDN link hides itself (delegated: the page's CSP allows no inline handlers)
 document.addEventListener("error", e=>{ if(e.target.tagName==="IMG") e.target.classList.add("broken"); }, true);
-function rankChart(f, key, fmt, title, sub){
+function rankChart(f, key, fmt, title, sub, cls){
   const rows=f.games.filter(g=>g[key]>0).sort((a,b)=>b[key]-a[key]); if(!rows.length) return "";
   const max=rows[0][key];
-  return `<div class="chartcol"><h4>${title}</h4><p class="sub">${sub}</p><ol class="rchart">${rows.map((g,i)=>{
+  return `<div class="chartcol${cls?" "+cls:""}"><h4>${title}</h4><p class="sub">${sub}</p><ol class="rchart">${rows.map((g,i)=>{
     const p=pct(g[key], g[key+"_prev"]);
     return `<li style="--acc:${GAME_ACCENT[g.tag]}"><span class="pos">${i+1}</span>
       <img class="gic" src="${g.icon}" alt=""><a class="nm" href="#${f.ym}/${g.tag}">${esc(SHORT[g.tag])}</a>
       <span class="bar"><i style="width:${(g[key]/max*100).toFixed(1)}%"></i></span>
       <span class="val">${fmt(g[key])}</span><span class="chg ${p==null?"":p>=0?"up":"dn"}">${pctStr(p)}</span></li>`; }).join("")}</ol></div>`;
+}
+// Japan + China iPhone added up, always in dollars. The month-on-month change uses the same rate
+// on both months, so it is the change in spending, not in the yen. A game missing from one
+// market in either month gets no change rather than a fake jump.
+function bothChart(f){
+  if(!fxRate("JPY")) return "";
+  const games=f.games.map(g=>{ const both=bothUSD(g.jp, g.cn);
+    const same=(g.jp>0)===(g.jp_prev>0) && (g.cn>0)===(g.cn_prev>0);
+    return {...g, both, both_prev: same ? bothUSD(g.jp_prev, g.cn_prev) : null}; });
+  return rankChart({...f, games}, "both", fmtUSD, "Japan + China iPhone",
+    `game-i + Qimai, US$ · yen at ${esc(fxLine())}`, "bothcol");
 }
 // ---- the month in totals: every tracked game added up, per source, plus Japan vs China ----
 const pctOf = m => m && m.same_prev>0 ? (m.same/m.same_prev-1)*100 : null;
@@ -369,10 +390,10 @@ function marketHTML(f){
     return `<div class="mcol"><h4>${label}</h4><ol class="mchg">${rows.map(([t,c])=>`<li class="${c>=0?"up":"dn"}" style="--gacc:${GAME_ACCENT[t]}">
       <span class="nm">${esc(SHORT[t])}</span><span class="cbar"><i style="width:${(Math.abs(c)/mx*50).toFixed(1)}%"></i></span><span class="cv">${pctStr(c*100)}</span></li>`).join("")}</ol></div>`; };
   return `<section class="market"><div class="sec-k">The month in totals</div><h3 class="sec-h">Every tracked gacha, added up</h3>
-    <div class="mtiles">${mk.jp?tile("jp","Japan","game-i · App Store + Google Play",fmtG(mk.jp.total),mk.jp):""}${mk.cn?tile("cn","China iPhone","Qimai · App Store",fmtUSD(mk.cn.total),mk.cn):""}${zlTile}</div>
+    <div class="mtiles">${mk.jp?tile("jp","Japan",`game-i · App Store + Google Play${usdOn()?` · at ${esc(fxLine())}`:""}`,fmtG(mk.jp.total),mk.jp):""}${mk.cn?tile("cn","China iPhone","Qimai · App Store",fmtUSD(mk.cn.total),mk.cn):""}${zlTile}</div>
     <div class="mcopy">${marketCopy(f).map(t=>`<p>${rich(t)}</p>`).join("")}</div>
     <div class="mcols">${col(mk.jp,"Japan, game by game")}${col(mk.cn,"China iPhone, game by game")}${zl?col(zl,`China 总流水, game by game ${lateTag(false)}`):""}</div>
-    <p class="mnote">Changes compare the games present in both months, so a launch doesn't count as growth. Japan${SHOW_ZL?", China iPhone and 总流水 are":" and China iPhone are"} different measurements of different stores and are never added together.</p></section>`;
+    <p class="mnote">Changes compare the games present in both months, so a launch doesn't count as growth. Japan${SHOW_ZL?", China iPhone and 总流水 are":" and China iPhone are"} different measurements of different stores; they are added together only in the <b>Japan + China iPhone</b> figures, in US$ with the yen at ${esc(fxLine())}, one rate for every month.</p></section>`;
 }
 // #1 vs #2 over their shared window, so a big lead the runner-up held in one market is said out loud
 function topPairNote(f, t){
@@ -387,6 +408,11 @@ function topPairNote(f, t){
   return `<p class="dnote">${rich(`Over ${span0}, ${parts.join(", while ")}. Weighted by the size of each lead, ${a.label} comes out ahead.`)}</p>`;
 }
 const DEBUT_CARDS = 10;
+// a banner card's combined line: Japan + China iPhone, in US$, and per day
+function bothRow(d){
+  const v=bothUSD(d.rev_month, d.cn_month); if(v==null || !(d.cn_month>0)) return "";
+  return `<div class="dboth" title="${esc(BOTH_TIP())}"><span>Japan + China</span><strong>${fmtUSD(v)}</strong>${d.days?`<small>${fmtUSD(v/d.days)}/day</small>`:""}</div>`;
+}
 function openCard(d, i, f, showOld){
   const mo=MONTHS[+f.ym.slice(5)-1];
   const tag = showOld && !d.new ? ` · from ${dayStr(d.start)}` : d.rerun ? " · rerun" : "";
@@ -396,7 +422,7 @@ function openCard(d, i, f, showOld){
       <div class="dstats">
         <div><span>Japan</span><strong>${d.rev_month>0?fmtG(d.rev_month):"—"}</strong><small>${d.days&&d.rev_month>0?fmtG(d.rev_month/d.days)+"/day":"&nbsp;"}</small></div>
         <div><span>China iPhone</span><strong>${d.cn_month>0?fmtUSD(d.cn_month):"—"}</strong><small>${d.days&&d.cn_month>0?fmtUSD(d.cn_month/d.days)+"/day":"&nbsp;"}</small></div>
-      </div>
+      </div>${bothRow(d)}
       <div class="dpills"><span class="pk${d.jp_peak<=10?" t1":d.jp_peak<=50?" t2":""}">${rk(d.jp_peak)} JP</span>${d.cn_peak?`<span class="pk${d.cn_peak<=10?" t1":d.cn_peak<=50?" t2":""}">${rk(d.cn_peak)} CN</span>`:""}<span class="dd">${plural(d.days,"day")}${showOld?" in "+mo.slice(0,3):""}</span></div>
       <span class="drec">${d.beat?`Won ${d.beat[0]} of ${d.beat[1]} head-to-heads`:`Too new to rank: ${plural(d.days,"day")} in ${mo}`}</span></div></a>`;
 }
@@ -445,6 +471,7 @@ function bannerCard(b, i, ctx){
       <div class="bc-m">
         ${cell("rev_month","Japan",b.rev_month>0?fmtG(b.rev_month):'<span class="mu">below #200</span>',bar(b.rev_month,ctx.maxJ))}
         ${ctx.hasCN?cell("cn_month","China iPhone",b.cn_month>0?fmtUSD(b.cn_month):'<span class="mu">—</span>',bar(b.cn_month,ctx.maxC)):""}
+        ${ctx.hasCN&&fxRate("JPY")?`<div class="m both" title="${esc(BOTH_TIP())}"><span class="k">Japan + China</span><b>${b.cn_month>0||b.rev_month>0?fmtUSD(bothUSD(b.rev_month,b.cn_month)):'<span class="mu">—</span>'}</b></div>`:""}
         ${cell("jp_peak","Peak JP",`<span class="pk${tier(b.jp_peak)}">${rk(b.jp_peak)}</span>`)}
         ${ctx.hasCN?cell("cn_peak","Peak CN",`<span class="pk${tier(b.cn_peak)}">${rk(b.cn_peak)}</span>`):""}
         ${ctx.game?"":`<div class="m"><span class="k">All-time${b.ongoing?" (so far)":""}</span><b>${b.alltime?`${ord(b.alltime[0])}<small> of ${b.alltime[1]}</small>`:"—"}</b>${pctl!=null?`<i class="bc-bar pct"><i style="width:${pctl.toFixed(1)}%"></i></i>`:""}</div>`}
@@ -490,6 +517,7 @@ function statStrip(g, ym){
   if(g.jp) cells.push(`<div><span>Japan${g.jp_src==="banners"?" (banners)":""}</span><b>${fmtG(g.jp)}</b><em class="${p==null?"":p>=0?"up":"dn"}">${p==null?"&nbsp;":pctStr(p)+" m/m"}</em></div>`);
   if(g.jp_rank) cells.push(`<div><span>Japan rank</span><b>${ord(g.jp_rank[0])}</b><em>of ${g.jp_rank[1]} games</em></div>`);
   if(g.cn) cells.push(`<div><span>China iPhone${g.cn_partial?" (partial)":""}</span><b>${fmtUSD(g.cn)}</b><em class="${pc==null?"":pc>=0?"up":"dn"}">${pc==null?"&nbsp;":pctStr(pc)+" m/m"}</em></div>`);
+  if(g.cn && fxRate("JPY")) cells.push(`<div title="${esc(BOTH_TIP())}"><span>Japan + China iPhone</span><b>${fmtUSD(bothUSD(g.jp,g.cn))}</b><em>US$ · today's rate</em></div>`);
   if(g.cn_rank) cells.push(`<div><span>China rank</span><b>${ord(g.cn_rank[0])}</b><em>of ${g.cn_rank[1]} games</em></div>`);
   const latest=J.index.issues[0] && J.index.issues[0].ym===ym, zp=pct(g.zl&&(g.zl.lo+g.zl.hi)/2, g.zl_prev&&(g.zl_prev.lo+g.zl_prev.hi)/2);
   if(SHOW_ZL && g.zl) cells.push(`<div class="zlcell"><span>${esc(g.zl.metric||"总流水")} · all platforms ${lateTag(false)}</span><b>${fmtCNYr(g.zl.lo,g.zl.hi)}</b><em class="${zp==null?"":zp>=0?"up":"dn"}">${zp==null?"&nbsp;":pctStr(zp)+" m/m"}</em></div>`);
@@ -550,7 +578,7 @@ function render(iss, focus){
     ${letter?`<section class="letter"><div class="sec-k">From the editor</div>${letter}</section>`:""}
     ${marketHTML(f)}
     <section class="charts"><div class="sec-k">The charts</div><h3 class="sec-h">Who earned the most</h3>
-      <div class="chartcols">${rankChart(f,"jp",fmtG,"Japan","game-i · App Store + Google Play, yen")}${rankChart(f,"cn",fmtUSD,"China iPhone","Qimai · App Store, US$")}</div></section>
+      <div class="chartcols">${rankChart(f,"jp",fmtG,"Japan",`game-i · App Store + Google Play, ${usdOn()?`yen in US$ at ${esc(fxLine())}`:"yen"}`)}${rankChart(f,"cn",fmtUSD,"China iPhone","Qimai · App Store, US$")}${bothChart(f)}</div></section>
     ${debutsHTML(f)}
     ${topHTML(f)}
     <div class="feats">${games.map((g,i)=>featureHTML(g,f,nt,i)).join("")}</div>

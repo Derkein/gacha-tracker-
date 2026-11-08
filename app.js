@@ -208,6 +208,19 @@ function fmtUSDRange(lo, hi){
   const a=fmtUSD(lo), b=fmtUSD(hi), ua=a.replace(/[\d.$]/g,""), ub=b.replace(/[\d.$]/g,"");
   return ua===ub ? a.slice(0, a.length-ua.length)+"–"+b.slice(1) : a+"–"+b.slice(1);
 }
+// ---- "game-i + Qimai $": Japan + China iPhone as ONE figure, in US$. game-i's yen goes to
+// dollars at the same single rate as the toggle (data/fx.json, today's), Qimai is already in
+// dollars. The only view that adds two sources together: it is two stores (Japan mobile + China
+// iPhone), not worldwide revenue — Sensor Tower is the worldwide layer.
+const jpUSD = oku => (oku>0 && fxRate("JPY")) ? oku*1e8/fxRate("JPY") : 0;
+function bannerBoth(b){ const q=bannerQimai(b), jp=jpUSD(b&&b.rev), cn=q.hasData?(q.total||0):0;
+  return {jp, cn, total:jp+cn, hasCN:q.hasData}; }
+const usdSrc = s => s==="st" || s==="qimai" || s==="both";
+const srcFmtOf = s => usdSrc(s) ? fmtUSD : s==="cn" ? fmtCNY : G;
+// the rate every converted figure uses, said the same way everywhere
+function fxLine(cny){ const f=state.fx; if(!f || !f.per_usd) return "";
+  return `$1 = ¥${f.per_usd.JPY}${cny?` = CN¥${f.per_usd.CNY}`:""} (${fxSrc(f)}, ${per(f.date)})`; }
+const fxSrc = f => /European Central Bank/.test(f.source||"") ? "ECB reference rate" : (f.source||"").replace(/ \(.*\)$/,"");
 
 // ---- external global monthly revenue, in USD (a comparison layer vs game-i) ----
 // Source: the actual Sensor Tower / gacharevenue monthly REPORT figures, read from the
@@ -1061,17 +1074,18 @@ function nowTile(now){
 
 function monthTopBanner(ym){ const bl=(state.monthly&&state.monthly[ym]&&state.monthly[ym].banners)||[]; return bl.length?state.data.banners[bl[0].i]:null; }
 function renderStats(){
-  const st = state.dataSource==="st", cn = state.dataSource==="cn", qm = state.dataSource==="qimai";
-  const fmt = st ? fmtUSD : cn ? fmtCNY : qm ? fmtUSD : G;
+  const st = state.dataSource==="st", cn = state.dataSource==="cn", qm = state.dataSource==="qimai", bo = state.dataSource==="both";
+  const fmt = srcFmtOf(state.dataSource);
   const all = state.data.banners, real = all.filter(x=>!x._synthetic && !x.pending);
-  const val = (st||cn||qm) ? srcVal : (x=>x.rev);
-  const sum = (st||cn||qm) ? real.reduce((a,x)=>a+val(x),0) : all.reduce((a,x)=>a+x.rev,0);
+  const val = (st||cn||qm||bo) ? srcVal : (x=>x.rev);
+  const sum = (st||cn||qm||bo) ? real.reduce((a,x)=>a+val(x),0) : all.reduce((a,x)=>a+x.rev,0);
   const top = real.reduce((a,x)=> val(x)>val(a)?x:a);
   const topName = (top.agents&&top.agents.length) ? top.agents.join(" & ") : top.name;
   // highest single month, on the active data source
   let hmYm=null, hmVal=-1;
   if(cn){ const mm=cnGameMonths(state.tag); for(const ym in mm){ const v=cnMid(mm[ym]); if(v>hmVal){hmVal=v; hmYm=ym;} } }
   else if(st){ const mm=extGameMonths(state.tag); for(const ym in mm){ if(mm[ym].rev>hmVal){hmVal=mm[ym].rev; hmYm=ym;} } }
+  else if(bo){ for(const ym of graphMonths()){ const v=monthVal(ym); if(v>hmVal){hmVal=v; hmYm=ym;} } }
   else if(qm){ const g=state.qimai&&state.qimai.games&&state.qimai.games[state.tag]; const mm=(g&&g.monthly)||{};
     for(const ym in mm){ if(mm[ym].qtot>hmVal){hmVal=mm[ym].qtot; hmYm=ym;} } }
   else  { // mirror the by-Month total: game-i's published monthly where it exists, else the reconstructed banner sum
@@ -1095,7 +1109,7 @@ function renderStats(){
     + tile("Highest banner", fmt(val(top)), topName, icRow([top]), `data-i="${top._i}" title="Open ${esc(topName)}"`)
     + tile("Highest month", hmVal>=0?fmt(hmVal):"—", hmName, icRow(hmBanners), hmYm?`data-period="month" data-key="${hmYm}" title="Open ${esc(hmName)}"`:"")
     + tile("Average / banner", fmt(sum/real.length),
-           st?"mean estimate · combined" : cn?"mean estimate · global, all platforms" : qm?"mean estimate · China iPhone" : "mean estimate")
+           st?"mean estimate · combined" : cn?"mean estimate · global, all platforms" : qm?"mean estimate · China iPhone" : bo?"mean · Japan + China iPhone, at today's rate" : "mean estimate")
     + nowTile(state.data.now)
     + cnNowTile();
   // one panel, cells split by hairlines: all in one row on a wide screen, two even rows on a
@@ -1339,6 +1353,7 @@ function srcVal(b){
   if(state.dataSource==="st") return bannerST(b).total;
   if(state.dataSource==="cn"){ const c=bannerCN(b); return cnMid({lo:c.lo,hi:c.hi}); }
   if(state.dataSource==="qimai") return bannerQimai(b).total;
+  if(state.dataSource==="both") return bannerBoth(b).total;
   return b.rev;
 }
 // Uma's gacha is generically named — every pickup shares the same "…プリティーダービーガチャ…"
@@ -1372,6 +1387,10 @@ function rowHTML(b,rank,max){
     valStr = b._synthetic ? `<span class="val muted">—</span>`
       : !qm.hasData ? `<span class="val nodata" title="No Qimai China-iPhone revenue for this banner (its game isn't in the Qimai set yet, or it ran before Qimai's data)">no Qimai data</span>`
       : `<span class="val">${fmtUSD(val)}</span>`;
+  } else if(state.dataSource==="both"){ const x=bannerBoth(b); val=x.total;
+    const how=`Japan ${fmtUSD(x.jp)} from game-i's ¥${fmtG(b.rev)} + China iPhone ${x.hasCN?fmtUSD(x.cn)+" from Qimai":"(no Qimai figure)"}. Yen at ${fxLine()}.`;
+    valStr = `<span class="val" title="${esc(how)}">${fmtUSD(val)}`
+      + (!x.hasCN && !b._synthetic ? `<span class="partialbadge" title="No Qimai China-iPhone figure for this banner, so this is Japan alone">JP only</span>` : "") + `</span>`;
   } else { val=b.rev; valStr=`<span class="val">${G(val)}</span>`; }
   const w=Math.max(val>0?1.2:0,(val/max)*100), m=rank<=3?` m${rank}`:"";
   return `<div class="row${b._synthetic?" synrow":""}${b.pending?" pendrow":""}" data-i="${b._i}" style="--bar-l:${bl};--bar-d:${bd};--av-ring:${c}">
@@ -1388,8 +1407,8 @@ function rowHTML(b,rank,max){
 function axesHTML(max){
   const src=state.dataSource;
   // CN reuses the USD tick maths -- both are plain linear money axes, unlike game-i's 億
-  const tk = (src==="st"||src==="cn"||src==="qimai") ? usdTicks(max) : ticks(max,state.bracket);
-  const fmt = src==="st" ? fmtUSD : src==="cn" ? fmtCNY : src==="qimai" ? fmtUSD : G;
+  const tk = (src==="cn"||usdSrc(src)) ? usdTicks(max) : ticks(max,state.bracket);
+  const fmt = srcFmtOf(src);
   return tk.map(t=>`<div class="axis" style="left:calc(101px + (100% - 101px - 74px) * ${t/max})"><span>${fmt(t)}</span></div>`).join("");}
 
 // Every bar's track shrinks to fit its value label, so "¥0" next to "¥146M" left the tracks
@@ -1418,7 +1437,7 @@ function renderBars(){
   // one axis (timeline gridlines are full-height, so they can't vary per year): match-highest
   // fits the axis tightly to the shown set's peak; otherwise leaves roomy headroom.
   const peak=Math.max(0,...pool.map(V));
-  const max = (stMode||state.dataSource==="cn"||state.dataSource==="qimai") ? (usdTop(peak)||1) : roundTop(peak, state.matchHigh);
+  const max = (state.dataSource==="cn"||usdSrc(state.dataSource)) ? (usdTop(peak)||1) : roundTop(peak, state.matchHigh);
   // FLIP: capture current row positions before we replace the DOM
   const old={};
   document.querySelectorAll("#chart .row").forEach(r=>{ old[r.dataset.i]=r.getBoundingClientRect().top; });
@@ -1913,7 +1932,7 @@ function dodgeIcons(pts, R){
       if(dy<gap){ const need=q.x+Math.sqrt(gap*gap-dy*dy); if(p.x<need) p.x=need; } } }
 }
 function groupSVG(segs, gmax, step){
-  const usd = state.dataSource==="st" || state.dataSource==="qimai", cnMode = state.dataSource==="cn";
+  const usd = usdSrc(state.dataSource), cnMode = state.dataSource==="cn";
   const fmt = usd ? fmtUSD : cnMode ? fmtCNY : G;
   const tl=segs.length>1, nB=segs.reduce((a,x)=>a+x.items.length,0);
   // a phone gets a shorter chart: 760px tall filled the whole screen, so the axis, the icons and
@@ -1974,7 +1993,7 @@ function graphTimeline(){ return state.graphLayout==="together"; }
 function renderGraph(){
   state.data.banners.forEach((x,i)=>x._i=i);
   const money = state.dataSource!=="gamei";
-  const srcLbl = state.dataSource==="st" ? "Sensor Tower" : state.dataSource==="cn" ? "CN" : state.dataSource==="qimai" ? "Qimai" : "";
+  const srcLbl = state.dataSource==="st" ? "Sensor Tower" : state.dataSource==="cn" ? "CN" : state.dataSource==="qimai" ? "Qimai" : state.dataSource==="both" ? "game-i + Qimai" : "";
   let pool = poolBanners();                     // graph ignores the character search entirely
   if(money) pool = pool.filter(b=>graphVal(b)>0);  // money layers: only banners that source actually covers
   if(!pool.length){
@@ -1990,7 +2009,7 @@ function renderGraph(){
   const groups={}; pool.forEach(x=>{ const k=groupKey(x); (groups[k]=groups[k]||[]).push(x); });
   let keys=Object.keys(groups).sort();
   const seg=k=>{ const [x0,x1]=groupRange(k, groups[k]); return {key:k, x0, x1, items:groups[k]}; };
-  const fmt = state.dataSource==="st"||state.dataSource==="qimai" ? fmtUSD : state.dataSource==="cn" ? fmtCNY : G;
+  const fmt = srcFmtOf(state.dataSource);
   const tot = items => `<span class="yhead-sub">${fmt(items.reduce((a,b)=>a+(graphVal(b)||0),0))}</span>`;
   setGraphWide(graphTimeline() && keys.length>1);
   if(graphTimeline()){
@@ -2013,8 +2032,9 @@ function monthVal(ym){
   if(s==="st") return (extMonth(ym)||{}).rev||0;
   if(s==="cn") return cnMid(cnMonth(ym));
   if(s==="qimai"){ const m=qimaiMonth(ym); return m?m.qtot:0; }
-  const g=(state.data.monthly||{})[ym];
-  return g!=null ? g : (((state.monthly||{})[ym]||{}).ours||0);
+  const g=(state.data.monthly||{})[ym], jp=g!=null ? g : (((state.monthly||{})[ym]||{}).ours||0);
+  if(s==="both"){ const m=qimaiMonth(ym); return jpUSD(jp)+(m?m.qtot:0); }
+  return jp;
 }
 function graphMonths(){
   const qg=state.qimai&&state.qimai.games&&state.qimai.games[state.tag];
@@ -2033,6 +2053,8 @@ function monthBanners(ym){
   if(s==="gamei") out=bl.map(x=>({b:state.data.banners[x.i], v:x.rev}));
   else if(s==="qimai") out=bl.map(x=>({b:state.data.banners[x.i],
     v:((qg&&qg.banners&&qg.banners[x.i]&&qg.banners[x.i].monthly)||{})[ym]||0}));
+  else if(s==="both") out=bl.map(x=>({b:state.data.banners[x.i],
+    v:jpUSD(x.rev)+(((qg&&qg.banners&&qg.banners[x.i]&&qg.banners[x.i].monthly)||{})[ym]||0)}));
   else {
     const g=(state.data.monthly||{})[ym], base=(g!=null&&g>0)?g:((bm&&bm.ours)||0);
     const sh=bl.map(x=>{ const b=state.data.banners[x.i];
@@ -2042,7 +2064,7 @@ function monthBanners(ym){
   }
   return out.sort((a,c)=>c.v-a.v);
 }
-const monthFmt = () => (state.dataSource==="st"||state.dataSource==="qimai") ? fmtUSD : state.dataSource==="cn" ? fmtCNY : G;
+const monthFmt = () => srcFmtOf(state.dataSource);
 // a column with a 4px rounded top, square on the baseline
 function colPath(x, w, y, base){
   const r=Math.min(4, w/2, Math.max(0, base-y));
@@ -2075,7 +2097,7 @@ function monthAxis(months, tl, ML, pW, H, MT){
   return {slot, idx, xt, seps};
 }
 function monthGrid(gmax, yOf, ML, W, MR){
-  const usd = state.dataSource==="st" || state.dataSource==="qimai", cnMode = state.dataSource==="cn", fmt=monthFmt();
+  const usd = usdSrc(state.dataSource), cnMode = state.dataSource==="cn", fmt=monthFmt();
   const tv=(usd||cnMode)?usdTicks(gmax):ticks(gmax,state.bracket||0);
   return tv.map(t=>{const y=yOf(t);
     return `<line class="grid" x1="${ML}" y1="${y.toFixed(1)}" x2="${W-MR}" y2="${y.toFixed(1)}"/>`+
@@ -2131,7 +2153,7 @@ function monthSVG(months, gmax, tl){
 function monthYearsShown(all){ const p=(state.graphYearsSel||[]).filter(y=>all.includes(y)); return p.length?p:all; }
 function renderMonthGraph(){
   const money = state.dataSource!=="gamei", fmt=monthFmt(), draw = monthSVG;
-  const srcLbl = state.dataSource==="st" ? "Sensor Tower" : state.dataSource==="cn" ? "CN" : state.dataSource==="qimai" ? "Qimai" : "game-i";
+  const srcLbl = state.dataSource==="st" ? "Sensor Tower" : state.dataSource==="cn" ? "CN" : state.dataSource==="qimai" ? "Qimai" : state.dataSource==="both" ? "game-i + Qimai" : "game-i";
   const all=graphMonths().filter(ym=>monthVal(ym)>0), allYears=[...new Set(all.map(ym=>ym.slice(0,4)))].sort();
   const years=monthYearsShown(allYears), months=all.filter(ym=>years.includes(ym.slice(0,4)));
   if(!months.length){
@@ -2165,7 +2187,7 @@ function monthBannerRow(x, est, fmt){
 function showMonthTip(ym, e){
   const fmt=monthFmt(), est = state.dataSource==="st"||state.dataSource==="cn";
   const srcLbl = state.dataSource==="st" ? "Sensor Tower · combined" : state.dataSource==="cn" ? "CN ranking · global"
-    : state.dataSource==="qimai" ? "Qimai · China iPhone" : ((state.data.monthly||{})[ym]!=null ? "game-i monthly · 月次売上予測" : "game-i · from daily ranks");
+    : state.dataSource==="qimai" ? "Qimai · China iPhone" : state.dataSource==="both" ? "game-i + Qimai · Japan + China iPhone" : ((state.data.monthly||{})[ym]!=null ? "game-i monthly · 月次売上予測" : "game-i · from daily ranks");
   const list=monthBanners(ym), shown=list.slice(0,8), partial=ym===new Date().toISOString().slice(0,7), lead=monthLead(ym);
   tip.innerHTML=`<div class="body"><h4>${MONTHS[+ym.slice(5,7)-1]} ${ym.slice(0,4)}${partial?` <span class="mt-so">so far</span>`:""}</h4>
     <div class="mtip-tot"><b>${fmt(monthVal(ym))}</b><span>${esc(srcLbl)}</span></div>
@@ -2173,6 +2195,7 @@ function showMonthTip(ym, e){
       :`<div class="mtip-more">No listed banner ran this month</div>`}
     ${state.dataSource==="st"&&stMonthNote(ym)?`<div class="mtip-more">⚠ ${esc(stMonthNote(ym).title)}</div>`:""}
     ${est&&list.length?`<div class="mtip-more">Banner figures split the month by each one's game-i + Qimai share — an estimate</div>`:""}
+    ${state.dataSource==="both"||(usdOn()&&(state.dataSource==="gamei"||state.dataSource==="cn"))?`<div class="mtip-more">${state.dataSource==="cn"?"Yuan":"Yen"} in US$ at ${esc(fxLine(state.dataSource==="cn"))}</div>`:""}
     <div class="tiphint">▸ Click for the month's breakdown</div></div>`;
   tip.hidden=false; place(tip,e);
 }
@@ -2261,6 +2284,10 @@ function updateControlVis(){
     // a game with no CN rows must not be left stuck on an empty CN view
     if(!has && state.dataSource==="cn"){ state.dataSource="gamei";
       $("#dataSrc").querySelectorAll("[data-src]").forEach(b=>b.classList.toggle("on",b.dataset.src==="gamei")); } }                   // game-i/ST toggle in every chart view (incl. Graph) except Table
+  const boBtn=$("#dataSrc").querySelector('[data-src="both"]');
+  if(boBtn){ const has=hasQimai(state.tag) && !!fxRate("JPY"); boBtn.hidden=!has;
+    if(!has && state.dataSource==="both"){ state.dataSource="gamei";
+      $("#dataSrc").querySelectorAll("[data-src]").forEach(b=>b.classList.toggle("on",b.dataset.src==="gamei")); } }
   const qmBtn=$("#dataSrc").querySelector('[data-src="qimai"]');
   if(qmBtn){ const has=hasQimai(state.tag); qmBtn.hidden=!has;
     if(!has && state.dataSource==="qimai"){ state.dataSource="gamei";
@@ -2281,6 +2308,7 @@ function render(){
   grNote(showNote && state.dataSource==="gamei");
   $("#cnnote").hidden = !(showNote && state.dataSource==="cn");
   if($("#qmnote")) $("#qmnote").hidden = !(showNote && state.dataSource==="qimai");
+  fxNote(showNote);
   if(state.table){ buildTable(); return; }
   if(state.mode==="graph"){ state.graphUnit==="month" ? renderMonthGraph() : renderGraph(); return; }
   if(state.mode==="year"){ renderYearly(); return; }
@@ -2785,7 +2813,8 @@ function renderMonthly(){
   const stM=ym=>(extMonth(ym)||{}).rev||0;
   const cnM=ym=>cnMid(cnMonth(ym));
   const qmM=ym=>{ const m=qimaiMonth(ym); return m?m.qtot:0; };
-  const val = state.dataSource==="st" ? stM : state.dataSource==="cn" ? cnM : state.dataSource==="qimai" ? qmM : mval;   // Ranking sorts by the toggled data source
+  const boM=ym=>jpUSD(mval(ym))+qmM(ym);
+  const val = state.dataSource==="st" ? stM : state.dataSource==="cn" ? cnM : state.dataSource==="qimai" ? qmM : state.dataSource==="both" ? boM : mval;   // Ranking sorts by the toggled data source
   let order = state.periodSort==="ranking" ? [...months].sort((a,b)=>val(b)-val(a)) : [...months].reverse();
   if(state.reverse) order.reverse();
   if(state.monthYear!=="all") order=order.filter(ym=>ym.slice(0,4)===state.monthYear);
@@ -2885,7 +2914,7 @@ function renderMonthly(){
     // match a taller row-mate.
     html+=`<div class="mc" data-period="month" data-key="${ym}">
       <div class="mc-hd"><div class="mc-month">${MONTHS[mo-1]||ym} <span class="mc-yr">${y}</span></div>
-        <div class="mc-kpis">${kGi}${kRe}${kQm}${kSt}${kCn}</div></div>
+        <div class="mc-kpis">${kBoth(jpUSD(g!=null?g:o), qmR?qmR.qtot:0, "month")}${kGi}${kRe}${kQm}${kSt}${kCn}</div></div>
       ${st?stNoteHTML(ym):""}${bar}<div class="mc-body">${contribs}${overlap}</div></div>`;
   });
   $("#chart").innerHTML=html;
@@ -2911,6 +2940,15 @@ function fitBannerNames(root){
 // A year/version summary card: game-i total + Sensor Tower total as KPI scorecards,
 // the change vs the previous period, and a magnitude bar. data-period/key wire the
 // click-through dialog (banners of that period, ranked).
+// the "game-i + Qimai $" scorecard: only while that source is picked, so the cards don't grow a
+// fifth figure for everyone
+function kBoth(jp, cn, kind){
+  if(state.dataSource!=="both" || !(jp+cn>0)) return "";
+  return `<div class="mck bo" title="${esc(`Japan ${fmtUSD(jp)} from game-i + China iPhone ${fmtUSD(cn)} from Qimai. Yen at ${fxLine()}.`)}"><span class="mck-k">Japan + China iPhone</span>`
+    + `<span class="mck-v">${fmtUSD(jp+cn)}</span><span class="mck-n">game-i + Qimai · US$</span></div>`;
+}
+// the By Year / By Version headline total: game-i's, or Japan + China iPhone under "game-i + Qimai $"
+const headTot = oku => state.dataSource==="both" ? fmtUSD(jpUSD(oku)+qimaiSum(()=>true)) : G(oku);
 function periodCard(o){
   const chgB = c => c!=null ? ` · <span class="chg ${c>=0?"up":"down"}"${o.lflNote?` title="${esc(o.lflNote)}"`:""}>${c>=0?"▲":"▼"}${Math.abs(c).toFixed(0)}% vs ${esc(o.chgVs)}</span>` : "";
   const giChgHTML = chgB(o.chg);
@@ -2943,7 +2981,7 @@ function periodCard(o){
       `<span class="yc-lg"><span class="yc-lg-dot" style="background:${barColor(b)}"></span>${esc(bnm(b))}</span>`).join("")}${bans.length>6?`<span class="yc-lg muted">+${bans.length-6} more</span>`:""}</div>` : "";
   return `<div class="yc" data-period="${o.kind}" data-key="${esc(String(o.key))}">
     <div class="yc-hd"><div class="yc-label">${esc(o.label)}${o.prog?`<span class="yc-prog">in progress</span>`:""}</div>
-      <div class="mc-kpis yc-kpis">${kGi}${kQm}${kSt}${kCn}</div></div>
+      <div class="mc-kpis yc-kpis">${kBoth(jpUSD(o.rev), o.qm?o.qm.rev:0, o.kind)}${kGi}${kQm}${kSt}${kCn}</div></div>
     <div class="yc-track">${fill}</div>${legend}</div>`;
 }
 // banner display name (agents joined, else banner name) — shared by cards & bars
@@ -2963,12 +3001,12 @@ function renderYearly(){
   const stY=y=>(extSum(ym=>ym.slice(0,4)===String(y))||{}).rev||0;
   const cnY=y=>cnMid(cnSum(ym=>ym.slice(0,4)===String(y))||null);
   const qmY=y=>qimaiSum(ym=>ym.slice(0,4)===String(y));
-  const vy = state.dataSource==="st" ? stY : state.dataSource==="cn" ? cnY : state.dataSource==="qimai" ? qmY : (y=>byYear[y]);
+  const vy = state.dataSource==="st" ? stY : state.dataSource==="cn" ? cnY : state.dataSource==="qimai" ? qmY : state.dataSource==="both" ? (y=>jpUSD(byYear[y])+qmY(y)) : (y=>byYear[y]);
   let order = state.periodSort==="ranking" ? [...years].sort((a,b)=>vy(b)-vy(a)) : [...years].sort((a,b)=>b-a);
   if(state.reverse) order.reverse();
   if(searching()){ order=order.filter(y=>(bansBy[y]||[]).some(searchMatch));
     if(!order.length){ $("#chart").innerHTML=noResultsHTML(); return; } }
-  const head=`<div class="yr-head"><b>${esc(state.data.name)}</b> — ${G(total)} total across ${years.length} year${years.length>1?"s":""}</div>`
+  const head=`<div class="yr-head"><b>${esc(state.data.name)}</b> — ${headTot(total)} total across ${years.length} year${years.length>1?"s":""}</div>`
     + `<div class="yr-note">Each year shows game-i's tracked total (Japan), Qimai's China iPhone total, the Sensor Tower combined sum and the CN ranking's figure (a range). Each change compares against the year before; the year in progress compares its complete months with the same months of last year. Sensor Tower's older, region-summed months are marked <b>*</b>; the current year is in progress, so the first and latest years are partial. <b>Click a card</b> for that year's banners.</div>`;
   const rows=order.map(y=>{
     const rev=byYear[y], prev=byYear[y-1];
@@ -3003,12 +3041,12 @@ function renderVersions(){
   const stV=v=>(extSum(ym=>versionOfYm(ym)===v)||{}).rev||0;
   const cnV=v=>cnMid(cnSum(ym=>versionOfYm(ym)===v)||null);
   const qmV=v=>qimaiSum(ym=>versionOfYm(ym)===v);
-  const vv = state.dataSource==="st" ? stV : state.dataSource==="cn" ? cnV : state.dataSource==="qimai" ? qmV : (v=>byV[v]);
+  const vv = state.dataSource==="st" ? stV : state.dataSource==="cn" ? cnV : state.dataSource==="qimai" ? qmV : state.dataSource==="both" ? (v=>jpUSD(byV[v])+qmV(v)) : (v=>byV[v]);
   let order = state.periodSort==="ranking" ? [...vers].sort((a,b)=>vv(b)-vv(a)) : [...vers].reverse();
   if(state.reverse) order.reverse();
   if(searching()){ order=order.filter(v=>(bansBy[v]||[]).some(searchMatch));
     if(!order.length){ $("#chart").innerHTML=noResultsHTML(); return; } }
-  const head=`<div class="yr-head"><b>${esc(state.data.name)}</b> — ${G(total)} across ${vers.length} version${vers.length>1?"s":""}</div>`
+  const head=`<div class="yr-head"><b>${esc(state.data.name)}</b> — ${headTot(total)} across ${vers.length} version${vers.length>1?"s":""}</div>`
     + `<div class="yr-note">Grouped by major game version (1.X = all of v1.x, etc.). Qimai, Sensor Tower and CN ranking months are mapped to versions by date (approximate); each change compares against the version before, and the version still running against the same number of months at the start of the last one. The first and latest versions may be partial. <b>Click a card</b> for that version's banners.</div>`;
   const months=allYms();
   const rows=order.map(v=>{
@@ -5167,7 +5205,8 @@ function openBanner(b, keepStack){
       : `<p class="bm-note bm-recon">game-i publishes one figure per banner: its estimate of what the banner earned from mobile gacha <b>in Japan</b>, in its own "G" unit (1億G ≈ ¥100 million). It is the only per-banner revenue anyone publishes, which is why the other tabs lean on its shape.</p>`}
     <div class="bm-headline">
       <span><span class="l">Est. revenue${b.ongoing?" so far":""}</span><div class="v">${G(b.rev)}</div></span>
-      <span class="sub">Japan · mobile only · game-i's own estimate</span></div>
+      <span class="sub">Japan · mobile only · game-i's own estimate${usdOn()?` · yen at ${esc(fxLine())}`:""}</span></div>
+    ${bothLine(b)}
     ${placementLine(b, placeVal.gamei, false, "Japan revenue")}
     ${midRunNoteGi(b)}`;
   // Build-up sits directly under the rank curve: it is the same run, day by day, read
@@ -5327,6 +5366,9 @@ function applyCcy(){
   const gi=$("#dataSrc")&&$("#dataSrc").querySelector('[data-src="gamei"]'), cn=$("#dataSrc")&&$("#dataSrc").querySelector('[data-src="cn"]');
   if(gi) gi.textContent = on ? "game-i ¥→$" : "game-i ¥";
   if(cn) cn.textContent = on ? "CN CN¥→$" : "CN CN¥";
+  const bo=$("#dataSrc")&&$("#dataSrc").querySelector('[data-src="both"]');
+  if(bo && ok) bo.title=`Japan + China iPhone in one figure: game-i's yen at ${fxLine()}, plus Qimai's China iPhone dollars`;
+  if(state.data) fxNote(!state.table && !rankByScored());
   document.documentElement.classList.toggle("ccy-usd", on);
 }
 $("#ccyBtn").onclick=()=>{
@@ -6547,6 +6589,22 @@ function resetSearch(){ if(searchInput){ searchInput.value=""; } state.search=""
 
 // ---- methodology modal ----
 const infoModal=$("#infoModal");
+// the source note for converted dollars: the "game-i + Qimai $" view, or game-i / CN shown in US$
+function fxNote(show){
+  const el=$("#fxnote"); if(!el) return;
+  const s=state.dataSource, on = show && (s==="both" || (usdOn() && (s==="gamei" || s==="cn")));
+  el.hidden=!on; if(!on) return;
+  el.innerHTML = s==="both"
+    ? `<b>Japan + China iPhone, in US$.</b> game-i's Japan estimate (App Store + Google Play, in yen) converted at <b>${esc(fxLine())}</b>, plus Qimai's China iPhone App Store estimate (already in dollars). This is the only view that adds two sources together, and it is two stores, not worldwide revenue: Sensor Tower is the worldwide figure, and Android in China isn't in either. A banner with no Qimai figure counts Japan alone and is tagged <span class="pill">JP only</span>.`
+    : `<b>Shown in US$.</b> ${s==="cn"?"The CN ranking's yuan":"game-i's yen"} converted at <b>${esc(fxLine(s==="cn"))}</b>. Switch back with the <b>US$</b> button at the top.`;
+  el.innerHTML += ` One rate for every date, the latest daily one, so a banner from years ago is in today's dollars, and every converted figure moves a little each day with the exchange rate.`;
+}
+// the banner window's "Japan + China iPhone" line: game-i in dollars plus Qimai
+function bothLine(b){
+  if(!hasQimai(state.tag) || !fxRate("JPY") || b._synthetic) return "";
+  const x=bannerBoth(b);
+  return `<p class="bm-note bm-both"><b>Japan + China iPhone: ${fmtUSD(x.total)}</b> — game-i ${fmtUSD(x.jp)} + ${x.hasCN?`Qimai ${fmtUSD(x.cn)}`:"no Qimai figure for this banner"}, with the yen at ${esc(fxLine())}.</p>`;
+}
 function showInfoTab(which){
   $("#infoToggle").querySelectorAll("[data-info]").forEach(b=>b.classList.toggle("on",b.dataset.info===which));
   $("#infoGamei").hidden = which!=="gamei";
@@ -6554,6 +6612,7 @@ function showInfoTab(which){
   if($("#infoCN")) $("#infoCN").hidden = which!=="cn";
   if($("#infoQimai")) $("#infoQimai").hidden = which!=="qimai";
   if($("#infoCNChart")) $("#infoCNChart").hidden = which!=="cnchart";
+  if($("#infoBoth")){ $("#infoBoth").hidden = which!=="both"; const r=$("#infoFxRate"); if(r) r.textContent=fxLine(true)||"the latest daily rate"; }
   const card=infoModal.querySelector(".modal-card"); if(card) card.scrollTop=0;
 }
 $("#infoToggle").querySelectorAll("[data-info]").forEach(btn=>btn.onclick=()=>showInfoTab(btn.dataset.info));
@@ -6562,7 +6621,7 @@ document.addEventListener("click",e=>{ const l=e.target.closest(".grwhylink,.rec
   showInfoTab("gamei"); infoModal.hidden=false;
   const h=document.getElementById(l.classList.contains("reconlink")?"giOfficial":"giDailyMonthly");
   if(h) setTimeout(()=>h.scrollIntoView({block:"start"}),30); });
-$("#infoBtn").onclick=()=>{ showInfoTab(state.dataSource==="st"?"st":state.dataSource==="cn"?"cn":state.dataSource==="qimai"?"qimai":"gamei"); infoModal.hidden=false; };
+$("#infoBtn").onclick=()=>{ showInfoTab(state.dataSource==="st"?"st":state.dataSource==="cn"?"cn":state.dataSource==="qimai"?"qimai":state.dataSource==="both"?"both":"gamei"); infoModal.hidden=false; };
 // click a worked-example source image to enlarge it in a lightbox
 const lightbox=$("#lightbox"), lightboxImg=$("#lightboxImg");
 $("#infoModal").addEventListener("click",e=>{ const im=e.target.closest(".info-ex-img");
