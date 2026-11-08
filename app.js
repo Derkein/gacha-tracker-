@@ -193,7 +193,21 @@ function fmtG(oku){
   if (m >= 100)  return Math.round(m) + "M";
   return (Math.round(m*10)/10) + "M";
 }
-const G = oku => "¥" + fmtG(oku);
+// ---- currency: native (¥ / CN¥) or everything in US$ at ONE rate, the latest daily one ----
+// data/fx.json (scripts/fetch_fx.py, ECB reference rate, refreshed by the daily workflow). The
+// choice is the viewer's and is shared with the journal (localStorage "ccy"). Only the display
+// changes: sorting, sums and every comparison work on the native figures, and a single rate
+// per currency can't reorder anything.
+let _ccy = (()=>{ try{ return localStorage.getItem("ccy")==="usd" ? "usd" : "native"; }catch(e){ return "native"; } })();
+const fxRate = cur => (state.fx && state.fx.per_usd && state.fx.per_usd[cur]) || null;
+const usdOn = () => _ccy==="usd" && !!fxRate("JPY") && !!fxRate("CNY");
+const G = oku => usdOn() ? fmtUSD(oku*1e8/fxRate("JPY")) : "¥" + fmtG(oku);
+// a $ range sharing one prefix (and one suffix when both ends share it): "$24.3–28.7M"
+function fmtUSDRange(lo, hi){
+  if(hi==null || Math.abs(hi-lo)<1e-9) return fmtUSD(lo);
+  const a=fmtUSD(lo), b=fmtUSD(hi), ua=a.replace(/[\d.$]/g,""), ub=b.replace(/[\d.$]/g,"");
+  return ua===ub ? a.slice(0, a.length-ua.length)+"–"+b.slice(1) : a+"–"+b.slice(1);
+}
 
 // ---- external global monthly revenue, in USD (a comparison layer vs game-i) ----
 // Source: the actual Sensor Tower / gacharevenue monthly REPORT figures, read from the
@@ -310,6 +324,7 @@ function stChip(rev, method, extra){
 // different months read identically: ZZZ was 34478万 in May and 34502万 in June, and
 // both displayed as "CN¥345M". Billions keep three decimals for the same reason.
 function fmtCNY(v){
+  if(usdOn()) return fmtUSD(v/fxRate("CNY"));
   if(v==null||v<=0) return "CN¥ 0";
   if(v>=1e9) return "CN¥ "+(v/1e9).toFixed(3)+"B";
   if(v>=1e6) return "CN¥ "+(v/1e6).toFixed(2)+"M";
@@ -321,6 +336,7 @@ function fmtCNY(v){
 // crossing M into B keeps both suffixes but still prints "CN¥" once -- repeating it gave
 // "CN¥869.32M–CN¥1.019B", wide enough to push the KPI tile out of its card.
 function fmtCNYRange(lo, hi){
+  if(usdOn()) return fmtUSDRange(lo/fxRate("CNY"), hi==null?null:hi/fxRate("CNY"));
   if(hi==null||hi===lo) return fmtCNY(lo);
   const a=fmtCNY(lo), b=fmtCNY(hi);
   const ua=a.replace(/[\d.\s]+/g,""), ub=b.replace(/[\d.\s]+/g,"");
@@ -331,6 +347,7 @@ function fmtCNYRange(lo, hi){
 // "CN¥161–191M"), so it fits a phone-width column. Full precision stays in the KPI tile
 // and the banner modal. Hundreds-of-millions ranges lose nothing meaningful to rounding.
 function fmtCNYRangeC(lo, hi){
+  if(usdOn()) return fmtUSDRange(lo/fxRate("CNY"), hi==null?null:hi/fxRate("CNY"));
   const band=v=> v>=1e9?["B",1e9,2] : v>=1e6?["M",1e6,0] : v>=1e3?["K",1e3,0] : ["",1,0];
   const [ua,da,pa]=band(lo);
   if(hi==null||hi===lo) return "CN¥"+(lo/da).toFixed(pa)+ua;
@@ -811,6 +828,9 @@ async function init(){
   try { state.reported = await getJSON("data/reported_revenue.json"); } catch(e){ state.reported=null; }
   // CN monthly layer. Best-effort like the others: a miss just hides the CN figures.
   try { state.cn = await getJSON("data/cn_monthly.json"); } catch(e){ state.cn=null; }
+  // today's exchange rates for the US$ toggle. Best-effort: without them the toggle hides.
+  try { state.fx = await getJSON("data/fx.json"); } catch(e){ state.fx=null; }
+  applyCcy();
   // Qimai daily China-iPhone revenue (USD, App Store gross, Qimai model estimate), per
   // banner + per month. A daily source like game-i, but for China iOS. Best-effort.
   try { state.qimai = await getJSON("data/qimai.json"); } catch(e){ state.qimai=null; }
@@ -5294,6 +5314,34 @@ $("#revMode").querySelectorAll("[data-revmode]").forEach(btn=>btn.onclick=()=>{
   if(state.revMode===btn.dataset.revmode) return;
   state.revMode=btn.dataset.revmode; rebuildInPlace();        // rebuild every derived view from the new figures
 });
+// the US$ toggle: relabel the yen / yuan sources, then redraw whatever is on screen
+function applyCcy(){
+  const btn=$("#ccyBtn"), ok=!!(fxRate("JPY") && fxRate("CNY")), on=usdOn();
+  if(btn){
+    btn.hidden=!ok; btn.classList.toggle("on", on); btn.setAttribute("aria-pressed", String(on));
+    btn.textContent = on ? "US$" : "¥";
+    if(ok){ const f=state.fx;
+      btn.title = (on ? "Showing yen and yuan in US$" : "Show yen and yuan in US$")
+        + ` — $1 = ¥${f.per_usd.JPY} = CN¥${f.per_usd.CNY} (${f.source}, ${per(f.date)}). Click to switch.`; }
+  }
+  const gi=$("#dataSrc")&&$("#dataSrc").querySelector('[data-src="gamei"]'), cn=$("#dataSrc")&&$("#dataSrc").querySelector('[data-src="cn"]');
+  if(gi) gi.textContent = on ? "game-i ¥→$" : "game-i ¥";
+  if(cn) cn.textContent = on ? "CN CN¥→$" : "CN CN¥";
+  document.documentElement.classList.toggle("ccy-usd", on);
+}
+$("#ccyBtn").onclick=()=>{
+  _ccy = _ccy==="usd" ? "native" : "usd";
+  try{ localStorage.setItem("ccy",_ccy); }catch(e){}
+  applyCcy();
+  if(!state.data) return;
+  renderStats(); render();
+  if(_bmCur && !bannerModal.hidden){        // reopen the banner window on the tab that was showing
+    const tab=document.querySelector("#bmSrc [data-bmsrc].on"), y=bannerModal.querySelector(".modal-card").scrollTop;
+    openBanner(_bmCur, true);
+    if(tab){ const t=document.querySelector(`#bmSrc [data-bmsrc="${tab.dataset.bmsrc}"]`); if(t && !t.classList.contains("on")) t.click(); }
+    bannerModal.querySelector(".modal-card").scrollTop=y; }
+  if($("#compareModal") && !$("#compareModal").hidden && typeof renderCompareResult==="function") renderCompareResult();
+};
 $("#dataSrc").querySelectorAll("[data-src]").forEach(btn=>btn.onclick=()=>{
   state.dataSource=btn.dataset.src;
   $("#dataSrc").querySelectorAll("[data-src]").forEach(b=>b.classList.toggle("on",b===btn));

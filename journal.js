@@ -16,7 +16,13 @@ const esc = s => String(s==null?"":s).replace(/[&<>"'`]/g,c=>({"&":"&amp;","<":"
 const J = { index:null, upcoming:{}, themes:{}, cache:{} };
 
 // ---- formatting (same rules as the tracker's fmtG / fmtUSD) ----
-function fmtG(oku){ if(!(oku>0)) return "¥0"; const m=oku*100;
+// US$ toggle, shared with the tracker (localStorage "ccy"): yen and yuan at one rate, the latest
+// daily one (data/fx.json). Display only — every order on the page was decided on native figures.
+let _ccy=(()=>{ try{ return localStorage.getItem("ccy")==="usd" ? "usd" : "native"; }catch(e){ return "native"; } })();
+const fxRate = cur => (J.fx && J.fx.per_usd && J.fx.per_usd[cur]) || null;
+const usdOn = () => _ccy==="usd" && !!fxRate("JPY") && !!fxRate("CNY");
+function fmtG(oku){ if(usdOn()) return fmtUSD((oku>0?oku:0)*1e8/fxRate("JPY"));
+  if(!(oku>0)) return "¥0"; const m=oku*100;
   return "¥"+(m>=1000 ? (m/1000).toFixed(2)+"B" : m>=100 ? Math.round(m)+"M" : (Math.round(m*10)/10)+"M"); }
 function fmtUSD(v){ if(!(v>0)) return "$0";
   if(v>=1e9) return "$"+(v/1e9).toFixed(2)+"B"; if(v>=1e8) return "$"+Math.round(v/1e6)+"M";
@@ -24,6 +30,8 @@ function fmtUSD(v){ if(!(v>0)) return "$0";
   if(v>=1e3) return "$"+Math.round(v/1e3)+"K"; return "$"+Math.round(v); }
 // CN¥ ranges, compact like the tracker's by-Month cells: "CN¥4.57–5.34B", "CN¥191–228M"
 function fmtCNYr(lo, hi){
+  if(usdOn()){ const a=fmtUSD(lo/fxRate("CNY")); if(hi==null||hi===lo) return a; const b=fmtUSD(hi/fxRate("CNY"));
+    const ua=a.replace(/[\d.$]/g,""), ub=b.replace(/[\d.$]/g,""); return ua===ub ? a.slice(0,a.length-ua.length)+"–"+b.slice(1) : a+"–"+b.slice(1); }
   const band=v=> v>=1e9?["B",1e9,2] : v>=1e6?["M",1e6,0] : ["K",1e3,0];
   const [ua,da,pa]=band(lo); if(hi==null||hi===lo) return "CN¥"+(lo/da).toFixed(pa)+ua;
   const [ub,db,pb]=band(hi);
@@ -56,6 +64,9 @@ async function loadIssue(ym){
   return (J.cache[ym] = {facts, notes});
 }
 
+function applyCcy(){ const b=$("#ccyBtn"), ok=!!(fxRate("JPY")&&fxRate("CNY")), on=usdOn(); if(!b) return;
+  b.hidden=!ok; b.classList.toggle("on",on); b.setAttribute("aria-pressed",String(on)); b.textContent=on?"US$":"¥";
+  if(ok) b.title=(on?"Showing yen and yuan in US$":"Show yen and yuan in US$")+` — $1 = ¥${J.fx.per_usd.JPY} = CN¥${J.fx.per_usd.CNY} (${J.fx.source}, ${J.fx.date}). Click to switch.`; }
 // ---- theme (shares the tracker's saved choice) ----
 const THEMES=["auto","light","dark"], TICON={auto:"◐",light:"☀",dark:"☾"};
 let _theme=(()=>{ try{ return localStorage.getItem("theme")||"auto"; }catch(e){ return "auto"; } })();
@@ -654,6 +665,10 @@ document.addEventListener("click", e=>{
 async function init(){
   applyTheme(_theme);
   $("#themeBtn").onclick=()=>applyTheme(THEMES[(THEMES.indexOf(_theme)+1)%3]);
+  try{ J.fx=await getJSON("data/fx.json"); }catch(e){ J.fx=null; }
+  applyCcy();
+  $("#ccyBtn").onclick=()=>{ _ccy=_ccy==="usd"?"native":"usd"; try{ localStorage.setItem("ccy",_ccy); }catch(e){}
+    applyCcy(); const y=scrollY; if(J.index) route(); scrollTo(0,y); };
   $("#archBtn").onclick=()=>{ location.hash="archive"; };
   try{ J.index=await getJSON("data/journal/index.json"); }
   catch(e){ $("#issue").innerHTML=`<p class="loading">Couldn't load the journal index.</p>`; return; }

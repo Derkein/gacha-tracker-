@@ -32,6 +32,8 @@ img.broken{visibility:hidden}
 .mast-btn{font-family:var(--sans); font-size:12.5px; background:none; color:var(--ink2); border:1px solid var(--rule); border-radius:999px; padding:5px 12px; cursor:pointer}
 .mast-btn:hover{color:var(--ink); border-color:var(--ink2)}
 .mast-btn.theme{width:31px; padding:5px 0; font-size:14px}
+.mast-btn.ccy{font-weight:700; min-width:31px; padding:5px 9px}
+.mast-btn.ccy.on{color:var(--ink); border-color:var(--ink)}   /* lit while figures show in US$ */
 .mast-line{max-width:1180px; margin:0 auto; padding:0 16px 7px; display:flex; justify-content:center; gap:22px;
   font-family:var(--sans); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted)}
 
