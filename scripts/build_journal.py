@@ -134,18 +134,20 @@ async (pairs) => {
     if (!R.length) return Math.min(1, (hi - lo) / Math.max(1, k / 3));
     return R.filter(r => r.v >= lo && r.v < hi).length / R.length;
   };
+  // per-source weights (build_journal.py --weights; all 1 by default): gamei/jp = Japan, qimai/cnrank = China
+  const WT = window._W || {}, wt = src => WT[src] ?? 1;
   return pairs.map(([a, b]) => { const R = buildComparison([a, b]), E = [a, b], pts = [0, 0];
     const mid = (Date.parse(a.start) + Date.parse(b.start)) / 2;
     for (const r of R.rows) {
       if (r.unscored) continue;
       const v = r.cells.map(c => c.v);
       if (v[0] == null || v[1] == null) {
-        if ((r.src === "qimai" || r.src === "cnrank") && (v[0] != null) !== (v[1] != null) && E[v[0] != null ? 1 : 0].noChina) pts[v[0] != null ? 0 : 1] += 1;
+        if ((r.src === "qimai" || r.src === "cnrank") && (v[0] != null) !== (v[1] != null) && E[v[0] != null ? 1 : 0].noChina) pts[v[0] != null ? 0 : 1] += wt(r.src);
         continue;
       }
       if (v[0] === v[1]) continue;
       const w = r.better === "high" ? (v[0] > v[1] ? 0 : 1) : (v[0] < v[1] ? 0 : 1);
-      pts[w] += COUNT.test(r.metric) ? rarity(r.metric, r.k || 1, Math.min(v[0], v[1]), Math.max(v[0], v[1]), mid) : ratioW(v[0], v[1]);
+      pts[w] += wt(r.src) * (COUNT.test(r.metric) ? rarity(r.metric, r.k || 1, Math.min(v[0], v[1]), Math.max(v[0], v[1]), mid) : ratioW(v[0], v[1]));
     }
     const overall = Math.abs(pts[0] - pts[1]) < 1e-9 ? "even" : pts[0] > pts[1] ? 0 : 1;
     return { points: pts.map(x => Math.round(x * 100) / 100), overall }; });
@@ -477,14 +479,20 @@ def build_issue(games, ym, number, series):
             "debuts": [{k: r[k] for k in ("label", "tag", "game", "rev_month", "cn_month", "jp_peak", "cn_peak", "days", "rev_total", "rerun", "ongoing", "img", "face", "art", "art_face", "icons", "color", "start", "beat")} for r in debuts],
             "games": order}
 
+DRY = {}
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--month", default="", help="build only this YYYY-MM (the index is always rebuilt)")
+    ap.add_argument("--weights", default="", help="what-if head-to-head weights, e.g. gamei=1.2,jp=1.2 (sources: gamei jp qimai cnrank)")
+    ap.add_argument("--dry", default="", help="write nothing; dump each issue's order to this JSON file (for what-if runs)")
     a = ap.parse_args()
     for s in (sys.stdout, sys.stderr):
         try: s.reconfigure(encoding="utf-8", errors="replace")
         except Exception: pass
     open_site()
+    if a.weights:
+        SITE["pg"].evaluate("w => { window._W = w; }", {k: float(v) for k, v in (x.split("=") for x in a.weights.split(","))})
     games = extract()
     NO_CHINA.update(t for t, G in games.items() if not G["qimai"])
     load_zl(); series = market_series(games)
@@ -502,11 +510,19 @@ def main():
         else:
             iss = build_issue(games, ym, n, series)
             if not iss: continue
+            if a.dry:
+                DRY[ym] = {"cover": (iss["cover"] or {}).get("label"),
+                           "debuts": [[d["label"], d.get("beat")] for d in iss["debuts"]],
+                           "top": [[d["label"], d.get("beat")] for d in iss["top"]]}
+                continue
             f.write_text(json.dumps(iss, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
         notes = OUT / "notes" / f"{ym}.json"
         hl = json.loads(notes.read_text(encoding="utf-8")).get("headline") if notes.exists() else None
         index.append({"ym": ym, "number": iss["number"], "cover": iss["cover"], "headline": hl,
                       "games": [g["tag"] for g in iss["games"]], "written": notes.exists()})
+    if a.dry:
+        pathlib.Path(a.dry).write_text(json.dumps(DRY, ensure_ascii=False), encoding="utf-8"); close_site()
+        print(f"dry run: {len(DRY)} issues -> {a.dry}"); return
     (OUT / "index.json").write_text(json.dumps({"built": datetime.date.today().isoformat(), "issues": index[::-1]},
                                                ensure_ascii=False, indent=1), encoding="utf-8")
     close_site()
