@@ -107,10 +107,26 @@ for tag in GAMES:
     sched = CN_SCHEDULE.get(tag)
     sync = datetime.date.fromisoformat(sched["sync"]) if sched else None
     binfo = []
+    # A day two banners share carries ONE rank (game-i charts the game, not the banner), and
+    # game-i splits that day between them by its ガチャ売上分析 rule: evenly, a banner's first
+    # day x1.8 and its last x0.2 (scrape.py official_revenue; app.js giDayShare). The daily
+    # shape uses this banner's share of each day, so its game-i total isn't piled onto days it
+    # only half had.
+    D10 = lambda x: datetime.date.fromisoformat(x[:10])
+    spans = [([(D10(p[0]), D10(p[1])) for p in b["periods"]] if b.get("periods") else [(D10(b["start"]), D10(b["end"]))],
+              D10(b["start"]), D10(b["end"])) for b in banners]
+    def day_w(sp, d):
+        _, s0, e0 = sp
+        return 1.8 if d == s0 and s0 != e0 else (0.2 if d == e0 else 1.0)
+    def on(sp, d): return any(a <= d <= z for a, z in sp[0])
+    def share(k, d):
+        if not on(spans[k], d): return 0.0
+        den = sum(day_w(sp, d) for sp in spans if on(sp, d))
+        return day_w(spans[k], d) / den if den > 0 else 1.0
     for idx,b in enumerate(banners):
         s = b.get("rank_series") or []
         start = datetime.date.fromisoformat(b["start"][:10])
-        raw = [rankValue(x) for x in s]; tot = sum(raw) or 0
+        raw = [rankValue(x) * share(idx, start + datetime.timedelta(days=i)) for i, x in enumerate(s)]; tot = sum(raw) or 0
         rev = b.get("rev") or 0
         gid = [(rev*rw/tot) if tot>0 else 0.0 for rw in raw]   # game-i reconstructed daily
         # China-ahead games (lead>0): an ONGOING banner's China run is already `lead` days
@@ -222,13 +238,13 @@ for tag in GAMES:
 
     # ---- mid-run launch reattribution -----------------------------------------------------
     # When a banner opens in the MIDDLE of another's run (Endfield's Minho, 11/5, inside the
-    # Tangtang rerun scout), the split above follows game-i's reconstructed daily revenue. But
-    # game-i doesn't split shared days: it credits every running banner with the whole day (both
-    # read the game's rank, #64), and the two figures only differ because each banner's game-i
-    # total is spread over its own run. So the rerun got 59% of Minho's launch money. Instead the
-    # running banner keeps its own pre-launch TREND (the handoff baseline) and the newcomer gets
-    # the rest of each shared day. Banners that start together are untouched.
+    # Tangtang rerun scout), the split above follows game-i's reconstructed daily revenue, and
+    # game-i shares those days out evenly (both banners read the game's one rank, #64) -- so the
+    # rerun would keep about half of Minho's launch money. That money is the launch's. Instead
+    # the running banner keeps its own pre-launch TREND (the handoff baseline) and the newcomer
+    # gets the rest of each shared day. Banners that start together are untouched.
     moved_total = 0.0
+    midrun = collections.defaultdict(list)      # idx -> [{inc, new, base, moved}] for the site's note
     for nb in binfo:
         n_idx = nb["idx"]
         if n_idx not in btotal: continue
@@ -238,6 +254,8 @@ for tag in GAMES:
             off = (nb["cn0"] - ib["cn0"]).days          # newcomer's start, as the incumbent's run-day
             if off < 2 or off >= ib["len"]: continue     # must open after the incumbent, inside its run
             base = handoff_baseline([bdaily[i_idx].get(off-k, 0.0) for k in range(4,0,-1)])
+            rec = {"inc": i_idx, "new": n_idx, "base": round(base) if base else None, "moved": 0}
+            midrun[i_idx].append(rec); midrun[n_idx].append(rec)
             if not base: continue                        # no pre-launch history to keep it at
             for j in range(off, ib["len"]):
                 jn = j - off
@@ -249,7 +267,7 @@ for tag in GAMES:
                 bdaily[i_idx][j] -= move; btotal[i_idx] -= move; bmonthly[i_idx][gmo] -= move
                 bdaily[n_idx][jn] = bdaily[n_idx].get(jn, 0.0) + move
                 btotal[n_idx] += move; bmonthly[n_idx][gmo] += move
-                moved_total += move
+                moved_total += move; rec["moved"] += round(move)
     if moved_total: print(f"{tag}: mid-run launches: moved ${moved_total:,.0f} from running banners to the newcomers", file=sys.stderr)
 
     monthly = {}
@@ -266,7 +284,10 @@ for tag in GAMES:
         # daily[] series and its labels line up with when the banner actually ran in China.
         cn_start = bi["cn0"]
         bans[str(idx)] = {"total":round(btotal[idx]), "start":cn_start.isoformat(),
-                          "monthly":mo, "daily":daily}
+                          "monthly":mo, "daily":daily,
+                          # a banner opened mid-run: what the step above did (none moved = the
+                          # running banner's even share never went over its pre-launch level)
+                          **({"midrun": midrun[idx]} if midrun.get(idx) else {})}
     # first/last China date Qimai actually has data for, so the site can label a banner day
     # that game-i's (global) calendar reaches but Qimai hasn't posted yet as "no data yet"
     # rather than a real ¥0 / below-#200 day.

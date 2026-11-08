@@ -1260,7 +1260,7 @@ function computeSharing(){
     for(let i=0,t=s; t<=eff; t+=DAY,i++){
       if(!runsOn(b,t)) continue;                        // skip the paused gap of a split run
       runDays++;
-      const raw = series ? rankValue(series[i]) : 1;    // weight by that day's reconstructed value
+      const raw = series ? rankValue(series[i])*giDayShare(b,t) : 1;    // that day's reconstructed value, its share of it
       rawTot += raw;
       const others=all.filter(o=>o!==b && runsOn(o,t));
       if(others.length){ sharedDays++; rawShared+=raw; maxN=Math.max(maxN,others.length+1);
@@ -2625,7 +2625,7 @@ function computeMonthly(){
       return;
     }
     const s=b.rank_series; if(!s||!s.length) return;
-    const raw=s.map(rankValue), tot=raw.reduce((a,c)=>a+c,0);
+    const raw=revShape(b), tot=raw.reduce((a,c)=>a+c,0);
     // Attribute to EVERY month the run touches — not just months it earned in. A
     // banner whose rank sat below game-i's trackable top 200 all month earns ¥0
     // there, but it was still running, so it must show in that month's list (as ¥0)
@@ -3175,7 +3175,7 @@ function openPeriod(kind, key){
     [Y,Mo]=key.split("-").map(Number);
     real.forEach(b=>{
       const s=b.rank_series; if(!s||!s.length) return;
-      const raw=s.map(rankValue), tot=raw.reduce((a,c)=>a+c,0);
+      const raw=revShape(b), tot=raw.reduce((a,c)=>a+c,0);
       const s0=Date.parse(b.start+"T00:00:00Z"), DAY=864e5; let share=0, active=false;
       raw.forEach((rw,i)=>{ const d=new Date(s0+i*DAY);
         if(d.getUTCFullYear()===Y && d.getUTCMonth()===Mo-1){ active=true; if(rw>0 && tot>0) share+=b.rev*rw/tot; } });
@@ -3458,6 +3458,39 @@ function rankValue(r){
       return Math.exp(Math.log(v0)+t*(Math.log(v1)-Math.log(v0))); } }
   return 0;
 }
+// ---- a banner's share of a day it shared ------------------------------------------
+// game-i has one chart rank per GAME, so banners running at the same time all carry the same
+// rank, and game-i splits that day between them by its own ガチャ売上分析 rule (the one
+// scripts/scrape.py builds official-source games with): an even split, a banner's first day
+// weighted ×1.8 and its last ×0.2, so a changeover day goes 90/10 to the newcomer. Checked
+// against game-i's own totals (Nov 2026): pairs that overlapped with no third banner solve to
+// ~0.5 of a shared day each (Pearl/Blade 0.51, Ashveil/Boothill 0.47, Remielle/Sigrid 0.50,
+// Umamusume 0.51/0.53); across 7 of 10 games it makes game-i's yen-per-rank-value steadier
+// from banner to banner (Star Rail 14% → 13% spread, Stella Sora 27% → 13%, Umamusume
+// 26% → 18%); and the projection backtest misses less (16.5% → 14.7%). (Endfield's Tangtang
+// rerun shared every day with Si then Argent Flow, so its pair can't tell the rules apart.)
+// Ranks stay the game's; only REVENUE shapes (daily build-up, month split, projection) use this.
+const GI_FIRST=1.8, GI_LAST=0.2;
+const giDayWeight=(x,t)=>{ const s=Date.parse(x.start), e=Date.parse(x.end); return t===s&&s!==e ? GI_FIRST : t===e ? GI_LAST : 1; };
+function ensureRuns(){
+  for(const b of state.data.banners) if(!b._runs) b._runs = b.periods ? b.periods.map(p=>[Date.parse(p[0]),Date.parse(p[1])])
+                                                                       : [[Date.parse(b.start),Date.parse(b.end)]];
+}
+// this banner's share of day t (1 = had it alone; 0 = not running that day)
+function giDayShare(b, t){
+  ensureRuns(); if(!runsOn(b,t)) return 0;
+  let den=0; for(const o of state.data.banners) if(!o._synthetic && runsOn(o,t)) den+=giDayWeight(o,t);
+  return den>0 ? giDayWeight(b,t)/den : 1;
+}
+// shares over the first n days of the run (default: its rank series), cached
+function giShares(b, n){
+  n = n ?? (b.rank_series||[]).length;
+  if(b._giSh && b._giSh.data===state.data && b._giSh.w.length>=n) return b._giSh.w.slice(0,n);
+  const s0=Date.parse(b.start), w=[]; for(let i=0;i<n;i++) w.push(giDayShare(b, s0+i*864e5));
+  b._giSh={data:state.data, w}; return w.slice();
+}
+// a banner's daily revenue SHAPE: rank value × its share of the day
+const revShape = b => { const s=b.rank_series||[], w=giShares(b, s.length); return s.map((r,i)=>rankValue(r)*w[i]); };
 // ---- how front-loaded a run was -------------------------------------------------
 // game-i publishes one total per banner, but its daily rank curve says WHEN that total
 // arrived, and the shape differs a lot between games: a Star Rail banner earns most of
@@ -3467,7 +3500,7 @@ function rankValue(r){
 const BURN_MIN_DAYS = 14;    // shorter runs can't have a meaningful "first week" share
 function burnout(b){
   if(b._burn !== undefined) return b._burn;
-  const s=b.rank_series||[], w=s.map(rankValue), tot=w.reduce((a,c)=>a+c,0);
+  const s=b.rank_series||[], w=revShape(b), tot=w.reduce((a,c)=>a+c,0);
   if(!s.length || tot<=0) return (b._burn=null);
   const at=n=>w.slice(0,n).reduce((a,c)=>a+c,0)/tot;
   let run=0, half=null;
@@ -3521,8 +3554,11 @@ function projNear(key, peers, D){
   }
   return width!=null ? {near, width, isNear:true} : {near:ok, width:null, isNear:false};
 }
-function projectRun(v, key, peers, L){
-  const D=v.length, a0=v[D-1], soFar=v.reduce((a,c)=>a+c,0);
+// wt (optional): this run's share of each day 0..L-1 (giShares) -- v and the peers stay in the
+// game's own rank value, the run's banked and future days count at its share of them
+function projectRun(v, key, peers, L, wt){
+  const W=i=>wt ? (wt[i] ?? 1) : 1;
+  const D=v.length, a0=v[D-1], soFar=v.reduce((a,c,i)=>a+c*W(i),0);
   if(D<2 || D>=L || !(a0>0)) return null;
   const {near, width, isNear}=projNear(key, peers, D);
   if(near.length<PROJ_MIN_PEERS) return null;
@@ -3538,7 +3574,7 @@ function projectRun(v, key, peers, L){
   const g=w.length ? Math.min(1, Math.exp(w.reduce((a,c)=>a+Math.log(c),0)/w.length)) : 0;
   for(let t=lastCov+1;t<L;t++) m[t]=m[t-1]*g;
   const early=D<=3 ? PROJ_EARLY : 1;
-  const fut=path=>{ let s=0; for(let t=D;t<L;t++) s+=path(t); return s*early; };
+  const fut=path=>{ let s=0; for(let t=D;t<L;t++) s+=path(t)*W(t); return s*early; };
   const mid=soFar+a0*fut(t=>m[t]);
   const each=near.map(p=>soFar+a0*fut(t=>p.v.length>t ? p.v[t]/p.v[D-1] : m[t])).sort((x,y)=>x-y);
   const q=f=>each[Math.min(each.length-1, Math.floor(each.length*f))];
@@ -3548,13 +3584,19 @@ function projectRun(v, key, peers, L){
 // over this run's length -- "so far ÷ that share". On its own it misses more than
 // projectRun (it ignores how strong the run still is), but its errors are different ones,
 // and it barely moves on a single odd day.
-function shareRun(v, key, peers, L){
+function shareRun(v, key, peers, L, wt){
   const D=v.length, soFar=v.reduce((a,c)=>a+c,0);
   const {near}=projNear(key, peers, D); if(near.length<PROJ_MIN_PEERS || !(soFar>0)) return null;
   const lg=near.map(p=>{ let tot=0; for(let t=0;t<Math.min(L,p.v.length);t++) tot+=p.v[t];
     if(p.v.length<L) tot+=p.v[p.v.length-1]*(L-p.v.length)*0.8;   // a shorter peer: its last day, easing off
     const cum=p.v.slice(0,D).reduce((a,c)=>a+c,0); return cum>0 ? Math.log(tot/cum) : null; }).filter(x=>x!=null);
-  return lg.length>=PROJ_MIN_PEERS ? soFar*Math.exp(lg.reduce((a,c)=>a+c,0)/lg.length) : null;
+  if(lg.length<PROJ_MIN_PEERS) return null;
+  const U=soFar*Math.exp(lg.reduce((a,c)=>a+c,0)/lg.length);        // in the game's rank value
+  if(!wt) return U;
+  // banked at this run's actual shares, the rest at its average share of the days to come
+  const W=i=>wt[i] ?? 1, banked=v.reduce((a,c,i)=>a+c*W(i),0);
+  let ws=0; for(let t=D;t<L;t++) ws+=W(t);
+  return banked + (U-soFar)*(L>D ? ws/(L-D) : 1);
 }
 // What the page shows. projectRun anchors on the run's LATEST day, so one odd day swings it
 // (Mitya, China: $12.2M → 7.0 → 8.0 → 7.2 on days 2–5, following a slow day 4 and a steep
@@ -3568,13 +3610,13 @@ function shareRun(v, key, peers, L){
 // ~70% of the time; widened ×1.27 around the new mid it holds it ~80% on days 2–10, which is
 // what a 10th–90th range should do. Also returns `prev`: the figure the page showed a day ago.
 const PROJ_SHARE_W=0.2, PROJ_LAG_W=0.2, PROJ_BAND=1.27;
-function projectBlend(v, key, peers, L){
-  const p=projectRun(v, key, peers, L); if(!p) return null;
-  const s=shareRun(v, key, peers, L);
+function projectBlend(v, key, peers, L, wt){
+  const p=projectRun(v, key, peers, L, wt); if(!p) return null;
+  const s=shareRun(v, key, peers, L, wt);
   return {p, mid: s>0 ? Math.exp((1-PROJ_SHARE_W)*Math.log(p.mid)+PROJ_SHARE_W*Math.log(s)) : p.mid};
 }
-function projectSmooth(v, key, peers, L){
-  const D=v.length, at=d=>d>=2 ? projectBlend(v.slice(0,d), key.slice(0,d), peers, L) : null;
+function projectSmooth(v, key, peers, L, wt){
+  const D=v.length, at=d=>d>=2 ? projectBlend(v.slice(0,d), key.slice(0,d), peers, L, wt) : null;
   const cur=at(D); if(!cur) return null;
   const lag=(c,pr)=>pr ? Math.exp((1-PROJ_LAG_W)*Math.log(c.mid)+PROJ_LAG_W*Math.log(pr.mid)) : c.mid;
   const p1=at(D-1), mid=lag(cur, p1);
@@ -3590,7 +3632,7 @@ function projPeerSet(src){
   const c=projCache(); if(c[src]) return c[src];
   const fin=state.data.banners.filter(o=>!o._synthetic && !o.pending && !o.ongoing);
   return (c[src] = src==="gi"
-    ? fin.filter(o=>o.rev>0 && (o.rank_series||[]).length>=BURN_MIN_DAYS).map(o=>({v:o.rank_series.map(rankValue), key:o.rank_series}))
+    ? fin.filter(o=>o.rev>0 && (o.rank_series||[]).length>=BURN_MIN_DAYS).map(o=>({v:o.rank_series.map(rankValue), key:o.rank_series, w:giShares(o)}))
     : fin.map(o=>qimaiPosted(o)).filter(d=>d.length>=BURN_MIN_DAYS && d.reduce((a,c)=>a+c,0)>0).map(d=>({v:d, key:d})));
 }
 // How far off this reading has been for THIS game: every finished run cut at day D, projected
@@ -3600,8 +3642,8 @@ function projAccuracy(src, D){
   const runs=projPeerSet(src), errs=[]; let inR=0;
   for(const r of runs){
     if(r.v.length<=D) continue;
-    const pj=projectSmooth(r.v.slice(0,D), r.key.slice(0,D), runs.filter(p=>p!==r), r.v.length); if(!pj) continue;
-    const fin=r.v.reduce((a,c)=>a+c,0); errs.push(Math.abs(pj.mid/fin-1)); if(fin>=pj.lo && fin<=pj.hi) inR++;
+    const pj=projectSmooth(r.v.slice(0,D), r.key.slice(0,D), runs.filter(p=>p!==r), r.v.length, r.w); if(!pj) continue;
+    const fin=r.v.reduce((a,c,i)=>a+c*(r.w ? r.w[i] : 1),0); errs.push(Math.abs(pj.mid/fin-1)); if(fin>=pj.lo && fin<=pj.hi) inR++;
   }
   return (c.acc[k] = errs.length>=6 ? {med:_med(errs), inRange:inR/errs.length, n:errs.length} : null);
 }
@@ -3655,10 +3697,13 @@ function projDayWhy(v, key, src, fmtDay){
 function bannerProjection(b){
   if(b._bproj!==undefined && b._bproj.data===state.data) return b._bproj.v;
   const set=x=>{ b._bproj={data:state.data, v:x}; return x; };
-  const s=b.rank_series||[], v=s.map(rankValue), sum=v.reduce((a,c)=>a+c,0);
+  const s=b.rank_series||[], v=s.map(rankValue);
   const L=Math.round((Date.parse(b.end)-Date.parse(b.start))/864e5)+1;
+  // its share of every day of its run, the days still to come included: who it will share
+  // them with is on the schedule (Tangtang's rerun has Argent Flow beside it to the end)
+  const wt=giShares(b, L), sum=v.reduce((a,c,i)=>a+c*wt[i],0);
   if(!b.ongoing || !(b.rev>0) || sum<=0) return set(null);
-  const p=projectSmooth(v, s, projPeerSet("gi"), L); if(!p) return set(null);
+  const p=projectSmooth(v, s, projPeerSet("gi"), L, wt); if(!p) return set(null);
   // 億G per rank-value unit, this run. Yesterday's figure is put on today's scale: game-i's
   // total grows by the value of each day's rank, so the scale itself barely moves.
   const k=b.rev/sum;
@@ -3734,7 +3779,7 @@ function burnBlock(b){
 
 function dailyBreakdown(b){
   const s=b.rank_series||[]; if(!s.length) return null;
-  const raw=s.map(rankValue), sum=raw.reduce((a,c)=>a+c,0);
+  const raw=revShape(b), sum=raw.reduce((a,c)=>a+c,0);
   if(sum<=0) return null;
   const all=state.data.banners, DAY=864e5, s0=Date.parse(b.start);
   let cum=0;
@@ -4111,7 +4156,7 @@ const ordinal = n => { const t=n%100;
 function cumCurve(b){
   if(b._cumCurve!==undefined) return b._cumCurve;
   const s=b.rank_series||[];
-  const raw=s.map(rankValue), sum=raw.reduce((a,c)=>a+c,0);
+  const raw=revShape(b), sum=raw.reduce((a,c)=>a+c,0);
   if(!s.length||sum<=0) return (b._cumCurve=null);
   let run=0;
   return (b._cumCurve=raw.map(v=>{ run+=v; return b.rev*run/sum; }));
@@ -4887,6 +4932,43 @@ function bannerSTView(b){
   ].map(([l,v])=>tileHTML(l,v)).join("");
   return `<div class="bm-stats">${tiles}</div>${bannerSTBlock(b)}${bannerSTShareBlock(b)}`;
 }
+// A banner that opened in the middle of another's run (Argent Flow inside the Tangtang rerun):
+// what each tab does with the days they shared. [{o, newcomer, when, off}] -- `newcomer` is
+// the banner that opened mid-run, `off` its start as a run-day of the other.
+function midRunPairs(b){
+  ensureRuns(); const DAY=864e5, out=[];
+  for(const o of state.data.banners){
+    if(o===b || o._synthetic || o.pending) continue;
+    const [inc, nw] = o.start<b.start ? [o,b] : o.start>b.start ? [b,o] : [null,null];
+    if(!inc) continue;                                              // started together: an ordinary split
+    const off=Math.round((Date.parse(nw.start)-Date.parse(inc.start))/DAY);
+    if(off<2 || nw.start>=inc.end) continue;                        // a changeover, not a mid-run opening
+    out.push({o, inc, nw, off, when:nw.start});
+  }
+  return out.sort((x,y)=>x.when<y.when?-1:1);
+}
+const bnName = x => esc((x.agents&&x.agents.length)?x.agents.join(" & "):(x.en||x.name));
+const pairLine = (b,p) => p.nw===b
+  ? `This banner opened on <b>${esc(per(p.when))}</b>, in the middle of <b>${bnName(p.inc)}</b>'s run`
+  : `<b>${bnName(p.nw)}</b>${p.nw.rerun?" (rerun)":""} opened on <b>${esc(per(p.when))}</b>, in the middle of this run`;
+function midRunNoteGi(b){
+  const ps=midRunPairs(b); if(!ps.length) return "";
+  return `<p class="bm-note bm-mid"><b>Shared run.</b> ${ps.map(p=>pairLine(b,p)).join(". ")}. game-i ranks the game, not the banner, so on the days they overlap both carry the same chart rank, and game-i splits each of those days between them (equally, first day +80%, last day −80%). This banner's figure, and its daily build-up below, are its share of those days.</p>`;
+}
+function midRunNoteQm(b){
+  const ps=midRunPairs(b); if(!ps.length) return "";
+  const g=state.qimai&&state.qimai.games&&state.qimai.games[state.tag];
+  // build_qimai records what it did for each pair (qimai.json banners[i].midrun)
+  const rec=p=>((g&&g.banners&&g.banners[b._i]&&g.banners[b._i].midrun)||[]).find(r=>r.inc===p.inc._i && r.new===p.nw._i);
+  const lines=ps.map(p=>{
+    const r=rec(p), inc = p.inc===b ? "this banner" : `<b>${bnName(p.inc)}</b>`, nw = p.nw===b ? "this banner" : `<b>${bnName(p.nw)}</b>`;
+    if(!r || r.base==null) return `${pairLine(b,p)}: the days they share are split the way game-i splits them`;
+    return r.moved>0
+      ? `${pairLine(b,p)}: an even split would hand ${inc} part of that launch, so it is capped at its pre-launch level (about <b>${fmtUSD(r.base)}</b> a day) and ${nw} gets the rest — <b>${fmtUSD(r.moved)}</b> in all`
+      : `${pairLine(b,p)}: the days they share are split the way game-i splits them — ${inc}'s share never went over its pre-launch level (about ${fmtUSD(r.base)} a day), so none of it was ${p.nw===b?"this banner's":"the newcomer's"} launch money`;
+  });
+  return `<p class="bm-note bm-mid"><b>Shared run.</b> ${lines.join(". ")}.</p>`;
+}
 // Qimai tab: China iPhone gross revenue (USD), a DAILY source so it is a direct
 // per-banner total (summed over the run, concurrent days split like game-i) — no
 // monthly-share guess. Shows the total and its month-by-month make-up.
@@ -4908,7 +4990,8 @@ function bannerQimaiView(b){
     <div class="bm-headline">
       <span><span class="l">Est. revenue${b.ongoing?" so far":""}</span><div class="v">${qm.hasData?fmtUSD(qm.total):na}</div></span>
       <span class="sub">China · iPhone · gross · Qimai's own estimate</span></div>
-    ${qm.hasData ? placementLine(b, placeVal.qimai, false, "China iPhone revenue") : ""}`;
+    ${qm.hasData ? placementLine(b, placeVal.qimai, false, "China iPhone revenue") : ""}
+    ${qm.hasData && !sc ? midRunNoteQm(b) : ""}`;
   if(!qm.hasData) return `<div class="bm-stats">${tiles}</div>${head}${schedWarn}
     <p class="bm-note">No Qimai China-iPhone revenue for this banner — ${win&&win.none
       ? "it had no banner of its own in China before the editions synced — at most a permanent-pool rate-up next to another banner, and those days count for that banner, as in game-i's own listing"
@@ -5027,7 +5110,7 @@ function openBanner(b, keepStack){
   let shareBlock="";
   if(sh&&sh.on){
     shareBlock=`<h3>Shared with concurrent banners</h3>
-      <p class="bm-note">game-i splits each day's revenue equally among every banner running that day. This one overlapped <b>${sh.with.length}</b> other banner${sh.with.length>1?"s":""} on <b>${sh.days}</b> of its ${sh.totalDays} days — up to a <b>${sh.maxN}-way</b> split. The hatched part of its bar (and the hatched days below) mark that portion.</p>
+      <p class="bm-note">game-i splits each day's revenue among every banner running that day (equally, first day +80%, last day −80%). This one overlapped <b>${sh.with.length}</b> other banner${sh.with.length>1?"s":""} on <b>${sh.days}</b> of its ${sh.totalDays} days — up to a <b>${sh.maxN}-way</b> split. The hatched part of its bar (and the hatched days below) mark that portion.</p>
       <div class="bm-stats bm-share3">
         <div class="bm-stat"><span class="l">On its own</span><span class="v">${G(sh.soloRev)}</span></div>
         <div class="bm-stat"><span class="l">While shared</span><span class="v">${G(sh.sharedRev)}</span></div>
@@ -5055,7 +5138,8 @@ function openBanner(b, keepStack){
     <div class="bm-headline">
       <span><span class="l">Est. revenue${b.ongoing?" so far":""}</span><div class="v">${G(b.rev)}</div></span>
       <span class="sub">Japan · mobile only · game-i's own estimate</span></div>
-    ${placementLine(b, placeVal.gamei, false, "Japan revenue")}`;
+    ${placementLine(b, placeVal.gamei, false, "Japan revenue")}
+    ${midRunNoteGi(b)}`;
   // Build-up sits directly under the rank curve: it is the same run, day by day, read
   // off that very curve -- so the two belong together, before the peer comparison.
   const gameiHTML=`<div class="bm-stats">${stats}</div>${gameiHead}${curve}${build}${jpAnalysisBlock(b)}${shareBlock}`;
