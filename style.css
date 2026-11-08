@@ -1455,3 +1455,5 @@ body[data-agmode="banner"] .ag-row{grid-template-columns:206px 1fr 196px}
 .info-warn{margin:6px 0 10px; padding:8px 11px; border-radius:8px; border:1px solid rgba(214,140,40,.45); background:rgba(214,140,40,.10); font-size:13px}
 .grnote .recon-warn{margin:0 0 7px}
 .recon-warn .reconlink{font-size:12px; margin-left:4px}
+/* Compare: why a side's points are fractional (rank lifted by another banner's launch) */
+.cmp-liftnote{display:block; font-size:12px; color:var(--muted); margin-top:4px; font-weight:400}

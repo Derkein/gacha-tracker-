@@ -1,5 +1,5 @@
 {
- "built": "2026-11-07",
+ "built": "2026-11-08",
  "issues": [
   {
    "ym": "2026-10",
@@ -16,7 +16,7 @@
     "art": null,
     "art_face": null,
     "color": "#f6c56f",
-    "rev_month": 5.3768,
+    "rev_month": 5.3719,
     "rerun": false
    },
    "headline": null,
@@ -52,7 +52,7 @@
      46.9
     ],
     "color": "#5fc7e8",
-    "rev_month": 6.1762,
+    "rev_month": 6.8344,
     "rerun": false
    },
    "headline": null,
@@ -88,7 +88,7 @@
      31.7
     ],
     "color": "#4fc8a0",
-    "rev_month": 6.45,
+    "rev_month": 6.6271,
     "rerun": false
    },
    "headline": null,
@@ -121,7 +121,7 @@
     "art": null,
     "art_face": null,
     "color": "#e87ba0",
-    "rev_month": 5.3798,
+    "rev_month": 6.2628,
     "rerun": false
    },
    "headline": null,
@@ -226,7 +226,7 @@
      39.0
     ],
     "color": "#f0d24b",
-    "rev_month": 15.5386,
+    "rev_month": 15.7668,
     "rerun": false
    },
    "headline": null,
@@ -326,7 +326,7 @@
     "art": null,
     "art_face": null,
     "color": "#f0684a",
-    "rev_month": 15.8104,
+    "rev_month": 16.1006,
     "rerun": false
    },
    "headline": null,
@@ -423,7 +423,7 @@
     "art": null,
     "art_face": null,
     "color": "#84c23c",
-    "rev_month": 2.8663,
+    "rev_month": 2.944,
     "rerun": false
    },
    "headline": null,
@@ -457,7 +457,7 @@
      32.9
     ],
     "color": "#5fc7e8",
-    "rev_month": 11.2065,
+    "rev_month": 11.4201,
     "rerun": false
    },
    "headline": null,
@@ -547,7 +547,7 @@
     "art": null,
     "art_face": null,
     "color": "#7fc8e0",
-    "rev_month": 7.3652,
+    "rev_month": 7.5046,
     "rerun": false
    },
    "headline": null,
@@ -579,7 +579,7 @@
      21.4
     ],
     "color": "#4fc8a0",
-    "rev_month": 12.2961,
+    "rev_month": 12.4739,
     "rerun": false
    },
    "headline": null,
@@ -643,7 +643,7 @@
      48.8
     ],
     "color": "#f0d24b",
-    "rev_month": 7.515,
+    "rev_month": 7.5108,
     "rerun": false
    },
    "headline": null,
@@ -675,7 +675,7 @@
      42.0
     ],
     "color": "#4a4ad8",
-    "rev_month": 5.1614,
+    "rev_month": 5.3,
     "rerun": false
    },
    "headline": null,
@@ -762,7 +762,7 @@
     "art": null,
     "art_face": null,
     "color": "#57c69a",
-    "rev_month": 2.5848,
+    "rev_month": 2.6646,
     "rerun": false
    },
    "headline": null,
@@ -823,7 +823,7 @@
      41.8
     ],
     "color": "#4fc8a0",
-    "rev_month": 18.5112,
+    "rev_month": 18.7901,
     "rerun": false
    },
    "headline": null,
@@ -855,7 +855,7 @@
      43.2
     ],
     "color": "#b9b9b9",
-    "rev_month": 13.0365,
+    "rev_month": 13.0281,
     "rerun": false
    },
    "headline": null,
@@ -916,7 +916,7 @@
      47.1
     ],
     "color": "#f0503f",
-    "rev_month": 20.2837,
+    "rev_month": 20.6321,
     "rerun": false
    },
    "headline": null,
@@ -978,7 +978,7 @@
      32.0
     ],
     "color": "#f0d24b",
-    "rev_month": 15.0702,
+    "rev_month": 15.0598,
     "rerun": false
    },
    "headline": null,
@@ -1008,7 +1008,7 @@
      23.5
     ],
     "color": "#c56af0",
-    "rev_month": 19.5214,
+    "rev_month": 19.9671,
     "rerun": false
    },
    "headline": null,
@@ -1035,7 +1035,7 @@
     "art": null,
     "art_face": null,
     "color": "#57c69a",
-    "rev_month": 11.7216,
+    "rev_month": 11.7098,
     "rerun": false
    },
    "headline": null,
@@ -1089,7 +1089,7 @@
     "art": null,
     "art_face": null,
     "color": "#e0b23c",
-    "rev_month": 11.8303,
+    "rev_month": 12.0757,
     "rerun": false
    },
    "headline": null,
@@ -1170,7 +1170,7 @@
     "art": null,
     "art_face": null,
     "color": "#4a90d9",
-    "rev_month": 9.277,
+    "rev_month": 9.4526,
     "rerun": false
    },
    "headline": null,
@@ -1228,7 +1228,7 @@
      13.4
     ],
     "color": "#4fc8a0",
-    "rev_month": 12.9688,
+    "rev_month": 13.2827,
     "rerun": false
    },
    "headline": null,
@@ -1286,7 +1286,7 @@
      53.4
     ],
     "color": "#c56af0",
-    "rev_month": 16.6662,
+    "rev_month": 16.652,
     "rerun": false
    },
    "headline": null,
@@ -1312,7 +1312,7 @@
     "art": null,
     "art_face": null,
     "color": "#84c23c",
-    "rev_month": 11.4479,
+    "rev_month": 11.6871,
     "rerun": true
    },
    "headline": null,
@@ -1338,7 +1338,7 @@
     "art": null,
     "art_face": null,
     "color": "#7fc8e0",
-    "rev_month": 5.815,
+    "rev_month": 5.7792,
     "rerun": true
    },
    "headline": null,
@@ -1388,7 +1388,7 @@
     "art": null,
     "art_face": null,
     "color": "#84c23c",
-    "rev_month": 11.4943,
+    "rev_month": 11.8655,
     "rerun": false
    },
    "headline": null,
@@ -1463,7 +1463,7 @@
     "art": null,
     "art_face": null,
     "color": "#4a90d9",
-    "rev_month": 7.1504,
+    "rev_month": 7.1496,
     "rerun": false
    },
    "headline": null,
@@ -1488,7 +1488,7 @@
     "art": null,
     "art_face": null,
     "color": "#b57fd4",
-    "rev_month": 8.7938,
+    "rev_month": 8.8855,
     "rerun": false
    },
    "headline": null,
@@ -1513,7 +1513,7 @@
     "art": null,
     "art_face": null,
     "color": "#84c23c",
-    "rev_month": 8.3791,
+    "rev_month": 8.6965,
     "rerun": false
    },
    "headline": null,
@@ -1538,7 +1538,7 @@
     "art": null,
     "art_face": null,
     "color": "#57c69a",
-    "rev_month": 21.3015,
+    "rev_month": 21.8548,
     "rerun": true
    },
    "headline": null,
@@ -1563,7 +1563,7 @@
     "art": null,
     "art_face": null,
     "color": "#4a90d9",
-    "rev_month": 39.6283,
+    "rev_month": 39.6078,
     "rerun": false
    },
    "headline": null,
@@ -1613,7 +1613,7 @@
     "art": null,
     "art_face": null,
     "color": "#4a90d9",
-    "rev_month": 25.1226,
+    "rev_month": 24.8351,
     "rerun": false
    },
    "headline": null,
@@ -1663,7 +1663,7 @@
     "art": null,
     "art_face": null,
     "color": "#b57fd4",
-    "rev_month": 14.4891,
+    "rev_month": 14.8861,
     "rerun": false
    },
    "headline": null,
@@ -1688,7 +1688,7 @@
     "art": null,
     "art_face": null,
     "color": "#7fc8e0",
-    "rev_month": 15.1567,
+    "rev_month": 15.1233,
     "rerun": true
    },
    "headline": null,
@@ -1713,7 +1713,7 @@
     "art": null,
     "art_face": null,
     "color": "#e0b23c",
-    "rev_month": 9.75,
+    "rev_month": 9.7453,
     "rerun": false
    },
    "headline": null,
@@ -1763,7 +1763,7 @@
     "art": null,
     "art_face": null,
     "color": "#4a90d9",
-    "rev_month": 13.3924,
+    "rev_month": 13.7217,
     "rerun": true
    },
    "headline": null,
@@ -1913,7 +1913,7 @@
     "art": null,
     "art_face": null,
     "color": "#e0b23c",
-    "rev_month": 3.9356,
+    "rev_month": 4.0543,
     "rerun": true
    },
    "headline": null,
@@ -1987,7 +1987,7 @@
     "art": null,
     "art_face": null,
     "color": "#7fc8e0",
-    "rev_month": 19.7908,
+    "rev_month": 19.7893,
     "rerun": false
    },
    "headline": null,
@@ -2035,7 +2035,7 @@
     "art": null,
     "art_face": null,
     "color": "#4a90d9",
-    "rev_month": 14.9165,
+    "rev_month": 15.2787,
     "rerun": false
    },
    "headline": null,

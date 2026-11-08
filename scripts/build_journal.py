@@ -67,12 +67,9 @@ async (tag) => {
       qmd: (qm.daily || []).map(v => Math.round(v || 0)),
       qm: { total: qm.total || 0, monthly: Object.fromEntries((qm.months || []).map(m => [m.ym, m.rev])), start: qm.start || null },
       qmRank: (typeof qimaiRankInfo === "function" && qimaiRankInfo(b)) || null,
-      // the day-indexed series the tracker's Compare (bannerSnapshot -> buildComparison) works on
-      snap: (() => { const cnRun = onRunDays(b, cnRunSeries(b)); const bd = dailyBreakdown(b); let c = 0;
-        return { jp: onRunDays(b, jpOwn(b).slice()),
-          cn: cnRun ? cnRun.map(x => x.rank) : null, cnKnown: cnRun ? cnRun.map(x => x.depth != null) : null, cnBest: cnRun ? cnRun.map(x => x.best) : null,
-          gi: bd ? onRunDays(b, bd.days).map(d => ({ add: d.add, cum: (c += d.add) })) : [],
-          qmDaily: onRunDays(b, (qm.daily || []).slice()), hasQm: !!qm.hasData }; })() };
+      // the day-indexed series the tracker's Compare (bannerSnapshot -> buildComparison) works on --
+      // the site's own cmpSeries, so a rank lifted by a mid-run launch is flagged the same way
+      snap: cmpSeries(b) };
   });
   const monthly = {};
   for (const ym in state.monthly) monthly[ym] = { ours: state.monthly[ym].ours, banners: state.monthly[ym].banners.map(x => [x.i, x.rev]) };
@@ -100,6 +97,8 @@ H2H = r"""
   // worth more the bigger it is, with diminishing returns): revenue and rank measures score the log
   // of the ratio, a 2x lead or more = the full point; day counts score the gap against a third of
   // the window. A China measure the other side can't have (game not sold in China) is a full point.
+  // A staying-power rank measure won on days another banner's launch lifted the rank is worth less:
+  // the point shrinks by the share of compared days that were lifted (r.boosted, cell.pen).
   const LN2 = Math.log(2);
   const ratioW = (a, b) => { const lo = Math.min(a, b), hi = Math.max(a, b); return hi <= 0 ? 0 : lo <= 0 ? 1 : Math.min(1, Math.log(hi / lo) / LN2); };
   const COUNT = /_(top1|top3|top10|drop)$/;
@@ -113,7 +112,8 @@ H2H = r"""
       }
       if (v[0] === v[1]) continue;
       const w = r.better === "high" ? (v[0] > v[1] ? 0 : 1) : (v[0] < v[1] ? 0 : 1);
-      pts[w] += COUNT.test(r.metric) ? Math.min(1, Math.abs(v[0] - v[1]) / Math.max(1, (r.k || 1) / 3)) : ratioW(v[0], v[1]);
+      const pen = r.boosted ? (r.cells[w].pen || 0) : 0;
+      pts[w] += (1 - pen) * (COUNT.test(r.metric) ? Math.min(1, Math.abs(v[0] - v[1]) / Math.max(1, (r.k || 1) / 3)) : ratioW(v[0], v[1]));
     }
     const overall = Math.abs(pts[0] - pts[1]) < 1e-9 ? "even" : pts[0] > pts[1] ? 0 : 1;
     return { points: pts.map(x => Math.round(x * 100) / 100), overall }; });
@@ -325,9 +325,10 @@ def entity(r, n):
          "ongoing": r["ongoing"], "runDays": n, "jp": s["jp"][o:o + n],
          "gi": [{"add": d["add"], "cum": d["cum"] - base} for d in gi],     # the running total restarts at the window
          "qmDaily": s["qmDaily"][o:o + n], "hasQm": s["hasQm"],
-         "cn": cut(s["cn"]), "cnKnown": cut(s["cnKnown"]), "cnBest": cut(s["cnBest"])}
+         "cn": cut(s["cn"]), "cnKnown": cut(s["cnKnown"]), "cnBest": cut(s["cnBest"]),
+         "jpBoost": cut(s.get("jpBoost")), "cnBoost": cut(s.get("cnBoost"))}
     if r["tag"] in NO_CHINA:
-        e.update(cn=[None] * n, cnKnown=[True] * n, cnBest=[None] * n, qmDaily=[0] * n, hasQm=True, noChina=True)
+        e.update(cn=[None] * n, cnKnown=[True] * n, cnBest=[None] * n, cnBoost=None, qmDaily=[0] * n, hasQm=True, noChina=True)
     return e
 
 def duel_order(rows):
