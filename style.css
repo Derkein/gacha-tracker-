@@ -552,6 +552,9 @@ html.scrolling .gscroll, .gscroll:hover{scrollbar-color:var(--base) transparent}
 .bm-stat .l{font-size:10.5px; color:var(--muted); text-transform:uppercase; letter-spacing:.04em}
 .bm-stat .v{font-size:15px; font-weight:750; font-variant-numeric:tabular-nums}
 .bm-cap{font-size:12.5px; color:var(--ink2); margin:2px 0 6px} .bm-cap b{color:var(--ink)}
+/* projection: what moved it (sits right under the tiles) and how sure it is (after the read) */
+.bm-cap.bm-move{margin-top:-2px}
+.bm-cap.bm-sure{color:var(--muted); font-size:12px}
 /* "where it places" line under a revenue figure or a rank curve, with a coloured verdict
    (same greens/reds as the year-on-year and month-card changes) */
 .bm-place{font-size:12.5px; color:var(--ink2); margin:6px 0 8px; line-height:1.5}
