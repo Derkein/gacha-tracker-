@@ -3865,7 +3865,7 @@ function bannerSTBlock(b){
   if(b._synthetic) return "";
   const st=bannerST(b), bm=state.monthly||{};
   const head=`<h3>Sensor Tower — assumed combined revenue</h3>`;
-  const how=`<p class="bm-note bm-recon">Sensor Tower publishes only <b>${esc(gameName())}</b>'s <b>monthly worldwide</b> total, not per-banner. We assume this banner took the same <b>slice</b> of that combined total as it did of the month itself — and that slice is read from <b>two daily sources</b>, game-i's Japan split and Qimai's China-iPhone split, <b>averaged where both exist</b> (game-i alone otherwise) — then add those slices across every month it ran.</p>`;
+  const how=`<p class="bm-note bm-recon">Sensor Tower publishes only <b>${esc(gameName())}</b>'s <b>monthly worldwide</b> total, not per-banner. We give this banner the same <b>slice</b> of that total as it took of the month's daily revenue — read from <b>two daily sources</b>, game-i's Japan split and Qimai's China-iPhone split, <b>averaged where both exist</b> (game-i alone otherwise) — and add those slices across every month it ran.</p>`;
   if(!st.hasData){
     return head+how+`<p class="bm-note"><b>No Sensor Tower data yet.</b> This run is either before the reports began (Oct 2021) or entirely within months not yet published. A figure will appear here once a monthly report covers its run.</p>`;
   }
@@ -3934,7 +3934,7 @@ function bannerSTShareBlock(b){
   if(!sh || !sh.on || !st.hasData) return "";
   const sharedRev=st.total*sh.revFrac, soloRev=st.total-sharedRev;
   return `<h3>Shared with concurrent banners</h3>
-    <p class="bm-note">The combined figure inherits game-i's daily split — revenue on days two or more banners ran is divided equally between them. This one overlapped <b>${sh.with.length}</b> other banner${sh.with.length>1?"s":""} on <b>${sh.days}</b> of its ${sh.totalDays} days (up to a <b>${sh.maxN}-way</b> split), so the same <b>${Math.round(sh.revFrac*100)}%</b> of its combined total falls in shared days.</p>
+    <p class="bm-note">The combined figure inherits game-i's daily split — a day two or more banners ran is divided between them (equally, first day +80%, last day −80%). This one overlapped <b>${sh.with.length}</b> other banner${sh.with.length>1?"s":""} on <b>${sh.days}</b> of its ${sh.totalDays} days (up to a <b>${sh.maxN}-way</b> split), so the same <b>${Math.round(sh.revFrac*100)}%</b> of its combined total falls in shared days.</p>
     <div class="bm-stats bm-share3">
       <div class="bm-stat"><span class="l">On its own</span><span class="v">≈${fmtUSD(soloRev)}</span></div>
       <div class="bm-stat"><span class="l">While shared</span><span class="v">≈${fmtUSD(sharedRev)}</span></div>
@@ -4851,7 +4851,7 @@ function cnShareBlock(b){
   if(!sh || !sh.on || !cn.hasData) return "";
   const shLo=cn.lo*sh.revFrac, shHi=cn.hi*sh.revFrac;
   return `<h3>Shared with concurrent banners</h3>
-    <p class="bm-note">The CN figure inherits game-i's daily split — revenue on days two or more banners ran is divided equally between them. This one overlapped <b>${sh.with.length}</b> other banner${sh.with.length>1?"s":""} on <b>${sh.days}</b> of its ${sh.totalDays} days (up to a <b>${sh.maxN}-way</b> split), so the same <b>${Math.round(sh.revFrac*100)}%</b> of its CN total falls in shared days.</p>
+    <p class="bm-note">The CN figure inherits game-i's daily split — a day two or more banners ran is divided between them (equally, first day +80%, last day −80%). This one overlapped <b>${sh.with.length}</b> other banner${sh.with.length>1?"s":""} on <b>${sh.days}</b> of its ${sh.totalDays} days (up to a <b>${sh.maxN}-way</b> split), so the same <b>${Math.round(sh.revFrac*100)}%</b> of its CN total falls in shared days.</p>
     <div class="bm-stats bm-share3">
       <div class="bm-stat"><span class="l">On its own</span><span class="v">≈${fmtCNYRange(cn.lo-shLo,cn.hi-shHi)}</span></div>
       <div class="bm-stat"><span class="l">While shared</span><span class="v">≈${fmtCNYRange(shLo,shHi)}</span></div>
@@ -4866,7 +4866,7 @@ function cnShareBlock(b){
 function bannerCNView(b){
   const cn=bannerCN(b), bm=state.monthly||{}, c=barColor(b);
   const head=`<h3>CN ranking — assumed global all-platform revenue</h3>`;
-  const how=`<p class="bm-note bm-recon">The CN series publishes only <b>${esc(gameName())}</b>'s <b>monthly total</b>, not per-banner. We assume this banner took the same <b>slice</b> of that month as it did of the month itself — a slice read from <b>two daily sources</b>, game-i's Japan split and Qimai's China-iPhone split, <b>averaged where both exist</b> (game-i alone otherwise) — then add those slices across every month it ran. That total is <b>global and all-platform</b> (mobile + PC + PlayStation) while both daily sources are <b>mobile</b>, so the slice is a rougher proxy here than on the Sensor Tower tab — read it as scale and trend, never as sales.</p>`;
+  const how=`<p class="bm-note bm-recon">The CN series publishes only <b>${esc(gameName())}</b>'s <b>monthly total</b>, not per-banner. We give this banner the same <b>slice</b> of that total as it took of the month's daily revenue — read from <b>two daily sources</b>, game-i's Japan split and Qimai's China-iPhone split, <b>averaged where both exist</b> (game-i alone otherwise) — and add those slices across every month it ran. That total is <b>global and all-platform</b> (mobile + PC + PlayStation) while both daily sources are <b>mobile</b>, so the slice is a rougher proxy here than on the Sensor Tower tab — read it as scale and trend, never as sales.</p>`;
   const na=`<span class="muted">n/a</span>`;
   if(!cn.hasData){
     const blank=[[`Est. revenue`, na], ["All-time rank (CN¥)", na], [`${b.year} rank (CN¥)`, na],
@@ -4986,7 +4986,7 @@ function bannerQimaiView(b){
     ["Run length", b.ongoing?`Day ${Math.min(scheduled,qm.daily.length||1)} of ${scheduled}`:`${scheduled} days`],
   ].map(([l,v])=>tileHTML(l,v)).join("");
   const head=`<h3>Qimai — estimated China iPhone revenue</h3>
-    <p class="bm-note">Qimai's <b>daily</b> China App&nbsp;Store <b>gross</b> estimate (USD), summed over this run. On days this banner shared the store with a concurrent one, that day's China total is split between them by game-i's daily shape. <b>China iOS only</b> — a small slice, not comparable to game-i (Japan), Sensor&nbsp;Tower (worldwide) or CN (all platforms). See <b>How these numbers work → Qimai</b> for why it reads low.</p>
+    <p class="bm-note">Qimai's <b>daily</b> China App&nbsp;Store <b>gross</b> estimate (USD), summed over this run. On days this banner shared with another, that day's China total is split between them the way game-i splits it (a launch in the middle of another banner's run keeps its launch spending — see <b>Shared run</b> where it applies). <b>China iOS only</b> — a small slice, not comparable to game-i (Japan), Sensor&nbsp;Tower (worldwide) or CN (all platforms). See <b>How these numbers work → Qimai</b> for why it reads low.</p>
     <div class="bm-headline">
       <span><span class="l">Est. revenue${b.ongoing?" so far":""}</span><div class="v">${qm.hasData?fmtUSD(qm.total):na}</div></span>
       <span class="sub">China · iPhone · gross · Qimai's own estimate</span></div>
@@ -5100,7 +5100,7 @@ function openBanner(b, keepStack){
       <div class="bm-cap">${cap}</div>
       ${placementLine(b, placeVal.jpPeak, true, "Japan peak rank")}
       ${rankCurveSVG(b)}
-      <p class="bm-note">#1 is the top of Japan's App Store top-grossing chart. Breaks in the line are days the app sat below game-i's trackable ~top&nbsp;200 (counted as ¥0). Rank is snapshotted at midnight JST, so a launch day can read below-200 when the banner went live after the snapshot. iOS only — game-i keeps no daily Android history.</p>`;
+      <p class="bm-note">#1 is the top of Japan's App Store top-grossing chart. Breaks in the line are days the app sat below game-i's trackable ~top&nbsp;200 (counted as ¥0), or days after another banner opened mid-run, when the game's rank is that launch's. Rank is snapshotted at midnight JST, so a launch day can read below-200 when the banner went live after the snapshot. iOS only — game-i keeps no daily Android history.</p>`;
   } else {
     curve=`<h3>Daily iOS store rank during the run</h3>
       <p class="bm-note">No daily rank data for this run — the app stayed below game-i's trackable ~top&nbsp;200 throughout (counted as ¥0), or the run predates game-i's rank history.</p>`;
@@ -5125,7 +5125,7 @@ function openBanner(b, keepStack){
   let build="";
   if(bd){
     build=`<h3>Estimated revenue build-up${b.ongoing?" so far":""}</h3>
-      <p class="bm-note bm-recon">game-i publishes only one total per banner. This splits that ${G(b.rev)} across the run by each day's rank (bars = that day's share, line = running total), using game-i's published rank→revenue curve. It's an illustration of how the total accumulated — not a separately reported daily figure.</p>
+      <p class="bm-note bm-recon">game-i publishes only one total per banner. This splits that ${G(b.rev)} across the run by each day's rank and, on days it shared, its share of the day (bars = that day's share, line = running total), using game-i's published rank→revenue curve. It's an illustration of how the total accumulated — not a separately reported daily figure.</p>
       ${burnBlock(b)}
       ${buildupSVG(bd,b)}
       ${dailyTable(bd)}`;
@@ -5134,7 +5134,7 @@ function openBanner(b, keepStack){
   const gameiHead=`<h3>game-i — estimated Japan revenue</h3>
     ${state.data.banners_from==="official"
       ? `${RECON_WARN}<p class="bm-note bm-recon">game-i tracks ${esc(gameName())}'s Japan revenue every day but has no banner page for it, so this figure is <b>rebuilt the way game-i builds its own</b>: the banner dates come from the game's <a href="${esc(state.data.source)}" target="_blank" rel="noopener">official notices</a>${b.source_url?` (<a href="${esc(b.source_url)}" target="_blank" rel="noopener">this banner</a>)`:""}, and each day's share of game-i's monthly total (月次売上予測), weighted by that day's rank, goes to the banners running that day — split equally, first day +80%, last day −80%, as game-i does — and, as on game-i, only days in the iOS top 200 count, so a run spent below the chart earns nothing here. In game-i's "G" unit (1億G ≈ ¥100 million).</p>`
-      : `<p class="bm-note bm-recon">game-i publishes one figure per banner: its estimate of what the banner earned from mobile gacha <b>in Japan</b>, in its own "G" unit (1億G ≈ ¥100 million). It is the only per-banner revenue anyone publishes, which is why the other two tabs lean on its shape.</p>`}
+      : `<p class="bm-note bm-recon">game-i publishes one figure per banner: its estimate of what the banner earned from mobile gacha <b>in Japan</b>, in its own "G" unit (1億G ≈ ¥100 million). It is the only per-banner revenue anyone publishes, which is why the other tabs lean on its shape.</p>`}
     <div class="bm-headline">
       <span><span class="l">Est. revenue${b.ongoing?" so far":""}</span><div class="v">${G(b.rev)}</div></span>
       <span class="sub">Japan · mobile only · game-i's own estimate</span></div>
