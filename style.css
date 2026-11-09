@@ -38,7 +38,7 @@ body{ background:var(--page); color:var(--ink);
    ~557px (a CN range at full precision, e.g. "CN¥524.55–624.47M"); a card adds 34px of
    padding and border, two of them plus the 14px grid gap and 68px of page padding lands
    here. Wider and the tiles float in dead space; narrower and the CN tile spills out. */
-.wrap{max-width:1270px; margin:0 auto; padding:26px clamp(14px,3vw,34px) 60px}
+.wrap{max-width:1560px; margin:0 auto; padding:26px clamp(14px,3vw,34px) 60px}
 a{color:inherit}
 /* the hidden attribute must win over class display rules (.modal/.controls set display) */
 [hidden]{display:none !important}
@@ -47,41 +47,41 @@ a{color:inherit}
 .site-hd{display:flex; flex-wrap:wrap; align-items:flex-end; gap:14px 22px; margin-bottom:20px}
 .site-hd h1{font-size:clamp(21px,2.7vw,30px); margin:0; letter-spacing:-.025em; font-weight:800}
 .site-hd h1 .accent{color:var(--accent)}
-.site-hd p{margin:3px 0 0; color:var(--ink2); font-size:13.5px; max-width:64ch}
+.site-hd p{margin:3px 0 0; color:var(--ink2); font-size:15px; max-width:64ch}
 .hd-side{margin-left:auto; display:flex; flex-direction:column; align-items:flex-end; gap:9px}
 .hd-btns{display:flex; gap:6px; align-items:center}
-.updated{font-size:11.5px; color:var(--muted); text-align:right; white-space:nowrap}
-.themebtn{width:34px; height:34px; border:1px solid var(--border); background:var(--surface); color:var(--ink2);
-  border-radius:9px; cursor:pointer; font-size:16px; line-height:1; display:flex; align-items:center; justify-content:center;
+.updated{font-size:13px; color:var(--muted); text-align:right; white-space:nowrap}
+.themebtn{width:39px; height:39px; border:1px solid var(--border); background:var(--surface); color:var(--ink2);
+  border-radius:9px; cursor:pointer; font-size:18px; line-height:1; display:flex; align-items:center; justify-content:center;
   transition:transform .12s,border-color .12s,color .12s}
 .themebtn:hover{transform:translateY(-1px); border-color:var(--accent); color:var(--accent)}
 /* currency toggle: same chip as the theme button, a little wider for "US$", lit when on */
-.themebtn.ccybtn{width:auto; min-width:34px; padding:0 9px; font-size:13px; font-weight:700}
+.themebtn.ccybtn{width:auto; min-width:34px; padding:0 9px; font-size:14.5px; font-weight:700}
 .themebtn.ccybtn.on{border-color:var(--accent); color:var(--accent)}
 
 /* game picker: current-game button (opens a searchable list) + a rail of every game's icon */
-.datanote{margin:8px 0 0; font-size:11.5px; color:var(--muted)}
+.datanote{margin:8px 0 0; font-size:13px; color:var(--muted)}
 .datanote b{color:var(--ink2)}
 .gp{position:relative; display:flex; align-items:center; gap:12px; padding-top:4px}
 .gp-btn{flex:0 0 auto; display:flex; align-items:center; gap:10px; min-width:240px; max-width:340px;
   border:1px solid var(--accent); box-shadow:inset 0 0 0 1px var(--accent); background:var(--surface); color:var(--ink);
   border-radius:12px; padding:7px 12px 7px 7px; font:inherit; text-align:left; cursor:pointer; transition:background .12s}
 .gp-btn:hover,.gp-btn[aria-expanded="true"]{background:var(--surface2)}
-.gp-bic{flex:none; width:40px; height:40px}
-.gp-bimg{width:40px; height:40px; border-radius:10px; display:block; object-fit:cover}
+.gp-bic{flex:none; width:46px; height:46px}
+.gp-bimg{width:46px; height:46px; border-radius:10px; display:block; object-fit:cover}
 .gp-btx{min-width:0; flex:1; display:flex; flex-direction:column; line-height:1.25}
-.gp-k{font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted)}
-.gp-btx b{font-size:14px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
-.gp-sub{font-size:11px; color:var(--muted); font-variant-numeric:tabular-nums}
+.gp-k{font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted)}
+.gp-btx b{font-size:15.5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.gp-sub{font-size:12.5px; color:var(--muted); font-variant-numeric:tabular-nums}
 .gp-btn .gp-btx b{color:var(--accent)}
 .gp-cmp{flex:0 0 auto; display:flex; align-items:center; gap:10px; border:1px solid var(--border); background:var(--surface);
   color:var(--ink); border-radius:12px; padding:7px 12px 7px 7px; font:inherit; text-align:left; cursor:pointer;
   transition:background .12s,border-color .12s}
 .gp-cmp:hover{background:var(--surface2); border-color:color-mix(in srgb,var(--accent) 45%, var(--border))}
 .gp-cmp:hover .gp-chev{color:var(--accent); transform:translateX(2px)}
-.gp-cic{flex:none; width:40px; height:40px; border-radius:10px; display:flex; align-items:center; justify-content:center;
-  font-size:18px; color:var(--accent); background:color-mix(in srgb,var(--accent) 14%, var(--surface2))}
-.gp-chev{flex:none; font-size:12px; color:var(--muted); transition:transform .15s}
+.gp-cic{flex:none; width:46px; height:46px; border-radius:10px; display:flex; align-items:center; justify-content:center;
+  font-size:20px; color:var(--accent); background:color-mix(in srgb,var(--accent) 14%, var(--surface2))}
+.gp-chev{flex:none; font-size:13.5px; color:var(--muted); transition:transform .15s}
 .gp-btn[aria-expanded="true"] .gp-chev{transform:rotate(180deg)}
 .gp-rail{position:relative; flex:1; min-width:0; display:flex; gap:6px; overflow-x:auto; padding:4px 2px;
   scrollbar-width:none}
@@ -89,32 +89,32 @@ a{color:inherit}
 .gp-rail.fade-r{-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 36px),transparent); mask-image:linear-gradient(90deg,#000 calc(100% - 36px),transparent)}
 .gp-rail.fade-l{-webkit-mask-image:linear-gradient(90deg,transparent,#000 36px); mask-image:linear-gradient(90deg,transparent,#000 36px)}
 .gp-rail.fade-l.fade-r{-webkit-mask-image:linear-gradient(90deg,transparent,#000 36px,#000 calc(100% - 36px),transparent); mask-image:linear-gradient(90deg,transparent,#000 36px,#000 calc(100% - 36px),transparent)}
-.gp-rb{flex:none; width:40px; height:40px; padding:0; border:0; border-radius:11px; background:none; cursor:pointer;
+.gp-rb{flex:none; width:46px; height:46px; padding:0; border:0; border-radius:11px; background:none; cursor:pointer;
   opacity:.62; filter:saturate(.7); transition:opacity .12s,transform .12s,filter .12s}
 .gp-rb:hover,.gp-rb:focus-visible{opacity:1; filter:none; transform:translateY(-1px)}
 .gp-rb.on{opacity:1; filter:none; box-shadow:0 0 0 2px var(--page),0 0 0 4px var(--gp-acc)}
-.gp-ric{width:40px; height:40px; border-radius:11px; display:block; object-fit:cover}
+.gp-ric{width:46px; height:46px; border-radius:11px; display:block; object-fit:cover}
 .gp-mono{display:flex; align-items:center; justify-content:center; background:var(--track); color:var(--ink2); font-weight:700}
 .gp-panel{position:absolute; z-index:40; top:calc(100% + 6px); left:0; width:min(480px, 100%);
   background:var(--surface); border:1px solid var(--border); border-radius:12px; box-shadow:var(--shadow); padding:6px}
-.gp-panel input{width:100%; box-sizing:border-box; font:inherit; font-size:13.5px; color:var(--ink);
+.gp-panel input{width:100%; box-sizing:border-box; font:inherit; font-size:15px; color:var(--ink);
   background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:9px 11px; margin-bottom:4px}
 .gp-panel input:focus{outline:none; border-color:var(--accent)}
 .gp-list{max-height:min(420px, 60vh); overflow:auto}
-.gp-hd{font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); padding:8px 8px 4px}
+.gp-hd{font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); padding:8px 8px 4px}
 .gp-opt{width:100%; display:flex; align-items:center; gap:10px; border:0; background:none; color:var(--ink);
   font:inherit; text-align:left; padding:6px 8px; border-radius:8px; cursor:pointer}
 .gp-opt:hover,.gp-opt.kb{background:var(--surface2)}
 .gp-opt.on{box-shadow:inset 3px 0 0 var(--gp-acc)}
-.gp-oic{flex:none; width:34px; height:34px; border-radius:9px; object-fit:cover}
+.gp-oic{flex:none; width:39px; height:39px; border-radius:9px; object-fit:cover}
 .gp-otx{min-width:0; flex:1; display:flex; flex-direction:column; line-height:1.25}
-.gp-otx b{font-size:13.5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.gp-otx b{font-size:15px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
 .gp-opt.on .gp-otx b{color:var(--gp-acc)}
-.gp-otx span{font-size:11px; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.gp-otx span{font-size:12.5px; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
 .gp-ost{flex:none; display:flex; flex-direction:column; align-items:flex-end; line-height:1.25; font-variant-numeric:tabular-nums}
-.gp-ost b{font-size:12.5px; color:var(--ink2)}
-.gp-ost span{font-size:11px; color:var(--muted)}
-.gp-none{padding:14px 8px; font-size:13px; color:var(--muted)}
+.gp-ost b{font-size:14px; color:var(--ink2)}
+.gp-ost span{font-size:12.5px; color:var(--muted)}
+.gp-none{padding:14px 8px; font-size:14.5px; color:var(--muted)}
 .gp-cmpl{display:none}
 @media (max-width:760px){
   .gp{flex-wrap:wrap; gap:8px}
@@ -155,63 +155,63 @@ a{color:inherit}
 }
 /* the cell's characters: an overlapping avatar group under the sub-line */
 .tile-ics{display:flex; align-items:center; margin-top:8px; padding-left:6px}
-.tile-ic2{width:30px; height:30px; margin-left:-6px; border-radius:50%; object-fit:cover;
+.tile-ic2{width:34px; height:34px; margin-left:-6px; border-radius:50%; object-fit:cover;
   box-shadow:0 0 0 2px var(--surface); background:var(--track)}
 .tile-click:hover .tile-ic2{box-shadow:0 0 0 2px var(--surface2)}
-.tile-icmore{margin-left:6px; font-size:12px; font-weight:700; color:var(--muted)}
-.tile .l{font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:100%}
-.tile .v{font-size:22px; font-weight:800; letter-spacing:-.02em; font-variant-numeric:tabular-nums; transition:color .12s}
-.tile .n{font-size:12px; color:var(--ink2); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:100%}
+.tile-icmore{margin-left:6px; font-size:13.5px; font-weight:700; color:var(--muted)}
+.tile .l{font-size:12.5px; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:100%}
+.tile .v{font-size:24.5px; font-weight:800; letter-spacing:-.02em; font-variant-numeric:tabular-nums; transition:color .12s}
+.tile .n{font-size:13.5px; color:var(--ink2); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:100%}
 .tile .spark{width:100%; height:26px; margin-top:auto; padding-top:6px; box-sizing:content-box}
 .tile .spark path{fill:none; stroke:var(--accent); stroke-width:1.5; vector-effect:non-scaling-stroke}
 
 /* controls */
 .controls{display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:14px}
 .seg{display:inline-flex; background:var(--track); border:1px solid var(--border); border-radius:10px; padding:3px}
-.seg button{border:0; background:transparent; color:var(--ink2); font:inherit; font-size:13px; font-weight:650; padding:6px 15px; border-radius:7px; cursor:pointer}
+.seg button{border:0; background:transparent; color:var(--ink2); font:inherit; font-size:14.5px; font-weight:650; padding:6px 15px; border-radius:7px; cursor:pointer}
 .bms-sub::before{content:" · "}
 .seg button.on{background:var(--surface); color:var(--ink); box-shadow:0 1px 3px rgba(0,0,0,.16)}
-.ghost{border:1px solid var(--border); background:transparent; color:var(--ink2); font:inherit; font-size:13px; font-weight:650; padding:7px 13px; border-radius:9px; cursor:pointer}
+.ghost{border:1px solid var(--border); background:transparent; color:var(--ink2); font:inherit; font-size:14.5px; font-weight:650; padding:7px 13px; border-radius:9px; cursor:pointer}
 .ghost.on{color:var(--accent); border-color:var(--accent)}
-.brk{display:inline-flex; align-items:center; gap:6px; font-size:12.5px; color:var(--ink2); font-weight:600}
-.brk select{font:inherit; font-size:12.5px; font-weight:600; color:var(--ink); background:var(--surface);
+.brk{display:inline-flex; align-items:center; gap:6px; font-size:14px; color:var(--ink2); font-weight:600}
+.brk select{font:inherit; font-size:14px; font-weight:600; color:var(--ink); background:var(--surface);
   border:1px solid var(--border); border-radius:8px; padding:6px 8px; cursor:pointer}
 .gctrls{margin-top:-4px}
 .gfilter{display:inline-flex; align-items:center; gap:12px; flex-wrap:wrap}
 .gctrls #bDir{margin-left:auto}   /* push direction + table toggle to the right edge of the row */
-.sortsel{display:inline-flex; align-items:center; gap:6px; font-size:12.5px; color:var(--ink2); font-weight:600}
-.sortsel select{font:inherit; font-size:12.5px; font-weight:600; color:var(--ink); background:var(--surface);
+.sortsel{display:inline-flex; align-items:center; gap:6px; font-size:14px; color:var(--ink2); font-weight:600}
+.sortsel select{font:inherit; font-size:14px; font-weight:600; color:var(--ink); background:var(--surface);
   border:1px solid var(--border); border-radius:8px; padding:6px 8px; cursor:pointer}
-.glabel{font-size:12px; color:var(--muted); font-weight:600}
-.gctrls .seg button{padding:5px 11px; font-size:12.5px}
-.chk{display:inline-flex; align-items:center; gap:6px; font-size:12.5px; color:var(--ink2); font-weight:600; cursor:pointer}
+.glabel{font-size:13.5px; color:var(--muted); font-weight:600}
+.gctrls .seg button{padding:5px 11px; font-size:14px}
+.chk{display:inline-flex; align-items:center; gap:6px; font-size:14px; color:var(--ink2); font-weight:600; cursor:pointer}
 .chk input{accent-color:var(--accent); cursor:pointer}
-.hint{font-size:12px; color:var(--muted); margin:0; text-align:right}
+.hint{font-size:13.5px; color:var(--muted); margin:0; text-align:right}
 .hintrow{display:flex; justify-content:flex-end; margin:4px 2px 0}
 .hintrow[hidden]{display:none}
 
 /* character search + autocomplete */
 .search{position:relative; display:inline-flex; align-items:center; flex:1 1 220px; min-width:200px; max-width:420px}
-.search-ic{position:absolute; left:10px; width:15px; height:15px; fill:var(--muted); pointer-events:none}
-.search input{width:100%; font:inherit; font-size:13px; font-weight:600; color:var(--ink); background:var(--surface);
+.search-ic{position:absolute; left:10px; width:17px; height:17px; fill:var(--muted); pointer-events:none}
+.search input{width:100%; font:inherit; font-size:14.5px; font-weight:600; color:var(--ink); background:var(--surface);
   border:1px solid var(--border); border-radius:9px; padding:8px 30px 8px 31px; outline:none}
 .search input::placeholder{color:var(--muted); font-weight:500}
 .search input:focus{border-color:var(--accent)}
-.search-clear{position:absolute; right:6px; width:22px; height:22px; border:0; border-radius:6px; background:transparent;
-  color:var(--muted); font-size:18px; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center}
+.search-clear{position:absolute; right:6px; width:25px; height:25px; border:0; border-radius:6px; background:transparent;
+  color:var(--muted); font-size:20px; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center}
 .search-clear:hover{background:var(--track); color:var(--ink)}
 .search-ac{position:absolute; top:calc(100% + 5px); left:0; right:0; z-index:40; max-height:320px; overflow-y:auto;
   background:var(--surface); border:1px solid var(--border); border-radius:11px; padding:4px;
   box-shadow:0 10px 30px rgba(0,0,0,.28)}
 .search-ac-item{display:flex; align-items:center; gap:9px; padding:6px 8px; border-radius:8px; cursor:pointer}
 .search-ac-item:hover,.search-ac-item.sel{background:var(--surface2)}
-.search-ac-item img,.search-ac-ph{width:30px; height:30px; border-radius:50%; object-fit:cover; flex:none;
+.search-ac-item img,.search-ac-ph{width:34px; height:34px; border-radius:50%; object-fit:cover; flex:none;
   background:var(--track); box-shadow:inset 0 0 0 1.5px var(--surface)}
 .search-ac-tx{display:flex; flex-direction:column; gap:1px; min-width:0; flex:1}
-.search-ac-tx b{font-size:13px; font-weight:750; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
-.search-ac-jp{font-size:11px; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
-.search-ac-n{font-size:11px; color:var(--ink2); font-weight:650; font-variant-numeric:tabular-nums; white-space:nowrap}
-.noresults{text-align:center; color:var(--ink2); font-size:14px; line-height:1.7; padding:44px 16px}
+.search-ac-tx b{font-size:14.5px; font-weight:750; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.search-ac-jp{font-size:12.5px; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.search-ac-n{font-size:12.5px; color:var(--ink2); font-weight:650; font-variant-numeric:tabular-nums; white-space:nowrap}
+.noresults{text-align:center; color:var(--ink2); font-size:15.5px; line-height:1.7; padding:44px 16px}
 .linkbtn{background:none; border:0; color:var(--accent); font:inherit; font-weight:700; cursor:pointer; text-decoration:underline; padding:0}
 @media (max-width:560px){ .search{min-width:0; flex:1 1 100%; order:5} }
 
@@ -219,31 +219,33 @@ a{color:inherit}
 .chartwrap{overflow-x:auto; overflow-y:hidden}   /* horizontal scroll only; overflow-x:auto alone coerces overflow-y to auto and shows a stray vertical scrollbar */
 .chart{min-width:620px; position:relative; padding-top:8px}
 .axis{position:absolute; top:0; bottom:0; width:1px; background:var(--grid); pointer-events:none}
-.axis span{position:absolute; top:-3px; left:5px; font-size:10.5px; color:var(--muted); font-variant-numeric:tabular-nums}
-.yhead{font-size:11px; font-weight:800; color:var(--muted); letter-spacing:.08em; margin:16px 0 5px; text-transform:uppercase; position:relative; z-index:1}
-.row{display:grid; grid-template-columns:44px 46px 1fr; align-items:center; gap:11px; padding:5px 0; position:relative; z-index:1; cursor:pointer}
+.axis span{position:absolute; top:-3px; left:5px; font-size:12px; color:var(--muted); font-variant-numeric:tabular-nums}
+.yhead{font-size:12.5px; font-weight:800; color:var(--muted); letter-spacing:.08em; margin:16px 0 5px; text-transform:uppercase; position:relative; z-index:1}
+/* rank · avatar · bar columns; --ax-l / --ax-r place the axis gridlines (app.js) over the bar */
+:root{--ax-l:114px; --ax-r:84px}
+.row{display:grid; grid-template-columns:50px 52px 1fr; align-items:center; gap:12px; padding:5px 0; position:relative; z-index:1; cursor:pointer}
 .row:hover .nm b{text-decoration:underline; text-decoration-color:var(--av-ring); text-underline-offset:2px}
 .row:hover .barfill{filter:brightness(1.10)}
-.rk{font-size:12px; font-weight:800; color:var(--muted); text-align:center; font-variant-numeric:tabular-nums}
+.rk{font-size:13.5px; font-weight:800; color:var(--muted); text-align:center; font-variant-numeric:tabular-nums}
 .rk.m1{color:#e0a400}.rk.m2{color:#9aa2ad}.rk.m3{color:#c08040}
 /* "30/63" — place among the banners shown, and under it the place among new banners only */
 .rk.rk-of{line-height:1.15; white-space:nowrap}
-.rk .rk-tot{font-size:9.5px; font-weight:700; color:var(--muted)}
-.rk .rk-new{display:block; font-size:9px; font-weight:650; color:var(--muted); opacity:.85}
-.av{position:relative; width:44px; height:44px}
-.av img{width:44px; height:44px; border-radius:50%; object-fit:cover; background:var(--track);
+.rk .rk-tot{font-size:10.5px; font-weight:700; color:var(--muted)}
+.rk .rk-new{display:block; font-size:10px; font-weight:650; color:var(--muted); opacity:.85}
+.av{position:relative; width:50px; height:50px}
+.av img{width:50px; height:50px; border-radius:50%; object-fit:cover; background:var(--track);
   box-shadow:0 0 0 2px var(--surface),0 0 0 3.5px var(--av-ring,var(--accent))}
 .av img.artav{object-position:50% 18%}   /* banner splash: frame the character, not the sky */
-.av .mono{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;
-  font-weight:800;font-size:15px;color:#fff;background:var(--av-ring,var(--accent));
+.av .mono{width:50px; height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-weight:800;font-size:17px;color:#fff;background:var(--av-ring,var(--accent));
   box-shadow:0 0 0 2px var(--surface)}
-.av img.extra{position:absolute; width:24px; height:24px; bottom:-4px; right:-11px; box-shadow:0 0 0 2px var(--surface),0 0 0 3px var(--av-ring,var(--accent))}
+.av img.extra{position:absolute; width:27px; height:27px; bottom:-4px; right:-11px; box-shadow:0 0 0 2px var(--surface),0 0 0 3px var(--av-ring,var(--accent))}
 .av img.extra.e2{right:-23px; opacity:.96}
 .meta{min-width:0}
 .nm{display:flex; align-items:baseline; gap:8px; flex-wrap:wrap; line-height:1.2}
-.nm b{font-size:14px; letter-spacing:-.01em}
-.nm .en{font-size:11.5px; color:var(--muted)}
-.rr{font-size:9.5px; font-weight:700; letter-spacing:.03em; color:var(--muted); border:1px solid var(--border);
+.nm b{font-size:15.5px; letter-spacing:-.01em}
+.nm .en{font-size:13px; color:var(--muted)}
+.rr{font-size:10.5px; font-weight:700; letter-spacing:.03em; color:var(--muted); border:1px solid var(--border);
   border-radius:5px; padding:1px 4px; text-transform:uppercase; white-space:nowrap}
 .barline{display:flex; align-items:center; gap:9px; margin-top:4px}
 .track{position:relative; flex:1; height:15px; background:var(--track); border-radius:8px; overflow:hidden}
@@ -255,29 +257,29 @@ a{color:inherit}
 :root[data-theme=light] .barfill{background:var(--bar-l)}
 :root[data-theme=dark]  .barfill{background:var(--bar-d)}
 @keyframes barGrow{from{width:0}}
-.val{font-size:13px; font-weight:800; font-variant-numeric:tabular-nums; white-space:nowrap; text-align:right; box-sizing:border-box}
-.val small{font-weight:500; color:var(--ink2); font-size:11px}
-.val.nodata,.val.muted{font-weight:600; color:var(--muted); font-style:italic; font-size:11.5px}
+.val{font-size:14.5px; font-weight:800; font-variant-numeric:tabular-nums; white-space:nowrap; text-align:right; box-sizing:border-box}
+.val small{font-weight:500; color:var(--ink2); font-size:12.5px}
+.val.nodata,.val.muted{font-weight:600; color:var(--muted); font-style:italic; font-size:13px}
 /* "partial" flag on a Sensor Tower total — sits UNDER the value so it can't widen the bar row */
-.partialbadge{display:block; width:max-content; margin:2px 0 0 auto; font-size:8.5px; font-weight:700; letter-spacing:.03em;
+.partialbadge{display:block; width:max-content; margin:2px 0 0 auto; font-size:9.5px; font-weight:700; letter-spacing:.03em;
   color:var(--muted); border:1px solid var(--border); border-radius:5px; padding:0 4px; text-transform:uppercase}
 /* Sensor Tower "assumed data" disclaimer above the chart */
-.stnote,.cnnote,.qmnote{margin:2px 2px 12px; padding:9px 12px; font-size:12px; line-height:1.5; color:var(--ink2);
+.stnote,.cnnote,.qmnote{margin:2px 2px 12px; padding:9px 12px; font-size:13.5px; line-height:1.5; color:var(--ink2);
   background:var(--track); border:1px solid var(--border); border-radius:9px}
 .stnote b,.cnnote b,.qmnote b{color:var(--ink)}
-.stnote .pill,.cnnote .pill,.qmnote .pill{font-size:9px; font-weight:700; letter-spacing:.03em; color:var(--muted); border:1px solid var(--border);
+.stnote .pill,.cnnote .pill,.qmnote .pill{font-size:10px; font-weight:700; letter-spacing:.03em; color:var(--muted); border:1px solid var(--border);
   border-radius:5px; padding:1px 4px; text-transform:uppercase; white-space:nowrap}
 /* portion of a bar earned while sharing the day's revenue with another banner */
 .barfill .shared{position:absolute; right:0; top:0; bottom:0; z-index:1;
   box-shadow:inset 1px 0 0 rgba(255,255,255,.65);
   background-image:repeating-linear-gradient(-45deg, rgba(0,0,0,.30) 0 2px, rgba(255,255,255,.16) 2px 6px)}
 /* synthetic 'unlisted revenue' entries (game-i monthly minus listed banners) */
-.av .mono.syn{background:var(--muted); font-size:19px}
+.av .mono.syn{background:var(--muted); font-size:21.5px}
 .synrow .nm b{color:var(--ink2); font-weight:750}
 .synrow .barfill{background-image:repeating-linear-gradient(-45deg,transparent 0 5px,rgba(127,127,127,.32) 5px 10px)}
 /* store-chart ranking (Ranking → JP/CN chart): the revenue leaderboard row, bar = chart score
    (or the picked sort metric), plus a stat line under the bar with every Compare rank metric */
-.cr-stat{margin-top:3px; font-size:11px; color:var(--ink2); font-variant-numeric:tabular-nums}
+.cr-stat{margin-top:3px; font-size:12.5px; color:var(--ink2); font-variant-numeric:tabular-nums}
 .cr-stat b{color:var(--ink); font-weight:700}
 .cr-note{position:relative; z-index:1; margin-top:14px}
 .cr-srcbar{margin-bottom:14px}
@@ -286,12 +288,12 @@ a{color:inherit}
 .cr-stat .partialbadge{display:inline-block; margin:0 0 0 6px; vertical-align:1px}
 /* pending banner (game-i hasn't logged it yet) — real dates/art/names, no revenue */
 .pendrow .track{background:repeating-linear-gradient(-45deg,var(--track) 0 6px,transparent 6px 12px)}
-.val.pendingval{font-weight:700; font-style:italic; font-size:11px; color:var(--accent); opacity:.9}
-.bm-pendtag{font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:var(--accent); border:1px solid var(--accent); border-radius:6px; padding:1px 6px; vertical-align:middle; opacity:.9}
+.val.pendingval{font-weight:700; font-style:italic; font-size:12.5px; color:var(--accent); opacity:.9}
+.bm-pendtag{font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:var(--accent); border:1px solid var(--accent); border-radius:6px; padding:1px 6px; vertical-align:middle; opacity:.9}
 .bm-picons{display:flex; flex-wrap:wrap; gap:8px; margin:12px 0 2px}
-.bm-pi{width:46px; height:46px; border-radius:50%; object-fit:cover; background:var(--track); border:2px solid var(--av-ring,var(--border))}
+.bm-pi{width:52px; height:52px; border-radius:50%; object-fit:cover; background:var(--track); border:2px solid var(--av-ring,var(--border))}
 .bm-art.syn{display:flex; align-items:center; justify-content:center; background:var(--track);
-  color:var(--muted); font-size:26px; font-weight:700; border-color:var(--base); border-style:dashed}
+  color:var(--muted); font-size:29px; font-weight:700; border-color:var(--base); border-style:dashed}
 .gsvg .syndot{fill:var(--muted)}
 
 /* tooltip */
@@ -299,16 +301,16 @@ a{color:inherit}
   border:1px solid var(--base); border-radius:12px; padding:0; box-shadow:var(--shadow); max-width:270px; overflow:hidden}
 #bmTip{z-index:140}    /* above the banner detail modal */
 .tip img.art{display:block; width:100%; height:120px; object-fit:cover; background:var(--track)}
-.tip .body{padding:10px 12px; font-size:12.5px}
-.tip h4{margin:0 0 3px; font-size:14px; display:flex; align-items:center; gap:7px}
+.tip .body{padding:10px 12px; font-size:14px}
+.tip h4{margin:0 0 3px; font-size:15.5px; display:flex; align-items:center; gap:7px}
 .tip .dot{width:9px; height:9px; border-radius:50%; flex:none}
 .tip dl{margin:6px 0 0; display:grid; grid-template-columns:auto 1fr; gap:2px 12px}
 .tip dt{color:var(--muted)} .tip dd{margin:0; text-align:right; font-variant-numeric:tabular-nums}
-.tip .tiphint{margin-top:8px; padding-top:7px; border-top:1px solid var(--border); color:var(--accent); font-size:11px; font-weight:700}
+.tip .tiphint{margin-top:8px; padding-top:7px; border-top:1px solid var(--border); color:var(--accent); font-size:12.5px; font-weight:700}
 
 /* table */
 .tablewrap{overflow-x:auto}
-table{border-collapse:collapse; width:100%; font-size:12.5px; margin-top:4px}
+table{border-collapse:collapse; width:100%; font-size:14px; margin-top:4px}
 th,td{padding:6px 10px; border-bottom:1px solid var(--grid); text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap}
 th{color:var(--muted); font-weight:650; position:sticky; top:0; background:var(--page)}
 td.l,th.l{text-align:left}
@@ -332,14 +334,14 @@ tr.clk{cursor:pointer} tr.clk:hover td{background:var(--track)}
 .gscroll{overflow-x:auto; overflow-y:hidden; scrollbar-width:thin}   /* a timeline too dense to fit scrolls by itself */
 .gscroll .gsvg.gpx{width:auto; max-width:none}
 html.scrolling .gscroll, .gscroll:hover{scrollbar-color:var(--base) transparent}
-.gsvg.gpx .axislbl{font-size:11.5px}
-.gsvg.gpx .axislbl.yl{font-size:12.5px}
+.gsvg.gpx .axislbl{font-size:13px}
+.gsvg.gpx .axislbl.yl{font-size:14px}
 /* a multi-year timeline alone uses the screen's width beyond the page column (desktop) */
 @media (min-width:761px){
   body[data-view=graph][data-gwide] #chartwrap{width:min(calc(100vw - 64px), 1760px); margin-left:calc(50% - min(calc(100vw - 64px), 1760px) / 2)}
 }
 .gsvg .grid{stroke:var(--grid); stroke-width:1}
-.gsvg .axislbl{fill:var(--muted); font-size:10px; font-family:system-ui,sans-serif}
+.gsvg .axislbl{fill:var(--muted); font-size:11px; font-family:system-ui,sans-serif}
 .gsvg .area{fill:var(--accent); opacity:.13}
 .gsvg .line{fill:none; stroke:var(--accent); stroke-width:2; stroke-linejoin:round; stroke-linecap:round; opacity:.55}
 .gsvg .dot{stroke:var(--surface); stroke-width:2; cursor:pointer; transition:r .12s}
@@ -359,28 +361,28 @@ html.scrolling .gscroll, .gscroll:hover{scrollbar-color:var(--base) transparent}
 .msvg .mcol:hover .mseg{opacity:1}
 .msvg .mval{fill:var(--ink2); font:650 11px system-ui,-apple-system,"Segoe UI",sans-serif; pointer-events:none}
 .msvg .mval.pk{fill:var(--ink); font-weight:800}
-.mnote{color:var(--muted); font-size:11.5px; margin:0 0 4px}
+.mnote{color:var(--muted); font-size:13px; margin:0 0 4px}
 .mnote b{color:var(--ink2); font-weight:650}
-.tip .mt-lead{color:var(--accent); font-size:11px}
+.tip .mt-lead{color:var(--accent); font-size:12.5px}
 .gsvg .ysep{stroke:var(--grid); stroke-width:1}
-.gsvg .axislbl.yl{fill:var(--ink2); font-weight:700; font-size:10.5px}
+.gsvg .axislbl.yl{fill:var(--ink2); font-weight:700; font-size:12px}
 .msvg .mlabel{fill:var(--ink2); font:600 10.5px system-ui,-apple-system,"Segoe UI",sans-serif; pointer-events:none}
 .msvg .mlabel.pk{fill:var(--ink); font-weight:750}
-.tip .mt-so{color:var(--muted); font-size:11px; font-weight:600}
+.tip .mt-so{color:var(--muted); font-size:12.5px; font-weight:600}
 .yhead .yhead-sub{margin-left:8px; font-weight:700; letter-spacing:0; text-transform:none; color:var(--ink)}
 /* month tooltip: the total first, then each banner — icon, name, English name, its part */
 .tip .mtip-tot{display:flex; align-items:baseline; gap:8px; margin:2px 0 0}
-.tip .mtip-tot b{font-size:17px; font-weight:750}
-.tip .mtip-tot span{color:var(--muted); font-size:11px}
+.tip .mtip-tot b{font-size:19px; font-weight:750}
+.tip .mtip-tot span{color:var(--muted); font-size:12.5px}
 .tip .mtip-list{list-style:none; margin:8px 0 0; padding:8px 0 0; border-top:1px solid var(--border); display:grid; gap:6px}
 .tip .mtip-list li{display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:8px}
-.tip .mt-av{width:26px; height:26px; border-radius:50%; overflow:hidden; background:var(--track); box-shadow:0 0 0 1.5px var(--av-ring,var(--border))}
+.tip .mt-av{width:30px; height:30px; border-radius:50%; overflow:hidden; background:var(--track); box-shadow:0 0 0 1.5px var(--av-ring,var(--border))}
 .tip .mt-av img{width:100%; height:100%; object-fit:cover; display:block}
 .tip .mt-txt{display:flex; flex-direction:column; min-width:0}
 .tip .mt-nm{white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:210px; font-weight:600}
-.tip .mt-en{white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:210px; color:var(--muted); font-size:11px}
+.tip .mt-en{white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:210px; color:var(--muted); font-size:12.5px}
 .tip .mtip-list b{font-variant-numeric:tabular-nums}
-.tip .mtip-more{margin-top:6px; color:var(--muted); font-size:11px}
+.tip .mtip-more{margin-top:6px; color:var(--muted); font-size:12.5px}
 /* rerun badge on a graph avatar: same ↻ glyph as the .rr chips, and the same
    muted-on-surface/border palette, drawn as an SVG badge on the ring's 45° corner */
 .gsvg .g-rr{cursor:pointer}
@@ -393,17 +395,17 @@ html.scrolling .gscroll, .gscroll:hover{scrollbar-color:var(--base) transparent}
 .gsvg .g-rr:hover .rr-head{fill:var(--ink)}
 .gsvg .gring{stroke-width:2.5; paint-order:stroke; cursor:pointer}
 /* by-year breakdown view */
-.yr-head{font-size:12.5px; color:var(--ink2); margin:2px 0 4px}
-.yr-note{font-size:11.5px; color:var(--muted); margin:0 0 12px}
+.yr-head{font-size:14px; color:var(--ink2); margin:2px 0 4px}
+.yr-note{font-size:13px; color:var(--muted); margin:0 0 12px}
 .yr-row{display:grid; grid-template-columns:60px 1fr; gap:14px; align-items:center; padding:12px 0; border-top:1px solid var(--grid)}
 .yr-row:first-of-type{border-top:0}
-.yr-y{font-size:21px; font-weight:800; letter-spacing:-.02em; display:flex; flex-direction:column; line-height:1.1}
-.yr-prog{font-size:8.5px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.04em; margin-top:2px}
+.yr-y{font-size:23.5px; font-weight:800; letter-spacing:-.02em; display:flex; flex-direction:column; line-height:1.1}
+.yr-prog{font-size:9.5px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.04em; margin-top:2px}
 .yr-body{min-width:0}
 .yr-line{display:flex; align-items:baseline; gap:6px 13px; flex-wrap:wrap; margin-bottom:7px}
-.yr-v{font-size:17px; font-weight:800; font-variant-numeric:tabular-nums}
-.yr-pct{font-size:12px; color:var(--muted)}
-.yr-yoy{font-size:12px; font-weight:750; margin-left:auto; font-variant-numeric:tabular-nums; white-space:nowrap}
+.yr-v{font-size:19px; font-weight:800; font-variant-numeric:tabular-nums}
+.yr-pct{font-size:13.5px; color:var(--muted)}
+.yr-yoy{font-size:13.5px; font-weight:750; margin-left:auto; font-variant-numeric:tabular-nums; white-space:nowrap}
 .yr-yoy.up{color:#1f9d57} .yr-yoy.down{color:#d64b45} .yr-yoy.flat{color:var(--muted); font-weight:600}
 @media (prefers-color-scheme:dark){ .yr-yoy.up{color:#46c684} .yr-yoy.down{color:#f0736c} }
 :root[data-theme=dark] .yr-yoy.up{color:#46c684} :root[data-theme=dark] .yr-yoy.down{color:#f0736c}
@@ -414,44 +416,44 @@ html.scrolling .gscroll, .gscroll:hover{scrollbar-color:var(--base) transparent}
 /* by-month view (game-i monthly revenue vs banners active that month) */
 .mo-row{display:grid; grid-template-columns:42px 1fr; gap:12px; align-items:start; padding:9px 0; border-top:1px solid var(--grid)}
 .mo-row:first-of-type{border-top:0}
-.mo-m{font-size:13px; font-weight:800; color:var(--muted); padding-top:1px}
+.mo-m{font-size:14.5px; font-weight:800; color:var(--muted); padding-top:1px}
 .mo-body{min-width:0}
 .mo-line{display:flex; align-items:baseline; gap:8px 12px; flex-wrap:wrap; margin-bottom:6px}
-.mo-v{font-size:16px; font-weight:800; font-variant-numeric:tabular-nums}
-.mo-match{font-size:11.5px; font-weight:650; font-variant-numeric:tabular-nums}
+.mo-v{font-size:18px; font-weight:800; font-variant-numeric:tabular-nums}
+.mo-match{font-size:13px; font-weight:650; font-variant-numeric:tabular-nums}
 .mo-match.ok{color:var(--muted)} .mo-match.off{color:#d64b45}
 @media (prefers-color-scheme:dark){ .mo-match.off{color:#f0736c} }
 :root[data-theme=dark] .mo-match.off{color:#f0736c}
-.mo-x{font-size:11px; color:var(--muted); font-style:italic}
-.mo-banners{display:flex; flex-wrap:wrap; gap:4px 10px; margin-top:6px; font-size:11.5px; color:var(--ink2)}
+.mo-x{font-size:12.5px; color:var(--muted); font-style:italic}
+.mo-banners{display:flex; flex-wrap:wrap; gap:4px 10px; margin-top:6px; font-size:13px; color:var(--ink2)}
 .mo-b{cursor:pointer; white-space:nowrap}
 .mo-b:hover{text-decoration:underline; text-underline-offset:2px}
 .mo-bv{color:var(--muted); font-variant-numeric:tabular-nums}
-.mo-more{color:var(--muted); font-size:11px}
-.mo-of{color:var(--muted); font-size:10.5px; font-style:italic}
+.mo-more{color:var(--muted); font-size:12.5px}
+.mo-of{color:var(--muted); font-size:12px; font-style:italic}
 .mo-below{color:var(--muted); font-style:italic; opacity:.85}
 .pd-below{color:var(--muted); font-style:italic; font-weight:600}
-.mo-warn{font-size:12px; color:var(--ink2); background:var(--surface2); border:1px solid var(--border);
+.mo-warn{font-size:13.5px; color:var(--ink2); background:var(--surface2); border:1px solid var(--border);
   border-left:3px solid #d9a441; border-radius:8px; padding:9px 12px; margin:0 0 12px; line-height:1.5}
 .mo-warn b{color:var(--ink)}
 .mo-warn.st-note{margin-top:12px}             /* a month's report warning: clear of whatever sits above it */
 
 /* Sensor Tower comparison chip — external, USD, visually distinct from game-i's yen */
-.st-chip{font-size:11px; font-weight:750; font-variant-numeric:tabular-nums; white-space:nowrap;
+.st-chip{font-size:12.5px; font-weight:750; font-variant-numeric:tabular-nums; white-space:nowrap;
   color:#0f8a9e; background:var(--surface2); border:1px solid var(--border); border-radius:999px;
   padding:1px 8px; cursor:help}
 .st-chip.est{color:var(--muted); font-weight:650}
 @media (prefers-color-scheme:dark){ .st-chip{color:#4fc6da} }
 :root[data-theme=dark] .st-chip{color:#4fc6da}
-.st-note{display:block; margin-top:6px; font-size:11.5px; color:var(--muted); line-height:1.5}
+.st-note{display:block; margin-top:6px; font-size:13px; color:var(--muted); line-height:1.5}
 /* CN monthly layer (global, all platforms, yuan) — crimson against ST's teal */
-.cn-chip{font-size:11px; font-weight:750; font-variant-numeric:tabular-nums; white-space:nowrap;
+.cn-chip{font-size:12.5px; font-weight:750; font-variant-numeric:tabular-nums; white-space:nowrap;
   color:#b0384a; background:var(--surface2); border:1px solid var(--border); border-radius:999px;
   padding:1px 8px; cursor:help}
 .cn-chip.est{color:var(--muted); font-weight:650}
 @media (prefers-color-scheme:dark){ .cn-chip{color:#f08a99} }
 :root[data-theme=dark] .cn-chip{color:#f08a99}
-.qm-chip{font-size:11px; font-weight:750; font-variant-numeric:tabular-nums; white-space:nowrap;
+.qm-chip{font-size:12.5px; font-weight:750; font-variant-numeric:tabular-nums; white-space:nowrap;
   color:#1f9e57; background:var(--surface2); border:1px solid var(--border); border-radius:999px;
   padding:1px 8px; cursor:help}
 @media (prefers-color-scheme:dark){ .qm-chip{color:#4fd08a} }
@@ -460,9 +462,9 @@ html.scrolling .gscroll, .gscroll:hover{scrollbar-color:var(--base) transparent}
 .partialbadge.mixbadge{color:#b0384a; border-color:rgba(176,56,74,.4)}
 @media (prefers-color-scheme:dark){ .partialbadge.mixbadge{color:#f08a99; border-color:rgba(240,138,153,.4)} }
 :root[data-theme=dark] .partialbadge.mixbadge{color:#f08a99; border-color:rgba(240,138,153,.4)}
-.bm-stm-tag{font-size:9.5px; font-weight:700; letter-spacing:.03em; color:var(--muted);
+.bm-stm-tag{font-size:10.5px; font-weight:700; letter-spacing:.03em; color:var(--muted);
   border:1px solid var(--border); border-radius:5px; padding:0 4px; margin-left:5px; white-space:nowrap}
-.bm-stm-note{font-size:10.5px; color:var(--muted)}
+.bm-stm-note{font-size:12px; color:var(--muted)}
 .bm-note.bm-warn{color:var(--ink2) !important}
 .bm-note.bm-warn b{color:#b0384a}
 @media (prefers-color-scheme:dark){ .bm-note.bm-warn b{color:#f08a99} }
@@ -470,50 +472,50 @@ html.scrolling .gscroll, .gscroll:hover{scrollbar-color:var(--base) transparent}
 .st-note b{color:var(--ink)}
 
 /* info button + methodology modal */
-.infolink{border:0; background:none; color:var(--accent); font:inherit; font-size:12.5px; font-weight:600;
+.infolink{border:0; background:none; color:var(--accent); font:inherit; font-size:14px; font-weight:600;
   cursor:pointer; padding:0; text-decoration:underline; text-underline-offset:2px; white-space:nowrap}
 .modal{position:fixed; inset:0; z-index:100; display:flex; align-items:center; justify-content:center;
   background:rgba(0,0,0,.55); padding:20px; overflow-y:auto}
 .modal-card{position:relative; background:var(--surface); border:1px solid var(--base); border-radius:16px;
-  max-width:620px; width:100%; padding:26px clamp(18px,4vw,32px); box-shadow:var(--shadow); margin:auto;
+  max-width:920px; width:100%; padding:30px clamp(18px,4vw,40px); box-shadow:var(--shadow); margin:auto;
   max-height:min(92vh,940px); overflow-y:auto; overscroll-behavior:contain}
-.modal-card.bmodal{max-width:720px}   /* banner + period dialogs — wider for the ranked lists & calendar */
-.modal-card ul{margin:4px 0 0; padding-left:20px; font-size:13.5px; color:var(--ink2); line-height:1.55}
+.modal-card.bmodal{max-width:860px}   /* banner + period dialogs — wider for the ranked lists & calendar */
+.modal-card ul{margin:4px 0 0; padding-left:20px; font-size:16.5px; color:var(--ink2); line-height:1.55}
 .modal-card li{margin:3px 0}
 .modal-card li b{color:var(--ink)}
 .modal-close{position:absolute; top:12px; right:14px; border:0; background:none; color:var(--muted);
-  font-size:26px; line-height:1; cursor:pointer; padding:2px 6px; border-radius:8px}
+  font-size:29px; line-height:1; cursor:pointer; padding:2px 6px; border-radius:8px}
 .modal-close:hover{color:var(--ink); background:var(--track)}
-.modal-card h2{margin:0 0 4px; font-size:21px; letter-spacing:-.02em}
-.modal-sub{margin:0 0 20px; color:var(--muted); font-size:13px}
-.modal-note{margin:0 0 4px !important; font-size:12.5px !important; color:var(--muted) !important;
+.modal-card h2{margin:0 0 4px; font-size:26px; letter-spacing:-.02em}
+.modal-sub{margin:0 0 20px; color:var(--muted); font-size:16px}
+.modal-note{margin:0 0 4px !important; font-size:14px !important; color:var(--muted) !important;
   background:var(--surface2); border:1px solid var(--border); border-radius:10px; padding:10px 12px}
-.modal-card h3{margin:16px 0 4px; font-size:13.5px; color:var(--accent); letter-spacing:.01em}
+.modal-card h3{margin:18px 0 5px; font-size:17px; color:var(--accent); letter-spacing:.01em}
 /* banner card: --accent becomes the banner's own bar colour (set per card in openBanner),
    the same shade its bar uses on the chart in each theme */
 #bannerModal .modal-card{--accent:var(--bm-acc-l)}
 @media (prefers-color-scheme:dark){ #bannerModal .modal-card{--accent:var(--bm-acc-d)} }
 :root[data-theme=light] #bannerModal .modal-card{--accent:var(--bm-acc-l)}
 :root[data-theme=dark]  #bannerModal .modal-card{--accent:var(--bm-acc-d)}
-.modal-card p{margin:0; font-size:13.5px; color:var(--ink2); line-height:1.55}
+.modal-card p{margin:0; font-size:16.5px; color:var(--ink2); line-height:1.6}
 .modal-card p b{color:var(--ink)}
-.modal-src{margin-top:18px !important; font-size:11.5px !important; color:var(--muted) !important}
+.modal-src{margin-top:18px !important; font-size:13px !important; color:var(--muted) !important}
 /* How-these-numbers-work: dataset toggle + worked-example boxes */
 .info-toggle{display:inline-flex; margin:4px 0 16px}
 .info-formula{background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:8px 12px; font-variant-numeric:tabular-nums; margin:6px 0}
 .info-ex{background:var(--surface2); border:1px solid var(--border); border-left:3px solid var(--accent); border-radius:8px; padding:10px 14px; margin:9px 0 13px}
-.info-ex-h{font-size:12px; font-weight:750; color:var(--ink); margin-bottom:6px}
-.info-ex-math{font-size:13px; line-height:1.75; color:var(--ink2); font-variant-numeric:tabular-nums}
-.info-ex-note{color:var(--muted); font-size:11.5px}
+.info-ex-h{font-size:13.5px; font-weight:750; color:var(--ink); margin-bottom:6px}
+.info-ex-math{font-size:14.5px; line-height:1.75; color:var(--ink2); font-variant-numeric:tabular-nums}
+.info-ex-note{color:var(--muted); font-size:13px}
 .info-ex-img{display:block; margin-top:10px; max-width:100%; max-height:82px; width:auto; height:auto; border:1px solid var(--border); border-radius:6px; cursor:zoom-in}
 .info-ex-img:hover{border-color:var(--accent)}
 .lightbox{position:fixed; inset:0; z-index:200; background:rgba(0,0,0,.82); display:flex; align-items:center; justify-content:center; padding:24px; cursor:zoom-out}
 .lightbox[hidden]{display:none}
 .lightbox img{max-width:100%; max-height:100%; border:1px solid var(--border); border-radius:8px; box-shadow:var(--shadow); cursor:zoom-out}
-.modal-card .pill{display:inline-block; font-size:9.5px; font-weight:700; letter-spacing:.03em; color:var(--muted); border:1px solid var(--border); border-radius:5px; padding:1px 5px; text-transform:uppercase; vertical-align:middle; white-space:nowrap}
+.modal-card .pill{display:inline-block; font-size:10.5px; font-weight:700; letter-spacing:.03em; color:var(--muted); border:1px solid var(--border); border-radius:5px; padding:1px 5px; text-transform:uppercase; vertical-align:middle; white-space:nowrap}
 .site-hd .hd-info{margin:11px 0 0}        /* a little air above and below the "How these numbers work" link */
 .site-hd .hd-feedback{margin:11px 0 0}
-.hd-feedback{margin:7px 0 0; font-size:12px; color:var(--muted)}
+.hd-feedback{margin:7px 0 0; font-size:13.5px; color:var(--muted)}
 .hd-feedback a{color:var(--accent); font-weight:600}
 /* header card for the Monthly Journal: the latest cover art fades in from the right behind the blurb */
 .jr-card{position:relative; display:block; margin:14px 0 0; max-width:560px; min-height:118px; border-radius:12px; overflow:hidden;
@@ -528,55 +530,55 @@ html.scrolling .gscroll, .gscroll:hover{scrollbar-color:var(--base) transparent}
 .jr-card::after{content:""; position:absolute; inset:0; pointer-events:none;
   background:linear-gradient(90deg, var(--surface) 0%, var(--surface) 42%, color-mix(in srgb, var(--surface) 75%, transparent) 58%, transparent 82%)}
 .jr-tx{position:relative; z-index:1; display:flex; flex-direction:column; gap:3px; padding:13px 16px 13px; max-width:66%}
-.jr-k{font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; font-weight:700; color:var(--accent)}
-.jr-t{font-family:Georgia,"Iowan Old Style","Palatino Linotype",serif; font-size:21px; line-height:1.1; letter-spacing:-.01em}
+.jr-k{font-size:12px; letter-spacing:.14em; text-transform:uppercase; font-weight:700; color:var(--accent)}
+.jr-t{font-family:Georgia,"Iowan Old Style","Palatino Linotype",serif; font-size:23.5px; line-height:1.1; letter-spacing:-.01em}
 .jr-t em{font-weight:400}
-.jr-sum{font-size:12px; line-height:1.45; color:var(--ink2)}
-.jr-go{font-size:12px; font-weight:700; color:var(--accent); margin-top:2px}
+.jr-sum{font-size:13.5px; line-height:1.45; color:var(--ink2)}
+.jr-go{font-size:13.5px; font-weight:700; color:var(--accent); margin-top:2px}
 @media (max-width:560px){ .jr-tx{max-width:82%} .jr-art{width:60%}
   .jr-card::after{background:linear-gradient(90deg, var(--surface) 0%, var(--surface) 55%, color-mix(in srgb, var(--surface) 70%, transparent) 75%, transparent 100%)} }
 
 /* banner detail modal */
-.bmodal{max-width:660px}
+.bmodal{max-width:820px}
 .bm-hero{margin:0 0 15px}
 .bm-hero img{width:100%; height:auto; max-height:300px; object-fit:cover; border-radius:12px; display:block; border:1px solid var(--border)}
 .bm-herobar{margin-top:11px}
 .bm-head{display:flex; gap:14px; align-items:center; margin:2px 34px 16px 0}
 .bm-art{width:96px; height:60px; object-fit:cover; border-radius:9px; border:2px solid var(--av-ring); flex:none; background:var(--track)}
-.bm-art.sq{width:64px; height:64px; border-radius:50%}
-.bm-htext h2,.bm-herobar h2{margin:0; font-size:20px; letter-spacing:-.02em; line-height:1.2; display:flex; align-items:center; gap:8px; flex-wrap:wrap}
-.bm-herobar h2 .rr,.bm-htext h2 .rr{font-size:11px}
-.bm-live{font-size:10.5px; font-weight:800; letter-spacing:.03em; color:#fff; background:var(--av-ring); padding:2px 9px; border-radius:999px; text-transform:uppercase}
-.bm-sub{color:var(--muted); font-size:12.5px; margin-top:3px}
-.bm-period{color:var(--ink2); font-size:12px; margin-top:3px; font-variant-numeric:tabular-nums}
+.bm-art.sq{width:73px; height:73px; border-radius:50%}
+.bm-htext h2,.bm-herobar h2{margin:0; font-size:22.5px; letter-spacing:-.02em; line-height:1.2; display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+.bm-herobar h2 .rr,.bm-htext h2 .rr{font-size:12.5px}
+.bm-live{font-size:12px; font-weight:800; letter-spacing:.03em; color:#fff; background:var(--av-ring); padding:2px 9px; border-radius:999px; text-transform:uppercase}
+.bm-sub{color:var(--muted); font-size:14px; margin-top:3px}
+.bm-period{color:var(--ink2); font-size:13.5px; margin-top:3px; font-variant-numeric:tabular-nums}
 .bm-seg{display:flex; margin:14px 0 14px}
 .bm-seg button{flex:1}
 .bm-stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(110px,1fr)); gap:8px; margin-bottom:6px}
 .bm-stat{background:var(--surface2); border:1px solid var(--border); border-radius:10px; padding:8px 11px; display:flex; flex-direction:column; gap:1px}
-.bm-stat .l{font-size:10.5px; color:var(--muted); text-transform:uppercase; letter-spacing:.04em}
-.bm-stat .v{font-size:15px; font-weight:750; font-variant-numeric:tabular-nums}
-.bm-cap{font-size:12.5px; color:var(--ink2); margin:2px 0 6px} .bm-cap b{color:var(--ink)}
+.bm-stat .l{font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.04em}
+.bm-stat .v{font-size:17px; font-weight:750; font-variant-numeric:tabular-nums}
+.bm-cap{font-size:14px; color:var(--ink2); margin:2px 0 6px} .bm-cap b{color:var(--ink)}
 /* projection: what moved it (sits right under the tiles) and how sure it is (after the read) */
 .bm-cap.bm-move{margin-top:-2px}
-.bm-cap.bm-sure{color:var(--muted); font-size:12px}
+.bm-cap.bm-sure{color:var(--muted); font-size:13.5px}
 /* "where it places" line under a revenue figure or a rank curve, with a coloured verdict
    (same greens/reds as the year-on-year and month-card changes) */
-.bm-place{font-size:12.5px; color:var(--ink2); margin:6px 0 8px; line-height:1.5}
+.bm-place{font-size:14px; color:var(--ink2); margin:6px 0 8px; line-height:1.5}
 .bm-place b{color:var(--ink); font-variant-numeric:tabular-nums}
-.bm-place-what{display:inline-block; font-size:10.5px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--muted); margin-right:7px}
+.bm-place-what{display:inline-block; font-size:12px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--muted); margin-right:7px}
 .bm-place-v{font-weight:750}
 .bm-place-v.up{color:#1f9d57} .bm-place-v.down{color:#d64b45} .bm-place-v.flat{color:var(--ink)}
 @media (prefers-color-scheme:dark){ .bm-place-v.up{color:#46c684} .bm-place-v.down{color:#f0736c} }
 :root[data-theme=dark] .bm-place-v.up{color:#46c684} :root[data-theme=dark] .bm-place-v.down{color:#f0736c}
 :root[data-theme=light] .bm-place-v.up{color:#1f9d57} :root[data-theme=light] .bm-place-v.down{color:#d64b45}
-.bm-note{font-size:11.5px !important; color:var(--muted) !important; margin-top:8px !important; line-height:1.5}
+.bm-note{font-size:13px !important; color:var(--muted) !important; margin-top:8px !important; line-height:1.5}
 .rcsvg{width:100%; height:auto; display:block; overflow:visible; margin-top:2px}
 .rcsvg .grid{stroke:var(--grid); stroke-width:1}
-.rcsvg .axislbl{fill:var(--muted); font-size:10px; font-family:system-ui,sans-serif}
+.rcsvg .axislbl{fill:var(--muted); font-size:11px; font-family:system-ui,sans-serif}
 .rcsvg .rc-line{fill:none; stroke:var(--acc); stroke-width:2.4; stroke-linejoin:round; stroke-linecap:round}
 .rcsvg .rc-dot{fill:var(--acc); stroke:var(--surface); stroke-width:1.5}
 .rcsvg .rc-peak{fill:var(--surface); stroke:var(--acc); stroke-width:2.5}
-.rcsvg .rc-peaklbl{fill:var(--ink); font-size:10.5px; font-weight:700; font-family:system-ui,sans-serif}
+.rcsvg .rc-peaklbl{fill:var(--ink); font-size:12px; font-weight:700; font-family:system-ui,sans-serif}
 .rcsvg .bu-bar{fill:var(--acc); opacity:.30}
 .rcsvg .bu-bar.shr{fill:var(--muted); opacity:.55}   /* days whose revenue was split with a concurrent banner */
 .rcsvg .bu-line{fill:none; stroke:var(--acc); stroke-width:2.4; stroke-linejoin:round; stroke-linecap:round}
@@ -594,27 +596,27 @@ html.scrolling .gscroll, .gscroll:hover{scrollbar-color:var(--base) transparent}
 .bm-stmlist{display:flex; flex-direction:column; gap:6px; margin:4px 0 8px}
 .bm-stm{background:var(--surface2); border:1px solid var(--border); border-radius:10px; padding:8px 11px}
 .bm-stm-top{display:flex; justify-content:space-between; align-items:baseline; gap:10px}
-.bm-stm-top .mo{font-size:13px; font-weight:750}
-.bm-stm-top .v{font-size:14px; font-weight:800; font-variant-numeric:tabular-nums; white-space:nowrap}
-.bm-stm-sub{font-size:11px; color:var(--muted); margin-top:2px; font-variant-numeric:tabular-nums}
+.bm-stm-top .mo{font-size:14.5px; font-weight:750}
+.bm-stm-top .v{font-size:15.5px; font-weight:800; font-variant-numeric:tabular-nums; white-space:nowrap}
+.bm-stm-sub{font-size:12.5px; color:var(--muted); margin-top:2px; font-variant-numeric:tabular-nums}
 /* mini bar: this banner's assumed slice of the month */
 .bm-stm-mbar{height:6px; background:var(--track); border-radius:4px; overflow:hidden; margin:7px 0 6px}
 .bm-stm-mfill{display:block; height:100%; border-radius:4px; animation:barGrow .5s cubic-bezier(.2,.7,.2,1) both}
-.bm-stm-math{font-size:11.5px; color:var(--ink2); line-height:1.5; font-variant-numeric:tabular-nums}
+.bm-stm-math{font-size:13px; color:var(--ink2); line-height:1.5; font-variant-numeric:tabular-nums}
 .bm-stm-math b{color:var(--ink); font-weight:750}
-.bm-stm-co{font-size:11.5px; color:var(--ink2); margin-top:6px; display:flex; flex-wrap:wrap; align-items:center; gap:5px}
-.bm-co-l{font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.03em; color:var(--muted)}
+.bm-stm-co{font-size:13px; color:var(--ink2); margin-top:6px; display:flex; flex-wrap:wrap; align-items:center; gap:5px}
+.bm-co-l{font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.03em; color:var(--muted)}
 .bm-cochip{display:inline-flex; align-items:center; gap:5px; background:var(--surface); border:1px solid var(--border);
-  border-radius:20px; padding:2px 9px 2px 3px; font-size:11.5px; font-weight:600}
-.bm-coav{position:relative; width:18px; height:18px; flex:none}
-.bm-coav img{width:18px; height:18px; border-radius:50%; object-fit:cover; box-shadow:0 0 0 1.5px var(--av-ring,var(--muted))}
+  border-radius:20px; padding:2px 9px 2px 3px; font-size:13px; font-weight:600}
+.bm-coav{position:relative; width:21px; height:21px; flex:none}
+.bm-coav img{width:21px; height:21px; border-radius:50%; object-fit:cover; box-shadow:0 0 0 1.5px var(--av-ring,var(--muted))}
 .bm-coav img.extra,.bm-coav .mono{display:none}
-.bm-coav .mono{display:flex; width:18px; height:18px; align-items:center; justify-content:center; border-radius:50%; background:var(--track); font-size:9px}
+.bm-coav .mono{display:flex; width:21px; height:21px; align-items:center; justify-content:center; border-radius:50%; background:var(--track); font-size:10px}
 .bm-stsum{margin-top:14px}
 .bm-stats .bm-stat.sum{border-color:var(--accent)}
 .bm-stats .bm-stat.sum .v{color:var(--accent)}
 .bm-tablewrap{max-height:230px; overflow-y:auto; margin-top:10px; border:1px solid var(--border); border-radius:10px}
-.bm-table{font-size:12px; margin:0}
+.bm-table{font-size:13.5px; margin:0}
 .bm-table th{position:sticky; top:0; background:var(--surface); z-index:1}
 .bm-table td,.bm-table th{padding:5px 12px}
 .bm-table .muted{color:var(--muted)}
@@ -648,7 +650,7 @@ html.scrolling .gscroll, .gscroll:hover{scrollbar-color:var(--base) transparent}
 .bm-rtcols .bm-table td{text-align:center}
 .bm-rtcols .bm-table th.l,
 .bm-rtcols .bm-table td.l{text-align:left}
-.foot{margin-top:26px; font-size:11px; color:var(--muted); line-height:1.6}
+.foot{margin-top:26px; font-size:12.5px; color:var(--muted); line-height:1.6}
 .loading{padding:40px 0; text-align:center; color:var(--muted)}
 .loading.err{line-height:1.7}
 .loading.err button{margin-top:10px; padding:6px 22px; cursor:pointer}
@@ -744,31 +746,31 @@ html.scrolling .gscroll, .gscroll:hover{scrollbar-color:var(--base) transparent}
    the banner modal stays above the period modal for the period→banner drill-down */
 #periodModal{z-index:130}
 #bannerModal{z-index:135}
-.pd-title{font-size:19px; margin:2px 40px 2px 0; letter-spacing:-.02em}
-.pd-subtitle{font-size:12.5px; color:var(--muted); margin:0 0 14px; font-variant-numeric:tabular-nums}
+.pd-title{font-size:21.5px; margin:2px 40px 2px 0; letter-spacing:-.02em}
+.pd-subtitle{font-size:14px; color:var(--muted); margin:0 0 14px; font-variant-numeric:tabular-nums}
 .pd-empty{color:var(--muted); padding:20px 0}
 .pd-list{display:flex; flex-direction:column; gap:4px}
 .pd-row{display:grid; grid-template-columns:26px 40px 1fr; align-items:center; gap:11px; padding:7px 8px;
   border-radius:10px; cursor:pointer; transition:background .12s}
 .pd-row:hover{background:var(--surface2)}
-.pd-rk{font-size:12px; font-weight:800; color:var(--muted); text-align:center; font-variant-numeric:tabular-nums}
+.pd-rk{font-size:13.5px; font-weight:800; color:var(--muted); text-align:center; font-variant-numeric:tabular-nums}
 .pd-rk.m1{color:#e0a400}.pd-rk.m2{color:#9aa2ad}.pd-rk.m3{color:#c08040}
-.pd-av{position:relative; width:40px; height:40px}
-.pd-av img{width:40px; height:40px; border-radius:50%; object-fit:cover; background:var(--track);
+.pd-av{position:relative; width:46px; height:46px}
+.pd-av img{width:46px; height:46px; border-radius:50%; object-fit:cover; background:var(--track);
   box-shadow:0 0 0 2px var(--surface),0 0 0 3px var(--av-ring,var(--accent))}
-.pd-av .mono{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;
-  font-weight:800;font-size:14px;color:#fff;background:var(--av-ring,var(--accent))}
+.pd-av .mono{width:46px; height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-weight:800;font-size:15.5px;color:#fff;background:var(--av-ring,var(--accent))}
 .pd-av img.extra{display:none}
 .pd-meta{min-width:0}
 .pd-nm{display:flex; align-items:baseline; gap:7px; flex-wrap:wrap; line-height:1.2}
-.pd-nm b{font-size:13.5px; letter-spacing:-.01em}
-.pd-en{font-size:11px; color:var(--muted)}
+.pd-nm b{font-size:15px; letter-spacing:-.01em}
+.pd-en{font-size:12.5px; color:var(--muted)}
 .pd-bar{display:flex; align-items:center; gap:9px; margin-top:4px}
 .pd-track{flex:1; height:7px; background:var(--track); border-radius:5px; overflow:hidden; max-width:420px}
 .pd-fill{height:100%; border-radius:5px; background:linear-gradient(90deg,var(--bar-l),var(--bar-d))}
-.pd-val{font-size:12.5px; font-weight:750; font-variant-numeric:tabular-nums; white-space:nowrap}
-.pd-of{color:var(--muted); font-weight:500; font-size:11px}
-.pd-sub{font-size:11.5px; color:var(--muted); margin-top:3px; font-variant-numeric:tabular-nums}
+.pd-val{font-size:14px; font-weight:750; font-variant-numeric:tabular-nums; white-space:nowrap}
+.pd-of{color:var(--muted); font-weight:500; font-size:12.5px}
+.pd-sub{font-size:13px; color:var(--muted); margin-top:3px; font-variant-numeric:tabular-nums}
 
 /* by-month: rich month cards — game-i vs daily-rank vs Sensor Tower, plus per-banner split */
 .mc{background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:14px 17px 15px; margin:0 0 12px; box-shadow:0 1px 3px rgba(0,0,0,.06); container:mc / inline-size}
@@ -800,9 +802,9 @@ html.scrolling .gscroll, .gscroll:hover{scrollbar-color:var(--base) transparent}
 .mc-kpis.yc-kpis .mck-n{white-space:normal; line-height:1.35; overflow:visible}
 .mc-kpis.yc-kpis .mck-n .chg{white-space:nowrap}
 .mc-hd{display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:10px 16px}
-.mc-month{font-size:19px; font-weight:800; letter-spacing:-.02em; white-space:nowrap; display:inline-flex; align-items:center; gap:9px}
+.mc-month{font-size:21.5px; font-weight:800; letter-spacing:-.02em; white-space:nowrap; display:inline-flex; align-items:center; gap:9px}
 .mc-month::before{content:""; width:4px; height:17px; border-radius:2px; background:var(--accent); flex:none}
-.mc-yr{font-size:13px; font-weight:600; color:var(--muted); margin-left:2px}
+.mc-yr{font-size:14.5px; font-weight:600; color:var(--muted); margin-left:2px}
 .mc-kpis{display:flex; flex-wrap:wrap; gap:8px}
 /* The KPI tiles read as one row and GROW to fill the card width (flex-grow), so no dead
    space is left on the right. flex-basis stays auto (content size) so they only ever grow
@@ -827,9 +829,9 @@ html.scrolling .gscroll, .gscroll:hover{scrollbar-color:var(--base) transparent}
 @media (max-width:720px){ .mc-kpis{flex-wrap:wrap} .mc-kpis .mck{flex:1 1 auto} }
 .mck{display:flex; flex-direction:column; gap:1px; padding:6px 12px; background:var(--surface2);
   border:1px solid var(--border); border-radius:10px; min-width:100px}
-.mck-k{font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.03em; color:var(--muted)}
-.mck-v{font-size:17px; font-weight:800; font-variant-numeric:tabular-nums; letter-spacing:-.01em}
-.mck-n{font-size:10.5px; color:var(--muted)}
+.mck-k{font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.03em; color:var(--muted)}
+.mck-v{font-size:19px; font-weight:800; font-variant-numeric:tabular-nums; letter-spacing:-.01em}
+.mck-n{font-size:12px; color:var(--muted)}
 /* "no figure this month" scorecard: muted in every theme (beats the per-theme CN colours) */
 .mck.na,:root .mck.cn.na,:root[data-theme] .mck.cn.na{border-color:var(--border)}
 .mck.na .mck-v,:root .mck.cn.na .mck-v,:root[data-theme] .mck.cn.na .mck-v{color:var(--muted); font-weight:600}
@@ -864,16 +866,16 @@ html.scrolling .gscroll, .gscroll:hover{scrollbar-color:var(--base) transparent}
   transition:border-color .14s, box-shadow .14s, transform .1s}
 .mc-banners>.mcb:only-child{grid-column:1 / -1}
 .mcb:hover{border-color:var(--av-ring,var(--accent)); box-shadow:0 3px 14px rgba(0,0,0,.16); transform:translateY(-1px)}
-.mcb-av{position:relative; width:40px; height:40px}
-.mcb-av img{width:40px; height:40px; border-radius:50%; object-fit:cover; background:var(--track);
+.mcb-av{position:relative; width:46px; height:46px}
+.mcb-av img{width:46px; height:46px; border-radius:50%; object-fit:cover; background:var(--track);
   box-shadow:0 0 0 2px var(--surface2),0 0 0 3.5px var(--av-ring,var(--accent))}
 .mcb-av img.extra{display:none}
-.mcb-av .mono{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;
-  font-weight:800;font-size:14px;color:#fff;background:var(--av-ring,var(--accent))}
+.mcb-av .mono{width:46px; height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-weight:800;font-size:15.5px;color:#fff;background:var(--av-ring,var(--accent))}
 .mcb-meta{min-width:0; container:mcb / inline-size}
 /* base font sits on the row so JS (fitBannerNames) can shrink the whole name+EN with one
    font-size when a long name would wrap to a second line; the parts scale in em. */
-.mcb-nm{display:flex; align-items:baseline; gap:7px; flex-wrap:wrap; line-height:1.2; font-size:13.5px}
+.mcb-nm{display:flex; align-items:baseline; gap:7px; flex-wrap:wrap; line-height:1.2; font-size:15px}
 .mcb-nm b{font-size:1em; letter-spacing:-.01em}
 .mcb-en{font-size:.82em; color:var(--muted)}
 /* Per-banner source figures. The two MEASURED sources (game-i, Qimai — both short) sit two-up
@@ -885,9 +887,9 @@ html.scrolling .gscroll, .gscroll:hover{scrollbar-color:var(--base) transparent}
 .mcb-vals{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:6px 8px; margin-top:6px; font-variant-numeric:tabular-nums}
 .mcv{display:flex; flex-direction:column; gap:1px; min-width:0; padding:4px 8px; border-radius:7px; background:var(--surface); box-shadow:inset 2.5px 0 0 var(--mcv-a, var(--border))}
 .mcv.st,.mcv.cn{grid-column:1 / -1}
-.mcv-k{font-size:9px; font-weight:800; text-transform:uppercase; letter-spacing:.03em; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
-.mcv-v{font-size:12.5px; font-weight:750; letter-spacing:-.01em; color:var(--ink); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
-.mcv-x{font-size:9.5px; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.mcv-k{font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:.03em; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.mcv-v{font-size:14px; font-weight:750; letter-spacing:-.01em; color:var(--ink); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.mcv-x{font-size:10.5px; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
 .mcv.gi{--mcv-a:var(--ink2)}
 .mcv.gi.below .mcv-v{color:var(--muted); font-style:italic; font-weight:600}
 .mcv.qm{--mcv-a:#1f9e57} .mcv.qm .mcv-v{color:#1f9e57}
@@ -899,30 +901,30 @@ html.scrolling .gscroll, .gscroll:hover{scrollbar-color:var(--base) transparent}
 @media (prefers-color-scheme:dark){ .pd-h-cn,.pd-tot-cn .pd-tot-v{color:#f08a99} .pd-hd-cn{border-color:rgba(240,138,153,.4)} }
 :root[data-theme=dark] .pd-h-cn,:root[data-theme=dark] .pd-tot-cn .pd-tot-v{color:#f08a99}
 :root[data-theme=dark] .pd-hd-cn{border-color:rgba(240,138,153,.4)}
-.mcb-pend{font-size:11px; font-weight:700; font-style:italic; color:var(--accent); opacity:.9}
+.mcb-pend{font-size:12.5px; font-weight:700; font-style:italic; color:var(--accent); opacity:.9}
 @media (prefers-color-scheme:dark){ .mcv.qm{--mcv-a:#4fd08a} .mcv.qm .mcv-v{color:#4fd08a} .mcv.st{--mcv-a:#4fc6da} .mcv.st .mcv-v{color:#4fc6da} .mcv.cn{--mcv-a:#f08a99} .mcv.cn .mcv-v{color:#f08a99} }
 :root[data-theme=dark] .mcv.qm{--mcv-a:#4fd08a} :root[data-theme=dark] .mcv.qm .mcv-v{color:#4fd08a}
 :root[data-theme=dark] .mcv.st{--mcv-a:#4fc6da} :root[data-theme=dark] .mcv.st .mcv-v{color:#4fc6da}
 :root[data-theme=dark] .mcv.cn{--mcv-a:#f08a99} :root[data-theme=dark] .mcv.cn .mcv-v{color:#f08a99}
-.mc-empty{font-size:11.5px; color:var(--muted); font-style:italic; margin-top:8px}
+.mc-empty{font-size:13px; color:var(--muted); font-style:italic; margin-top:8px}
 /* per-banner detail line on the card */
-.mcb-det{display:flex; flex-wrap:wrap; gap:2px 10px; margin-top:3px; font-size:11px; color:var(--muted); font-variant-numeric:tabular-nums}
+.mcb-det{display:flex; flex-wrap:wrap; gap:2px 10px; margin-top:3px; font-size:12.5px; color:var(--muted); font-variant-numeric:tabular-nums}
 .mcb-dates{font-weight:600; color:var(--ink2)}
 .mcb-below{color:#d64b45; font-weight:600}
 .mcb-shr{color:var(--ink2); font-weight:600}
 @media (prefers-color-scheme:dark){ .mcb-below{color:#f0736c} }
 :root[data-theme=dark] .mcb-below{color:#f0736c}
-.mo-hint{font-size:11.5px; color:var(--muted); margin:-4px 0 12px; font-style:italic}
+.mo-hint{font-size:13px; color:var(--muted); margin:-4px 0 12px; font-style:italic}
 /* month card: how banners overlapped */
 .mc-ov{margin-top:11px; padding-top:11px; border-top:1px dashed var(--grid)}
-.mc-ov-h{display:block; font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); margin-bottom:7px}
+.mc-ov-h{display:block; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); margin-bottom:7px}
 .mc-ovc-row{display:flex; flex-wrap:wrap; gap:6px}
-.mc-ovc{font-size:11px; color:var(--ink2); background:var(--surface2); border:1px solid var(--border); border-radius:14px; padding:2px 9px; max-width:100%}   /* wraps: FGO/Uma months can list many concurrent banners in one chip */
+.mc-ovc{font-size:12.5px; color:var(--ink2); background:var(--surface2); border:1px solid var(--border); border-radius:14px; padding:2px 9px; max-width:100%}   /* wraps: FGO/Uma months can list many concurrent banners in one chip */
 .mc-ovc b{font-weight:750; font-variant-numeric:tabular-nums}
 .mc-ovc.shr{border-color:rgba(120,120,120,.45); background:repeating-linear-gradient(45deg,var(--surface2) 0 5px,var(--track) 5px 10px)}
 .mc-ovc.more{color:var(--muted); font-style:italic}
 /* small change indicator inside a KPI note (Sensor Tower vs previous period) */
-.usonly-tag{display:inline-block; font-size:8.5px; font-weight:800; text-transform:uppercase; letter-spacing:.04em;
+.usonly-tag{display:inline-block; font-size:9.5px; font-weight:800; text-transform:uppercase; letter-spacing:.04em;
   color:#c9821a; border:1px solid currentColor; border-radius:5px; padding:0 4px; vertical-align:1px}
 @media (prefers-color-scheme:dark){ .usonly-tag{color:#e0a53a} }
 :root[data-theme=dark] .usonly-tag{color:#e0a53a} :root[data-theme=light] .usonly-tag{color:#c9821a}
@@ -936,15 +938,15 @@ html.scrolling .gscroll, .gscroll:hover{scrollbar-color:var(--base) transparent}
   cursor:pointer; transition:background .12s,border-color .12s}
 .yc:hover{background:var(--surface2); border-color:var(--muted)}
 .yc-hd{display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:10px 16px}
-.yc-label{font-size:21px; font-weight:800; letter-spacing:-.02em; white-space:nowrap; display:flex; align-items:baseline; gap:8px}
-.yc-prog{font-size:9px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.04em}
+.yc-label{font-size:23.5px; font-weight:800; letter-spacing:-.02em; white-space:nowrap; display:flex; align-items:baseline; gap:8px}
+.yc-prog{font-size:10px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.04em}
 .yc-track{height:14px; background:var(--track); border-radius:8px; overflow:hidden; margin-top:11px}
 .yc-fill{height:100%; background:var(--accent); border-radius:0 6px 6px 0; min-width:3px; animation:barGrow .6s cubic-bezier(.2,.7,.2,1) both}
 /* composition variant: fill is a flex row of per-banner colored segments (like a by-Month card) */
 .yc-fill.comp{display:flex; background:transparent; overflow:hidden}
 .yc-fill.comp .mcs{height:100%; animation:none}
 .yc-legend{display:flex; flex-wrap:wrap; gap:4px 12px; margin-top:8px}
-.yc-lg{display:inline-flex; align-items:center; gap:5px; font-size:11px; color:var(--ink2); font-weight:600}
+.yc-lg{display:inline-flex; align-items:center; gap:5px; font-size:12.5px; color:var(--ink2); font-weight:600}
 .yc-lg.muted{color:var(--muted)}
 .yc-lg-dot{width:8px; height:8px; border-radius:2px; flex:none}
 /* phone: the four source tiles as a 2×2 grid spanning the card (they stacked one per row,
@@ -963,7 +965,7 @@ html.scrolling .gscroll, .gscroll:hover{scrollbar-color:var(--base) transparent}
 /* period dialog: clickable month cards + run detail, ST monthly, month overlap */
 .mc{cursor:pointer; transition:border-color .12s, background .12s}
 .mc:hover{border-color:var(--muted)}
-.mc-more{font-size:10px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.03em; margin-left:9px; opacity:.65}
+.mc-more{font-size:11px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.03em; margin-left:9px; opacity:.65}
 .mc:hover .mc-more{opacity:1; color:var(--accent)}
 /* keep the per-banner rows visually distinct as their own click target */
 .mcb:hover{background:var(--surface2); box-shadow:inset 2px 0 0 var(--av-ring,var(--accent))}
@@ -974,7 +976,7 @@ html.scrolling .gscroll, .gscroll:hover{scrollbar-color:var(--base) transparent}
 .pd-below-d{color:#d64b45; font-weight:600} .pd-shr-d{color:var(--muted)}
 @media (prefers-color-scheme:dark){ .pd-below-d{color:#f0736c} }
 :root[data-theme=dark] .pd-below-d{color:#f0736c}
-.pd-h{font-size:11.5px; font-weight:800; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); margin:18px 0 9px; padding-top:14px; border-top:1px solid var(--grid)}
+.pd-h{font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); margin:18px 0 9px; padding-top:14px; border-top:1px solid var(--grid)}
 .pd-h-gi{color:#d99b1f; border-top:0; padding-top:0; margin-top:6px}   /* game-i (JP ¥) section — first, so no divider */
 .pd-h-st{color:#2f9fb5}                                                 /* Sensor Tower ($) section */
 .pd-h-qm{color:#1f9e57}                                                 /* Qimai (China iOS $) section */
@@ -988,8 +990,8 @@ html.scrolling .gscroll, .gscroll:hover{scrollbar-color:var(--base) transparent}
 .pd-hd .pd-subtitle{margin:6px 0 0}
 .pd-hd-main{flex:1; min-width:0}
 .pd-tot{flex:none; display:flex; flex-direction:column; align-items:flex-end; text-align:right; line-height:1.02; white-space:nowrap}
-.pd-tot-v{font-size:27px; font-weight:800; letter-spacing:-.5px; font-variant-numeric:tabular-nums; color:inherit}
-.pd-tot-l{font-size:10px; color:var(--muted); margin-top:5px; text-transform:uppercase; letter-spacing:.05em; font-weight:600}
+.pd-tot-v{font-size:30px; font-weight:800; letter-spacing:-.5px; font-variant-numeric:tabular-nums; color:inherit}
+.pd-tot-l{font-size:11px; color:var(--muted); margin-top:5px; text-transform:uppercase; letter-spacing:.05em; font-weight:600}
 .pd-tot-gi{color:#d99b1f}
 .pd-tot-st{color:#2f9fb5}
 .pd-tot-qm{color:#1f9e57}
@@ -999,14 +1001,14 @@ html.scrolling .gscroll, .gscroll:hover{scrollbar-color:var(--base) transparent}
 @media (max-width:560px){ .pd-tot-v{font-size:22px} }
 .pd-mos{display:flex; flex-direction:column; gap:5px}
 .pd-mo{display:grid; grid-template-columns:78px 1fr auto; align-items:center; gap:10px}
-.pd-mo-l{font-size:11.5px; color:var(--muted); white-space:nowrap; font-variant-numeric:tabular-nums}
+.pd-mo-l{font-size:13px; color:var(--muted); white-space:nowrap; font-variant-numeric:tabular-nums}
 .pd-mo-track{height:9px; background:var(--track); border-radius:5px; overflow:hidden}
 .pd-mo-fill{height:100%; border-radius:5px; background:#0f8a9e; animation:barGrow .5s cubic-bezier(.2,.7,.2,1) both}
-.pd-mo-v{font-size:12px; font-weight:700; font-variant-numeric:tabular-nums; color:#0f8a9e; white-space:nowrap}
+.pd-mo-v{font-size:13.5px; font-weight:700; font-variant-numeric:tabular-nums; color:#0f8a9e; white-space:nowrap}
 @media (prefers-color-scheme:dark){ .pd-mo-fill{background:#4fc6da} .pd-mo-v{color:#4fc6da} }
 :root[data-theme=dark] .pd-mo-fill{background:#4fc6da} :root[data-theme=dark] .pd-mo-v{color:#4fc6da}
 .pd-ov{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:6px}
-.pd-ov li{display:flex; align-items:center; gap:9px; font-size:12.5px; line-height:1.35}
+.pd-ov li{display:flex; align-items:center; gap:9px; font-size:14px; line-height:1.35}
 .pd-ov b{font-weight:750}
 .ov-dot{width:11px; height:11px; border-radius:50%; flex:none}
 .ov-dot.ov-shr{background:repeating-linear-gradient(45deg,var(--muted) 0 2px,transparent 2px 4px); box-shadow:inset 0 0 0 1px var(--muted)}
@@ -1014,7 +1016,7 @@ html.scrolling .gscroll, .gscroll:hover{scrollbar-color:var(--base) transparent}
    banners drawn as continuous colored bands (Google-Calendar style) on stable lanes. */
 .calm{border:1px solid var(--grid); border-radius:11px; overflow:hidden; background:var(--surface2)}
 .calm-wd{display:grid; grid-template-columns:repeat(7,1fr); background:var(--surface); border-bottom:1px solid var(--grid)}
-.calm-wd>div{font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); text-align:center; padding:6px 0}
+.calm-wd>div{font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); text-align:center; padding:6px 0}
 .calm-wd>div.we{color:var(--ink2)}
 .calm-wk{position:relative}
 .calm-wk + .calm-wk{border-top:1px solid var(--grid)}
@@ -1023,7 +1025,7 @@ html.scrolling .gscroll, .gscroll:hover{scrollbar-color:var(--base) transparent}
 .calm-day:first-child{border-left:0}
 .calm-day.we{background:color-mix(in srgb, var(--muted) 6%, transparent)}
 .calm-day.pad{background:color-mix(in srgb, var(--muted) 11%, transparent)}
-.calm-dn{font-size:11px; font-weight:700; color:var(--muted); line-height:1}
+.calm-dn{font-size:12.5px; font-weight:700; color:var(--muted); line-height:1}
 .calm-day.today{background:color-mix(in srgb, var(--accent) 14%, transparent)}
 .calm-day.today .calm-dn{color:var(--accent)}
 .calm-bands{position:absolute; top:22px; left:0; right:0; bottom:2px; pointer-events:none}
@@ -1033,15 +1035,15 @@ html.scrolling .gscroll, .gscroll:hover{scrollbar-color:var(--base) transparent}
 .calm-band.crl{border-top-left-radius:9px; border-bottom-left-radius:9px; padding-left:2px}
 .calm-band.crr{border-top-right-radius:9px; border-bottom-right-radius:9px}
 .calm-band:hover{filter:brightness(1.08); box-shadow:inset 0 0 0 1px rgba(255,255,255,.3),0 2px 6px rgba(0,0,0,.3)}
-.calm-b-av{position:relative; width:15px; height:15px; flex:none}
-.calm-b-av img{width:15px; height:15px; border-radius:50%; object-fit:cover; box-shadow:0 0 0 1.5px rgba(255,255,255,.7)}
+.calm-b-av{position:relative; width:17px; height:17px; flex:none}
+.calm-b-av img{width:17px; height:17px; border-radius:50%; object-fit:cover; box-shadow:0 0 0 1.5px rgba(255,255,255,.7)}
 .calm-b-av img.extra,.calm-b-av .mono{display:none}
-.calm-b-av .mono{display:flex; width:15px; height:15px; align-items:center; justify-content:center; border-radius:50%; background:rgba(0,0,0,.25); font-size:8px; color:#fff}
-.calm-b-nm{font-size:10.5px; font-weight:700; color:#fff; text-shadow:0 1px 2px rgba(0,0,0,.55); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.calm-b-av .mono{display:flex; width:17px; height:17px; align-items:center; justify-content:center; border-radius:50%; background:rgba(0,0,0,.25); font-size:9px; color:#fff}
+.calm-b-nm{font-size:12px; font-weight:700; color:#fff; text-shadow:0 1px 2px rgba(0,0,0,.55); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
 @media (max-width:560px){ .calm-wd>div{font-size:9px} .calm-b-nm{display:none} .calm-day{padding:2px; min-height:calc(20px + var(--lanes,1)*18px + 4px)} .calm-bands{top:20px} .calm-band{height:15px} }
 /* by-month year filter */
 .mfilter{display:flex; align-items:center; gap:10px; margin:0 0 12px; flex-wrap:wrap}
-.mfilter-l{font-size:11px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.04em}
+.mfilter-l{font-size:12.5px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.04em}
 .myears{flex-wrap:wrap}
 
 /* ---- Sources view: how the three layers rank the same months ----------------
@@ -1050,8 +1052,8 @@ html.scrolling .gscroll, .gscroll:hover{scrollbar-color:var(--base) transparent}
    accent, Sensor Tower = teal, CN = crimson. */
 .ag-corr{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:10px; margin:0 0 14px}
 .ag-corrcard{background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:10px 13px; cursor:help}
-.ag-corrk{display:block; font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:.03em; color:var(--muted)}
-.ag-corrv{display:block; font-size:22px; font-weight:800; letter-spacing:-.02em; font-variant-numeric:tabular-nums; margin-top:1px}
+.ag-corrk{display:block; font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.03em; color:var(--muted)}
+.ag-corrv{display:block; font-size:24.5px; font-weight:800; letter-spacing:-.02em; font-variant-numeric:tabular-nums; margin-top:1px}
 .ag-corrbar{height:5px; background:var(--track); border-radius:3px; overflow:hidden; margin:6px 0 5px}
 .ag-corrbar span{display:block; height:100%; border-radius:3px; background:var(--accent)}
 /* each card's fill blends the two layers it correlates: game-i = the game's accent,
@@ -1067,24 +1069,24 @@ html.scrolling .gscroll, .gscroll:hover{scrollbar-color:var(--base) transparent}
 :root[data-theme=dark] .ag-pair-gi-st .ag-corrbar span{background:linear-gradient(90deg,var(--accent),#4fc6da)}
 :root[data-theme=dark] .ag-pair-gi-cn .ag-corrbar span{background:linear-gradient(90deg,var(--accent),#f08a99)}
 :root[data-theme=dark] .ag-pair-st-cn .ag-corrbar span{background:linear-gradient(90deg,#4fc6da,#f08a99)}
-.ag-corrn{font-size:10.5px; color:var(--muted)}
+.ag-corrn{font-size:12px; color:var(--muted)}
 
 .ag-head{display:grid; grid-template-columns:104px 1fr 196px; gap:16px; align-items:end;
-  padding:0 12px 7px; font-size:10px; font-weight:700; text-transform:uppercase;
+  padding:0 12px 7px; font-size:11px; font-weight:700; text-transform:uppercase;
   letter-spacing:.04em; color:var(--muted); border-bottom:1px solid var(--grid)}
 .ag-list{display:flex; flex-direction:column}
 .ag-row{display:grid; grid-template-columns:104px 1fr 196px; gap:16px; align-items:center;
   padding:14px 12px; border-bottom:1px solid var(--grid); cursor:pointer; border-radius:8px}
 .ag-row:hover{background:var(--surface2)}
-.ag-mo{font-size:13.5px; font-weight:750; white-space:nowrap; display:flex; flex-direction:column; gap:2px}
-.ag-era{font-size:9.5px; font-weight:600; color:var(--muted); letter-spacing:.02em}
+.ag-mo{font-size:15px; font-weight:750; white-space:nowrap; display:flex; flex-direction:column; gap:2px}
+.ag-era{font-size:10.5px; font-weight:600; color:var(--muted); letter-spacing:.02em}
 .ag-bars{display:flex; flex-direction:column; gap:7px; min-width:0}
 /* Cap the track rather than letting it fill: a full-width bar pushed the percentile and
    the figure so far right they stopped reading as part of the same bar. */
 .ag-src{display:grid; grid-template-columns:26px minmax(90px,440px) 32px 104px; gap:10px;
   align-items:center; justify-content:start}
-.ag-lab{font-size:9px; font-weight:800; letter-spacing:.04em; color:var(--muted)}
-.ag-val{font-size:11.5px; font-weight:700; font-variant-numeric:tabular-nums; white-space:nowrap;
+.ag-lab{font-size:10px; font-weight:800; letter-spacing:.04em; color:var(--muted)}
+.ag-val{font-size:13px; font-weight:700; font-variant-numeric:tabular-nums; white-space:nowrap;
   text-align:right; color:var(--ink2)}
 .ag-gi .ag-val{color:var(--ink)}
 .ag-st .ag-val{color:#0f8a9e}
@@ -1100,7 +1102,7 @@ html.scrolling .gscroll, .gscroll:hover{scrollbar-color:var(--base) transparent}
 :root[data-theme=dark] .ag-cr .ag-val{color:#c48ae8}
 .ag-track{height:9px; background:var(--track); border-radius:5px; overflow:hidden}
 .ag-track span{display:block; height:100%; border-radius:5px; animation:barGrow .45s cubic-bezier(.2,.7,.2,1) both}
-.ag-pct{font-size:11px; font-weight:700; font-variant-numeric:tabular-nums; text-align:right; color:var(--ink2)}
+.ag-pct{font-size:12.5px; font-weight:700; font-variant-numeric:tabular-nums; text-align:right; color:var(--ink2)}
 .ag-gi .ag-track span{background:var(--accent)}
 .ag-st .ag-track span{background:#0f8a9e}
 .ag-cn .ag-track span{background:#b0384a}
@@ -1115,7 +1117,7 @@ html.scrolling .gscroll, .gscroll:hover{scrollbar-color:var(--base) transparent}
 :root[data-theme=dark] .ag-cr .ag-track span{background:#c48ae8}
 
 .ag-verdict{display:flex; align-items:center; justify-content:flex-end; min-width:0}
-.ag-chip{font-size:10px; font-weight:750; letter-spacing:.02em; border-radius:999px;
+.ag-chip{font-size:11px; font-weight:750; letter-spacing:.02em; border-radius:999px;
   padding:2px 9px; border:1px solid var(--border); color:var(--ink2); background:var(--surface2);
   white-space:nowrap; cursor:help}
 .ag-chip.agree.hi{color:#1f9d57; border-color:rgba(31,157,87,.4)}
@@ -1140,18 +1142,18 @@ body[data-agmode="banner"] .ag-head,
 body[data-agmode="banner"] .ag-row{grid-template-columns:206px 1fr 196px}
 /* month rows: a small avatar strip of the banners that ran that month */
 .ag-mobans{display:flex; flex-wrap:wrap; gap:3px; margin-top:4px}
-.ag-bic{width:19px; height:19px; border-radius:50%; overflow:hidden; background:var(--track);
+.ag-bic{width:22px; height:22px; border-radius:50%; overflow:hidden; background:var(--track);
   box-shadow:0 0 0 1px var(--border); flex:0 0 19px; cursor:pointer}
 .ag-bic img{width:100%; height:100%; object-fit:cover; display:block}
 .ag-bic .mono{display:flex; align-items:center; justify-content:center; width:100%; height:100%;
-  font-size:9px; font-weight:800; color:#fff; background:var(--muted)}
-.ag-bicmore{font-size:9.5px; font-weight:700; color:var(--muted); align-self:center; margin-left:1px}
+  font-size:10px; font-weight:800; color:#fff; background:var(--muted)}
+.ag-bicmore{font-size:10.5px; font-weight:700; color:var(--muted); align-self:center; margin-left:1px}
 /* banner rows: avatar + name in the first column (reuses .mcb-av for the avatar) */
 .ag-bmo{flex-direction:row; align-items:center; gap:10px; white-space:normal}
 .ag-bmo .mcb-av{flex:0 0 40px}
 .ag-bnm{display:flex; flex-direction:column; gap:1px; min-width:0}
-.ag-bnm b{font-size:12.5px; font-weight:750; line-height:1.15; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
-.ag-bsub{font-size:9.5px; font-weight:600; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.ag-bnm b{font-size:14px; font-weight:750; line-height:1.15; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.ag-bsub{font-size:10.5px; font-weight:600; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
 @media (max-width:720px){
   .ag-head{display:none}
   .ag-row,
@@ -1164,13 +1166,13 @@ body[data-agmode="banner"] .ag-row{grid-template-columns:206px 1fr 196px}
    The comparison is the point of the tab, so it must not read like the footnotes around
    it: accent rule down the side, ink-coloured text at body size, figures in accent. */
 .bm-verdict{background:var(--surface2); border:1px solid var(--border); border-left:3px solid var(--accent);
-  border-radius:10px; padding:10px 13px; margin:6px 0 4px; font-size:13px; line-height:1.6; color:var(--ink2)}
+  border-radius:10px; padding:10px 13px; margin:6px 0 4px; font-size:14.5px; line-height:1.6; color:var(--ink2)}
 .bm-verdict b{color:var(--ink); font-weight:750}
 .bm-verdict .fig{color:var(--accent); font-weight:800; font-variant-numeric:tabular-nums}
-.bm-verdict .head{display:block; font-size:11px; text-transform:uppercase; letter-spacing:.05em;
+.bm-verdict .head{display:block; font-size:12.5px; text-transform:uppercase; letter-spacing:.05em;
   color:var(--muted); margin-bottom:4px}
-.bm-verdict.call{font-size:13.5px}
-.bm-verdict .after{display:block; margin-top:6px; font-size:11.5px; color:var(--muted); line-height:1.5}
+.bm-verdict.call{font-size:15px}
+.bm-verdict .after{display:block; margin-top:6px; font-size:13px; color:var(--muted); line-height:1.5}
 /* "How this run compares": one reading per line (compareFactsHTML) */
 .bm-facts{margin:4px 0 0; padding-left:18px; display:flex; flex-direction:column; gap:5px; line-height:1.5}
 .bm-facts li::marker{color:var(--muted)}
@@ -1178,9 +1180,9 @@ body[data-agmode="banner"] .ag-row{grid-template-columns:206px 1fr 196px}
 /* the run's headline number, where a tab has one worth leading with */
 .bm-headline{display:flex; align-items:baseline; justify-content:space-between; gap:12px; flex-wrap:wrap;
   background:var(--surface2); border:1px solid var(--border); border-radius:10px; padding:10px 13px; margin:6px 0}
-.bm-headline .l{font-size:11px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted)}
-.bm-headline .v{font-size:22px; font-weight:800; color:var(--accent); font-variant-numeric:tabular-nums; line-height:1.1}
-.bm-headline .sub{font-size:11.5px; color:var(--muted)}
+.bm-headline .l{font-size:12.5px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted)}
+.bm-headline .v{font-size:24.5px; font-weight:800; color:var(--accent); font-variant-numeric:tabular-nums; line-height:1.1}
+.bm-headline .sub{font-size:13px; color:var(--muted)}
 
 /* one comparable banner: icon, names, its ranks, and every revenue figure that exists */
 .bm-peer{display:flex; align-items:center; gap:9px; background:var(--surface2); border:1px solid var(--border);
@@ -1188,44 +1190,44 @@ body[data-agmode="banner"] .ag-row{grid-template-columns:206px 1fr 196px}
 /* a comparable opens that banner in place, so it needs to read as clickable */
 .bm-peer[data-i]{cursor:pointer; transition:background .12s, border-color .12s}
 .bm-peer[data-i]:hover{background:var(--track); border-color:var(--av-ring,var(--border))}
-.bm-peer .av{position:relative; width:30px; height:30px; flex:none}
-.bm-peer .av img{width:30px; height:30px; border-radius:50%; object-fit:cover;
+.bm-peer .av{position:relative; width:34px; height:34px; flex:none}
+.bm-peer .av img{width:34px; height:34px; border-radius:50%; object-fit:cover;
   box-shadow:0 0 0 1.5px var(--av-ring,var(--muted))}
 .bm-peer .av img.extra,.bm-peer .av .mono{display:none}
-.bm-peer .av .mono{display:flex; width:30px; height:30px; align-items:center; justify-content:center;
-  border-radius:50%; background:var(--track); font-size:11px}
+.bm-peer .av .mono{display:flex; width:34px; height:34px; align-items:center; justify-content:center;
+  border-radius:50%; background:var(--track); font-size:12.5px}
 .bm-peer .who{min-width:0; flex:1}
-.bm-peer .nm{font-size:12.5px; font-weight:750; color:var(--ink); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
-.bm-peer .sub{font-size:11px; color:var(--muted); font-variant-numeric:tabular-nums}
+.bm-peer .nm{font-size:14px; font-weight:750; color:var(--ink); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.bm-peer .sub{font-size:12.5px; color:var(--muted); font-variant-numeric:tabular-nums}
 .bm-peer .figs{display:flex; flex-direction:column; align-items:flex-end; gap:1px; font-variant-numeric:tabular-nums}
-.bm-peer .figs span{font-size:11.5px; color:var(--ink2); white-space:nowrap}
-.bm-peer .figs .main{font-size:13.5px; font-weight:800; color:var(--ink)}
+.bm-peer .figs span{font-size:13px; color:var(--ink2); white-space:nowrap}
+.bm-peer .figs .main{font-size:15px; font-weight:800; color:var(--ink)}
 .bm-peerlist{display:flex; flex-direction:column; gap:6px; margin:4px 0 8px}
 /* a year's runs as faces, best first, this one ringed in its own colour */
 .bm-cohort{margin:12px 0 2px}
 /* row title, same weight as the block's own heading */
-.bm-cohort-hd{display:block; font-size:11px; text-transform:uppercase; letter-spacing:.05em;
+.bm-cohort-hd{display:block; font-size:12.5px; text-transform:uppercase; letter-spacing:.05em;
   color:var(--muted); margin-bottom:7px}
 .bm-cavs{display:flex; flex-wrap:wrap; gap:10px 8px; align-items:flex-start}
 .bm-cav{display:flex; flex-direction:column; align-items:center; gap:4px; width:44px; cursor:pointer}
-.bm-cav .pic{position:relative; width:44px; height:44px; display:block}
-.bm-cav img,.bm-cav .mono{width:44px; height:44px; border-radius:50%; object-fit:cover; flex:none;
+.bm-cav .pic{position:relative; width:50px; height:50px; display:block}
+.bm-cav img,.bm-cav .mono{width:50px; height:50px; border-radius:50%; object-fit:cover; flex:none;
   box-shadow:0 0 0 1.5px var(--surface),0 0 0 3px var(--border); background:var(--track)}
-.bm-cav .mono{display:flex; align-items:center; justify-content:center; font-size:17px; font-weight:800; color:var(--muted)}
+.bm-cav .mono{display:flex; align-items:center; justify-content:center; font-size:19px; font-weight:800; color:var(--muted)}
 /* a multi-character banner shows its co-leads as pips, the same mark the timeline
    avatars carry (.av img.extra), scaled a touch for the strip; the chip gets extra
    right margin so a pip never sits on the next face */
-.bm-cav .pic img.extra{display:block; position:absolute; width:22px; height:22px; bottom:-4px; right:-10px;
+.bm-cav .pic img.extra{display:block; position:absolute; width:25px; height:25px; bottom:-4px; right:-10px;
   box-shadow:0 0 0 2px var(--surface),0 0 0 3px var(--av-ring,var(--border))}
 .bm-cav .pic img.extra.e2{right:-21px; opacity:.96}
 .bm-cav.duo{margin-right:8px}
 .bm-cav.trio{margin-right:19px}
-.bm-cav .lb{font-size:11px; color:var(--muted); font-variant-numeric:tabular-nums; white-space:nowrap}
+.bm-cav .lb{font-size:12.5px; color:var(--muted); font-variant-numeric:tabular-nums; white-space:nowrap}
 .bm-cav.me img,.bm-cav.me .mono{box-shadow:0 0 0 2px var(--surface),0 0 0 4px var(--av-ring)}
 .bm-cav.me .lb{color:var(--ink); font-weight:800}
 .bm-cav:hover img,.bm-cav:hover .mono{box-shadow:0 0 0 1.5px var(--surface),0 0 0 3px var(--ink2)}
 /* rerun mark, same drawn arrow the graph avatars use */
-.bm-cav .bm-rr{position:absolute; top:-3px; right:-3px; width:18px; height:18px; overflow:visible}
+.bm-cav .bm-rr{position:absolute; top:-3px; right:-3px; width:21px; height:21px; overflow:visible}
 .bm-cav .bm-rr circle{fill:var(--surface); stroke:var(--border); stroke-width:.14}
 .bm-cav .bm-rr .rr-arc{fill:none; stroke:var(--ink2); stroke-width:.36; stroke-linecap:round}
 .bm-cav .bm-rr .rr-head{fill:var(--ink2); stroke:none}
@@ -1233,7 +1235,7 @@ body[data-agmode="banner"] .ag-row{grid-template-columns:206px 1fr 196px}
 .bm-cohort-cap{margin-top:9px}
 /* step back to the banner this one was opened from (see the modal back-stack) */
 .bm-back{display:inline-flex; align-items:center; gap:6px; margin:0 0 10px; padding:5px 11px;
-  font:inherit; font-size:11.5px; font-weight:650; color:var(--ink2); cursor:pointer;
+  font:inherit; font-size:13px; font-weight:650; color:var(--ink2); cursor:pointer;
   background:var(--surface2); border:1px solid var(--border); border-radius:999px;
   max-width:100%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
 .bm-back:hover{background:var(--track); color:var(--ink)}
@@ -1243,75 +1245,75 @@ body[data-agmode="banner"] .ag-row{grid-template-columns:206px 1fr 196px}
    breaking a number across two lines. */
 .bm-stats{grid-template-columns:repeat(auto-fit,minmax(128px,1fr))}
 .bm-stat .v{white-space:nowrap}
-.bm-stat .v.long{font-size:12.5px; letter-spacing:-.15px}
+.bm-stat .v.long{font-size:14px; letter-spacing:-.15px}
 .bm-headline .v{white-space:nowrap}
 
 /* ---- Compare launcher (above the game tabs) + dialog -------------------------- */
 /* min-height so a character search dropdown has room to open without being clipped by the
    dialog when the result area below is still short (e.g. only one side picked) */
 .modal-card.cmpmodal{max-width:900px; min-height:min(82vh,640px)}
-.cmp-loading{padding:24px; text-align:center; color:var(--muted); font-size:13.5px}
+.cmp-loading{padding:24px; text-align:center; color:var(--muted); font-size:15px}
 .cmp-loading.err{color:var(--ink2)}
 
 /* ---- Compare: head-to-head -------------------------------- */
 .cmp-wrap{width:100%; margin:0 auto}
-.cmp-intro{font-size:13px; color:var(--ink2); margin:2px 34px 14px 2px; line-height:1.5}
+.cmp-intro{font-size:14.5px; color:var(--ink2); margin:2px 34px 14px 2px; line-height:1.5}
 .cmp-pickers{display:flex; flex-wrap:wrap; align-items:flex-start; gap:10px}
 .cmp-slot{flex:1 1 200px; min-width:185px}
-.cmp-slot-h{display:flex; align-items:center; justify-content:space-between; font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); font-weight:700; margin:0 2px 5px}
-.cmp-slotrm{border:0; background:transparent; color:var(--muted); font-size:16px; line-height:1; cursor:pointer; padding:0 2px}
+.cmp-slot-h{display:flex; align-items:center; justify-content:space-between; font-size:12.5px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); font-weight:700; margin:0 2px 5px}
+.cmp-slotrm{border:0; background:transparent; color:var(--muted); font-size:18px; line-height:1; cursor:pointer; padding:0 2px}
 .cmp-slotrm:hover{color:var(--danger,#d9534f)}
 .cmp-add{flex:0 0 auto; align-self:stretch; min-height:44px; margin-top:18px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px;
-  border:1px dashed var(--border); border-radius:10px; background:transparent; color:var(--muted); font:inherit; font-size:18px; font-weight:700; cursor:pointer; padding:6px 12px}
-.cmp-add span{font-size:11px; letter-spacing:.04em}
+  border:1px dashed var(--border); border-radius:10px; background:transparent; color:var(--muted); font:inherit; font-size:20px; font-weight:700; cursor:pointer; padding:6px 12px}
+.cmp-add span{font-size:12.5px; letter-spacing:.04em}
 .cmp-add:hover{border-color:var(--accent); color:var(--accent)}
 .cmp-toolbar{display:flex; justify-content:flex-end; margin:8px 0 2px}
-.cmp-linkbtn{border:1px solid var(--border); background:var(--surface); color:var(--ink2); font:inherit; font-size:12px; font-weight:650; padding:5px 11px; border-radius:8px; cursor:pointer}
+.cmp-linkbtn{border:1px solid var(--border); background:var(--surface); color:var(--ink2); font:inherit; font-size:13.5px; font-weight:650; padding:5px 11px; border-radius:8px; cursor:pointer}
 .cmp-linkbtn:hover{border-color:var(--accent); color:var(--accent)}
 .cmp-linkbtn.ok{border-color:var(--accent); color:var(--accent)}
 .cmp-controls{display:flex; gap:6px; margin-bottom:6px}
 .cmp-sel{flex:1 1 0; min-width:0; box-sizing:border-box; background:var(--surface); color:var(--ink);
-  border:1px solid var(--border); border-radius:9px; padding:7px 9px; font:inherit; font-size:12.5px; cursor:pointer; outline:none}
+  border:1px solid var(--border); border-radius:9px; padding:7px 9px; font:inherit; font-size:14px; cursor:pointer; outline:none}
 .cmp-sel:focus{border-color:var(--accent)}
 .cmp-entsel{width:100%; flex:none}
 .cmp-chip{display:flex; align-items:center; gap:9px; background:var(--surface); border:1px solid var(--border);
   border-left:3px solid var(--acc,var(--accent)); border-radius:10px; padding:6px 8px; margin-bottom:6px}
-.cmp-chip-av{width:34px; height:34px; border-radius:8px; overflow:hidden; flex:none; display:flex; align-items:center; justify-content:center; background:var(--track)}
+.cmp-chip-av{width:39px; height:39px; border-radius:8px; overflow:hidden; flex:none; display:flex; align-items:center; justify-content:center; background:var(--track)}
 .cmp-chip-av img{width:100%; height:100%; object-fit:cover}
 .cmp-chip-tx{min-width:0; flex:1; display:flex; flex-direction:column; line-height:1.25}
-.cmp-chip-tx b{font-size:13.5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
-.cmp-chip-sub{font-size:11px; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
-.cmp-chip-x{border:0; background:transparent; color:var(--muted); font-size:19px; line-height:1; cursor:pointer; padding:0 2px; flex:none}
+.cmp-chip-tx b{font-size:15px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.cmp-chip-sub{font-size:12.5px; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.cmp-chip-x{border:0; background:transparent; color:var(--muted); font-size:21.5px; line-height:1; cursor:pointer; padding:0 2px; flex:none}
 .cmp-chip-x:hover{color:var(--ink)}
 .cmp-chip-rr{flex:none; border:1px solid color-mix(in srgb,var(--acc,var(--accent)) 45%, var(--border)); background:transparent; color:var(--acc,var(--accent));
-  font:inherit; font-size:10.5px; font-weight:700; padding:2px 7px; border-radius:20px; cursor:pointer; white-space:nowrap}
+  font:inherit; font-size:12px; font-weight:700; padding:2px 7px; border-radius:20px; cursor:pointer; white-space:nowrap}
 .cmp-chip-rr:hover{background:color-mix(in srgb,var(--acc,var(--accent)) 14%, transparent)}
 .cmp-combo{position:relative}
 .cmp-input{width:100%; box-sizing:border-box; background:var(--surface); color:var(--ink);
-  border:1px solid var(--border); border-radius:9px; padding:8px 11px; font:inherit; font-size:13px; outline:none}
+  border:1px solid var(--border); border-radius:9px; padding:8px 11px; font:inherit; font-size:14.5px; outline:none}
 .cmp-input:focus{border-color:var(--accent)}
 .cmp-drop{position:absolute; z-index:30; top:calc(100% + 4px); left:0; right:0; max-height:320px; overflow:auto;
   background:var(--surface); border:1px solid var(--border); border-radius:10px; box-shadow:var(--shadow,0 10px 30px rgba(0,0,0,.2)); padding:4px}
 .cmp-drop-item{display:flex; align-items:center; gap:9px; padding:6px 8px; border-radius:8px; cursor:pointer}
 .cmp-drop-item:hover{background:var(--surface2)}
-.cmp-di-av{width:30px; height:30px; border-radius:7px; overflow:hidden; flex:none; display:flex; align-items:center; justify-content:center; background:var(--track)}
+.cmp-di-av{width:34px; height:34px; border-radius:7px; overflow:hidden; flex:none; display:flex; align-items:center; justify-content:center; background:var(--track)}
 .cmp-di-av img{width:100%; height:100%; object-fit:cover}
 .cmp-di-tx{min-width:0; flex:1; display:flex; flex-direction:column; line-height:1.25}
-.cmp-di-tx b{font-size:13px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
-.cmp-di-sub{font-size:10.5px; color:var(--muted)}
-.cmp-di-rev{font-size:11px; color:var(--muted); font-variant-numeric:tabular-nums; white-space:nowrap; flex:none}
-.cmp-drop-empty{padding:10px; color:var(--muted); font-size:12.5px; text-align:center}
+.cmp-di-tx b{font-size:14.5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.cmp-di-sub{font-size:12px; color:var(--muted)}
+.cmp-di-rev{font-size:12.5px; color:var(--muted); font-variant-numeric:tabular-nums; white-space:nowrap; flex:none}
+.cmp-drop-empty{padding:10px; color:var(--muted); font-size:14px; text-align:center}
 .cmp-mono{font-weight:800; color:var(--muted)}
-.cmp-mono.sm{font-size:13px}
+.cmp-mono.sm{font-size:14.5px}
 /* period art block (month/year/version have no image) */
 .cmp-artmono{width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px;
   text-align:center; color:#fff; background:linear-gradient(135deg, var(--acc), color-mix(in srgb,var(--acc) 55%, #000 30%))}
-.cmp-artmono .cmp-artk{font-size:10px; font-weight:800; letter-spacing:.12em; opacity:.85}
-.cmp-artmono .cmp-artl{font-size:13px; font-weight:800; padding:0 8px; line-height:1.15}
-.cmp-chip-av .cmp-artmono .cmp-artl{font-size:10px}
+.cmp-artmono .cmp-artk{font-size:11px; font-weight:800; letter-spacing:.12em; opacity:.85}
+.cmp-artmono .cmp-artl{font-size:14.5px; font-weight:800; padding:0 8px; line-height:1.15}
+.cmp-chip-av .cmp-artmono .cmp-artl{font-size:11px}
 .cmp-chip-av .cmp-artmono .cmp-artk{display:none}
-.cmp-art .cmp-artmono .cmp-artl{font-size:22px}
-.cmp-art .cmp-artmono .cmp-artk{font-size:12px; letter-spacing:.16em}
+.cmp-art .cmp-artmono .cmp-artl{font-size:24.5px}
+.cmp-art .cmp-artmono .cmp-artk{font-size:13.5px; letter-spacing:.16em}
 /* period card: a collage of the month's banner arts (cropped to fill, not stretched),
    with the game + period label overlaid on a scrim */
 .cmp-artperiod{position:relative; width:100%; height:100%; overflow:hidden; color:#fff;
@@ -1352,11 +1354,11 @@ body[data-agmode="banner"] .ag-row{grid-template-columns:206px 1fr 196px}
 .cmp-cptext{position:absolute; left:0; right:0; bottom:0; padding:11px 13px; display:flex; flex-direction:column; gap:2px}
 /* mirrored by the collage fit when the bottom slice's face comes from the left of its art */
 .cmp-cptext.is-right{align-items:flex-end; text-align:right}
-.cmp-ap-head{font-size:12px; font-weight:700; opacity:.96; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; text-shadow:0 1px 4px rgba(0,0,0,.7)}
-.cmp-ap-kind{font-size:10px; font-weight:800; letter-spacing:.14em; opacity:.8; margin-right:5px}
-.cmp-ap-label{font-size:26px; font-weight:800; line-height:1.04; letter-spacing:-.01em; text-shadow:0 2px 8px rgba(0,0,0,.75)}
-.cmp-ap-none{font-size:12px; opacity:.85; margin-top:2px}
-.cmp-empty{margin:26px 0; text-align:center; color:var(--muted); font-size:13.5px}
+.cmp-ap-head{font-size:13.5px; font-weight:700; opacity:.96; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; text-shadow:0 1px 4px rgba(0,0,0,.7)}
+.cmp-ap-kind{font-size:11px; font-weight:800; letter-spacing:.14em; opacity:.8; margin-right:5px}
+.cmp-ap-label{font-size:29px; font-weight:800; line-height:1.04; letter-spacing:-.01em; text-shadow:0 2px 8px rgba(0,0,0,.75)}
+.cmp-ap-none{font-size:13.5px; opacity:.85; margin-top:2px}
+.cmp-empty{margin:26px 0; text-align:center; color:var(--muted); font-size:15px}
 
 /* head-to-head cards (2–4 across) */
 .cmp-vs{display:grid; gap:10px; margin:16px 0 6px}
@@ -1372,78 +1374,78 @@ body[data-agmode="banner"] .ag-row{grid-template-columns:206px 1fr 196px}
 .cmp-side.is-tie .cmp-artmono, .cmp-side.is-lose .cmp-artmono{filter:grayscale(.5); opacity:.9}
 .cmp-art{position:relative; aspect-ratio:3/2; background:var(--track); display:flex; align-items:center; justify-content:center; overflow:hidden}
 .cmp-art-img{width:100%; height:100%; object-fit:cover; object-position:center 22%; display:block}
-.cmp-art .cmp-mono{font-size:34px}
-.cmp-ribbon{position:absolute; top:8px; left:8px; font-size:11px; font-weight:800; letter-spacing:.04em;
+.cmp-art .cmp-mono{font-size:38px}
+.cmp-ribbon{position:absolute; top:8px; left:8px; font-size:12.5px; font-weight:800; letter-spacing:.04em;
   padding:4px 9px; border-radius:20px; color:#fff; background:var(--acc); box-shadow:0 2px 8px rgba(0,0,0,.3)}
 .cmp-ribbon.tie, .cmp-ribbon.lose{background:var(--muted)}
 .cmp-sidename{padding:9px 11px; display:flex; flex-direction:column; gap:3px; line-height:1.25}
-.cmp-sidename b{font-size:14.5px}
-.cmp-sidesub{font-size:11px; color:var(--muted)}
-.cmp-scorepill{font-size:11px; font-weight:700; color:var(--acc);
+.cmp-sidename b{font-size:16px}
+.cmp-sidesub{font-size:12.5px; color:var(--muted)}
+.cmp-scorepill{font-size:12.5px; font-weight:700; color:var(--acc);
   border:1px solid color-mix(in srgb,var(--acc) 45%, var(--border)); border-radius:20px; padding:2px 9px}
 .cmp-chips{display:flex; flex-wrap:wrap; align-items:center; gap:5px; margin-top:4px}
-.cmp-chip2{font-size:10px; font-weight:650; color:var(--ink2); background:var(--surface2); border:1px solid var(--border); border-radius:20px; padding:2px 7px}
-.cmp-cardnote{margin-top:4px; font-size:10.5px; color:var(--ink2); line-height:1.35}
+.cmp-chip2{font-size:11px; font-weight:650; color:var(--ink2); background:var(--surface2); border:1px solid var(--border); border-radius:20px; padding:2px 7px}
+.cmp-cardnote{margin-top:4px; font-size:12px; color:var(--ink2); line-height:1.35}
 .cmp-cardnote b{color:var(--ink)}
-.cmp-verdict{text-align:center; font-size:15px; line-height:1.5; margin:14px auto 12px; padding:12px 18px; max-width:680px;
+.cmp-verdict{text-align:center; font-size:17px; line-height:1.5; margin:14px auto 12px; padding:12px 18px; max-width:680px;
   background:var(--surface2); border:1px solid var(--border); border-radius:12px}
-.cmp-tldr{margin-top:6px; font-size:12.5px; font-weight:500; color:var(--ink2); line-height:1.5}
+.cmp-tldr{margin-top:6px; font-size:14px; font-weight:500; color:var(--ink2); line-height:1.5}
 .cmp-warn{margin:6px 0 12px}
 /* overlay chart */
 .cmp-charts{margin:0 0 12px; border:1px solid var(--border); border-radius:12px; background:var(--surface); padding:10px 12px 6px}
 .cmp-chartsel{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:6px}
-.cmp-chartbtn{border:1px solid var(--border); background:transparent; color:var(--ink2); font:inherit; font-size:12px; font-weight:650; padding:4px 11px; border-radius:20px; cursor:pointer}
+.cmp-chartbtn{border:1px solid var(--border); background:transparent; color:var(--ink2); font:inherit; font-size:13.5px; font-weight:650; padding:4px 11px; border-radius:20px; cursor:pointer}
 .cmp-chartbtn:hover{border-color:var(--accent)}
 .cmp-chartbtn.on{background:color-mix(in srgb,var(--accent) 16%, var(--surface)); border-color:var(--accent); color:var(--ink)}
 .cmp-chartsvg{width:100%; height:auto; display:block}
 .cmp-guide{stroke:var(--muted); stroke-width:1; stroke-dasharray:3 3; pointer-events:none; transition:opacity .08s}
 .cmp-hit{cursor:crosshair}
-.cmp-tiphd{font-weight:800; font-size:12px; margin-bottom:4px}
-.cmp-tiprow{display:flex; align-items:center; gap:7px; font-size:12px; line-height:1.5}
+.cmp-tiphd{font-weight:800; font-size:13.5px; margin-bottom:4px}
+.cmp-tiprow{display:flex; align-items:center; gap:7px; font-size:13.5px; line-height:1.5}
 .cmp-tipdot{width:9px; height:9px; border-radius:50%; flex:none}
 .cmp-tipnm{overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:150px}
 .cmp-tipval{margin-left:auto; padding-left:12px; font-weight:700; font-variant-numeric:tabular-nums}
-.cmp-legend{display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin:2px 0 4px; font-size:11.5px; color:var(--ink2)}
+.cmp-legend{display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin:2px 0 4px; font-size:13px; color:var(--ink2)}
 .cmp-leg{display:inline-flex; align-items:center; gap:5px}
 .cmp-legdot{width:11px; height:11px; border-radius:50%; flex:none}
 /* source toggles */
 .cmp-srcbar{display:flex; flex-wrap:wrap; align-items:center; gap:6px; margin:0 0 10px}
-.cmp-srclabel{font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); font-weight:700; margin-right:2px}
-.cmp-srctog{border:1px solid var(--border); background:var(--surface); color:var(--ink2); font:inherit; font-size:12px; font-weight:650;
+.cmp-srclabel{font-size:12.5px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); font-weight:700; margin-right:2px}
+.cmp-srctog{border:1px solid var(--border); background:var(--surface); color:var(--ink2); font:inherit; font-size:13.5px; font-weight:650;
   padding:5px 11px; border-radius:20px; cursor:pointer}
 .cmp-srctog:hover{border-color:var(--accent)}
 .cmp-srctog.on{background:color-mix(in srgb,var(--accent) 16%, var(--surface)); border-color:var(--accent); color:var(--ink)}
 .cmp-srctog.na{opacity:.4; cursor:not-allowed; text-decoration:line-through}
 /* per-category read-out */
-.cmp-comment{font-size:12.5px; line-height:1.55; color:var(--ink2); padding:9px 13px; background:var(--surface2);
+.cmp-comment{font-size:14px; line-height:1.55; color:var(--ink2); padding:9px 13px; background:var(--surface2);
   border-top:1px solid var(--border)}
 .cmp-comment b{color:var(--ink)}
-.cmp-warn p{margin:0 0 6px; font-size:12px; color:var(--ink2); line-height:1.5; background:var(--surface2);
+.cmp-warn p{margin:0 0 6px; font-size:13.5px; color:var(--ink2); line-height:1.5; background:var(--surface2);
   border:1px solid var(--border); border-radius:9px; padding:7px 11px}
 
 /* metric table: label column on the left, one column per side */
 .cmp-metrics{--cols:2; border:1px solid var(--border); border-radius:12px; overflow:hidden; background:var(--surface)}
-.cmp-grp{background:var(--surface2); font-size:11px; text-transform:uppercase; letter-spacing:.06em; font-weight:700;
+.cmp-grp{background:var(--surface2); font-size:12.5px; text-transform:uppercase; letter-spacing:.06em; font-weight:700;
   color:var(--muted); padding:7px 12px; border-top:1px solid var(--border); display:flex; justify-content:space-between; align-items:baseline}
-.cmp-grp-sub{text-transform:none; letter-spacing:0; font-weight:500; font-size:10.5px}
-.cmp-subgrp{font-size:11px; font-weight:700; color:var(--ink2); padding:6px 12px 4px 14px; border-top:1px solid var(--border);
+.cmp-grp-sub{text-transform:none; letter-spacing:0; font-weight:500; font-size:12px}
+.cmp-subgrp{font-size:12.5px; font-weight:700; color:var(--ink2); padding:6px 12px 4px 14px; border-top:1px solid var(--border);
   background:color-mix(in srgb,var(--surface2) 55%, transparent); border-left:3px solid var(--accent)}
 .cmp-mrow{display:grid; grid-template-columns:minmax(120px,1.5fr) repeat(var(--cols),minmax(0,1fr)); border-top:1px solid var(--border)}
 .cmp-metrics>.cmp-mrow:first-child{border-top:0}
 .cmp-mhead{background:var(--surface2); position:sticky; top:0; z-index:2}
 .cmp-mh{display:flex; align-items:center; gap:6px; padding:7px 10px; border-left:1px solid var(--border); border-bottom:2px solid var(--acc); min-width:0}
-.cmp-mh-av{width:22px; height:22px; border-radius:6px; overflow:hidden; flex:none; background:var(--track); display:flex; align-items:center; justify-content:center}
+.cmp-mh-av{width:25px; height:25px; border-radius:6px; overflow:hidden; flex:none; background:var(--track); display:flex; align-items:center; justify-content:center}
 .cmp-mh-av img{width:100%; height:100%; object-fit:cover}
-.cmp-mh-nm{font-size:11.5px; font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
-.cmp-cell{padding:9px 12px; text-align:right; font-variant-numeric:tabular-nums; font-size:13.5px; font-weight:650; position:relative; white-space:nowrap; border-left:1px solid var(--border)}
+.cmp-mh-nm{font-size:13px; font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.cmp-cell{padding:9px 12px; text-align:right; font-variant-numeric:tabular-nums; font-size:15px; font-weight:650; position:relative; white-space:nowrap; border-left:1px solid var(--border)}
 .cmp-cell.w{font-weight:800; background:color-mix(in srgb,var(--acc) 20%, transparent)}
-.cmp-tick{font-size:11px; margin-left:4px; color:var(--acc); vertical-align:1px}
+.cmp-tick{font-size:12.5px; margin-left:4px; color:var(--acc); vertical-align:1px}
 .cmp-na{color:var(--muted); font-weight:500}
 .cmp-lab{padding:8px 12px; display:flex; flex-direction:column; gap:1px; justify-content:center}
-.cmp-lab-t{font-size:12.5px; font-weight:650; color:var(--ink)}
-.cmp-k{font-size:10px; color:var(--accent); font-weight:600}
-.cmp-note{font-size:10px; color:var(--muted)}
-.cmp-draw{font-size:10px; color:var(--muted); font-weight:700; text-transform:uppercase; letter-spacing:.05em}
+.cmp-lab-t{font-size:14px; font-weight:650; color:var(--ink)}
+.cmp-k{font-size:11px; color:var(--accent); font-weight:600}
+.cmp-note{font-size:11px; color:var(--muted)}
+.cmp-draw{font-size:11px; color:var(--muted); font-weight:700; text-transform:uppercase; letter-spacing:.05em}
 .cmp-mrow.cmp-unscored .cmp-cell{font-weight:600; color:var(--ink2)}
 .cmp-mrow.cmp-unscored .cmp-lab-t{color:var(--muted); font-weight:600}
 @media(max-width:560px){
@@ -1459,12 +1461,12 @@ body[data-agmode="banner"] .ag-row{grid-template-columns:206px 1fr 196px}
 
 /* daily-vs-monthly note (official-source games) */
 .grnote .grhead{display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap; margin-bottom:5px}
-.grnote .grseg button{font-size:11.5px; padding:4px 10px}
+.grnote .grseg button{font-size:13px; padding:4px 10px}
 .grnote .grwhy{display:block; margin-top:7px; padding-top:7px; border-top:1px solid var(--border); color:var(--muted)}
 .grnote .grwhy b{color:var(--ink2)}
-.grnote .grwhylink{font-size:12px; margin-left:4px}
-.info-warn{margin:6px 0 10px; padding:8px 11px; border-radius:8px; border:1px solid rgba(214,140,40,.45); background:rgba(214,140,40,.10); font-size:13px}
+.grnote .grwhylink{font-size:13.5px; margin-left:4px}
+.info-warn{margin:6px 0 10px; padding:8px 11px; border-radius:8px; border:1px solid rgba(214,140,40,.45); background:rgba(214,140,40,.10); font-size:14.5px}
 .grnote .recon-warn{margin:0 0 7px}
-.recon-warn .reconlink{font-size:12px; margin-left:4px}
+.recon-warn .reconlink{font-size:13.5px; margin-left:4px}
 /* Compare: why a side's points are fractional (rank lifted by another banner's launch) */
-.cmp-liftnote{display:block; font-size:12px; color:var(--muted); margin-top:4px; font-weight:400}
+.cmp-liftnote{display:block; font-size:13.5px; color:var(--muted); margin-top:4px; font-weight:400}

@@ -1409,7 +1409,7 @@ function axesHTML(max){
   // CN reuses the USD tick maths -- both are plain linear money axes, unlike game-i's 億
   const tk = (src==="cn"||usdSrc(src)) ? usdTicks(max) : ticks(max,state.bracket);
   const fmt = srcFmtOf(src);
-  return tk.map(t=>`<div class="axis" style="left:calc(101px + (100% - 101px - 74px) * ${t/max})"><span>${fmt(t)}</span></div>`).join("");}
+  return tk.map(t=>`<div class="axis" style="left:calc(var(--ax-l) + (100% - var(--ax-l) - var(--ax-r)) * ${t/max})"><span>${fmt(t)}</span></div>`).join("");}
 
 // Every bar's track shrinks to fit its value label, so "¥0" next to "¥146M" left the tracks
 // ending at different points. Give every value column in the chart the width of the widest.
@@ -1495,7 +1495,8 @@ const fmtEqRank = r => r==null ? "—" : r===Infinity ? "below #200" : "#"+(r<9.
 // "≈ #N every day" — the rank that would have earned the run's average every day
 const eqPhrase = (eq, bold) => eq===Infinity ? "below #200 on average" : `≈ ${bold?"<b>":""}${fmtEqRank(eq)}${bold?"</b>":""} every day`;
 const fmtRk = r => r==null ? "—" : r>200 ? ">#200" : "#"+Math.round(r);
-const fmtDbl = d => d==null ? "—" : d===Infinity ? "held" : d.toFixed(1)+"d";
+// rank decay from the doubling time d: the % the rank number grows a day (2^(1/d) − 1); lower is better
+const fmtDbl = d => d==null ? "—" : d===Infinity ? "held" : "+"+Math.round((Math.pow(2,1/d)-1)*100)+"%/day";
 const CHART_SORTS = ["score","peak","top1","top3","med","top10","held","decay"];
 // Day offsets (from b.start) a banner was actually up. A paused-and-resumed run (b.periods —
 // e.g. HSR's Himeko • Nova, paused 11 days while the Fate collab had the store, then reopened)
@@ -1649,7 +1650,7 @@ function chartStatLine(run, sortKey){
     hl("med", `Med ${fmtRk(run.med)}`),
     hl("top10", `${run.top10}d in top 10`),
     hl("held", held),
-    run.hasDecay ? hl("decay", run.dbl===Infinity ? "rank held after peak" : `rank ×2 in ${fmtDbl(run.dbl)}`) : null,
+    run.hasDecay ? hl("decay", run.dbl===Infinity ? "rank held after peak" : `decay ${fmtDbl(run.dbl)}`) : null,
   ].filter(Boolean).join(" · ");
 }
 // The money/chart sources a Total revenue / Everything score can draw on
@@ -1708,13 +1709,13 @@ function scoredRowHTML(b, pos, fillPct, valStr, statHTML, chartMode){
         <div class="cr-stat">${statHTML}</div>
       </div></div>`;
 }
-const scoreAxes = () => [25,50,75,100].map(t=>`<div class="axis" style="left:calc(101px + (100% - 101px - 74px) * ${t/100})"><span>${t}</span></div>`).join("");
+const scoreAxes = () => [25,50,75,100].map(t=>`<div class="axis" style="left:calc(var(--ax-l) + (100% - var(--ax-l) - var(--ax-r)) * ${t/100})"><span>${t}</span></div>`).join("");
 const missingNote = (n, what) => n ? ` <b>${n}</b> banner${n>1?"s":""} in this range ha${n>1?"ve":"s"} no ${what}, so ${n>1?"they aren't":"it isn't"} ranked.` : "";
 const CHART_NOTE = `Each recorded day of the first ${CHART_WINDOW} (Japan from day 2 — game-i reads launch day before the banner is up; China from launch day) is turned into relative revenue with that chart's `
   + `rank→revenue curve — Japan: game-i's own curve (≈ r<sup>−0.80</sup>); China: r<sup>−${CN_RANK_EXP}</sup>, fitted from Qimai's daily China revenue against the China chart `
   + `(R² ≈ 0.9). A day off the chart counts as half of #200 — the game is still earning, just below the chart. <b>Level</b> = that average, on a log scale from "off the chart every day" (0) to "#1 every day" (1); shown as `
-  + `"≈ #N every day". <b>Hold</b> = how slowly the rank decays after the peak: the days it takes for the rank number to double (a robust Theil–Sen fit of `
-  + `log-rank), against this game's typical banner — 0.5 is typical, 1 never decayed. <b>Score = 100 × Level × (0.75 + 0.25 × Hold)</b>: earning sets the score, `
+  + `"≈ #N every day". <b>Hold</b> = how slowly the rank falls after the peak. Its <b>rank decay</b> is the % the rank number grows a day (+15%/day takes #10 to #11.5; lower is better; a robust Theil–Sen fit of `
+  + `log-rank); Hold puts that against this game's typical banner — 0.5 is typical, 1 never decayed. <b>Score = 100 × Level × (0.75 + 0.25 × Hold)</b>: earning sets the score, `
   + `decay can cost at most a quarter of it, and a banner flat but low on the chart gets nothing for being flat. Revenue weighting means one day at #1 `
   + `counts like about 6½ days at #10 in Japan (9 in China), as it does in money — instead of every place counting the same.`;
 function renderScoredRanking(){
@@ -5784,8 +5785,13 @@ function cmpRankStats(arr,k,mask,best,from=1,boost=null){
   // day on. Places-per-day scored #1→#11 the same as #100→#110, though on any rank→revenue curve
   // the first is a ~7× fall and the second ~8%. dbl = days for the rank number to double
   // (Infinity = it held or climbed after the peak).
-  const tail=recorded.filter(([idx])=>idx>=peakDay).map(([idx,v])=>[idx, Math.log(v)]);
-  const lslope = tail.length>=3 ? theilSen(tail) : null;
+  // Measured up to the first day it fell below #200 (that day counted at #201): once off the chart
+  // every reading is the same #201, and a fit over that flat run read a banner that crashed off
+  // the chart as "held" (Nov 2026). A peak followed straight by the drop is the two-point slope.
+  const after=recorded.filter(([idx])=>idx>=peakDay), off=after.findIndex(([,v])=>v>=RANK_OFF);
+  const tail=(off>0 ? after.slice(0, off+1) : after).map(([idx,v])=>[idx, Math.log(v)]);
+  const lslope = tail.length>=3 ? theilSen(tail)
+    : tail.length===2 && off>0 ? (tail[1][1]-tail[0][1])/(tail[1][0]-tail[0][0]) : null;
   const dbl = lslope==null ? null : lslope<=0 ? Infinity : Math.LN2/lslope;
   const b3=osorted.slice(0,3);
   return { none:false, peak, peakDay, open:known[0][1], last,
@@ -5867,7 +5873,7 @@ function buildComparison(E){
     push({group:"Japan rank",src:"jp",metric:"jp_top10",label:"Days in top 10",k:kJP,better:"high",fmt:dOnly,note:"staying power",cells:jf(s=>s.top10)});
     push({group:"Japan rank",src:"jp",metric:"jp_drop",label:"Dropped from top 200",k:kJP,better:"high",note:"day it fell off — later (or no drop) is better",cells:dropCells(sJP,kJP)});
     if(kJP>=5 && E.every((e,i)=>!sJP[i].none && sJP[i].charted>=3 && sJP[i].dbl!=null))
-      push({group:"Japan rank",src:"jp",metric:"jp_decay",label:"Rank decay",k:kJP,better:"low",fmt:dec,note:"how fast its rank number grew each day after the peak (+15%/day: #10 → #11.5); days below #200 count as #201. Lower is better: a slower fall",cells:jf(s=>Math.max(0,s.lslope))});
+      push({group:"Japan rank",src:"jp",metric:"jp_decay",label:"Rank decay",k:kJP,better:"low",fmt:dec,note:"how fast its rank number grew each day after the peak (+15%/day: #10 → #11.5), up to the day it fell below #200 (counted as #201). Lower is better: a slower fall",cells:jf(s=>Math.max(0,s.lslope))});
   }
   if(en.cnrank && kCN>0){ const cf=(f)=>cellsFrom((e,i)=>sCN[i].none?null:f(sCN[i]));
     push({group:"China rank",src:"cnrank",metric:"cnr_peak",label:"Peak rank",k:kCN,better:"low",fmt:rk,note:"best rank reached at any point of a day",cells:cf(s=>s.peak)});
@@ -5877,7 +5883,7 @@ function buildComparison(E){
     push({group:"China rank",src:"cnrank",metric:"cnr_top10",label:"Days in top 10",k:kCN,better:"high",fmt:dOnly,note:"staying power",cells:cf(s=>s.top10)});
     push({group:"China rank",src:"cnrank",metric:"cnr_drop",label:"Dropped from top 200",k:kCN,better:"high",note:"day it fell off — later (or no drop) is better",cells:dropCells(sCN,kCN)});
     if(kCN>=5 && E.every((e,i)=>!sCN[i].none && sCN[i].charted>=3 && sCN[i].dbl!=null))
-      push({group:"China rank",src:"cnrank",metric:"cnr_decay",label:"Rank decay",k:kCN,better:"low",fmt:dec,note:"how fast its rank number grew each day after the peak (+15%/day: #10 → #11.5); days below #200 count as #201. Lower is better: a slower fall",cells:cf(s=>Math.max(0,s.lslope))});
+      push({group:"China rank",src:"cnrank",metric:"cnr_decay",label:"Rank decay",k:kCN,better:"low",fmt:dec,note:"how fast its rank number grew each day after the peak (+15%/day: #10 → #11.5), up to the day it fell below #200 (counted as #201). Lower is better: a slower fall",cells:cf(s=>Math.max(0,s.lslope))});
   }
   // score each row: single best side wins a point; a tie for best awards none. Also record how
   // close the win was (relative gap between best and runner-up), so the read-out can flag slim leads.
