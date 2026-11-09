@@ -651,7 +651,7 @@ function howOpen(){
       <li><b>Japan and China chart</b>: peak rank, days at #1, in the top 3 and in the top 10, median rank, the day it left the top 200, and how fast the rank decayed after the peak.</li>
       ${MARGIN_RULE}
       ${LIFT_RULE}
-      <li>A game not sold in China counts as $0 and below #200 there, so it loses the China measures in full. Sensor Tower and the CN monthly figures aren't used: they only exist for whole months.</li>
+      <li>A game not sold in China (Umamusume) counts as $0 and below #200 there, and against it the China measures count at <b>half weight</b>: it isn't sold there, so losing them in full would shut it out of every month, while leaving them out would judge it on Japan alone. Sensor Tower and the CN monthly figures aren't used: they only exist for whole months.</li>
       <li>An even score goes to the bigger combined revenue over the window (Japan yen + China iPhone dollars at ¥150 per $1).</li>
       <li>The order is the number of head-to-heads won.</li>
       <li>A banner that opened on a month's last day or two counts as an opening of the <b>next</b> month instead, measured from its first day: one or two days are too few to judge it on.</li>

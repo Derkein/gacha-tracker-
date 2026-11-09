@@ -1,5 +1,5 @@
 {
- "built": "2026-11-08",
+ "built": "2026-11-09",
  "issues": [
   {
    "ym": "2026-10",
@@ -350,18 +350,21 @@
    "ym": "2025-12",
    "number": 64,
    "cover": {
-    "label": "Where Silverwings Rest",
-    "tag": "lads",
-    "game": "Love and Deepspace",
-    "img": "https://prcdn.freetls.fastly.net/release_image/131862/88/131862-88-897a1cca730e0e5ea2e6778c1f9ef844-1920x1080.jpg",
+    "label": "The Dahlia",
+    "tag": "hsr",
+    "game": "Honkai: Star Rail",
+    "img": "https://upload-os-bbs.hoyolab.com/upload/2025/12/15/c782cb4cac1d58238b7100a66acc66ca_3494724903666133436.png",
     "face": [
-     33.4,
-     33.8
+     81.7,
+     40.9
     ],
-    "art": null,
-    "art_face": null,
-    "color": "#d88d9f",
-    "rev_month": 1.3649,
+    "art": "assets/journal/hsr/1321.webp",
+    "art_face": [
+     45.4,
+     31.2
+    ],
+    "color": "#f0503f",
+    "rev_month": 7.2044,
     "rerun": false
    },
    "headline": null,
@@ -415,18 +418,18 @@
    "ym": "2025-10",
    "number": 62,
    "cover": {
-    "label": "Nefer",
-    "tag": "genshin",
-    "game": "Genshin Impact",
-    "img": "https://upload-os-bbs.hoyolab.com/upload/2025/10/17/521613c0dab0b4018fc68d926affaa6a_3857502028067489407.jpg",
+    "label": "Tokai Teio",
+    "tag": "uma",
+    "game": "Umamusume: Pretty Derby",
+    "img": "https://pbs.twimg.com/media/G4ZX8sAasAI5wmS.jpg",
     "face": [
-     85.5,
-     60.2
+     43.4,
+     22.2
     ],
     "art": null,
     "art_face": null,
-    "color": "#84c23c",
-    "rev_month": 2.944,
+    "color": "#3fb98f",
+    "rev_month": 2.3189,
     "rerun": false
    },
    "headline": null,
@@ -664,21 +667,18 @@
    "ym": "2025-02",
    "number": 54,
    "cover": {
-    "label": "Tribbie",
-    "tag": "hsr",
-    "game": "Honkai: Star Rail",
-    "img": "https://cdn.wikiwiki.jp/to/w/star-rail/%E8%B7%B3%E8%BA%8D/::attach/3.1.1%E3%82%AC%E3%83%81%E3%83%A31.webp",
+    "label": "Orfevre & Shake The World!! & Almond Eye",
+    "tag": "uma",
+    "game": "Umamusume: Pretty Derby",
+    "img": "https://pbs.twimg.com/media/GkhWgBnbQAA6sp5.jpg",
     "face": [
-     73.2,
-     40.4
+     25.2,
+     47.8
     ],
-    "art": "assets/journal/hsr/1403.webp",
-    "art_face": [
-     39.5,
-     42.0
-    ],
-    "color": "#4a4ad8",
-    "rev_month": 5.3,
+    "art": null,
+    "art_face": null,
+    "color": "#3fb98f",
+    "rev_month": 19.368,
     "rerun": false
    },
    "headline": null,
@@ -1330,19 +1330,19 @@
    "ym": "2023-03",
    "number": 31,
    "cover": {
-    "label": "Shenhe",
-    "tag": "genshin",
-    "game": "Genshin Impact",
-    "img": "https://paimon.moe/images/banners/The%20Transcendent%20One%20Returns%202.png",
+    "label": "Oguri Cap & Sirius Symboli",
+    "tag": "uma",
+    "game": "Umamusume: Pretty Derby",
+    "img": "https://pbs.twimg.com/media/Fq06R8uacAAFdph.jpg",
     "face": [
-     54.5,
-     23
+     26.3,
+     49.3
     ],
     "art": null,
     "art_face": null,
-    "color": "#7fc8e0",
-    "rev_month": 5.7792,
-    "rerun": true
+    "color": "#3fb98f",
+    "rev_month": 18.79,
+    "rerun": false
    },
    "headline": null,
    "games": [
@@ -1355,19 +1355,19 @@
    "ym": "2023-02",
    "number": 30,
    "cover": {
-    "label": "Hu Tao & Yelan",
-    "tag": "genshin",
-    "game": "Genshin Impact",
-    "img": "https://paimon.moe/images/banners/Moment%20of%20Bloom%203.png",
+    "label": "Mr. C.B. & Mejiro Ramonu & Jungle Pocket",
+    "tag": "uma",
+    "game": "Umamusume: Pretty Derby",
+    "img": "https://pbs.twimg.com/media/Fps0BI3aEAE_uHO.jpg",
     "face": [
-     64.3,
-     26.5
+     36.9,
+     49.6
     ],
     "art": null,
     "art_face": null,
-    "color": "#f0684a",
-    "rev_month": 18.83,
-    "rerun": true
+    "color": "#3fb98f",
+    "rev_month": 21.5914,
+    "rerun": false
    },
    "headline": null,
    "games": [
@@ -1455,18 +1455,18 @@
    "ym": "2022-10",
    "number": 26,
    "cover": {
-    "label": "Nilou & Albedo",
-    "tag": "genshin",
-    "game": "Genshin Impact",
-    "img": "https://img.gamewith.jp/article/thumbnail/rectangle/367009.png",
+    "label": "Tamamo Cross & Oguri Cap & Yaeno Muteki",
+    "tag": "uma",
+    "game": "Umamusume: Pretty Derby",
+    "img": "https://pbs.twimg.com/media/FgH-08DaYAAQLV9.jpg",
     "face": [
-     72.1,
-     26.2
+     37.3,
+     38.1
     ],
     "art": null,
     "art_face": null,
-    "color": "#4a90d9",
-    "rev_month": 7.1496,
+    "color": "#3fb98f",
+    "rev_month": 13.8864,
     "rerun": false
    },
    "headline": null,
@@ -1505,18 +1505,18 @@
    "ym": "2022-08",
    "number": 24,
    "cover": {
-    "label": "Tighnari & Zhongli",
-    "tag": "genshin",
-    "game": "Genshin Impact",
-    "img": "https://paimon.moe/images/events/viridescent_vigil_1.jpg",
+    "label": "Winning Ticket & Tokai Teio & Twin Turbo",
+    "tag": "uma",
+    "game": "Umamusume: Pretty Derby",
+    "img": "https://pbs.twimg.com/media/FbS_b-1aQAAKPFe.jpg",
     "face": [
-     49.6,
-     25.2
+     13,
+     38.7
     ],
     "art": null,
     "art_face": null,
-    "color": "#84c23c",
-    "rev_month": 8.6965,
+    "color": "#3fb98f",
+    "rev_month": 6.6235,
     "rerun": false
    },
    "headline": null,
@@ -1630,19 +1630,19 @@
    "ym": "2022-03",
    "number": 19,
    "cover": {
-    "label": "Raiden Shogun & Sangonomiya Kokomi",
-    "tag": "genshin",
-    "game": "Genshin Impact",
-    "img": "https://paimon.moe/images/banners/Reign%20of%20Serenity%202.png",
+    "label": "Marvelous Sunday Time☆★ & Curren Chan",
+    "tag": "uma",
+    "game": "Umamusume: Pretty Derby",
+    "img": "https://pbs.twimg.com/media/FNNxNpYVEAEcHrl.jpg",
     "face": [
-     57.5,
-     18.9
+     24.9,
+     52.6
     ],
     "art": null,
     "art_face": null,
-    "color": "#b57fd4",
-    "rev_month": 20.27,
-    "rerun": true
+    "color": "#3fb98f",
+    "rev_month": 43.3,
+    "rerun": false
    },
    "headline": null,
    "games": [
@@ -1655,18 +1655,18 @@
    "ym": "2022-02",
    "number": 18,
    "cover": {
-    "label": "Yae Miko",
-    "tag": "genshin",
-    "game": "Genshin Impact",
-    "img": "https://gamenoshirase.com/wp-content/uploads/2022/02/k-0005_chara_029.jpg",
+    "label": "Kitasan Black & Narita Top Road",
+    "tag": "uma",
+    "game": "Umamusume: Pretty Derby",
+    "img": "https://pbs.twimg.com/media/FMVHutFVgAIWC_R.jpg",
     "face": [
-     52.7,
-     25.8
+     13.6,
+     39
     ],
     "art": null,
     "art_face": null,
-    "color": "#b57fd4",
-    "rev_month": 14.8861,
+    "color": "#3fb98f",
+    "rev_month": 29.8606,
     "rerun": false
    },
    "headline": null,
@@ -1705,18 +1705,18 @@
    "ym": "2021-12",
    "number": 16,
    "cover": {
-    "label": "Arataki Itto",
-    "tag": "genshin",
-    "game": "Genshin Impact",
-    "img": "https://gamenoshirase.com/wp-content/uploads/2021/12/k-0005_chara_024.jpg",
+    "label": "Nice Nature & Oguri Cap",
+    "tag": "uma",
+    "game": "Umamusume: Pretty Derby",
+    "img": "https://pbs.twimg.com/media/FHLh-sRaMAUt3KH.jpg",
     "face": [
-     47.5,
-     27.4
+     24.7,
+     47
     ],
     "art": null,
     "art_face": null,
-    "color": "#e0b23c",
-    "rev_month": 9.7453,
+    "color": "#3fb98f",
+    "rev_month": 28,
     "rerun": false
    },
    "headline": null,
@@ -1730,19 +1730,19 @@
    "ym": "2021-11",
    "number": 15,
    "cover": {
-    "label": "Hu Tao",
-    "tag": "genshin",
-    "game": "Genshin Impact",
-    "img": "https://gamenoshirase.com/wp-content/uploads/2021/10/k-0005_chara_021.jpg",
+    "label": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+    "tag": "uma",
+    "game": "Umamusume: Pretty Derby",
+    "img": "https://pbs.twimg.com/media/FDo8Bp9aQAAwHQz.jpg",
     "face": [
-     62.6,
-     29.6
+     24.3,
+     41.8
     ],
     "art": null,
     "art_face": null,
-    "color": "#f0684a",
-    "rev_month": 24.68,
-    "rerun": true
+    "color": "#3fb98f",
+    "rev_month": 38.62,
+    "rerun": false
    },
    "headline": null,
    "games": [
@@ -1755,19 +1755,19 @@
    "ym": "2021-10",
    "number": 14,
    "cover": {
-    "label": "Tartaglia",
-    "tag": "genshin",
-    "game": "Genshin Impact",
-    "img": "https://gamenoshirase.com/wp-content/uploads/2021/10/k-0005_chara_020.jpg",
+    "label": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+    "tag": "uma",
+    "game": "Umamusume: Pretty Derby",
+    "img": "https://pbs.twimg.com/media/FCHF1GuVkAoOhNj.jpg",
     "face": [
-     54.2,
-     26.2
+     24.8,
+     52.4
     ],
     "art": null,
     "art_face": null,
-    "color": "#4a90d9",
-    "rev_month": 13.7217,
-    "rerun": true
+    "color": "#3fb98f",
+    "rev_month": 22.1,
+    "rerun": false
    },
    "headline": null,
    "games": [
@@ -1780,18 +1780,18 @@
    "ym": "2021-09",
    "number": 13,
    "cover": {
-    "label": "Raiden Shogun",
-    "tag": "genshin",
-    "game": "Genshin Impact",
-    "img": "https://gamenoshirase.com/wp-content/uploads/2021/08/k-0005_chara_018.jpg",
+    "label": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+    "tag": "uma",
+    "game": "Umamusume: Pretty Derby",
+    "img": "https://pbs.twimg.com/media/E-Ac81bVUAQ3dj1.jpg",
     "face": [
-     57.2,
-     22.5
+     23.6,
+     48.7
     ],
     "art": null,
     "art_face": null,
-    "color": "#b57fd4",
-    "rev_month": 21.02,
+    "color": "#3fb98f",
+    "rev_month": 41.2327,
     "rerun": false
    },
    "headline": null,
@@ -1805,18 +1805,18 @@
    "ym": "2021-08",
    "number": 12,
    "cover": {
-    "label": "Yoimiya",
-    "tag": "genshin",
-    "game": "Genshin Impact",
-    "img": "https://gamenoshirase.com/wp-content/uploads/2021/08/k-0005_chara_017.jpg",
+    "label": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+    "tag": "uma",
+    "game": "Umamusume: Pretty Derby",
+    "img": "https://pbs.twimg.com/media/E9HzQFnVIAcakZX.jpg",
     "face": [
-     52,
-     33.7
+     26.3,
+     50.7
     ],
     "art": null,
     "art_face": null,
-    "color": "#f0684a",
-    "rev_month": 11.98,
+    "color": "#3fb98f",
+    "rev_month": 45.93,
     "rerun": false
    },
    "headline": null,
@@ -1830,18 +1830,18 @@
    "ym": "2021-07",
    "number": 11,
    "cover": {
-    "label": "Kamisato Ayaka",
-    "tag": "genshin",
-    "game": "Genshin Impact",
-    "img": "https://gamenoshirase.com/wp-content/uploads/2021/07/k-0005_chara_016.jpg",
+    "label": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+    "tag": "uma",
+    "game": "Umamusume: Pretty Derby",
+    "img": "https://pbs.twimg.com/media/E6tTjLuUcA4Vbd1.jpg",
     "face": [
-     54.2,
-     25.4
+     31.9,
+     42.9
     ],
     "art": null,
     "art_face": null,
-    "color": "#7fc8e0",
-    "rev_month": 8.3105,
+    "color": "#3fb98f",
+    "rev_month": 36.71,
     "rerun": false
    },
    "headline": null,
@@ -1855,19 +1855,19 @@
    "ym": "2021-06",
    "number": 10,
    "cover": {
-    "label": "Klee",
-    "tag": "genshin",
-    "game": "Genshin Impact",
-    "img": "https://gamenoshirase.com/wp-content/uploads/2021/06/k-0005_chara_014.jpg",
+    "label": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+    "tag": "uma",
+    "game": "Umamusume: Pretty Derby",
+    "img": "https://pbs.twimg.com/media/E3fT9ylVgAEQm8O.jpg",
     "face": [
-     55,
-     32
+     25.2,
+     45.7
     ],
     "art": null,
     "art_face": null,
-    "color": "#f0684a",
-    "rev_month": 10.13,
-    "rerun": true
+    "color": "#3fb98f",
+    "rev_month": 38.25,
+    "rerun": false
    },
    "headline": null,
    "games": [
@@ -1880,18 +1880,18 @@
    "ym": "2021-05",
    "number": 9,
    "cover": {
-    "label": "Eula",
-    "tag": "genshin",
-    "game": "Genshin Impact",
-    "img": "https://gamenoshirase.com/wp-content/uploads/2021/05/k-0005_chara_013.jpg",
+    "label": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+    "tag": "uma",
+    "game": "Umamusume: Pretty Derby",
+    "img": "https://pbs.twimg.com/media/E0rET_yVgAMwjip.jpg",
     "face": [
-     56.9,
-     31.4
+     27.6,
+     49.2
     ],
     "art": null,
     "art_face": null,
-    "color": "#7fc8e0",
-    "rev_month": 10.1977,
+    "color": "#3fb98f",
+    "rev_month": 55.0,
     "rerun": false
    },
    "headline": null,
@@ -1905,19 +1905,19 @@
    "ym": "2021-04",
    "number": 8,
    "cover": {
-    "label": "Zhongli",
-    "tag": "genshin",
-    "game": "Genshin Impact",
-    "img": "https://paimon.moe/images/banners/Gentry%20of%20Hermitage%202.png",
+    "label": "TVアニメコラボ プリティーダービーガチャ・サポートカードガチャ",
+    "tag": "uma",
+    "game": "Umamusume: Pretty Derby",
+    "img": "https://pbs.twimg.com/media/ExshfLcVoAAS59f.jpg",
     "face": [
-     51.8,
-     21.1
+     39.5,
+     44.4
     ],
     "art": null,
     "art_face": null,
-    "color": "#e0b23c",
-    "rev_month": 4.0543,
-    "rerun": true
+    "color": "#3fb98f",
+    "rev_month": 72.4833,
+    "rerun": false
    },
    "headline": null,
    "games": [
@@ -1930,18 +1930,18 @@
    "ym": "2021-03",
    "number": 7,
    "cover": {
-    "label": "Hu Tao",
-    "tag": "genshin",
-    "game": "Genshin Impact",
-    "img": "https://gamenoshirase.com/wp-content/uploads/2021/04/k-0005_chara_009.jpg",
+    "label": "ピックアップ プリティーダービーガチャ・サポートカードガチャ",
+    "tag": "uma",
+    "game": "Umamusume: Pretty Derby",
+    "img": "https://pbs.twimg.com/media/EvcWGpeUcAIp83F.jpg",
     "face": [
-     62.6,
-     32.1
+     13.8,
+     39.5
     ],
     "art": null,
     "art_face": null,
-    "color": "#f0684a",
-    "rev_month": 12.67,
+    "color": "#3fb98f",
+    "rev_month": 33.46,
     "rerun": false
    },
    "headline": null,

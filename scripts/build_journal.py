@@ -96,7 +96,7 @@ async (pairs) => {
   // Margin-weighted scoring (the tracker's Compare counts 1 point per measure won; here a win is
   // worth more the bigger it is, with diminishing returns): revenue and rank measures score the log
   // of the ratio, a 2x lead or more = the full point. A China measure the other side can't have
-  // (game not sold in China) is a full point. Rank days another banner's launch lifted already
+  // (game not sold in China) is worth HALF a point: NO_CHINA_W below. Rank days another banner's launch lifted already
   // count at the banner's own pace (cmpSeries / deBoost on the site).
   //
   // Day counts (days at #1, in the top 3 / top 10, the day it left the top 200) score by RARITY:
@@ -136,18 +136,23 @@ async (pairs) => {
   };
   // per-source weights (build_journal.py --weights; all 1 by default): gamei/jp = Japan, qimai/cnrank = China
   const WT = window._W || {}, wt = src => WT[src] ?? 1;
+  // A game not sold in China (Umamusume) vs one that is: the China measures count at half weight
+  // for that pair (user rule, Nov 2026). In full, Uma could never win a month despite topping Japan;
+  // left out entirely, every pair became "who did best in Japan" and Uma took 32 of 74 months.
+  const NO_CHINA_W = 0.5;
   return pairs.map(([a, b]) => { const R = buildComparison([a, b]), E = [a, b], pts = [0, 0];
     const mid = (Date.parse(a.start) + Date.parse(b.start)) / 2;
     for (const r of R.rows) {
       if (r.unscored) continue;
+      const w8 = wt(r.src) * ((r.src === "qimai" || r.src === "cnrank") && (E[0].noChina || E[1].noChina) ? NO_CHINA_W : 1);
       const v = r.cells.map(c => c.v);
       if (v[0] == null || v[1] == null) {
-        if ((r.src === "qimai" || r.src === "cnrank") && (v[0] != null) !== (v[1] != null) && E[v[0] != null ? 1 : 0].noChina) pts[v[0] != null ? 0 : 1] += wt(r.src);
+        if ((r.src === "qimai" || r.src === "cnrank") && (v[0] != null) !== (v[1] != null) && E[v[0] != null ? 1 : 0].noChina) pts[v[0] != null ? 0 : 1] += w8;
         continue;
       }
       if (v[0] === v[1]) continue;
       const w = r.better === "high" ? (v[0] > v[1] ? 0 : 1) : (v[0] < v[1] ? 0 : 1);
-      pts[w] += wt(r.src) * (COUNT.test(r.metric) ? rarity(r.metric, r.k || 1, Math.min(v[0], v[1]), Math.max(v[0], v[1]), mid) : ratioW(v[0], v[1]));
+      pts[w] += w8 * (COUNT.test(r.metric) ? rarity(r.metric, r.k || 1, Math.min(v[0], v[1]), Math.max(v[0], v[1]), mid) : ratioW(v[0], v[1]));
     }
     const overall = Math.abs(pts[0] - pts[1]) < 1e-9 ? "even" : pts[0] > pts[1] ? 0 : 1;
     return { points: pts.map(x => Math.round(x * 100) / 100), overall }; });
@@ -344,7 +349,8 @@ def game_month(G, ym):
 # the tracker's Compare uses (game-i and Qimai revenue: total, best-rank day, first week; Japan and
 # China rank: peak, days at #1 / top 3 / top 10, median, day it left the top 200, decay). The side
 # with more points wins; an even result goes to the bigger combined revenue over the window (Japan
-# yen + China iPhone dollars at USD_JPY). A game not sold in China counts as $0 and below #200 there.
+# yen + China iPhone dollars at USD_JPY). A game not sold in China counts as $0 and below #200 there,
+# with the China measures at half weight in its pairs (NO_CHINA_W in H2H).
 # Banners are then ordered by head-to-heads won.
 USD_JPY = 150            # fixed rate for the even-result tie-break only
 MIN_DUEL_DAYS = 3        # fewer days in the month than this: listed as too new to rank, not ranked
