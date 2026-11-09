@@ -76,6 +76,9 @@ img.broken{visibility:hidden}
 
 /* ---- charts ---- */
 .chartcols{display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr)); gap:18px 36px; margin-top:12px}
+/* the three charts share rows (title · caption · list), so a caption that wraps to two lines
+   doesn't push its list below the others */
+.chartcol{display:grid; grid-row:span 3; grid-template-rows:subgrid; row-gap:0; align-content:start}
 .chartcol h4{font-size:22.5px; margin:0}
 .chartcol .sub{font-family:var(--sans); font-size:13px; color:var(--muted); margin:2px 0 8px}
 .rchart{list-style:none; margin:0; padding:0; font-family:var(--sans); font-size:15px}
