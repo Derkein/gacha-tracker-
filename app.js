@@ -1464,7 +1464,7 @@ function renderBars(){
 // "Single revenue" is the plain leaderboard above (one money source at a time). The other three
 // rank by a 0–100 score instead:
 //   Charts         JP and/or CN top-grossing chart runs, scored Level × Hold (see chartRun)
-//   Total revenue  every money source at once — each as a % of the game's best banner on it
+//   Total revenue  every money source at once, added up in US$ (yen/yuan at today's rate)
 //   Everything     Total revenue + both charts as revenue-equivalent sources
 function rankByScored(){ return state.mode==="rank" && !state.table && ["total","charts","all"].includes(state.rankBy); }
 // Every banner is measured over the same window — its first 3 weeks, the usual banner length — so
@@ -1772,7 +1772,10 @@ function renderChartRanking(pool){
     + `</div>`;
   $("#chart").innerHTML=html;
 }
-// Total revenue / Everything: every enabled source scored as a % of the game's best banner on it
+// Total revenue: every enabled source converted to US$ at the day's rate and ADDED UP (user rule,
+// Nov 2026). They overlap (Sensor Tower's worldwide figure already holds Japan and China iPhone;
+// CN is worldwide all-platform), which the note says; the source toggles let you pick a set that
+// doesn't. Everything: every enabled source scored as a % of the game's best banner on it
 // (100 = the game's top banner there), averaged over the sources that have data for the banner.
 // The sources can't simply be added — different currencies, and they overlap (Sensor Tower's
 // worldwide figure already contains Japan and China iPhone) — so each is put on the same 0–100
@@ -1784,6 +1787,7 @@ function renderSourceRanking(pool, everything){
   const bar=`<div class="cmp-srcbar cr-srcbar"><span class="cmp-srclabel">Sources</span>${srcs.map(s=>
     `<button type="button" class="cmp-srctog${en[s.k]?" on":""}" data-rank-src="${s.k}" title="${esc(s.full)}">${esc(s.lab)}</button>`).join("")}</div>`;
   if(!on.length){ $("#chart").innerHTML=bar+`<div class="noresults">Every source is switched off — turn one on above.</div>`; return; }
+  if(!everything) return renderUSDRanking(pool, on, bar);
   // best value per source across ALL of this game's banners (not just the filtered range), so a
   // banner's score doesn't change when you filter to a year
   const best={};
@@ -1820,6 +1824,48 @@ function renderSourceRanking(pool, everything){
     + (everything ? ` <b>JP chart</b> and <b>CN chart</b> join as revenue-equivalent sources: each recorded day of the first ${CHART_WINDOW} (Japan from day 2, China from launch day) turned into relative revenue with that chart's rank→revenue curve `
       + `(Japan: game-i's; China: r<sup>−${CN_RANK_EXP}</sup>, fitted from Qimai) and averaged per day — with running banners and short listings projected over a usual run, exactly as in Charts. game-i's Japan revenue is itself built from the Japan chart, `
       + `so leaving both on gives Japan's chart extra weight — switch one off for an even split.` : "")
+    + missingNote(missing.length, "data on any selected source")
+    + `</div>`;
+  $("#chart").innerHTML=html;
+}
+
+// a banner's value on one money source, in US$ (null = no data / no rate)
+function srcUSD(k, v){
+  if(v==null) return null;
+  if(k==="gamei") return fxRate("JPY") ? v*1e8/fxRate("JPY") : null;
+  if(k==="cn")    return fxRate("CNY") ? v/fxRate("CNY") : null;
+  return v;                                                   // Qimai and Sensor Tower are already US$
+}
+function renderUSDRanking(pool, on, bar){
+  if(!fxRate("JPY") || !fxRate("CNY")){ $("#chart").innerHTML=bar+`<div class="noresults">The exchange rate (data/fx.json) didn't load, so the sources can't be put in dollars.</div>`; return; }
+  const rows=[], missing=[];
+  for(const b of pool){
+    const parts=[], warns=[];
+    for(const s of on){ const {v,warn}=scoreSrcValue(b,s.k); if(warn) warns.push(warn); parts.push({s, usd: srcUSD(s.k, v)}); }
+    const have=parts.filter(p=>p.usd!=null);
+    if(!have.length){ missing.push(b); continue; }
+    rows.push({b, parts, warns, n:have.length, total:have.reduce((a,p)=>a+p.usd,0)});
+  }
+  if(!rows.length){ $("#chart").innerHTML=bar+`<div class="noresults">None of the selected sources has data for <b>${esc(state.data.name)}</b> in this range.</div>`; return; }
+  rows.sort((x,y)=> y.total-x.total || y.n-x.n || y.b.start.localeCompare(x.b.start));
+  rows.forEach((r,i)=>r.pos=i+1);
+  const max=Math.max(...rows.map(r=>r.total));
+  if(state.reverse) rows.reverse();
+  let html=bar;
+  for(const r of rows){
+    const stat = r.parts.map(p=> p.usd==null ? `${esc(p.s.lab)} —` : `${esc(p.s.lab)} <b>${fmtUSD(p.usd)}</b>`).join(" + ")
+      + (r.n<on.length ? ` · <span class="cr-n">${r.n} of ${on.length} sources</span>` : "")
+      + r.warns.map(w=>`<span class="partialbadge" title="${esc(w)} — this banner's total adds up only the sources that do have data, so it reads low next to banners that have them all">${esc(w)}</span>`).join("");
+    html+=scoredRowHTML(r.b, r.pos, 100*r.total/max, fmtUSD(r.total), stat, false);
+  }
+  const ids=on.map(s=>s.k), only=(...k)=>ids.length===k.length && k.every(x=>ids.includes(x));
+  const overlap = ids.includes("cn") && ids.length>1 ? `<b>CN</b> is already worldwide on every platform, so it contains every other source here`
+    : ids.includes("st") && (ids.includes("gamei")||ids.includes("qimai")) ? `<b>Sensor Tower</b> is worldwide mobile, so it already contains ${ids.includes("gamei")&&ids.includes("qimai")?"Japan and China iPhone":ids.includes("gamei")?"Japan":"China iPhone"}` : "";
+  html+=`<div class="stnote cr-note"><b>Total revenue — every selected source added up, in US$.</b> `
+    + `game-i's yen and CN's yuan are converted at ${esc(fxLine(true))}; Qimai and Sensor Tower are already in dollars. One rate for every date: a 2022 banner is converted at today's rate, so the order never changes with the yen. `
+    + (overlap ? `<b>The sources overlap:</b> ${overlap}. The same spending is counted more than once, so the totals are bigger than any real figure. The order still reads as "most money on the most sources"; for a total with nothing counted twice, keep <b>game-i + Qimai</b> (Japan + China iPhone), or one of Sensor Tower or CN on its own. `
+               : only("gamei","qimai") ? `game-i + Qimai don't overlap: this is <b>Japan + China iPhone</b>, two stores, not worldwide. ` : "")
+    + `A banner missing a source (most often Sensor Tower or CN, whose month isn't out yet, or a banner from before Qimai's data) adds up only the ones it has and is flagged, so it reads low. Ongoing banners (● live) are still adding revenue.`
     + missingNote(missing.length, "data on any selected source")
     + `</div>`;
   $("#chart").innerHTML=html;
