@@ -350,18 +350,21 @@
    "ym": "2025-12",
    "number": 64,
    "cover": {
-    "label": "Durin",
-    "tag": "genshin",
-    "game": "Genshin Impact",
-    "img": "https://pbs.twimg.com/media/G7DR9lxXwAAsdoT.jpg",
+    "label": "The Dahlia",
+    "tag": "hsr",
+    "game": "Honkai: Star Rail",
+    "img": "https://upload-os-bbs.hoyolab.com/upload/2025/12/15/c782cb4cac1d58238b7100a66acc66ca_3494724903666133436.png",
     "face": [
-     45.4,
-     24.1
+     81.7,
+     40.9
     ],
-    "art": null,
-    "art_face": null,
-    "color": "#f0684a",
-    "rev_month": 4.19,
+    "art": "assets/journal/hsr/1321.webp",
+    "art_face": [
+     45.4,
+     31.2
+    ],
+    "color": "#f0503f",
+    "rev_month": 7.2044,
     "rerun": false
    },
    "headline": null,
@@ -1327,18 +1330,18 @@
    "ym": "2023-03",
    "number": 31,
    "cover": {
-    "label": "Oguri Cap & Sirius Symboli",
+    "label": "Hishi Akebono",
     "tag": "uma",
     "game": "Umamusume: Pretty Derby",
-    "img": "https://pbs.twimg.com/media/Fq06R8uacAAFdph.jpg",
+    "img": "https://pbs.twimg.com/media/FroaLJWaAAAqyWd.jpg",
     "face": [
-     26.3,
-     49.3
+     26.2,
+     51.5
     ],
     "art": null,
     "art_face": null,
     "color": "#3fb98f",
-    "rev_month": 18.79,
+    "rev_month": 24.24,
     "rerun": false
    },
    "headline": null,

@@ -352,7 +352,10 @@ def game_month(G, ym):
 # yen + China iPhone dollars at USD_JPY). A game not sold in China counts as $0 and below #200 there,
 # with the China measures at half weight in its pairs (NO_CHINA_W in H2H).
 # Banners are then ordered by head-to-heads won.
-USD_JPY = 150            # fixed rate for the even-result tie-break only
+def _usd_jpy():
+    try: return float(json.loads((ROOT / "data" / "fx.json").read_text(encoding="utf-8"))["per_usd"]["JPY"])
+    except Exception: return 150.0
+USD_JPY = _usd_jpy()     # the site's daily rate (data/fx.json), for the money tie-breaks only
 MIN_DUEL_DAYS = 3        # fewer days in the month than this: listed as too new to rank, not ranked
 NO_CHINA = set()         # games with no Qimai data at all (not sold in China)
 
@@ -372,8 +375,8 @@ def entity(r, n):
     return e
 
 def duel_order(rows):
-    """Sort rows in place by head-to-heads won (ties: their own head-to-head, then Japan revenue per
-    day). Writes r["beat"] = [wins, opponents]. Banners with fewer than MIN_DUEL_DAYS days in the
+    """Sort rows in place by head-to-heads won (ties: more Japan + China iPhone money over their shared
+    days, then their own head-to-head). Writes r["beat"] = [wins, opponents]. Banners with fewer than MIN_DUEL_DAYS days in the
     month go last, unranked: a day of data isn't enough to judge an opening."""
     late = [r for r in rows if r["wdays"] < MIN_DUEL_DAYS]
     for r in late: r["beat"] = None
@@ -382,18 +385,24 @@ def duel_order(rows):
     pairs = [(i, j) for i in range(k) for j in range(i + 1, k)]
     out = SITE["pg"].evaluate(H2H, [[entity(rows[i], min(rows[i]["wdays"], rows[j]["wdays"])),
                                      entity(rows[j], min(rows[i]["wdays"], rows[j]["wdays"]))] for i, j in pairs]) if pairs else []
+    # Japan + China iPhone over the first n days of a row's window, in yen (Qimai's dollars at USD_JPY)
+    tot = lambda r, n: sum(r["jp_daily"][r["w0"]:r["w0"] + n]) * 1e8 + sum(r["cn_daily"][r["w0"]:r["w0"] + n]) * USD_JPY
+    shared = lambda i, j: min(rows[i]["wdays"], rows[j]["wdays"])
     res = {}
     for (i, j), R in zip(pairs, out):
         if R["overall"] in (0, 1): win = "a" if R["overall"] == 0 else "b"
         else:
-            n = min(rows[i]["wdays"], rows[j]["wdays"])
-            tot = lambda r: sum(r["jp_daily"][r["w0"]:r["w0"] + n]) * 1e8 + sum(r["cn_daily"][r["w0"]:r["w0"] + n]) * USD_JPY
-            win = "a" if tot(rows[i]) >= tot(rows[j]) else "b"
+            n = shared(i, j); win = "a" if tot(rows[i], n) >= tot(rows[j], n) else "b"
         res[(i, j)] = win
     wins = [0] * k
     for (i, j), w in res.items(): wins[i if w == "a" else j] += 1
     def cmp(i, j):
         if wins[i] != wins[j]: return wins[j] - wins[i]
+        # the same number of wins: more Japan + China iPhone money over their shared days ranks
+        # higher (user rule, Nov 2026 — Dahlia vs Durin, 16 wins each); their own head-to-head
+        # only if that's level too
+        n = shared(i, j); x, y = tot(rows[i], n), tot(rows[j], n)
+        if x != y: return -1 if x > y else 1
         w = res.get((min(i, j), max(i, j)))
         if w: return -1 if (w == "a") == (i < j) else 1
         return 0

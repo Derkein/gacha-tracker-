@@ -652,8 +652,8 @@ function howOpen(){
       ${MARGIN_RULE}
       ${LIFT_RULE}
       <li>A game not sold in China (Umamusume) counts as $0 and below #200 there, and against it the China measures count at <b>half weight</b>: it isn't sold there, so losing them in full would shut it out of every month, while leaving them out would judge it on Japan alone. Sensor Tower and the CN monthly figures aren't used: they only exist for whole months.</li>
-      <li>An even score goes to the bigger combined revenue over the window (Japan yen + China iPhone dollars at ¥150 per $1).</li>
-      <li>The order is the number of head-to-heads won.</li>
+      <li>An even score goes to the bigger combined revenue over the window (Japan + China iPhone, the yen in US$ at the latest daily rate).</li>
+      <li>The order is the number of head-to-heads won. Banners that won <b>the same number</b> are ordered by <b>Japan + China iPhone revenue in US$ over their shared days</b>: the one that earned more ranks higher.</li>
       <li>A banner that opened on a month's last day or two counts as an opening of the <b>next</b> month instead, measured from its first day: one or two days are too few to judge it on.</li>
     </ul>
     <p class="how-ex"><b>Example (made up).</b> Banner A opened on the 10th, Banner B on the 20th, so both are read at <b>day 11</b>. Days at #1 are left out (neither got there); a draw scores nothing:</p>
