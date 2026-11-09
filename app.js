@@ -1714,7 +1714,7 @@ const missingNote = (n, what) => n ? ` <b>${n}</b> banner${n>1?"s":""} in this r
 const CHART_NOTE = `Each recorded day of the first ${CHART_WINDOW} (Japan from day 2 — game-i reads launch day before the banner is up; China from launch day) is turned into relative revenue with that chart's `
   + `rank→revenue curve — Japan: game-i's own curve (≈ r<sup>−0.80</sup>); China: r<sup>−${CN_RANK_EXP}</sup>, fitted from Qimai's daily China revenue against the China chart `
   + `(R² ≈ 0.9). A day off the chart counts as half of #200 — the game is still earning, just below the chart. <b>Level</b> = that average, on a log scale from "off the chart every day" (0) to "#1 every day" (1); shown as `
-  + `"≈ #N every day". <b>Hold</b> = how slowly the rank falls after the peak. Its <b>rank decay</b> is the % the rank number grows a day (+15%/day takes #10 to #11.5; lower is better; a robust Theil–Sen fit of `
+  + `"≈ #N every day". <b>Hold</b> = how slowly the rank falls after the peak. Its <b>rank decay</b> is the % the rank number grows a day (peak #3, then #8, #20, #40 is +143%/day, a fast fall; #3, #4, #5, #6 is +25%/day; lower is better; a robust Theil–Sen fit of `
   + `log-rank); Hold puts that against this game's typical banner — 0.5 is typical, 1 never decayed. <b>Score = 100 × Level × (0.75 + 0.25 × Hold)</b>: earning sets the score, `
   + `decay can cost at most a quarter of it, and a banner flat but low on the chart gets nothing for being flat. Revenue weighting means one day at #1 `
   + `counts like about 6½ days at #10 in Japan (9 in China), as it does in money — instead of every place counting the same.`;
@@ -5873,7 +5873,7 @@ function buildComparison(E){
     push({group:"Japan rank",src:"jp",metric:"jp_top10",label:"Days in top 10",k:kJP,better:"high",fmt:dOnly,note:"staying power",cells:jf(s=>s.top10)});
     push({group:"Japan rank",src:"jp",metric:"jp_drop",label:"Dropped from top 200",k:kJP,better:"high",note:"day it fell off — later (or no drop) is better",cells:dropCells(sJP,kJP)});
     if(kJP>=5 && E.every((e,i)=>!sJP[i].none && sJP[i].charted>=3 && sJP[i].dbl!=null))
-      push({group:"Japan rank",src:"jp",metric:"jp_decay",label:"Rank decay",k:kJP,better:"low",fmt:dec,note:"how fast its rank number grew each day after the peak (+15%/day: #10 → #11.5), up to the day it fell below #200 (counted as #201). Lower is better: a slower fall",cells:jf(s=>Math.max(0,s.lslope))});
+      push({group:"Japan rank",src:"jp",metric:"jp_decay",label:"Rank decay",k:kJP,better:"low",fmt:dec,note:"how fast its rank number grew each day after the peak (peak #3, then #8, #20, #40 = +143%/day, a fast fall; #3, #4, #5, #6 = +25%/day, a slow one), up to the day it fell below #200 (counted as #201). Lower is better: a slower fall",cells:jf(s=>Math.max(0,s.lslope))});
   }
   if(en.cnrank && kCN>0){ const cf=(f)=>cellsFrom((e,i)=>sCN[i].none?null:f(sCN[i]));
     push({group:"China rank",src:"cnrank",metric:"cnr_peak",label:"Peak rank",k:kCN,better:"low",fmt:rk,note:"best rank reached at any point of a day",cells:cf(s=>s.peak)});
@@ -5883,7 +5883,7 @@ function buildComparison(E){
     push({group:"China rank",src:"cnrank",metric:"cnr_top10",label:"Days in top 10",k:kCN,better:"high",fmt:dOnly,note:"staying power",cells:cf(s=>s.top10)});
     push({group:"China rank",src:"cnrank",metric:"cnr_drop",label:"Dropped from top 200",k:kCN,better:"high",note:"day it fell off — later (or no drop) is better",cells:dropCells(sCN,kCN)});
     if(kCN>=5 && E.every((e,i)=>!sCN[i].none && sCN[i].charted>=3 && sCN[i].dbl!=null))
-      push({group:"China rank",src:"cnrank",metric:"cnr_decay",label:"Rank decay",k:kCN,better:"low",fmt:dec,note:"how fast its rank number grew each day after the peak (+15%/day: #10 → #11.5), up to the day it fell below #200 (counted as #201). Lower is better: a slower fall",cells:cf(s=>Math.max(0,s.lslope))});
+      push({group:"China rank",src:"cnrank",metric:"cnr_decay",label:"Rank decay",k:kCN,better:"low",fmt:dec,note:"how fast its rank number grew each day after the peak (peak #3, then #8, #20, #40 = +143%/day, a fast fall; #3, #4, #5, #6 = +25%/day, a slow one), up to the day it fell below #200 (counted as #201). Lower is better: a slower fall",cells:cf(s=>Math.max(0,s.lslope))});
   }
   // score each row: single best side wins a point; a tie for best awards none. Also record how
   // close the win was (relative gap between best and runner-up), so the read-out can flag slim leads.
