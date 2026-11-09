@@ -5,8 +5,8 @@
    "name": "Zenless Zone Zero",
    "jp": "ゼンレスゾーンゼロ",
    "count": 40,
-   "total_oku": 229.2,
-   "updated": "2026-11-09T13:35:39Z",
+   "total_oku": 229.3,
+   "updated": "2026-11-09T17:44:29Z",
    "icon": "icons/games/zzz.png"
   },
   {
@@ -14,8 +14,8 @@
    "name": "Honkai: Star Rail",
    "jp": "崩壊：スターレイル",
    "count": 64,
-   "total_oku": 818.1,
-   "updated": "2026-11-09T13:36:00Z",
+   "total_oku": 818.2,
+   "updated": "2026-11-09T17:44:51Z",
    "icon": "icons/games/hsr.png"
   },
   {
@@ -23,8 +23,8 @@
    "name": "Wuthering Waves",
    "jp": "鳴潮",
    "count": 43,
-   "total_oku": 163.5,
-   "updated": "2026-11-09T13:36:20Z",
+   "total_oku": 163.6,
+   "updated": "2026-11-09T17:45:11Z",
    "icon": "icons/games/wuwa.png"
   },
   {
@@ -32,8 +32,8 @@
    "name": "Genshin Impact",
    "jp": "原神",
    "count": 108,
-   "total_oku": 1123.5,
-   "updated": "2026-11-09T13:36:43Z",
+   "total_oku": 1123.6,
+   "updated": "2026-11-09T17:45:34Z",
    "icon": "icons/games/genshin.png"
   },
   {
@@ -41,8 +41,8 @@
    "name": "Arknights: Endfield",
    "jp": "アークナイツ：エンドフィールド",
    "count": 16,
-   "total_oku": 46.4,
-   "updated": "2026-11-09T13:36:53Z",
+   "total_oku": 46.5,
+   "updated": "2026-11-09T17:45:44Z",
    "icon": "icons/games/endfield.png"
   },
   {
@@ -51,7 +51,7 @@
    "jp": "NTE： Neverness to Everness",
    "count": 10,
    "total_oku": 33.0,
-   "updated": "2026-11-09T13:37:01Z",
+   "updated": "2026-11-09T17:45:51Z",
    "icon": "icons/games/nte.png"
   },
   {
@@ -60,7 +60,7 @@
    "jp": "ステラソラ",
    "count": 23,
    "total_oku": 5.5,
-   "updated": "2026-11-09T13:38:37Z",
+   "updated": "2026-11-09T17:47:23Z",
    "icon": "icons/games/stellasora.png"
   },
   {
@@ -69,7 +69,7 @@
    "jp": "カオスゼロナイトメア",
    "count": 18,
    "total_oku": 17.1,
-   "updated": "2026-11-09T13:39:51Z",
+   "updated": "2026-11-09T17:48:41Z",
    "icon": "icons/games/czn.png"
   },
   {
@@ -77,8 +77,8 @@
    "name": "Love and Deepspace",
    "jp": "恋と深空",
    "count": 82,
-   "total_oku": 107.7,
-   "updated": "2026-11-09T13:42:11Z",
+   "total_oku": 107.8,
+   "updated": "2026-11-09T17:51:40Z",
    "icon": "icons/games/lads.png"
   },
   {
@@ -86,8 +86,8 @@
    "name": "Umamusume: Pretty Derby",
    "jp": "ウマ娘 プリティーダービー",
    "count": 218,
-   "total_oku": 2812.0,
-   "updated": "2026-11-09T13:42:35Z",
+   "total_oku": 2812.1,
+   "updated": "2026-11-09T17:52:04Z",
    "icon": "icons/games/uma.png"
   }
  ]

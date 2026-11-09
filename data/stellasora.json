@@ -5,13 +5,13 @@
  "unit": "億G",
  "source": "https://stellasora.jp/news/",
  "banners_from": "official",
- "updated": "2026-11-09T13:38:37Z",
+ "updated": "2026-11-09T17:47:23Z",
  "count": 23,
  "now": {
   "ios": null,
   "android": null,
-  "month": 267,
-  "next_add": 4189983,
+  "month": 269,
+  "next_add": 4459707,
   "ym": "2026/11",
   "ranks": {
    "prev": [
@@ -83,7 +83,7 @@
   }
  },
  "monthly": {
-  "2026-11": 0.4498,
+  "2026-11": 0.4917,
   "2026-10": 1.08,
   "2026-09": 0.5061,
   "2026-08": 0.491,
@@ -991,7 +991,7 @@
    "en": "Firstlight Noya",
    "source_url": "https://stellasora.jp/news/4875",
    "rerun": false,
-   "ongoing": true,
+   "ongoing": false,
    "rank_series": [
     null,
     null,
@@ -1013,17 +1013,18 @@
     null,
     null,
     null,
+    null,
     null
    ],
    "rev": 0.1609,
-   "rev_month": 0.6866,
+   "rev_month": 0.6915,
    "rev_ym": {
     "2026-10": 0.1609,
     "2026-11": 0.0
    },
    "rev_month_ym": {
     "2026-10": 0.4617,
-    "2026-11": 0.2249
+    "2026-11": 0.2298
    },
    "cum": 6,
    "cumtot": 23,
@@ -1062,17 +1063,18 @@
     null,
     null,
     null,
+    null,
     null
    ],
    "rev": 0.0279,
-   "rev_month": 0.3494,
+   "rev_month": 0.3864,
    "rev_ym": {
     "2026-10": 0.0279,
     "2026-11": 0.0
    },
    "rev_month_ym": {
     "2026-10": 0.1245,
-    "2026-11": 0.2249
+    "2026-11": 0.2619
    },
    "cum": 10,
    "cumtot": 23,
