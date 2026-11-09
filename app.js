@@ -198,7 +198,7 @@ function fmtG(oku){
 // choice is the viewer's and is shared with the journal (localStorage "ccy"). Only the display
 // changes: sorting, sums and every comparison work on the native figures, and a single rate
 // per currency can't reorder anything.
-let _ccy = (()=>{ try{ return localStorage.getItem("ccy")==="usd" ? "usd" : "native"; }catch(e){ return "native"; } })();
+let _ccy = (()=>{ try{ return localStorage.getItem("ccy")==="native" ? "native" : "usd"; }catch(e){ return "usd"; } })();
 const fxRate = cur => (state.fx && state.fx.per_usd && state.fx.per_usd[cur]) || null;
 const usdOn = () => _ccy==="usd" && !!fxRate("JPY") && !!fxRate("CNY");
 const G = oku => usdOn() ? fmtUSD(oku*1e8/fxRate("JPY")) : "¥" + fmtG(oku);

@@ -18,7 +18,7 @@ const J = { index:null, upcoming:{}, themes:{}, cache:{} };
 // ---- formatting (same rules as the tracker's fmtG / fmtUSD) ----
 // US$ toggle, shared with the tracker (localStorage "ccy"): yen and yuan at one rate, the latest
 // daily one (data/fx.json). Display only — every order on the page was decided on native figures.
-let _ccy=(()=>{ try{ return localStorage.getItem("ccy")==="usd" ? "usd" : "native"; }catch(e){ return "native"; } })();
+let _ccy=(()=>{ try{ return localStorage.getItem("ccy")==="native" ? "native" : "usd"; }catch(e){ return "usd"; } })();
 const fxRate = cur => (J.fx && J.fx.per_usd && J.fx.per_usd[cur]) || null;
 const usdOn = () => _ccy==="usd" && !!fxRate("JPY") && !!fxRate("CNY");
 function fmtG(oku){ if(usdOn()) return fmtUSD((oku>0?oku:0)*1e8/fxRate("JPY"));
