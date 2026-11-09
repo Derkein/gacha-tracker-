@@ -12,16 +12,25 @@
 <title>Gacha Revenue Tracker</title>
 <meta name="description" content="Estimated gacha banner revenue over time for Zenless Zone Zero, Honkai: Star Rail, Wuthering Waves, Genshin Impact and Arknights: Endfield. Auto-updated from game-i.daa.jp.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>%F0%9F%8E%B0</text></svg>">
-<link rel="stylesheet" href="style.css?v=413">
+<link rel="stylesheet" href="style.css?v=415">
 </head>
 <body>
 <div class="wrap">
   <header class="site-hd">
-    <div>
+    <div class="hd-main">
       <h1>Gacha <span class="accent">Revenue</span> Tracker</h1>
       <p>Per-banner gacha revenue over time — game-i's <b>Japan</b> estimate in <b>yen</b> (売上予測), plus toggles: a <b>Sensor Tower</b> combined-worldwide layer in <b>US$</b>, a <b>CN</b> all-platform layer in <b>CN¥</b>, and a <b>Qimai</b> China-iPhone layer in <b>US$</b>. Third-party estimates, approximate — not official.</p>
       <p class="hd-info"><button id="infoBtn" class="infolink">ⓘ How these numbers work</button></p>
       <p class="hd-feedback">Questions or an improvement to suggest?<br>Message <a href="https://www.reddit.com/user/Derkein2" target="_blank" rel="noopener">u/Derkein2</a> on Reddit or <a href="https://discord.com/users/260914155207393281" target="_blank" rel="noopener" title="Opens Derkein's Discord profile — message from there">Derkein</a> on Discord.<br>On X: <a href="https://x.com/GachaTrackfv" target="_blank" rel="noopener" title="The tracker's official X account">@GachaTrackfv</a>, the official account, and <a href="https://x.com/GachaAnalytics" target="_blank" rel="noopener" title="A friend's banner analysis on X">@GachaAnalytics</a> for more banner analysis.</p>
+    </div>
+    <div class="hd-side">
+      <div class="hd-top">
+        <div class="updated" id="updated"></div>
+        <div class="hd-btns">
+          <button id="ccyBtn" class="themebtn ccybtn" type="button" aria-pressed="false" hidden>¥</button>
+          <button id="themeBtn" class="themebtn" title="Theme" aria-label="Color theme"></button>
+        </div>
+      </div>
       <a class="jr-card" href="journal.html" id="jrCard">
         <span class="jr-art" aria-hidden="true"><img id="jrImg" alt="" referrerpolicy="no-referrer" hidden></span>
         <span class="jr-tx"><span class="jr-k">📰 Monthly Journal</span>
@@ -29,13 +38,6 @@
           <span class="jr-sum">A magazine issue for every month: who earned the most in Japan and China, the month's openings ranked head to head, and every banner's numbers.</span>
           <span class="jr-go" id="jrGo">Read the latest issue →</span></span>
       </a>
-    </div>
-    <div class="hd-side">
-      <div class="hd-btns">
-        <button id="ccyBtn" class="themebtn ccybtn" type="button" aria-pressed="false" hidden>¥</button>
-        <button id="themeBtn" class="themebtn" title="Theme" aria-label="Color theme"></button>
-      </div>
-      <div class="updated" id="updated"></div>
     </div>
   </header>
 
