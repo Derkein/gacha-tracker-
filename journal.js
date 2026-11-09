@@ -619,7 +619,7 @@ const mwRatio = (a,b) => { const lo=Math.min(a,b), hi=Math.max(a,b); return hi<=
 const MARGIN_RULE = `<li><b>Bigger wins count more.</b> Each measure is worth up to one point, scaled by how big the win is: revenue and ranks use the ratio between the two (a <b>2× lead or more</b> is the full point, a 10% lead is about 0.14), and day counts (at #1, in the top 3 or 10, the day it left the top 200) use how rare the gap is: the share of banners from the year around them, over the same days, that sit between the two. One day at China's #1 against none is close to a full point, because only about 3 in 100 recent banners get there. One big win isn't outweighed by several hairline ones.</li>`;
 const LIFT_RULE = `<li><b>Lifted days.</b> When another banner opens in the middle of a run, the game's rank on the following days is lifted by that launch. Those days still count for the running banner, but at the rank it was on course for (its own pace over the days before), and never toward its peak, days at #1 or in the top 3.</li>`;
 function howTable(rows, n){   // a count row may carry its rarity as an 8th field (made-up examples)
-  const fmt={yen:v=>fmtG(v/100), usd:fmtUSD, rank:v=>"#"+v, days:v=>String(v), d:v=>v.toFixed(1)+"d", txt:v=>v};
+  const fmt={yen:v=>fmtG(v/100), usd:fmtUSD, rank:v=>"#"+v, days:v=>String(v), d:v=>v.toFixed(1)+"d", pct:v=>"+"+v+"%/day", drop:v=>v>n?"no drop":"day "+v, txt:v=>v};
   let A=0, B=0, cA=0, cB=0;
   const body=rows.map(([g,l,a,b,f,kind,hi,rar])=>{
     let w=null, pt=0;
@@ -640,15 +640,15 @@ function howOpen(){
   // made up: B crushes China, A edges most Japan measures — counting wins and weighing them disagree
   const t=howTable([["Japan revenue","Total",310,295,"yen","ratio",1],["","Best-rank day",64,61,"yen","ratio",1],["","First week",240,232,"yen","ratio",1],
     ["China iPhone","Total",1.1e6,2.4e6,"usd","ratio",1],["","Best-rank day",2.1e5,4.7e5,"usd","ratio",1],["","First week",8e5,1.8e6,"usd","ratio",1],
-    ["Japan chart","Peak rank",8,9,"rank","ratio",0],["","Days in top 3",3,2,"days","count",1,0.08],["","Days in top 10",5,4,"days","count",1,0.05],["","Median rank",18,20,"rank","ratio",0],["","Rank doubles after",5.0,4.6,"d","ratio",1],
-    ["China chart","Peak rank",14,5,"rank","ratio",0],["","Days in top 3",0,1,"days","count",1,0.91],["","Days in top 10",0,5,"days","count",1,0.88],["","Median rank",35,16,"rank","ratio",0],["","Rank doubles after",5.5,4.0,"d","ratio",1]], 11);
+    ["Japan chart","Peak rank",8,9,"rank","ratio",0],["","Days in top 3",3,2,"days","count",1,0.08],["","Days in top 10",5,4,"days","count",1,0.05],["","Median rank",18,20,"rank","ratio",0],["","Left the top 200",12,12,"drop","draw"],["","Rank decay",15,16,"pct","ratio",0],
+    ["China chart","Peak rank",14,5,"rank","ratio",0],["","Days in top 3",0,1,"days","count",1,0.91],["","Days in top 10",0,5,"days","count",1,0.88],["","Median rank",35,16,"rank","ratio",0],["","Left the top 200",9,12,"drop","count",1,0.3],["","Rank decay",13,19,"pct","ratio",0]], 11);
   return `
     <p>Openings start on different days, so comparing whole months isn't fair: one that opened on the 21st has had fewer days than one from the 15th.
       Every opening is played <b>head to head</b> against every other one, over the <b>same number of days</b>, on the measures of the tracker's <b>Compare</b>:</p>
     <p class="how-f">window = the shorter of the two runs inside the month<br>winner = more points over that window, each measure weighted by the size of the win</p>
     <ul>
       <li><b>Revenue</b>: game-i (Japan) and Qimai (China iPhone): the total, the revenue on the best-rank day, and the first week.</li>
-      <li><b>Japan and China chart</b>: peak rank, days at #1, in the top 3 and in the top 10, median rank, the day it left the top 200, and how slowly the rank fell after the peak: <b>the days until its rank number doubled</b> (#5 → #10), so <b>more days is better</b>.</li>
+      <li><b>Japan and China chart</b>: peak rank, days at #1, in the top 3 and in the top 10, median rank, the day it left the top 200, and <b>rank decay</b>: how fast the rank fell after the peak, as the % its rank number grew a day (+15%/day takes #10 to #11.5), so <b>lower is better</b>. Days below #200 count as #201, in the median and the decay alike; the day it first fell below #200 is a measure of its own, for Japan and China.</li>
       ${MARGIN_RULE}
       ${LIFT_RULE}
       <li>A game not sold in China (Umamusume) counts as $0 and below #200 there, and against it the China measures count at <b>half weight</b>: it isn't sold there, so losing them in full would shut it out of every month, while leaving them out would judge it on Japan alone. Sensor Tower and the CN monthly figures aren't used: they only exist for whole months.</li>
@@ -656,7 +656,7 @@ function howOpen(){
       <li>The order is the number of head-to-heads won.</li>
       <li>A banner that opened on a month's last day or two counts as an opening of the <b>next</b> month instead, measured from its first day: one or two days are too few to judge it on.</li>
     </ul>
-    <p class="how-ex"><b>Example (made up).</b> Banner A opened on the 10th, Banner B on the 20th, so both are read at <b>day 11</b>. Draws (days at #1, the top-200 drop) are left out:</p>
+    <p class="how-ex"><b>Example (made up).</b> Banner A opened on the 10th, Banner B on the 20th, so both are read at <b>day 11</b>. Days at #1 are left out (neither got there); a draw scores nothing:</p>
     ${t.html}
     <p class="how-ex">Counting wins, A leads <b>${t.cA}–${t.cB}</b>, but most of A's wins are by a hair. Weighted by size it's <b>A ${t.A.toFixed(2)}, B ${t.B.toFixed(2)}</b>: Banner B, which more than doubled A in China, wins the head-to-head.</p>`;
 }

@@ -5826,7 +5826,10 @@ function buildComparison(E){
   const rows=[];
   const rk=v=>v==null?"—":v>200?">#200":"#"+Math.round(v);
   const dOnly=v=>v==null?"—":Math.round(v)+"d";
-  const dec=v=>v==null?"—":v>=999?"held":v.toFixed(1)+"d";       // rank-doubling time; 999 = never decayed
+  // rank decay: the fitted daily growth of the rank number after the peak, as ln-slope (0 = held or
+  // climbed). Shown as % a day; lower is better. Same order and same win margins as the old
+  // doubling time (dbl = ln2 / slope), just the right way round.
+  const dec=v=>v==null?"—":v<=0?"held":"+"+Math.round((Math.exp(v)-1)*100)+"%/day";
   const push=(o)=>rows.push(Object.assign({note:"",full:false},o));
   const cellsFrom=(fn,dispFn)=>E.map((e,i)=>({v:fn(e,i), disp:dispFn?dispFn(e,i):null}));
 
@@ -5864,7 +5867,7 @@ function buildComparison(E){
     push({group:"Japan rank",src:"jp",metric:"jp_top10",label:"Days in top 10",k:kJP,better:"high",fmt:dOnly,note:"staying power",cells:jf(s=>s.top10)});
     push({group:"Japan rank",src:"jp",metric:"jp_drop",label:"Dropped from top 200",k:kJP,better:"high",note:"day it fell off — later (or no drop) is better",cells:dropCells(sJP,kJP)});
     if(kJP>=5 && E.every((e,i)=>!sJP[i].none && sJP[i].charted>=3 && sJP[i].dbl!=null))
-      push({group:"Japan rank",src:"jp",metric:"jp_decay",label:"Rank doubles after",k:kJP,better:"high",fmt:dec,note:"days until its rank number doubled after the peak (#5 → #10): more days = a slower fall, better",cells:jf(s=>s.dbl===Infinity?999:s.dbl)});
+      push({group:"Japan rank",src:"jp",metric:"jp_decay",label:"Rank decay",k:kJP,better:"low",fmt:dec,note:"how fast its rank number grew each day after the peak (+15%/day: #10 → #11.5); days below #200 count as #201. Lower is better: a slower fall",cells:jf(s=>Math.max(0,s.lslope))});
   }
   if(en.cnrank && kCN>0){ const cf=(f)=>cellsFrom((e,i)=>sCN[i].none?null:f(sCN[i]));
     push({group:"China rank",src:"cnrank",metric:"cnr_peak",label:"Peak rank",k:kCN,better:"low",fmt:rk,note:"best rank reached at any point of a day",cells:cf(s=>s.peak)});
@@ -5874,7 +5877,7 @@ function buildComparison(E){
     push({group:"China rank",src:"cnrank",metric:"cnr_top10",label:"Days in top 10",k:kCN,better:"high",fmt:dOnly,note:"staying power",cells:cf(s=>s.top10)});
     push({group:"China rank",src:"cnrank",metric:"cnr_drop",label:"Dropped from top 200",k:kCN,better:"high",note:"day it fell off — later (or no drop) is better",cells:dropCells(sCN,kCN)});
     if(kCN>=5 && E.every((e,i)=>!sCN[i].none && sCN[i].charted>=3 && sCN[i].dbl!=null))
-      push({group:"China rank",src:"cnrank",metric:"cnr_decay",label:"Rank doubles after",k:kCN,better:"high",fmt:dec,note:"days until its rank number doubled after the peak (#5 → #10): more days = a slower fall, better",cells:cf(s=>s.dbl===Infinity?999:s.dbl)});
+      push({group:"China rank",src:"cnrank",metric:"cnr_decay",label:"Rank decay",k:kCN,better:"low",fmt:dec,note:"how fast its rank number grew each day after the peak (+15%/day: #10 → #11.5); days below #200 count as #201. Lower is better: a slower fall",cells:cf(s=>Math.max(0,s.lslope))});
   }
   // score each row: single best side wins a point; a tie for best awards none. Also record how
   // close the win was (relative gap between best and runner-up), so the read-out can flag slim leads.
