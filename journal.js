@@ -640,15 +640,15 @@ function howOpen(){
   // made up: B crushes China, A edges most Japan measures — counting wins and weighing them disagree
   const t=howTable([["Japan revenue","Total",310,295,"yen","ratio",1],["","Best-rank day",64,61,"yen","ratio",1],["","First week",240,232,"yen","ratio",1],
     ["China iPhone","Total",1.1e6,2.4e6,"usd","ratio",1],["","Best-rank day",2.1e5,4.7e5,"usd","ratio",1],["","First week",8e5,1.8e6,"usd","ratio",1],
-    ["Japan chart","Peak rank",8,9,"rank","ratio",0],["","Days in top 10",5,4,"days","count",1,0.05],["","Median rank",18,20,"rank","ratio",0],["","Rank decay",5.0,4.6,"d","ratio",1],
-    ["China chart","Peak rank",14,5,"rank","ratio",0],["","Days in top 3",0,1,"days","count",1,0.91],["","Days in top 10",0,5,"days","count",1,0.88],["","Median rank",35,16,"rank","ratio",0],["","Rank decay",5.5,4.0,"d","ratio",1]], 11);
+    ["Japan chart","Peak rank",8,9,"rank","ratio",0],["","Days in top 3",3,2,"days","count",1,0.08],["","Days in top 10",5,4,"days","count",1,0.05],["","Median rank",18,20,"rank","ratio",0],["","Rank doubles after",5.0,4.6,"d","ratio",1],
+    ["China chart","Peak rank",14,5,"rank","ratio",0],["","Days in top 3",0,1,"days","count",1,0.91],["","Days in top 10",0,5,"days","count",1,0.88],["","Median rank",35,16,"rank","ratio",0],["","Rank doubles after",5.5,4.0,"d","ratio",1]], 11);
   return `
     <p>Openings start on different days, so comparing whole months isn't fair: one that opened on the 21st has had fewer days than one from the 15th.
       Every opening is played <b>head to head</b> against every other one, over the <b>same number of days</b>, on the measures of the tracker's <b>Compare</b>:</p>
     <p class="how-f">window = the shorter of the two runs inside the month<br>winner = more points over that window, each measure weighted by the size of the win</p>
     <ul>
       <li><b>Revenue</b>: game-i (Japan) and Qimai (China iPhone): the total, the revenue on the best-rank day, and the first week.</li>
-      <li><b>Japan and China chart</b>: peak rank, days at #1, in the top 3 and in the top 10, median rank, the day it left the top 200, and how fast the rank decayed after the peak.</li>
+      <li><b>Japan and China chart</b>: peak rank, days at #1, in the top 3 and in the top 10, median rank, the day it left the top 200, and how slowly the rank fell after the peak: <b>the days until its rank number doubled</b> (#5 → #10), so <b>more days is better</b>.</li>
       ${MARGIN_RULE}
       ${LIFT_RULE}
       <li>A game not sold in China (Umamusume) counts as $0 and below #200 there, and against it the China measures count at <b>half weight</b>: it isn't sold there, so losing them in full would shut it out of every month, while leaving them out would judge it on Japan alone. Sensor Tower and the CN monthly figures aren't used: they only exist for whole months.</li>
