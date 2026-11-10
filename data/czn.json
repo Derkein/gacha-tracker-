@@ -5,13 +5,13 @@
  "unit": "億G",
  "source": "https://page.onstove.com/chaoszeronightmare/jp",
  "banners_from": "official",
- "updated": "2026-11-10T00:23:22Z",
- "count": 18,
+ "updated": "2026-11-10T17:52:24Z",
+ "count": 19,
  "now": {
   "ios": null,
   "android": 122,
-  "month": 193,
-  "next_add": 5140918,
+  "month": 192,
+  "next_add": 5243389,
   "ym": "2026/11",
   "ranks": {
    "prev": [
@@ -83,7 +83,7 @@
   }
  },
  "monthly": {
-  "2026-11": 0.828,
+  "2026-11": 0.8784,
   "2026-10": 2.64,
   "2026-09": 1.19,
   "2026-08": 1.76,
@@ -148,7 +148,7 @@
     "2025-11": 1.004
    },
    "cum": 3,
-   "cumtot": 18,
+   "cumtot": 19,
    "yrank": 3,
    "ytot": 4,
    "icons": [
@@ -205,7 +205,7 @@
     "2025-12": 0.1535
    },
    "cum": 2,
-   "cumtot": 18,
+   "cumtot": 19,
    "yrank": 2,
    "ytot": 4,
    "icons": [
@@ -260,7 +260,7 @@
     "2025-12": 1.7777
    },
    "cum": 6,
-   "cumtot": 18,
+   "cumtot": 19,
    "yrank": 4,
    "ytot": 4,
    "icons": [
@@ -317,7 +317,7 @@
     "2026-01": 1.7261
    },
    "cum": 1,
-   "cumtot": 18,
+   "cumtot": 19,
    "yrank": 1,
    "ytot": 4,
    "icons": [
@@ -374,9 +374,9 @@
     "2026-02": 0.1735
    },
    "cum": 7,
-   "cumtot": 18,
+   "cumtot": 19,
    "yrank": 3,
-   "ytot": 14,
+   "ytot": 15,
    "icons": [
     "icons/faces/czn/2026-01-14-81dc12.webp"
    ],
@@ -429,9 +429,9 @@
     "2026-02": 1.3856
    },
    "cum": 10,
-   "cumtot": 18,
+   "cumtot": 19,
    "yrank": 6,
-   "ytot": 14,
+   "ytot": 15,
    "icons": [
     "icons/faces/overrides/0e8b8b6c.webp"
    ],
@@ -487,9 +487,9 @@
     "2026-03": 0.6761
    },
    "cum": 12,
-   "cumtot": 18,
+   "cumtot": 19,
    "yrank": 8,
-   "ytot": 14,
+   "ytot": 15,
    "icons": [
     "icons/faces/czn/2026-02-25-079483.webp"
    ],
@@ -544,9 +544,9 @@
     "2026-04": 0.2201
    },
    "cum": 13,
-   "cumtot": 18,
+   "cumtot": 19,
    "yrank": 9,
-   "ytot": 14,
+   "ytot": 15,
    "icons": [
     "icons/faces/czn/2026-03-18-938e39.webp"
    ],
@@ -608,9 +608,9 @@
     "2026-05": 0.4186
    },
    "cum": 8,
-   "cumtot": 18,
+   "cumtot": 19,
    "yrank": 4,
-   "ytot": 14,
+   "ytot": 15,
    "icons": [
     "icons/faces/czn/2026-04-08-35278a.webp"
    ],
@@ -672,9 +672,9 @@
     "2026-05": 2.2224
    },
    "cum": 5,
-   "cumtot": 18,
+   "cumtot": 19,
    "yrank": 2,
-   "ytot": 14,
+   "ytot": 15,
    "icons": [
     "icons/faces/czn/2026-04-29-24ce8e.webp"
    ],
@@ -729,9 +729,9 @@
     "2026-06": 0.4203
    },
    "cum": 11,
-   "cumtot": 18,
+   "cumtot": 19,
    "yrank": 7,
-   "ytot": 14,
+   "ytot": 15,
    "icons": [
     "icons/faces/czn/2026-05-27-4ab984.webp"
    ],
@@ -787,9 +787,9 @@
     "2026-07": 0.196
    },
    "cum": 16,
-   "cumtot": 18,
+   "cumtot": 19,
    "yrank": 12,
-   "ytot": 14,
+   "ytot": 15,
    "icons": [
     "icons/faces/czn/2026-06-17-3d4feb.webp"
    ],
@@ -842,9 +842,9 @@
     "2026-07": 0.6169
    },
    "cum": 17,
-   "cumtot": 18,
+   "cumtot": 19,
    "yrank": 13,
-   "ytot": 14,
+   "ytot": 15,
    "icons": [
     "icons/faces/czn/2026-07-08-7b8b3b.webp"
    ],
@@ -899,9 +899,9 @@
     "2026-08": 0.7922
    },
    "cum": 15,
-   "cumtot": 18,
+   "cumtot": 19,
    "yrank": 11,
-   "ytot": 14,
+   "ytot": 15,
    "icons": [
     "icons/faces/czn/2026-07-29-0d6eb3.webp"
    ],
@@ -956,9 +956,9 @@
     "2026-09": 0.3155
    },
    "cum": 9,
-   "cumtot": 18,
+   "cumtot": 19,
    "yrank": 5,
-   "ytot": 14,
+   "ytot": 15,
    "icons": [
     "icons/faces/czn/2026-08-19-5b4880.webp"
    ],
@@ -1011,9 +1011,9 @@
     "2026-09": 0.8499
    },
    "cum": 14,
-   "cumtot": 18,
+   "cumtot": 19,
    "yrank": 10,
-   "ytot": 14,
+   "ytot": 15,
    "icons": [
     "icons/faces/czn/2026-09-09-b1e440.webp"
    ],
@@ -1044,9 +1044,9 @@
     "2026-10": 1.0201
    },
    "cum": 18,
-   "cumtot": 18,
+   "cumtot": 19,
    "yrank": 14,
-   "ytot": 14,
+   "ytot": 15,
    "icons": [
     "icons/faces/czn/2026-09-30-ff2662.webp"
    ],
@@ -1087,26 +1087,59 @@
     null,
     null,
     null,
+    null,
     null
    ],
-   "rev": 2.0109,
-   "rev_month": 2.4479,
+   "rev": 1.9983,
+   "rev_month": 2.4508,
    "rev_ym": {
     "2026-10": 1.5701,
-    "2026-11": 0.4407
+    "2026-11": 0.4282
    },
    "rev_month_ym": {
     "2026-10": 1.6199,
-    "2026-11": 0.828
+    "2026-11": 0.8309
    },
    "cum": 4,
-   "cumtot": 18,
+   "cumtot": 19,
    "yrank": 1,
-   "ytot": 14,
+   "ytot": 15,
    "icons": [
     "icons/faces/czn/2026-10-21-ee0e09.webp"
    ],
    "bar": "#d60065"
+  },
+  {
+   "name": "ブレイズベル",
+   "start": "2026-11-11",
+   "end": "2026-12-02",
+   "year": 2026,
+   "related": "",
+   "banner_img": "https://d2x8kymwjom7h7.cloudfront.net/live/application_no/96001/default/47d19001d46d4770aaaf04bccc263380.jpg",
+   "agents": [
+    "Blazebell"
+   ],
+   "en": "Blazebell",
+   "source_url": "https://page.onstove.com/chaoszeronightmare/jp/view/14625543",
+   "rerun": false,
+   "ongoing": true,
+   "rev": 0.0,
+   "rev_month": 0.0475,
+   "rev_ym": {
+    "2026-11": 0.0
+   },
+   "rev_month_ym": {
+    "2026-11": 0.0475
+   },
+   "cum": 19,
+   "cumtot": 19,
+   "yrank": 15,
+   "ytot": 15,
+   "icons": [
+    "icons/faces/czn/2026-11-11-653612.webp"
+   ],
+   "accent": "#d29cae",
+   "bar": "#795d76"
   }
  ]
 }
