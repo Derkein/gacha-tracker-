@@ -583,6 +583,9 @@ html.scrolling .gscroll, .gscroll:hover{scrollbar-color:var(--base) transparent}
 .rcsvg .rc-line{fill:none; stroke:var(--acc); stroke-width:2.4; stroke-linejoin:round; stroke-linecap:round}
 .rcsvg .rc-dot{fill:var(--acc); stroke:var(--surface); stroke-width:1.5}
 .rcsvg .rc-peak{fill:var(--surface); stroke:var(--acc); stroke-width:2.5}
+/* days after another banner opened mid-run: same colour, faded */
+.rcsvg .rc-line.rc-lift{opacity:.35}
+.rcsvg .rc-dot.rc-lift{opacity:.4}
 .rcsvg .rc-peaklbl{fill:var(--ink); font-size:12px; font-weight:700; font-family:system-ui,sans-serif}
 .rcsvg .bu-bar{fill:var(--acc); opacity:.30}
 .rcsvg .bu-bar.shr{fill:var(--muted); opacity:.55}   /* days whose revenue was split with a concurrent banner */

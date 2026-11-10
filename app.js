@@ -3603,7 +3603,11 @@ function rankCurveSVG(b){
   const s=jpOwn(b); const n=s.length;
   const known=s.map((v,i)=>[i,v]).filter(([,v])=>v!=null);
   if(known.length<1) return "";
-  const worst=Math.max(...known.map(([,v])=>v));
+  // days after another banner opened mid-run: still drawn, faded — the rank then is mostly that
+  // launch's, so it never counts toward this banner's peak
+  const full=b.rank_series||[], isL=i=>s[i]==null && full[i]!=null;
+  const lifted=full.map((v,i)=>[i,v]).filter(([i])=>isL(i));
+  const worst=Math.max(...known.map(([,v])=>v), ...lifted.map(([,v])=>v));
   const ymax = worst<=10?10 : worst<=20?20 : worst<=30?30 : worst<=50?50 : worst<=100?100 : 200;
   const W=680,H=230,ML=38,MR=14,MT=16,MB=26, pW=W-ML-MR, pH=H-MT-MB;
   const xOf=i=> n>1 ? ML+(i/(n-1))*pW : ML+pW/2;
@@ -3621,9 +3625,14 @@ function rankCurveSVG(b){
   const [pi,pv]=known.reduce((a,c)=>c[1]<a[1]?c:a);
   const peak=`<circle class="rc-peak" cx="${xOf(pi).toFixed(1)}" cy="${yOf(pv).toFixed(1)}" r="5"/>`+
     `<text class="rc-peaklbl" x="${xOf(pi).toFixed(1)}" y="${(yOf(pv)-9).toFixed(1)}" text-anchor="middle">peak #${pv}</text>`;
-  const hits=known.map(([i,v])=>`<circle class="rc-hit" data-day="${i}" cx="${xOf(i).toFixed(1)}" cy="${yOf(v).toFixed(1)}" r="9"/>`).join("");
+  let d2="",pen2=false;
+  full.forEach((v,i)=>{ if(!isL(i)){pen2=false;return;}
+    if(!pen2 && i>0 && s[i-1]!=null) d2+=`M${xOf(i-1).toFixed(1)} ${yOf(s[i-1]).toFixed(1)}`, pen2=true;
+    d2+=`${pen2?"L":"M"}${xOf(i).toFixed(1)} ${yOf(v).toFixed(1)}`; pen2=true; });
+  const ldots=lifted.map(([i,v])=>`<circle class="rc-dot rc-lift" cx="${xOf(i).toFixed(1)}" cy="${yOf(v).toFixed(1)}" r="3"/>`).join("");
+  const hits=[...known,...lifted].map(([i,v])=>`<circle class="rc-hit" data-day="${i}" cx="${xOf(i).toFixed(1)}" cy="${yOf(v).toFixed(1)}" r="9"/>`).join("");
   return `<svg class="rcsvg" viewBox="0 0 ${W} ${H}" role="img" style="--acc:${barColor(b)}">
-    ${grid}<path class="rc-line" d="${d}"/>${dots}${peak}${hits}${xt}</svg>`;
+    ${grid}${d2?`<path class="rc-line rc-lift" d="${d2}"/>`:""}<path class="rc-line" d="${d}"/>${ldots}${dots}${peak}${hits}${xt}</svg>`;
 }
 
 // game-i's published rank → daily-revenue curve (億G, from its 日別加算値 table).
@@ -4261,7 +4270,10 @@ function cnRankSVG(run,b){
   const shown=cnShown(run);
   const known=run.map((x,i)=>[i,shown[i]]).filter(([,r])=>r!=null);
   if(!known.length) return "";
-  const n=run.length, worst=Math.max(...known.map(([,r])=>r));
+  // days another banner's launch took: the game's rank, drawn faded (never this banner's peak)
+  const isL=i=>shown[i]==null && run[i] && run[i].byOther && run[i].game!=null;
+  const lifted=run.map((x,i)=>[i,x.game]).filter(([i])=>isL(i));
+  const n=run.length, worst=Math.max(...known.map(([,r])=>r), ...lifted.map(([,r])=>r));
   const ymax = worst<=10?10 : worst<=20?20 : worst<=30?30 : worst<=50?50 : worst<=100?100 : 200;
   const W=680,H=230,ML=38,MR=14,MT=16,MB=26,pW=W-ML-MR,pH=H-MT-MB;
   const xOf=i=> n>1 ? ML+(i/(n-1))*pW : ML+pW/2;
@@ -4276,6 +4288,11 @@ function cnRankSVG(run,b){
   run.forEach((x,i)=>{ const r=shown[i]; if(r==null){pen=false;return;} const px=xOf(i),py=yOf(r);
     d+=`${pen?"L":"M"}${px.toFixed(1)} ${py.toFixed(1)}`; pen=true; });
   const dots=known.map(([i,r])=>`<circle class="rc-dot" cx="${xOf(i).toFixed(1)}" cy="${yOf(r).toFixed(1)}" r="3"/>`).join("");
+  let d2="",pen2=false;
+  run.forEach((x,i)=>{ if(!isL(i)){pen2=false;return;}
+    if(!pen2 && i>0 && shown[i-1]!=null) d2+=`M${xOf(i-1).toFixed(1)} ${yOf(shown[i-1]).toFixed(1)}`, pen2=true;
+    d2+=`${pen2?"L":"M"}${xOf(i).toFixed(1)} ${yOf(x.game).toFixed(1)}`; pen2=true; });
+  const ldots=lifted.map(([i,r])=>`<circle class="rc-dot rc-lift" cx="${xOf(i).toFixed(1)}" cy="${yOf(r).toFixed(1)}" r="3"/>`).join("");
   // days the chart is known but the game wasn't on it: a tick along the bottom
   const below=run.map((x,i)=>x.depth!=null&&shown[i]==null&&!x.byOther
     ? `<line class="grid" x1="${xOf(i).toFixed(1)}" y1="${(H-MB-3).toFixed(1)}" x2="${xOf(i).toFixed(1)}" y2="${(H-MB).toFixed(1)}"/>`:"").join("");
@@ -4287,9 +4304,9 @@ function cnRankSVG(run,b){
   // hover targets on every charted day, including the ones the game sat below
   _cnCtx={days:run.map((x,i)=>({...x, i, isPeak:i===pi}))};
   const hits=run.map((x,i)=>x.depth==null?"":
-    `<circle class="rc-hit" data-cnday="${i}" cx="${xOf(i).toFixed(1)}" cy="${(shown[i]!=null?yOf(shown[i]):H-MB-6).toFixed(1)}" r="9"/>`).join("");
+    `<circle class="rc-hit" data-cnday="${i}" cx="${xOf(i).toFixed(1)}" cy="${(shown[i]!=null?yOf(shown[i]):isL(i)?yOf(x.game):H-MB-6).toFixed(1)}" r="9"/>`).join("");
   return `<svg class="rcsvg" viewBox="0 0 ${W} ${H}" role="img" style="--acc:${barColor(b)}">
-    ${grid}${below}<path class="rc-line" d="${d}"/>${dots}${peak}${hits}${xt}</svg>`;
+    ${grid}${below}${d2?`<path class="rc-line rc-lift" d="${d2}"/>`:""}<path class="rc-line" d="${d}"/>${ldots}${dots}${peak}${hits}${xt}</svg>`;
 }
 // ---- what the China chart says about a run, next to the game's other banners --------
 // Everything here is measured, not modelled: the run's own ranks, and the ranks and
@@ -5035,7 +5052,7 @@ function cnRankBlock(b, noTable){
   const best=Math.min(...run.map(x=>x.best!=null?x.best:x.rank).filter(v=>v!=null));
   const cap=`Closed its first day at <b>#${first}</b>, peaked at <b>#${best}</b>, last seen at <b>#${last}</b>.`;
   return head+`<div class="bm-cap">${cap}</div>${placementLine(b, placeVal.cnPeak, true, "China peak rank")}${cnRankSVG(run,b)}${tbl(run)}
-    <p class="bm-note">#1 is the top of China's App Store <b>all-apps</b> top-grossing chart — games compete with Douyin, WeChat and the video apps, so climbing it means out-earning them. ${cover} Each point is the rank at the <b>end of that day</b> in China; the peak is the best rank reached at <b>any point</b> of a day, so it can sit above every point on the line. Ticks along the bottom are days the game wasn't on the chart, meaning it ranked below that depth; blank stretches are days not read yet. This is the <b>real store chart</b>, not an estimate.</p>`;
+    <p class="bm-note">#1 is the top of China's App Store <b>all-apps</b> top-grossing chart — games compete with Douyin, WeChat and the video apps, so climbing it means out-earning them. ${cover} Each point is the rank at the <b>end of that day</b> in China; the peak is the best rank reached at <b>any point</b> of a day, so it can sit above every point on the line. Ticks along the bottom are days the game wasn't on the chart, meaning it ranked below that depth; blank stretches are days not read yet. <b>Faded</b> days come after another banner opened mid-run: the game's rank then is mostly that launch's, so they never count toward this banner's peak. This is the <b>real store chart</b>, not an estimate.</p>`;
 }
 function cnShareBlock(b){
   const sh=b._share, cn=bannerCN(b);
@@ -5291,7 +5308,7 @@ function openBanner(b, keepStack){
       <div class="bm-cap">${cap}</div>
       ${placementLine(b, placeVal.jpPeak, true, "Japan peak rank")}
       ${rankCurveSVG(b)}
-      <p class="bm-note">#1 is the top of Japan's App Store top-grossing chart. Breaks in the line are days the app sat below game-i's trackable ~top&nbsp;200 (counted as ¥0), or days after another banner opened mid-run, when the game's rank is that launch's. Rank is snapshotted at midnight JST, so a launch day can read below-200 when the banner went live after the snapshot. iOS only — game-i keeps no daily Android history.</p>`;
+      <p class="bm-note">#1 is the top of Japan's App Store top-grossing chart. Breaks in the line are days the app sat below game-i's trackable ~top&nbsp;200 (counted as ¥0). <b>Faded</b> days come after another banner opened mid-run: the game's rank then is mostly that launch's, so they never count toward this banner's peak. Rank is snapshotted at midnight JST, so a launch day can read below-200 when the banner went live after the snapshot. iOS only — game-i keeps no daily Android history.</p>`;
   } else {
     curve=`<h3>Daily iOS store rank during the run</h3>
       <p class="bm-note">No daily rank data for this run — the app stayed below game-i's trackable ~top&nbsp;200 throughout (counted as ¥0), or the run predates game-i's rank history.</p>`;
