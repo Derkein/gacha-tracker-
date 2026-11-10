@@ -5,11 +5,11 @@
  "unit": "億G",
  "source": "https://page.onstove.com/chaoszeronightmare/jp",
  "banners_from": "official",
- "updated": "2026-11-10T17:52:24Z",
+ "updated": "2026-11-10T19:21:01Z",
  "count": 19,
  "now": {
   "ios": null,
-  "android": 122,
+  "android": 119,
   "month": 192,
   "next_add": 5243389,
   "ym": "2026/11",
@@ -1138,7 +1138,6 @@
    "icons": [
     "icons/faces/czn/2026-11-11-653612.webp"
    ],
-   "accent": "#d29cae",
    "bar": "#795d76"
   }
  ]
