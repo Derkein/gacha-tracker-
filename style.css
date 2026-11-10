@@ -647,6 +647,9 @@ html.scrolling .gscroll, .gscroll:hover{scrollbar-color:var(--base) transparent}
 .bm-rtcols.cols2 .bm-table td,.bm-rtcols.cols2 .bm-table th{padding:5px 7px}
 .bm-rtcol{min-width:0; overflow-x:auto}
 .bm-rtcols .bm-table td.rk{white-space:nowrap}
+/* the daily tables' rank cells share the leaderboard's .rk class (muted, extra-bold) — read them like
+   every other cell instead, so a rank isn't greyed out like the '200+' days */
+.bm-table td.rk{color:inherit; font-weight:inherit; font-size:inherit}
 /* Columns auto-size to their widest content, so right-aligned values sit hard
    against one edge and read as adrift from their header. Centre the value columns
    so each number sits under its own label; the date stays left as the row label.
