@@ -193,14 +193,87 @@ function fmtG(oku){
   if (m >= 100)  return Math.round(m) + "M";
   return (Math.round(m*10)/10) + "M";
 }
-// ---- currency: native (¥ / CN¥) or everything in US$ at ONE rate, the latest daily one ----
-// data/fx.json (scripts/fetch_fx.py, ECB reference rate, refreshed by the daily workflow). The
-// choice is the viewer's and is shared with the journal (localStorage "ccy"). Only the display
-// changes: sorting, sums and every comparison work on the native figures, and a single rate
-// per currency can't reorder anything.
+// ---- currency: native (¥ / CN¥) or everything in US$ at the rate of WHEN it was earned ----
+// data/fx.json = today's ECB rate; data/fx_history.json = every ECB business day since 2020 +
+// each month's average (both from scripts/fetch_fx.py, refreshed by the daily workflow). The
+// choice is the viewer's and is shared with the journal (localStorage "ccy"). The "game-i +
+// Qimai $" source is a dollar view too, so it turns the dollars on whatever the button says.
+//
+// How: when a game loads in dollars, fxAdjust rescales its yen so that dividing by TODAY's rate
+// (G, jpUSD) gives the dollars at the rate of the day it was earned — a banner by its days
+// (each day weighted by its share of the run, from the rank curve), a game-i month by that
+// month's average, and the CN ranking's yuan by its month's average (fxAdjustCN). Every sum,
+// sort and chart then works in historical dollars with no other change. IAS 21's rule: the
+// transaction-date rate, with a period average as the practical shortcut.
 let _ccy = (()=>{ try{ return localStorage.getItem("ccy")==="native" ? "native" : "usd"; }catch(e){ return "usd"; } })();
 const fxRate = cur => (state.fx && state.fx.per_usd && state.fx.per_usd[cur]) || null;
-const usdOn = () => _ccy==="usd" && !!fxRate("JPY") && !!fxRate("CNY");
+const usdOn = () => (_ccy==="usd" || state.dataSource==="both") && !!fxRate("JPY") && !!fxRate("CNY");
+// the ECB rate of a day (the last business day on or before it), and of a month (its average);
+// col 0 = JPY, 1 = CNY. null before the history starts; today's rate after it ends.
+let _fxDays=null;
+function fxDay(iso, col){
+  const h=state.fxh; if(!h || !h.days) return null;
+  if(!_fxDays) _fxDays=Object.keys(h.days).sort();
+  if(iso<_fxDays[0]) return null;
+  let lo=0, hi=_fxDays.length-1;
+  while(lo<hi){ const m=(lo+hi+1)>>1; if(_fxDays[m]<=iso) lo=m; else hi=m-1; }
+  return h.days[_fxDays[lo]][col];
+}
+function fxMonth(ym, col){
+  const h=state.fxh, m=h && h.months && h.months[ym];
+  return m ? m[col] : (h && h.months && ym > Object.keys(h.months).sort().pop() ? fxRate(col?"CNY":"JPY") : null);
+}
+// how far a banner's yen moves: its days' (today's rate ÷ that day's rate), each weighted by the
+// day's share of the run on the rank curve (game-i's own); no rank curve = days weighted evenly
+function fxBannerK(b){
+  const now=fxRate("JPY"); if(!now || !b || !b.start) return 1;
+  const s=b.rank_series||[], d0=new Date(b.start+"T00:00:00");
+  const n = s.length || Math.max(1, Math.round((Date.parse(b.end||b.start)-Date.parse(b.start))/864e5)+1);
+  let w=0, a=0;
+  for(let i=0;i<n;i++){
+    const dt=new Date(d0); dt.setDate(dt.getDate()+i);
+    const iso=`${dt.getFullYear()}-${String(dt.getMonth()+1).padStart(2,"0")}-${String(dt.getDate()).padStart(2,"0")}`;
+    const r=fxDay(iso,0)||now, wi = s.length ? (s[i]==null ? rankValue(200)/2 : rankValue(s[i])) : 1;
+    w+=wi; a+=wi*now/r;
+  }
+  return w>0 ? a/w : 1;
+}
+function fxAdjust(data){
+  data._fxOn = usdOn() && !!(state.fxh && state.fxh.days);
+  if(!data._fxOn) return data;
+  const now=fxRate("JPY");
+  for(const b of data.banners||[]){ const k=fxBannerK(b); b._rev0=b.rev; b._fxK=k;   // _rev0: the yen as game-i gives it
+    for(const f of ["rev","rev_month"]) if(typeof b[f]==="number") b[f]*=k; }
+  if(data.monthly) for(const ym in data.monthly){ const r=fxMonth(ym,0); if(r) data.monthly[ym]*=now/r; }
+  return data;
+}
+// the CN ranking's yuan, month by month; the originals are kept so the toggle can undo it
+function fxAdjustCN(){
+  const games=state.cn && state.cn.games; if(!games) return;
+  const on=usdOn() && !!(state.fxh && state.fxh.months), now=fxRate("CNY");
+  for(const t in games) for(const ym in (games[t].monthly||{})){ const m=games[t].monthly[ym];
+    if(m._min0===undefined){ m._min0=m.rev_min_cny; m._max0=m.rev_max_cny; }
+    const r=on && fxMonth(ym,1), k=r ? now/r : 1;
+    m.rev_min_cny = m._min0==null ? m._min0 : m._min0*k;
+    m.rev_max_cny = m._max0==null ? m._max0 : m._max0*k; }
+}
+// the dollars switched on or off: reload the game so its yen is rescaled (or back to native)
+async function fxRefresh(){
+  if(!state.data || state.data._fxOn===usdOn()) return false;
+  state._ctx={}; state._cmpIndex=null; state._cmpMetrics={};
+  fxAdjustCN();
+  const cur=_bmCur, tab=document.querySelector("#bmSrc [data-bmsrc].on"), open=!bannerModal.hidden;
+  const y=open ? bannerModal.querySelector(".modal-card").scrollTop : 0;
+  await selectGame(state.tag, true);
+  if(cur && open){
+    const nb=state.data.banners.find(x=>x.start===cur.start && x.name===cur.name);
+    if(nb){ openBanner(nb, true);
+      if(tab){ const t=document.querySelector(`#bmSrc [data-bmsrc="${tab.dataset.bmsrc}"]`); if(t && !t.classList.contains("on")) t.click(); }
+      bannerModal.querySelector(".modal-card").scrollTop=y; } }
+  if($("#compareModal") && !$("#compareModal").hidden && typeof renderCompareResult==="function"){
+    await buildCompareIndex(); renderCompareResult(); }
+  return true;
+}
 const G = oku => usdOn() ? fmtUSD(oku*1e8/fxRate("JPY")) : "¥" + fmtG(oku);
 // a $ range sharing one prefix (and one suffix when both ends share it): "$24.3–28.7M"
 function fmtUSDRange(lo, hi){
@@ -209,7 +282,7 @@ function fmtUSDRange(lo, hi){
   return ua===ub ? a.slice(0, a.length-ua.length)+"–"+b.slice(1) : a+"–"+b.slice(1);
 }
 // ---- "game-i + Qimai $": Japan + China iPhone as ONE figure, in US$. game-i's yen goes to
-// dollars at the same single rate as the toggle (data/fx.json, today's), Qimai is already in
+// dollars like everywhere else (the rate of when it was earned, fxAdjust), Qimai is already in
 // dollars. The only view that adds two sources together: it is two stores (Japan mobile + China
 // iPhone), not worldwide revenue — Sensor Tower is the worldwide layer.
 const jpUSD = oku => (oku>0 && fxRate("JPY")) ? oku*1e8/fxRate("JPY") : 0;
@@ -218,8 +291,9 @@ function bannerBoth(b){ const q=bannerQimai(b), jp=jpUSD(b&&b.rev), cn=q.hasData
 const usdSrc = s => s==="st" || s==="qimai" || s==="both";
 const srcFmtOf = s => usdSrc(s) ? fmtUSD : s==="cn" ? fmtCNY : G;
 // the rate every converted figure uses, said the same way everywhere
+// (the rate of the day it was earned; today's for reference)
 function fxLine(cny){ const f=state.fx; if(!f || !f.per_usd) return "";
-  return `$1 = ¥${f.per_usd.JPY}${cny?` = CN¥${f.per_usd.CNY}`:""} (${fxSrc(f)}, ${per(f.date)})`; }
+  return `the ECB rate of the day it was earned (today $1 = ¥${f.per_usd.JPY}${cny?` = CN¥${f.per_usd.CNY}`:""}, ${per(f.date)})`; }
 const fxSrc = f => /European Central Bank/.test(f.source||"") ? "ECB reference rate" : (f.source||"").replace(/ \(.*\)$/,"");
 
 // ---- external global monthly revenue, in USD (a comparison layer vs game-i) ----
@@ -843,6 +917,8 @@ async function init(){
   try { state.cn = await getJSON("data/cn_monthly.json"); } catch(e){ state.cn=null; }
   // today's exchange rates for the US$ toggle. Best-effort: without them the toggle hides.
   try { state.fx = await getJSON("data/fx.json"); } catch(e){ state.fx=null; }
+  try { state.fxh = await getJSON("data/fx_history.json"); } catch(e){ state.fxh=null; }
+  fxAdjustCN();
   applyCcy();
   // Qimai daily China-iPhone revenue (USD, App Store gross, Qimai model estimate), per
   // banner + per month. A daily source like game-i, but for China iOS. Best-effort.
@@ -981,7 +1057,7 @@ async function selectGame(tag, quiet){
   try { data = await getJSON(`data/${tag}.json`); }
   catch(e){ if(seq===_loadSeq) showError(e, ()=>selectGame(tag)); return; }
   if(seq!==_loadSeq) return;   // a newer tab click won this race
-  state.data = data;
+  state.data = fxAdjust(data);
   applyRevMode(data);
   preloadSheets(tag, data);
   // rank by revenue *within our dataset* — game-i's cum is against the game's full
@@ -1109,7 +1185,7 @@ function renderStats(){
     + tile("Highest banner", fmt(val(top)), topName, icRow([top]), `data-i="${top._i}" title="Open ${esc(topName)}"`)
     + tile("Highest month", hmVal>=0?fmt(hmVal):"—", hmName, icRow(hmBanners), hmYm?`data-period="month" data-key="${hmYm}" title="Open ${esc(hmName)}"`:"")
     + tile("Average / banner", fmt(sum/real.length),
-           st?"mean estimate · combined" : cn?"mean estimate · global, all platforms" : qm?"mean estimate · China iPhone" : bo?"mean · Japan + China iPhone, at today's rate" : "mean estimate")
+           st?"mean estimate · combined" : cn?"mean estimate · global, all platforms" : qm?"mean estimate · China iPhone" : bo?"mean · Japan + China iPhone, in US$" : "mean estimate")
     + nowTile(state.data.now)
     + cnNowTile();
   // one panel, cells split by hairlines: all in one row on a wide screen, two even rows on a
@@ -1388,7 +1464,7 @@ function rowHTML(b,rank,max){
       : !qm.hasData ? `<span class="val nodata" title="No Qimai China-iPhone revenue for this banner (its game isn't in the Qimai set yet, or it ran before Qimai's data)">no Qimai data</span>`
       : `<span class="val">${fmtUSD(val)}</span>`;
   } else if(state.dataSource==="both"){ const x=bannerBoth(b); val=x.total;
-    const how=`Japan ${fmtUSD(x.jp)} from game-i's ¥${fmtG(b.rev)} + China iPhone ${x.hasCN?fmtUSD(x.cn)+" from Qimai":"(no Qimai figure)"}. Yen at ${fxLine()}.`;
+    const how=`Japan ${fmtUSD(x.jp)} from game-i's ¥${fmtG(b._rev0??b.rev)} + China iPhone ${x.hasCN?fmtUSD(x.cn)+" from Qimai":"(no Qimai figure)"}. Yen at ${fxLine()}.`;
     valStr = `<span class="val" title="${esc(how)}">${fmtUSD(val)}`
       + (!x.hasCN && !b._synthetic ? `<span class="partialbadge" title="No Qimai China-iPhone figure for this banner, so this is Japan alone">JP only</span>` : "") + `</span>`;
   } else { val=b.rev; valStr=`<span class="val">${G(val)}</span>`; }
@@ -1464,7 +1540,7 @@ function renderBars(){
 // "Single revenue" is the plain leaderboard above (one money source at a time). The other three
 // rank by a 0–100 score instead:
 //   Charts         JP and/or CN top-grossing chart runs, scored Level × Hold (see chartRun)
-//   Total revenue  every money source at once, added up in US$ (yen/yuan at today's rate)
+//   Total revenue  every money source at once, added up in US$ (yen/yuan at the rate of when it was earned)
 //   Everything     Total revenue + both charts as revenue-equivalent sources
 function rankByScored(){ return state.mode==="rank" && !state.table && ["total","charts","all"].includes(state.rankBy); }
 // Every banner is measured over the same window — its first 3 weeks, the usual banner length — so
@@ -1863,7 +1939,7 @@ function renderUSDRanking(pool, on, bar){
   const overlap = ids.includes("cn") && ids.length>1 ? `<b>CN</b> is already worldwide on every platform, so it contains every other source here`
     : ids.includes("st") && (ids.includes("gamei")||ids.includes("qimai")) ? `<b>Sensor Tower</b> is worldwide mobile, so it already contains ${ids.includes("gamei")&&ids.includes("qimai")?"Japan and China iPhone":ids.includes("gamei")?"Japan":"China iPhone"}` : "";
   html+=`<div class="stnote cr-note"><b>Total revenue — every selected source added up, in US$.</b> `
-    + `game-i's yen and CN's yuan are converted at ${esc(fxLine(true))}; Qimai and Sensor Tower are already in dollars. One rate for every date: a 2022 banner is converted at today's rate, so the order never changes with the yen. `
+    + `game-i's yen and CN's yuan are converted at ${esc(fxLine(true))}; Qimai and Sensor Tower are already in dollars. A 2021 banner is in 2021 dollars: each day at that day's rate, each CN month at its average. `
     + (overlap ? `<b>The sources overlap:</b> ${overlap}. The same spending is counted more than once, so the totals are bigger than any real figure. The order still reads as "most money on the most sources"; for a total with nothing counted twice, keep <b>game-i + Qimai</b> (Japan + China iPhone), or one of Sensor Tower or CN on its own. `
                : only("gamei","qimai") ? `game-i + Qimai don't overlap: this is <b>Japan + China iPhone</b>, two stores, not worldwide. ` : "")
     + `A banner missing a source (most often Sensor Tower or CN, whose month isn't out yet, or a banner from before Qimai's data) adds up only the ones it has and is flagged, so it reads low. Ongoing banners (● live) are still adding revenue.`
@@ -5418,11 +5494,12 @@ function applyCcy(){
   if(state.data) fxNote(!state.table && !rankByScored());
   document.documentElement.classList.toggle("ccy-usd", on);
 }
-$("#ccyBtn").onclick=()=>{
+$("#ccyBtn").onclick=async ()=>{
   _ccy = _ccy==="usd" ? "native" : "usd";
   try{ localStorage.setItem("ccy",_ccy); }catch(e){}
   applyCcy();
   if(!state.data) return;
+  if(await fxRefresh()) return;          // reloaded in the other currency (and re-rendered)
   renderStats(); render();
   if(_bmCur && !bannerModal.hidden){        // reopen the banner window on the tab that was showing
     const tab=document.querySelector("#bmSrc [data-bmsrc].on"), y=bannerModal.querySelector(".modal-card").scrollTop;
@@ -5431,9 +5508,11 @@ $("#ccyBtn").onclick=()=>{
     bannerModal.querySelector(".modal-card").scrollTop=y; }
   if($("#compareModal") && !$("#compareModal").hidden && typeof renderCompareResult==="function") renderCompareResult();
 };
-$("#dataSrc").querySelectorAll("[data-src]").forEach(btn=>btn.onclick=()=>{
+$("#dataSrc").querySelectorAll("[data-src]").forEach(btn=>btn.onclick=async ()=>{
   state.dataSource=btn.dataset.src;
   $("#dataSrc").querySelectorAll("[data-src]").forEach(b=>b.classList.toggle("on",b===btn));
+  applyCcy();
+  if(await fxRefresh()) return;          // "game-i + Qimai $" turns the dollars on (or off again)
   renderStats();                       // header tiles follow the active data source too
   if(!state.table) render();
 });
@@ -5475,7 +5554,7 @@ function cmpDate(iso){ if(!iso) return ""; const [y,m]=iso.split("-"); return `$
 async function loadCtx(tag){
   state._ctx=state._ctx||{};
   if(state._ctx[tag]) return state._ctx[tag];
-  const data=await getJSON(`data/${tag}.json`);
+  const data=fxAdjust(await getJSON(`data/${tag}.json`));
   const save={tag:state.tag,data:state.data,monthly:state.monthly,
     gb:state._gameBurn,cp:state._cnPeers,jp:state._jpPeers};
   try{
@@ -6652,7 +6731,7 @@ function fxNote(show){
   el.innerHTML = s==="both"
     ? `<b>Japan + China iPhone, in US$.</b> game-i's Japan estimate (App Store + Google Play, in yen) converted at <b>${esc(fxLine())}</b>, plus Qimai's China iPhone App Store estimate (already in dollars). This is the only view that adds two sources together, and it is two stores, not worldwide revenue: Sensor Tower is the worldwide figure, and Android in China isn't in either. A banner with no Qimai figure counts Japan alone and is tagged <span class="pill">JP only</span>.`
     : `<b>Shown in US$.</b> ${s==="cn"?"The CN ranking's yuan":"game-i's yen"} converted at <b>${esc(fxLine(s==="cn"))}</b>. Switch back with the <b>US$</b> button at the top.`;
-  el.innerHTML += ` One rate for every date, the latest daily one, so a banner from years ago is in today's dollars, and every converted figure moves a little each day with the exchange rate.`;
+  el.innerHTML += ` A banner goes day by day and a month at its average, so a 2021 banner is in 2021 dollars (the yen was ~¥104 then). More in <b>How these numbers work → US$ conversion</b>.`;
 }
 // the banner window's "Japan + China iPhone" line: game-i in dollars plus Qimai
 function bothLine(b){
@@ -6668,6 +6747,9 @@ function showInfoTab(which){
   if($("#infoQimai")) $("#infoQimai").hidden = which!=="qimai";
   if($("#infoCNChart")) $("#infoCNChart").hidden = which!=="cnchart";
   if($("#infoBoth")){ $("#infoBoth").hidden = which!=="both"; const r=$("#infoFxRate"); if(r) r.textContent=fxLine(true)||"the latest daily rate"; }
+  if($("#infoFx")){ $("#infoFx").hidden = which!=="fx"; const ex=$("#infoFxEx"), now=fxRate("JPY");
+    const m=["2021-01","2024-01"].map(ym=>[ym, fxMonth(ym,0)]).filter(([,r])=>r);
+    if(ex) ex.innerHTML = now && m.length===2 && state.fx ? `For example, a dollar bought <b>¥${m[0][1].toFixed(1)}</b> on average in January 2021, <b>¥${m[1][1].toFixed(1)}</b> in January 2024 and <b>¥${now}</b> today (${per(state.fx.date)}). So ¥1B of spending is <b>${fmtUSD(1e9/m[0][1])}</b> in January 2021, <b>${fmtUSD(1e9/m[1][1])}</b> in January 2024 and <b>${fmtUSD(1e9/now)}</b> if spent today.` : ""; }
   const card=infoModal.querySelector(".modal-card"); if(card) card.scrollTop=0;
 }
 $("#infoToggle").querySelectorAll("[data-info]").forEach(btn=>btn.onclick=()=>showInfoTab(btn.dataset.info));

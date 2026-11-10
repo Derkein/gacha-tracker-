@@ -16,10 +16,14 @@ const esc = s => String(s==null?"":s).replace(/[&<>"'`]/g,c=>({"&":"&amp;","<":"
 const J = { index:null, upcoming:{}, themes:{}, cache:{} };
 
 // ---- formatting (same rules as the tracker's fmtG / fmtUSD) ----
-// US$ toggle, shared with the tracker (localStorage "ccy"): yen and yuan at one rate, the latest
-// daily one (data/fx.json). Display only — every order on the page was decided on native figures.
+// US$ toggle, shared with the tracker (localStorage "ccy"): an issue's yen and yuan go to dollars at
+// THAT MONTH's average ECB rate (data/fx_history.json; today's rate from data/fx.json if the month
+// isn't in it), the same rule as the tracker's monthly figures. One rate per issue, so a change on
+// last month still reads as spending, not as the yen. Display only — every order on the page was
+// decided on native figures.
 let _ccy=(()=>{ try{ return localStorage.getItem("ccy")==="native" ? "native" : "usd"; }catch(e){ return "usd"; } })();
-const fxRate = cur => (J.fx && J.fx.per_usd && J.fx.per_usd[cur]) || null;
+const fxMonthOf = (ym, cur) => { const m=J.fxh && J.fxh.months && ym && J.fxh.months[ym]; return m ? m[cur==="CNY"?1:0] : null; };
+const fxRate = cur => fxMonthOf(G_YM, cur) || (J.fx && J.fx.per_usd && J.fx.per_usd[cur]) || null;
 const usdOn = () => _ccy==="usd" && !!fxRate("JPY") && !!fxRate("CNY");
 function fmtG(oku){ if(usdOn()) return fmtUSD((oku>0?oku:0)*1e8/fxRate("JPY"));
   if(!(oku>0)) return "¥0"; const m=oku*100;
@@ -29,15 +33,14 @@ function fmtUSD(v){ if(!(v>0)) return "$0";
   if(v>=1e7) return "$"+(v/1e6).toFixed(1)+"M"; if(v>=1e6) return "$"+(v/1e6).toFixed(2)+"M";
   if(v>=1e3) return "$"+Math.round(v/1e3)+"K"; return "$"+Math.round(v); }
 // Japan + China iPhone as one figure, ALWAYS in US$ (whatever the toggle says): game-i's yen at
-// the day's rate + Qimai's dollars. The rate is read when the page opens, so it follows the
-// daily refresh of data/fx.json. null without a rate.
+// the issue month's average rate + Qimai's dollars. null without a rate.
 const jpUSD = oku => (oku>0 && fxRate("JPY")) ? oku*1e8/fxRate("JPY") : 0;
 const bothUSD = (oku, usd) => fxRate("JPY") && (oku>0 || usd>0) ? jpUSD(oku)+(usd||0) : null;
-function fxLine(cny){ const f=J.fx; if(!f || !f.per_usd) return "";
-  const d=f.date?`${dayStr(f.date)} ${f.date.slice(0,4)}`:"";
-  const src=/European Central Bank/.test(f.source||"") ? "ECB reference rate" : (f.source||"").replace(/ \(.*\)$/,"");
-  return `$1 = ¥${f.per_usd.JPY}${cny?` = CN¥${f.per_usd.CNY}`:""} (${src}${d?", "+d:""})`; }
-const BOTH_TIP = () => `Japan + China iPhone: game-i's yen converted at ${fxLine()}, plus Qimai's China iPhone dollars. One rate for every date, the latest daily one.`;
+function fxLine(cny){ const j=fxRate("JPY"), c=fxRate("CNY"); if(!j) return "";
+  const r=v=>v>=100?v.toFixed(2):v.toFixed(4).replace(/0+$/,"");
+  return fxMonthOf(G_YM,"JPY") ? `$1 = ¥${r(j)}${cny?` = CN¥${r(c)}`:""} (ECB, ${monthName(G_YM)} average)`
+    : `$1 = ¥${r(j)}${cny?` = CN¥${r(c)}`:""} (ECB reference rate, ${J.fx&&J.fx.date||"today"})`; }
+const BOTH_TIP = () => `Japan + China iPhone: game-i's yen converted at ${fxLine()}, plus Qimai's China iPhone dollars. Each issue uses its own month's average rate.`;
 // CN¥ ranges, compact like the tracker's by-Month cells: "CN¥4.57–5.34B", "CN¥191–228M"
 function fmtCNYr(lo, hi){
   if(usdOn()){ const a=fmtUSD(lo/fxRate("CNY")); if(hi==null||hi===lo) return a; const b=fmtUSD(hi/fxRate("CNY"));
@@ -76,7 +79,7 @@ async function loadIssue(ym){
 
 function applyCcy(){ const b=$("#ccyBtn"), ok=!!(fxRate("JPY")&&fxRate("CNY")), on=usdOn(); if(!b) return;
   b.hidden=!ok; b.classList.toggle("on",on); b.setAttribute("aria-pressed",String(on)); b.textContent=on?"US$":"¥";
-  if(ok) b.title=(on?"Showing yen and yuan in US$":"Show yen and yuan in US$")+` — $1 = ¥${J.fx.per_usd.JPY} = CN¥${J.fx.per_usd.CNY} (${J.fx.source}, ${J.fx.date}). Click to switch.`; }
+  if(ok) b.title=(on?"Showing yen and yuan in US$":"Show yen and yuan in US$")+` — each issue at its month's average ECB rate (today $1 = ¥${J.fx.per_usd.JPY} = CN¥${J.fx.per_usd.CNY}). Click to switch.`; }
 // ---- theme (shares the tracker's saved choice) ----
 const THEMES=["auto","light","dark"], TICON={auto:"◐",light:"☀",dark:"☾"};
 let _theme=(()=>{ try{ return localStorage.getItem("theme")||"auto"; }catch(e){ return "auto"; } })();
@@ -393,7 +396,7 @@ function marketHTML(f){
     <div class="mtiles">${mk.jp?tile("jp","Japan",`game-i · App Store + Google Play${usdOn()?` · at ${esc(fxLine())}`:""}`,fmtG(mk.jp.total),mk.jp):""}${mk.cn?tile("cn","China iPhone","Qimai · App Store",fmtUSD(mk.cn.total),mk.cn):""}${zlTile}</div>
     <div class="mcopy">${marketCopy(f).map(t=>`<p>${rich(t)}</p>`).join("")}</div>
     <div class="mcols">${col(mk.jp,"Japan, game by game")}${col(mk.cn,"China iPhone, game by game")}${zl?col(zl,`China 总流水, game by game ${lateTag(false)}`):""}</div>
-    <p class="mnote">Changes compare the games present in both months, so a launch doesn't count as growth. Japan${SHOW_ZL?", China iPhone and 总流水 are":" and China iPhone are"} different measurements of different stores; they are added together only in the <b>Japan + China iPhone</b> figures, in US$ with the yen at ${esc(fxLine())}, one rate for every month.</p></section>`;
+    <p class="mnote">Changes compare the games present in both months, so a launch doesn't count as growth. Japan${SHOW_ZL?", China iPhone and 总流水 are":" and China iPhone are"} different measurements of different stores; they are added together only in the <b>Japan + China iPhone</b> figures, in US$ with the yen at ${esc(fxLine())}, also for last month's figures, so a change reads as spending and not as the yen.</p></section>`;
 }
 // #1 vs #2 over their shared window, so a big lead the runner-up held in one market is said out loud
 function topPairNote(f, t){
@@ -517,7 +520,7 @@ function statStrip(g, ym){
   if(g.jp) cells.push(`<div><span>Japan${g.jp_src==="banners"?" (banners)":""}</span><b>${fmtG(g.jp)}</b><em class="${p==null?"":p>=0?"up":"dn"}">${p==null?"&nbsp;":pctStr(p)+" m/m"}</em></div>`);
   if(g.jp_rank) cells.push(`<div><span>Japan rank</span><b>${ord(g.jp_rank[0])}</b><em>of ${g.jp_rank[1]} games</em></div>`);
   if(g.cn) cells.push(`<div><span>China iPhone${g.cn_partial?" (partial)":""}</span><b>${fmtUSD(g.cn)}</b><em class="${pc==null?"":pc>=0?"up":"dn"}">${pc==null?"&nbsp;":pctStr(pc)+" m/m"}</em></div>`);
-  if(g.cn && fxRate("JPY")) cells.push(`<div title="${esc(BOTH_TIP())}"><span>Japan + China iPhone</span><b>${fmtUSD(bothUSD(g.jp,g.cn))}</b><em>US$ · today's rate</em></div>`);
+  if(g.cn && fxRate("JPY")) cells.push(`<div title="${esc(BOTH_TIP())}"><span>Japan + China iPhone</span><b>${fmtUSD(bothUSD(g.jp,g.cn))}</b><em>US$ · the month's rate</em></div>`);
   if(g.cn_rank) cells.push(`<div><span>China rank</span><b>${ord(g.cn_rank[0])}</b><em>of ${g.cn_rank[1]} games</em></div>`);
   const latest=J.index.issues[0] && J.index.issues[0].ym===ym, zp=pct(g.zl&&(g.zl.lo+g.zl.hi)/2, g.zl_prev&&(g.zl_prev.lo+g.zl_prev.hi)/2);
   if(SHOW_ZL && g.zl) cells.push(`<div class="zlcell"><span>${esc(g.zl.metric||"总流水")} · all platforms ${lateTag(false)}</span><b>${fmtCNYr(g.zl.lo,g.zl.hi)}</b><em class="${zp==null?"":zp>=0?"up":"dn"}">${zp==null?"&nbsp;":pctStr(zp)+" m/m"}</em></div>`);
@@ -652,7 +655,7 @@ function howOpen(){
       ${MARGIN_RULE}
       ${LIFT_RULE}
       <li>A game not sold in China (Umamusume) counts as $0 and below #200 there, and against it the China measures count at <b>half weight</b>: it isn't sold there, so losing them in full would shut it out of every month, while leaving them out would judge it on Japan alone. Sensor Tower and the CN monthly figures aren't used: they only exist for whole months.</li>
-      <li>An even score goes to the bigger combined revenue over the window (Japan + China iPhone, the yen in US$ at the latest daily rate).</li>
+      <li>An even score goes to the bigger combined revenue over the window (Japan + China iPhone, the yen in US$ at that month's average rate).</li>
       <li>The order is the number of head-to-heads won. Banners that won <b>the same number</b> are ordered by <b>Japan + China iPhone revenue in US$ over their shared days</b>: the one that earned more ranks higher.</li>
       <li>A banner that opened on a month's last day or two counts as an opening of the <b>next</b> month instead, measured from its first day: one or two days are too few to judge it on.</li>
     </ul>
@@ -694,6 +697,7 @@ async function init(){
   applyTheme(_theme);
   $("#themeBtn").onclick=()=>applyTheme(THEMES[(THEMES.indexOf(_theme)+1)%3]);
   try{ J.fx=await getJSON("data/fx.json"); }catch(e){ J.fx=null; }
+  try{ J.fxh=await getJSON("data/fx_history.json"); }catch(e){ J.fxh=null; }
   applyCcy();
   $("#ccyBtn").onclick=()=>{ _ccy=_ccy==="usd"?"native":"usd"; try{ localStorage.setItem("ccy",_ccy); }catch(e){}
     applyCcy(); const y=scrollY; if(J.index) route(); scrollTo(0,y); };

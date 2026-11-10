@@ -79,7 +79,7 @@
     <div class="seg src" id="dataSrc" role="tablist" aria-label="Data source" hidden>
       <button data-src="gamei" class="on" title="game-i's JP revenue estimate">game-i ¥</button>
       <button data-src="qimai" title="China iPhone App Store gross revenue (USD) — Qimai's daily estimate, summed per banner" hidden>Qimai&nbsp;$</button>
-      <button data-src="both" title="Japan + China iPhone in one figure: game-i's yen in US$ at today's rate, plus Qimai's China iPhone dollars" hidden>game-i&nbsp;+&nbsp;Qimai&nbsp;$</button>
+      <button data-src="both" title="Japan + China iPhone in one figure: game-i's yen in US$ at the rate of when it was earned, plus Qimai's China iPhone dollars" hidden>game-i&nbsp;+&nbsp;Qimai&nbsp;$</button>
       <button data-src="st" title="Estimated combined worldwide revenue from the Sensor Tower monthly reports">Sensor&nbsp;Tower&nbsp;$</button>
       <button data-src="cn" title="Estimated global all-platform revenue (mobile + PC + PlayStation) from 天天背锅崩坏娘's monthly CN ranking, in yuan" hidden>CN&nbsp;CN¥</button>
     </div>
@@ -104,7 +104,7 @@
     </div>
     <div class="seg agmode" id="rankByWrap" role="tablist" aria-label="Rank banners by" hidden>
       <button data-rankby="rev" class="on" title="Rank banners by ONE revenue source (pick it on the right)">Single revenue</button>
-      <button data-rankby="total" title="Rank banners by every revenue source added up in US$ (yen and yuan at today's rate). The sources overlap, so switch them on/off: game-i + Qimai alone counts nothing twice.">Total revenue</button>
+      <button data-rankby="total" title="Rank banners by every revenue source added up in US$ (yen and yuan at the rate of when they were earned). The sources overlap, so switch them on/off: game-i + Qimai alone counts nothing twice.">Total revenue</button>
       <button data-rankby="charts" title="Rank banners by their run on the Japan and/or China top-grossing charts: a score from the revenue their ranks imply and how slowly they decayed">Charts</button>
       <button data-rankby="all" title="Everything: every revenue source plus both charts, each scored as a % of the game's best banner, then averaged. Switch sources on/off.">Everything</button>
     </div>
@@ -199,7 +199,7 @@
     <h2 id="infoTitle">How these numbers work</h2>
     <p class="modal-sub">Where each layer's figures come from — and why they change.</p>
 
-    <p class="modal-note">This site measures nothing itself. It re-presents four third-party datasets: <a href="https://game-i.daa.jp/" target="_blank" rel="noopener">game-i.daa.jp</a>'s <b>per-banner Japan revenue</b> (the default, in ¥), the community <b>Sensor Tower monthly reports</b> (worldwide, $), a <b>CN all-platform monthly ranking</b> (CN¥) and <b>Qimai</b>'s daily China-iPhone estimate ($). They measure different things and are shown side by side; only the <b>game-i + Qimai $</b> view adds two of them (Japan + China iPhone, yen converted at today's rate). Where the site does estimate — splitting a monthly total between banners, rebuilding banners game-i doesn't list, and the "tracking towards" projection — it says so on the spot.</p>
+    <p class="modal-note">This site measures nothing itself. It re-presents four third-party datasets: <a href="https://game-i.daa.jp/" target="_blank" rel="noopener">game-i.daa.jp</a>'s <b>per-banner Japan revenue</b> (the default, in ¥), the community <b>Sensor Tower monthly reports</b> (worldwide, $), a <b>CN all-platform monthly ranking</b> (CN¥) and <b>Qimai</b>'s daily China-iPhone estimate ($). They measure different things and are shown side by side; only the <b>game-i + Qimai $</b> view adds two of them (Japan + China iPhone, the yen in US$ at the rate of when it was earned). Where the site does estimate — splitting a monthly total between banners, rebuilding banners game-i doesn't list, and the "tracking towards" projection — it says so on the spot.</p>
 
     <div class="seg info-toggle" id="infoToggle" role="tablist" aria-label="Which dataset to explain">
       <button data-info="gamei" class="on">game-i · JP ¥</button>
@@ -208,6 +208,7 @@
       <button data-info="cn">CN · CN¥</button>
       <button data-info="cnchart">China iOS chart</button>
       <button data-info="both">game-i + Qimai · US$</button>
+      <button data-info="fx">US$ conversion</button>
     </div>
 
     <div id="infoGamei">
@@ -426,10 +427,31 @@
     <h3>What it is</h3>
     <p>One figure for <b>Japan + China iPhone</b>: game-i's Japan estimate (App Store + Google Play) plus Qimai's China iPhone App&nbsp;Store estimate, both explained on their own tabs. Qimai is already in dollars; game-i's yen is converted at <b id="infoFxRate">the latest daily rate</b>.</p>
     <h3>The exchange rate</h3>
-    <p>The <b>European Central Bank's daily reference rate</b>, fetched with the rest of the data every day (from <a href="https://frankfurter.dev/" target="_blank" rel="noopener">frankfurter.dev</a>, with <a href="https://open.er-api.com/" target="_blank" rel="noopener">open.er-api.com</a> as a backup; the ECB doesn't publish on weekends, so those days keep Friday's). <b>One rate for every date</b>: a banner from 2022 is converted at today's rate, not 2022's, so every figure is in today's dollars and moves a little each day with the yen. The same rate is used by the <b>US$</b> button at the top, which shows any yen or yuan on the site in dollars.</p>
+    <p>game-i's yen is converted at the rate of <b>when it was earned</b>, day by day, like every dollar figure on the site. How and why: the <b>US$ conversion</b> tab.</p>
     <h3>What it is not</h3>
     <p>Not worldwide revenue: it leaves out Android in China and every other country. <b>Sensor Tower</b> is the worldwide layer. It also adds two different models, game-i's and Qimai's, so it is only as good as the rougher of the two. A banner with no Qimai figure (a game not sold in China, or before Qimai's data) counts Japan alone and is tagged <b>JP only</b>.</p>
     </div><!-- /infoBoth -->
+
+    <div id="infoFx" hidden>
+    <h3>What it does</h3>
+    <p>The <b>US$</b> button at the top (on by default) and the <b>game-i + Qimai $</b> view show game-i's yen and the CN ranking's yuan in US dollars, each converted at the rate of <b>when the money was spent</b>: a 2021 banner is in 2021 dollars, a 2026 banner in 2026 dollars. Qimai and Sensor Tower are already in dollars and aren't converted.</p>
+    <h3>Which rate</h3>
+    <ul>
+      <li><b>A banner</b> (game-i): <b>day by day</b>. game-i's estimate is daily, so each day of the run is converted at that day's rate, weighted by how much of the run's revenue fell on it (the launch days count most).</li>
+      <li><b>A month</b> (game-i's monthly total, the CN ranking, a journal issue): <b>that month's average rate</b>, because those sources only give one figure per month.</li>
+      <li>Weekends and holidays use the last business day's rate; a banner still running uses today's rate for the days still to come.</li>
+    </ul>
+    <p id="infoFxEx"></p>
+    <h3>Why this way</h3>
+    <p>It's how revenue is translated in financial reporting: <b>IAS 21</b> converts each transaction at the rate on its date, and allows an average rate for a period (usually a month) when the rate doesn't swing much within it. Converting everything at today's rate instead would make old banners look bigger or smaller only because the yen moved. Market trackers' dollar figures follow the rate of their time too: Sensor Tower put the 17% fall of Japan's mobile game revenue in dollars in the first half of 2024 down to the weak yen.</p>
+    <p>Two side effects. The order in dollars can differ a little from the order in yen: a banner from a strong-yen year gains on one from a weak-yen year. And switching the button back to ¥ / CN¥ shows every figure exactly as its source gives it.</p>
+    <h3>Sources</h3>
+    <ul>
+      <li><b>Rates:</b> the <a href="https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html" target="_blank" rel="noopener">European Central Bank's euro reference exchange rates</a>, read through <a href="https://frankfurter.dev/" target="_blank" rel="noopener">frankfurter.dev</a> (the dollar–yen and dollar–yuan rates are worked out from the ECB's euro rates). Every business day since January 2020 is stored, and the daily refresh adds the new one. If frankfurter is down, today's rate comes from <a href="https://open.er-api.com/" target="_blank" rel="noopener">open.er-api.com</a>.</li>
+      <li><b>Method:</b> <a href="https://www.ifrs.org/issued-standards/list-of-standards/ias-21-the-effects-of-changes-in-foreign-exchange-rates/" target="_blank" rel="noopener">IAS 21, The Effects of Changes in Foreign Exchange Rates</a> (paragraphs 21–22: the transaction-date rate, and the period average as a practical shortcut).</li>
+      <li><b>Japan in dollars:</b> <a href="https://gamedevreports.substack.com/p/sensor-tower-the-japanese-mobile-815" target="_blank" rel="noopener">Sensor Tower: the Japanese mobile gaming market declined in H1'24</a>.</li>
+    </ul>
+    </div><!-- /infoFx -->
 
     <div id="infoQimai" hidden>
     <h3>What this is</h3>
@@ -473,6 +495,6 @@
 
 <div class="lightbox" id="lightbox" hidden><img id="lightboxImg" src="" alt=""></div>
 
-<script src="app.js?v=415"></script>
+<script src="app.js?v=419"></script>
 </body>
 </html>

@@ -163,6 +163,9 @@ SITE = {}
 def open_site():
     from playwright.sync_api import sync_playwright
     srv = serve(); pw = sync_playwright().start(); br = pw.chromium.launch(); pg = br.new_page()
+    # the site in its NATIVE currency: with the dollars on it rescales the yen to historical rates,
+    # and the issues must hold game-i's own yen
+    pg.add_init_script("try{ localStorage.setItem('ccy','native'); }catch(e){}")
     pg.goto(f"http://127.0.0.1:{srv.server_address[1]}/index.html", wait_until="networkidle")
     pg.wait_for_function("typeof state!=='undefined' && state.data && state.data.banners && state.qimai!==undefined")
     SITE.update(srv=srv, pw=pw, br=br, pg=pg)
@@ -355,7 +358,9 @@ def game_month(G, ym):
 def _usd_jpy():
     try: return float(json.loads((ROOT / "data" / "fx.json").read_text(encoding="utf-8"))["per_usd"]["JPY"])
     except Exception: return 150.0
-USD_JPY = _usd_jpy()     # the site's daily rate (data/fx.json), for the money tie-breaks only
+try: FX_MONTHS = json.loads((ROOT / "data" / "fx_history.json").read_text(encoding="utf-8"))["months"]
+except Exception: FX_MONTHS = {}
+USD_JPY = _usd_jpy()     # for the money tie-breaks only: the issue month's average (build_issue), else today's
 MIN_DUEL_DAYS = 3        # fewer days in the month than this: listed as too new to rank, not ranked
 NO_CHINA = set()         # games with no Qimai data at all (not sold in China)
 
@@ -462,6 +467,8 @@ def market(series, ym):
     return out
 
 def build_issue(games, ym, number, series):
+    global USD_JPY
+    USD_JPY = (FX_MONTHS.get(ym) or [_usd_jpy()])[0]
     gm = [x for x in (game_month(G, ym) for G in games.values()) if x]
     if not gm: return None
     def rank_by(key):
