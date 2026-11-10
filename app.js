@@ -293,7 +293,7 @@ const srcFmtOf = s => usdSrc(s) ? fmtUSD : s==="cn" ? fmtCNY : G;
 // the rate every converted figure uses, said the same way everywhere
 // (the rate of the day it was earned; today's for reference)
 function fxLine(cny){ const f=state.fx; if(!f || !f.per_usd) return "";
-  return `the ECB rate of the day it was earned (today $1 = ¥${f.per_usd.JPY}${cny?` = CN¥${f.per_usd.CNY}`:""}, ${per(f.date)})`; }
+  return `the ECB rate of when it was earned (today $1 = ¥${f.per_usd.JPY}${cny?` = CN¥${f.per_usd.CNY}`:""}, ${per(f.date)})`; }
 const fxSrc = f => /European Central Bank/.test(f.source||"") ? "ECB reference rate" : (f.source||"").replace(/ \(.*\)$/,"");
 
 // ---- external global monthly revenue, in USD (a comparison layer vs game-i) ----
@@ -6730,8 +6730,11 @@ function fxNote(show){
   el.hidden=!on; if(!on) return;
   el.innerHTML = s==="both"
     ? `<b>Japan + China iPhone, in US$.</b> game-i's Japan estimate (App Store + Google Play, in yen) converted at <b>${esc(fxLine())}</b>, plus Qimai's China iPhone App Store estimate (already in dollars). This is the only view that adds two sources together, and it is two stores, not worldwide revenue: Sensor Tower is the worldwide figure, and Android in China isn't in either. A banner with no Qimai figure counts Japan alone and is tagged <span class="pill">JP only</span>.`
-    : `<b>Shown in US$.</b> ${s==="cn"?"The CN ranking's yuan":"game-i's yen"} converted at <b>${esc(fxLine(s==="cn"))}</b>. Switch back with the <b>US$</b> button at the top.`;
-  el.innerHTML += ` A banner goes day by day and a month at its average, so a 2021 banner is in 2021 dollars (the yen was ~¥104 then). More in <b>How these numbers work → US$ conversion</b>.`;
+    : s==="cn"
+    ? `<b>Shown in US$.</b> The CN ranking's yuan converted at <b>each month's average ECB rate</b> (today $1 = CN¥${fxRate("CNY")}): the source gives one figure per month, so a banner's share of each month goes at that month's rate. The yuan moves less than the yen (about CN¥6.45 per dollar in 2021, CN¥7.2 in 2024), so this shifts figures by up to about 10%. Switch back with the <b>US$</b> button at the top.`
+    : `<b>Shown in US$.</b> game-i's yen converted at <b>${esc(fxLine())}</b>. Switch back with the <b>US$</b> button at the top.`;
+  el.innerHTML += s==="cn" ? ` More in <b>How these numbers work → US$ conversion</b>.`
+    : ` A banner goes day by day and a month at its average, so a 2021 banner is in 2021 dollars (the yen was ~¥104 then). More in <b>How these numbers work → US$ conversion</b>.`;
 }
 // the banner window's "Japan + China iPhone" line: game-i in dollars plus Qimai
 function bothLine(b){
@@ -6749,7 +6752,9 @@ function showInfoTab(which){
   if($("#infoBoth")){ $("#infoBoth").hidden = which!=="both"; const r=$("#infoFxRate"); if(r) r.textContent=fxLine(true)||"the latest daily rate"; }
   if($("#infoFx")){ $("#infoFx").hidden = which!=="fx"; const ex=$("#infoFxEx"), now=fxRate("JPY");
     const m=["2021-01","2024-01"].map(ym=>[ym, fxMonth(ym,0)]).filter(([,r])=>r);
-    if(ex) ex.innerHTML = now && m.length===2 && state.fx ? `For example, a dollar bought <b>¥${m[0][1].toFixed(1)}</b> on average in January 2021, <b>¥${m[1][1].toFixed(1)}</b> in January 2024 and <b>¥${now}</b> today (${per(state.fx.date)}). So ¥1B of spending is <b>${fmtUSD(1e9/m[0][1])}</b> in January 2021, <b>${fmtUSD(1e9/m[1][1])}</b> in January 2024 and <b>${fmtUSD(1e9/now)}</b> if spent today.` : ""; }
+    const c=["2021-11","2024-07"].map(ym=>[ym, fxMonth(ym,1)]).filter(([,r])=>r), cnow=fxRate("CNY");
+    if(ex) ex.innerHTML = (now && m.length===2 && state.fx ? `<b>The yen:</b> a dollar bought <b>¥${m[0][1].toFixed(1)}</b> on average in January 2021, <b>¥${m[1][1].toFixed(1)}</b> in January 2024 and <b>¥${now}</b> today (${per(state.fx.date)}). So ¥1B of spending is <b>${fmtUSD(1e9/m[0][1])}</b> in January 2021, <b>${fmtUSD(1e9/m[1][1])}</b> in January 2024 and <b>${fmtUSD(1e9/now)}</b> if spent today.` : "")
+      + (cnow && c.length===2 ? `<br><b>The yuan</b> moves less: <b>CN¥${c[0][1].toFixed(2)}</b> per dollar in November 2021 (where the CN ranking starts), <b>CN¥${c[1][1].toFixed(2)}</b> in July 2024 and <b>CN¥${cnow}</b> today, so CN¥1B is <b>${fmtUSD(1e9/c[0][1])}</b>, <b>${fmtUSD(1e9/c[1][1])}</b> and <b>${fmtUSD(1e9/cnow)}</b>.` : ""); }
   const card=infoModal.querySelector(".modal-card"); if(card) card.scrollTop=0;
 }
 $("#infoToggle").querySelectorAll("[data-info]").forEach(btn=>btn.onclick=()=>showInfoTab(btn.dataset.info));
