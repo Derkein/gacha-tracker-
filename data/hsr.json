@@ -3173,7 +3173,7 @@
    "cumtot": 66,
    "year": 2026,
    "related": "銀狼LV.999、火花、爻光",
-   "banner_img": null,
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/community/2026/11/09/39bcb0d81ec878677ae17bd5a3c4175c_1839383371156467265.png",
    "rerun": false,
    "ongoing": true,
    "rank_series": [
@@ -3186,7 +3186,8 @@
    "agents": [
     "Aeon ★ Aha"
    ],
-   "accent": "#4a4ad8"
+   "accent": "#4a4ad8",
+   "bar": "#cd0a0a"
   }
  ]
 }
