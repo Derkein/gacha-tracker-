@@ -46,6 +46,20 @@ def zl_of(tag, ym):
     return {"lo": r["rev_min_cny"], "hi": hi, "metric": r.get("metric_cn"), "conf": r.get("confidence"),
             "mihoyo": bool(r.get("excludes_mihoyo_payment_center"))}
 
+def zl_hist(tag, ym):
+    """Where the month sits in the game's own Global history, on the same basis only: the series
+    switched from 总收入 (net) to 总流水 (gross) in Nov 2023, so months across it aren't ranked
+    together. Same shape as the Japan `hist`."""
+    me = zl_of(tag, ym)
+    if not me: return None
+    mid = lambda z: (z["lo"] + z["hi"]) / 2
+    ms = {k: mid(z) for k in ZL.get(tag, {}) if k <= ym for z in [zl_of(tag, k)] if z and z["metric"] == me["metric"]}
+    if len(ms) < 3: return None
+    v = ms[ym]; ordered = sorted(ms.values(), reverse=True)
+    return {"rank": ordered.index(v) + 1, "of": len(ordered), "first": min(ms), "metric": me["metric"],
+            "best_since": next((k for k in sorted(ms, reverse=True) if k < ym and ms[k] >= v), None),
+            "low_since": next((k for k in sorted(ms, reverse=True) if k < ym and ms[k] <= v), None)}
+
 EXTRACT = r"""
 async (tag) => {
   await selectGame(tag, true);
@@ -69,7 +83,10 @@ async (tag) => {
       qmRank: (typeof qimaiRankInfo === "function" && qimaiRankInfo(b)) || null,
       // the day-indexed series the tracker's Compare (bannerSnapshot -> buildComparison) works on --
       // the site's own cmpSeries, so a rank lifted by a mid-run launch is flagged the same way
-      snap: cmpSeries(b) };
+      snap: cmpSeries(b),
+      // the banner's share of each month's Global (天天) total, the tracker's own bannerCN split: [lo, hi] CN¥
+      zl: Object.fromEntries(((typeof bannerCN === "function" && bannerCN(b).months) || [])
+            .filter(m => m.cnLo != null).map(m => [m.ym, [Math.round(m.contribLo), Math.round(m.contribHi)]])) };
   });
   const monthly = {};
   for (const ym in state.monthly) monthly[ym] = { ours: state.monthly[ym].ours, banners: state.monthly[ym].banners.map(x => [x.i, x.rev]) };
@@ -316,7 +333,7 @@ def game_month(G, ym):
                      "alltime": [b["rank"], G["count"]], "year_rank": [b["yrank"], b["ytot"]] if b["yrank"] else None,
                      "cn_alltime": [b["qmRank"]["rank"], b["qmRank"]["of"]] if b["qmRank"] else None,
                      "days": month_days(b, ym), "run_days": run_days(b), "day0": max(0, (month_start(ym) - datetime.date.fromisoformat(b["start"])).days),
-                     "jp_daily": b["jpd"], "cn_daily": b["qmd"],
+                     "jp_daily": b["jpd"], "cn_daily": b["qmd"], "zl_month": (b.get("zl") or {}).get(ym),
                      # daily chart ranks, for the openings' equal-window head-to-heads (not written out)
                      "_snap": b["snap"],
                      "img": b["img"], "face": b["face"], "icons": b["icons"], "color": b["color"], "agents": b["agents"],
@@ -342,6 +359,7 @@ def game_month(G, ym):
            for b in sorted(G["banners"], key=lambda b: b["start"]) if b["start"] > m_end][:2]
     zl, zlp = zl_of(G["tag"], ym), zl_of(G["tag"], prev_ym(ym))
     return {"tag": G["tag"], "name": NAMES.get(G["tag"], G["tag"]), "jpname": G["jpname"], "next": nxt, "zl": zl, "zl_prev": zlp,
+            "zl_hist": zl_hist(G["tag"], ym),
             "icon": f"icons/games/{G['tag']}.png", "jp": jp, "jp_src": jp_src, "jp_prev": pj,
             "cn": cn, "cn_prev": pcn, "cn_partial": bool(G["qimaiLast"] and G["qimaiLast"][:7] == ym and int(G["qimaiLast"][8:]) < days_in(ym)),
             "hist": hist, "measures": used, "banners": rows}
@@ -442,6 +460,7 @@ def market(series, ym):
     month ranks among this year's months so far."""
     out = {}
     pm = prev_ym(ym)
+    zbreak = any(zl_of(t, ym) and zl_of(t, pm) and zl_of(t, ym)["metric"] != zl_of(t, pm)["metric"] for t in ZL)
     for key in ("jp", "cn", "zl"):
         cur = (series.get(ym) or {}).get(key) or {}
         if not cur:
@@ -461,7 +480,8 @@ def market(series, ym):
                     "year_rank": ranked.index(total) + 1, "year_n": len(ranked)}
     if out.get("zl"):
         lo = sum(z["lo"] for z in (zl_of(t, ym) for t in ZL) if z); hi = sum(z["hi"] for z in (zl_of(t, ym) for t in ZL) if z)
-        out["zl"].update({"lo": lo, "hi": hi, "video": ZL_VIDEO.get(ym)})
+        out["zl"].update({"lo": lo, "hi": hi, "video": ZL_VIDEO.get(ym), "metric": next((zl_of(t, ym)["metric"] for t in ZL if zl_of(t, ym)), None),
+                          "break": zbreak})       # Nov 2023: net -> gross, so no change on the month across it
     latest_zl = max((m for t in ZL for m in ZL[t]), default=None)
     out["zl_pending"] = out.get("zl") is None and latest_zl is not None and ym > latest_zl
     return out
@@ -475,6 +495,8 @@ def build_issue(games, ym, number, series):
         have = sorted([g for g in gm if g[key]], key=lambda g: -g[key])
         for n, g in enumerate(have, 1): g[f"{key}_rank"] = [n, len(have)]
     rank_by("jp"); rank_by("cn")
+    have = sorted([g for g in gm if g["zl"]], key=lambda g: -(g["zl"]["lo"] + g["zl"]["hi"]))
+    for n, g in enumerate(have, 1): g["zl_rank"] = [n, len(have)]
     order = sorted(gm, key=lambda g: (g["tag"] not in FEATURED, -(g["jp"] or 0)))
     new = [{**{k: v for k, v in r.items() if k not in ("mranks", "score")}, "tag": g["tag"], "game": g["name"]}
            for g in gm for r in g["banners"] if r["new"]]
@@ -492,13 +514,18 @@ def build_issue(games, ym, number, series):
     allb = [{**{k: v for k, v in r.items() if k not in ("mranks", "score")}, "tag": g["tag"], "game": g["name"],
              "w0": r["day0"], "wdays": r["days"]} for g in gm for r in g["banners"]]
     top_note = duel_order(allb)
-    top = [{k: r[k] for k in ("label", "tag", "game", "new", "rerun", "rev_month", "cn_month", "jp_peak", "cn_peak", "days",
+    top = [{k: r[k] for k in ("label", "tag", "game", "new", "rerun", "rev_month", "cn_month", "zl_month", "jp_peak", "cn_peak", "days",
                               "img", "face", "art", "art_face", "icons", "color", "start", "end", "beat")} for r in allb if r["beat"]][:10]
+    # the Global edition's cover: the banner with the biggest share of the month's Global totals
+    gpool = sorted([dict(r, tag=g["tag"], game=g["name"]) for g in gm for r in g["banners"] if r.get("zl_month") and (r["img"] or r.get("art"))],
+                   key=lambda r: -(r["zl_month"][0] + r["zl_month"][1]))
+    gcover = gpool[0] if gpool else None
     for g in gm:                                      # the daily ranks were only needed for the duels
         for r in g["banners"]: r.pop("_jpr", None); r.pop("_cnr", None); r.pop("_snap", None)
     return {"ym": ym, "number": number, "built": datetime.date.today().isoformat(), "top": top, "market": market(series, ym), "top_pair": top_pair, "top_note": top_note,
             "cover": cover and {k: cover[k] for k in ("label", "tag", "game", "img", "face", "art", "art_face", "color", "rev_month", "rerun")},
-            "debuts": [{k: r[k] for k in ("label", "tag", "game", "rev_month", "cn_month", "jp_peak", "cn_peak", "days", "rev_total", "rerun", "ongoing", "img", "face", "art", "art_face", "icons", "color", "start", "beat")} for r in debuts],
+            "gcover": gcover and {k: gcover[k] for k in ("label", "tag", "game", "img", "face", "art", "art_face", "color", "zl_month", "rerun")},
+            "debuts": [{k: r[k] for k in ("label", "tag", "game", "rev_month", "cn_month", "zl_month", "jp_peak", "cn_peak", "days", "rev_total", "rerun", "ongoing", "img", "face", "art", "art_face", "icons", "color", "start", "beat")} for r in debuts],
             "games": order}
 
 DRY = {}
@@ -539,8 +566,13 @@ def main():
                 continue
             f.write_text(json.dumps(iss, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
         notes = OUT / "notes" / f"{ym}.json"
-        hl = json.loads(notes.read_text(encoding="utf-8")).get("headline") if notes.exists() else None
+        nj = json.loads(notes.read_text(encoding="utf-8")) if notes.exists() else {}
+        hl = nj.get("headline"); ghl = (nj.get("global") or {}).get("headline")
+        mk = iss.get("market") or {}
         index.append({"ym": ym, "number": iss["number"], "cover": iss["cover"], "headline": hl,
+                      # the mid-month Global edition: out once 天天's chart for the month is in
+                      "zl": bool(mk.get("zl")), "zl_pending": bool(mk.get("zl_pending")), "gcover": iss.get("gcover"), "ghead": ghl,
+                      "zl_total": [mk["zl"]["lo"], mk["zl"]["hi"]] if mk.get("zl") else None,
                       "games": [g["tag"] for g in iss["games"]], "written": notes.exists()})
     if a.dry:
         pathlib.Path(a.dry).write_text(json.dumps(DRY, ensure_ascii=False), encoding="utf-8"); close_site()

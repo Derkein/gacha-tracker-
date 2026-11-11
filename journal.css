@@ -307,6 +307,57 @@ mark.bad{color:color-mix(in srgb, var(--dn) 70%, var(--ink))}
 .issnav a{text-decoration:none; color:var(--ink2)} .issnav a:hover{color:var(--ink)}
 .issnav .arch{font-weight:700}
 
+/* ---- the two editions: start of month (Japan + China iPhone) / mid-month Global ----
+   Global's colour is the tracker's own for that layer (.cn-chip crimson). */
+:root{--gl:#b0384a; --glbg:#b0384a}
+@media (prefers-color-scheme:dark){ :root:not([data-theme=light]){--gl:#f08a99} }
+:root[data-theme=dark]{--gl:#f08a99}
+.edwrap{max-width:1440px; margin:0 auto; padding:16px 16px 0}
+.edbar{display:grid; grid-template-columns:1fr 1fr; border:2px solid var(--rule2); border-radius:6px; overflow:hidden; background:var(--paper)}
+.ed{appearance:none; border:0; margin:0; font:inherit; text-align:left; cursor:pointer; background:none; color:var(--ink);
+  padding:14px 18px 13px; display:flex; flex-direction:column; gap:3px; font-family:var(--sans); transition:background .15s}
+.ed + .ed{border-left:2px solid var(--rule2)}
+.ed:hover{background:var(--paper2)}
+.ed:focus-visible{outline:3px solid var(--gl); outline-offset:-5px}
+.ed-k{font-size:12px; letter-spacing:.16em; text-transform:uppercase; font-weight:700; color:var(--muted); display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+.ed b{font-family:var(--serif); font-size:clamp(21px,2.8vw,30px); line-height:1.1; display:flex; align-items:center; gap:8px}
+.ed small{font-size:13px; color:var(--muted)}
+.ed.on{background:var(--ink); color:var(--paper); cursor:default}
+.ed.on .ed-k,.ed.on small{color:color-mix(in srgb, var(--paper) 72%, transparent)}
+.ed-global.on{background:var(--glbg); color:#fff}
+.ed-global.on .ed-k,.ed-global.on small{color:rgba(255,255,255,.8)}
+.ed-st{font-size:10.5px; letter-spacing:.1em; padding:2px 8px; border-radius:999px; display:inline-flex; align-items:center; gap:5px}
+.ed-st.out{background:color-mix(in srgb, var(--up) 18%, transparent); color:var(--up)}
+.ed-st.pend{background:color-mix(in srgb, #d9a400 20%, transparent); color:#b88a00}
+.ed-st.pend i{width:6px; height:6px; border-radius:50%; background:#d9a400; animation:lateBlink 1.4s ease-in-out infinite}
+.ed-st.none{background:var(--paper2); color:var(--muted)}
+.ed.on .ed-st{background:rgba(255,255,255,.2); color:#fff}
+.ednote{font-family:var(--sans); font-size:14px; color:var(--ink2); margin:10px 2px 0; padding-left:12px; border-left:3px solid var(--gl)}
+.ednote.warn{border-left-color:#d9a400}
+.ednote a{color:inherit}
+svg.globe{width:.9em; height:.9em; flex:none; fill:none; stroke:currentColor; stroke-width:1.6; vertical-align:-.1em}
+.ed b svg.globe{width:.8em; height:.8em}
+.mast-line .ml-gl{color:var(--gl); font-weight:700}
+.mt-tile.gl{border-top:4px solid var(--gl)} .mt-tile.gl .mt-k{color:var(--gl)}
+.mt-tile.gl b{font-size:clamp(30px,4vw,44px)}
+.chartcols.gl1{grid-template-columns:minmax(0,1fr)}
+@media (min-width:761px){ .glcol .val{min-width:9.5em} }   /* ranges: keep the bars aligned */
+.dgl{border-bottom:0; margin:7px 0 -4px} .dgl span{display:flex; align-items:center; gap:5px; color:var(--gl); font-weight:700}
+.stats .glcell span{display:flex; align-items:center; gap:5px; color:var(--gl); font-weight:700}
+.bc-m .k svg.globe{color:var(--gl)}
+.arch-gl{font-family:var(--sans); font-size:.36em; letter-spacing:.14em; text-transform:uppercase; color:var(--gl); vertical-align:.5em; margin-left:6px}
+.agl{font-family:var(--sans); font-style:normal; font-size:13px; font-weight:700; display:flex; align-items:center; gap:5px; color:#ffb3bf; margin-top:3px}
+.agl.none{color:rgba(255,255,255,.7); font-weight:600}
+.acard.nogl{opacity:.45; filter:grayscale(.6)} .acard.nogl:hover{opacity:.8}
+/* Global headlines run longer: a deeper shade so the issue line above them stays readable */
+.is-gl .acard::after{background:linear-gradient(0deg,rgba(0,0,0,.92),rgba(0,0,0,.6) 50%,rgba(0,0,0,0) 80%)}
+.is-gl .atx span{opacity:.9; text-shadow:0 1px 6px rgba(0,0,0,.7)}
+@media (max-width:760px){
+  .edwrap{padding:12px 12px 0}
+  .ed{padding:10px 11px} .ed small{display:none} .ed-k{font-size:10.5px; letter-spacing:.1em; gap:5px}
+  .ed b{font-size:18px}
+}
+
 /* ---- archive ---- */
 .arch-h{font-size:clamp(30px,5vw,48px); margin:28px 0 0; letter-spacing:-.02em}
 .arch-y{font-family:var(--sans); font-size:13.5px; letter-spacing:.2em; color:var(--muted); border-top:3px solid var(--rule2); padding-top:8px; margin:30px 0 12px}
@@ -326,6 +377,7 @@ mark.bad{color:color-mix(in srgb, var(--dn) 70%, var(--ink))}
   .mast-in{grid-template-columns:auto 1fr auto; gap:8px; padding:10px 12px 6px} .mast-title{font-size:19px}
   .mast-back{font-size:0} .mast-back::before{content:"←"; font-size:18px}
   .mast-btn{padding:4px 9px; font-size:12px}
+  .mast-in{gap:5px} .mast-side{gap:4px}
   .mast-line{gap:12px; font-size:10px}
   .cover{min-height:540px}
   .cover::after{background:linear-gradient(0deg, rgba(0,0,0,.88) 0%, rgba(0,0,0,.55) 50%, rgba(0,0,0,.1) 100%)}
