@@ -202,7 +202,7 @@ function fmtG(oku){
 // How: when a game loads in dollars, fxAdjust rescales its yen so that dividing by TODAY's rate
 // (G, jpUSD) gives the dollars at the rate of the day it was earned — a banner by its days
 // (each day weighted by its share of the run, from the rank curve), a game-i month by that
-// month's average, and the CN ranking's yuan by its month's average (fxAdjustCN). Every sum,
+// month's average, and the Global ranking's yuan by its month's average (fxAdjustCN). Every sum,
 // sort and chart then works in historical dollars with no other change. IAS 21's rule: the
 // transaction-date rate, with a period average as the practical shortcut.
 let _ccy = (()=>{ try{ return localStorage.getItem("ccy")==="native" ? "native" : "usd"; }catch(e){ return "usd"; } })();
@@ -247,7 +247,7 @@ function fxAdjust(data){
   if(data.monthly) for(const ym in data.monthly){ const r=fxMonth(ym,0); if(r) data.monthly[ym]*=now/r; }
   return data;
 }
-// the CN ranking's yuan, month by month; the originals are kept so the toggle can undo it
+// the Global ranking's yuan, month by month; the originals are kept so the toggle can undo it
 function fxAdjustCN(){
   const games=state.cn && state.cn.games; if(!games) return;
   const on=usdOn() && !!(state.fxh && state.fxh.months), now=fxRate("CNY");
@@ -392,7 +392,7 @@ function stChip(rev, method, extra){
   return `<span class="st-chip${approx?" est":""}" title="${esc(tip)}">ST ${fmtUSD(rev)}${approx?"*":""}</span>`;
 }
 
-// ---- CN monthly revenue layer, in CNY (a third comparison layer) ----------------
+// ---- Global monthly revenue layer, in CNY (a third comparison layer) ----------------
 // Source: 天天背锅崩坏娘's monthly 二次元手游全球总流水 ranking on Bilibili, the longest
 // continuous CN-side gacha record there is (Nov 2021 -> present, no gaps). The author
 // publishes it only as burned-in captions in a video, so scripts/scrape_bilibili_cn.py
@@ -456,7 +456,7 @@ function cnGameMonths(tag){
   return out;
 }
 function cnMonth(ym, tag){ return cnGameMonths(tag)[ym]||null; }
-// Sum CN monthly revenue over months matching pred(ym) -> {lo,hi,months,mixed} or null.
+// Sum Global monthly revenue over months matching pred(ym) -> {lo,hi,months,mixed} or null.
 function cnSum(pred, tag){
   const mm=cnGameMonths(tag); let lo=0, hi=0, months=0; const labels=new Set();
   for(const ym in mm){ if(!pred(ym)) continue;
@@ -513,7 +513,7 @@ function bannerCN(b){
 function cnChip(row, extra){
   if(!row) return "";
   const est = row.mihoyo || row.hi>row.lo;
-  const tip = "天天背锅崩坏娘's monthly CN ranking — GLOBAL revenue, all platforms "
+  const tip = "天天背锅崩坏娘's monthly ranking — GLOBAL revenue, all platforms "
     + "(mobile + PC + PlayStation), in yuan. Rank-derived estimate, not reported sales"
     + (row.metric?`. Metric on screen: ${row.metric}`:"")
     + (row.mihoyo?". miHoYo's 支付中心 direct top-up channel is excluded, so this is understated — hence the range":"")
@@ -638,7 +638,7 @@ function qimaiBurnBlock(b){
 }
 // "How this run compares" on Qimai China-iPhone dollars: where the run's total sits among
 // the game's banners (all-time + this year), and the nearest peers with their figures.
-// "How this run compares" for the Qimai tab. Same structure as the CN tab (it's the same
+// "How this run compares" for the Qimai tab. Same structure as the Global tab (it's the same
 // China chart), so it carries the full set game-i's tab has — placement scopes, percentile,
 // median, top-20/50 hold, rank slip, the anchor, and the two face strips — but the money is
 // Qimai's REAL per-banner China-iPhone revenue, not the CN¥ estimate. Rank readings come
@@ -913,7 +913,7 @@ async function init(){
   // external comparison layer. Best-effort: a miss just hides the ST figures.
   // reported = the monthly Sensor Tower report figures, read from the report images.
   try { state.reported = await getJSON("data/reported_revenue.json"); } catch(e){ state.reported=null; }
-  // CN monthly layer. Best-effort like the others: a miss just hides the CN figures.
+  // Global monthly layer. Best-effort like the others: a miss just hides the Global figures.
   try { state.cn = await getJSON("data/cn_monthly.json"); } catch(e){ state.cn=null; }
   // today's exchange rates for the US$ toggle. Best-effort: without them the toggle hides.
   try { state.fx = await getJSON("data/fx.json"); } catch(e){ state.fx=null; }
@@ -1192,7 +1192,7 @@ function renderStats(){
   // tablet (--half columns), two columns on a phone. An odd last cell spans the gap it leaves.
   const n=(cells.match(/<div class="tile[ "]/g)||[]).length, half=n<=4?n:3;
   $("#tiles").innerHTML=`<div class="tiles-in${n%half?" odd-t":""}${n%2?" odd-p":""}" style="--n:${n};--half:${half}">${cells}</div>`;
-    const srcs = "game-i.daa.jp + Sensor Tower reports" + (state.cn?" + CN monthly ranking":"");
+    const srcs = "game-i.daa.jp + Sensor Tower reports" + (state.cn?" + Global monthly ranking":"");
   $("#updated").textContent=`sources: ${srcs} · updated ${new Date(state.data.updated).toISOString().slice(0,10)}`;
 }
 
@@ -1450,9 +1450,9 @@ function rowHTML(b,rank,max){
     valStr = `<span class="val pendingval" title="This banner isn't in game-i's data yet, so there's no daily revenue estimate — it'll fill in automatically once game-i lists it.">not on game-i yet</span>`;
   } else if(state.dataSource==="cn"){ const cn=bannerCN(b); val=cnMid({lo:cn.lo,hi:cn.hi});
     valStr = b._synthetic ? `<span class="val muted">—</span>`
-      : !cn.hasData ? `<span class="val nodata" title="This banner ran before the CN ranking series starts (Nov 2021), or in months it doesn't cover">no CN data</span>`
+      : !cn.hasData ? `<span class="val nodata" title="This banner ran before the Global ranking series starts (Nov 2021), or in months it doesn't cover">no CN data</span>`
       : `<span class="val">≈${fmtCNYRange(cn.lo,cn.hi)}`
-        + (cn.partial?`<span class="partialbadge" title="The CN series covers only ${cn.covered} of the ${cn.covered+cn.missing} months this banner ran — total is incomplete">partial</span>`:"")
+        + (cn.partial?`<span class="partialbadge" title="The Global series covers only ${cn.covered} of the ${cn.covered+cn.missing} months this banner ran — total is incomplete">partial</span>`:"")
         + (cn.mixed?`<span class="partialbadge mixbadge" title="This banner spans the Nov 2023 change from 总收入 (net of the store cut) to 总流水 (gross billings) — the two halves are not the same measure">mixed basis</span>`:"")
         + `</span>`;
   } else if(stMode){ const st=bannerST(b); val=st.total||0;
@@ -1734,7 +1734,7 @@ const SCORE_SRCS = [
   {k:"gamei",  lab:"game-i",       full:"game-i — Japan mobile (¥)"},
   {k:"qimai",  lab:"Qimai",        full:"Qimai — China iPhone ($)"},
   {k:"st",     lab:"Sensor Tower", full:"Sensor Tower — worldwide mobile ($)"},
-  {k:"cn",     lab:"CN",           full:"CN — all-platform incl. PC/console (CN¥)"},
+  {k:"cn",     lab:"Global",       full:"Global — all-platform incl. PC/console (CN¥)"},
   {k:"jp",     lab:"JP chart",     full:"JP chart — Japan iOS top-grossing, revenue-equivalent", chart:true},
   {k:"cnrank", lab:"CN chart",     full:"CN chart — China iPhone top-grossing, revenue-equivalent", chart:true},
 ];
@@ -1936,7 +1936,7 @@ function renderUSDRanking(pool, on, bar){
     html+=scoredRowHTML(r.b, r.pos, 100*r.total/max, fmtUSD(r.total), stat, false);
   }
   const ids=on.map(s=>s.k), only=(...k)=>ids.length===k.length && k.every(x=>ids.includes(x));
-  const overlap = ids.includes("cn") && ids.length>1 ? `<b>CN</b> is already worldwide on every platform, so it contains every other source here`
+  const overlap = ids.includes("cn") && ids.length>1 ? `<b>Global</b> is already worldwide on every platform, so it contains every other source here`
     : ids.includes("st") && (ids.includes("gamei")||ids.includes("qimai")) ? `<b>Sensor Tower</b> is worldwide mobile, so it already contains ${ids.includes("gamei")&&ids.includes("qimai")?"Japan and China iPhone":ids.includes("gamei")?"Japan":"China iPhone"}` : "";
   html+=`<div class="stnote cr-note"><b>Total revenue — every selected source added up, in US$.</b> `
     + `game-i's yen and CN's yuan are converted at ${esc(fxLine(true))}; Qimai and Sensor Tower are already in dollars. A 2021 banner is in 2021 dollars: each day at that day's rate, each CN month at its average. `
@@ -2116,7 +2116,7 @@ function graphTimeline(){ return state.graphLayout==="together"; }
 function renderGraph(){
   state.data.banners.forEach((x,i)=>x._i=i);
   const money = state.dataSource!=="gamei";
-  const srcLbl = state.dataSource==="st" ? "Sensor Tower" : state.dataSource==="cn" ? "CN" : state.dataSource==="qimai" ? "Qimai" : state.dataSource==="both" ? "game-i + Qimai" : "";
+  const srcLbl = state.dataSource==="st" ? "Sensor Tower" : state.dataSource==="cn" ? "Global" : state.dataSource==="qimai" ? "Qimai" : state.dataSource==="both" ? "game-i + Qimai" : "";
   let pool = poolBanners();                     // graph ignores the character search entirely
   if(money) pool = pool.filter(b=>graphVal(b)>0);  // money layers: only banners that source actually covers
   if(!pool.length){
@@ -2276,7 +2276,7 @@ function monthSVG(months, gmax, tl){
 function monthYearsShown(all){ const p=(state.graphYearsSel||[]).filter(y=>all.includes(y)); return p.length?p:all; }
 function renderMonthGraph(){
   const money = state.dataSource!=="gamei", fmt=monthFmt(), draw = monthSVG;
-  const srcLbl = state.dataSource==="st" ? "Sensor Tower" : state.dataSource==="cn" ? "CN" : state.dataSource==="qimai" ? "Qimai" : state.dataSource==="both" ? "game-i + Qimai" : "game-i";
+  const srcLbl = state.dataSource==="st" ? "Sensor Tower" : state.dataSource==="cn" ? "Global" : state.dataSource==="qimai" ? "Qimai" : state.dataSource==="both" ? "game-i + Qimai" : "game-i";
   const all=graphMonths().filter(ym=>monthVal(ym)>0), allYears=[...new Set(all.map(ym=>ym.slice(0,4)))].sort();
   const years=monthYearsShown(allYears), months=all.filter(ym=>years.includes(ym.slice(0,4)));
   if(!months.length){
@@ -2309,7 +2309,7 @@ function monthBannerRow(x, est, fmt){
 }
 function showMonthTip(ym, e){
   const fmt=monthFmt(), est = state.dataSource==="st"||state.dataSource==="cn";
-  const srcLbl = state.dataSource==="st" ? "Sensor Tower · combined" : state.dataSource==="cn" ? "CN ranking · global"
+  const srcLbl = state.dataSource==="st" ? "Sensor Tower · combined" : state.dataSource==="cn" ? "Global ranking · all platforms"
     : state.dataSource==="qimai" ? "Qimai · China iPhone" : state.dataSource==="both" ? "game-i + Qimai · Japan + China iPhone" : ((state.data.monthly||{})[ym]!=null ? "game-i monthly · 月次売上予測" : "game-i · from daily ranks");
   const list=monthBanners(ym), shown=list.slice(0,8), partial=ym===new Date().toISOString().slice(0,7), lead=monthLead(ym);
   tip.innerHTML=`<div class="body"><h4>${MONTHS[+ym.slice(5,7)-1]} ${ym.slice(0,4)}${partial?` <span class="mt-so">so far</span>`:""}</h4>
@@ -2583,8 +2583,8 @@ const SPLIT_RATIO= 1.5;  // ...and it must dominate the next-largest break
 function levelWord(p){
   return p>=80 ? "very high" : p>=65 ? "high" : p>=36 ? "average" : p>=21 ? "low" : "very low";
 }
-const SHORT={gi:"GI", qm:"QM", st:"ST", cn:"CN", jr:"JR", cr:"CR"};
-const FULL={gi:"game-i", qm:"Qimai", st:"Sensor Tower", cn:"CN", jr:"JP rank", cr:"CN rank"};
+const SHORT={gi:"GI", qm:"QM", st:"ST", cn:"GL", jr:"JR", cr:"CR"};
+const FULL={gi:"game-i", qm:"Qimai", st:"Sensor Tower", cn:"Global", jr:"JP rank", cr:"CN rank"};
 const AG_SRC=["gi","qm","st","cn","jr","cr"];
 
 function agreementVerdict(r, unit){
@@ -2699,7 +2699,7 @@ function renderAgreement(){
         <div class="ag-corrbar"><span style="width:${pc}%"></span></div>
         <span class="ag-corrn">${rhoWord(v)} · ${p.r.n} shared ${unit}s</span></div>`;}).join("")}</div>`:"";
 
-  const NAME={gi:"game-i", qm:"Qimai", st:"Sensor Tower", cn:"CN", jr:"JP rank", cr:"CN rank"};
+  const NAME={gi:"game-i", qm:"Qimai", st:"Sensor Tower", cn:"Global", jr:"JP rank", cr:"CN rank"};
   const bar=(k,v,val,tip)=>v==null
     ? `<div class="ag-src ag-${k} ag-na" title="No ${NAME[k]} figure for this ${unit}"><span class="ag-lab">${k.toUpperCase()}</span><div class="ag-track"></div><span class="ag-pct">—</span><span class="ag-val">no data</span></div>`
     : `<div class="ag-src ag-${k}" title="${esc(tip||"")}"><span class="ag-lab">${k.toUpperCase()}</span><div class="ag-track"><span style="width:${v}%"></span></div><span class="ag-pct">${v}</span><span class="ag-val">${val}</span></div>`;
@@ -2724,7 +2724,7 @@ function renderAgreement(){
         ${bar("gi",r.gi, r.giRaw!=null?G(r.giRaw):"—", `game-i · Japan mobile${pct(r.gi)}`)}
         ${bar("qm",r.qm, r.qmRaw!=null?fmtUSD(r.qmRaw):"—", `Qimai · China iPhone${pct(r.qm)}`)}
         ${bar("st",r.st, r.stRaw!=null?fmtUSD(r.stRaw):"—", `Sensor Tower · worldwide mobile${pct(r.st)}`)}
-        ${bar("cn",r.cn, r.cnRaw?fmtCNYRange(r.cnRaw.lo,r.cnRaw.hi):"—", `CN ranking · worldwide, all platforms${pct(r.cn)}`)}
+        ${bar("cn",r.cn, r.cnRaw?fmtCNYRange(r.cnRaw.lo,r.cnRaw.hi):"—", `Global ranking · worldwide, all platforms${pct(r.cn)}`)}
         ${bar("jr",r.jr, r.jrRaw!=null?"#"+Math.round(r.jrRaw):"—", `JP store rank · game-i ${rk}${pct(r.jr)}`)}
         ${bar("cr",r.cr, r.crRaw!=null?"#"+Math.round(r.crRaw):"—", `China iOS store rank ${rk}${pct(r.cr)}`)}
       </div>`;
@@ -2753,11 +2753,11 @@ function renderAgreement(){
 
   const eraTxt=A.eras.map(e=>`${e.era==="all"?"whole history":e.era} (${e.months} months)`).join(", ");
   const intro = banner
-   ? `<div class="yr-note"><b>Do the sources agree this was a strong banner?</b> Every banner is scored against <b>this game's other banners</b> on each source: the bars show its percentile in that source's banner pool, so 90 means "one of this game's best banners" for that source whatever the units. The per-banner Qimai/Sensor&nbsp;Tower/CN figures are the same estimates the banner cards use (each is game-i's + Qimai's month share, blended, applied to that source's monthly total and summed over the banner's run); the two <b>rank</b> bars are the banner's <b>peak</b> (best) store place while it ran — an independent, estimate-free cross-check.
+   ? `<div class="yr-note"><b>Do the sources agree this was a strong banner?</b> Every banner is scored against <b>this game's other banners</b> on each source: the bars show its percentile in that source's banner pool, so 90 means "one of this game's best banners" for that source whatever the units. The per-banner Qimai/Sensor&nbsp;Tower/Global figures are the same estimates the banner cards use (each is game-i's + Qimai's month share, blended, applied to that source's monthly total and summed over the banner's run); the two <b>rank</b> bars are the banner's <b>peak</b> (best) store place while it ran — an independent, estimate-free cross-check.
     <br><br>A banner where the bars line up is one every source calls the same. A banner where one bar stands apart is the interesting case — a <b>region-specific</b> hit (a Japan-loved character lifts game-i alone) or a <b>platform-specific</b> one (a PC/console push lifts only CN).
     <br><br><b>How each banner is labelled.</b> The chip names <b>which sources cluster</b> and what each says. Levels run <b>very low</b> (0–20), <b>low</b> (21–35), <b>average</b> (36–64), <b>high</b> (65–79), <b>very high</b> (80+). Hover a chip for the exact percentiles and the arithmetic. Percentiles are over the whole banner catalogue — no era split, since a banner is one event.</div>`
-   : `<div class="yr-note"><b>These bases measure different things</b> — four are revenue: game-i (<b>Japan mobile</b>, yen), Qimai (<b>China iPhone</b>, dollars), Sensor Tower (<b>worldwide mobile</b>, dollars) and the CN ranking (<b>worldwide all-platform</b>, yuan); two are store <b>rank</b>: game-i's <b>JP top-grossing</b> place and the <b>China iOS</b> place (lower is better). Their raw figures are not comparable and are never added. What <i>is</i> comparable is where each month sits <b>inside its own source's history</b>: the bars show each month's percentile against that source's other months, so 90 means "one of this source's best months" whatever the units — and a strong month should read high on the revenue <i>and</i> the rank bases, so the two ranks are an independent cross-check on the money estimates.
-    <br><br>A month where the bars line up is one all the covering sources agree about. A month where one bar stands apart is more interesting — often a <b>region-specific</b> event (a Japan-heavy banner lifts game-i alone) or a <b>platform-specific</b> one (a PC or console push lifts only the CN figure). Each row also lists the <b>banners that ran</b> that month — tap one to open it.
+   : `<div class="yr-note"><b>These bases measure different things</b> — four are revenue: game-i (<b>Japan mobile</b>, yen), Qimai (<b>China iPhone</b>, dollars), Sensor Tower (<b>worldwide mobile</b>, dollars) and the Global ranking (<b>worldwide all-platform</b>, yuan); two are store <b>rank</b>: game-i's <b>JP top-grossing</b> place and the <b>China iOS</b> place (lower is better). Their raw figures are not comparable and are never added. What <i>is</i> comparable is where each month sits <b>inside its own source's history</b>: the bars show each month's percentile against that source's other months, so 90 means "one of this source's best months" whatever the units — and a strong month should read high on the revenue <i>and</i> the rank bases, so the two ranks are an independent cross-check on the money estimates.
+    <br><br>A month where the bars line up is one all the covering sources agree about. A month where one bar stands apart is more interesting — often a <b>region-specific</b> event (a Japan-heavy banner lifts game-i alone) or a <b>platform-specific</b> one (a PC or console push lifts only the Global figure). Each row also lists the <b>banners that ran</b> that month — tap one to open it.
     <br><br><b>How each month is labelled.</b> The chip names <b>which sources cluster</b> and what each cluster says, rather than averaging them into one word. Levels run <b>very low</b> (0–20), <b>low</b> (21–35), <b>average</b> (36–64), <b>high</b> (65–79), <b>very high</b> (80+).
     <ul style="margin:6px 0 0 18px">
       <li><b>“high · all N agree”</b> — every source within 15 points of the others, telling one story.</li>
@@ -2858,9 +2858,9 @@ function bannerContribHTML(x, base, st, ym, cnR){
         : `Extrapolated: ${shareTxt} of the month, applied to the $${(st.rev/1e6).toFixed(1)}M Sensor Tower combined monthly. No per-banner breakdown exists — an estimate.`});
   }
   if(cnR){ const lo=blended*cnR.lo, hi=blended*(cnR.hi==null?cnR.lo:cnR.hi);
-    cells.push({cls:"cn", k:"CN", v:"≈"+fmtCNYRangeC(lo,hi), x:"est. global"+(cnR.metric?" · "+esc(cnR.metric):""),
+    cells.push({cls:"cn", k:"Global", v:"≈"+fmtCNYRangeC(lo,hi), x:"est. global"+(cnR.metric?" · "+esc(cnR.metric):""),
       tip: blended<=0 ? "Below game-i's top 200 in JP and no Qimai China revenue this month — assumed ~0 globally"
-        : `Extrapolated: ${shareTxt} of the month, applied to the month's ${fmtCNYRange(cnR.lo,cnR.hi)} CN total`
+        : `Extrapolated: ${shareTxt} of the month, applied to the month's ${fmtCNYRange(cnR.lo,cnR.hi)} Global total`
           + (cnR.metric?` (${cnR.metric})`:"")
           + `. That total is global and all-platform while both daily sources are mobile, so this is a rough estimate`
           + (cnR.mihoyo?", and miHoYo's 支付中心 channel is excluded from it":"") + "."});
@@ -2949,7 +2949,7 @@ function renderMonthly(){
   // already explains the below-#200 gap, so this warning would only repeat it
   const lowRank = dtot && dnul/dtot>=0.15 && state.data.banners_from!=="official";
   const hasST = Object.keys(extGameMonths(state.tag)).length>0;
-  let html=`<div class="yr-note">Each month shows the source estimates side by side: game-i's published <b>monthly total</b> (月次売上予測), the total we <b>reconstruct from daily ranks</b>, the <b>Qimai</b> China-iPhone total, the <b>CN</b> all-platform figure, and`
+  let html=`<div class="yr-note">Each month shows the source estimates side by side: game-i's published <b>monthly total</b> (月次売上予測), the total we <b>reconstruct from daily ranks</b>, the <b>Qimai</b> China-iPhone total, the <b>Global</b> all-platform figure, and`
     + (hasST?` the <b>Sensor Tower</b> combined figure (from gacharevenue's published monthly reports). <b>*</b> marks approximate values (region-summed older reports, or a month the report itself calls rough).`:` (no Sensor Tower coverage for this game).`)
     + ` The bar splits the month among the banners that ran; each banner lists its game-i share and an <b>extrapolated combined</b> figure (its blended game-i + Qimai share applied to the Sensor Tower total — a rough estimate, since no per-banner breakdown exists).</div>`
     + `<div class="mo-hint">Tap or hover any character for its daily-rank detail; each card shows the full monthly breakdown, run dates &amp; below-#200 days, and how the banners overlapped.</div>`;
@@ -3008,9 +3008,9 @@ function renderMonthly(){
     // Mar–May 2026: the countdown skips it) says so, rather than the card silently vanishing
     const cnKeys=Object.keys(cnGameMonths()).sort();
     const cnGap = !cnR && cnKeys.length && ym>cnKeys[0] && ym<cnKeys[cnKeys.length-1];
-    const kCn = cnR ? `<div class="mck cn"><span class="mck-k">CN ranking${cnR.metric?` · ${esc(cnR.metric)}`:""}${cnR.inferred?" *":""}</span>`
+    const kCn = cnR ? `<div class="mck cn"><span class="mck-k">Global ranking${cnR.metric?` · ${esc(cnR.metric)}`:""}${cnR.inferred?" *":""}</span>`
       + `<span class="mck-v">${fmtCNYRange(cnR.lo,cnR.hi)}</span><span class="mck-n">${cnSubTxt}</span></div>`
-      : cnGap ? `<div class="mck cn na" title="The monthly CN ranking video for this month doesn't include ${esc(state.data.name)} — its countdown skips it, so there is no CN figure to show"><span class="mck-k">CN ranking</span><span class="mck-v">—</span><span class="mck-n">not in that month's ranking</span></div>` : "";
+      : cnGap ? `<div class="mck cn na" title="The monthly Global ranking video for this month doesn't include ${esc(state.data.name)} — its countdown skips it, so there is no Global figure to show"><span class="mck-k">Global ranking</span><span class="mck-v">—</span><span class="mck-n">not in that month's ranking</span></div>` : "";
     // composition bar: each banner's BLENDED share of the month — game-i's JP split and
     // Qimai's China split via the same blendShare the ST/CN cells use — so a banner that
     // sat below game-i's #200 (¥0 there) but still earned in China gets a segment too.
@@ -3083,9 +3083,9 @@ function periodCard(o){
     :`<div class="mck ghost"><span class="mck-k">Sensor Tower</span><span class="mck-v">—</span><span class="mck-n">no coverage</span></div>`;
   const kQm=o.qm?`<div class="mck qm"><span class="mck-k">Qimai · CN iPhone</span><span class="mck-v">${fmtUSD(o.qm.rev)}</span>`
     +`<span class="mck-n">${o.qm.months} mo · China iOS${chgB(o.qmChg)}</span></div>`:"";
-  // CN ranking (the monthly 收入/流水 video): a range summed month by month; its change reads
+  // Global ranking (the monthly 收入/流水 video): a range summed month by month; its change reads
   // midpoint to midpoint. A span crossing the 收入→流水 switch adds net to gross, so it says so.
-  const kCn=o.cn?`<div class="mck cn"><span class="mck-k">CN ranking${o.cn.mixed?" *":""}</span><span class="mck-v" title="${esc(fmtCNYRange(o.cn.lo,o.cn.hi))}">${fmtCNYRangeC(o.cn.lo,o.cn.hi)}</span>`
+  const kCn=o.cn?`<div class="mck cn"><span class="mck-k">Global ranking${o.cn.mixed?" *":""}</span><span class="mck-v" title="${esc(fmtCNYRange(o.cn.lo,o.cn.hi))}">${fmtCNYRangeC(o.cn.lo,o.cn.hi)}</span>`
     +`<span class="mck-n"${o.cn.mixed?` title="Sums months before and after the ranking switched from 总收入 (net) to 总流水 (gross), so it mixes the two"`:""}>${o.cn.months} mo${o.cn.mixed?" · mixed 收入/流水":" · all platforms"}${chgB(o.cnChg)}</span></div>`:"";
   // magnitude bar (width = size vs the biggest period) whose fill is split into one
   // colored segment per banner — the same composition read as a by-Month card, so the
@@ -3130,7 +3130,7 @@ function renderYearly(){
   if(searching()){ order=order.filter(y=>(bansBy[y]||[]).some(searchMatch));
     if(!order.length){ $("#chart").innerHTML=noResultsHTML(); return; } }
   const head=`<div class="yr-head"><b>${esc(state.data.name)}</b> — ${headTot(total)} total across ${years.length} year${years.length>1?"s":""}</div>`
-    + `<div class="yr-note">Each year shows game-i's tracked total (Japan), Qimai's China iPhone total, the Sensor Tower combined sum and the CN ranking's figure (a range). Each change compares against the year before; the year in progress compares its complete months with the same months of last year. Sensor Tower's older, region-summed months are marked <b>*</b>; the current year is in progress, so the first and latest years are partial. <b>Click a card</b> for that year's banners.</div>`;
+    + `<div class="yr-note">Each year shows game-i's tracked total (Japan), Qimai's China iPhone total, the Sensor Tower combined sum and the Global ranking's figure (a range). Each change compares against the year before; the year in progress compares its complete months with the same months of last year. Sensor Tower's older, region-summed months are marked <b>*</b>; the current year is in progress, so the first and latest years are partial. <b>Click a card</b> for that year's banners.</div>`;
   const rows=order.map(y=>{
     const rev=byYear[y], prev=byYear[y-1];
     const yoy = prev!=null ? (rev-prev)/prev*100 : null;
@@ -3170,7 +3170,7 @@ function renderVersions(){
   if(searching()){ order=order.filter(v=>(bansBy[v]||[]).some(searchMatch));
     if(!order.length){ $("#chart").innerHTML=noResultsHTML(); return; } }
   const head=`<div class="yr-head"><b>${esc(state.data.name)}</b> — ${headTot(total)} across ${vers.length} version${vers.length>1?"s":""}</div>`
-    + `<div class="yr-note">Grouped by major game version (1.X = all of v1.x, etc.). Qimai, Sensor Tower and CN ranking months are mapped to versions by date (approximate); each change compares against the version before, and the version still running against the same number of months at the start of the last one. The first and latest versions may be partial. <b>Click a card</b> for that version's banners.</div>`;
+    + `<div class="yr-note">Grouped by major game version (1.X = all of v1.x, etc.). Qimai, Sensor Tower and Global ranking months are mapped to versions by date (approximate); each change compares against the version before, and the version still running against the same number of months at the start of the last one. The first and latest versions may be partial. <b>Click a card</b> for that version's banners.</div>`;
   const months=allYms();
   const rows=order.map(v=>{
     const i=vers.indexOf(v), rev=byV[v], prev=i>0?byV[vers[i-1]]:null;
@@ -3410,7 +3410,7 @@ function openPeriod(kind, key){
       ${stNoteHTML(key)}
       <div class="pd-list">${stRows}</div>`;
     }
-    // CN section for the month: the same split against the CN monthly total. The range
+    // CN section for the month: the same split against the Global monthly total. The range
     // is carried through per banner instead of being flattened to one number.
     const cnR=cnMonth(key);
     if(cnR){
@@ -3438,7 +3438,7 @@ function openPeriod(kind, key){
       }).join("");
       cnSection=`<div class="pd-hd pd-hd-cn">
         <div class="pd-hd-main">
-          <h3 class="pd-h pd-h-cn">CN ranking${cnR.metric?` · ${esc(cnR.metric)}`:""} — assumed global (this month)</h3>
+          <h3 class="pd-h pd-h-cn">Global ranking${cnR.metric?` · ${esc(cnR.metric)}`:""} — all platforms (this month)</h3>
           <div class="pd-subtitle">${esc(state.data.name)}'s global all-platform total (mobile + PC + PlayStation) for ${MONTHS[Mo-1]} ${Y}, split by each banner's share of the month.${cnR.mihoyo?" miHoYo's 支付中心 channel is excluded from it, so the figure is understated — hence the range.":""}</div>
         </div>
         <div class="pd-tot pd-tot-cn"><span class="pd-tot-v">${fmtCNYRange(cnR.lo,cnR.hi)}</span><span class="pd-tot-l">global total</span></div>
@@ -4140,7 +4140,7 @@ function bannerSTShareBlock(b){
 }
 
 // Sensor Tower view for the banner modal: ST-valued stat tiles + the detailed month breakdown
-// The CN tab of a banner card: the same month-by-month arithmetic the ST tab shows,
+// The Global tab of a banner card: the same month-by-month arithmetic the ST tab shows,
 // with the range kept intact and the metric label printed per month so a run that
 // straddles the Nov 2023 basis change is obvious rather than silently averaged.
 // ---- China iOS chart, day by day -------------------------------------------------
@@ -4920,7 +4920,7 @@ function cnAnalysisBlock(b){
   const near=pickPeers(peers, b, st.peak, p=>p.st.peak);
   // A China rank has to be read against CHINA's revenue -- setting it beside game-i's yen
   // is an association across two markets, which is exactly what this block should avoid.
-  // Yen is only the fallback when too few comparable runs carry a CN figure to median.
+  // Yen is only the fallback when too few comparable runs carry a Global figure to median.
   const money=peerMoney(near), cnPrimary=!!money.cn, P=money.cn||money.jp;
   // one row, shared by the two peer lists below so their look can't drift apart
   const peerRow=(p, sub)=>{
@@ -4956,16 +4956,16 @@ function cnAnalysisBlock(b){
 
   // the read, decided by how much of this run is actually known
   const mine=bannerST(b), mineCN=bannerCN(b);
-  // Only read this run's CN total against CN peers when its OWN months are all in --
+  // Only read this run's Global total against CN peers when its OWN months are all in --
   // a partial total (the newest months aren't published yet) would land "well below"
   // peers for a reason that has nothing to do with how the banner did.
   const ownCN=cnPrimary && mineCN.hasData && !mineCN.partial;
   const PV=ownCN?P:(money.jp||P), md=PV.md;
-  const ownName=ownCN?"the CN ranking":"game-i";
+  const ownName=ownCN?"the Global ranking":"game-i";
   const ownFig=ownCN?`≈${fmtCNYRange(mineCN.lo,mineCN.hi)}`:G(b.rev);
   const ownST=mine.hasData?`, Sensor Tower's share of those months at <span class="fig">≈${fmtUSD(mine.total)}</span>`:"";
   const ownJP=ownCN?`, game-i at <span class="fig">${G(b.rev)}</span>`
-    : (mineCN.hasData?`, the CN ranking at <span class="fig">≈${fmtCNYRange(mineCN.lo,mineCN.hi)}</span> across the ${mineCN.covered} of its ${mineCN.covered+mineCN.missing} months China has published`:"");
+    : (mineCN.hasData?`, the Global ranking at <span class="fig">≈${fmtCNYRange(mineCN.lo,mineCN.hi)}</span> across the ${mineCN.covered} of its ${mineCN.covered+mineCN.missing} months China has published`:"");
   const read=cnRead(b), daysLeft=read?read.daysLeft:0;
   let head, body;
   if(!b.ongoing){
@@ -5059,7 +5059,7 @@ function cnShareBlock(b){
   if(!sh || !sh.on || !cn.hasData) return "";
   const shLo=cn.lo*sh.revFrac, shHi=cn.hi*sh.revFrac;
   return `<h3>Shared with concurrent banners</h3>
-    <p class="bm-note">The CN figure inherits game-i's daily split — a day two or more banners ran is divided between them (equally, first day +80%, last day −80%). This one overlapped <b>${sh.with.length}</b> other banner${sh.with.length>1?"s":""} on <b>${sh.days}</b> of its ${sh.totalDays} days (up to a <b>${sh.maxN}-way</b> split), so the same <b>${Math.round(sh.revFrac*100)}%</b> of its CN total falls in shared days.</p>
+    <p class="bm-note">The Global figure inherits game-i's daily split — a day two or more banners ran is divided between them (equally, first day +80%, last day −80%). This one overlapped <b>${sh.with.length}</b> other banner${sh.with.length>1?"s":""} on <b>${sh.days}</b> of its ${sh.totalDays} days (up to a <b>${sh.maxN}-way</b> split), so the same <b>${Math.round(sh.revFrac*100)}%</b> of its Global total falls in shared days.</p>
     <div class="bm-stats bm-share3">
       <div class="bm-stat"><span class="l">On its own</span><span class="v">≈${fmtCNYRange(cn.lo-shLo,cn.hi-shHi)}</span></div>
       <div class="bm-stat"><span class="l">While shared</span><span class="v">≈${fmtCNYRange(shLo,shHi)}</span></div>
@@ -5067,21 +5067,21 @@ function cnShareBlock(b){
     </div>
     ${alongsideChips(sh)}`;
 }
-// The CN tab: China's real store chart first, then the same month-by-month arithmetic
+// The Global tab: China's real store chart first, then the same month-by-month arithmetic
 // the Sensor Tower tab lays out -- same cards, same bar, same "shared the month with"
 // chips -- with the range kept intact and the metric labelled per month, so a run that
 // straddles the Nov 2023 basis change is obvious rather than silently averaged.
 function bannerCNView(b){
   const cn=bannerCN(b), bm=state.monthly||{}, c=barColor(b);
-  const head=`<h3>CN ranking — assumed global all-platform revenue</h3>`;
-  const how=`<p class="bm-note bm-recon">The CN series publishes only <b>${esc(gameName())}</b>'s <b>monthly total</b>, not per-banner. We give this banner the same <b>slice</b> of that total as it took of the month's daily revenue — read from <b>two daily sources</b>, game-i's Japan split and Qimai's China-iPhone split, <b>averaged where both exist</b> (game-i alone otherwise) — and add those slices across every month it ran. That total is <b>global and all-platform</b> (mobile + PC + PlayStation) while both daily sources are <b>mobile</b>, so the slice is a rougher proxy here than on the Sensor Tower tab — read it as scale and trend, never as sales.</p>`;
+  const head=`<h3>Global ranking — assumed all-platform revenue</h3>`;
+  const how=`<p class="bm-note bm-recon">The Global series publishes only <b>${esc(gameName())}</b>'s <b>monthly total</b>, not per-banner. We give this banner the same <b>slice</b> of that total as it took of the month's daily revenue — read from <b>two daily sources</b>, game-i's Japan split and Qimai's China-iPhone split, <b>averaged where both exist</b> (game-i alone otherwise) — and add those slices across every month it ran. That total is <b>global and all-platform</b> (mobile + PC + PlayStation) while both daily sources are <b>mobile</b>, so the slice is a rougher proxy here than on the Sensor Tower tab — read it as scale and trend, never as sales.</p>`;
   const na=`<span class="muted">n/a</span>`;
   if(!cn.hasData){
     const blank=[[`Est. revenue`, na], ["All-time rank (CN¥)", na], [`${b.year} rank (CN¥)`, na],
                  ["Covered months", `0${cn.missing?` <span class="muted" style="font-size:12px">/ ${cn.missing}</span>`:""}`]]
       .map(([l,v])=>tileHTML(l,v)).join("");
     return `<div class="bm-stats">${blank}</div>`+head+how
-      + `<p class="bm-note"><b>No CN month covers this run.</b> The monthly series starts <b>Nov 2021</b>, and the newest month only appears once that month's video is up.</p>`
+      + `<p class="bm-note"><b>No Global month covers this run.</b> The monthly series starts <b>Nov 2021</b>, and the newest month only appears once that month's video is up.</p>`
       + cnRankBlock(b)+cnAnalysisBlock(b);
   }
   const months=cn.covered+cn.missing;
@@ -5106,8 +5106,8 @@ function bannerCNView(b){
     const tag=m.metric?` <span class="bm-stm-tag">${esc(m.metric)}</span>`:"";
     if(m.cnLo==null){
       return `<div class="bm-stm">
-        <div class="bm-stm-top"><span class="mo">${lab}</span><span class="v muted" title="This month isn't in the CN series yet">no CN figure</span></div>
-        <div class="bm-stm-math">${shareMath(m)} of the month — the CN figure lands once that month's video is up.</div>
+        <div class="bm-stm-top"><span class="mo">${lab}</span><span class="v muted" title="This month isn't in the Global series yet">no Global figure</span></div>
+        <div class="bm-stm-math">${shareMath(m)} of the month — the Global figure lands once that month's video is up.</div>
         <div class="bm-stm-co"><span class="bm-co-l">Shared the month with</span> ${coStr}</div></div>`;
     }
     return `<div class="bm-stm">
@@ -5355,7 +5355,7 @@ function openBanner(b, keepStack){
   const hasQM = hasQimai(state.tag);
   let active = state.dataSource==="st" ? "st" : state.dataSource==="cn" ? "cn" : state.dataSource==="qimai" ? "qimai" : "gamei";
   if(active==="qimai" && !hasQM) active="gamei";   // banner's game has no Qimai data
-  // the CN tab carries two different things: China's real store chart (daily) and the
+  // the Global tab carries two different things: China's real store chart (daily) and the
   // monthly CN¥ estimate. Either one alone is worth the tab.
   const hasCN = !!(state.cn && state.cn.games && state.cn.games[state.tag])
              || !!(state.cnrank && state.cnrank.games && state.cnrank.games[state.tag]);
@@ -5363,7 +5363,7 @@ function openBanner(b, keepStack){
     <button data-bmsrc="gamei" class="${active==="gamei"?"on":""}" aria-selected="${active==="gamei"}" title="game-i's JP per-banner revenue estimate">game-i<span class="bms-sub">JP ¥</span></button>`
     + (hasQM?`<button data-bmsrc="qimai" class="${active==="qimai"?"on":""}" aria-selected="${active==="qimai"}" title="China iPhone App Store gross revenue (USD), Qimai's daily estimate">Qimai<span class="bms-sub">CN iPhone $</span></button>`:"")
     + `<button data-bmsrc="st" class="${active==="st"?"on":""}" aria-selected="${active==="st"}" title="Assumed combined worldwide revenue from the Sensor Tower monthly reports">Sensor Tower<span class="bms-sub">combined $</span></button>`
-    + (hasCN?`<button data-bmsrc="cn" class="${active==="cn"?"on":""}" aria-selected="${active==="cn"}" title="China's own store chart day by day, plus the assumed global all-platform revenue from the CN monthly ranking">CN chart<span class="bms-sub">CN¥</span></button>`:"")
+    + (hasCN?`<button data-bmsrc="cn" class="${active==="cn"?"on":""}" aria-selected="${active==="cn"}" title="Assumed global all-platform revenue from 天天背锅崩坏娘's monthly ranking (mobile + PC + console), plus China's own iPhone store chart day by day">Global<span class="bms-sub">CN¥</span></button>`:"")
     + `</div>`;
   $("#bmBody").innerHTML=backBar+head+toggle
     +`<div id="bmGamei"${active!=="gamei"?" hidden":""}>${gameiHTML}</div>`
@@ -5505,7 +5505,7 @@ function applyCcy(){
   }
   const gi=$("#dataSrc")&&$("#dataSrc").querySelector('[data-src="gamei"]'), cn=$("#dataSrc")&&$("#dataSrc").querySelector('[data-src="cn"]');
   if(gi) gi.textContent = on ? "game-i ¥→$" : "game-i ¥";
-  if(cn) cn.textContent = on ? "CN CN¥→$" : "CN CN¥";
+  if(cn) cn.textContent = on ? "Global CN¥→$" : "Global CN¥";
   const bo=$("#dataSrc")&&$("#dataSrc").querySelector('[data-src="both"]');
   if(bo && ok) bo.title=`Japan + China iPhone in one figure: game-i's yen at ${fxLine()}, plus Qimai's China iPhone dollars`;
   if(state.data) fxNote(!state.table && !rankByScored());
@@ -5906,7 +5906,7 @@ const cmpCum=(gi,k)=>{ if(!gi||!gi.length) return null; const idx=Math.min(k,gi.
 
 const cmpMid=(lo,hi)=> lo==null?null:(lo+(hi==null?lo:hi))/2;
 // The comparable sources, in display order. Ranks default on alongside the rest.
-const CMP_SOURCES=[["gamei","game-i"],["qimai","Qimai"],["st","Sensor Tower"],["cn","CN"],["jp","JP rank"],["cnrank","CN rank"]];
+const CMP_SOURCES=[["gamei","game-i"],["qimai","Qimai"],["st","Sensor Tower"],["cn","Global"],["jp","JP rank"],["cnrank","CN rank"]];
 function cmpSources(){ const s=state.compare.sources||(state.compare.sources={});
   CMP_SOURCES.forEach(([k])=>{ if(s[k]===undefined) s[k]=true; }); return s; }
 // Assemble the comparison rows for A vs B, honouring which sources are toggled on.
@@ -6748,7 +6748,7 @@ function fxNote(show){
   el.innerHTML = s==="both"
     ? `<b>Japan + China iPhone, in US$.</b> game-i's Japan estimate (App Store + Google Play, in yen) converted at <b>${esc(fxLine())}</b>, plus Qimai's China iPhone App Store estimate (already in dollars). This is the only view that adds two sources together, and it is two stores, not worldwide revenue: Sensor Tower is the worldwide figure, and Android in China isn't in either. A banner with no Qimai figure counts Japan alone and is tagged <span class="pill">JP only</span>.`
     : s==="cn"
-    ? `<b>Shown in US$.</b> The CN ranking's yuan converted at <b>each month's average ECB rate</b> (today $1 = CN¥${fxRate("CNY")}): the source gives one figure per month, so a banner's share of each month goes at that month's rate. The yuan moves less than the yen (about CN¥6.45 per dollar in 2021, CN¥7.2 in 2024), so this shifts figures by up to about 10%. Switch back with the <b>US$</b> button at the top.`
+    ? `<b>Shown in US$.</b> The Global ranking's yuan converted at <b>each month's average ECB rate</b> (today $1 = CN¥${fxRate("CNY")}): the source gives one figure per month, so a banner's share of each month goes at that month's rate. The yuan moves less than the yen (about CN¥6.45 per dollar in 2021, CN¥7.2 in 2024), so this shifts figures by up to about 10%. Switch back with the <b>US$</b> button at the top.`
     : `<b>Shown in US$.</b> game-i's yen converted at <b>${esc(fxLine())}</b>. Switch back with the <b>US$</b> button at the top.`;
   el.innerHTML += s==="cn" ? ` More in <b>How these numbers work → US$ conversion</b>.`
     : ` A banner goes day by day and a month at its average, so a 2021 banner is in 2021 dollars (the yen was ~¥104 then). More in <b>How these numbers work → US$ conversion</b>.`;
@@ -6771,7 +6771,7 @@ function showInfoTab(which){
     const m=["2021-01","2024-01"].map(ym=>[ym, fxMonth(ym,0)]).filter(([,r])=>r);
     const c=["2021-11","2024-07"].map(ym=>[ym, fxMonth(ym,1)]).filter(([,r])=>r), cnow=fxRate("CNY");
     if(ex) ex.innerHTML = (now && m.length===2 && state.fx ? `<b>The yen:</b> a dollar bought <b>¥${m[0][1].toFixed(1)}</b> on average in January 2021, <b>¥${m[1][1].toFixed(1)}</b> in January 2024 and <b>¥${now}</b> today (${per(state.fx.date)}). So ¥1B of spending is <b>${fmtUSD(1e9/m[0][1])}</b> in January 2021, <b>${fmtUSD(1e9/m[1][1])}</b> in January 2024 and <b>${fmtUSD(1e9/now)}</b> if spent today.` : "")
-      + (cnow && c.length===2 ? `<br><b>The yuan</b> moves less: <b>CN¥${c[0][1].toFixed(2)}</b> per dollar in November 2021 (where the CN ranking starts), <b>CN¥${c[1][1].toFixed(2)}</b> in July 2024 and <b>CN¥${cnow}</b> today, so CN¥1B is <b>${fmtUSD(1e9/c[0][1])}</b>, <b>${fmtUSD(1e9/c[1][1])}</b> and <b>${fmtUSD(1e9/cnow)}</b>.` : ""); }
+      + (cnow && c.length===2 ? `<br><b>The yuan</b> moves less: <b>CN¥${c[0][1].toFixed(2)}</b> per dollar in November 2021 (where the Global ranking starts), <b>CN¥${c[1][1].toFixed(2)}</b> in July 2024 and <b>CN¥${cnow}</b> today, so CN¥1B is <b>${fmtUSD(1e9/c[0][1])}</b>, <b>${fmtUSD(1e9/c[1][1])}</b> and <b>${fmtUSD(1e9/cnow)}</b>.` : ""); }
   const card=infoModal.querySelector(".modal-card"); if(card) card.scrollTop=0;
 }
 $("#infoToggle").querySelectorAll("[data-info]").forEach(btn=>btn.onclick=()=>showInfoTab(btn.dataset.info));

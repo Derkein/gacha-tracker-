@@ -19,9 +19,9 @@
   <header class="site-hd">
     <div class="hd-main">
       <h1>Gacha <span class="accent">Revenue</span> Tracker</h1>
-      <p>Per-banner gacha revenue over time — game-i's <b>Japan</b> estimate in <b>yen</b> (売上予測), plus toggles: a <b>Sensor Tower</b> combined-worldwide layer in <b>US$</b>, a <b>CN</b> all-platform layer in <b>CN¥</b>, and a <b>Qimai</b> China-iPhone layer in <b>US$</b>. Third-party estimates, approximate — not official.</p>
+      <p>Per-banner gacha revenue over time — game-i's <b>Japan</b> estimate in <b>yen</b> (売上予測), plus toggles: a <b>Sensor Tower</b> combined-worldwide layer in <b>US$</b>, a <b>Global</b> all-platform layer in <b>CN¥</b>, and a <b>Qimai</b> China-iPhone layer in <b>US$</b>. Third-party estimates, approximate — not official.</p>
       <p class="hd-info"><button id="infoBtn" class="infolink">ⓘ How these numbers work</button></p>
-      <p class="hd-feedback">Questions or an improvement to suggest?<br>Message <a href="https://www.reddit.com/user/Derkein2" target="_blank" rel="noopener">u/Derkein2</a> on Reddit or <a href="https://discord.com/users/260914155207393281" target="_blank" rel="noopener" title="Opens Derkein's Discord profile — message from there">Derkein</a> on Discord.<br>On X: <a href="https://x.com/GachaTrackfv" target="_blank" rel="noopener" title="The tracker's official X account">@GachaTrackfv</a>, the official account, and <a href="https://x.com/GachaAnalytics" target="_blank" rel="noopener" title="A friend's banner analysis on X">@GachaAnalytics</a> for more banner analysis.</p>
+      <p class="hd-feedback">Questions or an improvement to suggest?<br>Message <a href="https://www.reddit.com/user/Derkein2" target="_blank" rel="noopener">u/Derkein2</a> on Reddit or <a href="https://discord.com/users/260914155207393281" target="_blank" rel="noopener" title="Opens Derkein's Discord profile — message from there">Derkein</a> on Discord.<br>On X: <a href="https://x.com/GachaTrackfv" target="_blank" rel="noopener" title="The tracker's official X account">@GachaTrackfv</a>, the official account, and <a href="https://x.com/GachaAnalytics" target="_blank" rel="noopener" title="A friend's banner analysis on X">@GachaAnalytics</a> for day 1 banner analysis.</p>
     </div>
     <div class="hd-side">
       <div class="hd-top">
@@ -81,7 +81,7 @@
       <button data-src="qimai" title="China iPhone App Store gross revenue (USD) — Qimai's daily estimate, summed per banner" hidden>Qimai&nbsp;$</button>
       <button data-src="both" title="Japan + China iPhone in one figure: game-i's yen in US$ at the rate of when it was earned, plus Qimai's China iPhone dollars" hidden>game-i&nbsp;+&nbsp;Qimai&nbsp;$</button>
       <button data-src="st" title="Estimated combined worldwide revenue from the Sensor Tower monthly reports">Sensor&nbsp;Tower&nbsp;$</button>
-      <button data-src="cn" title="Estimated global all-platform revenue (mobile + PC + PlayStation) from 天天背锅崩坏娘's monthly CN ranking, in yuan" hidden>CN&nbsp;CN¥</button>
+      <button data-src="cn" title="Estimated global all-platform revenue (mobile + PC + PlayStation) from 天天背锅崩坏娘's monthly ranking, in yuan" hidden>Global&nbsp;CN¥</button>
     </div>
   </div>
 
@@ -141,7 +141,7 @@
     <b>Estimated combined revenue.</b> Sensor Tower reports only a game's <em>monthly</em> worldwide total; each banner's figure here is assumed — its share of that month applied to the real Sensor Tower total, then summed across the months it ran. That per-banner share comes from <b>two daily sources averaged</b> (game-i JP + Qimai China&nbsp;iPhone) wherever Qimai data exists, and game-i alone otherwise. <b>The further back you go, the rougher it gets:</b> before ~2024 the monthly reports didn't consistently break out <b>China</b>, so some months are missing it entirely or undercounted. Where only <b>China&nbsp;iOS</b> was reported, China Android is estimated at <b>1.75× iOS</b> (the ratio used to model it today); a month with no China figure at all is tagged <span class="pill">global only</span>. Bars marked <span class="pill">partial</span> ran in months not yet covered, and <span class="pill">no ST data</span> ran entirely before Oct 2021 or were too low to chart.
   </div>
   <div class="cnnote" id="cnnote" hidden>
-    <b>Estimated global revenue, all platforms.</b> From <a href="https://space.bilibili.com/20313793" target="_blank" rel="noopener">天天背锅崩坏娘</a>'s monthly 二次元手游全球总流水 ranking — the longest continuous CN-side record there is (Nov&nbsp;2021 →&nbsp;present). It reports only a <em>monthly</em> total per game; each banner's figure here is assumed — its share of that month <em>split across banners</em> applied to the CN total, summed across the months it ran. Where both sources have a signal for a banner that month the split is the <b>average of two daily sources</b> (game-i JP + Qimai China); where only one does (e.g. a banner below game-i's top&nbsp;200 that Qimai still saw in China) that source is used <b>alone</b> rather than halved against a zero; and with no Qimai data it's game-i alone. Unlike the other two layers this counts <b>PC and PlayStation as well as mobile</b>, so it is not comparable to either. miHoYo titles are a <b>range</b> because the author excludes miHoYo's undisclosed <b>支付中心</b> direct top-up channel — those figures are understated. The metric also changes basis at <b>Nov&nbsp;2023</b>, from <span class="pill">总收入</span> (normally net of the store cut) to <span class="pill">总流水</span> (gross billings); bars spanning it are tagged <span class="pill">mixed basis</span>.
+    <b>Estimated global revenue, all platforms.</b> From <a href="https://space.bilibili.com/20313793" target="_blank" rel="noopener">天天背锅崩坏娘</a>'s monthly 二次元手游全球总流水 ranking — the longest continuous CN-side record there is (Nov&nbsp;2021 →&nbsp;present). It reports only a <em>monthly</em> total per game; each banner's figure here is assumed — its share of that month <em>split across banners</em> applied to the Global total, summed across the months it ran. Where both sources have a signal for a banner that month the split is the <b>average of two daily sources</b> (game-i JP + Qimai China); where only one does (e.g. a banner below game-i's top&nbsp;200 that Qimai still saw in China) that source is used <b>alone</b> rather than halved against a zero; and with no Qimai data it's game-i alone. Unlike the other two layers this counts <b>PC and PlayStation as well as mobile</b>, so it is not comparable to either. miHoYo titles are a <b>range</b> because the author excludes miHoYo's undisclosed <b>支付中心</b> direct top-up channel — those figures are understated. The metric also changes basis at <b>Nov&nbsp;2023</b>, from <span class="pill">总收入</span> (normally net of the store cut) to <span class="pill">总流水</span> (gross billings); bars spanning it are tagged <span class="pill">mixed basis</span>.
   </div>
   <div class="qmnote" id="qmnote" hidden>
     <b>Estimated China iPhone revenue.</b> From <a href="https://qimai.cn/" target="_blank" rel="noopener">Qimai&nbsp;(七麦)</a>'s daily <b>China App&nbsp;Store gross</b> revenue estimate, in <b>US$</b> — a model figure ("仅供参考"), iPhone only. Unlike Sensor Tower and CN this is a <b>daily</b> source like game-i, so each banner's total is summed <em>directly</em> from its run days (each concurrent day split between the running banners the same way game-i splits it) — no monthly-share guess. It is <b>China iOS only</b>, so it is smaller than, and not comparable to, the worldwide (Sensor&nbsp;Tower) or all-platform (CN) layers, or game-i's Japan. Updated daily for every game here; games without Qimai data don't show this toggle.
@@ -161,7 +161,7 @@
   <footer class="foot">
     JP per-banner revenue scraped from <a href="https://game-i.daa.jp/" target="_blank" rel="noopener">game-i.daa.jp</a> ·
     combined worldwide monthly revenue from the <a href="https://www.reddit.com/r/gachagaming/" target="_blank" rel="noopener">r/gachagaming</a> Sensor&nbsp;Tower reports ·
-    global all-platform monthly revenue from <a href="https://space.bilibili.com/20313793" target="_blank" rel="noopener">天天背锅崩坏娘</a>'s CN ranking ·
+    global all-platform monthly revenue from <a href="https://space.bilibili.com/20313793" target="_blank" rel="noopener">天天背锅崩坏娘</a>'s Global ranking ·
     character portraits © their publishers (HoYo and Kuro Games portraits via <a href="https://enka.network/" target="_blank" rel="noopener">Enka.Network</a>) ·
     banner art © the respective games. This is a fan-made, non-commercial analytics view; revenue figures are estimates and may be inaccurate.
     Refreshed automatically by a scheduled GitHub Action.
@@ -205,7 +205,7 @@
       <button data-info="gamei" class="on">game-i · JP ¥</button>
       <button data-info="qimai">Qimai · CN iPhone $</button>
       <button data-info="st">Sensor Tower · combined $</button>
-      <button data-info="cn">CN · CN¥</button>
+      <button data-info="cn">Global · CN¥</button>
       <button data-info="cnchart">China iOS chart</button>
       <button data-info="both">game-i + Qimai · US$</button>
       <button data-info="fx">US$ conversion</button>
@@ -370,7 +370,7 @@
     <p>The same waiting period applies to the Sensor Tower layer for its own reasons, so it's normal for the last month on the page to be complete in yen (game-i updates daily) while both comparison layers are still blank.</p>
 
     <h3>Per-banner is assumed, not reported</h3>
-    <p>As with Sensor Tower, only a <b>monthly total per game</b> is published, so a banner is credited with its <b>share of the CN month</b>, summed across the months it ran. That share is the <b>average of two daily sources</b> — <b>game-i</b> (its Japan share) and <b>Qimai</b> (its China-iPhone share) — wherever Qimai data exists, and game-i alone otherwise, the same blend the Sensor Tower tab uses. <b>The split is still a rougher proxy here than on the ST tab</b>: both daily sources are <i>mobile</i>, while this total spans the whole world and includes <b>PC and console</b>, which no daily source sees — so how a banner split mobile revenue is only an approximation of how it split all-platform revenue. Click any banner and open its <b>CN</b> tab for the month-by-month math.</p>
+    <p>As with Sensor Tower, only a <b>monthly total per game</b> is published, so a banner is credited with its <b>share of the Global month</b>, summed across the months it ran. That share is the <b>average of two daily sources</b> — <b>game-i</b> (its Japan share) and <b>Qimai</b> (its China-iPhone share) — wherever Qimai data exists, and game-i alone otherwise, the same blend the Sensor Tower tab uses. <b>The split is still a rougher proxy here than on the ST tab</b>: both daily sources are <i>mobile</i>, while this total spans the whole world and includes <b>PC and console</b>, which no daily source sees — so how a banner split mobile revenue is only an approximation of how it split all-platform revenue. Click any banner and open its <b>Global</b> tab for the month-by-month math.</p>
 
     <h3>Why it's rough</h3>
     <ul>
@@ -434,12 +434,12 @@
 
     <div id="infoFx" hidden>
     <h3>What it does</h3>
-    <p>The <b>US$</b> button at the top (on by default) and the <b>game-i + Qimai $</b> view show game-i's yen and the CN ranking's yuan in US dollars, each converted at the rate of <b>when the money was spent</b>: a 2021 banner is in 2021 dollars, a 2026 banner in 2026 dollars. Qimai and Sensor Tower are already in dollars and aren't converted.</p>
+    <p>The <b>US$</b> button at the top (on by default) and the <b>game-i + Qimai $</b> view show game-i's yen and the Global ranking's yuan in US dollars, each converted at the rate of <b>when the money was spent</b>: a 2021 banner is in 2021 dollars, a 2026 banner in 2026 dollars. Qimai and Sensor Tower are already in dollars and aren't converted.</p>
     <h3>Which rate</h3>
     <ul>
       <li><b>A banner</b> (game-i): <b>day by day</b>. game-i's estimate is daily, so each day of the run is converted at that day's rate, weighted by how much of the run's revenue fell on it (the launch days count most).</li>
-      <li><b>A month</b> (game-i's monthly total, the CN ranking, a journal issue): <b>that month's average rate</b>, because those sources only give one figure per month.</li>
-      <li><b>The CN ranking's yuan</b>: month by month. It gives one figure per game per month, so a banner's share of each month is converted at that month's average dollar–yuan rate.</li>
+      <li><b>A month</b> (game-i's monthly total, the Global ranking, a journal issue): <b>that month's average rate</b>, because those sources only give one figure per month.</li>
+      <li><b>The Global ranking's yuan</b>: month by month. It gives one figure per game per month, so a banner's share of each month is converted at that month's average dollar–yuan rate.</li>
       <li>Weekends and holidays use the last business day's rate; a banner still running uses today's rate for the days still to come.</li>
     </ul>
     <p id="infoFxEx"></p>
@@ -457,7 +457,7 @@
     <div id="infoQimai" hidden>
     <h3>What this is</h3>
     <p>An <b>estimate</b> of a banner's <b>China iPhone App&nbsp;Store gross revenue</b>, in <b>US dollars</b>, from <a href="https://qimai.cn/" target="_blank" rel="noopener">Qimai&nbsp;(七麦数据)</a> — a Chinese mobile-analytics platform. Qimai calls it a data-model estimate of App&nbsp;Store 销售额 (gross sales), “<i>仅供参考</i>” (for reference only). It is <b>iPhone only</b> and <b>China only</b>, reported per day.</p>
-    <p>Because it is <b>daily</b> — like game-i, unlike Sensor&nbsp;Tower or the CN ranking — a banner's figure is summed <b>directly</b> from the days it ran, not guessed from a monthly total.</p>
+    <p>Because it is <b>daily</b> — like game-i, unlike Sensor&nbsp;Tower or the Global ranking — a banner's figure is summed <b>directly</b> from the days it ran, not guessed from a monthly total.</p>
 
     <h3>Why the biggest day comes after the best rank</h3>
     <p>Qimai dates a day's estimate about <b>one day behind</b> the spending it describes. Set beside the App&nbsp;Store chart, a day's revenue follows the <b>previous</b> day's rank far more closely than its own, and at a banner launch the chart peaks on launch day while Qimai's figure peaks the day <b>after</b> — a game can close launch day at #3 with a Qimai figure a fifth of the next day's. Of 225 launches, the chart peaked on launch day in 206 and Qimai's revenue the day after in 193.</p>
@@ -469,17 +469,17 @@
     <p>So <b>Qimai sets the dollar level of each day, game-i sets how that day divides</b> between co-running banners. It's the best available split — Qimai gives no per-banner China signal — and it lands <b>96–100%</b> of each game's Qimai revenue onto its banners (the rest is days with no listed banner running). The one imported assumption: on shared days, the two banners split China the way they split <b>Japan</b>, which is only a proxy.</p>
 
     <h3>Not comparable to the other layers</h3>
-    <p>This is <b>China, iPhone, gross</b>. game-i is <b>Japan, mobile</b>; Sensor&nbsp;Tower is <b>worldwide, mobile, net</b>; the CN ranking is <b>global, all platforms</b>. So Qimai's figure is the smallest of the four and measures a different slice — shown alongside the others and <b>never added</b> to them.</p>
+    <p>This is <b>China, iPhone, gross</b>. game-i is <b>Japan, mobile</b>; Sensor&nbsp;Tower is <b>worldwide, mobile, net</b>; the Global ranking is <b>global, all platforms</b>. So Qimai's figure is the smallest of the four and measures a different slice — shown alongside the others and <b>never added</b> to them.</p>
 
     <h3>The new thing it makes possible — a two-source split</h3>
-    <p>Sensor&nbsp;Tower and the CN ranking only publish a <b>monthly total per game</b>. To break that down by banner, the site takes each banner's <b>share of the month</b> and applies it to the monthly total.</p>
+    <p>Sensor&nbsp;Tower and the Global ranking only publish a <b>monthly total per game</b>. To break that down by banner, the site takes each banner's <b>share of the month</b> and applies it to the monthly total.</p>
     <p>Wherever Qimai data exists, that share is the <b>average of two independent daily reads</b> — game-i's Japan split <i>and</i> Qimai's China-iPhone split. Where Qimai has no data (older banners, games not yet gathered) it is game-i's alone.</p>
 
     <h3>Why Qimai's numbers look low</h3>
     <p>They are a small slice of a game's total on purpose — <b>China × iPhone × the App&nbsp;Store</b> — so they sit far below the other layers, which measure much wider things. Three reasons stack up:</p>
     <ul>
       <li><b>iPhone only, in a country where Android earns more.</b> Google&nbsp;Play is banned in China; Android runs through <b>third-party stores</b> (Huawei, Xiaomi, OPPO, vivo, Tencent MyApp…) that hold roughly <b>four-fifths</b> of app distribution and no analytics tool captures. Sensor Tower models <b>China Android at ~1.75× China iOS</b>, so the iPhone figure here is only about <b>a third</b> of China mobile — the Android majority is simply missing.</li>
-      <li><b>China only.</b> game-i is Japan; Sensor&nbsp;Tower is worldwide; the CN layer is global. This is one country. For Genshin, China is a bit over <b>half</b> of all revenue — and this captures only the iOS part of that half.</li>
+      <li><b>China only.</b> game-i is Japan; Sensor&nbsp;Tower is worldwide; the Global layer is worldwide. This is one country. For Genshin, China is a bit over <b>half</b> of all revenue — and this captures only the iOS part of that half.</li>
       <li><b>Mobile App&nbsp;Store only.</b> No PC, PlayStation or Xbox — which the CN all-platform layer does include, and which are large for HoYo titles.</li>
     </ul>
     <p>So a banner reading, say, <b>$8M</b> here is <em>not</em> its worldwide take — it's roughly the China-iPhone corner of it. Read it against <b>other banners of the same game</b>, where all three limits apply equally, rather than against the yen or the worldwide dollar figures.</p>
@@ -496,6 +496,6 @@
 
 <div class="lightbox" id="lightbox" hidden><img id="lightboxImg" src="" alt=""></div>
 
-<script src="app.js?v=422"></script>
+<script src="app.js?v=424"></script>
 </body>
 </html>
