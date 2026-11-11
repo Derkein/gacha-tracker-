@@ -5,13 +5,13 @@
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E5%8E%9F%E7%A5%9E",
  "banners_from": "game-i",
- "updated": "2026-11-10T21:52:45Z",
+ "updated": "2026-11-11T17:11:28Z",
  "count": 108,
  "now": {
-  "ios": 95,
+  "ios": 112,
   "android": 15,
-  "month": 50,
-  "next_add": 12795565,
+  "month": 52,
+  "next_add": 13033837,
   "ym": "2026/11",
   "ranks": {
    "prev": [
@@ -59,7 +59,7 @@
     78,
     86,
     102,
-    null,
+    113,
     null,
     null,
     null,
@@ -83,7 +83,7 @@
   }
  },
  "monthly": {
-  "2026-11": 2.69,
+  "2026-11": 2.82,
   "2026-10": 4.24,
   "2026-09": 6.26,
   "2026-08": 6.04,
@@ -5308,7 +5308,7 @@
    "name": "ミティヤ",
    "start": "2026-11-04",
    "end": "2026-11-24",
-   "rev": 2.01,
+   "rev": 2.13,
    "yrank": 15,
    "ytot": 15,
    "cum": 108,
@@ -5326,13 +5326,16 @@
     64,
     78,
     86,
-    102
+    102,
+    113
    ],
-   "icons": [],
+   "icons": [
+    "https://enka.network/ui/UI_AvatarIcon_Mitya.png"
+   ],
    "agents": [
     "Mitya"
    ],
-   "accent": null,
+   "accent": "#b57fd4",
    "en": "Mitya",
    "bar": "#8f89dc"
   }

@@ -5,13 +5,13 @@
  "unit": "億G",
  "source": "https://page.onstove.com/chaoszeronightmare/jp",
  "banners_from": "official",
- "updated": "2026-11-10T21:56:29Z",
+ "updated": "2026-11-11T17:15:03Z",
  "count": 19,
  "now": {
-  "ios": null,
-  "android": 119,
-  "month": 192,
-  "next_add": 5396345,
+  "ios": 38,
+  "android": 118,
+  "month": 186,
+  "next_add": 29011653,
   "ym": "2026/11",
   "ranks": {
    "prev": [
@@ -59,7 +59,7 @@
     null,
     null,
     null,
-    null,
+    47,
     null,
     null,
     null,
@@ -83,7 +83,7 @@
   }
  },
  "monthly": {
-  "2026-11": 0.8784,
+  "2026-11": 1.08,
   "2026-10": 2.64,
   "2026-09": 1.19,
   "2026-08": 1.76,
@@ -841,9 +841,9 @@
    "rev_month_ym": {
     "2026-07": 0.6169
    },
-   "cum": 17,
+   "cum": 18,
    "cumtot": 19,
-   "yrank": 13,
+   "yrank": 14,
    "ytot": 15,
    "icons": [
     "icons/faces/czn/2026-07-08-7b8b3b.webp"
@@ -1043,9 +1043,9 @@
     "2026-09": 0.0246,
     "2026-10": 1.0201
    },
-   "cum": 18,
+   "cum": 19,
    "cumtot": 19,
-   "yrank": 14,
+   "yrank": 15,
    "ytot": 15,
    "icons": [
     "icons/faces/czn/2026-09-30-ff2662.webp"
@@ -1088,17 +1088,18 @@
     null,
     null,
     null,
-    null
+    null,
+    47
    ],
-   "rev": 1.9983,
-   "rev_month": 2.4508,
+   "rev": 2.0993,
+   "rev_month": 2.5455,
    "rev_ym": {
     "2026-10": 1.5701,
-    "2026-11": 0.4282
+    "2026-11": 0.5292
    },
    "rev_month_ym": {
     "2026-10": 1.6199,
-    "2026-11": 0.8309
+    "2026-11": 0.9256
    },
    "cum": 4,
    "cumtot": 19,
@@ -1120,20 +1121,24 @@
     "Blazebell"
    ],
    "en": "Blazebell",
-   "source_url": "https://page.onstove.com/chaoszeronightmare/jp/view/14625543",
+   "source_url": "https://page.onstove.com/chaoszeronightmare/jp/view/14620164",
    "rerun": false,
    "ongoing": true,
-   "rev": 0.0,
-   "rev_month": 0.0475,
+   "rank_series": [
+    null,
+    47
+   ],
+   "rev": 0.1076,
+   "rev_month": 0.1544,
    "rev_ym": {
-    "2026-11": 0.0
+    "2026-11": 0.1076
    },
    "rev_month_ym": {
-    "2026-11": 0.0475
+    "2026-11": 0.1544
    },
-   "cum": 19,
+   "cum": 17,
    "cumtot": 19,
-   "yrank": 15,
+   "yrank": 13,
    "ytot": 15,
    "icons": [
     "icons/faces/czn/2026-11-11-653612.webp"
