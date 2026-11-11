@@ -88,7 +88,7 @@ function edBar(v){
       : `<b>${monthName(v.ym)} has no Global edition:</b> ${GL_SRC}'s chart starts in November 2021. This is the start-of-month edition.`;
   else if(_ed==="global")
     note = v.archive ? `Each issue as its <b>Global edition</b>. Issues without one (before November 2021, or the newest month until its chart is out) are dimmed.`
-      : `<b>Worldwide revenue on every platform</b> (mobile, PC, console), in yuan, from ${GL_SRC}'s monthly chart. A banner's figure is its share of its game's month. Openings keep the head-to-head order of the start-of-month edition; everything else is ordered by Global.`;
+      : `<b>Worldwide revenue on every platform</b> (mobile, PC, console), in yuan, from ${GL_SRC}'s monthly chart. A banner's figure is its share of its game's month. Every figure, rank and verdict in this edition is Global; openings go head to head on Global over equal days.`;
   const on = k => _ed===k ? " on" : "";
   return `<div class="edbar" role="tablist" aria-label="Edition">
       <button type="button" role="tab" class="ed ed-start${on("start")}" data-ed="start" aria-selected="${_ed==="start"}">
@@ -177,19 +177,24 @@ const andList = a => a.length<2 ? (a[0]||"") : a.slice(0,-1).join(", ")+" and "+
 // percentiles (0 = best ever, 1 = worst). Ongoing runs are still growing: only good news is final.
 // Where a banner's whole run sits in its game's history, as the median of its Japan and China
 // percentiles (0 = best ever, 1 = worst). Ongoing runs are still growing: only good news is final.
+// A run's Global total is complete only when every month it ran has a Global figure: the chart
+// starts Nov 2021 and the newest months arrive mid next month (J.glLast = newest Global issue).
+const glPartial = b => !!b.ongoing || b.start.slice(0,7) < "2021-11" || !J.glLast || b.end.slice(0,7) > J.glLast;
+const runOpen = b => GL ? glPartial(b) : !!b.ongoing;       // the run's total can still change
 function verdict(b){
-  const ps=[b.alltime,b.cn_alltime].filter(x=>x&&x[1]>=6).map(([r,n])=>(r-1)/(n-1));
+  const ps=(GL ? [b.zl_alltime] : [b.alltime,b.cn_alltime]).filter(x=>x&&x[1]>=6).map(([r,n])=>(r-1)/(n-1));
   if(!ps.length) return null;
   const v=ps.length===2?(ps[0]+ps[1])/2:ps[0];
   const tier = v<=.15?"top": v<=.34?"strong": v>=.85?"bottom": v>=.66?"weak":"mid";
-  return {v, tier, final:!b.ongoing || v<=.34};          // b.ongoing: still running today, so its run isn't final
+  return {v, tier, final:!runOpen(b) || v<=.34};          // b.ongoing: still running today, so its run isn't final
 }
 const weakRun = b => { const v=verdict(b); return v && v.final && (v.tier==="weak"||v.tier==="bottom"); };
 const TIER = { top:"one of the game's strongest runs", strong:"in the top third of the game's banners", mid:"around the middle of the pack",
   weak:"an underwhelming run, in the game's bottom third", bottom:"one of the game's weakest runs" };
 // the month's other new (non-rerun) banners, and the first of them whose finished run was weak
 // (a banner that opened in the month's last days belongs to next month's story, not this one's)
-const rivals = g => g.banners.slice(1).filter(b=>b.new && !b.rerun && (+b.start.slice(8)<=20 || b.rev_month>=b.rev_total/2));
+const rivals = g => g.banners.slice(1).filter(b=>b.new && !b.rerun && (+b.start.slice(8)<=20 ||
+  (GL ? !!b.zl_total && bz(b)>=(b.zl_total[0]+b.zl_total[1])/4 : b.rev_month>=b.rev_total/2)));
 const flopOf = g => rivals(g).find(weakRun);
 // Headlines rotate through blunt templates so the issue doesn't repeat itself. The choice is a
 // hash of the issue + game + situation, so a given issue always reads the same. Tokens: {L} lead
@@ -243,9 +248,8 @@ function autoDek(g, ym){
   return parts.length ? parts.join("; ")+"." : "";
 }
 function autoDekGL(g, ym){
-  const parts=[], p=zlPct(g), hp=histPhrase(g,ym), pj=pct(g.jp,g.jp_prev);
+  const parts=[], p=zlPct(g), hp=histPhrase(g,ym);
   if(g.zl) parts.push(p!=null ? `Worldwide ${p>=0?"up":"down"} ${Math.abs(p).toFixed(0)}% to ${fmtZ(g.zl)}${hp?`, ${hp}`:""}` : `${fmtZ(g.zl)} worldwide, all platforms`);
-  if(pj!=null) parts.push(`Japan ${pj>=0?"up":"down"} ${Math.abs(pj).toFixed(0)}%`);
   return parts.length ? parts.join("; ")+"." : "";
 }
 // the cover's headline in the Global edition (also the archive card's): the biggest banner worldwide
@@ -263,8 +267,34 @@ function autoCoverLinesGL(f){
   if(pz!=null) lines.push(`The tracked games ${pz>=0?"up":"down"} ${Math.abs(pz).toFixed(0)}% worldwide`);
   const sw=gs.filter(g=>FEATURED.includes(g.tag) && zlPct(g)!=null).sort((a,b)=>Math.abs(zlPct(b))-Math.abs(zlPct(a)))[0];
   if(sw && sw!==gs[0] && Math.abs(zlPct(sw))>=15) lines.push(`${SHORT[sw.tag]} ${zlPct(sw)>0?"up":"down"} ${Math.abs(zlPct(sw)).toFixed(0)}% worldwide`);
-  const d=f.debuts[0]; if(d) lines.push(`${d.label} is the month's best opening (${SHORT[d.tag]})`);
+  const d=J.gopen&&J.gopen.list[0]; if(d&&d.gbeat) lines.push(`${d.label} is the month's best opening worldwide (${SHORT[d.tag]})`);
   return lines.slice(0,4);
+}
+// Openings in the Global edition: every pair head to head on GLOBAL revenue over the same number of
+// days (the shorter of the two runs inside the month, the start-of-month edition's rule). A banner's
+// Global over its first n days = its revenue over those days turned into Global at its game's own ratio
+// that month (the game's worldwide month ÷ its Japan month and ÷ its China iPhone month, averaged):
+// the same construction as its Global month figure, cut to the window.
+const MIN_GL_DAYS = 3;
+function glWin(b, g, n){
+  const Z=zmid(g.zl); if(!(Z>0)) return 0;
+  const sj=sum(g.banners.map(x=>x.rev_month)), sc=sum(g.banners.map(x=>x.cn_month)), w0=b.w0||0, parts=[];
+  if(sj>0 && b.jp_daily && b.jp_daily.length) parts.push(sum(b.jp_daily.slice(w0,w0+n))*Z/sj);
+  if(sc>0 && b.cn_daily && b.cn_daily.length) parts.push(sum(b.cn_daily.slice(w0,w0+n))*Z/sc);
+  return parts.length ? sum(parts)/parts.length : 0;
+}
+function glOpenings(f){
+  const rows=f.games.flatMap(g=>g.banners.filter(b=>b.new).map(b=>({...b, tag:g.tag, game:g.name, _g:g})));
+  const span=r=>r.wdays||r.days||0, ok=r=>span(r)>=MIN_GL_DAYS && zmid(r._g.zl)>0;
+  const R=rows.filter(ok), wins=new Map(R.map(r=>[r,0]));
+  for(let i=0;i<R.length;i++) for(let j=i+1;j<R.length;j++){
+    const a=R[i], b=R[j], n=Math.min(span(a),span(b)), va=glWin(a,a._g,n), vb=glWin(b,b._g,n);
+    const w = va>vb ? a : vb>va ? b : (bz(a)>=bz(b) ? a : b); wins.set(w, wins.get(w)+1); }
+  R.forEach(r=>{ r.gbeat=[wins.get(r), R.length-1]; });
+  R.sort((a,b)=>b.gbeat[0]-a.gbeat[0] || bz(b)-bz(a));
+  let pair=null;
+  if(R.length>=2){ const [a,b]=R, n=Math.min(span(a),span(b)); pair={a, b, n, va:glWin(a,a._g,n), vb:glWin(b,b._g,n)}; }
+  return {list:[...R, ...rows.filter(r=>!ok(r)).sort((a,b)=>bz(b)-bz(a))], pair};
 }
 // every banner on sale in the month, by its Global estimate (the Global edition's "top banners")
 function glTop(f){
@@ -287,10 +317,6 @@ function autoBodyGL(g, ym){
   if(hp) s+=` — ${judgeMark(hp)}`;
   if(g.zl_rank && g.zl_rank[1]>1) s+=`. That made it ${g.zl_rank[0]===1?MK.good("the biggest earner in the world"):"No. "+MK.n(g.zl_rank[0])} of the ${g.zl_rank[1]} games tracked`;
   s+=".";
-  const pj=pct(g.jp,g.jp_prev), pc=pct(g.cn,g.cn_prev), ctx=[];
-  if(g.jp) ctx.push(`${MK.n(fmtG(g.jp))} in Japan${pj!=null?` (${MK.c(pj,pctStr(pj))})`:""}`);
-  if(g.cn) ctx.push(`${MK.n(fmtUSD(g.cn))} on China's iPhone store${pc!=null?` (${MK.c(pc,pctStr(pc))})`:""}`);
-  if(ctx.length) s+=` The start-of-month edition had ${andList(ctx)}.`;
   if(g.zl.mihoyo) s+=` The chart leaves out miHoYo's own 支付中心 top-up channel, so this figure is understated.`;
   out.push(s);
   const bs=g.banners.filter(b=>bz(b)>0); if(!bs.length) return out;
@@ -343,6 +369,9 @@ function daysEdge(g){
 }
 function runSentence(b, G){
   const v=verdict(b); if(!v) return "";
+  if(GL){ const judge = v.final ? `: ${judgeMark(TIER[v.tier])}` : b.ongoing ? ", with the run still going"
+      : b.start.slice(0,7) < "2021-11" ? ", counting only its months from November 2021, where the chart starts" : ", with its later months not in the chart yet";
+    return `${MK.b(b)}'s run ${runOpen(b)?"so far ":""}ranks ${MK.n(ord(b.zl_alltime[0]))} of ${b.zl_alltime[1]} among ${G} banners worldwide${judge}.`; }
   const where=[b.alltime&&`${MK.n(ord(b.alltime[0]))} of ${b.alltime[1]} in Japan`, b.cn_alltime&&`${MK.n(ord(b.cn_alltime[0]))} of ${b.cn_alltime[1]} in China`].filter(Boolean);
   const judge = v.final ? `: ${judgeMark(TIER[v.tier])}` : ", with the run still going";
   return `${MK.b(b)}'s run ${b.ongoing?"so far ":""}ranks ${andList(where)} among ${G} banners${judge}.`;
@@ -490,7 +519,7 @@ function marketCopy(f){
 function marketCopyGL(f){
   const mk=f.market||{}, z=mk.zl, mo=MONTHS[+f.ym.slice(5)-1], pm=MONTHS[+prevYm(f.ym).slice(5)-1], out=[];
   if(!z) return out;
-  const pz=pctOf(z), pj=pctOf(mk.jp), pc=pctOf(mk.cn), chg=p=>MK.c(p, `${p>=0?"up":"down"} ${Math.abs(p).toFixed(0)}%`);
+  const pz=pctOf(z), chg=p=>MK.c(p, `${p>=0?"up":"down"} ${Math.abs(p).toFixed(0)}%`);
   if(!z.break){ const red=z.down.length, n=z.same_n;
     out.push(red===n ? `${MK.bad("Every single game")} ended ${mo} in the red worldwide.`
       : red>n/2 ? `${MK.bad(`${red} of ${n} games`)} ended ${mo} in the red worldwide.`
@@ -499,10 +528,6 @@ function marketCopyGL(f){
   const yp=yearPhrase(z,f.ym);
   out.push(`Across every country and every platform, the tracked games took ${MK.n(fmtCNYr(z.lo,z.hi))}${pz!=null?`, ${chg(pz)} on the month`:""}${yp&&!z.break?`: ${judgeMark(yp)}`:""}.`);
   if(z.break) out.push(`This is the month the chart switched from 总收入 (normally net of the store cut) to 总流水 (gross billings), so it isn't compared with ${pm}.`);
-  if(pz!=null && pj!=null){
-    const ctx=`Japan ${chg(pj)}${pc!=null?`, China's iPhone store ${chg(pc)}`:""}`;
-    out.push((pz>=0)!==(pj>=0) ? `The start-of-month numbers ${MK.bad("pointed the other way")}: ${ctx}.` : `The start-of-month numbers agreed: ${ctx}.`);
-  }
   const mv=dir=>{ const t=z[dir][0]; return t&&!z.break?`${MK.g(t)} ${MK.c(z.chg[t], pctStr(z.chg[t]*100))}`:null; };
   const ups=mv("up"), dns=mv("down");
   if(ups||dns) out.push(`Worldwide, ${[ups&&`${ups} led the risers`, dns&&`${dns} the fallers`].filter(Boolean).join(" and ")}.`);
@@ -529,10 +554,10 @@ function marketHTML(f){
       <em class="${pz==null?"":pz>=0?"up":"dn"}">${pz==null?(z.break?"new basis: no change":"&nbsp;"):pctStr(pz)+" on "+pm3}</em>
       <small>${GL_SRC} · ${esc(z.metric||"总流水")}${z.video?` · <a href="https://www.bilibili.com/video/${esc(z.video)}" target="_blank" rel="noopener">source video</a>`:""} · ${plural(z.n,"game")}${z.year_n>=2&&!z.break?` · ${ord(z.year_rank)} of ${z.year_n} in ${f.ym.slice(0,4)}`:""}</small></div>`;
     return `<section class="market"><div class="sec-k">The month in totals</div><h3 class="sec-h">Every tracked gacha, worldwide</h3>
-    <div class="mtiles">${gt}${mk.jp?tile("jp","Japan","game-i · start-of-month edition",fmtG(mk.jp.total),mk.jp):""}${mk.cn?tile("cn","China iPhone","Qimai · start-of-month edition",fmtUSD(mk.cn.total),mk.cn):""}</div>
+    <div class="mtiles gl1">${gt}</div>
     <div class="mcopy">${marketCopyGL(f).map(t=>`<p>${rich(t)}</p>`).join("")}</div>
-    <div class="mcols">${z.break?"":col(z,"Worldwide, game by game")}${col(mk.jp,"Japan, game by game")}${col(mk.cn,"China iPhone, game by game")}</div>
-    <p class="mnote">Worldwide = ${GL_SRC}'s monthly <b>二次元手游全球总流水</b> chart: every platform, every country, in yuan, as a range where the author gives one (miHoYo's own top-up channel is left out, so their figures are understated). It is a different measurement from Japan and China iPhone and is never added to them. Changes compare the games present in both months.</p></section>`; }
+    ${z.break?"":`<div class="mcols">${col(z,"Worldwide, game by game")}</div>`}
+    <p class="mnote">Worldwide = ${GL_SRC}'s monthly <b>二次元手游全球总流水</b> chart: every platform, every country, in yuan, as a range where the author gives one (miHoYo's own top-up channel is left out, so their figures are understated). Changes compare the games present in both months.</p></section>`; }
   return `<section class="market"><div class="sec-k">The month in totals</div><h3 class="sec-h">Every tracked gacha, added up</h3>
     <div class="mtiles">${mk.jp?tile("jp","Japan",`game-i · App Store + Google Play${usdOn()?` · at ${esc(fxLine())}`:""}`,fmtG(mk.jp.total),mk.jp):""}${mk.cn?tile("cn","China iPhone","Qimai · App Store",fmtUSD(mk.cn.total),mk.cn):""}${zlTile}</div>
     <div class="mcopy">${marketCopy(f).map(t=>`<p>${rich(t)}</p>`).join("")}</div>
@@ -558,24 +583,42 @@ function bothRow(d){
   return `<div class="dboth" title="${esc(BOTH_TIP())}"><span>Japan + China</span><strong>${fmtUSD(v)}</strong>${d.days?`<small>${fmtUSD(v/d.days)}/day</small>`:""}</div>`;
 }
 const glRow = d => `<div class="dboth dgl" title="${esc(GL_TIP)}"><span>${GLOBE}Worldwide · est.</span><strong>${fmtBZ(d)}</strong>${d.days&&bz(d)>0?`<small>≈${fmtCNYr(bz(d)/d.days)}/day</small>`:""}</div>`;
-function openCard(d, i, f, showOld, glRank){
-  const mo=MONTHS[+f.ym.slice(5)-1];
+// a Global-edition card (openings: mode "open", top banners: mode "top"): Global figures only
+function openCardGL(d, i, f, mode){
+  const mo=MONTHS[+f.ym.slice(5)-1], showOld=mode==="top", ranked=showOld || !!d.gbeat;
   const tag = showOld && !d.new ? ` · from ${dayStr(d.start)}` : d.rerun ? " · rerun" : "";
-  const ranked = glRank || d.beat;
+  const rec = showOld ? (d.share!=null?`≈${Math.round(d.share*100)}% of ${esc(poss(SHORT[d.tag]))} month worldwide`:"&nbsp;")
+    : d.gbeat ? `Won ${d.gbeat[0]} of ${d.gbeat[1]} head-to-heads` : `Too new to rank: ${plural(d.days,"day")} in ${mo}`;
   return `<a class="dcard${ranked?"":" late"}" href="#${f.ym}/${d.tag}" style="--acc:${d.color||GAME_ACCENT[d.tag]}">
       <div class="dart${frame(d)}">${pic(d,"",{},"zoom")}<span class="dno${ranked&&i<3?" m"+(i+1):""}">${ranked?i+1:"–"}</span>${showOld&&d.new&&!d.rerun?`<span class="dnew">New</span>`:""}</div>
       <div class="dtx"><span class="dg">${esc(SHORT[d.tag])}${tag}</span><b>${esc(d.label)}</b>
-      ${GL?glRow(d):""}<div class="dstats">
+      ${glRow(d)}
+      <div class="dpills">${d.zl_alltime?`<span class="pk">${ord(d.zl_alltime[0])} of ${d.zl_alltime[1]} all-time${runOpen(d)?" so far":""}</span>`:""}<span class="dd">${plural(d.days,"day")}${showOld?" in "+mo.slice(0,3):""}</span></div>
+      <span class="drec">${rec}</span></div></a>`;
+}
+function openCard(d, i, f, showOld){
+  const mo=MONTHS[+f.ym.slice(5)-1];
+  const tag = showOld && !d.new ? ` · from ${dayStr(d.start)}` : d.rerun ? " · rerun" : "";
+  return `<a class="dcard${d.beat?"":" late"}" href="#${f.ym}/${d.tag}" style="--acc:${d.color||GAME_ACCENT[d.tag]}">
+      <div class="dart${frame(d)}">${pic(d,"",{},"zoom")}<span class="dno${d.beat&&i<3?" m"+(i+1):""}">${d.beat?i+1:"–"}</span>${showOld&&d.new&&!d.rerun?`<span class="dnew">New</span>`:""}</div>
+      <div class="dtx"><span class="dg">${esc(SHORT[d.tag])}${tag}</span><b>${esc(d.label)}</b>
+      <div class="dstats">
         <div><span>Japan</span><strong>${d.rev_month>0?fmtG(d.rev_month):"—"}</strong><small>${d.days&&d.rev_month>0?fmtG(d.rev_month/d.days)+"/day":"&nbsp;"}</small></div>
         <div><span>China iPhone</span><strong>${d.cn_month>0?fmtUSD(d.cn_month):"—"}</strong><small>${d.days&&d.cn_month>0?fmtUSD(d.cn_month/d.days)+"/day":"&nbsp;"}</small></div>
-      </div>${GL?"":bothRow(d)}
+      </div>${bothRow(d)}
       <div class="dpills"><span class="pk${d.jp_peak<=10?" t1":d.jp_peak<=50?" t2":""}">${rk(d.jp_peak)} JP</span>${d.cn_peak?`<span class="pk${d.cn_peak<=10?" t1":d.cn_peak<=50?" t2":""}">${rk(d.cn_peak)} CN</span>`:""}<span class="dd">${plural(d.days,"day")}${showOld?" in "+mo.slice(0,3):""}</span></div>
-      <span class="drec">${glRank?(d.share!=null?`≈${Math.round(d.share*100)}% of ${esc(poss(SHORT[d.tag]))} month worldwide`:"&nbsp;"):d.beat?`Won ${d.beat[0]} of ${d.beat[1]} head-to-heads`:`Too new to rank: ${plural(d.days,"day")} in ${mo}`}</span></div></a>`;
+      <span class="drec">${d.beat?`Won ${d.beat[0]} of ${d.beat[1]} head-to-heads`:`Too new to rank: ${plural(d.days,"day")} in ${mo}`}</span></div></a>`;
 }
 function debutsHTML(f){
+  if(GL){ const {list, pair}=J.gopen||{list:[]}; if(!list.length) return "";
+    const pn = pair ? `<p class="dnote">${rich(`Over the same first ${plural(pair.n,"day")}, ${MK.b(pair.a)} took ${MK.n("≈"+fmtCNYr(pair.va))} worldwide, ${MK.b(pair.b)} ${MK.n("≈"+fmtCNYr(pair.vb))}.`)}</p>` : "";
+    return `<section class="debuts"><div class="sec-k">New this month</div><h3 class="sec-h">The month's openings, worldwide</h3>
+    <p class="sec-sub">Head to head on Global revenue over equal days. <button class="howbtn" type="button" data-how="gopen">How the order is decided</button></p>
+    <div class="dgrid">${list.slice(0,DEBUT_CARDS).map((d,i)=>openCardGL(d,i,f,"open")).join("")}</div>${pn}
+    ${list.length>DEBUT_CARDS?`<p class="dmore"><b>Also opened:</b> ${list.slice(DEBUT_CARDS).map((d,i)=>`<a href="#${f.ym}/${d.tag}">${d.gbeat?(DEBUT_CARDS+i+1)+". ":""}${esc(d.label)}</a> <span class="mu">(${esc(SHORT[d.tag])}${d.rerun?", rerun":""}, ${esc(fmtBZ(d))})</span>`).join(" · ")}</p>`:""}</section>`; }
   if(!f.debuts.length) return "";
   return `<section class="debuts"><div class="sec-k">New this month</div><h3 class="sec-h">The month's openings</h3>
-    <p class="sec-sub">${GL?`Same order as the start-of-month edition: openings are compared over equal days, and Global is one figure a month. `:""}<button class="howbtn" type="button" data-how="open">How the order is decided</button></p>
+    <p class="sec-sub"><button class="howbtn" type="button" data-how="open">How the order is decided</button></p>
     <div class="dgrid">${f.debuts.slice(0,DEBUT_CARDS).map((d,i)=>openCard(d,i,f)).join("")}</div>
     ${topPairNote(f)}
     ${f.debuts.length>DEBUT_CARDS?`<p class="dmore"><b>Also opened:</b> ${f.debuts.slice(DEBUT_CARDS).map((d,i)=>`<a href="#${f.ym}/${d.tag}">${d.beat?(DEBUT_CARDS+i+1)+". ":""}${esc(d.label)}</a> <span class="mu">(${esc(SHORT[d.tag])}${d.rerun?", rerun":""}, ${fmtG(d.rev_month)})</span>`).join(" · ")}</p>`:""}</section>`;
@@ -586,8 +629,8 @@ function topHTML(f){
   if(GL){ const t=(J.gtop||[]).slice(0,10); if(!t.length) return "";
     const mo=MONTHS[+f.ym.slice(5)-1], nNew=t.filter(b=>b.new&&!b.rerun).length;
     return `<section class="debuts topm"><div class="sec-k">Every banner on sale</div><h3 class="sec-h">Top banners of the month, worldwide</h3>
-      <p class="sec-sub">New or carried over, by estimated Global revenue inside ${mo}: the game's worldwide month × the banner's share of that month's Japan and China iPhone revenue (the tracker's own split). ${plural(nNew,"newcomer")} in the top ${t.length}.</p>
-      <div class="dgrid">${t.map((d,i)=>openCard(d,i,f,true,true)).join("")}</div></section>`; }
+      <p class="sec-sub">New or carried over, by estimated Global revenue inside ${mo}: each banner's share of its game's worldwide month. ${plural(nNew,"newcomer")} in the top ${t.length}.</p>
+      <div class="dgrid">${t.map((d,i)=>openCardGL(d,i,f,"top")).join("")}</div></section>`; }
   const t=f.top||[]; if(!t.length) return "";
   const mo=MONTHS[+f.ym.slice(5)-1], nNew=t.filter(b=>b.new&&!b.rerun).length;
   const firstNew=t.findIndex(b=>b.new&&!b.rerun);
@@ -611,22 +654,27 @@ function bannerCard(b, i, ctx){
   const chips=[ctx.game?`<span class="chip game" style="--gacc:${GAME_ACCENT[b.tag]}">${esc(SHORT[b.tag])}</span>`:"",
     b.new&&!b.rerun?`<span class="chip new">New</span>`:"", b.rerun?`<span class="chip">Rerun</span>`:"", runsOn(b,G_YM)?`<span class="chip live">Runs into ${nx}</span>`:"",
     v&&v.final&&v.tier==="top"?`<span class="chip good">Top run</span>`:"", v&&v.final&&v.tier==="bottom"?`<span class="chip bad">Weak run</span>`:""].join("");
-  const pctl=b.alltime&&b.alltime[1]>1?(1-(b.alltime[0]-1)/(b.alltime[1]-1))*100:null;
-  const daysTxt=b.days?` · ${plural(b.days,"day")} in ${mo}${b.rev_month>0&&b.days?` · ${fmtG(b.rev_month/b.days)}/day`:""}`:"";
+  const AT=ctx.gl ? b.zl_alltime : b.alltime;
+  const pctl=AT&&AT[1]>1?(1-(AT[0]-1)/(AT[1]-1))*100:null;
+  const perDay=ctx.gl ? (bz(b)>0&&b.days?` · ≈${fmtCNYr(bz(b)/b.days)}/day`:"") : (b.rev_month>0&&b.days?` · ${fmtG(b.rev_month/b.days)}/day`:"");
+  const daysTxt=b.days?` · ${plural(b.days,"day")} in ${mo}${perDay}`:"";
+  const allTime=`<div class="m"><span class="k">All-time${ctx.gl?" worldwide":""}${runOpen(b)?" (so far)":""}</span><b>${AT?`${ord(AT[0])}<small> of ${AT[1]}</small>`:"—"}</b>${pctl!=null?`<i class="bc-bar pct"><i style="width:${pctl.toFixed(1)}%"></i></i>`:""}</div>`;
   return `<li class="bc${ctx.compact?" compact":""}" style="--acc:${b.color}">
     <div class="bc-pos"><span class="${i<3?"m"+(i+1):""}">${i+1}</span></div>
     <div class="bc-art${frame(b)}">${pic(b,b.label,{ty:0.42},"zoom")}</div>
     <div class="bc-body">
       <div class="bc-hd"><span class="bav">${b.icons&&b.icons[0]?img(b.icons[0]):img(b.img,"","",{face:b.face,ty:0.5})}</span>
         <div class="bc-nm"><b>${ctx.game?`<a href="#${G_YM}/${b.tag}">${esc(b.label)}</a>`:esc(b.label)}</b><small>${dayStr(b.start)} – ${dayStr(b.end)}${daysTxt}</small></div><div class="chips">${chips}</div></div>
-      <div class="bc-m">
-        ${ctx.gl?cell("zl",`${GLOBE}Worldwide`,b.zl_month?fmtBZ(b):'<span class="mu">—</span>',bar(bz(b),ctx.maxZ)):""}
+      <div class="bc-m">${ctx.gl ? `
+        ${cell("zl",`${GLOBE}Worldwide`,b.zl_month?fmtBZ(b):'<span class="mu">—</span>',bar(bz(b),ctx.maxZ))}
+        <div class="m"><span class="k">Share of the month</span><b>${ctx.totZ>0&&bz(b)>0?Math.round(bz(b)/ctx.totZ*100)+"%":'<span class="mu">—</span>'}</b></div>
+        ${ctx.game?"":allTime}` : `
         ${cell("rev_month","Japan",b.rev_month>0?fmtG(b.rev_month):'<span class="mu">below #200</span>',bar(b.rev_month,ctx.maxJ))}
         ${ctx.hasCN?cell("cn_month","China iPhone",b.cn_month>0?fmtUSD(b.cn_month):'<span class="mu">—</span>',bar(b.cn_month,ctx.maxC)):""}
-        ${ctx.hasCN&&fxRate("JPY")&&!ctx.gl?`<div class="m both" title="${esc(BOTH_TIP())}"><span class="k">Japan + China</span><b>${b.cn_month>0||b.rev_month>0?fmtUSD(bothUSD(b.rev_month,b.cn_month)):'<span class="mu">—</span>'}</b></div>`:""}
+        ${ctx.hasCN&&fxRate("JPY")?`<div class="m both" title="${esc(BOTH_TIP())}"><span class="k">Japan + China</span><b>${b.cn_month>0||b.rev_month>0?fmtUSD(bothUSD(b.rev_month,b.cn_month)):'<span class="mu">—</span>'}</b></div>`:""}
         ${cell("jp_peak","Peak JP",`<span class="pk${tier(b.jp_peak)}">${rk(b.jp_peak)}</span>`)}
         ${ctx.hasCN?cell("cn_peak","Peak CN",`<span class="pk${tier(b.cn_peak)}">${rk(b.cn_peak)}</span>`):""}
-        ${ctx.game?"":`<div class="m"><span class="k">All-time${b.ongoing?" (so far)":""}</span><b>${b.alltime?`${ord(b.alltime[0])}<small> of ${b.alltime[1]}</small>`:"—"}</b>${pctl!=null?`<i class="bc-bar pct"><i style="width:${pctl.toFixed(1)}%"></i></i>`:""}</div>`}
+        ${ctx.game?"":allTime}`}
       </div>
     </div></li>`;
 }
@@ -639,7 +687,7 @@ function cardCtx(list, extra){
 // shows its value, a bar against the month's best, and a star on the banner that won it.
 function bannerList(g){
   if(!g.banners.length) return "";
-  const ctx=cardCtx(g.banners);
+  const ctx=cardCtx(g.banners, {totZ:zmid(g.zl)});
   return `<div class="blist-hd"><span>The month's banners${GL?", by worldwide estimate":""}</span><small>★ = best on that measure${GL?"":` · <button class="howbtn" type="button" data-how="month">How the order is decided</button>`}</small></div>
   <ol class="blist">${g.banners.map((b,i)=>bannerCard(b,i,ctx)).join("")}</ol>`;
 }
@@ -679,14 +727,14 @@ function statStrip(g, ym){
   return `<div class="stats">${cells.join("")}</div>`;
 }
 function statStripGL(g, ym){
-  const p=zlPct(g), hp=histPhrase(g,ym), h=g.zl_hist, pj=pct(g.jp,g.jp_prev), pc=pct(g.cn,g.cn_prev), cells=[];
+  const p=zlPct(g), hp=histPhrase(g,ym), h=g.zl_hist, cells=[];
   const em=x=>`<em class="${x==null?"":x>=0?"up":"dn"}">${x==null?"&nbsp;":pctStr(x)+" m/m"}</em>`;
   cells.push(g.zl ? `<div class="glcell"><span>${GLOBE}Worldwide</span><b>${fmtZ(g.zl)}</b>${em(p)}</div>`
                   : `<div class="glcell"><span>${GLOBE}Worldwide</span><b class="mu">Not listed</b><em>&nbsp;</em></div>`);
   if(g.zl_rank) cells.push(`<div><span>Worldwide rank</span><b>${ord(g.zl_rank[0])}</b><em>of ${g.zl_rank[1]} games</em></div>`);
   if(h) cells.push(`<div><span>In its history</span><b>${ord(h.rank)}</b><em>of ${h.of} ${esc(h.metric||"")} months${hp?" · "+hp.replace(/^its /,""):""}</em></div>`);
-  if(g.jp) cells.push(`<div><span>Japan</span><b>${fmtG(g.jp)}</b>${em(pj)}</div>`);
-  if(g.cn) cells.push(`<div><span>China iPhone</span><b>${fmtUSD(g.cn)}</b>${em(pc)}</div>`);
+  const top=(J.gtop||[]).findIndex(x=>x.tag===g.tag);
+  if(top>=0) cells.push(`<div><span>Best banner worldwide</span><b>${ord(top+1)}</b><em>of the month's ${J.gtop.length} banners</em></div>`);
   return `<div class="stats">${cells.join("")}</div>`;
 }
 // GL: the game's banners by their Global estimate (stable, so banners without one keep their order at the end)
@@ -699,7 +747,7 @@ function featureHTML(g0, f, notes, n){
   const acc=(top&&top.color)||GAME_ACCENT[g.tag];
   // notes are hand-written HTML (trusted); the fallback copy is built from data, so it's escaped
   const body=(w.body&&w.body.length?w.body:(GL?autoBodyGL(g,f.ym):autoBody(g,f.ym)).map(rich)).map(t=>`<p>${t}</p>`).join("");
-  const kicker=(GL ? [g.zl_rank?`No. ${g.zl_rank[0]} worldwide`:null, g.jp_rank?`No. ${g.jp_rank[0]} in Japan`:null]
+  const kicker=(GL ? [g.zl_rank?`No. ${g.zl_rank[0]} worldwide`:null]
                    : [g.jp_rank?`No. ${g.jp_rank[0]} in Japan`:null, g.cn_rank?`No. ${g.cn_rank[0]} in China`:null]).filter(Boolean).join(" · ");
   const dek=GL?autoDekGL(g,f.ym):autoDek(g,f.ym);
   const brief=!FEATURED.includes(g.tag);
@@ -717,14 +765,16 @@ function featureHTML(g0, f, notes, n){
 // Games run in the order of their best entry in the month's openings; games with no new banner
 // that month follow, by Japan revenue.
 function gameOrder(f){
-  const at=t=>{ const i=f.debuts.findIndex(d=>d.tag===t); return i<0?Infinity:i; };
-  return [...f.games].sort((a,b)=>at(a.tag)-at(b.tag) || (b.jp||0)-(a.jp||0));
+  const deb=GL&&J.gopen ? J.gopen.list : f.debuts;
+  const at=t=>{ const i=deb.findIndex(d=>d.tag===t); return i<0?Infinity:i; };
+  return [...f.games].sort((a,b)=>at(a.tag)-at(b.tag) || (GL ? zmid(b.zl)-zmid(a.zl) : (b.jp||0)-(a.jp||0)));
 }
 function render(iss, focus){
   const {facts:f, notes}=iss; G_YM=f.ym;
   const st=hasGL(f) ? "out" : f.market&&f.market.zl_pending ? "pending" : "none";
   GL = _ed==="global" && st==="out";
   J.gtop = GL ? glTop(f) : null;
+  J.gopen = GL ? glOpenings(f) : null;
   $("#edBar").innerHTML = edBar({ym:f.ym, st});
   document.body.classList.toggle("is-gl", GL);
   const nt = GL ? ((notes&&notes.global)||{}) : (notes||{});
@@ -864,9 +914,18 @@ function howMonth(){
     ${t.html}
     <p class="how-ex">Two wins each, but A's are big (1.5× in Japan, #3 against #5) and B's are slim: <b>A ${t.A.toFixed(2)}, B ${t.B.toFixed(2)}</b>, so Banner A places first.</p>`;
 }
+function howOpenGL(){
+  return `<p>In the <b>Global edition</b> the openings are compared on <b>one measure, Global revenue</b>, still over the <b>same number of days</b>: every opening plays every other one over the shorter of their two runs inside the month.</p>
+    <p class="how-f">winner = more Global revenue over that window</p>
+    <ul>
+      <li><b>Global over a banner's first days</b>: ${GL_SRC} publishes one worldwide figure per game per month, so a banner's days are turned into Global at its game's own ratio that month (the game's worldwide month against its Japan and China iPhone months, averaged). Over its whole month this gives exactly the banner's Global figure on its card.</li>
+      <li>The order is the number of head-to-heads won; equal wins go to the bigger Global month.</li>
+      <li>Fewer than 3 days in the month, or a game the chart doesn't list: not ranked.</li>
+    </ul>`;
+}
 function showHow(kind){
   const d=$("#howDlg");
-  d.querySelector(".how-body").innerHTML = kind==="open" ? howOpen() : kind==="top" ? howTop() + howOpen() : howMonth();
+  d.querySelector(".how-body").innerHTML = kind==="gopen" ? howOpenGL() : kind==="open" ? howOpen() : kind==="top" ? howTop() + howOpen() : howMonth();
   d.showModal();
 }
 document.addEventListener("click", e=>{
@@ -887,6 +946,7 @@ async function init(){
   $("#archBtn").onclick=()=>{ location.hash="archive"; };
   try{ J.index=await getJSON("data/journal/index.json"); }
   catch(e){ $("#issue").innerHTML=`<p class="loading">Couldn't load the journal index.</p>`; return; }
+  J.glLast = (J.index.issues.filter(x=>x.zl).map(x=>x.ym).sort().at(-1)) || null;
   try{ J.upcoming=await getJSON("data/journal/upcoming.json"); }catch(e){ J.upcoming={}; }
   try{ J.themes=await getJSON("data/journal/themes.json"); }catch(e){ J.themes={}; }
   addEventListener("hashchange", route);

@@ -342,7 +342,9 @@ svg.globe{width:.9em; height:.9em; flex:none; fill:none; stroke:currentColor; st
 .mt-tile.gl b{font-size:clamp(30px,4vw,44px)}
 .chartcols.gl1{grid-template-columns:minmax(0,1fr)}
 @media (min-width:761px){ .glcol .val{min-width:9.5em} }   /* ranges: keep the bars aligned */
-.dgl{border-bottom:0; margin:7px 0 -4px} .dgl span{display:flex; align-items:center; gap:5px; color:var(--gl); font-weight:700}
+.dgl{border-top:1px solid var(--rule); margin:7px 0 6px; padding:7px 0 6px} .dgl strong{font-size:20px}
+.dgl span{display:flex; align-items:center; gap:5px; color:var(--gl); font-weight:700}
+.mtiles.gl1{grid-template-columns:minmax(0,520px)}
 .stats .glcell span{display:flex; align-items:center; gap:5px; color:var(--gl); font-weight:700}
 .bc-m .k svg.globe{color:var(--gl)}
 .arch-gl{font-family:var(--sans); font-size:.36em; letter-spacing:.14em; text-transform:uppercase; color:var(--gl); vertical-align:.5em; margin-left:6px}

@@ -86,7 +86,10 @@ async (tag) => {
       snap: cmpSeries(b),
       // the banner's share of each month's Global (天天) total, the tracker's own bannerCN split: [lo, hi] CN¥
       zl: Object.fromEntries(((typeof bannerCN === "function" && bannerCN(b).months) || [])
-            .filter(m => m.cnLo != null).map(m => [m.ym, [Math.round(m.contribLo), Math.round(m.contribHi)]])) };
+            .filter(m => m.cnLo != null).map(m => [m.ym, [Math.round(m.contribLo), Math.round(m.contribHi)]])),
+      // whole-run Global total and its place among the game's banners (the tracker's cnRankInfo)
+      zlRun: (() => { const c = typeof bannerCN === "function" && bannerCN(b); if (!c || !c.hasData) return null;
+        const r = cnRankInfo(b); return { lo: Math.round(c.lo), hi: Math.round(c.hi), rank: r.cum, of: r.cumtot, partial: !!c.partial }; })() };
   });
   const monthly = {};
   for (const ym in state.monthly) monthly[ym] = { ours: state.monthly[ym].ours, banners: state.monthly[ym].banners.map(x => [x.i, x.rev]) };
@@ -334,6 +337,8 @@ def game_month(G, ym):
                      "cn_alltime": [b["qmRank"]["rank"], b["qmRank"]["of"]] if b["qmRank"] else None,
                      "days": month_days(b, ym), "run_days": run_days(b), "day0": max(0, (month_start(ym) - datetime.date.fromisoformat(b["start"])).days),
                      "jp_daily": b["jpd"], "cn_daily": b["qmd"], "zl_month": (b.get("zl") or {}).get(ym),
+                     "zl_total": [b["zlRun"]["lo"], b["zlRun"]["hi"]] if b.get("zlRun") else None,
+                     "zl_alltime": [b["zlRun"]["rank"], b["zlRun"]["of"]] if b.get("zlRun") else None,
                      # daily chart ranks, for the openings' equal-window head-to-heads (not written out)
                      "_snap": b["snap"],
                      "img": b["img"], "face": b["face"], "icons": b["icons"], "color": b["color"], "agents": b["agents"],
@@ -514,7 +519,7 @@ def build_issue(games, ym, number, series):
     allb = [{**{k: v for k, v in r.items() if k not in ("mranks", "score")}, "tag": g["tag"], "game": g["name"],
              "w0": r["day0"], "wdays": r["days"]} for g in gm for r in g["banners"]]
     top_note = duel_order(allb)
-    top = [{k: r[k] for k in ("label", "tag", "game", "new", "rerun", "rev_month", "cn_month", "zl_month", "jp_peak", "cn_peak", "days",
+    top = [{k: r[k] for k in ("label", "tag", "game", "new", "rerun", "rev_month", "cn_month", "zl_month", "zl_alltime", "jp_peak", "cn_peak", "days",
                               "img", "face", "art", "art_face", "icons", "color", "start", "end", "beat")} for r in allb if r["beat"]][:10]
     # the Global edition's cover: the banner with the biggest share of the month's Global totals
     gpool = sorted([dict(r, tag=g["tag"], game=g["name"]) for g in gm for r in g["banners"] if r.get("zl_month") and (r["img"] or r.get("art"))],
