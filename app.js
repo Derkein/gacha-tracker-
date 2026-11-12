@@ -1437,6 +1437,10 @@ function srcVal(b){
 // of the useless gacha name. Games with a real per-banner name (HoYo etc.) are untouched.
 const GENERIC_GACHA = /プリティーダービーガチャ|サポートカードガチャ/;
 function bLabel(b){ return (GENERIC_GACHA.test(b.name||"") && b.agents && b.agents.length) ? b.agents.join(" & ") : (b.name||""); }
+// A banner game-i has listed but not figured yet (its first day or two): scripts/scrape.py
+// simulate_unlisted() estimates it with game-i's own rules until game-i publishes its number.
+const SIM_TIP = "game-i lists this banner but hasn't published its figure yet, so this is simulated with game-i's own method (the game's monthly total split over the days by chart rank, a handover day shared with the outgoing banner). game-i's figure replaces it on the next refresh after it's out.";
+const simBadge = b => b && b.simulated ? `<span class="partialbadge" title="${esc(SIM_TIP)}">simulated</span>` : "";
 function rowHTML(b,rank,max){
   const stMode=state.dataSource==="st";
   const c=barColor(b), [bl,bd]=barShades(c);
@@ -1466,8 +1470,8 @@ function rowHTML(b,rank,max){
   } else if(state.dataSource==="both"){ const x=bannerBoth(b); val=x.total;
     const how=`Japan ${fmtUSD(x.jp)} from game-i's ¥${fmtG(b._rev0??b.rev)} + China iPhone ${x.hasCN?fmtUSD(x.cn)+" from Qimai":"(no Qimai figure)"}. Yen at ${fxLine()}.`;
     valStr = `<span class="val" title="${esc(how)}">${fmtUSD(val)}`
-      + (!x.hasCN && !b._synthetic ? `<span class="partialbadge" title="No Qimai China-iPhone figure for this banner, so this is Japan alone">JP only</span>` : "") + `</span>`;
-  } else { val=b.rev; valStr=`<span class="val">${G(val)}</span>`; }
+      + (!x.hasCN && !b._synthetic ? `<span class="partialbadge" title="No Qimai China-iPhone figure for this banner, so this is Japan alone">JP only</span>` : "") + simBadge(b) + `</span>`;
+  } else { val=b.rev; valStr=`<span class="val">${G(val)}${simBadge(b)}</span>`; }
   const w=Math.max(val>0?1.2:0,(val/max)*100), m=rank<=3?` m${rank}`:"";
   return `<div class="row${b._synthetic?" synrow":""}${b.pending?" pendrow":""}" data-i="${b._i}" style="--bar-l:${bl};--bar-d:${bd};--av-ring:${c}">
     ${b._rk!=null
@@ -5345,7 +5349,8 @@ function openBanner(b, keepStack){
       : `<p class="bm-note bm-recon">game-i publishes one figure per banner: its estimate of what the banner earned from mobile gacha <b>in Japan</b>, in its own "G" unit (1億G ≈ ¥100 million). It is the only per-banner revenue anyone publishes, which is why the other tabs lean on its shape.</p>`}
     <div class="bm-headline">
       <span><span class="l">Est. revenue${b.ongoing?" so far":""}</span><div class="v">${G(b.rev)}</div></span>
-      <span class="sub">Japan · mobile only · game-i's own estimate${usdOn()?` · yen at ${esc(fxLine())}`:""}</span></div>
+      <span class="sub">Japan · mobile only · ${b.simulated?"simulated until game-i publishes its figure":"game-i's own estimate"}${usdOn()?` · yen at ${esc(fxLine())}`:""}</span></div>
+    ${b.simulated?`<p class="bm-note bm-warn"><b>Simulated.</b> ${esc(SIM_TIP)}</p>`:""}
     ${bothLine(b)}
     ${placementLine(b, placeVal.gamei, false, "Japan revenue")}
     ${midRunNoteGi(b)}`;

@@ -149,10 +149,13 @@ def parse_banners(hpage, year):
         # accept both (and thousands separators) so day-1 banners aren't dropped.
         mr = re.search(r"売上予測\s*([\d,.]+)\s*(億|万)G", t)
         mk = re.search(r"集計順位\s*【年間】(\d+)位\s*/\s*全(\d+)件\s*【累計】(\d+)位\s*/\s*全(\d+)件", t)
-        if not (mp and mr and mk):
+        # a banner game-i has LISTED but not figured yet (売上予測 -, its first day or two):
+        # kept, flagged, and simulated with game-i's own rules (simulate_unlisted)
+        unfigured = bool(mp) and not mr and re.search(r"売上予測\s*-", t) is not None
+        if not (mp and ((mr and mk) or unfigured)):
             continue
-        rev = float(mr.group(1).replace(",", ""))
-        if mr.group(2) == "万":          # 万G -> 億G (1億 = 10,000万)
+        rev = float(mr.group(1).replace(",", "")) if mr else 0.0
+        if mr and mr.group(2) == "万":   # 万G -> 億G (1億 = 10,000万)
             rev = round(rev / 10000.0, 4)
         img = re.search(r'data-src="([^"]+)"', body) or re.search(r'<img[^>]+src="(https?://[^"]+)"', body)
         rel = re.search(r"関連キャラなど\s*</h4>\s*<p>(.*?)</p>", body, re.S)
@@ -161,8 +164,9 @@ def parse_banners(hpage, year):
             "start": f"{mp.group(1)}-{mp.group(2)}-{mp.group(3)}",
             "end": f"{mp.group(4)}-{mp.group(5)}-{mp.group(6)}",
             "rev": rev,
-            "yrank": int(mk.group(1)), "ytot": int(mk.group(2)),
-            "cum": int(mk.group(3)), "cumtot": int(mk.group(4)),
+            "yrank": int(mk.group(1)) if mk else None, "ytot": int(mk.group(2)) if mk else None,
+            "cum": int(mk.group(3)) if mk else None, "cumtot": int(mk.group(4)) if mk else None,
+            **({"_unfigured": True} if unfigured else {}),
             "year": int(year),
             "related": clean(rel.group(1)) if rel else "",
             "banner_img": img.group(1) if img else None,
@@ -418,6 +422,32 @@ def official_revenue(apid, banners, monthly):
             b["yrank"], b["ytot"] = i + 1, len(yr)
 
 
+def simulate_unlisted(apid, banners, monthly):
+    """game-i lists a new banner a day or two before it publishes its figure (売上予測 -). Until
+    it does, estimate the banner with game-i's own rules (official_revenue: the month's total split
+    over its days by rank, top-200 days only, a handover day shared +80% / -80%) run over it and the
+    banners alongside it, and mark it `simulated`. Only the new banner's figure is taken; every other
+    banner keeps game-i's published one. game-i's figure replaces the estimate on the first refresh
+    after it publishes one (the flag simply isn't set again)."""
+    import copy
+    todo = [b for b in banners if b.pop("_unfigured", False)]
+    if not todo:
+        return 0
+    lo = min(b["start"] for b in todo)
+    ctx = [copy.deepcopy(b) for b in banners if b["end"] >= lo]          # everything that ran alongside
+    official_revenue(apid, ctx, monthly)
+    by = {(c["start"], c["name"]): c for c in ctx}
+    known = [x for x in banners if x not in todo]
+    for b in todo:
+        b["rev"] = by[(b["start"], b["name"])]["rev"]; b["simulated"] = True
+        yr = [x for x in known if x["year"] == b["year"]]
+        b["yrank"] = 1 + sum(x["rev"] > b["rev"] for x in yr)
+        b["ytot"] = max([x.get("ytot") or 0 for x in yr] + [len(yr) + 1])
+        b["cum"] = 1 + sum(x["rev"] > b["rev"] for x in known)
+        b["cumtot"] = max([x.get("cumtot") or 0 for x in known] + [len(known) + 1])
+    return len(todo)
+
+
 def scrape_official(tag, meta):
     """Banner list from the game's official news (started banners only), with English
     headliner names from its English channel."""
@@ -654,6 +684,14 @@ def main():
             print(f"[{tag}] rank-series failed (non-fatal): {e}", file=sys.stderr)
             if meta.get("official"):
                 continue                     # its revenue is BUILT from those ranks: keep the old file
+        if not meta.get("official") and any(b.get("_unfigured") for b in banners):
+            try:
+                n = simulate_unlisted(meta["apid"], banners, monthly)
+                print(f"[{tag}] {n} banner(s) listed by game-i without a figure yet: simulated")
+            except Exception as e:                # keep it listed at 0 rather than lose the refresh
+                for b in banners:
+                    if b.pop("_unfigured", False): b["simulated"] = True
+                print(f"[{tag}] simulating unfigured banners failed (non-fatal): {e}", file=sys.stderr)
         if meta.get("official"):
             # every figure of an official-source game is rebuilt from game-i's daily data, so a
             # failed / empty feed must not overwrite yesterday's numbers with zeros
