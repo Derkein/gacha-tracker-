@@ -77,25 +77,25 @@ const zlPct = g => g.zl && g.zl_prev && g.zl.metric===g.zl_prev.metric ? pct(zmi
 const GLOBE = `<svg class="globe" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><ellipse cx="12" cy="12" rx="4.2" ry="9.5"/><path d="M2.5 12h19M4 7h16M4 17h16"/></svg>`;
 // the edition switch, on top of every issue and of the archive
 function edBar(v){
+  // An issue without a Global edition greys the Global button out (it can't be picked there); the
+  // saved choice is kept, so the next issue that has one opens as Global again.
   const st = v.archive ? null : v.st, mo = v.ym ? MONTHS[+v.ym.slice(5)-1] : "", nx = v.ym ? MONTHS[+nextYm(v.ym).slice(5)-1] : "";
+  const off = !v.archive && st!=="out", cur = off ? "start" : _ed;
   const badge = v.archive ? `<span class="ed-st out">${v.n} of ${v.of} issues</span>`
     : st==="out" ? `<span class="ed-st out">Out</span>` : st==="pending" ? `<span class="ed-st pend"><i></i>Pending</span>` : `<span class="ed-st none">Not covered</span>`;
+  const sub = !off ? `Worldwide · all platforms · 天天背锅崩坏娘`
+    : st==="pending" ? `Not out yet: ${mo}'s chart usually lands around mid-${nx}` : `Not covered: the chart starts in November 2021`;
   let note = "";
-  const fallback = _ed==="global" && !v.archive && st!=="out";
-  if(fallback)
-    note = st==="pending"
-      ? `<b>The Global edition of ${monthName(v.ym)} isn't out yet.</b> ${GL_SRC}'s chart for ${mo} usually lands around mid-${nx}. Until then, this is the start-of-month edition.`
-      : `<b>${monthName(v.ym)} has no Global edition:</b> ${GL_SRC}'s chart starts in November 2021. This is the start-of-month edition.`;
-  else if(_ed==="global")
+  if(cur==="global")
     note = v.archive ? `Each issue as its <b>Global edition</b>. Issues without one (before November 2021, or the newest month until its chart is out) are dimmed.`
-      : `<b>Worldwide revenue on every platform</b> (mobile, PC, console), in yuan, from ${GL_SRC}'s monthly chart. A banner's figure is its share of its game's month. Every figure, rank and verdict in this edition is Global; openings go head to head on Global over equal days.`;
-  const on = k => _ed===k ? " on" : "";
+      : `<b>Worldwide revenue on every platform</b> (mobile, PC, console), in yuan, from ${GL_SRC}'s monthly chart. A banner's figure is its share of its game's month. Every figure, rank and verdict in this edition is Global; the head-to-heads follow the start-of-month rules on Global alone.`;
+  const on = k => cur===k ? " on" : "";
   return `<div class="edbar" role="tablist" aria-label="Edition">
-      <button type="button" role="tab" class="ed ed-start${on("start")}" data-ed="start" aria-selected="${_ed==="start"}">
+      <button type="button" role="tab" class="ed ed-start${on("start")}" data-ed="start" aria-selected="${cur==="start"}">
         <span class="ed-k">Start of month</span><b>Japan + China iPhone</b><small>game-i · Qimai · out when the month closes</small></button>
-      <button type="button" role="tab" class="ed ed-global${on("global")}" data-ed="global" aria-selected="${_ed==="global"}" title="${esc(GL_TIP)}">
-        <span class="ed-k">Mid-month ${badge}</span><b>${GLOBE}Global</b><small>Worldwide · all platforms · 天天背锅崩坏娘</small></button>
-    </div>${note?`<p class="ednote${fallback?" warn":""}">${note}</p>`:""}`;
+      <button type="button" role="tab" class="ed ed-global${on("global")}${off?" off":""}" data-ed="global" aria-selected="${cur==="global"}"${off?` disabled aria-disabled="true" title="${esc(sub)}"`:` title="${esc(GL_TIP)}"`}>
+        <span class="ed-k">Mid-month ${badge}</span><b>${GLOBE}Global</b><small>${sub}</small></button>
+    </div>${note?`<p class="ednote">${note}</p>`:""}`;
 }
 const monthName = ym => MONTHS[+ym.slice(5)-1]+" "+ym.slice(0,4);
 const monShort = ym => MONTHS[+ym.slice(5)-1].slice(0,3)+" "+ym.slice(0,4);
@@ -931,7 +931,7 @@ function showHow(kind){
 }
 document.addEventListener("click", e=>{
   const ed=e.target.closest("[data-ed]");
-  if(ed){ if(ed.dataset.ed!==_ed){ _ed=ed.dataset.ed; try{ localStorage.setItem("jed",_ed); }catch(x){} route(); } return; }
+  if(ed){ if(ed.disabled) return; if(ed.dataset.ed!==_ed || !ed.classList.contains("on")){ _ed=ed.dataset.ed; try{ localStorage.setItem("jed",_ed); }catch(x){} route(); } return; }
   const b=e.target.closest(".howbtn"); if(b){ showHow(b.dataset.how); return; }
   if(e.target.id==="howDlg" || e.target.closest(".how-x")) $("#howDlg").close();   // backdrop or ✕
 });

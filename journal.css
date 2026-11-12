@@ -318,6 +318,7 @@ mark.bad{color:color-mix(in srgb, var(--dn) 70%, var(--ink))}
   padding:14px 18px 13px; display:flex; flex-direction:column; gap:3px; font-family:var(--sans); transition:background .15s}
 .ed + .ed{border-left:2px solid var(--rule2)}
 .ed:hover{background:var(--paper2)}
+.ed.off{cursor:not-allowed; opacity:.45; filter:grayscale(1)} .ed.off:hover{background:none}   /* no Global edition for this issue */
 .ed:focus-visible{outline:3px solid var(--gl); outline-offset:-5px}
 .ed-k{font-size:12px; letter-spacing:.16em; text-transform:uppercase; font-weight:700; color:var(--muted); display:flex; align-items:center; gap:8px; flex-wrap:wrap}
 .ed b{font-family:var(--serif); font-size:clamp(21px,2.8vw,30px); line-height:1.1; display:flex; align-items:center; gap:8px}
