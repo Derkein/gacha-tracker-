@@ -5,8 +5,8 @@
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E3%82%BC%E3%83%B3%E3%83%AC%E3%82%B9%E3%82%BE%E3%83%BC%E3%83%B3%E3%82%BC%E3%83%AD",
  "banners_from": "game-i",
- "updated": "2026-11-12T17:22:11Z",
- "count": 40,
+ "updated": "2026-11-12T18:02:50Z",
+ "count": 41,
  "now": {
   "ios": 63,
   "android": 43,
@@ -2021,6 +2021,35 @@
    ],
    "accent": "#e8e7ea",
    "bar": "#e84012"
+  },
+  {
+   "name": "セヴェリアン",
+   "start": "2026-11-11",
+   "end": "2026-12-02",
+   "rev": 0.6566,
+   "yrank": 15,
+   "ytot": 15,
+   "cum": 41,
+   "cumtot": 41,
+   "year": 2026,
+   "related": "ノルムー",
+   "banner_img": "https://upload-os-bbs.hoyolab.com/upload/2026/11/06/7772cecc130e4b6f653300451717e439_968137562773954068.png",
+   "rerun": false,
+   "ongoing": true,
+   "rank_series": [
+    138,
+    32,
+    59
+   ],
+   "simulated": true,
+   "icons": [
+    "https://enka.network/ui/zzz/IconRoleCircle1631.png"
+   ],
+   "agents": [
+    "Severian"
+   ],
+   "accent": "#e8e7ea",
+   "bar": "#334ca3"
   }
  ]
 }

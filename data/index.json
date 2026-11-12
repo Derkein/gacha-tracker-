@@ -4,9 +4,9 @@
    "game": "zzz",
    "name": "Zenless Zone Zero",
    "jp": "ゼンレスゾーンゼロ",
-   "count": 40,
-   "total_oku": 229.7,
-   "updated": "2026-11-12T17:22:11Z",
+   "count": 41,
+   "total_oku": 230.3,
+   "updated": "2026-11-12T18:02:50Z",
    "icon": "icons/games/zzz.png"
   },
   {
@@ -32,7 +32,7 @@
    "name": "Genshin Impact",
    "jp": "原神",
    "count": 108,
-   "total_oku": 1124.0,
+   "total_oku": 1123.9,
    "updated": "2026-11-12T17:23:23Z",
    "icon": "icons/games/genshin.png"
   },
@@ -49,9 +49,9 @@
    "game": "nte",
    "name": "Neverness to Everness",
    "jp": "NTE： Neverness to Everness",
-   "count": 10,
-   "total_oku": 33.5,
-   "updated": "2026-11-12T17:23:43Z",
+   "count": 11,
+   "total_oku": 34.1,
+   "updated": "2026-11-12T18:03:47Z",
    "icon": "icons/games/nte.png"
   },
   {
