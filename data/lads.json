@@ -5,13 +5,13 @@
  "unit": "億G",
  "source": "https://prtimes.jp/main/html/searchrlp/company_id/131862",
  "banners_from": "official",
- "updated": "2026-11-11T22:57:21Z",
+ "updated": "2026-11-12T17:30:08Z",
  "count": 82,
  "now": {
-  "ios": 198,
-  "android": 75,
-  "month": 189,
-  "next_add": 5724773,
+  "ios": null,
+  "android": 77,
+  "month": 192,
+  "next_add": 5407245,
   "ym": "2026/11",
   "ranks": {
    "prev": [
@@ -83,7 +83,7 @@
   }
  },
  "monthly": {
-  "2026-11": 1.04,
+  "2026-11": 1.09,
   "2026-10": 2.3,
   "2026-09": 2.84,
   "2026-08": 2.27,
@@ -3827,9 +3827,9 @@
    "rev_month_ym": {
     "2026-07": 0.9193
    },
-   "cum": 56,
+   "cum": 55,
    "cumtot": 82,
-   "yrank": 16,
+   "yrank": 15,
    "ytot": 27,
    "icons": [
     "icons/faces/lads/2026-07-09-c87429.webp"
@@ -4218,14 +4218,14 @@
     null
    ],
    "rev": 0.224,
-   "rev_month": 0.564,
+   "rev_month": 0.5611,
    "rev_ym": {
     "2026-10": 0.224,
     "2026-11": 0.0
    },
    "rev_month_ym": {
     "2026-10": 0.3282,
-    "2026-11": 0.2358
+    "2026-11": 0.233
    },
    "cum": 81,
    "cumtot": 82,
@@ -4265,19 +4265,20 @@
     85,
     124,
     178,
+    null,
     null
    ],
-   "rev": 0.6918,
-   "rev_month": 0.8042,
+   "rev": 0.6834,
+   "rev_month": 0.857,
    "rev_ym": {
-    "2026-11": 0.6918
+    "2026-11": 0.6834
    },
    "rev_month_ym": {
-    "2026-11": 0.8042
+    "2026-11": 0.857
    },
-   "cum": 55,
+   "cum": 56,
    "cumtot": 82,
-   "yrank": 15,
+   "yrank": 16,
    "ytot": 27,
    "icons": [
     "icons/faces/lads/2026-11-06-0a039c.webp"

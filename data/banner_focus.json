@@ -1326,6 +1326,15 @@
    "det": true,
    "name": "鎖暝",
    "v": 2
+  },
+  "https://i.mopix.cc/PH8ghr.jpg": {
+   "x": 91.1,
+   "y": 21.8,
+   "w": 1280,
+   "h": 719,
+   "det": true,
+   "name": "リリー",
+   "v": 2
   }
  },
  "genshin": {
@@ -4719,6 +4728,15 @@
    "h": 1080,
    "det": true,
    "name": "ホタル",
+   "v": 2
+  },
+  "https://webusstatic.yo-star.com/web-cms-test/upload/content/2026/11/09/ZJJRllct.png": {
+   "x": 10.5,
+   "y": 35.0,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "name": "スグハ",
    "v": 2
   }
  },
