@@ -12,7 +12,7 @@
 <title>Gacha Revenue Tracker</title>
 <meta name="description" content="Estimated gacha banner revenue over time for Zenless Zone Zero, Honkai: Star Rail, Wuthering Waves, Genshin Impact and Arknights: Endfield. Auto-updated from game-i.daa.jp.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>%F0%9F%8E%B0</text></svg>">
-<link rel="stylesheet" href="style.css?v=417">
+<link rel="stylesheet" href="style.css?v=418">
 </head>
 <body>
 <div class="wrap">
@@ -137,6 +137,7 @@
   </div>
   <div class="hintrow" id="hintRow"><span class="hint">Tap or hover any bar or point for banner details</span></div>
 
+  <div class="stnote simnote" id="simnote" role="note" hidden></div>
   <div class="stnote" id="stnote" hidden>
     <b>Estimated combined revenue.</b> Sensor Tower reports only a game's <em>monthly</em> worldwide total; each banner's figure here is assumed — its share of that month applied to the real Sensor Tower total, then summed across the months it ran. That per-banner share comes from <b>two daily sources averaged</b> (game-i JP + Qimai China&nbsp;iPhone) wherever Qimai data exists, and game-i alone otherwise. <b>The further back you go, the rougher it gets:</b> before ~2024 the monthly reports didn't consistently break out <b>China</b>, so some months are missing it entirely or undercounted. Where only <b>China&nbsp;iOS</b> was reported, China Android is estimated at <b>1.75× iOS</b> (the ratio used to model it today); a month with no China figure at all is tagged <span class="pill">global only</span>. Bars marked <span class="pill">partial</span> ran in months not yet covered, and <span class="pill">no ST data</span> ran entirely before Oct 2021 or were too low to chart.
   </div>
@@ -496,6 +497,6 @@
 
 <div class="lightbox" id="lightbox" hidden><img id="lightboxImg" src="" alt=""></div>
 
-<script src="app.js?v=425"></script>
+<script src="app.js?v=426"></script>
 </body>
 </html>

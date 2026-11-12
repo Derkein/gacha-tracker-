@@ -1441,6 +1441,15 @@ function bLabel(b){ return (GENERIC_GACHA.test(b.name||"") && b.agents && b.agen
 // simulate_unlisted() estimates it with game-i's own rules until game-i publishes its number.
 const SIM_TIP = "game-i lists this banner but hasn't published its figure yet, so this is simulated with game-i's own method (the game's monthly total split over the days by chart rank, a handover day shared with the outgoing banner). game-i's figure replaces it on the next refresh after it's out.";
 const simBadge = b => b && b.simulated ? `<span class="partialbadge" title="${esc(SIM_TIP)}">simulated</span>` : "";
+// Game-level warning while a banner is simulated: shown in every view and source, since a simulated
+// banner's game-i figure also feeds its shares in the other layers.
+function simNote(){
+  const el=$("#simnote"); if(!el) return;
+  const sim=((state.data&&state.data.banners)||[]).filter(b=>b.simulated && !b._synthetic);
+  el.hidden=!sim.length; if(!sim.length) return;
+  const nm=b=>`<b>${esc(b.en||(b.agents&&b.agents.length?b.agents.join(" & "):b.name))}</b> (from ${esc(MONTHS[+b.start.slice(5,7)-1])} ${+b.start.slice(8)})`;
+  el.innerHTML=`⚠ <b>Simulated:</b> ${sim.map(nm).join(", ")}. The daily data is in, but game-i hasn't published ${sim.length>1?"these banners'":"this banner's"} figure yet, so for now it is simulated with game-i's own method (the game's monthly total split over the days by chart rank, a handover day shared with the outgoing banner). game-i's figure replaces it automatically on the next refresh after it's out.`;
+}
 function rowHTML(b,rank,max){
   const stMode=state.dataSource==="st";
   const c=barColor(b), [bl,bd]=barShades(c);
@@ -2436,6 +2445,7 @@ function render(){
   $("#cnnote").hidden = !(showNote && state.dataSource==="cn");
   if($("#qmnote")) $("#qmnote").hidden = !(showNote && state.dataSource==="qimai");
   fxNote(showNote);
+  simNote();
   if(state.table){ buildTable(); return; }
   if(state.mode==="graph"){ state.graphUnit==="month" ? renderMonthGraph() : renderGraph(); return; }
   if(state.mode==="year"){ renderYearly(); return; }

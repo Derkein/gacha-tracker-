@@ -272,6 +272,10 @@ a{color:inherit}
 .stnote,.cnnote,.qmnote{margin:2px 2px 12px; padding:9px 12px; font-size:13.5px; line-height:1.5; color:var(--ink2);
   background:var(--track); border:1px solid var(--border); border-radius:9px}
 .stnote b,.cnnote b,.qmnote b{color:var(--ink)}
+/* a simulated banner (game-i listed it, no figure yet): same box, the warn accent of .bm-warn */
+.simnote{border-left:3px solid #b0384a} .stnote.simnote b{color:#b0384a}
+@media (prefers-color-scheme:dark){ .simnote{border-left-color:#f08a99} .stnote.simnote b{color:#f08a99} }
+:root[data-theme=dark] .simnote{border-left-color:#f08a99} :root[data-theme=dark] .stnote.simnote b{color:#f08a99}
 .stnote .pill,.cnnote .pill,.qmnote .pill{font-size:10px; font-weight:700; letter-spacing:.03em; color:var(--muted); border:1px solid var(--border);
   border-radius:5px; padding:1px 4px; text-transform:uppercase; white-space:nowrap}
 /* portion of a bar earned while sharing the day's revenue with another banner */
