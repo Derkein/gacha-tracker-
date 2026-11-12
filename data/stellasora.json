@@ -5,7 +5,7 @@
  "unit": "億G",
  "source": "https://stellasora.jp/news/",
  "banners_from": "official",
- "updated": "2026-11-12T17:25:32Z",
+ "updated": "2026-11-12T18:08:32Z",
  "count": 24,
  "now": {
   "ios": null,
@@ -1117,7 +1117,6 @@
    "icons": [
     "icons/faces/stellasora/2026-11-13-ba20c5.webp"
    ],
-   "accent": "#cfaea0",
    "bar": "#2b8bab"
   }
  ]

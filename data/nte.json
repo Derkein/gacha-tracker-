@@ -5,7 +5,7 @@
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/NTE%EF%BC%9A%20Neverness%20to%20Everness",
  "banners_from": "game-i",
- "updated": "2026-11-12T18:03:47Z",
+ "updated": "2026-11-12T18:06:36Z",
  "count": 11,
  "now": {
   "ios": 58,
@@ -122,14 +122,14 @@
     61,
     62
    ],
-   "bar": "#84c3e1",
    "agents": [
     "Nanally"
    ],
    "en": "Nanally",
    "icons": [
     "icons/faces/nte/2026-04-30-1a56a5.webp"
-   ]
+   ],
+   "bar": "#84c3e1"
   },
   {
    "name": "潯",
@@ -168,14 +168,14 @@
     118,
     78
    ],
-   "bar": "#be2645",
    "agents": [
     "Hotori"
    ],
    "en": "Hotori",
    "icons": [
     "icons/faces/nte/2026-05-13-13594a.webp"
-   ]
+   ],
+   "bar": "#be2645"
   },
   {
    "name": "レクイエム",
@@ -214,14 +214,14 @@
     110,
     113
    ],
-   "bar": "#ae283c",
    "agents": [
     "Lacrimosa"
    ],
    "en": "Lacrimosa",
    "icons": [
     "icons/faces/nte/2026-06-03-79756c.webp"
-   ]
+   ],
+   "bar": "#ae283c"
   },
   {
    "name": "カオス",
@@ -253,14 +253,14 @@
     161,
     144
    ],
-   "bar": "#3348a3",
    "agents": [
     "Chaos"
    ],
    "en": "Chaos",
    "icons": [
     "icons/faces/nte/2026-06-24-edfb69.webp"
-   ]
+   ],
+   "bar": "#3348a3"
   },
   {
    "name": "真紅",
@@ -300,14 +300,14 @@
     184,
     179
    ],
-   "bar": "#906ba8",
    "agents": [
     "Shinku"
    ],
    "en": "Shinku",
    "icons": [
     "icons/faces/nte/2026-07-08-b29442.webp"
-   ]
+   ],
+   "bar": "#906ba8"
   },
   {
    "name": "イロヒ",
@@ -346,14 +346,14 @@
     null,
     null
    ],
-   "bar": "#99ada9",
    "agents": [
     "Iroi"
    ],
    "en": "Iroi",
    "icons": [
     "icons/faces/nte/2026-07-29-e9416b.webp"
-   ]
+   ],
+   "bar": "#99ada9"
   },
   {
    "name": "残虹",
@@ -392,14 +392,14 @@
     147,
     132
    ],
-   "bar": "#a393cf",
    "agents": [
     "Zankou"
    ],
    "en": "Zankou",
    "icons": [
     "icons/faces/nte/2026-08-20-937fb6.webp"
-   ]
+   ],
+   "bar": "#a393cf"
   },
   {
    "name": "リンコ",
@@ -439,14 +439,14 @@
     null,
     null
    ],
-   "bar": "#00eee3",
    "agents": [
     "Linko"
    ],
    "en": "Linko",
    "icons": [
     "icons/faces/nte/2026-09-09-10ab18.webp"
-   ]
+   ],
+   "bar": "#00eee3"
   },
   {
    "name": "クロバネ",
@@ -485,14 +485,14 @@
     null,
     null
    ],
-   "bar": "#546982",
    "agents": [
     "Blackbird"
    ],
    "en": "Blackbird",
    "icons": [
     "icons/faces/nte/2026-09-30-c90996.webp"
-   ]
+   ],
+   "bar": "#546982"
   },
   {
    "name": "明音凛",
@@ -531,14 +531,14 @@
     null,
     null
    ],
-   "bar": "#5a66a1",
    "agents": [
     "Akane Rin"
    ],
    "en": "Akane Rin",
    "icons": [
     "icons/faces/nte/2026-10-21-eadb11.webp"
-   ]
+   ],
+   "bar": "#5a66a1"
   },
   {
    "name": "イェルム",
@@ -559,7 +559,15 @@
     27,
     55
    ],
-   "simulated": true
+   "simulated": true,
+   "agents": [
+    "Elyms"
+   ],
+   "en": "Elyms",
+   "icons": [
+    "icons/faces/nte/2026-11-11-1ef492.webp"
+   ],
+   "accent": "#a5adca"
   }
  ]
 }

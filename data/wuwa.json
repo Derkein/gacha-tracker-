@@ -5,7 +5,7 @@
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E9%B3%B4%E6%BD%AE",
  "banners_from": "game-i",
- "updated": "2026-11-12T17:22:57Z",
+ "updated": "2026-11-12T18:05:45Z",
  "count": 44,
  "now": {
   "ios": 16,
@@ -2151,7 +2151,6 @@
    "icons": [
     "icons/faces/wuwa/2026-11-12-539663.webp"
    ],
-   "accent": "#ca92dd",
    "bar": "#958dd8"
   }
  ]
