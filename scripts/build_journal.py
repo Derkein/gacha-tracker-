@@ -338,6 +338,7 @@ def game_month(G, ym):
                      "days": month_days(b, ym), "run_days": run_days(b), "day0": max(0, (month_start(ym) - datetime.date.fromisoformat(b["start"])).days),
                      "jp_daily": b["jpd"], "cn_daily": b["qmd"], "zl_month": (b.get("zl") or {}).get(ym),
                      "zl_total": [b["zlRun"]["lo"], b["zlRun"]["hi"]] if b.get("zlRun") else None,
+                     "_gd": gl_daily(b),
                      "zl_alltime": [b["zlRun"]["rank"], b["zlRun"]["of"]] if b.get("zlRun") else None,
                      # daily chart ranks, for the openings' equal-window head-to-heads (not written out)
                      "_snap": b["snap"],
@@ -445,6 +446,80 @@ def duel_order(rows):
     rows[:] = [rows[i] for i in order] + late
     return note
 
+# ---- the Global edition's head-to-heads (user, 2026-11-12) ----
+# The SAME rules as the start-of-month ones (equal days, margin-weighted points, ties to the bigger
+# revenue over the window, order by wins, then money over the shared days, then their own duel;
+# under MIN_DUEL_DAYS unranked), with Global as the only revenue source. Compare scores each revenue
+# source on Total, Peak-rank day and First week (min(7, n) days); Global has no chart of its own, so
+# its "peak day" is its best Global day. game-i and Qimai only decide SHARES: a banner's Global month
+# is its share of the game's worldwide month (the tracker's bannerCN), and that month is spread over
+# its days in proportion to its own revenue on each day (Japan and China iPhone, each as a share of
+# the banner's month, averaged). Every amount compared is Global.
+def gl_daily(b):
+    jd, cd, zl = b["jpd"] or [], b["qmd"] or [], b.get("zl") or {}
+    n = max(len(jd), len(cd)); s0 = datetime.date.fromisoformat(b["start"]); months = {}
+    for k in range(n):
+        months.setdefault((s0 + datetime.timedelta(days=k)).isoformat()[:7], []).append(k)
+    out = [0.0] * n
+    for m, ks in months.items():
+        z = zl.get(m)
+        if not z: continue
+        G = (z[0] + z[1]) / 2
+        J = sum(jd[k] for k in ks if k < len(jd)); C = sum(cd[k] for k in ks if k < len(cd))
+        for k in ks:
+            sh = [x for x in ((jd[k] / J) if J > 0 and k < len(jd) else None, (cd[k] / C) if C > 0 and k < len(cd) else None) if x is not None]
+            if sh: out[k] = G * sum(sh) / len(sh)
+    return out
+
+def gl_window(r, n): return r["_gd"][r["w0"]:r["w0"] + n]
+def gl_measures(r, n):
+    w = gl_window(r, n)
+    return [sum(w), max(w) if w else 0.0, sum(w[:min(7, n)])]      # Total, peak day, first week
+
+def duel_gl(rows):
+    """duel_order's rules on Global only. Returns (ordered rows, #1 vs #2 note); writes r["gbeat"]."""
+    ranked = [r for r in rows if r["wdays"] >= MIN_DUEL_DAYS and any(r["_gd"])]
+    late = [r for r in rows if not (r["wdays"] >= MIN_DUEL_DAYS and any(r["_gd"]))]
+    for r in late: r["gbeat"] = None
+    k = len(ranked); shared = lambda i, j: min(ranked[i]["wdays"], ranked[j]["wdays"])
+    tot = lambda r, n: sum(gl_window(r, n))
+    res = {}
+    for i in range(k):
+        for j in range(i + 1, k):
+            n = shared(i, j); pa = pb = 0.0
+            for x, y in zip(gl_measures(ranked[i], n), gl_measures(ranked[j], n)):
+                if x > y: pa += ratio_w(x, y)
+                elif y > x: pb += ratio_w(x, y)
+            res[(i, j)] = "a" if pa > pb + 1e-9 else "b" if pb > pa + 1e-9 else ("a" if tot(ranked[i], n) >= tot(ranked[j], n) else "b")
+    wins = [0] * k
+    for (i, j), w in res.items(): wins[i if w == "a" else j] += 1
+    def cmp(i, j):
+        if wins[i] != wins[j]: return wins[j] - wins[i]
+        n = shared(i, j); x, y = tot(ranked[i], n), tot(ranked[j], n)
+        if x != y: return -1 if x > y else 1
+        w = res.get((min(i, j), max(i, j)))
+        if w: return -1 if (w == "a") == (i < j) else 1
+        return 0
+    order = sorted(range(k), key=functools.cmp_to_key(cmp))
+    for i in range(k): ranked[i]["gbeat"] = [wins[i], k - 1]
+    note = None
+    if k >= 2:
+        a, b = ranked[order[0]], ranked[order[1]]; n = min(a["wdays"], b["wdays"])
+        w = lambda r: {"label": r["label"], "tag": r["tag"], "color": r["color"], "new": r["new"], "glob": round(tot(r, n))}
+        note = {"n": n, "a": w(a), "b": w(b)}
+    return [ranked[i] for i in order] + late, note
+
+def gl_game_order(g):
+    """A game's banners in the Global edition: mw_order's rules on the month's Global figures (the
+    in-month Global total and its best Global day in the month, standing in for revenue and peak)."""
+    rows = []
+    for i, r in enumerate(g["banners"]):
+        days = r["_gd"][r["day0"]:r["day0"] + r["days"]]
+        rows.append({"_i": i, "gm": sum(days), "gpk": max(days) if days else 0.0, "rev_month": r["rev_month"]})
+    if not any(x["gm"] for x in rows): return None
+    mw_order(rows, [("gm", False), ("gpk", False)])
+    return [x["_i"] for x in rows]
+
 def market_series(games):
     """{ym: {"jp": {tag: oku}, "cn": {tag: usd}, "zl": {tag: cny midpoint}}} for every month any source covers."""
     out = {}
@@ -521,15 +596,29 @@ def build_issue(games, ym, number, series):
     top_note = duel_order(allb)
     top = [{k: r[k] for k in ("label", "tag", "game", "new", "rerun", "rev_month", "cn_month", "zl_month", "zl_alltime", "jp_peak", "cn_peak", "days",
                               "img", "face", "art", "art_face", "icons", "color", "start", "end", "beat")} for r in allb if r["beat"]][:10]
-    # the Global edition's cover: the banner with the biggest share of the month's Global totals
-    gpool = sorted([dict(r, tag=g["tag"], game=g["name"]) for g in gm for r in g["banners"] if r.get("zl_month") and (r["img"] or r.get("art"))],
-                   key=lambda r: -(r["zl_month"][0] + r["zl_month"][1]))
-    gcover = gpool[0] if gpool else None
+    # the Global edition: openings and top banners by Global head-to-heads, each game's list too;
+    # its cover is the #1 Global opening, as the start-of-month cover is the #1 opening
+    GCARD = ("label", "tag", "game", "new", "rerun", "ongoing", "zl_month", "zl_alltime", "zl_total", "days", "start", "end",
+             "img", "face", "art", "art_face", "icons", "color", "gbeat", "share")
+    gopen = gtop = gopen_note = gtop_note = gcover = None
+    if any(g["zl"] for g in gm):
+        zmid = {g["tag"]: ((g["zl"]["lo"] + g["zl"]["hi"]) / 2 if g["zl"] else 0) for g in gm}
+        share = lambda r: round((r["zl_month"][0] + r["zl_month"][1]) / 2 / zmid[r["tag"]], 4) if r.get("zl_month") and zmid[r["tag"]] else None
+        gnew = [{**r, "tag": g["tag"], "game": g["name"]} for g in gm for r in g["banners"] if r["new"]]
+        gnew, gopen_note = duel_gl(gnew)
+        gopen = [{**{k: r.get(k) for k in GCARD}, "share": share(r)} for r in gnew]
+        gall = [{**r, "tag": g["tag"], "game": g["name"], "w0": r["day0"], "wdays": r["days"]} for g in gm for r in g["banners"]]
+        gall, gtop_note = duel_gl(gall)
+        gtop = [{**{k: r.get(k) for k in GCARD}, "share": share(r)} for r in gall if r["gbeat"]]
+        for g in gm: g["gorder"] = gl_game_order(g) if g["zl"] else None
+        pool = [r for r in gopen if r["gbeat"] and (r["img"] or r.get("art"))] or [r for r in gtop if r["img"] or r.get("art")]
+        gcover = pool[0] if pool else None
     for g in gm:                                      # the daily ranks were only needed for the duels
-        for r in g["banners"]: r.pop("_jpr", None); r.pop("_cnr", None); r.pop("_snap", None)
+        for r in g["banners"]: r.pop("_jpr", None); r.pop("_cnr", None); r.pop("_snap", None); r.pop("_gd", None)
     return {"ym": ym, "number": number, "built": datetime.date.today().isoformat(), "top": top, "market": market(series, ym), "top_pair": top_pair, "top_note": top_note,
             "cover": cover and {k: cover[k] for k in ("label", "tag", "game", "img", "face", "art", "art_face", "color", "rev_month", "rerun")},
             "gcover": gcover and {k: gcover[k] for k in ("label", "tag", "game", "img", "face", "art", "art_face", "color", "zl_month", "rerun")},
+            "gopen": gopen, "gopen_note": gopen_note, "gtop": gtop, "gtop_note": gtop_note,
             "debuts": [{k: r[k] for k in ("label", "tag", "game", "rev_month", "cn_month", "zl_month", "jp_peak", "cn_peak", "days", "rev_total", "rerun", "ongoing", "img", "face", "art", "art_face", "icons", "color", "start", "beat")} for r in debuts],
             "games": order}
 

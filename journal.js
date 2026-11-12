@@ -738,7 +738,7 @@ function statStripGL(g, ym){
   return `<div class="stats">${cells.join("")}</div>`;
 }
 // GL: the game's banners by their Global estimate (stable, so banners without one keep their order at the end)
-const glView = g => GL ? {...g, banners:[...g.banners].sort((a,b)=>bz(b)-bz(a))} : g;
+const glView = g => !GL ? g : g.gorder ? {...g, banners:g.gorder.map(i=>g.banners[i])} : {...g, banners:[...g.banners].sort((a,b)=>bz(b)-bz(a))};
 function featureHTML(g0, f, notes, n){
   const g=glView(g0), nn=GL ? ((notes&&notes.global)||{}) : (notes||{});
   const w=(nn.games&&nn.games[g.tag])||{};
@@ -773,8 +773,9 @@ function render(iss, focus){
   const {facts:f, notes}=iss; G_YM=f.ym;
   const st=hasGL(f) ? "out" : f.market&&f.market.zl_pending ? "pending" : "none";
   GL = _ed==="global" && st==="out";
-  J.gtop = GL ? glTop(f) : null;
-  J.gopen = GL ? glOpenings(f) : null;
+  // the build's Global head-to-heads (build_journal duel_gl: the start-of-month rules on Global)
+  J.gtop = GL ? (f.gtop || glTop(f)) : null;
+  J.gopen = GL ? (f.gopen ? {list:f.gopen, pair:f.gopen_note && {...f.gopen_note, va:f.gopen_note.a.glob, vb:f.gopen_note.b.glob}} : glOpenings(f)) : null;
   $("#edBar").innerHTML = edBar({ym:f.ym, st});
   document.body.classList.toggle("is-gl", GL);
   const nt = GL ? ((notes&&notes.global)||{}) : (notes||{});
