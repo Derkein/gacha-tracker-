@@ -620,7 +620,7 @@ function qimaiBurnBlock(b){
     ${projMoveHTML(pj, fmtUSD, projDayWhy(posted, posted, "qm", fmtUSD))}
     <div class="bm-cap">At <b>${fmtUSD(posted[D-1])}</b> on day <b>${D}</b> with <b>${fmtUSD(soFar)}</b> banked, and <b>${scheduled-D}</b> days still to run:
       the ${pj.n} finished ${nm} banners that ${pj.near?`were taking a similar amount on day ${D}`:`ran at least this long`}
-      carried on in a way that puts this one near <b>${fmtUSD(pj.mid)}</b> — between <b>${fmtUSD(pj.lo)}</b> and <b>${fmtUSD(pj.hi)}</b>.</div>
+      carried on in a way that puts this one ${projRangeTxt(pj, fmtUSD)}</div>
     ${projSureHTML("qm", D)}`;
   }
   const g=qimaiGameBurn(); if(!g) return tiles;
@@ -3937,6 +3937,16 @@ function projPeersTxt(pj, nm){
   const lo=Math.max(1,Math.round(pj.rank/pj.width)), hi=Math.min(200,Math.round(pj.rank*pj.width));
   return `the ${pj.n} finished ${nm} banners that were between #${lo} and #${hi} on day ${pj.D}`;
 }
+// "near X — between lo and hi". When the range leans hard one way (Aha, day 4: $17.0M within
+// $12.8M–$35.0M, the top set by Seele's 2023 run alone), "between" alone reads as if the mid were
+// wrong, so say which end is the outlier. Lopsided = one side over twice the other, in log terms.
+function projRangeTxt(pj, F, tail){
+  const up=Math.log(pj.hi/pj.mid), dn=Math.log(pj.mid/pj.lo);
+  const head=`near <b>${F(pj.mid)}</b>`;
+  if(up>0 && up>2*dn) return `${head}. The range is <b>${F(pj.lo)}</b> to <b>${F(pj.hi)}</b>, and it leans high: the strongest of them kept earning far longer than the rest, so the top end is what happens if this one does too.`;
+  if(dn>0 && dn>2*up) return `${head}. The range is <b>${F(pj.lo)}</b> to <b>${F(pj.hi)}</b>, and it leans low: the weakest of them faded far faster than the rest, so the bottom end is what happens if this one does too.`;
+  return `${head} — between <b>${F(pj.lo)}</b> and <b>${F(pj.hi)}</b>${tail||"."}`;
+}
 // Qimai: the same on its measured China-iPhone dollars (posted days only).
 function qimaiPosted(b){ const bd=qimaiBD(b); return bd ? bd.days.filter(d=>!d.noData).map(d=>d.add) : []; }
 function qimaiProjection(b){
@@ -3977,8 +3987,7 @@ function burnBlock(b){
     </div>
     ${projMoveHTML(pj, G, projDayWhy((b.rank_series||[]).map(rankValue), b.rank_series||[], "gi"))}
     <div class="bm-cap">At <b>#${pj.rank}</b> on day <b>${D}</b> with <b>${G(b.rev)}</b> banked, and <b>${scheduled-D}</b> days still to run:
-      ${projPeersTxt(pj, esc(gameName()))} carried on in a way that puts this one near <b>${G(pj.mid)}</b> — between <b>${G(pj.lo)}</b> and <b>${G(pj.hi)}</b>,
-      depending on which of them it follows.</div>
+      ${projPeersTxt(pj, esc(gameName()))} carried on in a way that puts this one ${projRangeTxt(pj, G, ", depending on which of them it follows.")}</div>
     ${projSureHTML("gi", D)}`;
   }
   const g=gameBurn();
