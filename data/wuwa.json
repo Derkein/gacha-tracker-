@@ -5,13 +5,13 @@
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E9%B3%B4%E6%BD%AE",
  "banners_from": "game-i",
- "updated": "2026-11-12T22:19:43Z",
+ "updated": "2026-11-13T17:17:48Z",
  "count": 44,
  "now": {
-  "ios": 16,
-  "android": 12,
-  "month": 91,
-  "next_add": 61623530,
+  "ios": 25,
+  "android": 10,
+  "month": 78,
+  "next_add": 40416666,
   "ym": "2026/11",
   "ranks": {
    "prev": [
@@ -61,7 +61,7 @@
     76,
     80,
     17,
-    null,
+    25,
     null,
     null,
     null,
@@ -83,7 +83,7 @@
   }
  },
  "monthly": {
-  "2026-11": 2.13,
+  "2026-11": 2.53,
   "2026-10": 7.75,
   "2026-09": 3.7,
   "2026-08": 6.65,
@@ -363,7 +363,7 @@
    "rev": 0.8876,
    "yrank": 9,
    "ytot": 10,
-   "cum": 42,
+   "cum": 43,
    "cumtot": 44,
    "year": 2024,
    "related": "",
@@ -461,7 +461,7 @@
    "rev": 0.874,
    "yrank": 10,
    "ytot": 10,
-   "cum": 43,
+   "cum": 44,
    "cumtot": 44,
    "year": 2024,
    "related": "釉瑚",
@@ -2130,10 +2130,10 @@
    "name": "リリー",
    "start": "2026-11-12",
    "end": "2026-12-03",
-   "rev": 0.6024,
+   "rev": 1.01,
    "yrank": 15,
    "ytot": 15,
-   "cum": 44,
+   "cum": 42,
    "cumtot": 44,
    "year": 2026,
    "related": "",
@@ -2142,7 +2142,8 @@
    "ongoing": true,
    "rank_series": [
     80,
-    17
+    17,
+    25
    ],
    "agents": [
     "Lily"

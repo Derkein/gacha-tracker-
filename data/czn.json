@@ -5,13 +5,13 @@
  "unit": "億G",
  "source": "https://page.onstove.com/chaoszeronightmare/jp",
  "banners_from": "official",
- "updated": "2026-11-12T22:23:59Z",
+ "updated": "2026-11-13T17:21:33Z",
  "count": 19,
  "now": {
-  "ios": 72,
+  "ios": 91,
   "android": 42,
-  "month": 178,
-  "next_add": 16235904,
+  "month": 173,
+  "next_add": 13755266,
   "ym": "2026/11",
   "ranks": {
    "prev": [
@@ -61,7 +61,7 @@
     null,
     47,
     66,
-    null,
+    91,
     null,
     null,
     null,
@@ -83,7 +83,7 @@
   }
  },
  "monthly": {
-  "2026-11": 1.25,
+  "2026-11": 1.39,
   "2026-10": 2.64,
   "2026-09": 1.19,
   "2026-08": 1.76,
@@ -543,9 +543,9 @@
     "2026-03": 0.6639,
     "2026-04": 0.2201
    },
-   "cum": 13,
+   "cum": 14,
    "cumtot": 19,
-   "yrank": 9,
+   "yrank": 10,
    "ytot": 15,
    "icons": [
     "icons/faces/czn/2026-03-18-938e39.webp"
@@ -1010,9 +1010,9 @@
    "rev_month_ym": {
     "2026-09": 0.8499
    },
-   "cum": 14,
+   "cum": 15,
    "cumtot": 19,
-   "yrank": 10,
+   "yrank": 11,
    "ytot": 15,
    "icons": [
     "icons/faces/czn/2026-09-09-b1e440.webp"
@@ -1090,17 +1090,18 @@
     null,
     null,
     47,
-    66
+    66,
+    91
    ],
-   "rev": 2.1843,
-   "rev_month": 2.6302,
+   "rev": 2.2543,
+   "rev_month": 2.7007,
    "rev_ym": {
     "2026-10": 1.5701,
-    "2026-11": 0.6142
+    "2026-11": 0.6842
    },
    "rev_month_ym": {
     "2026-10": 1.6199,
-    "2026-11": 1.0103
+    "2026-11": 1.0807
    },
    "cum": 2,
    "cumtot": 19,
@@ -1128,19 +1129,20 @@
    "rank_series": [
     null,
     47,
-    66
+    66,
+    91
    ],
-   "rev": 0.193,
-   "rev_month": 0.2397,
+   "rev": 0.2625,
+   "rev_month": 0.3093,
    "rev_ym": {
-    "2026-11": 0.193
+    "2026-11": 0.2625
    },
    "rev_month_ym": {
-    "2026-11": 0.2397
+    "2026-11": 0.3093
    },
-   "cum": 15,
+   "cum": 13,
    "cumtot": 19,
-   "yrank": 11,
+   "yrank": 9,
    "ytot": 15,
    "icons": [
     "icons/faces/czn/2026-11-11-653612.webp"
