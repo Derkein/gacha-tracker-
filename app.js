@@ -3762,7 +3762,22 @@ function projNear(key, peers, D){
 }
 // wt (optional): this run's share of each day 0..L-1 (giShares) -- v and the peers stay in the
 // game's own rank value, the run's banked and future days count at its share of them
-function projectRun(v, key, peers, L, wt){
+// A run LONGER than its peers (Aha: 42 days against peers of 17–24) needs days the peers never
+// had. Those used to be extended at the pace of the peers' last week, which holds the end-of-banner
+// bump and the next launch's lift, so the pace came out flat (capped at 1.0) and Aha's last 19 days
+// were projected at full day-22 strength: more than half her ¥3.2B. So when a run outlasts its
+// peers' data, the peers are read MID-RUN, each without its last PROJ_TAIL_TRIM days, and the
+// extension follows that pace. Backtest on every finished 32+-day run (cut at days 4 and 7):
+// game-i's median miss on the HoYo/Kuro/Endfield long runs 12% → 8% (day 4) and 17% → 9% (day 7),
+// Qimai's 11% → 6% by day 7, Umamusume unchanged; all runs 8.2% → 8.0%.
+const PROJ_TAIL_TRIM = 3;
+const projMidRun = peers => peers.map(p=>({...p, v:p.v.slice(0, Math.max(0, p.v.length-PROJ_TAIL_TRIM))})).filter(p=>p.v.length);
+function projectRun(v, key, peers, L, wt, midRun){
+  if(!midRun){                                   // does this run outlast its peers' data?
+    const {near}=projNear(key, peers, v.length); let cov=-1;
+    for(let t=v.length;t<L;t++) if(near.filter(p=>p.v.length>t).length>=PROJ_MIN_PEERS) cov=t;
+    if(cov>=0 && cov<L-1) return projectRun(v, key, projMidRun(peers), L, wt, true) || projectRun(v, key, peers, L, wt, true);
+  }
   const W=i=>wt ? (wt[i] ?? 1) : 1;
   const D=v.length, a0=v[D-1], soFar=v.reduce((a,c,i)=>a+c*W(i),0);
   if(D<2 || D>=L || !(a0>0)) return null;
@@ -3792,7 +3807,8 @@ function projectRun(v, key, peers, L, wt){
 // and it barely moves on a single odd day.
 function shareRun(v, key, peers, L, wt){
   const D=v.length, soFar=v.reduce((a,c)=>a+c,0);
-  const {near}=projNear(key, peers, D); if(near.length<PROJ_MIN_PEERS || !(soFar>0)) return null;
+  let {near}=projNear(key, peers, D);
+  if(near.some(p=>p.v.length<L)) near=projNear(key, projMidRun(peers), D).near;   // a shorter peer: read it mid-run if(near.length<PROJ_MIN_PEERS || !(soFar>0)) return null;
   const lg=near.map(p=>{ let tot=0; for(let t=0;t<Math.min(L,p.v.length);t++) tot+=p.v[t];
     if(p.v.length<L) tot+=p.v[p.v.length-1]*(L-p.v.length)*0.8;   // a shorter peer: its last day, easing off
     const cum=p.v.slice(0,D).reduce((a,c)=>a+c,0); return cum>0 ? Math.log(tot/cum) : null; }).filter(x=>x!=null);
