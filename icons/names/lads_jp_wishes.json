@@ -1367,5 +1367,18 @@
 "Zayne"
 ],
 "card": "https://cdn.gamerch.com/contents/wiki/4793/entry/XGBiHhd5.png"
+},
+{
+"name": "沸き立つ灼光",
+"start": "2026-11-17",
+"end": "2026-11-24",
+"rerun": true,
+"mem": [
+"シン・沸き立つ灼光"
+],
+"leads": [
+"Sylus"
+],
+"card": "https://cdn.gamerch.com/contents/wiki/4793/entry/Pj7d9RZ2.png"
 }
 ]

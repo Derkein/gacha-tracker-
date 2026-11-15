@@ -5,13 +5,13 @@
  "unit": "億G",
  "source": "https://prtimes.jp/main/html/searchrlp/company_id/131862",
  "banners_from": "official",
- "updated": "2026-11-14T20:55:21Z",
+ "updated": "2026-11-15T20:28:20Z",
  "count": 82,
  "now": {
   "ios": null,
-  "android": 165,
-  "month": 194,
-  "next_add": 5104742,
+  "android": 95,
+  "month": 196,
+  "next_add": 5196292,
   "ym": "2026/11",
   "ranks": {
    "prev": [
@@ -83,7 +83,7 @@
   }
  },
  "monthly": {
-  "2026-11": 1.2,
+  "2026-11": 1.25,
   "2026-10": 2.3,
   "2026-09": 2.84,
   "2026-08": 2.27,
@@ -4218,14 +4218,14 @@
     null
    ],
    "rev": 0.224,
-   "rev_month": 0.5585,
+   "rev_month": 0.5566,
    "rev_ym": {
     "2026-10": 0.224,
     "2026-11": 0.0
    },
    "rev_month_ym": {
     "2026-10": 0.3282,
-    "2026-11": 0.2303
+    "2026-11": 0.2284
    },
    "cum": 81,
    "cumtot": 82,
@@ -4268,15 +4268,16 @@
     null,
     null,
     null,
+    null,
     null
    ],
-   "rev": 0.6755,
-   "rev_month": 0.9697,
+   "rev": 0.6701,
+   "rev_month": 1.0216,
    "rev_ym": {
-    "2026-11": 0.6755
+    "2026-11": 0.6701
    },
    "rev_month_ym": {
-    "2026-11": 0.9697
+    "2026-11": 1.0216
    },
    "cum": 56,
    "cumtot": 82,
