@@ -615,7 +615,7 @@ function qimaiBurnBlock(b){
     return `<div class="bm-stats bm-share3 bm-burn">
       <div class="bm-stat"><span class="l">Day</span><span class="v">${D} of ${scheduled}</span></div>
       <div class="bm-stat"><span class="l">Latest day</span><span class="v">${fmtUSD(posted[D-1])}</span></div>
-      <div class="bm-stat sum"><span class="l">Tracking towards</span><span class="v">${fmtUSD(pj.mid)}</span></div>
+      <div class="bm-stat sum"><span class="l">Tracking towards</span><span class="v">${fmtUSD(pj.mid)}</span>${placeSub(qmPlace(b, pj))}</div>
     </div>
     ${projMoveHTML(pj, fmtUSD, projDayWhy(posted, posted, "qm", fmtUSD))}
     <div class="bm-cap">At <b>${fmtUSD(posted[D-1])}</b> on day <b>${D}</b> with <b>${fmtUSD(soFar)}</b> banked, and <b>${scheduled-D}</b> days still to run:
@@ -762,7 +762,7 @@ function qimaiAnalysisBlock(b){
     const pj=qimaiProjection(b);
     head="What it is tracking towards";
     body=`Still running, day <b>${D}</b> of Qimai data in at <span class="fig">${fmtUSD(qm.total)}</span> so far in China-iPhone gross.`
-      + (pj?` Following this game's finished banners that ${pj.near?`were taking a similar amount on day ${pj.D}`:`ran at least this long`}, over its own ${pj.L}-day run, puts it on track for about <span class="fig">${fmtUSD(pj.mid)}</span> (${fmtUSD(pj.lo)} to ${fmtUSD(pj.hi)}).${projSureShort("qm", pj.D)}`:``)
+      + (pj?` Following this game's finished banners that ${pj.near?`were taking a similar amount on day ${pj.D}`:`ran at least this long`}, over its own ${pj.L}-day run, puts it on track for about <span class="fig">${fmtUSD(pj.mid)}</span> (${fmtUSD(pj.lo)} to ${fmtUSD(pj.hi)}), ${placeTxt(qmPlace(b, pj))} in China-iPhone revenue.${projSureShort("qm", pj.D)}`:``)
       + (onCum && sameDay.length>=3 ? ` For context, the runs with the closest total by day ${D} (listed above) finished at ${spread}${pj?" — they are matched on what was banked, the projection on how strong the run still is":""}.` : ` For context, the banners closest to it in China total finished at ${spread}.`);
   }
   const verdict=`<div class="bm-verdict"><span class="head">${head}</span>${body}
@@ -3914,6 +3914,40 @@ function projDayWhy(v, key, src, fmtDay){
                : `, holding up better than usual (a typical ${nm} banner keeps about ${Math.round(typ*100)}% from one day to the next here)`;
   return `day ${D} came in at <b>${fmtDay(v[D-1])}</b>, ${pct<0?`${-pct}% below`:pct>0?`${pct}% above`:"level with"} day ${D-1}${vs}`;
 }
+// A run whose LATEST day is below game-i's #200 has nothing for projectRun to anchor on (that day
+// is worth 0 on game-i). Severian, day 7 (#138 → #32 → … → #191 → off) showed no projection at
+// all. Read it instead from how this game's finished runs that also dropped off the chart around
+// the same day carried on: each one's final over what it had banked by the same point after its
+// drop. Most add next to nothing (ZZZ: Billy, Roxy, Clara, Promeia +0%), a few climb back (Norma
+// +71%). Peers: drop day within ±3 of this run's, widening to ±6 and then any, until 4 qualify.
+const PROJ_OFF_NEAR = [3, 6, Infinity];
+const firstOffDay = r => r.findIndex((x,k)=>k>=2 && x==null);   // index of the first day below #200
+function offChartProjection(b, s, L){
+  const D=s.length; if(D<3 || s[D-1]!=null || !(b.rev>0)) return null;
+  const d0=firstOffDay(s); if(d0<0) return null;
+  const since=D-1-d0;                                            // days it has already spent off it
+  const cand=state.data.banners.filter(o=>!o._synthetic && !o.pending && !o.ongoing && o.rev>0).map(o=>{
+    const r=o.rank_series||[], f=firstOffDay(r); if(f<0 || f+since>=r.length-1) return null;
+    const v=r.map(rankValue), w=giShares(o), n=Math.min(L, r.length); let tot=0, by=0;
+    for(let t=0;t<n;t++){ const x=v[t]*(w[t] ?? 1); tot+=x; if(t<=f+since) by+=x; }
+    return by>0 ? {f, g:tot/by} : null; }).filter(Boolean);
+  let near=[]; for(const wd of PROJ_OFF_NEAR){ near=cand.filter(c=>Math.abs(c.f-d0)<=wd); if(near.length>=4) break; }
+  if(near.length<PROJ_MIN_PEERS) return null;
+  const g=near.map(c=>c.g).sort((x,y)=>x-y), q=f=>g[Math.min(g.length-1, Math.floor(g.length*f))], gm=_med(g);
+  return {mid:b.rev*gm, lo:b.rev*Math.min(gm,q(0.1)), hi:b.rev*Math.max(gm,q(0.9)), gmed:gm, n:near.length,
+          near:true, off:true, d0:d0+1, prev:null, D, L, rank:null};
+}
+// Where a projected final would sit among this game's banners: in its year and all-time, against
+// the finished ones' totals and the other ongoing ones' own projections (val(x) gives each).
+function projPlace(b, mid, val){
+  const B=state.data.banners.filter(x=>!x._synthetic && !x.pending && (x===b || val(x)>0));
+  const v=x=>x===b ? mid : val(x), yr=B.filter(x=>x.year===b.year);
+  return {y:yr.filter(x=>x!==b && v(x)>mid).length+1, yof:yr.length, c:B.filter(x=>x!==b && v(x)>mid).length+1, cof:B.length, year:b.year};
+}
+const giPlace = (b, pj) => projPlace(b, pj.mid, x=>x.ongoing ? ((bannerProjection(x)||{}).mid ?? x.rev) : x.rev);
+const qmPlace = (b, pj) => projPlace(b, pj.mid, x=>x.ongoing ? ((qimaiProjection(x)||{}).mid ?? bannerQimai(x).total) : bannerQimai(x).total);
+const placeSub = r => `<span class="sub" title="#${r.y} of ${r.yof} banners in ${r.year} · #${r.c} of ${r.cof} all-time">#${r.y} of ${r.year} · #${r.c} all-time</span>`;
+const placeTxt = r => `which would make it <b>#${r.y}</b> of ${r.year}'s ${r.yof} banners and <b>#${r.c}</b> of ${r.cof} all-time`;
 // game-i: a run's projected final total (億G). Its daily values are rank values scaled so they
 // add up to game-i's figure so far; peers are this game's finished runs at a similar rank.
 function bannerProjection(b){
@@ -3925,7 +3959,7 @@ function bannerProjection(b){
   // them with is on the schedule (Tangtang's rerun has Argent Flow beside it to the end)
   const wt=giShares(b, L), sum=v.reduce((a,c,i)=>a+c*wt[i],0);
   if(!b.ongoing || !(b.rev>0) || sum<=0) return set(null);
-  const p=projectSmooth(v, s, projPeerSet("gi"), L, wt); if(!p) return set(null);
+  const p=projectSmooth(v, s, projPeerSet("gi"), L, wt); if(!p) return set(offChartProjection(b, s, L));
   // 億G per rank-value unit, this run. Yesterday's figure is put on today's scale: game-i's
   // total grows by the value of each day's rank, so the scale itself barely moves.
   const k=b.rev/sum;
@@ -3933,6 +3967,7 @@ function bannerProjection(b){
 }
 // "the N banners that were …" — the peer group as it was picked: the rank band it came from.
 function projPeersTxt(pj, nm){
+  if(pj.off) return `the ${pj.n} finished ${nm} banners that also dropped below game-i's #200 around day ${pj.d0}`;
   if(!pj.near) return `the ${pj.n} finished ${nm} banners that ran at least this long`;
   const lo=Math.max(1,Math.round(pj.rank/pj.width)), hi=Math.min(200,Math.round(pj.rank*pj.width));
   return `the ${pj.n} finished ${nm} banners that were between #${lo} and #${hi} on day ${pj.D}`;
@@ -3982,13 +4017,16 @@ function burnBlock(b){
     }
     return `<div class="bm-stats bm-share3 bm-burn">
       <div class="bm-stat"><span class="l">Day</span><span class="v">${D} of ${scheduled}</span></div>
-      <div class="bm-stat"><span class="l">Latest iOS rank</span><span class="v">#${pj.rank}</span></div>
-      <div class="bm-stat sum"><span class="l">Tracking towards</span><span class="v">${G(pj.mid)}</span></div>
+      <div class="bm-stat"><span class="l">Latest iOS rank</span><span class="v">${pj.off?"below #200":`#${pj.rank}`}</span></div>
+      <div class="bm-stat sum"><span class="l">Tracking towards</span><span class="v">${G(pj.mid)}</span>${placeSub(giPlace(b, pj))}</div>
     </div>
     ${projMoveHTML(pj, G, projDayWhy((b.rank_series||[]).map(rankValue), b.rank_series||[], "gi"))}
-    <div class="bm-cap">At <b>#${pj.rank}</b> on day <b>${D}</b> with <b>${G(b.rev)}</b> banked, and <b>${scheduled-D}</b> days still to run:
+    ${pj.off
+      ? `<div class="bm-cap">Its latest day sat below game-i's #200, where game-i adds nothing for the day, with <b>${G(b.rev)}</b> banked and <b>${scheduled-D}</b> days still to run:
+      ${projPeersTxt(pj, esc(gameName()))} went on to add a median of <b>+${Math.round((pj.gmed-1)*100)}%</b> from there, which puts this one ${projRangeTxt(pj, G, ", depending on which of them it follows.")}</div>`
+      : `<div class="bm-cap">At <b>#${pj.rank}</b> on day <b>${D}</b> with <b>${G(b.rev)}</b> banked, and <b>${scheduled-D}</b> days still to run:
       ${projPeersTxt(pj, esc(gameName()))} carried on in a way that puts this one ${projRangeTxt(pj, G, ", depending on which of them it follows.")}</div>
-    ${projSureHTML("gi", D)}`;
+    ${projSureHTML("gi", D)}`}`;
   }
   const g=gameBurn();
   if(!g) return stats;
@@ -4791,8 +4829,8 @@ function jpAnalysisBlock(b){
     // the same projection the build-up shows, so the page gives one answer
     const pj=bannerProjection(b);
     head="Tracking towards";
-    body=`Day <b>${pj.D}</b> of ${pj.L}, at <b>#${pj.rank}</b> and <span class="fig">${G(b.rev)}</span> so far${ownST}.
-      Following ${projPeersTxt(pj, esc(gameName()))} over its own ${pj.L}-day run puts it near <span class="fig">${G(pj.mid)}</span>, somewhere between <b>${G(pj.lo)}</b> and <b>${G(pj.hi)}</b>.${projSureShort("gi", pj.D)}${stAside(money)}`;
+    body=`Day <b>${pj.D}</b> of ${pj.L}, ${pj.off?"below game-i's #200":`at <b>#${pj.rank}</b>`} and <span class="fig">${G(b.rev)}</span> so far${ownST}.
+      Following ${projPeersTxt(pj, esc(gameName()))} over its own ${pj.L}-day run puts it near <span class="fig">${G(pj.mid)}</span>, somewhere between <b>${G(pj.lo)}</b> and <b>${G(pj.hi)}</b>, ${placeTxt(giPlace(b, pj))}.${pj.off?"":projSureShort("gi", pj.D)}${stAside(money)}`;
   } else if(st.charted>=5 || (onCum && st.charted>=2)){
     head="Tracking towards";
     // Each peer's final divided by what it had banked by this same day is the multiple
@@ -5022,7 +5060,7 @@ function cnAnalysisBlock(b){
     // "finished at ¥651M–¥1.14B" with ¥1.12B already in), so they stay as context only.
     const pj=bannerProjection(b);
     head="What it is tracking towards";
-    body=`Still running, day <b>${pj.D}</b> of ${pj.L}, with game-i at <span class="fig">${G(b.rev)}</span> so far${ownST}. The game-i tab's projection — its latest Japan rank, followed by ${projPeersTxt(pj, esc(gameName()))} — puts it near <span class="fig">${G(pj.mid)}</span> (${G(pj.lo)} to ${G(pj.hi)}).${projSureShort("gi", pj.D)} For context, the banners that peaked nearest <b>#${st.peak}</b> in China finished at ${moneySpread(PV)}.${stAside(money)}`;
+    body=`Still running, day <b>${pj.D}</b> of ${pj.L}, with game-i at <span class="fig">${G(b.rev)}</span> so far${ownST}. The game-i tab's projection — its latest Japan rank, followed by ${projPeersTxt(pj, esc(gameName()))} — puts it near <span class="fig">${G(pj.mid)}</span> (${G(pj.lo)} to ${G(pj.hi)}), ${placeTxt(giPlace(b, pj))}.${pj.off?"":projSureShort("gi", pj.D)} For context, the banners that peaked nearest <b>#${st.peak}</b> in China finished at ${moneySpread(PV)}.${stAside(money)}`;
   } else if(st.charted>=7){
     head="What it is tracking towards";
     body=`Still running, <b>${st.charted}</b> charted day${st.charted>1?"s":""} in, with ${ownName} at <span class="fig">${ownFig}</span> so far${ownST}. Banners that peaked nearest <b>#${st.peak}</b> finished at ${moneySpread(PV)} — if this one follows them it ends around that middle.${stAside(money)}`;
@@ -5809,7 +5847,7 @@ function bannerRival(b){
 // and verdict show, so Compare's card can't disagree with them.
 function bannerProj(b){
   const pj=bannerProjection(b); if(!pj) return null;
-  const a=projAccuracy("gi", pj.D);
+  const a=pj.off ? null : projAccuracy("gi", pj.D);
   return { day:pj.D, scheduled:pj.L, rank:pj.rank, projTotal:pj.mid, lo:pj.lo, hi:pj.hi, miss:a?a.med:null };
 }
 // A whole month / year / version: the game's daily series over the range, built from every
@@ -6581,7 +6619,7 @@ function renderCompareResult(){
   const pctChip=e=> e.pct!=null?`<span class="cmp-chip2" title="Mean percentile across its available sources, among ${esc(e.game)}'s banners (higher = stronger)">${ordinal(e.pct)} pct · ${esc(e.game)}</span>`:"";
   const noteLines=e=>{ let h="";
     if(e.rival) h+=`<div class="cmp-cardnote" title="About ${Math.round(e.rival.frac*100)}% of this run's revenue overlapped a concurrent banner, which can split spending">↔ ran alongside <b>${esc(e.rival.name)}</b></div>`;
-    if(e.proj) h+=`<div class="cmp-cardnote" title="From its latest rank (#${e.proj.rank}) and how this game's finished banners at a similar rank carried on, over its own ${e.proj.scheduled}-day run — ${G(e.proj.lo)} to ${G(e.proj.hi)}${e.proj.miss!=null?`. Made on day ${e.proj.day}, this estimate has missed finished banners by a median of ${Math.max(1,Math.round(e.proj.miss*100))}%`:""}">→ tracking toward <b>${G(e.proj.projTotal)}</b> (day ${e.proj.day} of ${e.proj.scheduled})</div>`;
+    if(e.proj) h+=`<div class="cmp-cardnote" title="From its latest rank (${e.proj.rank==null?"below #200":`#${e.proj.rank}`}) and how this game's finished banners at a similar rank carried on, over its own ${e.proj.scheduled}-day run — ${G(e.proj.lo)} to ${G(e.proj.hi)}${e.proj.miss!=null?`. Made on day ${e.proj.day}, this estimate has missed finished banners by a median of ${Math.max(1,Math.round(e.proj.miss*100))}%`:""}">→ tracking toward <b>${G(e.proj.projTotal)}</b> (day ${e.proj.day} of ${e.proj.scheduled})</div>`;
     return h; };
   const card=(e,i)=>{
     const won=R.overall===i, lost=!even && !won;
