@@ -5848,7 +5848,7 @@ function bannerRival(b){
 function bannerProj(b){
   const pj=bannerProjection(b); if(!pj) return null;
   const a=pj.off ? null : projAccuracy("gi", pj.D);
-  return { day:pj.D, scheduled:pj.L, rank:pj.rank, projTotal:pj.mid, lo:pj.lo, hi:pj.hi, miss:a?a.med:null };
+  return { day:pj.D, scheduled:pj.L, rank:pj.rank, projTotal:pj.mid, lo:pj.lo, hi:pj.hi, miss:a?a.med:null, place:giPlace(b, pj) };
 }
 // A whole month / year / version: the game's daily series over the range, built from every
 // banner that ran plus the game's real China chart. Must run inside withCtx(ctx).
@@ -6619,7 +6619,7 @@ function renderCompareResult(){
   const pctChip=e=> e.pct!=null?`<span class="cmp-chip2" title="Mean percentile across its available sources, among ${esc(e.game)}'s banners (higher = stronger)">${ordinal(e.pct)} pct · ${esc(e.game)}</span>`:"";
   const noteLines=e=>{ let h="";
     if(e.rival) h+=`<div class="cmp-cardnote" title="About ${Math.round(e.rival.frac*100)}% of this run's revenue overlapped a concurrent banner, which can split spending">↔ ran alongside <b>${esc(e.rival.name)}</b></div>`;
-    if(e.proj) h+=`<div class="cmp-cardnote" title="From its latest rank (${e.proj.rank==null?"below #200":`#${e.proj.rank}`}) and how this game's finished banners at a similar rank carried on, over its own ${e.proj.scheduled}-day run — ${G(e.proj.lo)} to ${G(e.proj.hi)}${e.proj.miss!=null?`. Made on day ${e.proj.day}, this estimate has missed finished banners by a median of ${Math.max(1,Math.round(e.proj.miss*100))}%`:""}">→ tracking toward <b>${G(e.proj.projTotal)}</b> (day ${e.proj.day} of ${e.proj.scheduled})</div>`;
+    if(e.proj) h+=`<div class="cmp-cardnote" title="From its latest rank (${e.proj.rank==null?"below #200":`#${e.proj.rank}`}) and how this game's finished banners at a similar rank carried on, over its own ${e.proj.scheduled}-day run — ${G(e.proj.lo)} to ${G(e.proj.hi)}${e.proj.miss!=null?`. Made on day ${e.proj.day}, this estimate has missed finished banners by a median of ${Math.max(1,Math.round(e.proj.miss*100))}%`:""}">→ tracking toward <b>${G(e.proj.projTotal)}</b> (day ${e.proj.day} of ${e.proj.scheduled}${e.proj.place?` · would be #${e.proj.place.y} of ${e.proj.place.year}, #${e.proj.place.c} all-time`:""})</div>`;
     return h; };
   const card=(e,i)=>{
     const won=R.overall===i, lost=!even && !won;
