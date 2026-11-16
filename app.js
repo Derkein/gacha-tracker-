@@ -3946,7 +3946,7 @@ function projPlace(b, mid, val){
 }
 const giPlace = (b, pj) => projPlace(b, pj.mid, x=>x.ongoing ? ((bannerProjection(x)||{}).mid ?? x.rev) : x.rev);
 const qmPlace = (b, pj) => projPlace(b, pj.mid, x=>x.ongoing ? ((qimaiProjection(x)||{}).mid ?? bannerQimai(x).total) : bannerQimai(x).total);
-const placeSub = r => `<span class="sub" title="#${r.y} of ${r.yof} banners in ${r.year} · #${r.c} of ${r.cof} all-time">#${r.y} of ${r.year} · #${r.c} all-time</span>`;
+const placeSub = r => `<span class="sub" title="#${r.y} of ${r.yof} banners in ${r.year} · #${r.c} of ${r.cof} all-time">#${r.y}/${r.yof} in ${r.year} · #${r.c}/${r.cof} all-time</span>`;
 const placeTxt = r => `which would make it <b>#${r.y}</b> of ${r.year}'s ${r.yof} banners and <b>#${r.c}</b> of ${r.cof} all-time`;
 // game-i: a run's projected final total (億G). Its daily values are rank values scaled so they
 // add up to game-i's figure so far; peers are this game's finished runs at a similar rank.
@@ -6619,7 +6619,7 @@ function renderCompareResult(){
   const pctChip=e=> e.pct!=null?`<span class="cmp-chip2" title="Mean percentile across its available sources, among ${esc(e.game)}'s banners (higher = stronger)">${ordinal(e.pct)} pct · ${esc(e.game)}</span>`:"";
   const noteLines=e=>{ let h="";
     if(e.rival) h+=`<div class="cmp-cardnote" title="About ${Math.round(e.rival.frac*100)}% of this run's revenue overlapped a concurrent banner, which can split spending">↔ ran alongside <b>${esc(e.rival.name)}</b></div>`;
-    if(e.proj) h+=`<div class="cmp-cardnote" title="From its latest rank (${e.proj.rank==null?"below #200":`#${e.proj.rank}`}) and how this game's finished banners at a similar rank carried on, over its own ${e.proj.scheduled}-day run — ${G(e.proj.lo)} to ${G(e.proj.hi)}${e.proj.miss!=null?`. Made on day ${e.proj.day}, this estimate has missed finished banners by a median of ${Math.max(1,Math.round(e.proj.miss*100))}%`:""}">→ tracking toward <b>${G(e.proj.projTotal)}</b> (day ${e.proj.day} of ${e.proj.scheduled}${e.proj.place?` · would be #${e.proj.place.y} of ${e.proj.place.year}, #${e.proj.place.c} all-time`:""})</div>`;
+    if(e.proj) h+=`<div class="cmp-cardnote" title="From its latest rank (${e.proj.rank==null?"below #200":`#${e.proj.rank}`}) and how this game's finished banners at a similar rank carried on, over its own ${e.proj.scheduled}-day run — ${G(e.proj.lo)} to ${G(e.proj.hi)}${e.proj.miss!=null?`. Made on day ${e.proj.day}, this estimate has missed finished banners by a median of ${Math.max(1,Math.round(e.proj.miss*100))}%`:""}">→ tracking toward <b>${G(e.proj.projTotal)}</b> (day ${e.proj.day} of ${e.proj.scheduled}${e.proj.place?` · would be #${e.proj.place.y}/${e.proj.place.yof} in ${e.proj.place.year}, #${e.proj.place.c}/${e.proj.place.cof} all-time`:""})</div>`;
     return h; };
   const card=(e,i)=>{
     const won=R.overall===i, lost=!even && !won;

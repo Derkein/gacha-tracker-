@@ -1485,4 +1485,4 @@ body[data-agmode="banner"] .ag-row{grid-template-columns:206px 1fr 196px}
 .recon-warn .reconlink{font-size:13.5px; margin-left:4px}
 /* Compare: why a side's points are fractional (rank lifted by another banner's launch) */
 .cmp-liftnote{display:block; font-size:13.5px; color:var(--muted); margin-top:4px; font-weight:400}
-.bm-stat .sub{font-size:12px; color:var(--muted); font-variant-numeric:tabular-nums; white-space:nowrap}
+.bm-stat .sub{font-size:12px; color:var(--muted); font-variant-numeric:tabular-nums}
