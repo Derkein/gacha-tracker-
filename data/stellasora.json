@@ -5,13 +5,13 @@
  "unit": "億G",
  "source": "https://stellasora.jp/news/",
  "banners_from": "official",
- "updated": "2026-11-15T21:10:17Z",
+ "updated": "2026-11-16T18:18:09Z",
  "count": 24,
  "now": {
   "ios": null,
-  "android": null,
-  "month": 296,
-  "next_add": 3871164,
+  "android": 187,
+  "month": 299,
+  "next_add": 3134616,
   "ym": "2026/11",
   "ranks": {
    "prev": [
@@ -83,7 +83,7 @@
   }
  },
  "monthly": {
-  "2026-11": 0.6775,
+  "2026-11": 0.7111,
   "2026-10": 1.08,
   "2026-09": 0.5061,
   "2026-08": 0.491,
@@ -1017,14 +1017,14 @@
     null
    ],
    "rev": 0.1609,
-   "rev_month": 0.6724,
+   "rev_month": 0.6706,
    "rev_ym": {
     "2026-10": 0.1609,
     "2026-11": 0.0
    },
    "rev_month_ym": {
     "2026-10": 0.4617,
-    "2026-11": 0.2107
+    "2026-11": 0.2089
    },
    "cum": 6,
    "cumtot": 24,
@@ -1048,7 +1048,7 @@
    "en": "Firefly",
    "source_url": "https://stellasora.jp/news/4987",
    "rerun": true,
-   "ongoing": true,
+   "ongoing": false,
    "rank_series": [
     null,
     172,
@@ -1070,17 +1070,18 @@
     null,
     null,
     null,
+    null,
     null
    ],
    "rev": 0.0279,
-   "rev_month": 0.5147,
+   "rev_month": 0.5179,
    "rev_ym": {
     "2026-10": 0.0279,
     "2026-11": 0.0
    },
    "rev_month_ym": {
     "2026-10": 0.1245,
-    "2026-11": 0.3902
+    "2026-11": 0.3934
    },
    "cum": 10,
    "cumtot": 24,
@@ -1106,12 +1107,12 @@
    "rerun": false,
    "ongoing": true,
    "rev": 0.0,
-   "rev_month": 0.0766,
+   "rev_month": 0.1088,
    "rev_ym": {
     "2026-11": 0.0
    },
    "rev_month_ym": {
-    "2026-11": 0.0766
+    "2026-11": 0.1088
    },
    "cum": 24,
    "cumtot": 24,

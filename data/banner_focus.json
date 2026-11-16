@@ -4529,6 +4529,24 @@
    "det": true,
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
    "v": 2
+  },
+  "https://pbs.twimg.com/media/HXNwXqHaUAA9NXU.jpg": {
+   "x": 31.5,
+   "y": 56.3,
+   "w": 1024,
+   "h": 576,
+   "det": true,
+   "name": "セレクトピックアップ サポートカードガチャ",
+   "v": 2
+  },
+  "https://pbs.twimg.com/media/HXNwDbsaEAAL_1X.jpg": {
+   "x": 48.6,
+   "y": 47.0,
+   "w": 1024,
+   "h": 576,
+   "det": true,
+   "name": "デアリングタクト登場! プレミアム プリティーダービーガチャ",
+   "v": 2
   }
  },
  "stellasora": {
