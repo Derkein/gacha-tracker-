@@ -5,13 +5,13 @@
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E3%82%A6%E3%83%9E%E5%A8%98%20%E3%83%97%E3%83%AA%E3%83%86%E3%82%A3%E3%83%BC%E3%83%80%E3%83%BC%E3%83%93%E3%83%BC",
  "banners_from": "game-i",
- "updated": "2026-11-17T23:42:43Z",
+ "updated": "2026-11-18T20:24:40Z",
  "count": 221,
  "now": {
-  "ios": 12,
-  "android": 11,
-  "month": 24,
-  "next_add": 63209778,
+  "ios": 17,
+  "android": 7,
+  "month": 23,
+  "next_add": 57704704,
   "ym": "2026/11",
   "ranks": {
    "prev": [
@@ -66,7 +66,7 @@
     46,
     9,
     12,
-    null,
+    18,
     null,
     null,
     null,
@@ -83,7 +83,7 @@
   }
  },
  "monthly": {
-  "2026-11": 7.8,
+  "2026-11": 8.36,
   "2026-10": 8.19,
   "2026-09": 14.53,
   "2026-08": 14.78,
@@ -5063,7 +5063,7 @@
    "rev": 4.81,
    "yrank": 20,
    "ytot": 45,
-   "cum": 133,
+   "cum": 135,
    "cumtot": 230,
    "year": 2024,
    "related": "★ [ほっぴん♪ビタミンハート]スペシャルウィーク,★3タマモクロス,★3トーセンジョーダン,★3サクラチヨノオー,★3メジロアルダン,★3ヤエノムテキ,★3カツラギエース,★3ネオユニヴァース",
@@ -6206,7 +6206,7 @@
    "rev": 1.23,
    "yrank": 39,
    "ytot": 41,
-   "cum": 218,
+   "cum": 219,
    "cumtot": 230,
    "year": 2025,
    "related": "★3[Hello Hello Island]アイネスフウジン/SSR [瞳に闘志を胸に勝利の渇望を]メジロライアン,SR [私たちのプリンセス流儀]カワカミプリンセス",
@@ -7802,9 +7802,9 @@
    "start": "2026-07-10",
    "end": "2026-07-21",
    "rev": 1.31,
-   "yrank": 30,
+   "yrank": 31,
    "ytot": 35,
-   "cum": 216,
+   "cum": 217,
    "cumtot": 230,
    "year": 2026,
    "related": "★3 [麺華煌彩伝・極]ファインモーション/SSR [両手いっぱい、小倉愛]ナイスネイチャ,SR [瞬光]カルストンライトオ",
@@ -8131,9 +8131,9 @@
    "start": "2026-09-11",
    "end": "2026-09-18",
    "rev": 1.31,
-   "yrank": 31,
+   "yrank": 32,
    "ytot": 35,
-   "cum": 217,
+   "cum": 218,
    "cumtot": 230,
    "year": 2026,
    "related": "★3[絶佳の暁闇]ファレノプシス/SSR [行き先はあたたかな場所]マチカネタンホイザ,SR [清く、やわらかな夜]ゼンノロブロイ",
@@ -8233,16 +8233,16 @@
    "name": "新育成シナリオ開幕 サポートカードガチャ",
    "start": "2026-10-26",
    "end": "2026-11-19",
-   "rev": 4.7,
+   "rev": 4.81,
    "yrank": 9,
    "ytot": 35,
-   "cum": 135,
+   "cum": 134,
    "cumtot": 230,
    "year": 2026,
    "related": "SSR [いとどめでたき、まつりかな]吾妻,SSR [Time of Departure]マヤノトップガン,R [巫女]吾妻",
    "banner_img": "https://pbs.twimg.com/media/HVhm895aQAEqQQD.jpg",
    "rerun": false,
-   "ongoing": true,
+   "ongoing": false,
    "rank_series": [
     110,
     5,
@@ -8267,7 +8267,8 @@
     39,
     46,
     9,
-    12
+    12,
+    18
    ],
    "agents": [
     "Azuma",
@@ -8279,16 +8280,16 @@
    "name": "新育成シナリオ開幕 プリティーダービーガチャ",
    "start": "2026-10-26",
    "end": "2026-11-19",
-   "rev": 4.7,
+   "rev": 4.81,
    "yrank": 8,
    "ytot": 35,
-   "cum": 134,
+   "cum": 133,
    "cumtot": 230,
    "year": 2026,
    "related": "★3[陣風の花紺青]ダイワスカーレット",
    "banner_img": "https://pbs.twimg.com/media/HVhmpkqaoAAEiUn.jpg",
    "rerun": false,
-   "ongoing": true,
+   "ongoing": false,
    "rank_series": [
     110,
     5,
@@ -8313,7 +8314,8 @@
     39,
     46,
     9,
-    12
+    12,
+    18
    ],
    "agents": [
     "Daiwa Scarlet"
@@ -8324,16 +8326,16 @@
    "name": "ピックアップ プリティーダービーガチャ・ピックアップ サポートカードガチャ",
    "start": "2026-11-10",
    "end": "2026-11-19",
-   "rev": 1.21,
-   "yrank": 32,
+   "rev": 1.32,
+   "yrank": 30,
    "ytot": 35,
-   "cum": 219,
+   "cum": 216,
    "cumtot": 230,
    "year": 2026,
    "related": "★3[熟れしめでたし実り姫]ユキノビジン/SSR [馳せて奪うは映山紅]ノーリーズン,SR [黄昏に馳せる追憶]ステイゴールド",
    "banner_img": "https://pbs.twimg.com/media/HWu2ZetaMAAZNLx.jpg",
    "rerun": false,
-   "ongoing": true,
+   "ongoing": false,
    "rank_series": [
     68,
     11,
@@ -8343,7 +8345,8 @@
     39,
     46,
     9,
-    12
+    12,
+    18
    ],
    "agents": [
     "Yukino Bijin",
@@ -8356,7 +8359,7 @@
    "name": "セレクトピックアップ サポートカードガチャ",
    "start": "2026-11-16",
    "end": "2026-11-30",
-   "rev": 0.3422,
+   "rev": 0.4525,
    "yrank": 35,
    "ytot": 35,
    "cum": 230,
@@ -8369,7 +8372,8 @@
    "rank_series": [
     46,
     9,
-    12
+    12,
+    18
    ],
    "agents": []
   },
@@ -8377,7 +8381,7 @@
    "name": "デアリングタクト登場! プレミアム プリティーダービーガチャ",
    "start": "2026-11-16",
    "end": "2026-12-21",
-   "rev": 0.3422,
+   "rev": 0.4525,
    "yrank": 34,
    "ytot": 35,
    "cum": 229,
@@ -8390,7 +8394,8 @@
    "rank_series": [
     46,
     9,
-    12
+    12,
+    18
    ],
    "agents": [
     "Daring Tact"
