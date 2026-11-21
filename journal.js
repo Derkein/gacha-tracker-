@@ -255,7 +255,7 @@ function autoDekGL(g, ym){
 // the cover's headline in the Global edition (also the archive card's): the biggest banner worldwide
 function glHead(c, ym){
   if(!c) return `${monthName(ym)}, worldwide`;
-  const bank=["{L} [L:tops|top] the world in {M}", "Worldwide, {L} [L:rules|rule] {M}", "{L}: {Mp} biggest banner on Earth",
+  const bank=["{L} [L:tops|top] the world in {M}", "Worldwide, {L} [L:rules|rule] {M}", "{L}: {Mp} No. 1 banner on Earth",
               "The whole world pulled for {L}", "{L} [L:wins|win] {M} worldwide"], mo=MONTHS[+ym.slice(5)-1];
   return fill(bank[hashStr(ym+"|gcov") % bank.length], {L:c.label, M:mo, Mp:poss(mo)});
 }
@@ -304,7 +304,7 @@ function glTop(f){
 function topPlaceGL(g, b){
   const t=J.gtop||[]; if(t.length<3) return "";
   const i=t.findIndex(x=>x.tag===g.tag && x.label===b.label), mo=MONTHS[+G_YM.slice(5)-1];
-  if(i===0) return `Across every game, ${MK.b(b)} was the ${MK.good("biggest banner in the world")} in ${mo}.`;
+  if(i===0) return `Across every game, ${MK.b(b)} was the ${MK.good("No. 1 banner in the world")} in ${mo}, head to head.`;
   if(i>0 && i<10) return `Across every game, ${MK.b(b)} placed ${MK.n(ord(i+1))} worldwide of all the banners on sale.`;
   return t.length>=10 ? `${MK.b(b)} didn't make the month's top 10 worldwide.` : "";
 }
@@ -611,9 +611,9 @@ function openCard(d, i, f, showOld){
 }
 function debutsHTML(f){
   if(GL){ const {list, pair}=J.gopen||{list:[]}; if(!list.length) return "";
-    const pn = pair ? `<p class="dnote">${rich(`Over the same first ${plural(pair.n,"day")}, ${MK.b(pair.a)} took ${MK.n("≈"+fmtCNYr(pair.va))} worldwide, ${MK.b(pair.b)} ${MK.n("≈"+fmtCNYr(pair.vb))}.`)}</p>` : "";
+    const pn = pair ? `<p class="dnote">${rich(`Over the same first ${plural(pair.n,"day")}, ${MK.b(pair.a)} took ${MK.n("≈"+fmtCNYr(pair.va))} worldwide, ${MK.b(pair.b)} ${MK.n("≈"+fmtCNYr(pair.vb))}.${pair.va<pair.vb?` ${pair.a.label} still ranks first: the head-to-head also weighs the best day and the first week, by the size of each win.`:""}`)}</p>` : "";
     return `<section class="debuts"><div class="sec-k">New this month</div><h3 class="sec-h">The month's openings, worldwide</h3>
-    <p class="sec-sub">Head to head on Global revenue over equal days. <button class="howbtn" type="button" data-how="gopen">How the order is decided</button></p>
+    <p class="sec-sub">Head to head on Global revenue over equal days: total, best day and first week. <button class="howbtn" type="button" data-how="gopen">How the order is decided</button></p>
     <div class="dgrid">${list.slice(0,DEBUT_CARDS).map((d,i)=>openCardGL(d,i,f,"open")).join("")}</div>${pn}
     ${list.length>DEBUT_CARDS?`<p class="dmore"><b>Also opened:</b> ${list.slice(DEBUT_CARDS).map((d,i)=>`<a href="#${f.ym}/${d.tag}">${d.gbeat?(DEBUT_CARDS+i+1)+". ":""}${esc(d.label)}</a> <span class="mu">(${esc(SHORT[d.tag])}${d.rerun?", rerun":""}, ${esc(fmtBZ(d))})</span>`).join(" · ")}</p>`:""}</section>`; }
   if(!f.debuts.length) return "";
@@ -629,7 +629,8 @@ function topHTML(f){
   if(GL){ const t=(J.gtop||[]).slice(0,10); if(!t.length) return "";
     const mo=MONTHS[+f.ym.slice(5)-1], nNew=t.filter(b=>b.new&&!b.rerun).length;
     return `<section class="debuts topm"><div class="sec-k">Every banner on sale</div><h3 class="sec-h">Top banners of the month, worldwide</h3>
-      <p class="sec-sub">New or carried over, by estimated Global revenue inside ${mo}: each banner's share of its game's worldwide month. ${plural(nNew,"newcomer")} in the top ${t.length}.</p>
+      <p class="sec-sub">New or carried over, head to head on their Global revenue inside ${mo} (each banner's share of its game's worldwide month), the same way as the openings. ${plural(nNew,"newcomer")} in the top ${t.length}.
+        <button class="howbtn" type="button" data-how="gopen">How the order is decided</button></p>
       <div class="dgrid">${t.map((d,i)=>openCardGL(d,i,f,"top")).join("")}</div></section>`; }
   const t=f.top||[]; if(!t.length) return "";
   const mo=MONTHS[+f.ym.slice(5)-1], nNew=t.filter(b=>b.new&&!b.rerun).length;
@@ -916,11 +917,13 @@ function howMonth(){
     <p class="how-ex">Two wins each, but A's are big (1.5× in Japan, #3 against #5) and B's are slim: <b>A ${t.A.toFixed(2)}, B ${t.B.toFixed(2)}</b>, so Banner A places first.</p>`;
 }
 function howOpenGL(){
-  return `<p>In the <b>Global edition</b> the openings are compared on <b>one measure, Global revenue</b>, still over the <b>same number of days</b>: every opening plays every other one over the shorter of their two runs inside the month.</p>
-    <p class="how-f">winner = more Global revenue over that window</p>
+  return `<p>In the <b>Global edition</b> the banners are compared on <b>Global revenue only</b>, over the <b>same number of days</b>: every banner plays every other one over the shorter of their two runs inside the month, on three figures from that window.</p>
+    <p class="how-f">winner = more points on<br>Global total · best Global day · Global first week, each weighted by the size of the win</p>
     <ul>
-      <li><b>Global over a banner's first days</b>: ${GL_SRC} publishes one worldwide figure per game per month, so a banner's days are turned into Global at its game's own ratio that month (the game's worldwide month against its Japan and China iPhone months, averaged). Over its whole month this gives exactly the banner's Global figure on its card.</li>
-      <li>The order is the number of head-to-heads won; equal wins go to the bigger Global month.</li>
+      <li><b>Global per day</b>: ${GL_SRC} publishes one worldwide figure per game per month. A banner's Global month is its share of its game's month, and that month is spread over its days in step with its own Japan and China iPhone revenue each day. Over its whole month this gives exactly the banner's Global figure on its card.</li>
+      <li><b>Bigger wins count more.</b> Each figure is worth up to one point, scaled by the ratio between the two: a <b>2× lead or more</b> is the full point, a 25% lead about 0.32, a 10% lead about 0.14.</li>
+      <li>So the banner with the bigger total doesn't always win: a best day twice as big (1 point) outweighs a total 25% bigger (0.32).</li>
+      <li>The order is the number of head-to-heads won; equal wins go to more Global over their shared days.</li>
       <li>Fewer than 3 days in the month, or a game the chart doesn't list: not ranked.</li>
     </ul>`;
 }
