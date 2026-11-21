@@ -491,18 +491,17 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 0.43
+    },
+    "2026-10": {
+     "rev_min_cny": 32080000,
+     "rev_max_cny": 32080000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
     }
-   },
-   "ocr_variants": [
-    "B Bang dream",
-    "Bang",
-    "Bang D",
-    "Bang Dream",
-    "Bang dream",
-    "BangDr",
-    "BangDreami",
-    "Bangdream"
-   ]
+   }
   },
   "Goddess ofvictory8 nikke": {
    "name_cn": "Goddess ofvictory8 nikke",
@@ -907,16 +906,29 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 1.0
+    },
+    "2026-08": {
+     "rev_min_cny": 26730000,
+     "rev_max_cny": 26730000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
+    },
+    "2026-10": {
+     "rev_min_cny": 28690000,
+     "rev_max_cny": 28690000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 0.6
     }
    },
    "ocr_variants": [
-    "1 Memento Mori",
-    "I Memento Mori",
-    "Memenro Mori",
-    "Memento",
-    "Memento  Mori",
-    "Memento mori",
-    "Momento mori"
+    "Memento miri",
+    "Memento mori"
    ]
   },
   "Nikke胜利女神": {
@@ -1327,15 +1339,17 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 1.0
+    },
+    "2026-10": {
+     "rev_min_cny": 230780000,
+     "rev_max_cny": 230780000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
     }
-   },
-   "ocr_variants": [
-    "NIKKE",
-    "NIKKE胜利女神",
-    "Nkkke胜利女神",
-    "nikke",
-    "nikke胜利女神"
-   ]
+   }
   },
   "endfield": {
    "name_cn": "明日方舟终末地",
@@ -1420,6 +1434,15 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 0.8
+    },
+    "2026-10": {
+     "rev_min_cny": 267810000,
+     "rev_max_cny": 318830000,
+     "is_range": true,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
     }
    }
   },
@@ -1956,6 +1979,15 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 1.0
+    },
+    "2026-10": {
+     "rev_min_cny": 1249240000,
+     "rev_max_cny": 1487200000,
+     "is_range": true,
+     "excludes_mihoyo_payment_center": true,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
     }
    }
   },
@@ -2339,6 +2371,15 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 0.6
+    },
+    "2026-10": {
+     "rev_min_cny": 361020000,
+     "rev_max_cny": 429790000,
+     "is_range": true,
+     "excludes_mihoyo_payment_center": true,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 0.85
     }
    }
   },
@@ -2393,6 +2434,15 @@
     "2026-09": {
      "rev_min_cny": 191530000,
      "rev_max_cny": 228020000,
+     "is_range": true,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
+    },
+    "2026-10": {
+     "rev_min_cny": 184950000,
+     "rev_max_cny": 220190000,
      "is_range": true,
      "excludes_mihoyo_payment_center": false,
      "mom_pct": null,
@@ -2936,6 +2986,15 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 1.0
+    },
+    "2026-10": {
+     "rev_min_cny": 129430000,
+     "rev_max_cny": 129430000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
     }
    }
   },
@@ -3202,6 +3261,15 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 1.0
+    },
+    "2026-10": {
+     "rev_min_cny": 523330000,
+     "rev_max_cny": 623020000,
+     "is_range": true,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
     }
    }
   },
@@ -3445,6 +3513,15 @@
     "2026-09": {
      "rev_min_cny": 349730000,
      "rev_max_cny": 416350000,
+     "is_range": true,
+     "excludes_mihoyo_payment_center": true,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
+    },
+    "2026-10": {
+     "rev_min_cny": 515500000,
+     "rev_max_cny": 613700000,
      "is_range": true,
      "excludes_mihoyo_payment_center": true,
      "mom_pct": null,
@@ -3752,6 +3829,15 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 1.0
+    },
+    "2026-10": {
+     "rev_min_cny": 43380000,
+     "rev_max_cny": 43380000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
     }
    }
   },
@@ -3917,10 +4003,7 @@
      "metric_cn": "总流水",
      "confidence": 1.0
     }
-   },
-   "ocr_variants": [
-    "少女前线云图计划"
-   ]
+   }
   },
   "交错战线": {
    "name_cn": "交错战线",
@@ -4563,11 +4646,17 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 1.0
+    },
+    "2026-10": {
+     "rev_min_cny": 31160000,
+     "rev_max_cny": 31160000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
     }
-   },
-   "ocr_variants": [
-    "偶像梦幻祭2 2"
-   ]
+   }
   },
   "光与夜之恋": {
    "name_cn": "光与夜之恋",
@@ -5085,13 +5174,17 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 1.0
+    },
+    "2026-10": {
+     "rev_min_cny": 26770000,
+     "rev_max_cny": 26770000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
     }
-   },
-   "ocr_variants": [
-    "光与夜之交战",
-    "光与暗之交战梅",
-    "日光与夜之恋"
-   ]
+   }
   },
   "光与暗之交战": {
    "name_cn": "光与暗之交战",
@@ -5177,10 +5270,7 @@
      "metric_cn": "总流水",
      "confidence": 1.0
     }
-   },
-   "ocr_variants": [
-    "七人传奇光与暗之交战"
-   ]
+   }
   },
   "光隙解语": {
    "name_cn": "光隙解语",
@@ -5730,13 +5820,17 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 1.0
+    },
+    "2026-10": {
+     "rev_min_cny": 15130000,
+     "rev_max_cny": 15130000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
     }
-   },
-   "ocr_variants": [
-    "公主连接",
-    "公主连结 吉",
-    "公主链接"
-   ]
+   }
   },
   "初音未来缤纷舞台": {
    "name_cn": "初音未来缤纷舞台",
@@ -5911,6 +6005,15 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 1.0
+    },
+    "2026-10": {
+     "rev_min_cny": 58660000,
+     "rev_max_cny": 58660000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
     }
    }
   },
@@ -6052,11 +6155,17 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 1.0
+    },
+    "2026-10": {
+     "rev_min_cny": 94610000,
+     "rev_max_cny": 94610000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
     }
-   },
-   "ocr_variants": [
-    "卡厄思梦境"
-   ]
+   }
   },
   "命运-冠位指定": {
    "name_cn": "命运-冠位指定",
@@ -6573,13 +6682,36 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 0.5
+    },
+    "2026-08": {
+     "rev_min_cny": 501940000,
+     "rev_max_cny": 501940000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 0.5
+    },
+    "2026-09": {
+     "rev_min_cny": 174680000,
+     "rev_max_cny": 174680000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
+    },
+    "2026-10": {
+     "rev_min_cny": 223160000,
+     "rev_max_cny": 223160000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
     }
    },
    "ocr_variants": [
-    "冠位指定",
-    "命运 冠位指定",
-    "命运-冠位指定 为了登 上天空",
-    "命运一 冠位指定",
     "命运一冠位指定",
     "命运冠位指定"
    ]
@@ -6608,6 +6740,15 @@
     "2026-09": {
      "rev_min_cny": 50570000,
      "rev_max_cny": 50570000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
+    },
+    "2026-10": {
+     "rev_min_cny": 57340000,
+     "rev_max_cny": 57340000,
      "is_range": false,
      "excludes_mihoyo_payment_center": false,
      "mom_pct": null,
@@ -6863,17 +7004,7 @@
      "metric_cn": "总流水",
      "confidence": 1.0
     }
-   },
-   "ocr_variants": [
-    "坎德伯雷公主与骑土唤醒冠军之剑的奇幻冒险",
-    "坎德伯雷公主与骑士唤醒冠军之剑的奇幻冒险",
-    "坎特伯雷公主与骑土唤醒冠军之剑的奇幻冒险",
-    "坎特伯雷公主与骑士冠军之剑的奇幻冒险",
-    "坎特伯雷公主与骑士唤 沿军之剑的奇幻冒险"
-   ],
-   "title_variants": [
-    "坎公骑冠剑"
-   ]
+   }
   },
   "坐白禁区": {
    "name_cn": "坐白禁区",
@@ -7166,11 +7297,7 @@
      "metric_cn": "总流水",
      "confidence": 0.5
     }
-   },
-   "ocr_variants": [
-    "尘白禁",
-    "尘白禁区"
-   ]
+   }
   },
   "境界刀鸣": {
    "name_cn": "境界刀鸣",
@@ -7246,6 +7373,15 @@
     "2026-09": {
      "rev_min_cny": 18660000,
      "rev_max_cny": 18660000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
+    },
+    "2026-10": {
+     "rev_min_cny": 16490000,
+     "rev_max_cny": 16490000,
      "is_range": false,
      "excludes_mihoyo_payment_center": false,
      "mom_pct": null,
@@ -7356,10 +7492,7 @@
      "metric_cn": "总流水",
      "confidence": 1.0
     }
-   },
-   "ocr_variants": [
-    "寄点时代"
-   ]
+   }
   },
   "奇迹暖暖": {
    "name_cn": "奇迹暖暖",
@@ -7789,6 +7922,15 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 1.0
+    },
+    "2026-10": {
+     "rev_min_cny": 23190000,
+     "rev_max_cny": 23190000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
     }
    }
   },
@@ -7984,12 +8126,7 @@
      "metric_cn": "总流水",
      "confidence": 1.0
     }
-   },
-   "ocr_variants": [
-    "夜幕魅",
-    "夜幕魅影",
-    "女神异闻录夜幕魅影克"
-   ]
+   }
   },
   "如鸢": {
    "name_cn": "如鸢",
@@ -8200,6 +8337,33 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 0.75
+    },
+    "2026-08": {
+     "rev_min_cny": 15240000,
+     "rev_max_cny": 15240000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
+    },
+    "2026-09": {
+     "rev_min_cny": 25300000,
+     "rev_max_cny": 25300000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
+    },
+    "2026-10": {
+     "rev_min_cny": 16180000,
+     "rev_max_cny": 16180000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
     }
    },
    "title_variants": [
@@ -8334,6 +8498,15 @@
     "2026-09": {
      "rev_min_cny": 43720000,
      "rev_max_cny": 43720000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
+    },
+    "2026-10": {
+     "rev_min_cny": 41000000,
+     "rev_max_cny": 41000000,
      "is_range": false,
      "excludes_mihoyo_payment_center": false,
      "mom_pct": null,
@@ -8644,11 +8817,17 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 1.0
+    },
+    "2026-10": {
+     "rev_min_cny": 46470000,
+     "rev_max_cny": 55330000,
+     "is_range": true,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
     }
-   },
-   "title_variants": [
-    "追放"
-   ]
+   }
   },
   "山海镜花-归来": {
    "name_cn": "山海镜花-归来",
@@ -9179,6 +9358,15 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 1.0
+    },
+    "2026-10": {
+     "rev_min_cny": 40370000,
+     "rev_max_cny": 48060000,
+     "is_range": true,
+     "excludes_mihoyo_payment_center": true,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
     }
    }
   },
@@ -9445,6 +9633,15 @@
     "2026-09": {
      "rev_min_cny": 2550000,
      "rev_max_cny": 2550000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": true,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
+    },
+    "2026-10": {
+     "rev_min_cny": 2700000,
+     "rev_max_cny": 2700000,
      "is_range": false,
      "excludes_mihoyo_payment_center": true,
      "mom_pct": null,
@@ -9978,6 +10175,15 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 1.0
+    },
+    "2026-10": {
+     "rev_min_cny": 7560000,
+     "rev_max_cny": 9010000,
+     "is_range": true,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
     }
    }
   },
@@ -10318,11 +10524,17 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 1.0
+    },
+    "2026-10": {
+     "rev_min_cny": 25530000,
+     "rev_max_cny": 25530000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
     }
-   },
-   "ocr_variants": [
-    "影之诗超凡世界"
-   ]
+   }
   },
   "恋与制作人": {
    "name_cn": "恋与制作人",
@@ -10786,12 +10998,17 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 1.0
+    },
+    "2026-10": {
+     "rev_min_cny": 14850000,
+     "rev_max_cny": 14850000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
     }
-   },
-   "ocr_variants": [
-    "恋与制人",
-    "恋与制件"
-   ]
+   }
   },
   "恋与深空": {
    "name_cn": "恋与深空",
@@ -11087,6 +11304,15 @@
     "2026-09": {
      "rev_min_cny": 217530000,
      "rev_max_cny": 217530000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
+    },
+    "2026-10": {
+     "rev_min_cny": 160020000,
+     "rev_max_cny": 160020000,
      "is_range": false,
      "excludes_mihoyo_payment_center": false,
      "mom_pct": null,
@@ -11629,6 +11855,15 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 1.0
+    },
+    "2026-10": {
+     "rev_min_cny": 30060000,
+     "rev_max_cny": 30060000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
     }
    }
   },
@@ -12107,11 +12342,17 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 1.0
+    },
+    "2026-10": {
+     "rev_min_cny": 10090000,
+     "rev_max_cny": 10090000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
     }
-   },
-   "ocr_variants": [
-    "无期送途"
-   ]
+   }
   },
   "无限暖暖": {
    "name_cn": "无限暖暖",
@@ -12309,6 +12550,15 @@
     "2026-09": {
      "rev_min_cny": 74450000,
      "rev_max_cny": 88640000,
+     "is_range": true,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
+    },
+    "2026-10": {
+     "rev_min_cny": 101010000,
+     "rev_max_cny": 120260000,
      "is_range": true,
      "excludes_mihoyo_payment_center": false,
      "mom_pct": null,
@@ -12715,12 +12965,17 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 1.0
+    },
+    "2026-10": {
+     "rev_min_cny": 13380000,
+     "rev_max_cny": 13380000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
     }
-   },
-   "ocr_variants": [
-    "时空中的经旅人",
-    "时空中的绘旅"
-   ]
+   }
   },
   "明日方舟": {
    "name_cn": "明日方舟",
@@ -13247,11 +13502,17 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 1.0
+    },
+    "2026-10": {
+     "rev_min_cny": 240890000,
+     "rev_max_cny": 240890000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
     }
-   },
-   "ocr_variants": [
-    "明目方舟"
-   ]
+   }
   },
   "星塔旅人": {
    "name_cn": "星塔旅人",
@@ -13873,13 +14134,17 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 1.0
+    },
+    "2026-10": {
+     "rev_min_cny": 29650000,
+     "rev_max_cny": 29650000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": true,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
     }
-   },
-   "ocr_variants": [
-    "未定事件等",
-    "未定事件薄",
-    "未足事件薄"
-   ]
+   }
   },
   "机动战姬聚变": {
    "name_cn": "机动战姬聚变",
@@ -14431,21 +14696,7 @@
      "metric_cn": "总流水",
      "confidence": 1.0
     }
-   },
-   "ocr_variants": [
-    "Duel",
-    "游戏EMasterDuel",
-    "游戏王Mast Duel",
-    "游戏王MastDuel",
-    "游戏王Master",
-    "游戏王Master  Duel",
-    "游戏王MasterDuel",
-    "游戏王MastrDuel",
-    "游戏王Masyer Duel",
-    "游戏王Mater Duel",
-    "游戏王master duel",
-    "王叶Chiba 游戏王Master Duel"
-   ]
+   }
   },
   "游戏王决斗链接": {
    "name_cn": "游戏王决斗链接",
@@ -14936,11 +15187,17 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 1.0
+    },
+    "2026-10": {
+     "rev_min_cny": 18860000,
+     "rev_max_cny": 18860000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 0.67
     }
-   },
-   "ocr_variants": [
-    "决斗链接"
-   ]
+   }
   },
   "游戏生沃斗链接": {
    "name_cn": "游戏生沃斗链接",
@@ -15343,11 +15600,17 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 1.0
+    },
+    "2026-10": {
+     "rev_min_cny": 412470000,
+     "rev_max_cny": 412470000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
     }
-   },
-   "ocr_variants": [
-    "火影忍者疾风传"
-   ]
+   }
   },
   "炽焰天穹": {
    "name_cn": "炽焰天穹",
@@ -15846,26 +16109,17 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 0.67
+    },
+    "2026-10": {
+     "rev_min_cny": 19940000,
+     "rev_max_cny": 19940000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 0.67
     }
-   },
-   "ocr_variants": [
-    "1 Heaven Burns Red",
-    "H Heaven Burns Red",
-    "Heaven Buans Red",
-    "Heaven Red",
-    "Heaven l Burns Red",
-    "Heavenburns Red",
-    "Heavn Burns Red",
-    "heaven burns red",
-    "炽焰天弯",
-    "绯染天室",
-    "赤焰天弯",
-    "鲱染天空"
-   ],
-   "title_variants": [
-    "Heaven Burns Red",
-    "绯染天空"
-   ]
+   }
   },
   "物华弥新": {
    "name_cn": "物华弥新",
@@ -16051,10 +16305,7 @@
      "metric_cn": "总流水",
      "confidence": 1.0
     }
-   },
-   "ocr_variants": [
-    "白夜极光私"
-   ]
+   }
   },
   "白荆回廊": {
    "name_cn": "白荆回廊",
@@ -16745,11 +16996,17 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 1.0
+    },
+    "2026-10": {
+     "rev_min_cny": 37460000,
+     "rev_max_cny": 37460000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
     }
-   },
-   "ocr_variants": [
-    "碧篮航线"
-   ]
+   }
   },
   "第七史诗": {
    "name_cn": "第七史诗",
@@ -16928,6 +17185,20 @@
     }
    }
   },
+  "篮球少女飞跃巅峰": {
+   "name_cn": "篮球少女飞跃巅峰",
+   "monthly": {
+    "2026-10": {
+     "rev_min_cny": 119790000,
+     "rev_max_cny": 119790000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
+    }
+   }
+  },
   "纳萨力克之王": {
    "name_cn": "纳萨力克之王",
    "monthly": {
@@ -17022,10 +17293,7 @@
      "metric_cn": "总收入",
      "confidence": 1.0
     }
-   },
-   "ocr_variants": [
-    "绯红的神约 约"
-   ]
+   }
   },
   "绯色回响": {
    "name_cn": "绯色回响",
@@ -17626,13 +17894,17 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 1.0
+    },
+    "2026-10": {
+     "rev_min_cny": 36930000,
+     "rev_max_cny": 36930000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
     }
-   },
-   "ocr_variants": [
-    "碧篮档案",
-    "碧蓝档案",
-    "蓝档案"
-   ]
+   }
   },
   "行界": {
    "name_cn": "行界",
@@ -17858,13 +18130,7 @@
      "metric_cn": "总流水",
      "confidence": 1.0
     }
-   },
-   "ocr_variants": [
-    "另一个伊句超越时空的猫",
-    "易一个伊句·超越时空的猫",
-    "穿越时空的猫",
-    "超越时空之猫"
-   ]
+   }
   },
   "重返未来1999": {
    "name_cn": "重返未来1999",
@@ -18237,12 +18503,17 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 1.0
+    },
+    "2026-10": {
+     "rev_min_cny": 46280000,
+     "rev_max_cny": 46280000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
     }
-   },
-   "ocr_variants": [
-    "重逗未来1999",
-    "重逗未来1999 9"
-   ]
+   }
   },
   "铃兰之剑": {
    "name_cn": "铃兰之剑",
@@ -18896,11 +19167,17 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 1.0
+    },
+    "2026-10": {
+     "rev_min_cny": 20320000,
+     "rev_max_cny": 20320000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
     }
-   },
-   "ocr_variants": [
-    "闪耀暖暖 国产"
-   ]
+   }
   },
   "阴阳师": {
    "name_cn": "阴阳师",
@@ -19426,6 +19703,15 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 1.0
+    },
+    "2026-10": {
+     "rev_min_cny": 172390000,
+     "rev_max_cny": 172390000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 1.0
     }
    }
   },
@@ -19866,6 +20152,15 @@
      "mom_pct": null,
      "metric_cn": "总流水",
      "confidence": 1.0
+    },
+    "2026-10": {
+     "rev_min_cny": 24110000,
+     "rev_max_cny": 24110000,
+     "is_range": false,
+     "excludes_mihoyo_payment_center": false,
+     "mom_pct": null,
+     "metric_cn": "总流水",
+     "confidence": 0.83
     }
    }
   },
@@ -19973,10 +20268,7 @@
      "metric_cn": "总收入",
      "confidence": 1.0
     }
-   },
-   "ocr_variants": [
-    "食物语 而我每一日部是崭新的"
-   ]
+   }
   },
   "魔法少女小圆Magia Exedra": {
    "name_cn": "魔法少女小圆Magia Exedra",
@@ -20035,10 +20327,7 @@
      "metric_cn": "总流水",
      "confidence": 1.0
     }
-   },
-   "ocr_variants": [
-    "魔法少女小圆Magia Exzdea"
-   ]
+   }
   },
   "魔法记录": {
    "name_cn": "魔法记录",
@@ -20168,71 +20457,6 @@
     "2025-10": {
      "rev_min_cny": 17890000,
      "rev_max_cny": 17890000,
-     "is_range": false,
-     "excludes_mihoyo_payment_center": false,
-     "mom_pct": null,
-     "metric_cn": "总流水",
-     "confidence": 1.0
-    }
-   }
-  },
-  "如莺": {
-   "name_cn": "如莺",
-   "monthly": {
-    "2026-08": {
-     "rev_min_cny": 15240000,
-     "rev_max_cny": 15240000,
-     "is_range": false,
-     "excludes_mihoyo_payment_center": false,
-     "mom_pct": null,
-     "metric_cn": "总流水",
-     "confidence": 1.0
-    },
-    "2026-09": {
-     "rev_min_cny": 25300000,
-     "rev_max_cny": 25300000,
-     "is_range": false,
-     "excludes_mihoyo_payment_center": false,
-     "mom_pct": null,
-     "metric_cn": "总流水",
-     "confidence": 1.0
-    }
-   }
-  },
-  "Memento mori": {
-   "name_cn": "Memento mori",
-   "monthly": {
-    "2026-08": {
-     "rev_min_cny": 26730000,
-     "rev_max_cny": 26730000,
-     "is_range": false,
-     "excludes_mihoyo_payment_center": false,
-     "mom_pct": null,
-     "metric_cn": "总流水",
-     "confidence": 1.0
-    }
-   }
-  },
-  "命运一冠位指定": {
-   "name_cn": "命运一冠位指定",
-   "monthly": {
-    "2026-08": {
-     "rev_min_cny": 501940000,
-     "rev_max_cny": 501940000,
-     "is_range": false,
-     "excludes_mihoyo_payment_center": false,
-     "mom_pct": null,
-     "metric_cn": "总流水",
-     "confidence": 0.5
-    }
-   }
-  },
-  "命运冠位指定": {
-   "name_cn": "命运冠位指定",
-   "monthly": {
-    "2026-09": {
-     "rev_min_cny": 174680000,
-     "rev_max_cny": 174680000,
      "is_range": false,
      "excludes_mihoyo_payment_center": false,
      "mom_pct": null,
@@ -20537,16 +20761,11 @@
    "bvid": "BV1wQJ26XEWx",
    "entries": 44,
    "kept": 43
+  },
+  "2026-10": {
+   "bvid": "BV1eJs86MEpz",
+   "entries": 45,
+   "kept": 45
   }
- },
- "failures": {},
- "unnamed_entries": {
-  "2026-09": [
-   {
-    "rev_min_cny": 25880000,
-    "rev_max_cny": 25880000,
-    "frames": 1
-   }
-  ]
  }
 }

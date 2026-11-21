@@ -1,5 +1,5 @@
 {
- "built": "2026-11-12",
+ "built": "2026-11-21",
  "issues": [
   {
    "ym": "2026-10",
@@ -20,11 +20,31 @@
     "rerun": false
    },
    "headline": null,
-   "zl": false,
-   "zl_pending": true,
-   "gcover": null,
+   "zl": true,
+   "zl_pending": false,
+   "gcover": {
+    "label": "Phoenix",
+    "tag": "zzz",
+    "game": "Zenless Zone Zero",
+    "img": "https://upload-os-bbs.hoyolab.com/upload/2026/10/18/9659add7d811b06d707308cdcdcce493_5855896606787464047.png",
+    "face": [
+     26.1,
+     27.2
+    ],
+    "art": null,
+    "art_face": null,
+    "color": "#e84012",
+    "zl_month": [
+     386674431,
+     460333847
+    ],
+    "rerun": false
+   },
    "ghead": null,
-   "zl_total": null,
+   "zl_total": [
+    3485910000,
+    4076790000
+   ],
    "games": [
     "wuwa",
     "hsr",
