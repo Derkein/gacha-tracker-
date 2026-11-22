@@ -5,13 +5,13 @@
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E5%8E%9F%E7%A5%9E",
  "banners_from": "game-i",
- "updated": "2026-11-21T22:17:41Z",
+ "updated": "2026-11-22T21:01:23Z",
  "count": 108,
  "now": {
-  "ios": 151,
-  "android": 58,
-  "month": 67,
-  "next_add": 11394517,
+  "ios": 134,
+  "android": 56,
+  "month": 69,
+  "next_add": 11385847,
   "ym": "2026/11",
   "ranks": {
    "prev": [
@@ -70,7 +70,7 @@
     179,
     159,
     153,
-    null,
+    140,
     null,
     null,
     null,
@@ -83,7 +83,7 @@
   }
  },
  "monthly": {
-  "2026-11": 3.97,
+  "2026-11": 4.09,
   "2026-10": 4.24,
   "2026-09": 6.26,
   "2026-08": 6.04,
@@ -4873,9 +4873,9 @@
    "start": "2026-04-28",
    "end": "2026-05-19",
    "rev": 3.31,
-   "yrank": 12,
+   "yrank": 13,
    "ytot": 15,
-   "cum": 96,
+   "cum": 97,
    "cumtot": 108,
    "year": 2026,
    "related": "集録祈願「ルキナのせせらぎ」",
@@ -5308,10 +5308,10 @@
    "name": "ミティヤ",
    "start": "2026-11-04",
    "end": "2026-11-24",
-   "rev": 3.28,
-   "yrank": 13,
+   "rev": 3.4,
+   "yrank": 12,
    "ytot": 15,
-   "cum": 97,
+   "cum": 96,
    "cumtot": 108,
    "year": 2026,
    "related": "フリーナ",
@@ -5337,7 +5337,8 @@
     163,
     179,
     159,
-    153
+    153,
+    140
    ],
    "icons": [
     "https://enka.network/ui/UI_AvatarIcon_Mitya.png"

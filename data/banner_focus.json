@@ -2556,6 +2556,15 @@
    "det": true,
    "name": "明音凛",
    "v": 2
+  },
+  "icons/banner_art/nte-elyms.webp": {
+   "x": 48.9,
+   "y": 23.2,
+   "w": 710,
+   "h": 399,
+   "det": true,
+   "name": "イェルム",
+   "v": 2
   }
  },
  "uma": {
