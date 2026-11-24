@@ -1380,5 +1380,24 @@
 "Sylus"
 ],
 "card": "https://cdn.gamerch.com/contents/wiki/4793/entry/Pj7d9RZ2.png"
+},
+{
+"name": "畏まりました、飼育員",
+"start": "2026-11-25",
+"end": "2026-12-03",
+"rerun": true,
+"mem": [
+"シン・猫としての心得",
+"セイヤ・ふわふわアタック",
+"ホムラ・尻尾が揺れる時",
+"レイ・耳先に溺れる"
+],
+"leads": [
+"Sylus",
+"Xavier",
+"Rafayel",
+"Zayne"
+],
+"card": "https://cdn.gamerch.com/contents/wiki/4793/entry/JuF2GGL1.png"
 }
 ]

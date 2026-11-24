@@ -5,13 +5,13 @@
  "unit": "億G",
  "source": "https://prtimes.jp/main/html/searchrlp/company_id/131862",
  "banners_from": "official",
- "updated": "2026-11-22T22:01:14Z",
+ "updated": "2026-11-24T02:15:48Z",
  "count": 82,
  "now": {
-  "ios": 170,
-  "android": 174,
-  "month": 200,
-  "next_add": 8080448,
+  "ios": 91,
+  "android": 151,
+  "month": 197,
+  "next_add": 12479005,
   "ym": "2026/11",
   "ranks": {
    "prev": [
@@ -71,7 +71,7 @@
     null,
     null,
     null,
-    null,
+    136,
     null,
     null,
     null,
@@ -83,7 +83,7 @@
   }
  },
  "monthly": {
-  "2026-11": 1.7,
+  "2026-11": 1.82,
   "2026-10": 2.3,
   "2026-09": 2.84,
   "2026-08": 2.27,
@@ -1562,7 +1562,7 @@
    "rev_month_ym": {
     "2025-03": 0.8804
    },
-   "cum": 40,
+   "cum": 41,
    "cumtot": 82,
    "yrank": 16,
    "ytot": 30,
@@ -1908,7 +1908,7 @@
    "rev_month_ym": {
     "2025-05": 0.8748
    },
-   "cum": 42,
+   "cum": 43,
    "cumtot": 82,
    "yrank": 17,
    "ytot": 30,
@@ -2521,7 +2521,7 @@
    "rev_month_ym": {
     "2025-10": 0.8872
    },
-   "cum": 44,
+   "cum": 45,
    "cumtot": 82,
    "yrank": 18,
    "ytot": 30,
@@ -3134,9 +3134,9 @@
    "rev_month_ym": {
     "2026-03": 0.9144
    },
-   "cum": 43,
+   "cum": 44,
    "cumtot": 82,
-   "yrank": 10,
+   "yrank": 11,
    "ytot": 27,
    "icons": [
     "icons/faces/lads/2026-03-01-11f9f4.webp"
@@ -3230,9 +3230,9 @@
    "rev_month_ym": {
     "2026-03": 1.0316
    },
-   "cum": 41,
+   "cum": 42,
    "cumtot": 82,
-   "yrank": 9,
+   "yrank": 10,
    "ytot": 27,
    "icons": [
     "icons/faces/lads/2026-03-19-f8d2ec.webp"
@@ -4218,14 +4218,14 @@
     null
    ],
    "rev": 0.224,
-   "rev_month": 0.5554,
+   "rev_month": 0.5595,
    "rev_ym": {
     "2026-10": 0.224,
     "2026-11": 0.0
    },
    "rev_month_ym": {
     "2026-10": 0.3282,
-    "2026-11": 0.2272
+    "2026-11": 0.2313
    },
    "cum": 81,
    "cumtot": 82,
@@ -4257,7 +4257,7 @@
    ],
    "source_url": "https://prtimes.jp/main/html/rd/p/000000118.000131862.html",
    "rerun": false,
-   "ongoing": true,
+   "ongoing": false,
    "rank_series": [
     null,
     39,
@@ -4276,19 +4276,20 @@
     null,
     null,
     null,
-    null
+    null,
+    136
    ],
-   "rev": 0.8218,
-   "rev_month": 1.4728,
+   "rev": 0.9259,
+   "rev_month": 1.5887,
    "rev_ym": {
-    "2026-11": 0.8218
+    "2026-11": 0.9259
    },
    "rev_month_ym": {
-    "2026-11": 1.4728
+    "2026-11": 1.5887
    },
-   "cum": 45,
+   "cum": 40,
    "cumtot": 82,
-   "yrank": 11,
+   "yrank": 9,
    "ytot": 27,
    "icons": [
     "icons/faces/lads/2026-11-06-0a039c.webp"
