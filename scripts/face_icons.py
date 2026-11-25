@@ -385,17 +385,26 @@ def process(tag, cascade, force=False):
             drip_hits += is_drip
         except Exception as e:
             print(f"  [{tag}] warn {b['name']}: {e}")
-    add_folded(data["banners"])
+    add_folded(tag, data["banners"])
     if names:
         nfile.write_text(json.dumps(names, ensure_ascii=False, indent=1), encoding="utf-8")
     dfile.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
     return made, kept, drip_hits, len(data["banners"])
 
 
-def add_folded(banners):
+# Games where a rerun folded into a same-day new banner is SHOWN as its second character.
+# Only for games that rarely pair a new banner with a rerun (Endfield, Nov 2026: Kay & the
+# Gilberta rerun is the first). If a game starts doing it every patch, like HSR/ZZZ, take it
+# out: the rerun's revenue still goes to the new banner, only the name/icon stop showing.
+SHOW_FOLDED = {"endfield"}
+
+
+def add_folded(tag, banners):
     """A rerun scrape.py folded into a same-day new banner (`folded`, e.g. Endfield's Gilberta
     rerun inside Kay's) shows as the banner's second character: its English name and the icon
     already cut for that character's own earlier banner, drawn small next to the main one."""
+    if tag not in SHOW_FOLDED:
+        return
     for b in banners:
         for fn in b.get("folded") or []:
             src = next((o for o in banners if o is not b and not o.get("rerun") and o["start"] < b["start"]

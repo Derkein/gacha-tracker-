@@ -650,16 +650,20 @@ def scrape_game(tag, meta):
         for b in uniq:
             if b.get("name") in ov:
                 b["banner_img"] = ov[b["name"]]
-    return fold_launch_reruns(mark_reruns(uniq, tag in CHRONO_GAMES, tag))
+    return fold_launch_reruns(mark_reruns(uniq, tag in CHRONO_GAMES, tag), tag)
 
 
-def fold_launch_reruns(banners):
+# keep in step with face_icons.SHOW_FOLDED: games whose folded same-day rerun is shown by name
+SHOW_FOLDED = {"endfield"}
+
+
+def fold_launch_reruns(banners, tag=None):
     """A rerun that opens the SAME DAY as a new banner and ends inside it is folded into that
     banner, the way HSR/ZZZ list one as "A&B復刻": game-i gives Endfield's its own row and splits
     the period 50/50 (ケーちゃん + the Gilberta rerun, Nov 2026: 0.2134 each), so two rows with the
     same start would only ever show the same value and rank. The new banner takes the whole
-    revenue and the name "ケーちゃん&ギルベルタ復刻"; face_icons.py adds the rerun character's
-    name and icon from `folded`. A rerun that opens on a different day (HSR's second-half reruns,
+    revenue; for games in face_icons.SHOW_FOLDED (Endfield) it is also named
+    "ケーちゃん&ギルベルタ復刻" and face_icons.py adds the rerun character's name and icon. A rerun that opens on a different day (HSR's second-half reruns,
     Endfield's Tangtang rerun) keeps its own row and its own days."""
     out = []
     for r in banners:
@@ -667,8 +671,9 @@ def fold_launch_reruns(banners):
                                         and n["start"] == r["start"] and r["end"] <= n["end"]), None)
         if host:
             host["rev"] = round((host.get("rev") or 0) + (r.get("rev") or 0), 4)
-            who = re.sub(r"^.*」", "", r["name"]).replace("復刻", "").strip() or r["name"]
-            host["name"] += f"&{who}復刻"
+            if tag in SHOW_FOLDED:
+                who = re.sub(r"^.*」", "", r["name"]).replace("復刻", "").strip() or r["name"]
+                host["name"] += f"&{who}復刻"
             host.setdefault("folded", []).append(r["name"])
             continue
         out.append(r)
