@@ -55,6 +55,10 @@ jobs:
         run: python scripts/fetch_fx.py
         continue-on-error: true    # keeps the previous rate if the source is down
 
+      - name: Consumer price indexes (the "Today's prices" inflation toggle)
+        run: python scripts/fetch_cpi.py
+        continue-on-error: true    # keeps the previous series if BLS / the Statistics Bureau is down
+
       - name: Snapshot store charts (China iOS top-grossing, Steam top sellers)
         run: python scripts/scrape_ranks.py
         continue-on-error: true    # history grows one day at a time; a miss is one gap,

@@ -12,7 +12,7 @@
 <title>Gacha Revenue Tracker</title>
 <meta name="description" content="Estimated gacha banner revenue over time for Zenless Zone Zero, Honkai: Star Rail, Wuthering Waves, Genshin Impact and Arknights: Endfield. Auto-updated from game-i.daa.jp.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>%F0%9F%8E%B0</text></svg>">
-<link rel="stylesheet" href="style.css?v=420">
+<link rel="stylesheet" href="style.css?v=421">
 </head>
 <body>
 <div class="wrap">
@@ -28,6 +28,7 @@
         <div class="updated" id="updated"></div>
         <div class="hd-btns">
           <button id="ccyBtn" class="themebtn ccybtn" type="button" aria-pressed="false" hidden>¥</button>
+          <button id="inflBtn" class="themebtn ccybtn" type="button" aria-pressed="false" hidden>Today's prices</button>
           <button id="themeBtn" class="themebtn" title="Theme" aria-label="Color theme"></button>
         </div>
       </div>
@@ -210,6 +211,7 @@
       <button data-info="cnchart">China iOS chart</button>
       <button data-info="both">game-i + Qimai · US$</button>
       <button data-info="fx">US$ conversion</button>
+      <button data-info="infl">Today's prices</button>
     </div>
 
     <div id="infoGamei">
@@ -455,6 +457,28 @@
     </ul>
     </div><!-- /infoFx -->
 
+    <div id="infoInfl" hidden>
+    <h3>What it does</h3>
+    <p>The <b>Today's prices</b> button at the top (off by default) adjusts every figure for <b>inflation</b>, so a banner from 2021 and one from 2026 are compared in the same money: what their spending would be worth at <b>today's prices</b>. Off, every figure is shown as it was earned.</p>
+    <h3>How</h3>
+    <ul>
+      <li>Each figure is multiplied by <b>the price index in the latest month ÷ the index in the month it was earned</b>.</li>
+      <li><b>Dollars</b> (game-i in US$, Qimai, Sensor Tower, the Global ranking in US$) use the <b>US consumer price index</b>; <b>yen</b> (game-i with the US$ button off) uses <b>Japan's</b>.</li>
+      <li><b>A banner</b> goes day by day, each day weighted by how much of the run fell on it, the same way its exchange rate is worked out. <b>A month</b> uses that month's index.</li>
+      <li>The <b>Global ranking in CN¥</b> isn't adjusted (there's no China index here): turn on <b>US$</b> to see it in today's prices.</li>
+      <li>It stacks on the exchange rate: in US$, a banner is first converted at the rate of when it was earned, then brought to today's prices.</li>
+    </ul>
+    <p id="infoInflEx"></p>
+    <h3>What changes</h3>
+    <p>Only the size of older figures, and with it some places in the <b>all-time</b> rankings. Within one year the adjustment is a few percent at most, smaller than the estimates' own error, so the year rankings barely move. Across all years it's bigger: banners from 2020–2022 count 15–30% more in dollars, and about 15% more in yen. In Genshin's all-time China list, for example, Venti's launch banner (September 2020) moves from 3rd to 1st. That's why it's off by default: the figures as earned are what every source reports.</p>
+    <h3>Sources</h3>
+    <ul>
+      <li><b>US:</b> <a href="https://www.bls.gov/cpi/" target="_blank" rel="noopener">US Bureau of Labor Statistics, Consumer Price Index for All Urban Consumers (CPI-U)</a>, all items, not seasonally adjusted (series CUUR0000SA0), read through the BLS public API. The BLS published no figure for October 2025 (the US government shutdown), so that month is the average of September and November.</li>
+      <li><b>Japan:</b> <a href="https://www.stat.go.jp/data/cpi/1.html" target="_blank" rel="noopener">Statistics Bureau of Japan, Consumer Price Index</a>, all items, 2020 = 100.</li>
+      <li>Both are refreshed by the daily update and published monthly, so the latest month is usually a few weeks behind.</li>
+    </ul>
+    </div><!-- /infoInfl -->
+
     <div id="infoQimai" hidden>
     <h3>What this is</h3>
     <p>An <b>estimate</b> of a banner's <b>China iPhone App&nbsp;Store gross revenue</b>, in <b>US dollars</b>, from <a href="https://qimai.cn/" target="_blank" rel="noopener">Qimai&nbsp;(七麦数据)</a> — a Chinese mobile-analytics platform. Qimai calls it a data-model estimate of App&nbsp;Store 销售额 (gross sales), “<i>仅供参考</i>” (for reference only). It is <b>iPhone only</b> and <b>China only</b>, reported per day.</p>
@@ -497,6 +521,6 @@
 
 <div class="lightbox" id="lightbox" hidden><img id="lightboxImg" src="" alt=""></div>
 
-<script src="app.js?v=432"></script>
+<script src="app.js?v=433"></script>
 </body>
 </html>

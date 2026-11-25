@@ -240,11 +240,19 @@ function fxBannerK(b){
 }
 function fxAdjust(data){
   data._fxOn = usdOn() && !!(state.fxh && state.fxh.days);
-  if(!data._fxOn) return data;
-  const now=fxRate("JPY");
-  for(const b of data.banners||[]){ const k=fxBannerK(b); b._rev0=b.rev; b._fxK=k;   // _rev0: the yen as game-i gives it
-    for(const f of ["rev","rev_month"]) if(typeof b[f]==="number") b[f]*=k; }
-  if(data.monthly) for(const ym in data.monthly){ const r=fxMonth(ym,0); if(r) data.monthly[ym]*=now/r; }
+  if(data._fxOn){
+    const now=fxRate("JPY");
+    for(const b of data.banners||[]){ const k=fxBannerK(b); b._rev0=b.rev; b._fxK=k;   // _rev0: the yen as game-i gives it
+      for(const f of ["rev","rev_month"]) if(typeof b[f]==="number") b[f]*=k; }
+    if(data.monthly) for(const ym in data.monthly){ const r=fxMonth(ym,0); if(r) data.monthly[ym]*=now/r; }
+  }
+  // then inflation, on the figures as they now stand: dollars by US CPI, yen by Japan's
+  data._cpiOn = inflOn();
+  if(data._cpiOn){ const cur=data._fxOn ? "us" : "jp";
+    for(const b of data.banners||[]){ const k=cpiBannerK(b, cur); if(b._rev0===undefined) b._rev0=b.rev; b._cpiK=k;
+      for(const f of ["rev","rev_month"]) if(typeof b[f]==="number") b[f]*=k; }
+    if(data.monthly) for(const ym in data.monthly) data.monthly[ym]*=cpiK(ym, cur);
+  }
   return data;
 }
 // the Global ranking's yuan, month by month; the originals are kept so the toggle can undo it
@@ -253,15 +261,67 @@ function fxAdjustCN(){
   const on=usdOn() && !!(state.fxh && state.fxh.months), now=fxRate("CNY");
   for(const t in games) for(const ym in (games[t].monthly||{})){ const m=games[t].monthly[ym];
     if(m._min0===undefined){ m._min0=m.rev_min_cny; m._max0=m.rev_max_cny; }
-    const r=on && fxMonth(ym,1), k=r ? now/r : 1;
+    const r=on && fxMonth(ym,1), k=(r ? now/r : 1) * (on && inflOn() ? cpiK(ym,"us") : 1);
     m.rev_min_cny = m._min0==null ? m._min0 : m._min0*k;
     m.rev_max_cny = m._max0==null ? m._max0 : m._max0*k; }
 }
-// the dollars switched on or off: reload the game so its yen is rescaled (or back to native)
+// ---- "Today's prices": every figure adjusted for inflation to the latest month of the CPI ----
+// data/cpi.json (scripts/fetch_cpi.py, daily workflow): US CPI-U (BLS) and Japan's CPI
+// (Statistics Bureau), monthly. Off by default; the viewer's choice (localStorage "infl").
+// A figure is multiplied by (index in the latest month / index in the month it was earned):
+// dollars (game-i in US$, Qimai, Sensor Tower, the Global ranking in US$) by the US index, game-i's
+// yen by Japan's. A banner goes day by day, weighted like its exchange rate (fxBannerK); a monthly
+// figure by its month. The Global ranking in CN¥ stays as it is: there is no China index here.
+let _infl = (()=>{ try{ return localStorage.getItem("infl")==="on"; }catch(e){ return false; } })();
+const inflOn = () => _infl && !!(state.cpi && state.cpi.us && state.cpi.jp);
+const _cpiKeys = {};
+function cpiK(ym, cur){
+  const c=state.cpi, s=c && c[cur]; if(!s || !ym) return 1;
+  const last=c[cur+"_last"]; if(ym>=last) return 1;
+  const ks=_cpiKeys[cur] || (_cpiKeys[cur]=Object.keys(s).sort());
+  const v = s[ym] ?? (ym<ks[0] ? s[ks[0]] : null);
+  return v ? s[last]/v : 1;
+}
+const ymOf = dt => `${dt.getFullYear()}-${String(dt.getMonth()+1).padStart(2,"0")}`;
+function cpiBannerK(b, cur){
+  if(!b || !b.start) return 1;
+  const s=b.rank_series||[], d0=new Date(b.start+"T00:00:00");
+  const n = s.length || Math.max(1, Math.round((Date.parse(b.end||b.start)-Date.parse(b.start))/864e5)+1);
+  let w=0, a=0;
+  for(let i=0;i<n;i++){ const dt=new Date(d0); dt.setDate(dt.getDate()+i);
+    const wi = s.length ? (s[i]==null ? rankValue(200)/2 : rankValue(s[i])) : 1;
+    w+=wi; a+=wi*cpiK(ymOf(dt), cur); }
+  return w>0 ? a/w : 1;
+}
+// the month every adjusted figure is in, e.g. "Oct 2026"
+function cpiMonth(cur){ const l=state.cpi && state.cpi[(cur || (usdOn() ? "us" : "jp"))+"_last"];
+  return l ? new Date(l+"-01T00:00:00").toLocaleString("en-US",{month:"short", year:"numeric"}) : ""; }
+// Qimai (US$) day by day, its months by month; the originals are kept so the toggle can undo it
+function cpiAdjustQimai(){
+  const games=state.qimai && state.qimai.games; if(!games) return; const on=inflOn();
+  for(const t in games){ const g=games[t];
+    for(const ym in (g.monthly||{})){ const m=g.monthly[ym];
+      if(m._o===undefined) m._o={qtot:m.qtot, attr:m.attr, base:m.base};
+      const k=on ? cpiK(ym,"us") : 1; for(const f of ["qtot","attr","base"]) if(typeof m._o[f]==="number") m[f]=m._o[f]*k; }
+    for(const i in (g.banners||{})){ const e=g.banners[i];
+      if(e._o===undefined) e._o={total:e.total, daily:(e.daily||[]).slice(), monthly:Object.assign({}, e.monthly||{})};
+      const d0=new Date((e.start||"2020-01-01")+"T00:00:00");
+      e.daily=e._o.daily.map((v,j)=>{ if(!on || typeof v!=="number") return v; const dt=new Date(d0); dt.setDate(dt.getDate()+j); return v*cpiK(ymOf(dt),"us"); });
+      const s0=e._o.daily.reduce((a,v)=>a+(v||0),0), s1=e.daily.reduce((a,v)=>a+(v||0),0);
+      e.total = typeof e._o.total!=="number" ? e._o.total : s0>0 ? e._o.total*s1/s0 : e._o.total*(on ? cpiK((e.start||"").slice(0,7),"us") : 1);
+      e.monthly={}; for(const ym in e._o.monthly) e.monthly[ym]=e._o.monthly[ym]*(on ? cpiK(ym,"us") : 1); } }
+}
+// Sensor Tower's monthly dollars, by month
+function cpiAdjustST(){
+  const rep=state.reported && state.reported.months; if(!rep) return; const on=inflOn();
+  for(const ym in rep){ const m=rep[ym]; if(m._o===undefined){ m._o={}; for(const k in m) if(k[0]!=="_" && typeof m[k]==="number") m._o[k]=m[k]; }
+    const f=on ? cpiK(ym,"us") : 1; for(const k in m._o) m[k]=m._o[k]*f; }
+}
+// the dollars or the inflation switched on or off: reload the game so its figures are rescaled
 async function fxRefresh(){
-  if(!state.data || state.data._fxOn===usdOn()) return false;
+  if(!state.data || (state.data._fxOn===usdOn() && state.data._cpiOn===inflOn())) return false;
   state._ctx={}; state._cmpIndex=null; state._cmpMetrics={};
-  fxAdjustCN();
+  fxAdjustCN(); cpiAdjustQimai(); cpiAdjustST();
   const cur=_bmCur, tab=document.querySelector("#bmSrc [data-bmsrc].on"), open=!bannerModal.hidden;
   const y=open ? bannerModal.querySelector(".modal-card").scrollTop : 0;
   await selectGame(state.tag, true);
@@ -918,11 +978,15 @@ async function init(){
   // today's exchange rates for the US$ toggle. Best-effort: without them the toggle hides.
   try { state.fx = await getJSON("data/fx.json"); } catch(e){ state.fx=null; }
   try { state.fxh = await getJSON("data/fx_history.json"); } catch(e){ state.fxh=null; }
+  // consumer price indexes for the "Today's prices" toggle. Best-effort: without them it hides.
+  try { state.cpi = await getJSON("data/cpi.json"); } catch(e){ state.cpi=null; }
   fxAdjustCN();
-  applyCcy();
+  cpiAdjustST();
+  applyCcy(); applyInfl();
   // Qimai daily China-iPhone revenue (USD, App Store gross, Qimai model estimate), per
   // banner + per month. A daily source like game-i, but for China iOS. Best-effort.
   try { state.qimai = await getJSON("data/qimai.json"); } catch(e){ state.qimai=null; }
+  cpiAdjustQimai();
   // Per-banner face focus points (game -> name -> {x,y,w,h}) for the Compare collage crops.
   try { state.focus = await getJSON("data/banner_focus.json"); } catch(e){ state.focus=null; }
   // China's own store chart, day by day (the real ranking, not an estimate).
@@ -5592,10 +5656,37 @@ function applyCcy(){
   if(state.data) fxNote(!state.table && !rankByScored());
   document.documentElement.classList.toggle("ccy-usd", on);
 }
+// the "Today's prices" toggle (inflation), next to US$
+function applyInfl(){
+  const btn=$("#inflBtn"); if(!btn) return;
+  const ok=!!(state.cpi && state.cpi.us && state.cpi.jp), on=inflOn();
+  btn.hidden=!ok; btn.classList.toggle("on", on); btn.setAttribute("aria-pressed", String(on));
+  if(ok) btn.title = on
+    ? `Showing every figure in ${cpiMonth()} prices: adjusted for inflation with the US consumer price index (dollars) and Japan's (yen). Click to show them as they were earned.`
+    : `Show every figure in today's prices (${cpiMonth()}), adjusted for inflation with the US consumer price index for dollars and Japan's for yen. Off: figures as they were earned.`;
+  document.documentElement.classList.toggle("infl-on", on);
+}
+async function afterMoneyToggle(){
+  if(!state.data) return;
+  if(await fxRefresh()) return;          // reloaded with the new figures (and re-rendered)
+  renderStats(); render();
+  if(_bmCur && !bannerModal.hidden){
+    const tab=document.querySelector("#bmSrc [data-bmsrc].on"), y=bannerModal.querySelector(".modal-card").scrollTop;
+    openBanner(_bmCur, true);
+    if(tab){ const t=document.querySelector(`#bmSrc [data-bmsrc="${tab.dataset.bmsrc}"]`); if(t && !t.classList.contains("on")) t.click(); }
+    bannerModal.querySelector(".modal-card").scrollTop=y; }
+  if($("#compareModal") && !$("#compareModal").hidden && typeof renderCompareResult==="function") renderCompareResult();
+}
+if($("#inflBtn")) $("#inflBtn").onclick=async ()=>{
+  _infl=!_infl;
+  try{ localStorage.setItem("infl", _infl ? "on" : "off"); }catch(e){}
+  applyInfl(); applyCcy();
+  await afterMoneyToggle();
+};
 $("#ccyBtn").onclick=async ()=>{
   _ccy = _ccy==="usd" ? "native" : "usd";
   try{ localStorage.setItem("ccy",_ccy); }catch(e){}
-  applyCcy();
+  applyCcy(); applyInfl();
   if(!state.data) return;
   if(await fxRefresh()) return;          // reloaded in the other currency (and re-rendered)
   renderStats(); render();
@@ -6824,8 +6915,12 @@ const infoModal=$("#infoModal");
 // the source note for converted dollars: the "game-i + Qimai $" view, or game-i / CN shown in US$
 function fxNote(show){
   const el=$("#fxnote"); if(!el) return;
-  const s=state.dataSource, on = show && (s==="both" || (usdOn() && (s==="gamei" || s==="cn")));
-  el.hidden=!on; if(!on) return;
+  const s=state.dataSource, fx = show && (s==="both" || (usdOn() && (s==="gamei" || s==="cn")));
+  const infl = show && inflOn() && !(s==="cn" && !usdOn());
+  el.hidden=!(fx || infl); if(!(fx || infl)) return;
+  const usCur = usdOn() || usdSrc(s);
+  const inflTxt = infl ? ` <b>In ${cpiMonth(usCur ? "us" : "jp")} prices.</b> Every figure is adjusted for inflation with ${usCur ? "the US consumer price index" : "Japan's consumer price index"}, month by month, so an older banner counts what its spending would be worth today. Switch off with <b>Today's prices</b> at the top; more in <b>How these numbers work → Today's prices</b>.` : "";
+  if(!fx){ el.innerHTML = inflTxt.trim(); return; }
   el.innerHTML = s==="both"
     ? `<b>Japan + China iPhone, in US$.</b> game-i's Japan estimate (App Store + Google Play, in yen) converted at <b>${esc(fxLine())}</b>, plus Qimai's China iPhone App Store estimate (already in dollars). This is the only view that adds two sources together, and it is two stores, not worldwide revenue: Sensor Tower is the worldwide figure, and Android in China isn't in either. A banner with no Qimai figure counts Japan alone and is tagged <span class="pill">JP only</span>.`
     : s==="cn"
@@ -6833,6 +6928,7 @@ function fxNote(show){
     : `<b>Shown in US$.</b> game-i's yen converted at <b>${esc(fxLine())}</b>. Switch back with the <b>US$</b> button at the top.`;
   el.innerHTML += s==="cn" ? ` More in <b>How these numbers work → US$ conversion</b>.`
     : ` A banner goes day by day and a month at its average, so a 2021 banner is in 2021 dollars (the yen was ~¥104 then). More in <b>How these numbers work → US$ conversion</b>.`;
+  el.innerHTML += inflTxt;
 }
 // the banner window's "Japan + China iPhone" line: game-i in dollars plus Qimai
 function bothLine(b){
@@ -6848,6 +6944,9 @@ function showInfoTab(which){
   if($("#infoQimai")) $("#infoQimai").hidden = which!=="qimai";
   if($("#infoCNChart")) $("#infoCNChart").hidden = which!=="cnchart";
   if($("#infoBoth")){ $("#infoBoth").hidden = which!=="both"; const r=$("#infoFxRate"); if(r) r.textContent=fxLine(true)||"the latest daily rate"; }
+  if($("#infoInfl")){ $("#infoInfl").hidden = which!=="infl"; const ex=$("#infoInflEx"), c=state.cpi;
+    if(ex && c && c.us && c.jp){ const r=(ym,cur)=>cpiK(ym,cur).toFixed(2);
+      ex.innerHTML = `<b>How much it adds</b> (to ${cpiMonth("us")} prices): a dollar from <b>September 2020</b> (Genshin's launch) counts <b>×${r("2020-09","us")}</b>, from January 2022 <b>×${r("2022-01","us")}</b>, January 2024 <b>×${r("2024-01","us")}</b>, January 2026 <b>×${r("2026-01","us")}</b>. Yen, by Japan's index: <b>×${r("2020-09","jp")}</b>, <b>×${r("2022-01","jp")}</b>, <b>×${r("2024-01","jp")}</b> and <b>×${r("2026-01","jp")}</b>. So a $10M banner from September 2020 shows as <b>${fmtUSD(1e7*cpiK("2020-09","us"))}</b>.`; } }
   if($("#infoFx")){ $("#infoFx").hidden = which!=="fx"; const ex=$("#infoFxEx"), now=fxRate("JPY");
     const m=["2021-01","2024-01"].map(ym=>[ym, fxMonth(ym,0)]).filter(([,r])=>r);
     const c=["2021-11","2024-07"].map(ym=>[ym, fxMonth(ym,1)]).filter(([,r])=>r), cnow=fxRate("CNY");
