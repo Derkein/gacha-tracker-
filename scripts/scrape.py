@@ -650,7 +650,26 @@ def scrape_game(tag, meta):
         for b in uniq:
             if b.get("name") in ov:
                 b["banner_img"] = ov[b["name"]]
-    return mark_reruns(uniq, tag in CHRONO_GAMES, tag)
+    return fold_launch_reruns(mark_reruns(uniq, tag in CHRONO_GAMES, tag))
+
+
+def fold_launch_reruns(banners):
+    """A rerun that opens the SAME DAY as a new banner and ends inside it is not a banner of its
+    own on this site (every other game lists only the new character, or folds the rerun into it
+    as "A&B"). game-i lists Endfield's as a separate row and splits the period's revenue between
+    the two (ケーちゃん + the Gilberta rerun, Nov 2026: 0.2134 each), so drop the rerun and give
+    its share to the new banner. A rerun that opens mid-run (HSR's second-half reruns) or spans
+    two new banners (Endfield's Tangtang rerun) is left alone."""
+    out = []
+    for r in banners:
+        host = r.get("rerun") and next((n for n in banners if not n.get("rerun") and n is not r
+                                        and n["start"] == r["start"] and r["end"] <= n["end"]), None)
+        if host:
+            host["rev"] = round((host.get("rev") or 0) + (r.get("rev") or 0), 4)
+            host.setdefault("folded", []).append(r["name"])
+            continue
+        out.append(r)
+    return out
 
 
 def main():
