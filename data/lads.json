@@ -5,13 +5,13 @@
  "unit": "億G",
  "source": "https://prtimes.jp/main/html/searchrlp/company_id/131862",
  "banners_from": "official",
- "updated": "2026-11-25T01:01:01Z",
+ "updated": "2026-11-25T01:57:01Z",
  "count": 83,
  "now": {
-  "ios": null,
+  "ios": 161,
   "android": 176,
   "month": 195,
-  "next_add": 5711606,
+  "next_add": 11225320,
   "ym": "2026/11",
   "ranks": {
    "prev": [
