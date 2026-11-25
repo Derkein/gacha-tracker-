@@ -1193,7 +1193,10 @@ function renderStats(){
   const n=(cells.match(/<div class="tile[ "]/g)||[]).length, half=n<=4?n:3;
   $("#tiles").innerHTML=`<div class="tiles-in${n%half?" odd-t":""}${n%2?" odd-p":""}" style="--n:${n};--half:${half}">${cells}</div>`;
     const srcs = "game-i.daa.jp + Sensor Tower reports" + (state.cn?" + Global monthly ranking":"");
-  $("#updated").textContent=`sources: ${srcs} · updated ${new Date(state.data.updated).toISOString().slice(0,10)}`;
+  // "updated" = the latest day Qimai has been read for (China calendar): game-i's own stamp is
+  // taken after midnight JST, so it reads a day ahead of the data it actually covers
+  const upd = (state.qimai && state.qimai.meta && state.qimai.meta.last) || new Date(state.data.updated).toISOString().slice(0,10);
+  $("#updated").textContent=`sources: ${srcs} · updated ${upd}`;
 }
 
 function esc(s){return (s||"").replace(/[&<>"'`]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;","`":"&#96;"}[c]));}

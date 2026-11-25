@@ -96,7 +96,11 @@ out = {"meta": {"source":"qimai pred/revenue","currency":"USD","country":"cn","d
        "note":"Per-banner China-iPhone revenue. Each day's Qimai game total is split among that "
               "day's running banners in proportion to game-i's reconstructed daily revenue "
               "(equal if none charted in JP). monthly[ym]={qtot,attr,base}; banners[idx]="
-              "{total,monthly,start,daily[] aligned to the banner's rank_series days}."},
+              "{total,monthly,start,daily[] aligned to the banner's rank_series days}.",
+       # the latest China day Qimai has been read for (China calendar). The site's "updated"
+       # stamp uses this: game-i's own stamp runs a day ahead (JST, scraped after midnight there)
+       "last": max((json.load(io.open(os.path.join(DAILY, f"{t}.json"), encoding="utf-8")).get("last") or "")
+                   for t in GAMES) or None},
        "games": {}}
 
 for tag in GAMES:
