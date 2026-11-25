@@ -5,13 +5,13 @@
  "unit": "億G",
  "source": "https://prtimes.jp/main/html/searchrlp/company_id/131862",
  "banners_from": "official",
- "updated": "2026-11-25T01:57:01Z",
+ "updated": "2026-11-25T17:41:12Z",
  "count": 83,
  "now": {
-  "ios": 161,
-  "android": 176,
-  "month": 195,
-  "next_add": 11225320,
+  "ios": 70,
+  "android": 143,
+  "month": 191,
+  "next_add": 16192920,
   "ym": "2026/11",
   "ranks": {
    "prev": [
@@ -73,7 +73,7 @@
     null,
     136,
     160,
-    null,
+    74,
     null,
     null,
     null,
@@ -83,7 +83,7 @@
   }
  },
  "monthly": {
-  "2026-11": 1.92,
+  "2026-11": 2.08,
   "2026-10": 2.3,
   "2026-09": 2.84,
   "2026-08": 2.27,
@@ -3874,9 +3874,9 @@
    "rev_month_ym": {
     "2026-08": 0.5452
    },
-   "cum": 82,
+   "cum": 83,
    "cumtot": 83,
-   "yrank": 27,
+   "yrank": 28,
    "ytot": 28,
    "icons": [
     "icons/faces/lads/cast-caleb.webp"
@@ -4218,14 +4218,14 @@
     null
    ],
    "rev": 0.224,
-   "rev_month": 0.562,
+   "rev_month": 0.5646,
    "rev_ym": {
     "2026-10": 0.224,
     "2026-11": 0.0
    },
    "rev_month_ym": {
     "2026-10": 0.3282,
-    "2026-11": 0.2338
+    "2026-11": 0.2364
    },
    "cum": 81,
    "cumtot": 83,
@@ -4279,13 +4279,13 @@
     null,
     136
    ],
-   "rev": 0.9359,
-   "rev_month": 1.6059,
+   "rev": 0.9464,
+   "rev_month": 1.6238,
    "rev_ym": {
-    "2026-11": 0.9359
+    "2026-11": 0.9464
    },
    "rev_month_ym": {
-    "2026-11": 1.6059
+    "2026-11": 1.6238
    },
    "cum": 40,
    "cumtot": 83,
@@ -4310,28 +4310,29 @@
    "en": "Yes, Cat Caretaker",
    "title_en": "Yes, Cat Caretaker",
    "leads": [
-    "Sylus",
     "Xavier",
+    "Zayne",
     "Rafayel",
-    "Zayne"
+    "Sylus"
    ],
-   "source_url": "https://gamerch.com/loveanddeepspace/841087",
+   "source_url": "https://wiki.biligame.com/lysk/%E3%80%8C%E9%81%B5%E5%91%BD%EF%BC%8C%E9%A5%B2%E5%85%BB%E5%AE%98%E3%80%8D2026",
    "rerun": true,
    "ongoing": true,
    "rank_series": [
-    160
+    160,
+    74
    ],
-   "rev": 0.0804,
-   "rev_month": 0.0804,
+   "rev": 0.2198,
+   "rev_month": 0.2198,
    "rev_ym": {
-    "2026-11": 0.0804
+    "2026-11": 0.2198
    },
    "rev_month_ym": {
-    "2026-11": 0.0804
+    "2026-11": 0.2198
    },
-   "cum": 83,
+   "cum": 82,
    "cumtot": 83,
-   "yrank": 28,
+   "yrank": 27,
    "ytot": 28,
    "icons": [
     "icons/faces/lads/2026-11-25-ec5810.webp"
