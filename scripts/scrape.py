@@ -654,18 +654,21 @@ def scrape_game(tag, meta):
 
 
 def fold_launch_reruns(banners):
-    """A rerun that opens the SAME DAY as a new banner and ends inside it is not a banner of its
-    own on this site (every other game lists only the new character, or folds the rerun into it
-    as "A&B"). game-i lists Endfield's as a separate row and splits the period's revenue between
-    the two (ケーちゃん + the Gilberta rerun, Nov 2026: 0.2134 each), so drop the rerun and give
-    its share to the new banner. A rerun that opens mid-run (HSR's second-half reruns) or spans
-    two new banners (Endfield's Tangtang rerun) is left alone."""
+    """A rerun that opens the SAME DAY as a new banner and ends inside it is folded into that
+    banner, the way HSR/ZZZ list one as "A&B復刻": game-i gives Endfield's its own row and splits
+    the period 50/50 (ケーちゃん + the Gilberta rerun, Nov 2026: 0.2134 each), so two rows with the
+    same start would only ever show the same value and rank. The new banner takes the whole
+    revenue and the name "ケーちゃん&ギルベルタ復刻"; face_icons.py adds the rerun character's
+    name and icon from `folded`. A rerun that opens on a different day (HSR's second-half reruns,
+    Endfield's Tangtang rerun) keeps its own row and its own days."""
     out = []
     for r in banners:
         host = r.get("rerun") and next((n for n in banners if not n.get("rerun") and n is not r
                                         and n["start"] == r["start"] and r["end"] <= n["end"]), None)
         if host:
             host["rev"] = round((host.get("rev") or 0) + (r.get("rev") or 0), 4)
+            who = re.sub(r"^.*」", "", r["name"]).replace("復刻", "").strip() or r["name"]
+            host["name"] += f"&{who}復刻"
             host.setdefault("folded", []).append(r["name"])
             continue
         out.append(r)

@@ -851,7 +851,7 @@
    "bar": "#dcc989"
   },
   {
-   "name": "ケーちゃん",
+   "name": "ケーちゃん&ギルベルタ復刻",
    "start": "2026-11-25",
    "end": "2026-12-23",
    "rev": 0.4268,
@@ -869,13 +869,15 @@
     24
    ],
    "agents": [
-    "Kay"
+    "Kay",
+    "Gilberta"
    ],
    "icons": [
-    "icons/faces/endfield/2026-11-25-c50023.webp"
+    "icons/faces/endfield/2026-11-25-c50023.webp",
+    "icons/faces/endfield/2026-02-07-d9f264.webp"
    ],
    "bar": "#f0b045",
-   "en": "Kay",
+   "en": "Kay & Gilberta",
    "folded": [
     "再現スカウト「#1」ギルベルタ"
    ]

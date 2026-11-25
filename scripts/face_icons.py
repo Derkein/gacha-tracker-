@@ -385,10 +385,26 @@ def process(tag, cascade, force=False):
             drip_hits += is_drip
         except Exception as e:
             print(f"  [{tag}] warn {b['name']}: {e}")
+    add_folded(data["banners"])
     if names:
         nfile.write_text(json.dumps(names, ensure_ascii=False, indent=1), encoding="utf-8")
     dfile.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
     return made, kept, drip_hits, len(data["banners"])
+
+
+def add_folded(banners):
+    """A rerun scrape.py folded into a same-day new banner (`folded`, e.g. Endfield's Gilberta
+    rerun inside Kay's) shows as the banner's second character: its English name and the icon
+    already cut for that character's own earlier banner, drawn small next to the main one."""
+    for b in banners:
+        for fn in b.get("folded") or []:
+            src = next((o for o in banners if o is not b and not o.get("rerun") and o["start"] < b["start"]
+                        and o.get("agents") and o.get("icons") and primary_name(o["name"]) in fn), None)
+            if not src or src["agents"][0] in (b.get("agents") or []):
+                continue
+            b["agents"] = (b.get("agents") or [])[:1] + [src["agents"][0]]
+            b["en"] = " & ".join(b["agents"])
+            b["icons"] = (b.get("icons") or [])[:1] + [src["icons"][0]]
 
 
 def apply_overrides(cascade):
