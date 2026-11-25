@@ -5,11 +5,11 @@
  "unit": "億G",
  "source": "https://game-i.daa.jp/?%E3%82%AC%E3%83%81%E3%83%A3%E5%88%86%E6%9E%90/%E3%82%A2%E3%83%BC%E3%82%AF%E3%83%8A%E3%82%A4%E3%83%84%EF%BC%9A%E3%82%A8%E3%83%B3%E3%83%89%E3%83%95%E3%82%A3%E3%83%BC%E3%83%AB%E3%83%89",
  "banners_from": "game-i",
- "updated": "2026-11-24T23:52:32Z",
+ "updated": "2026-11-25T00:54:57Z",
  "count": 18,
  "now": {
   "ios": null,
-  "android": 124,
+  "android": 114,
   "month": 222,
   "next_add": 5454574,
   "ym": "2026/11",
@@ -869,7 +869,6 @@
    "icons": [
     "icons/faces/endfield/2026-11-25-c50023.webp"
    ],
-   "accent": "#f5d47a",
    "bar": "#f0b045"
   },
   {
@@ -894,7 +893,6 @@
    "icons": [
     "icons/faces/endfield/2026-11-25-00d5f2.webp"
    ],
-   "accent": "#d2b09d",
    "bar": "#d62b00"
   }
  ]
