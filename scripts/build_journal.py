@@ -472,12 +472,13 @@ def gl_daily(b):
     return out
 
 def gl_window(r, n): return r["_gd"][r["w0"]:r["w0"] + n]
-def gl_measures(r, n):
-    w = gl_window(r, n)
-    return [sum(w), max(w) if w else 0.0, sum(w[:min(7, n)])]      # Total, peak day, first week
-
 def duel_gl(rows):
-    """duel_order's rules on Global only. Returns (ordered rows, #1 vs #2 note); writes r["gbeat"]."""
+    """The Global edition's head-to-heads: ONE measure, the Global money each banner made over the
+    days both ran (the shorter of the two windows: 19 days against 11 compares 11 of each). Over
+    equal days the bigger total is also the bigger $/day, so either reads the same; a best day or a
+    first week isn't used, because the Global chart has no days of its own (they're the month split
+    by Japan + China iPhone). Order = head-to-heads won, then more Global over their shared days,
+    then their own head-to-head. Returns (ordered rows, #1 vs #2 note); writes r["gbeat"]."""
     ranked = [r for r in rows if r["wdays"] >= MIN_DUEL_DAYS and any(r["_gd"])]
     late = [r for r in rows if not (r["wdays"] >= MIN_DUEL_DAYS and any(r["_gd"]))]
     for r in late: r["gbeat"] = None
@@ -486,11 +487,8 @@ def duel_gl(rows):
     res = {}
     for i in range(k):
         for j in range(i + 1, k):
-            n = shared(i, j); pa = pb = 0.0
-            for x, y in zip(gl_measures(ranked[i], n), gl_measures(ranked[j], n)):
-                if x > y: pa += ratio_w(x, y)
-                elif y > x: pb += ratio_w(x, y)
-            res[(i, j)] = "a" if pa > pb + 1e-9 else "b" if pb > pa + 1e-9 else ("a" if tot(ranked[i], n) >= tot(ranked[j], n) else "b")
+            n = shared(i, j)
+            res[(i, j)] = "a" if tot(ranked[i], n) >= tot(ranked[j], n) else "b"
     wins = [0] * k
     for (i, j), w in res.items(): wins[i if w == "a" else j] += 1
     def cmp(i, j):
@@ -510,15 +508,22 @@ def duel_gl(rows):
     return [ranked[i] for i in order] + late, note
 
 def gl_game_order(g):
-    """A game's banners in the Global edition: mw_order's rules on the month's Global figures (the
-    in-month Global total and its best Global day in the month, standing in for revenue and peak)."""
+    """A game's banners in the Global edition, by Global money only: each pair over the same number
+    of their days inside the month (the shorter one's), order by head-to-heads won, then the bigger
+    Global month."""
     rows = []
     for i, r in enumerate(g["banners"]):
         days = r["_gd"][r["day0"]:r["day0"] + r["days"]]
-        rows.append({"_i": i, "gm": sum(days), "gpk": max(days) if days else 0.0, "rev_month": r["rev_month"]})
+        rows.append({"_i": i, "d": days, "gm": sum(days)})
     if not any(x["gm"] for x in rows): return None
-    mw_order(rows, [("gm", False), ("gpk", False)])
-    return [x["_i"] for x in rows]
+    wins = [0] * len(rows)
+    for i in range(len(rows)):
+        for j in range(i + 1, len(rows)):
+            n = min(len(rows[i]["d"]), len(rows[j]["d"]))
+            a, b = sum(rows[i]["d"][:n]), sum(rows[j]["d"][:n])
+            wins[i if a >= b else j] += 1
+    order = sorted(range(len(rows)), key=lambda k: (-wins[k], -rows[k]["gm"]))
+    return [rows[k]["_i"] for k in order]
 
 def market_series(games):
     """{ym: {"jp": {tag: oku}, "cn": {tag: usd}, "zl": {tag: cny midpoint}}} for every month any source covers."""

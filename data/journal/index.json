@@ -1,5 +1,5 @@
 {
- "built": "2026-11-21",
+ "built": "2026-11-25",
  "issues": [
   {
    "ym": "2026-10",
@@ -23,22 +23,22 @@
    "zl": true,
    "zl_pending": false,
    "gcover": {
-    "label": "Phoenix",
-    "tag": "zzz",
-    "game": "Zenless Zone Zero",
-    "img": "https://upload-os-bbs.hoyolab.com/upload/2026/10/18/9659add7d811b06d707308cdcdcce493_5855896606787464047.png",
+    "label": "Skirk",
+    "tag": "genshin",
+    "game": "Genshin Impact",
+    "img": "https://upload-os-bbs.hoyolab.com/upload/2026/10/08/68758aadd6021891543c4b8259e0b999_1160471361709252361.jpg",
     "face": [
-     26.1,
-     27.2
+     49.9,
+     21.9
     ],
     "art": null,
     "art_face": null,
-    "color": "#e84012",
+    "color": "#7fc8e0",
     "zl_month": [
-     386674431,
-     460333847
+     654707361,
+     779418516
     ],
-    "rerun": false
+    "rerun": true
    },
    "ghead": null,
    "zl_total": [
@@ -1872,23 +1872,20 @@
    "zl": true,
    "zl_pending": false,
    "gcover": {
-    "label": "Black Swan & Dan Heng • Imbibitor Lunae",
-    "tag": "hsr",
-    "game": "Honkai: Star Rail",
-    "img": "https://upload-os-bbs.hoyolab.com/upload/2024/02/05/a474e1ad0bdb9c70bb7f2e810d66ca22_8185363732810897994.jpg",
+    "label": "Xianyun & Nahida",
+    "tag": "genshin",
+    "game": "Genshin Impact",
+    "img": "https://img.gamewith.jp/img/dd5a75180ad6f4bbaa2850367c851a7a.jpeg",
     "face": [
-     44,
-     35.9
+     16.8,
+     21.4
     ],
-    "art": "assets/journal/hsr/1307.webp",
-    "art_face": [
-     39.6,
-     26.8
-    ],
-    "color": "#4fc8a0",
+    "art": null,
+    "art_face": null,
+    "color": "#57c69a",
     "zl_month": [
-     1303319009,
-     1664783882
+     1293576464,
+     1601212757
     ],
     "rerun": false
    },
@@ -2309,22 +2306,25 @@
    "zl": true,
    "zl_pending": false,
    "gcover": {
-    "label": "Alhaitham & Kaedehara Kazuha",
-    "tag": "genshin",
-    "game": "Genshin Impact",
-    "img": "https://paimon.moe/images/banners/Caution%20in%20Confidence%202.png",
+    "label": "Luocha",
+    "tag": "hsr",
+    "game": "Honkai: Star Rail",
+    "img": "https://static.wikia.nocookie.net/houkai-star-rail/images/6/65/Laic_Pursuit_2023-06-28.png",
     "face": [
-     55.3,
-     18.9
+     64.8,
+     23.4
     ],
-    "art": null,
-    "art_face": null,
-    "color": "#84c23c",
+    "art": "assets/journal/hsr/1203.webp",
+    "art_face": [
+     50.6,
+     24.4
+    ],
+    "color": "#f0d24b",
     "zl_month": [
-     1364478530,
-     1689141167
+     602612677,
+     763308544
     ],
-    "rerun": true
+    "rerun": false
    },
    "ghead": null,
    "zl_total": [
