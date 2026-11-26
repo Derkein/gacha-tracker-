@@ -35,7 +35,11 @@
    "cumtot": 1,
    "yrank": 1,
    "ytot": 1,
-   "bar": "#cb9ac2"
+   "bar": "#cb9ac2",
+   "icons": [
+    "icons/faces/azurp/2026-11-26-58dfd4.webp"
+   ],
+   "accent": "#dd93bf"
   }
  ],
  "awaiting_gamei": true

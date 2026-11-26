@@ -2482,15 +2482,6 @@
    "det": true,
    "name": "ケーちゃん",
    "v": 2
-  },
-  "https://pbs.twimg.com/media/HX2-Yr2akAAIBxS.jpg": {
-   "x": 24.5,
-   "y": 41.3,
-   "w": 1200,
-   "h": 675,
-   "det": true,
-   "name": "再現スカウト「#1」ギルベルタ",
-   "v": 2
   }
  },
  "nte": {
@@ -5551,6 +5542,17 @@
    "h": 1440,
    "det": true,
    "name": "異常夢の再起動",
+   "v": 2
+  }
+ },
+ "azurp": {
+  "https://webusstatic.yo-star.com/web-cms-test/upload/content/2026/11/26/7f4FRM8B.png": {
+   "x": 21.5,
+   "y": 25.9,
+   "w": 1920,
+   "h": 1080,
+   "det": true,
+   "name": "塗山小玉",
    "v": 2
   }
  }
