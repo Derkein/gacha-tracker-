@@ -5,15 +5,86 @@
  "unit": "億G",
  "source": "https://azurpromilia.jp/news",
  "banners_from": "official",
- "updated": "2026-11-26T14:04:31Z",
+ "updated": "2026-11-26T17:33:02Z",
  "count": 1,
  "now": {
-  "ios": 109,
+  "ios": 91,
   "android": null,
-  "month": null,
-  "next_add": 13076065
+  "month": 1031,
+  "next_add": 14180687,
+  "ym": "2026/11",
+  "ranks": {
+   "prev": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "cur": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    109,
+    null,
+    null,
+    null,
+    null
+   ]
+  }
  },
- "monthly": {},
+ "monthly": {
+  "2026-11": 0.1308
+ },
  "banners": [
   {
    "name": "塗山小玉",
@@ -22,25 +93,29 @@
    "year": 2026,
    "related": "桃花の契り",
    "banner_img": "https://webusstatic.yo-star.com/web-cms-test/upload/content/2026/11/26/7f4FRM8B.png",
-   "agents": [],
-   "en": "",
    "source_url": "https://azurpromilia.jp/news/5225",
    "rerun": false,
    "ongoing": true,
-   "rev": 0.0,
-   "rev_month": 0.0,
-   "rev_ym": {},
-   "rev_month_ym": {},
+   "rank_series": [
+    null,
+    109
+   ],
+   "rev": 0.1308,
+   "rev_month": 0.1308,
+   "rev_ym": {
+    "2026-11": 0.1308
+   },
+   "rev_month_ym": {
+    "2026-11": 0.1308
+   },
    "cum": 1,
    "cumtot": 1,
    "yrank": 1,
    "ytot": 1,
-   "bar": "#cb9ac2",
    "icons": [
     "icons/faces/azurp/2026-11-26-58dfd4.webp"
    ],
-   "accent": "#dd93bf"
+   "bar": "#cb9ac2"
   }
- ],
- "awaiting_gamei": true
+ ]
 }
