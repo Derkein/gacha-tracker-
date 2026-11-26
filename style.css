@@ -272,6 +272,10 @@ a{color:inherit}
 .stnote,.cnnote,.qmnote{margin:2px 2px 12px; padding:9px 12px; font-size:13.5px; line-height:1.5; color:var(--ink2);
   background:var(--track); border:1px solid var(--border); border-radius:9px}
 .stnote b,.cnnote b,.qmnote b{color:var(--ink)}
+/* a source with nothing for this game yet (a new game): the chart area says so, in the notes' style */
+.src-empty{margin:18px 2px; padding:16px 18px; display:flex; flex-direction:column; gap:4px; font-size:14px; line-height:1.55; color:var(--ink2);
+  border:1px solid var(--border); border-left:3px solid var(--accent); border-radius:9px; background:var(--track)}
+.src-empty b{color:var(--ink); font-size:16px}
 /* a simulated banner (game-i listed it, no figure yet): same box, the warn accent of .bm-warn */
 .simnote{border-left:3px solid #b0384a} .stnote.simnote b{color:#b0384a}
 @media (prefers-color-scheme:dark){ .simnote{border-left-color:#f08a99} .stnote.simnote b{color:#f08a99} }

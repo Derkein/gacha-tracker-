@@ -723,6 +723,7 @@ def main():
                 for b in banners:
                     if b.pop("_unfigured", False): b["simulated"] = True
                 print(f"[{tag}] simulating unfigured banners failed (non-fatal): {e}", file=sys.stderr)
+        awaiting = False
         if meta.get("official"):
             # every figure of an official-source game is rebuilt from game-i's daily data, so a
             # failed / empty feed must not overwrite yesterday's numbers with zeros
@@ -733,6 +734,7 @@ def main():
                 # a game just added, that game-i hasn't logged a day of yet (Azur Promilia on its
                 # launch day): list its banners with no revenue so it shows up; figures follow
                 print(f"[{tag}] no game-i data yet (new game): banners listed without revenue")
+                awaiting = True
                 for i, b in enumerate(banners):
                     b["rev"] = b["rev_month"] = 0.0
                     b["rev_ym"], b["rev_month_ym"] = {}, {}
@@ -747,6 +749,7 @@ def main():
         out = {
             "game": tag,
             "name": meta["name"],
+            **({"awaiting_gamei": True} if awaiting else {}),
             "jp": meta["jp"],
             "unit": "億G",
             "source": meta["official"] if meta.get("official") else page_url(meta["page"]),

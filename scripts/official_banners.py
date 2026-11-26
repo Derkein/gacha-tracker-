@@ -710,10 +710,9 @@ def character_art(tag):
 # JP name until a later run finds it).
 SS_EN_API = "https://stellasora.global/api/resource/news"
 CZN_EN_EVENT_BOARDS, CZN_EN_NOTE_BOARDS = (139240, 139241), (139238, 142421)
-SEED = {"stellasora": {"チトセ": "Chitose", "シア": "Shia"},   # launch banners had no EN notice
-        # Azur Promilia has no English release yet (English beta 2027): the CN name in pinyin
-        # (涂山小玉) until an official English name exists — then correct it in azurp_map.json
-        "azurp": {"塗山小玉": "Tushan Xiaoyu"}}
+SEED = {"stellasora": {"チトセ": "Chitose", "シア": "Shia"}}   # launch banners had no EN notice
+# Azur Promilia has no English release yet (English beta 2027): its banners keep the JP name
+# until an official English one exists, then add it to icons/names/azurp_map.json by hand
 NO_EN_FEED = {"azurp"}
 
 

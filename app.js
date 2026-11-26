@@ -82,7 +82,8 @@ const RECON_WARN = `<p class="bm-note bm-warn recon-warn">⚠ <b>Reconstruction.
 const grWhy = `<span class="grwhy"><b>Why the two differ:</b> game-i's <b>monthly total</b> and its <b>banner figures</b> come from two parts of its system. Since 2021 the monthly total is built from a <b>"virtual top 1000"</b> (Apple's games and genre charts fill in places below #200), so it keeps counting a game that has left the overall chart. The banner analysis (2019) still uses the game's <b>overall top-200 rank</b>, so a banner stops growing the day its game drops below #200. The more time a game spends below #200, the bigger the gap. <button class="infolink grwhylink" type="button">More in How these numbers work ›</button></span>`;
 function grNote(show){
   const el=$("#grnote"); if(!el) return;
-  const on = show && state.data && state.data.banners_from==="official";
+  // a game game-i hasn't logged yet has nothing to compare: the chart's "New game" note says it
+  const on = show && state.data && state.data.banners_from==="official" && !state.data.awaiting_gamei;
   el.hidden=!on; if(!on) return;
   const B=state.data.banners.filter(b=>!b._synthetic), mo=state.data.monthly||{};
   const daily=B.reduce((a,b)=>a+(b._revDaily??b.rev),0), month=Object.values(mo).reduce((a,v)=>a+v,0);
@@ -1096,7 +1097,9 @@ function gpShow(tag){
   const g=gpGame(tag); if(!g) return;
   $("#gpIc").innerHTML=gpIcon(g,"gp-bimg");
   $("#gpName").textContent=g.name;
-  $("#gpSub").textContent=`${g.count} banners · ${G(g.total_oku)}`;
+  // runs before the game's data loads, so it reads the index: no revenue at all = a game just added
+  $("#gpSub").textContent = g.total_oku>0
+    ? `${g.count} banners · ${G(g.total_oku)}` : `New game · ${g.count} banner${g.count!==1?"s":""}`;
   $("#gpRail").querySelectorAll(".gp-rb").forEach(b=>{ const on=b.dataset.tag===tag;
     b.classList.toggle("on",on); b.setAttribute("aria-current", on?"true":"false"); });
   // on a narrow screen the rail scrolls sideways: bring the current game into it (rail only,
@@ -1214,6 +1217,12 @@ function nowTile(now){
 
 function monthTopBanner(ym){ const bl=(state.monthly&&state.monthly[ym]&&state.monthly[ym].banners)||[]; return bl.length?state.data.banners[bl[0].i]:null; }
 function renderStats(){
+  if(!srcHasData()){                              // nothing to sum yet: say so (the rank tile still shows)
+    const fresh=state.dataSource==="gamei" && state.data && state.data.awaiting_gamei;
+    const cells=`<div class="tile"><span class="l">${fresh?"New game":"Revenue"}</span><span class="v">${fresh?"Waiting for game-i":"No data for now"}</span><span class="n">${esc((state.data&&state.data.name)||"")}</span></div>`
+      + (state.data && state.data.now ? nowTile(state.data.now) : "");
+    const n=(cells.match(/<div class="tile[ "]/g)||[]).length;
+    $("#tiles").innerHTML=`<div class="tiles-in" style="--n:${n};--half:${n}">${cells}</div>`; return; }
   const st = state.dataSource==="st", cn = state.dataSource==="cn", qm = state.dataSource==="qimai", bo = state.dataSource==="both";
   const fmt = srcFmtOf(state.dataSource);
   const all = state.data.banners, real = all.filter(x=>!x._synthetic && !x.pending);
@@ -2481,21 +2490,39 @@ function updateControlVis(){
   $("#hintRow").hidden    = state.table || isPeriodMode(state.mode) || state.mode==="agree";   // hover hint: Timeline/Graph/Ranking only, under the right-side buttons
   $("#bDir").hidden       = state.table;                   // direction is meaningless in the table view
   $("#dataSrc").hidden    = state.table || m==="agree" || rankByScored();   // Sources shows all at once; a scored ranking picks its own sources
+  // every game shows every source; one with nothing for this game says so in the chart
+  // (srcHasData / noDataHTML) instead of the tab disappearing
   const cnBtn=$("#dataSrc").querySelector('[data-src="cn"]');
-  if(cnBtn){ const has=!!(state.cn&&state.cn.games&&state.cn.games[state.tag]);
-    cnBtn.hidden=!has;
-    // a game with no CN rows must not be left stuck on an empty CN view
-    if(!has && state.dataSource==="cn"){ state.dataSource="gamei";
-      $("#dataSrc").querySelectorAll("[data-src]").forEach(b=>b.classList.toggle("on",b.dataset.src==="gamei")); } }                   // game-i/ST toggle in every chart view (incl. Graph) except Table
+  if(cnBtn) cnBtn.hidden=!state.cn;
   const boBtn=$("#dataSrc").querySelector('[data-src="both"]');
-  if(boBtn){ const has=hasQimai(state.tag) && !!fxRate("JPY"); boBtn.hidden=!has;
+  if(boBtn){ const has=!!state.qimai && !!fxRate("JPY"); boBtn.hidden=!has;
     if(!has && state.dataSource==="both"){ state.dataSource="gamei";
       $("#dataSrc").querySelectorAll("[data-src]").forEach(b=>b.classList.toggle("on",b.dataset.src==="gamei")); } }
   const qmBtn=$("#dataSrc").querySelector('[data-src="qimai"]');
-  if(qmBtn){ const has=hasQimai(state.tag); qmBtn.hidden=!has;
-    if(!has && state.dataSource==="qimai"){ state.dataSource="gamei";
-      $("#dataSrc").querySelectorAll("[data-src]").forEach(b=>b.classList.toggle("on",b.dataset.src==="gamei")); } }
+  if(qmBtn) qmBtn.hidden=!state.qimai;
   $("#search").hidden     = m==="graph";                   // Graph has no per-character search — it charts every banner
+}
+// Does the active source have anything for this game yet? A game just added (Azur Promilia on
+// its launch day) has no game-i page or figures, no Qimai days, no Sensor Tower report and no
+// Global row: its views say so instead of drawing $0.
+function srcHasData(src){
+  src=src||state.dataSource; const tag=state.tag, B=(state.data&&state.data.banners)||[];
+  if(src==="gamei") return B.some(b=>!b._synthetic && b.rev>0);
+  if(src==="qimai") return hasQimai(tag) && B.some(b=>!b._synthetic && bannerQimai(b).total>0);
+  if(src==="both")  return srcHasData("gamei") || srcHasData("qimai");
+  if(src==="st")    return Object.keys(extGameMonths(tag)).length>0;
+  if(src==="cn")    return !!(state.cn && state.cn.games && state.cn.games[tag] && Object.keys(state.cn.games[tag].monthly||{}).length);
+  return true;
+}
+function noDataHTML(src){
+  src=src||state.dataSource;
+  const NM={gamei:"game-i", qimai:"Qimai", both:"game-i or Qimai", st:"Sensor Tower", cn:"Global ranking"};
+  const nm=esc((state.data&&state.data.name)||""), fresh=!!(state.data&&state.data.awaiting_gamei);
+  const head = src==="gamei" && fresh ? "New game: waiting for game-i" : "No data for now";
+  const body = src==="gamei" && fresh
+    ? `${nm} is new, and game-i hasn't made a banner page for it yet. Its banners are taken from the official notices; their figures appear here once game-i logs the game.`
+    : `There are no ${NM[src]||""} figures for ${nm} yet.${fresh?" It's a new game, so they'll appear once the source starts covering it.":""}`;
+  return `<div class="src-empty"><b>${head}</b><span>${body}</span></div>`;
 }
 function render(){
   document.body.dataset.view = state.table ? "table" : state.mode;
@@ -2513,6 +2540,7 @@ function render(){
   if($("#qmnote")) $("#qmnote").hidden = !(showNote && state.dataSource==="qimai");
   fxNote(showNote);
   simNote();
+  if(!srcHasData()){ $("#chartwrap").hidden=false; $("#tablewrap").hidden=true; $("#chart").innerHTML=noDataHTML(); return; }
   if(state.table){ buildTable(); return; }
   if(state.mode==="graph"){ state.graphUnit==="month" ? renderMonthGraph() : renderGraph(); return; }
   if(state.mode==="year"){ renderYearly(); return; }
@@ -5423,7 +5451,7 @@ function openBanner(b, keepStack){
   const scheduled=Math.round((Date.parse(b.end)-Date.parse(b.start))/864e5)+1;
   const elapsed=b.rank_series?b.rank_series.length:Math.min(scheduled,Math.round((Date.now()-Date.parse(b.start))/864e5)+1);
   const stats=[
-    [`Est. revenue${b.ongoing?" so far":""}`, G(b.rev)],
+    [`Est. revenue${b.ongoing?" so far":""}`, state.data.awaiting_gamei && !(b.rev>0) ? "Waiting for game-i" : G(b.rev)],
     ["All-time rank", `#${b.cum} / ${b.cumtot}`],
     [`${b.year} rank`, `#${b.yrank} / ${b.ytot}`],
     ["Run length", b.ongoing?`Day ${elapsed} of ${scheduled}`:`${scheduled} days`],
@@ -5488,7 +5516,7 @@ function openBanner(b, keepStack){
       ? `${RECON_WARN}<p class="bm-note bm-recon">game-i tracks ${esc(gameName())}'s Japan revenue every day but has no banner page for it, so this figure is <b>rebuilt the way game-i builds its own</b>: the banner dates come from the game's <a href="${esc(state.data.source)}" target="_blank" rel="noopener">official notices</a>${b.source_url?` (<a href="${esc(b.source_url)}" target="_blank" rel="noopener">this banner</a>)`:""}, and each day's share of game-i's monthly total (月次売上予測), weighted by that day's rank, goes to the banners running that day — split equally, first day +80%, last day −80%, as game-i does — and, as on game-i, only days in the iOS top 200 count, so a run spent below the chart earns nothing here. In game-i's "G" unit (1億G ≈ ¥100 million).</p>`
       : `<p class="bm-note bm-recon">game-i publishes one figure per banner: its estimate of what the banner earned from mobile gacha <b>in Japan</b>, in its own "G" unit (1億G ≈ ¥100 million). It is the only per-banner revenue anyone publishes, which is why the other tabs lean on its shape.</p>`}
     <div class="bm-headline">
-      <span><span class="l">Est. revenue${b.ongoing?" so far":""}</span><div class="v">${G(b.rev)}</div></span>
+      <span><span class="l">Est. revenue${b.ongoing?" so far":""}</span><div class="v">${state.data.awaiting_gamei && !(b.rev>0) ? "Waiting for game-i" : G(b.rev)}</div></span>
       <span class="sub">Japan · mobile only · ${b.simulated?"simulated until game-i publishes its figure":"game-i's own estimate"}${usdOn()?` · yen at ${esc(fxLine())}`:""}</span></div>
     ${b.simulated?`<p class="bm-note bm-warn"><b>Simulated.</b> ${esc(SIM_TIP)}</p>`:""}
     ${bothLine(b)}
