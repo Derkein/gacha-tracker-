@@ -20,7 +20,7 @@ OUT = ROOT / "data" / "journal"
 NAMES = {"genshin": "Genshin Impact", "hsr": "Honkai: Star Rail", "zzz": "Zenless Zone Zero",
          "wuwa": "Wuthering Waves", "nte": "Neverness to Everness", "endfield": "Arknights: Endfield",
          "uma": "Umamusume: Pretty Derby", "czn": "Chaos Zero Nightmare", "stellasora": "Stella Sora",
-         "lads": "Love and Deepspace"}
+         "lads": "Love and Deepspace", "azurp": "Azur Promilia"}
 # the six the audience follows lead every issue; the rest follow in revenue order
 FEATURED = ["genshin", "hsr", "zzz", "wuwa", "endfield", "nte"]
 # The CN 总流水 layer (天天背锅崩坏娘's monthly Bilibili chart, global all-platform CN¥ ranges) as

@@ -58,6 +58,10 @@ GAMES = {
     # announce every new limited ★5 event, with the leads it features
     "lads":        {"apid": "6443467980", "name": "Love and Deepspace", "jp": "恋と深空",
                     "official": "https://prtimes.jp/main/html/searchrlp/company_id/131862"},
+    # Manjuu / Yostar, launched 2026-11-26 in Japan, Korea, Taiwan and China (no global
+    # server yet): game-i has no ガチャ分析 page, so the banners come from the official JP site
+    "azurp":       {"apid": "6787982572", "name": "Azur Promilia", "jp": "アズールプロミリア",
+                    "official": "https://azurpromilia.jp/news"},
     # Top popular gacha titles game-i tracks (resolved by App Store id at runtime,
     # so we don't hardcode long JP page names full of ：＆！／). Data-only: these
     # use banner-art thumbnails, not character icons. Kept last: the site's game rail
@@ -722,14 +726,24 @@ def main():
         if meta.get("official"):
             # every figure of an official-source game is rebuilt from game-i's daily data, so a
             # failed / empty feed must not overwrite yesterday's numbers with zeros
-            if not monthly:
+            if not monthly and (DATA / f"{tag}.json").exists():
                 print(f"[{tag}] FAILED: no monthly table from game-i — keeping the previous data", file=sys.stderr)
                 continue
-            try:
-                official_revenue(meta["apid"], banners, monthly)
-            except Exception as e:
-                print(f"[{tag}] FAILED: {e} — keeping the previous data", file=sys.stderr)
-                continue
+            if not monthly:
+                # a game just added, that game-i hasn't logged a day of yet (Azur Promilia on its
+                # launch day): list its banners with no revenue so it shows up; figures follow
+                print(f"[{tag}] no game-i data yet (new game): banners listed without revenue")
+                for i, b in enumerate(banners):
+                    b["rev"] = b["rev_month"] = 0.0
+                    b["rev_ym"], b["rev_month_ym"] = {}, {}
+                    b["cum"], b["cumtot"] = i + 1, len(banners)
+                    b["yrank"], b["ytot"] = 1 + sum(x["year"] == b["year"] for x in banners[:i]), sum(x["year"] == b["year"] for x in banners)
+            else:
+                try:
+                    official_revenue(meta["apid"], banners, monthly)
+                except Exception as e:
+                    print(f"[{tag}] FAILED: {e} — keeping the previous data", file=sys.stderr)
+                    continue
         out = {
             "game": tag,
             "name": meta["name"],

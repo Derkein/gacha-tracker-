@@ -1,0 +1,43 @@
+{
+ "game": "azurp",
+ "name": "Azur Promilia",
+ "jp": "アズールプロミリア",
+ "unit": "億G",
+ "source": "https://azurpromilia.jp/news",
+ "banners_from": "official",
+ "updated": "2026-11-26T14:04:31Z",
+ "count": 1,
+ "now": {
+  "ios": 109,
+  "android": null,
+  "month": null,
+  "next_add": 13076065
+ },
+ "monthly": {},
+ "banners": [
+  {
+   "name": "塗山小玉",
+   "start": "2026-11-26",
+   "end": "2026-12-17",
+   "year": 2026,
+   "related": "桃花の契り",
+   "banner_img": "https://webusstatic.yo-star.com/web-cms-test/upload/content/2026/11/26/7f4FRM8B.png",
+   "agents": [
+    "Tushan Xiaoyu"
+   ],
+   "en": "Tushan Xiaoyu",
+   "source_url": "https://azurpromilia.jp/news/5225",
+   "rerun": false,
+   "ongoing": true,
+   "rev": 0.0,
+   "rev_month": 0.0,
+   "rev_ym": {},
+   "rev_month_ym": {},
+   "cum": 1,
+   "cumtot": 1,
+   "yrank": 1,
+   "ytot": 1,
+   "bar": "#cb9ac2"
+  }
+ ]
+}

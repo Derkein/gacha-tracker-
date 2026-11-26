@@ -159,6 +159,7 @@ CN_TRACKED = {
     "stellasora": "6738384520", # 星塔旅人 (CN edition, launched with the rest of the world)
     "czn":      "6751272153",   # 卡厄思梦境 (CN edition, Tencent, launched 2026-05-27)
     "lads":     "1618911882",   # 恋与深空 (Papergames' CN edition, live since January 2024)
+    "azurp":    "6754017631",   # 蓝色星原：旅谣 (Manjuu, CN public beta from 2026-11-26)
 }
 
 # Global top sellers, games only (category1=998 drops hardware such as Steam Deck).

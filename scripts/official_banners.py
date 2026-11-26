@@ -633,7 +633,48 @@ def lads():
     return _dedupe(out)
 
 
-SOURCES = {"stellasora": stellasora, "czn": czn, "lads": lads}
+# ---------------------------------------------------------------- Azur Promilia
+# azurpromilia.jp's own CMS (the news page's JSON). Each limited banner is a ■ section of a
+# notice with 「▼星弦の観測 「<name>」限定★5 ピックアップ対象 / ★5 キャラクター <X>」 and its
+# 「▼開催期間 A～B」. Japan, Korea, Taiwan and China only (launched 2026-11-26); no global
+# server until the English beta (2027), so there is no English feed to pair names with.
+AP_API = "https://azurpromilia.jp/official/api/webcms/official?key={}"
+_AP_PICK = re.compile(r"限定\s*★\s*5\s*ピックアップ対象")
+
+
+def azurp():
+    rows = []
+    for key in ("news", "notice", "activity"):
+        try:
+            rows += _get(AP_API.format(key))["data"]["rows"]
+        except Exception as e:
+            print(f"[azurp] {key} feed unavailable (non-fatal): {e}", file=sys.stderr)
+    out = []
+    for r in {r["id"]: r for r in rows}.values():
+        ref = datetime.fromtimestamp(int(r["publishTime"]) / 1000, JST).date()
+        for sec in (r.get("content") or "").split("■"):         # one ■ heading per announcement
+            t = _text(sec)
+            if not _AP_PICK.search(t):
+                continue
+            body = _AP_PICK.split(t, 1)[1]
+            stars = re.findall(r"★\s*5\s*キャラクター\s*([^\s（(※・\n]+)", body.split("開催期間", 1)[0])
+            m = re.search(r"開催期間\s*\n?\s*([^\n]+)", body)
+            per = _period(m.group(1), ref) if m else None
+            if not (stars and per):
+                print(f"[azurp] skipped a section of {r['id']} {r['title']}: no ★5/period", file=sys.stderr)
+                continue
+            title = re.search(r"観測\s*[「『]([^」』]+)[」』]", t)
+            img = re.search(r'<img[^>]+src="([^"]+)"', sec)
+            out.append({"name": "・".join(dict.fromkeys(stars)),
+                        "start": per[0].isoformat(), "end": per[1].isoformat(), "year": per[0].year,
+                        "related": title.group(1) if title else "",
+                        "banner_img": _url(img.group(1)) if img else None,
+                        "rerun_hint": "復刻" in t,
+                        "src": f"https://azurpromilia.jp/news/{r['id']}"})
+    return _dedupe(out)
+
+
+SOURCES = {"stellasora": stellasora, "czn": czn, "lads": lads, "azurp": azurp}
 
 CZN_CHAR_BOARD = 139270                  # 要員情報: one introduction post per character
 
@@ -669,7 +710,11 @@ def character_art(tag):
 # JP name until a later run finds it).
 SS_EN_API = "https://stellasora.global/api/resource/news"
 CZN_EN_EVENT_BOARDS, CZN_EN_NOTE_BOARDS = (139240, 139241), (139238, 142421)
-SEED = {"stellasora": {"チトセ": "Chitose", "シア": "Shia"}}   # launch banners had no EN notice
+SEED = {"stellasora": {"チトセ": "Chitose", "シア": "Shia"},   # launch banners had no EN notice
+        # Azur Promilia has no English release yet (English beta 2027): the CN name in pinyin
+        # (涂山小玉) until an official English name exists — then correct it in azurp_map.json
+        "azurp": {"塗山小玉": "Tushan Xiaoyu"}}
+NO_EN_FEED = {"azurp"}
 
 
 def _day(ms):
@@ -733,6 +778,10 @@ def english_names(tag, root):
     m = {**SEED.get(tag, {}), **m}
     if tag == "lads":                    # the five leads are fixed (LADS_LEADS); banners carry them
         return {**m, **LADS_LEADS}
+    if tag in NO_EN_FEED:                # nothing to pair with: the seed / hand-kept map only
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps(m, ensure_ascii=False, indent=0), encoding="utf-8")
+        return m
     try:
         pairs = _ss_pairs() if tag == "stellasora" else _czn_pairs()
     except Exception as e:                       # names are cosmetic: never fail the scrape

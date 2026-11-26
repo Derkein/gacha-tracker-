@@ -82,6 +82,15 @@
    "icon": "icons/games/lads.png"
   },
   {
+   "game": "azurp",
+   "name": "Azur Promilia",
+   "jp": "アズールプロミリア",
+   "count": 1,
+   "total_oku": 0.0,
+   "updated": "2026-11-26T14:04:31Z",
+   "icon": "icons/games/azurp.png"
+  },
+  {
    "game": "uma",
    "name": "Umamusume: Pretty Derby",
    "jp": "ウマ娘 プリティーダービー",

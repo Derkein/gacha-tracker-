@@ -1,7 +1,7 @@
 // Gacha Revenue Tracker — client logic. Data comes from data/*.json (built by scripts/).
 const GAME_ACCENT = {          // per-game hue (used for bars/dots without a sampled color)
   zzz:"#e0a400", hsr:"#8a7bd8", wuwa:"#2fb6c0", genshin:"#d8a24a", endfield:"#e07b3a", nte:"#d94f8a",
-  uma:"#3fb98f", stellasora:"#5aa9e6", czn:"#d2463c", lads:"#b87ee6",
+  uma:"#3fb98f", stellasora:"#5aa9e6", czn:"#d2463c", lads:"#b87ee6", azurp:"#548bcc",
 };
 const state = { revMode:"daily", games:[], tag:null, data:null, reported:null, cn:null, qimai:null, mode:"time", table:false, reverse:false, bracket:0, graphDim:"year", graphUnit:"banner", graphLayout:"together", graphYearsSel:[], matchHigh:true, monthYear:"all", periodSort:"timeline", dataSource:"gamei", search:"", agreeMode:"month", compare:{picks:[], sources:{}, chart:"jp"} };
 

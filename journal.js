@@ -5,9 +5,9 @@
 // issue only — the data has no future banners) and data/journal/themes.json (character-themed
 // headline lines, keyed "tag:Name").
 const GAME_ACCENT = { zzz:"#e0a400", hsr:"#8a7bd8", wuwa:"#2fb6c0", genshin:"#d8a24a", endfield:"#e07b3a",
-  nte:"#d94f8a", uma:"#3fb98f", stellasora:"#5aa9e6", czn:"#d2463c", lads:"#b87ee6" };
+  nte:"#d94f8a", uma:"#3fb98f", stellasora:"#5aa9e6", czn:"#d2463c", lads:"#b87ee6", azurp:"#548bcc" };
 const SHORT = { genshin:"Genshin", hsr:"Star Rail", zzz:"ZZZ", wuwa:"Wuthering Waves", nte:"NTE", endfield:"Endfield",
-  uma:"Umamusume", czn:"Chaos Zero Nightmare", stellasora:"Stella Sora", lads:"Love and Deepspace" };
+  uma:"Umamusume", czn:"Chaos Zero Nightmare", stellasora:"Stella Sora", lads:"Love and Deepspace", azurp:"Azur Promilia" };
 // the six the audience follows get full spreads; the rest run as shorter "in brief" pieces
 const FEATURED = ["genshin","hsr","zzz","wuwa","endfield","nte"];
 const MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
