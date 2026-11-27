@@ -5,13 +5,13 @@
  "unit": "億G",
  "source": "https://azurpromilia.jp/news",
  "banners_from": "official",
- "updated": "2026-11-27T17:30:57Z",
+ "updated": "2026-11-27T23:29:45Z",
  "count": 1,
  "now": {
-  "ios": 91,
-  "android": 78,
+  "ios": 92,
+  "android": 58,
   "month": 847,
-  "next_add": 13897073,
+  "next_add": 13868713,
   "ym": "2026/11",
   "ranks": {
    "prev": [
