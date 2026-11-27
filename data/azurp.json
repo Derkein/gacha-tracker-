@@ -5,13 +5,13 @@
  "unit": "億G",
  "source": "https://azurpromilia.jp/news",
  "banners_from": "official",
- "updated": "2026-11-27T00:49:27Z",
+ "updated": "2026-11-27T17:30:57Z",
  "count": 1,
  "now": {
-  "ios": 81,
-  "android": 116,
-  "month": 1031,
-  "next_add": 15422307,
+  "ios": 91,
+  "android": 78,
+  "month": 847,
+  "next_add": 13897073,
   "ym": "2026/11",
   "ranks": {
    "prev": [
@@ -75,7 +75,7 @@
     null,
     null,
     109,
-    null,
+    90,
     null,
     null,
     null
@@ -83,7 +83,7 @@
   }
  },
  "monthly": {
-  "2026-11": 0.1308
+  "2026-11": 0.2729
  },
  "banners": [
   {
@@ -98,15 +98,16 @@
    "ongoing": true,
    "rank_series": [
     null,
-    109
+    109,
+    90
    ],
-   "rev": 0.1308,
-   "rev_month": 0.1308,
+   "rev": 0.2729,
+   "rev_month": 0.2729,
    "rev_ym": {
-    "2026-11": 0.1308
+    "2026-11": 0.2729
    },
    "rev_month_ym": {
-    "2026-11": 0.1308
+    "2026-11": 0.2729
    },
    "cum": 1,
    "cumtot": 1,

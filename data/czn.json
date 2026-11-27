@@ -5,13 +5,13 @@
  "unit": "億G",
  "source": "https://page.onstove.com/chaoszeronightmare/jp",
  "banners_from": "official",
- "updated": "2026-11-27T00:46:04Z",
+ "updated": "2026-11-27T17:28:34Z",
  "count": 20,
  "now": {
   "ios": null,
-  "android": 149,
+  "android": 152,
   "month": 194,
-  "next_add": 4809799,
+  "next_add": 4558333,
   "ym": "2026/11",
   "ranks": {
    "prev": [
@@ -83,7 +83,7 @@
   }
  },
  "monthly": {
-  "2026-11": 2.12,
+  "2026-11": 2.17,
   "2026-10": 2.64,
   "2026-09": 1.19,
   "2026-08": 1.76,
@@ -1104,17 +1104,18 @@
     null,
     null,
     null,
+    null,
     null
    ],
-   "rev": 2.281,
-   "rev_month": 2.9988,
+   "rev": 2.2789,
+   "rev_month": 3.0135,
    "rev_ym": {
     "2026-10": 1.5701,
-    "2026-11": 0.7108
+    "2026-11": 0.7088
    },
    "rev_month_ym": {
     "2026-10": 1.6199,
-    "2026-11": 1.3788
+    "2026-11": 1.3935
    },
    "cum": 2,
    "cumtot": 20,
@@ -1156,15 +1157,16 @@
     null,
     null,
     null,
+    null,
     null
    ],
-   "rev": 0.3257,
-   "rev_month": 0.6742,
+   "rev": 0.3247,
+   "rev_month": 0.6909,
    "rev_ym": {
-    "2026-11": 0.3257
+    "2026-11": 0.3247
    },
    "rev_month_ym": {
-    "2026-11": 0.6742
+    "2026-11": 0.6909
    },
    "cum": 13,
    "cumtot": 20,
@@ -1190,12 +1192,12 @@
    "rerun": true,
    "ongoing": true,
    "rev": 0.0,
-   "rev_month": 0.067,
+   "rev_month": 0.0855,
    "rev_ym": {
     "2026-11": 0.0
    },
    "rev_month_ym": {
-    "2026-11": 0.067
+    "2026-11": 0.0855
    },
    "cum": 20,
    "cumtot": 20,
